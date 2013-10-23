@@ -3,12 +3,8 @@
 //Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
-//$darkColor = new \ImagickPixel('DarkSlateGrey');
-
 $darkColor = new \ImagickPixel('#000');
 $lightColor = new \ImagickPixel('DodgerBlue2');
-
-
 
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);

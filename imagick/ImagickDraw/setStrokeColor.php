@@ -4,7 +4,7 @@
 $draw = new ImagickDraw();
 
 
-$draw->setStrokeWidth(1);
+//$draw->setStrokeWidth(1);
 
 $darkColor = new \ImagickPixel('black');
 $lightColor = new \ImagickPixel('LightCoral');

@@ -1,11 +1,12 @@
 <?php
 
-//Create a ImagickDraw object to draw into.
+
 $draw = new ImagickDraw();
 
-$darkColor = new \ImagickPixel('#000');
+$darkColor = new \ImagickPixel('rgb(0, 0, 0)');
 $lightColor = new \ImagickPixel('DodgerBlue2');
 
+$draw->setStrokeWidth(1);
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 

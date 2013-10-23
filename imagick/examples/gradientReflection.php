@@ -1,6 +1,7 @@
 <?php
 
-$im = new Imagick(realpath('../images/TestImage.jpg'));
+//$im = new Imagick(realpath('../images/TestImage3.jpg'));
+$im = new Imagick(realpath('../images/sample.png'));
 
 $reflection = clone $im;
 $reflection->flipImage();
@@ -10,7 +11,7 @@ $gradient = new Imagick();
 $gradient->newPseudoImage($reflection->getImageWidth(), $reflection->getImageHeight(), 'gradient:transparent-black');
 
 $reflection->compositeImage($gradient, Imagick::COMPOSITE_OVER, 0, 0);
-$reflection->setImageOpacity(0.15);
+$reflection->setImageOpacity(0.45);
 
 $canvas = new Imagick();
 $canvas->newImage($im->getImageWidth(), $im->getImageHeight() * 1.75, new ImagickPixel('black'));

@@ -3,7 +3,8 @@
 
 $imagick = new Imagick(realpath("../images/TestImage.jpg"));
 
-$imageIterator = $imagick->getPixelIterator();
+
+$imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);
 
 foreach ($imageIterator as $row => $pixels) {      /* Loop trough pixel rows */
     foreach ($pixels as $column => $pixel) {  /* Loop through the pixels in the row (columns) */
@@ -12,10 +13,7 @@ foreach ($imageIterator as $row => $pixels) {      /* Loop trough pixel rows */
         }
     }
     $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
-
-    $imageIterator->getnextiteratorrow();
 }
-
 
 
 

@@ -1,10 +1,13 @@
 <?php
 
-//Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
 $darkColor = new \ImagickPixel('DarkSlateGrey');
 $lightColor = new \ImagickPixel('LightCoral');
+
+$draw->setStrokeOpacity(1);
+$draw->setStrokeWidth(1.5);
+
 
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
@@ -44,10 +47,3 @@ $image->drawImage($draw);
 //Send the image to the browser
 header("Content-Type: image/png");
 echo $image->getImageBlob();
-
-
-//This produces an image of a red rectangle on a yellow background 
-
-
-
- 

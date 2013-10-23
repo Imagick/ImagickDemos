@@ -4,17 +4,22 @@
 
 
 $imageURLs = [
-    'ImagickDraw.setFillRule',
-    'ImagickDraw.setStrokeMiterLimit',
-    'ImagickDraw.setGravity',
+
+    'Imagick/newPseudoImage2',
+
+    'ImagickDraw/setFillRule',
+    'ImagickDraw/setStrokeMiterLimit',
+    'ImagickDraw/setGravity',
 ];
 
-$baseURL = 'http://vagrant.basereality.test:8080/imagick/';
+$baseURL = 'http://imagick.intahwebz.test:8080/';
 
 
 foreach($imageURLs as $imageURL) {
     $url = $baseURL.$imageURL.'.php';
-    
+
+    echo "Fetching $url \n";
+
     $imagick = new Imagick($url);
 
     $imagick->resizeimage(
@@ -32,7 +37,7 @@ foreach($imageURLs as $imageURL) {
     $imagick->setImageCompressionQuality(100);
     $imagick->stripImage();
 
-    $filename = $imageURL.'.png';
+    $filename = str_replace('/', '_', $imageURL).'.png';
     $imagick->writeimage("./$filename");
     
     //$imagick->destroy();

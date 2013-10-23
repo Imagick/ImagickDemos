@@ -4,7 +4,7 @@ define('SEPARATOR', ', ');
 
 echo "<h2><a href='/'>Imagick examples</a></h2>";
 
-if ($_REQUEST['image']) {
+if (array_key_exists('image', $_REQUEST) && $_REQUEST['image']) {
     $image = $_REQUEST['image'];
     echo "<img src='".$image."' />";
 }
@@ -27,19 +27,19 @@ $imagePixelExamples = array(
 
 
 $ImagickPixelIteratorExamples = array(
-    'clear',
+    'clear' => 'resetIterator',
     '__construct',
     'getCurrentIteratorRow',
-    'getIteratorRow',
-    'getNextIteratorRow',
-    'getPreviousIteratorRow',
-    'newPixelIterator',
-    'newPixelRegionIterator',
+    'getIteratorRow' => 'setIteratorRow',
+    //'getNextIteratorRow',
+    //'getPreviousIteratorRow',
+    //'newPixelIterator', deprecated
+    //'newPixelRegionIterator', deprecated
     'resetIterator',
-    'setIteratorFirstRow',
-    'setIteratorLastRow',
+    //'setIteratorFirstRow',
+    //'setIteratorLastRow',
     'setIteratorRow',
-    'syncIterator',
+    'syncIterator',// => '__construct',
 );
 
 
@@ -191,8 +191,8 @@ $imagickExamples = array(
 //'getOption',
 //'getPackageName',
 //'getPage',
-//'getPixelIterator',
-//'getPixelRegionIterator',
+'getPixelIterator',
+'getPixelRegionIterator',
 //'getPointSize',
 //'getQuantumDepth',
 //'getQuantumRange',
@@ -213,20 +213,21 @@ $imagickExamples = array(
 //'levelImage',
 //'linearStretchImage',
 //'liquidRescaleImage',
-//'magnifyImage',
+'magnifyImage',
 //'mapImage',
 //'matteFloodfillImage',
 //'medianFilterImage',
 //'mergeImageLayers',
 //'minifyImage',
-//'modulateImage',
+'modulateImage',
 //'montageImage',
 //'morphImages',
 //'mosaicImages',
 'motionBlurImage',
 'negateImage',
 //'newImage',
-//'newPseudoImage',
+'newPseudoImage',
+'newPseudoImage2',
 //'nextImage',
 'normalizeImage',
 'oilPaintImage',
@@ -342,15 +343,15 @@ $imagickExamples = array(
 //'setType',
 //'shadeImage',
 'shadowImage',
-//'sharpenImage',
+'sharpenImage',
 'shaveImage',
-//'shearImage',
+'shearImage',
 //'sigmoidalContrastImage',
-//'sketchImage',
-//'solarizeImage',
+'sketchImage',
+'solarizeImage',
 //'sparseColorImage',
 //'spliceImage',
-//'spreadImage',
+'spreadImage',
 //'steganoImage',
 //'stereoImage',
 //'stripImage',
@@ -359,16 +360,16 @@ $imagickExamples = array(
 //'thresholdImage',
 'thumbnailImage',
 'tintImage', //what is this
-//'transformImage',
+'transformImage',
 //'transparentPaintImage',
 'transposeImage',
 'transverseImage',
-//'trimImage',
-//'uniqueImageColors',
-//'unsharpMaskImage',
+'trimImage',
+'uniqueImageColors',
+'unsharpMaskImage',
 //'valid',
-//'vignetteImage',
-//'waveImage',
+'vignetteImage',
+'waveImage',
 //'whiteThresholdImage',
 //'writeImage',
 //'writeImageFile',
@@ -495,6 +496,29 @@ $imagickDrawExamples = array(
     'translate',
 );
 
+$fullExamples = [
+    'gradientReflection'
+];
+
+echo "<h2>Full examples</h2>";
+$separator = '';
+foreach($fullExamples as $key => $fullExample) {
+    echo $separator;
+//    echo "<a href='/examples/$fullExample.php'>".$fullExample."</a>";
+
+    if ($key === intval($key)){
+        echo "<a href='?image=/examples/$fullExample.php'>".$fullExample."</a>";
+    }
+    else{
+        echo "<a href='?image=/examples/$fullExample.php'>".$key."</a>";
+    }
+
+//    if ($imagickExample === true) {
+//        echo "<a href='/Imagick/$key.php' target='_blank'>".$key."</a>";
+//    }
+
+    $separator = SEPARATOR;
+}
 
 
 echo "<h2>ImagePixelExamples</h2>";
@@ -537,8 +561,14 @@ foreach($imagickDrawExamples as $key => $imagickDrawExample) {
 
 echo "<h2>ImagickPixelIteratorExample</h2>";
 $separator = '';
-foreach($ImagickPixelIteratorExamples as $ImagickPixelIteratorExample) {
+foreach($ImagickPixelIteratorExamples as $key => $ImagickPixelIteratorExample) {
     echo $separator;
-    echo "<a href='/ImagickPixelIterator/$ImagickPixelIteratorExample.php'>".$ImagickPixelIteratorExample."</a>";
+
+    if ($key === intval($key)){
+        echo "<a href='?image=/ImagickPixelIterator/$ImagickPixelIteratorExample.php'>".$ImagickPixelIteratorExample."</a>";
+    }
+    else {
+        echo "<a href='?image=/ImagickPixelIterator/$ImagickPixelIteratorExample.php'>".$key."</a>";
+    }
     $separator = SEPARATOR;
 }

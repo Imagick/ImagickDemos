@@ -6,7 +6,7 @@ $draw = new ImagickDraw();
 $darkColor = new \ImagickPixel('brown');
 $lightColor = new \ImagickPixel('LightCoral');
 
-
+$draw->setStrokeOpacity(1);
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 

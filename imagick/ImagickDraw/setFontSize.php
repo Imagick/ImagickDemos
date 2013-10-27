@@ -3,30 +3,24 @@
 
 $draw = new ImagickDraw();
 
-$darkColor = new \ImagickPixel('brown');
+$darkColor = new \ImagickPixel('black');
 $lightColor = new \ImagickPixel('LightCoral');
 
+
+$draw->setStrokeOpacity(1);
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 
 $draw->setStrokeWidth(2);
 
-$draw->setFontSize(24);
-$draw->annotation(50, 50, "Lorem Ipsum!");
+$draw->setFont("../fonts/CANDY.TTF");
 
-$draw->setFontSize(36);
-$draw->annotation(50, 100, "Lorem Ipsum!");
+$sizes = [24, 36, 48, 60, 72];
 
-$draw->setFontSize(48);
-$draw->annotation(50, 150, "Lorem Ipsum!");
-
-$draw->setFontSize(60);
-$draw->annotation(50, 200, "Lorem Ipsum!");
-
-$draw->setFontSize(72);
-$draw->annotation(50, 250, "Lorem Ipsum!");
-
-
+foreach ($sizes as $size) {
+    $draw->setFontSize($size);
+    $draw->annotation(50,   ($size * $size  / 16), "Lorem Ipsum!");
+}
 
 //Create an image object which the draw commands can be rendered into
 $imagick = new Imagick();

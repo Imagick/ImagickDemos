@@ -10,8 +10,8 @@ $lightColor = new \ImagickPixel('LightCoral');
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 
+$draw->setStrokeOpacity(1);
 $draw->setStrokeWidth(2);
-
 
 $draw->roundRectangle(50, 50, 200, 200, 5, 5);
 

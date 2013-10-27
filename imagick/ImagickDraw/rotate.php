@@ -10,6 +10,9 @@ $draw = new ImagickDraw();
 $darkColor = new \ImagickPixel('maroon');
 $color = new \ImagickPixel('LightCoral');
 
+$draw->setStrokeColor('black');
+$draw->setStrokeOpacity(1);
+
 $draw->setFillColor($darkColor);
 $draw->rectangle(200, 200, 300, 300);
 

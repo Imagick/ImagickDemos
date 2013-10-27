@@ -29,7 +29,7 @@ $imagePixelExamples = array(
 $ImagickPixelIteratorExamples = array(
     'clear' => 'resetIterator',
     '__construct',
-    'getCurrentIteratorRow',
+    //'getCurrentIteratorRow',
     'getIteratorRow' => 'setIteratorRow',
     //'getNextIteratorRow',
     //'getPreviousIteratorRow',
@@ -388,7 +388,7 @@ $imagickDrawExamples = array(
     //'clear',
     //'color',
     //'comment',
-    //'composite',
+    'composite',
     //'destroy',
     'ellipse',
 //    'getClipPath',
@@ -420,7 +420,7 @@ $imagickDrawExamples = array(
 //    'getVectorGraphics',
     'line',
     //'matte', dont know how it works
-    'pathClose',
+    'pathClose' => 'pathStart',
     'pathCurveToAbsolute',
     'pathCurveToQuadraticBezierAbsolute',
     'pathCurveToQuadraticBezierRelative',
@@ -445,12 +445,12 @@ $imagickDrawExamples = array(
     'polygon',
     'polyline',
     'pop' => 'push',
-    'popClipPath',
-    'popDefs',
-    'popPattern',
+    'popClipPath' => 'setClipPath',
+    //'popDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
+    'popPattern' => 'pushPattern',
     'push',
-    'pushClipPath',
-    'pushDefs',
+    'pushClipPath' => 'setClipPath',
+    // 'pushDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
     'pushPattern',
     'rectangle',
     //'render', no idea what this does
@@ -463,7 +463,7 @@ $imagickDrawExamples = array(
     'setFillAlpha',
     'setFillColor',
     'setFillOpacity',
-    //'setFillPatternURL',
+    'setFillPatternURL' => 'pushPattern',
     'setFillRule',
     'setFillRule2',
     'setFont',
@@ -497,7 +497,8 @@ $imagickDrawExamples = array(
 );
 
 $fullExamples = [
-    'gradientReflection'
+    'gradientReflection',
+    'psychedelicFont'
 ];
 
 echo "<h2>Full examples</h2>";

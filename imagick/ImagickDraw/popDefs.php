@@ -3,16 +3,32 @@
 //Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
-$darkColor = new \ImagickPixel('brown');
+$darkColor = new \ImagickPixel('DarkSlateGray');
 $lightColor = new \ImagickPixel('LightCoral');
 
 
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
-$draw->setStrokeOpacity(1);
-$draw->setStrokeWidth(2);
 
-$draw->rectangle(200, 200, 300, 300);
+$draw->setstrokeOpacity(1);
+$draw->setStrokeWidth(2);
+$draw->setFontSize(72);
+
+
+
+$draw->pushDefs();
+
+$draw->setStrokeColor('white');
+$draw->rectangle(50, 50, 200, 200);
+$draw->popDefs();
+
+
+$draw->rectangle(300, 50, 450, 200);
+
+
+
+
+
 
 //Create an image object which the draw commands can be rendered into
 $imagick = new Imagick();

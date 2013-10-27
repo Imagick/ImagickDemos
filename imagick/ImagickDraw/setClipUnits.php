@@ -1,16 +1,34 @@
 <?php
 
-//Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
 $darkColor = new \ImagickPixel('brown');
 $lightColor = new \ImagickPixel('LightCoral');
 
-
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
+
 $draw->setStrokeOpacity(1);
 $draw->setStrokeWidth(2);
+
+$clipPathName = 'testClipPath';
+
+$draw->setClipUnits(\Imagick::RESOLUTION_PIXELSPERINCH);
+
+$draw->pushClipPath($clipPathName);
+
+$draw->rectangle(0, 0, 250, 250);
+
+$draw->popClipPath();
+
+$draw->setClipPath($clipPathName);
+
+//RESOLUTION_PIXELSPERINCH
+//RESOLUTION_PIXELSPERCENTIMETER
+
+
+
+
 
 $draw->rectangle(200, 200, 300, 300);
 

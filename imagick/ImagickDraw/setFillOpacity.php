@@ -6,13 +6,15 @@ $draw = new ImagickDraw();
 $darkColor = new \ImagickPixel('brown');
 $lightColor = new \ImagickPixel('LightCoral');
 
-
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 $draw->setStrokeOpacity(1);
 $draw->setStrokeWidth(2);
 
-$draw->rectangle(200, 200, 300, 300);
+$draw->rectangle(100, 200, 200, 300);
+
+$draw->setFillOpacity(0.4);
+$draw->rectangle(300, 200, 400, 300);
 
 //Create an image object which the draw commands can be rendered into
 $imagick = new Imagick();

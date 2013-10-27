@@ -3,23 +3,41 @@
 //Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
-$darkColor = new \ImagickPixel('DarkSlateGray');
+$darkColor = new \ImagickPixel('black');
 $lightColor = new \ImagickPixel('LightCoral');
 
 
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 
-$draw->setStrokeWidth(2);
-$draw->setFontSize(72);
+$draw->setStrokeWidth(1);
 
+$draw->setStrokeOpacity(1);
+$draw->setStrokeColor($darkColor);
+$draw->setFillColor($lightColor);
 
+$draw->setStrokeWidth(1);
 
-$success = $draw->pushPattern("MyFirstPattern", 0, 0, 100, 100);
-$draw->rectangle(0, 0, 50, 50);
+$success = $draw->pushPattern("MyFirstPattern", 0, 0, 50, 50);
+for ($x=0 ; $x<50 ; $x+=10 ){
+    for ($y=0 ; $y<50 ; $y+=5 ){
+        $positionX = $x + (($y / 5) % 5);
+        $draw->rectangle($positionX, $y, $positionX+5, $y+5);
+    }
+}
 $draw->popPattern();
 
-//$draw->rectangle(200, 200, 300, 300);
+$draw->setFillOpacity(0);
+$draw->rectangle(100, 100, 400, 400);
+$draw->setFillOpacity(1);
+
+$draw->setFillOpacity(1);
+
+$draw->push();
+$draw->setFillPatternURL('#MyFirstPattern');
+$draw->setFillColor('yellow');
+$draw->rectangle(100, 100, 400, 400);
+$draw->pop();
 
 
 //Create an image object which the draw commands can be rendered into

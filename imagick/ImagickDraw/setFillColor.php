@@ -1,31 +1,29 @@
 <?php
 
-//Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
+$darkColor = new \ImagickPixel('rgb(0, 0, 0)');
 
-$darkColor = new \ImagickPixel('black');
-$lightColor = new \ImagickPixel('LightCoral');
+
 
 $draw->setStrokeOpacity(1);
+$draw->setStrokeWidth(1.5);
+
 $draw->setStrokeColor($darkColor);
-$draw->setStrokeWidth(4);
 
+
+$lightColor = new \ImagickPixel('DodgerBlue2');
 $draw->setFillColor($lightColor);
+$draw->rectangle(50, 50, 150, 150);
 
-$points = [
-    [ 'x' => 40 * 5, 'y' => 10 * 5],
-    [ 'x' =>20 * 5, 'y' => 20 * 5],
-    [ 'x' =>70 * 5, 'y' => 50 * 5],
-    [ 'x' =>60 * 5, 'y' => 15 * 5],
-];
 
-$draw->polygon($points);
+$draw->setFillColor("rgb(200, 32, 32)");
+$draw->rectangle(200, 50, 300, 150);
 
 
 //Create an image object which the draw commands can be rendered into
 $image = new Imagick();
-$image->newImage(500, 300, "SteelBlue2");
+$image->newImage(500, 500, "#eee");
 $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 
@@ -35,9 +33,3 @@ $image->drawImage($draw);
 //Send the image to the browser
 header("Content-Type: image/png");
 echo $image->getImageBlob();
-
-
-
-
-
- 

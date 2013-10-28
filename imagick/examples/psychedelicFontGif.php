@@ -59,8 +59,6 @@ $aniGif->setImageIterations(0);
 
 $aniGif->deconstructImages();
 
-
-
 //there more than one file, so must be using writeImages()
 $aniGif->writeImages("/home/intahwebz/intahwebz/basereality/imagick/Danack.gif", true);
 

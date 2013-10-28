@@ -8,38 +8,42 @@ $lightColor = new \ImagickPixel('LightCoral');
 
 
 $draw->setStrokeColor($darkColor);
-$draw->setFillColor('white');
+$draw->setFillColor('black');
+
+$draw->setFillOpacity(1);
 
 $draw->setStrokeWidth(2);
 $draw->setFontSize(72);
 
-
 $draw->setStrokeOpacity(1);
 $draw->setStrokeColor($darkColor);
-
 
 $draw->setStrokeWidth(2);
 
 $draw->setFont("../fonts/CANDY.TTF");
 
-$draw->setFontSize(140 );
+$draw->setFontSize(140);
 
-//$draw->setFillColor('none');
-//$draw->rectangle(0, 0, 1000, 300);
+$draw->rectangle(0, 0, 1000, 300);
 
-$draw->annotation(50,   180, "Lorem Ipsum!");
+$draw->setFillColor('white');
+
+$draw->setfillopacity(1);
+$draw->annotation(50,  180, "Lorem Ipsum!");
+
 
 
 $imagick = new Imagick(realpath("../images/TestImage.jpg"));
+$draw->composite(Imagick::COMPOSITE_MULTIPLY, -500, -200, 2000, 600, $imagick);
 
+//$imagick->compositeImage($draw, 0, 0, 1000, 500);
 
-
-$draw->composite(Imagick::COMPOSITE_BLEND, 0, 0, 1000, 300, $imagick);
+//$draw->composite(Imagick::COMPOSITE_COLORBURN, -500, -200, 2000, 600, $imagick);
 
 
 //Create an image object which the draw commands can be rendered into
 $imagick = new Imagick();
-$imagick->newImage(1000, 300, "SteelBlue2");
+$imagick->newImage(1000, 302, "SteelBlue2");
 $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

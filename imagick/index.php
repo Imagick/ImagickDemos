@@ -349,7 +349,7 @@ $imagickExamples = array(
 //'sigmoidalContrastImage',
 'sketchImage',
 'solarizeImage',
-//'sparseColorImage',
+'sparseColorImage',
 //'spliceImage',
 'spreadImage',
 //'steganoImage',
@@ -489,7 +489,7 @@ $imagickDrawExamples = array(
     'setTextDecoration',
     //'setTextEncoding',
     'setTextUnderColor',
-    // 'setVectorGraphics', seems broken
+    'setVectorGraphics', // seems broken
     // 'setViewbox', no idea what this does
     'skewX',
     'skewY',
@@ -498,7 +498,8 @@ $imagickDrawExamples = array(
 
 $fullExamples = [
     'gradientReflection',
-    'psychedelicFont'
+    'psychedelicFont',
+    'composite',
 ];
 
 echo "<h2>Full examples</h2>";

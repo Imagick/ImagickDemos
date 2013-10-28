@@ -35,7 +35,7 @@ $svg = $draw->getVectorGraphics();
 
 $draw2 = new ImagickDraw();
 
-$draw2->setvectorgraphics($draw2);
+$draw2->setvectorgraphics($svg);
 
 //Create an image object which the draw commands can be rendered into
 $imagick = new Imagick();

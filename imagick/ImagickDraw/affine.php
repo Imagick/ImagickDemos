@@ -3,13 +3,12 @@
 //Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
-//http://www.imagemagick.org/Usage/distorts/affine/
-
 $draw->setStrokeWidth(1);
 
 $darkColor = new \ImagickPixel('black');
 $lightColor = new \ImagickPixel('LightCoral');
 
+$draw->setStrokeOpacity(1);
 $draw->setStrokeColor($darkColor);
 $draw->setFillColor($lightColor);
 
@@ -19,15 +18,7 @@ $PI = 3.141592653589794;
 $angle = 60 * $PI / 360;
 
 
-$affineIdentity = array(
-    "sx" => 1,
-    "sy" => 1,
-    "rx" => 0,
-    "ry" => 0,
-    "tx" => 0,
-    "ty" => 0
-);
-
+//Scale the drawing co-ordinates.
 $affineScale = array(
     "sx" => 1.75,
     "sy" => 1.75,
@@ -37,6 +28,7 @@ $affineScale = array(
     "ty" => 0
 );
 
+//Shear the drawing co-ordinates.
 $affineShear = array(
     "sx" => 1,
     "sy" => 1,
@@ -46,6 +38,8 @@ $affineShear = array(
     "ty" => 0
 );
 
+//Rotate the drawing co-ordinates. The shear affine matrix
+//produces incorrectly scaled drawings.
 $affineRotate = array(
     "sx" => cos($angle),
     "sy" => cos($angle),
@@ -55,8 +49,8 @@ $affineRotate = array(
     "ty" => 0,
 );
 
-
-$affineTransform = array(
+//Translate (offset) the drawing
+$affineTranslate = array(
     "sx" => 1,
     "sy" => 1,
     "rx" => 0,
@@ -65,13 +59,23 @@ $affineTransform = array(
     "ty" => 30
 );
 
+//The identiy affine matrix
+$affineIdentity = array(
+    "sx" => 1,
+    "sy" => 1,
+    "rx" => 0,
+    "ry" => 0,
+    "tx" => 0,
+    "ty" => 0
+);
+
 
 $examples = [
-    $affineIdentity,
     $affineScale,
     $affineShear,
     $affineRotate,
-    $affineTransform
+    $affineTranslate,
+    $affineIdentity,
 ];
 
 $count = 0;
@@ -86,7 +90,6 @@ foreach ($examples as $example) {
     $count++;
 }
 
-
 //Create an image object which the draw commands can be rendered into
 $image = new Imagick();
 $image->newImage(500, 750, "SteelBlue2");
@@ -99,3 +102,38 @@ $image->drawImage($draw);
 //Send the image to the browser
 header("Content-Type: image/png");
 echo $image->getImageBlob();
+
+
+/*
+
+Adjusts the current affine transformation matrix with the specified affine transformation matrix.
+
+    sx - The amount to scale the drawing in the x direction.
+    sy - The amount to scale the drawing in the y direction,
+    rx - The amount to rotate the drawing for ,
+    ry - 0,
+    tx - The amount to translate the drawing in the x direction.
+    ty - The amount to translate the drawing in the y direction.
+
+
+
+<refsect1 role="examples">
+  &reftitle.examples;
+  <para>
+   <example>
+    <title>Basic <function>substr</function> usage</title>
+    <programlisting role="php">
+<![CDATA[
+<?php
+
+
+
+]]>
+    </screen>
+   </example>
+  </para>
+ </refsect1>
+
+
+
+*/

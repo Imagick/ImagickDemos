@@ -2,18 +2,28 @@
 
 
 $listOfExamples = [
-  ['multiplyGradients', 'Multiply two gradients'],
+    ['multiplyGradients', 'Multiply two gradients'],
 
-  ['screenGradients', 'Screen two gradients'],
+    ['screenGradients', 'Screen two gradients'],
 
-  ['divide', 'Divide image'],
+    ['divide', 'Divide image'],
+
+    ['Dst_In', 'Dst_In'],
+    ['Dst_Out', 'Dst_Out'],
+
+    ['ATop', 'ATop'],
+    ['Plus', 'Plus'],
+    ['Minus', 'Minus'],
+    ['CopyOpacity', 'CopyOpacity'], //(Set transparency from gray-scale mask)
+    ['CopyOpacity2', 'CopyOpacity2'], //(Set transparency from gray-scale mask)
 ];
+
+
 
 if (array_key_exists('example', $_REQUEST)) {
     showExample($_REQUEST['example'], $listOfExamples);
     exit(0);
 }
-
 
 showPage($listOfExamples);
 
@@ -34,11 +44,13 @@ function showPage($examples) {
     echo "<html>
         <body>";
 
+    echo "<h2><a href='/'>Imagick examples</a></h2>";
+
     echo "Select a demo:<br/>";
 
     echo "<select onchange='setExample(this);'>";
 
-    echo "<option value='-1' >Choose a demo</option>";
+    echo "<option value='-1' >Choose a composite demo</option>";
 
     foreach($examples as $example) {
 
@@ -49,10 +61,7 @@ function showPage($examples) {
 
     echo "<br/>";
 
-    echo "<img src='' id='exampleImage'/>";
-
-    //style='diplay: hidden'
-
+    echo "<img src='' id='exampleImage' style='diplay: hidden; border: 2px solid #1f1f1f'/>";
 
     echo "</body>
 
@@ -102,12 +111,8 @@ function multiplyGradients($width, $height) {
 }
 
 
-//Imagick::COMPOSITE_SCREEN,
-
 function screenGradients($width, $height) {
-
     $imagick = new Imagick(realpath("../images/gradientDown.png"));
-
     $imagick2 = new Imagick(realpath("../images/gradientRight.png"));
 
     $imagick->compositeimage(
@@ -142,6 +147,180 @@ function divide($width, $height) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+
+
+/**
+ * This is meant to be a simple alpha mask
+ * @param $width
+ * @param $height
+ */
+function Dst_In($width, $height) {
+
+//    $canvas = new Imagick(realpath("../images/TestImage.jpg"));
+
+    $imagick = new Imagick(realpath("../images/gradientDown.png"));
+    $imagick2 = new Imagick(realpath("../images/whiteDiscAlpha.png"));
+
+    $imagick->setBackgroundColor('yellow');
+    $imagick2->setBackgroundColor('yellow');
+
+    $imagick->compositeimage(
+        $imagick2,
+        Imagick::COMPOSITE_DSTIN,
+        //Imagick::COMPOSITE_DSTATOP,
+        0, 0
+    );
+
+//    $canvas->compositeimage($imagick, Imagick::COMPOSITE_ATOP, 0, 0);
+//    $canvas->setImageFormat('png');
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+
+
+/**
+ * This is meant to be an inversed alpha mask
+ * @param $width
+ * @param $height
+ */
+function Dst_Out($width, $height) {
+
+    $imagick = new Imagick();
+    $imagick->setBackgroundColor('yellow');
+    $imagick->newPseudoImage(500, 500, 'gradient:white-black');
+
+    $imagick2 = new Imagick(realpath("../images/whiteDiscAlpha.png"));
+
+
+    $imagick2->setBackgroundColor('yellow');
+
+    $imagick->compositeimage(
+        $imagick2,
+        Imagick::COMPOSITE_DSTOUT,
+        //Imagick::COMPOSITE_DSTATOP,
+        0, 0
+    );
+
+    $imagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+
+
+function ATop($width, $height) {
+
+    $imagick = new Imagick(realpath("../images/TestImage.jpg"));
+    $imagick2 = new Imagick(realpath("../images/whiteDiscAlpha.png"));
+
+    $imagick2->setBackgroundColor('yellow');
+
+    $imagick->compositeimage(
+        $imagick2,
+        //Imagick::COMPOSITE_DSTOUT,
+        Imagick::COMPOSITE_ATOP,
+        0, 0
+    );
+
+    $imagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+
+
+function Plus($width, $height) {
+
+    $redImagick = new Imagick(realpath("../images/redDiscAlpha.png"));
+    $greenImagick = new Imagick(realpath("../images/greenDiscAlpha.png"));
+    $blueImagick = new Imagick(realpath("../images/blueDiscAlpha.png"));
+
+
+    $redImagick->compositeimage(
+        $greenImagick,
+        Imagick::COMPOSITE_PLUS,
+        0, 0
+    );
+
+    $redImagick->compositeimage(
+        $blueImagick,
+        Imagick::COMPOSITE_PLUS,
+        0, 0
+    );
+
+    $redImagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $redImagick->getImageBlob();
+}
+
+
+function Minus($width, $height) {
+
+
+    $rgbImagick = new Imagick(realpath("../images/rgbDisc.png"));
+    $redImagick = new Imagick(realpath("../images/redDiscAlpha.png"));
+
+
+    $rgbImagick->compositeimage(
+        $redImagick,
+        Imagick::COMPOSITE_MINUS,
+        0, 0
+    );
+
+    $rgbImagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $rgbImagick->getImageBlob();
+}
+
+
+
+/**
+ * This is meant to be a simple alpha mask
+ * @param $width
+ * @param $height
+ */
+function CopyOpacity($width, $height) {
+
+    $imagick = new Imagick(realpath("../images/gradientDown.png"));
+    $imagick2 = new Imagick(realpath("../images/whiteDisc.png"));
+
+    $imagick->compositeimage(
+        $imagick2,
+        Imagick::COMPOSITE_COPYOPACITY,
+        0, 0
+    );
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+
+
+/**
+ * This is meant to be a simple alpha mask
+ * @param $width
+ * @param $height
+ */
+function CopyOpacity2($width, $height) {
+
+    $imagick = new Imagick(realpath("../images/TestImage.jpg"));
+
+    //This is vital - the image must have an alpha channel.
+    $imagick->setImageFormat('png');
+    $imagick->cropImage(500, 500, 0, 0);
+    $imagick2 = new Imagick(realpath("../images/whiteDisc.png"));
+
+    $imagick->compositeimage(
+        $imagick2,
+        Imagick::COMPOSITE_COPYOPACITY,
+        0, 0
+    );
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+
+//    $imagick->setImageAlphaChannel(Imagick::ALPHACHANNEL_ACTIVATE);
+//    $imagick->setImageAlphaChannel(Imagick::ALPHACHANNEL_SET);
+//
 
 
 
@@ -202,8 +381,3 @@ function divide($width, $height) {
 //Imagick::COMPOSITE_SUBTRACT,
 //Imagick::COMPOSITE_THRESHOLD,
 //Imagick::COMPOSITE_XOR,
-//
-//];
-//
-//
-//

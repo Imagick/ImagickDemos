@@ -6,7 +6,6 @@ $imagick = $imagick->coalesceImages();
 $frameCount = 0;
 
 foreach ($imagick as $frame) {
-
     $imagick->setImageDelay((($frameCount % 11) * 5));
     $frameCount++;
 }
@@ -16,7 +15,9 @@ $imagick = $imagick->deconstructImages();
 $imagick->writeImages("/path/to/save/output.gif", true);
 
 
-?>
+
+
+/*
 
 <refsect1 role="examples">
   &reftitle.examples;
@@ -51,6 +52,7 @@ $imagick->writeImages("/path/to/save/output.gif", true);
 </refsect1>
 
 
+*/
 
 
-
+?>

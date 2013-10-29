@@ -1,10 +1,12 @@
 <?php
 
+//php.net good enough
+
+
 //Create a ImagickDraw object to draw into.
 $draw = new ImagickDraw();
 
 //http://www.imagemagick.org/Usage/distorts/affine/
-
 
 $draw->setStrokeWidth(1);
 
@@ -36,7 +38,3 @@ header("Content-Type: image/png");
 echo $image->getImageBlob();
 
 
-
-
-
- 

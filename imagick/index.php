@@ -284,7 +284,7 @@ $imagickExamples = array(
 //'setGravity',
 //'setImage',
 //'setImageAlphaChannel',
-//'setImageArtifact',
+'setImageArtifact',
 //'setImageBackgroundColor',
 //'setImageBias',
 //'setImageBluePrimary',
@@ -332,7 +332,7 @@ $imagickExamples = array(
 //'setInterlaceScheme',
 //'setIteratorIndex',
 //'setLastIterator',
-//'setOption',
+'setOption',
 //'setPage',
 //'setPointSize',
 //'setResolution',
@@ -341,7 +341,7 @@ $imagickExamples = array(
 //'setSize',
 //'setSizeOffset',
 //'setType',
-//'shadeImage',
+'shadeImage',
 'shadowImage',
 'sharpenImage',
 'shaveImage',
@@ -349,8 +349,11 @@ $imagickExamples = array(
 //'sigmoidalContrastImage',
 'sketchImage',
 'solarizeImage',
-'sparseColorImage',
-//'spliceImage',
+'sparseColorImage_barycentric',
+'sparseColorImage_bilinear',
+'sparseColorImage_shepards',
+'sparseColorImage_voronoi',
+'spliceImage',
 'spreadImage',
 //'steganoImage',
 //'stereoImage',
@@ -381,7 +384,7 @@ $imagickExamples = array(
 
 $imagickDrawExamples = array(
     'affine',
-    //'annotation',
+    'annotation' => 'setFontSize',
     'arc',
     'bezier',
     'circle',
@@ -499,11 +502,13 @@ $imagickDrawExamples = array(
 $fullExamples = [
     'gradientReflection',
     'psychedelicFont',
-    'composite',
+    'composite' => 'composite',
 ];
 
 echo "<h2>Full examples</h2>";
 $separator = '';
+
+
 foreach($fullExamples as $key => $fullExample) {
     echo $separator;
 //    echo "<a href='/examples/$fullExample.php'>".$fullExample."</a>";
@@ -512,7 +517,7 @@ foreach($fullExamples as $key => $fullExample) {
         echo "<a href='?image=/examples/$fullExample.php'>".$fullExample."</a>";
     }
     else{
-        echo "<a href='?image=/examples/$fullExample.php'>".$key."</a>";
+        echo "<a href='/examples/$fullExample.php'>".$key."</a>";
     }
 
 //    if ($imagickExample === true) {
@@ -535,7 +540,6 @@ echo "<h2>Imagick examples</h2>";
 $separator = '';
 foreach($imagickExamples as $key => $imagickExample) {
     echo $separator;
-
 
     if ($key === intval($key)){
         echo "<a href='?image=/Imagick/$imagickExample.php'>".$imagickExample."</a>";

@@ -3,12 +3,12 @@
 /**
  * @param $width
  * @param $height
- * @param $colorPoints
+ * @param $colorPoints - the point positions should be expressed in the range 0..1 space 
  * @param $sparseMethod
  * @return \Imagick
  * @throws InvalidArgumentException
  */
-function createGradientImage($width, $height, $colorPoints, $sparseMethod) {
+function createGradientImage($width, $height, $colorPoints, $sparseMethod, $absolute = false) {
 
     $imagick = new Imagick();
     $imagick->newImage($width, $height, "white");
@@ -17,8 +17,15 @@ function createGradientImage($width, $height, $colorPoints, $sparseMethod) {
     $barycentricPoints = array();
 
     foreach ($colorPoints as $colorPoint) {
-        $barycentricPoints[] = $colorPoint[0] * $width;
-        $barycentricPoints[] = $colorPoint[1] * $height;
+        
+        if ($absolute == true) {
+            $barycentricPoints[] = $colorPoint[0];
+            $barycentricPoints[] = $colorPoint[1];
+        }
+        else {
+            $barycentricPoints[] = $colorPoint[0] * $width;
+            $barycentricPoints[] = $colorPoint[1] * $height;
+        }
 
         if (is_string($colorPoint[2])) {
             $imagickPixel = new ImagickPixel($colorPoint[2]);

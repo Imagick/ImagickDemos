@@ -2,6 +2,7 @@
 
 define('SEPARATOR', ', ');
 
+
 echo "<h2><a href='/'>Imagick examples</a></h2>";
 
 if (array_key_exists('image', $_REQUEST) && $_REQUEST['image']) {
@@ -57,19 +58,19 @@ $imagickExamples = array(
 //'animateImages',
 //'annotateImage',
 //'appendImages',
-//'averageImages',
+'averageImages',
 'blackThresholdImage',
 'blurImage',
 'borderImage',
 'charcoalImage',
-//'chopImage',
+'chopImage',
 //'clear',
-//'clipImage',
+'clipImage',
 //'clipPathImage',
-//'clutImage',
+'clutImage',
 //'coalesceImages',
 'colorFloodfillImage',
-//'colorizeImage',
+'colorizeImage',
 //'combineImages',
 //'commentImage',
 //'compareImageChannels',
@@ -502,12 +503,13 @@ $imagickDrawExamples = array(
 $fullExamples = [
     'gradientReflection',
     'psychedelicFont',
+    'imagickComposite',
+    'imagickCompositeGen',
     'composite' => 'composite',
 ];
 
 echo "<h2>Full examples</h2>";
 $separator = '';
-
 
 foreach($fullExamples as $key => $fullExample) {
     echo $separator;

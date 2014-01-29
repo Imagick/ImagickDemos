@@ -2,8 +2,17 @@
 
 require_once "../functions.php";
 
+try {
 //Load the images 
-$output = mergeImages(10);
+$output = mergeImages(
+    array(
+        '../images/composite1.jpg', 
+        '../images/composite2.jpg',
+        '../images/composite3.jpg',
+    ),
+    200,
+    50, 1
+);
 
 //Output the final image
 $output->setImageFormat('png');
@@ -13,70 +22,97 @@ echo $output->getImageBlob();
 
 exit(0);
 
+}
+catch (\Exception $e) {
+    echo "Exception caught: ".$e->getMessage();
+}
 
-function generateBlendImage($width, $height, $overlap) {
-
-    $offsetX = ($width - $overlap) / 2;
-    
-    $points = [
-        [$offsetX, 0,  "black"],
-        [$offsetX, $height, "black"],
-        [$offsetX + $overlap, 0, "white"],
-        [$offsetX + $overlap, $height, "white"],
-    ];
-
-    $imagick = createGradientImage($width, $height, $points, Imagick::SPARSECOLORMETHOD_BILINEAR, true);
-
-    return $imagick;
+function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
+    $imagick = new Imagick();
+    $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
+    $quanta = $imagick->getQuantumRange();
+    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quanta["quantumRangeLong"]);
+    $imagick->rotateImage('black', -90);
+    return $imagick; 
 }
 
 
-function mergeImages($overlap, $blendWidth = 0.2) {
+function mergeImages(array $srcImages, $outputHeight, $overlap, $contrast = 10, $midpoint = 0.5) {
 
-    $left = new Imagick(realpath('../images/composite1.jpg'));
-    $right = new Imagick(realpath('../images/composite2.jpg'));
+    $images = array();
+    $newImageWidth = 0;
+    $newImageHeight = 0;
 
-    $newImageWidth = $left->getImageWidth() + $right->getImageWidth() - $overlap;
+    foreach ($srcImages as $srcImage) {
+        $nextImage = new Imagick(realpath($srcImage));
+        $nextImage->resizeImage(0, $outputHeight, Imagick::FILTER_LANCZOS, 0.5);
+        
+        $newImageWidth += $nextImage->getImageWidth();
+        $images[] = $nextImage;
+        $newImageHeight = $nextImage->getImageHeight();
+    }
 
-    $gradient = generateBlendImage($newImageWidth, $left->getImageHeight(), $overlap);
+    $newImageWidth -= $overlap * (count($srcImages) - 1);
+
+    if ($newImageHeight == 0) {
+        throw new \Exception("Failed to read source images");
+    }
     
-    //The right bit will be offset by a certain amount - avoid recalculating.
-    $offsetX = $gradient->getImageWidth() - $right->getImageWidth();
-
+    $fadeLeftSide = generateBlendImage($newImageHeight, $overlap, $contrast, $midpoint);
     //Fade out the left part - need to negate the mask to
     //make math correct
-    $gradient2 = clone $gradient;
-    $gradient2->negateimage(false);
-    $left->compositeimage(
-        $gradient2,
-        Imagick::COMPOSITE_COPYOPACITY,
-        0, 0
-    );
+    $fadeRightSide = clone $fadeLeftSide;
+    $fadeRightSide->negateimage(false);
 
-    //Fade out the right part
-    $right->compositeimage(
-        $gradient,
-        Imagick::COMPOSITE_COPYOPACITY,
-        -$offsetX, 0
-    );
-    
     //Create a new canvas to render everything in to.
     $canvas = new Imagick();
-    $canvas->newImage($gradient->getImageWidth(), $gradient->getImageHeight(), new ImagickPixel('black'));
-    
-    //Blend left half into final image
-    $canvas->compositeimage(
-        $left,
-        Imagick::COMPOSITE_ATOP,
-        0, 0
-    );
-    
-//    //Blend Right half into final image
-    $canvas->compositeimage(
-        $right,
-        Imagick::COMPOSITE_BLEND,
-        $offsetX, 0
-    );
+    $canvas->newImage($newImageWidth, $newImageHeight, new ImagickPixel('black'));
+
+    $count = 0;
+    $imagePosition = 0;
+    /** @var $image \Imagick */
+    foreach ($images as $image) {
+
+        $finalBlending = new Imagick();
+        $finalBlending->newImage(
+            $image->getImageWidth(),
+            $image->getImageHeight(),
+            'white'
+        );
+
+        if ($count != 0) {
+            $finalBlending->compositeImage(
+                $fadeLeftSide,
+                Imagick::COMPOSITE_ATOP,
+                0, 0
+            );
+        }
+
+        $offset = $image->getImageWidth() - $overlap;
+
+        if ($count != count($images) - 1) {
+            $finalBlending->compositeImage(
+                $fadeRightSide,
+                Imagick::COMPOSITE_ATOP,
+                $offset, 0
+            );
+        }
+        
+        $image->compositeImage(
+            $finalBlending,
+            Imagick::COMPOSITE_COPYOPACITY,
+            0, 0
+        );
+
+        $canvas->compositeimage(
+            $image,
+            Imagick::COMPOSITE_BLEND,
+            $imagePosition, 0
+        );
+
+        $imagePosition = $imagePosition + $image->getImageWidth() - $overlap;
+        $count++;
+    }
 
     return $canvas;
 }

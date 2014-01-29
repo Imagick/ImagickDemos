@@ -108,7 +108,7 @@ $imagickExamples = array(
 //'floodFillPaintImage',
 'flopImage',
 //'frameImage',
-//'functionImage',
+'functionImage',
 'fxImage',
 'gammaImage',
 'gaussianBlurImage',

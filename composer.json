@@ -1,0 +1,42 @@
+{
+    "name": "base-reality/intahwebz",
+
+    "//": "LOCALHACK",
+
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Danack/Auryn"
+        },
+        { 
+            "type": "composer",
+            "url": "http://satis.basereality.com" 
+        },
+        
+        {
+            "type": "vcs",
+            "url": "https://github.com/nikic/FastRoute"
+        }
+    ],
+
+    "require-dev": {
+    },
+
+    "require":{
+        "intahwebz/configurator": "0.1.1",
+        "nikic/fast-route": "dev-master",
+        "rdlowrey/auryn": "dev-PluginExperiment2",
+        "intahwebz/jig": "0.9.0",
+        "oyejorge/less.php": "v1.7.0.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "ImagickDemo": "src/"
+        }
+    },
+    
+    "minimum-stability": "dev"
+}

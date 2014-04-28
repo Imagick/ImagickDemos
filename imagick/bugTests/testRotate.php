@@ -10,4 +10,6 @@ $imagick = new Imagick(realpath("TestImage2.jpg"));
 
 
 
+
+
 print_r ($imagick->getImageProfiles("*", false));

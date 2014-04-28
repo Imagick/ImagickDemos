@@ -19,9 +19,8 @@ $listOfExamples = [
 ];
 
 
-
-if (array_key_exists('example', $_REQUEST)) {
-    showExample($_REQUEST['example'], $listOfExamples);
+if (array_key_exists('example', $_GET)) {
+    showExample($_GET['example'], $listOfExamples);
     exit(0);
 }
 

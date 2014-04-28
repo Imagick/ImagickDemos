@@ -1,0 +1,20 @@
+{
+    "methodCalls": [
+        {
+            "class": "\\Intahwebz\\TableMap\\SQLQuery",
+            "method": "fetchSingle",
+            "position": 0
+        },
+        {
+            "class": "\\BaseReality\\Provider\\Provider",
+            "method": "make",
+            "position": 0
+        }
+    ],
+    "functionCalls": [
+        {
+            "function": "\\verify",
+            "position": 0
+        }
+    ]
+}

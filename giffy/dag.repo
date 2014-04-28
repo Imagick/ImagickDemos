@@ -1,0 +1,7 @@
+[dag]
+name=Dag RPM Repository for Red Hat Enterprise Linux
+baseurl=http://apt.sw.be/redhat/el$releasever/en/$basearch/dag
+gpgcheck=1
+gpgkey=http://dag.wieers.com/packages/RPM-GPG-KEY.dag.txt
+enabled=1
+protect=0

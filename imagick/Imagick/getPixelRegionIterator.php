@@ -19,3 +19,6 @@ foreach ($imageIterator as $row => $pixels) {      /* Loop trough pixel rows */
 
 header( "Content-Type: image/jpg" );
 echo $imagick;
+
+
+$imagick->getImageHeight()

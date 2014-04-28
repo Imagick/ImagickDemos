@@ -5,6 +5,7 @@
 
 $imagick = new Imagick(realpath("../images/fnord.png"));
 
+
 $identifyInfo = $imagick->identifyimage();
 
 
@@ -23,6 +24,6 @@ foreach ($identifyInfo as $key => $value) {
 }
 
 //var_dump($identifyInfo);
-
+//
 //header("Content-Type: image/jpg");
 //echo $imagick->getImageBlob();

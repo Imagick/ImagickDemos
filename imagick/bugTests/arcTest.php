@@ -1,7 +1,5 @@
 <?php
 
-echo "cwd".getcwd();
-exit(0);
 
 $image = new \Imagick();
 $image->newImage(400, 300, '#000000');
@@ -19,7 +17,13 @@ $arc->arc(50, 50, 350, 250, 45, 135);
 $image->drawImage($arc);
 $image->flattenImages();
 
-$image->writeImage('/home/intahwebz/intahwebz/arc.png');
+//$image->setcolorspace(Imagick::COLORSPACE_GRAY);
+//$image->setimagechanneldepth(Imagick::CHANNEL_GRAY, 1);
+$image->setImageDepth (1);
+$image->gra
+$image->setimageformat("RGB");
+$image->resizeimage(100, 100, \Imagick::FILTER_LANCZOS, 1);
+$image->writeImage('./arc.rgb');
 
 $pixel->clear();
 $pixel->destroy();

@@ -1,0 +1,15 @@
+{
+    "id": "conf",
+    "directories": [
+        
+    ],
+    "files": [
+        { "dest":"/etc/php.d/imagick-demos.php.fpm.ini", "src": "/autogen/imagick-demos.php.fpm.ini"},
+        { "dest":"/etc/php-fpm.d/imagick.php-fpm.conf", "src": "/autogen/imagick.php-fpm.conf"},
+        { "dest":"/etc/nginx/sites-enabled/imagick.nginx.conf", "src":"/autogen/imagick.nginx.conf" }
+    ]
+}
+
+
+
+

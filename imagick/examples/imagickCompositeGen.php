@@ -4,15 +4,22 @@ require_once "../functions.php";
 
 try {
 //Load the images 
-$output = mergeImages(
-    array(
-        '../images/composite1.jpg', 
-        '../images/composite2.jpg',
-        '../images/composite3.jpg',
-    ),
-    200,
-    50, 1
-);
+//$output = mergeImages(
+//    array(
+//        //'../images/lories/6E6F9017.jpg',
+//        '../images/lories/6E6F9109.jpg',
+//        '../images/lories/IMG_1599.jpg',
+//        //'../images/lories/IMG_1722.jpg',
+//        '../images/lories/IMG_2561.jpg',
+//        '../images/lories/IMG_2837.jpg',
+//        '../images/lories/IMG_4023.jpg',
+//        //'../images/lories/IMG_5186.jpg',
+//    ),
+//    210,
+//    30, 5
+//);
+
+    $output = generateBlendImage(200, 200, 5, 0.5);
 
 //Output the final image
 $output->setImageFormat('png');
@@ -32,7 +39,7 @@ function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) 
     $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
     $quanta = $imagick->getQuantumRange();
     $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quanta["quantumRangeLong"]);
-    $imagick->rotateImage('black', -90);
+    
     return $imagick; 
 }
 
@@ -59,6 +66,10 @@ function mergeImages(array $srcImages, $outputHeight, $overlap, $contrast = 10, 
     }
     
     $fadeLeftSide = generateBlendImage($newImageHeight, $overlap, $contrast, $midpoint);
+
+    //We are placing the images horizontally.
+    $fadeLeftSide->rotateImage('black', -90);
+    
     //Fade out the left part - need to negate the mask to
     //make math correct
     $fadeRightSide = clone $fadeLeftSide;

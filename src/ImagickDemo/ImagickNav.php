@@ -435,13 +435,11 @@ class ImagickNav implements ActiveNav {
     }
 
     function renderNav() {
-        
         echo "<ul class='nav nav-sidebar smallPadding'>";
 
         foreach ($this->imagickExamples as $imagickExample) {
             echo "<li>";
-            echo "<a class='smallPadding' href='/Imagick/$imagickExample'>".$imagickExample."</a>";
-
+                echo "<a class='smallPadding' href='/Imagick/$imagickExample'>".$imagickExample."</a>";
             echo "</li>";
         }
         

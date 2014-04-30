@@ -4,9 +4,11 @@
 namespace ImagickDemo;
 
 
-class ImagickPixelNav  implements ActiveNav{
+class ImagickPixelNav implements ActiveNav, DemoNav {
 
 
+    private $currentExample;
+    
     private $imagePixelExamples = array(
         '__construct',
             //'ImagickPixel.clear', 
@@ -31,12 +33,36 @@ class ImagickPixelNav  implements ActiveNav{
     function renderNextButton() {
     }
 
+    function renderImage($example, \Auryn\Provider $provider) {
+        $classname = '\ImagickDemo\ImagickPixel\\' . $example;
+        $provider->execute([$classname, 'renderImageSafe']);
+    }
+
+    function display($example, \Auryn\Provider $provider) {
+        $this->currentExample = $example;
+        $classname = 'ImagickDemo\ImagickPixel\\' . $example;
+        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->share($this);
+    }
+
+    function displayIndex(\Auryn\Provider $provider) {
+        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->share($this);
+    }
+
+    function renderTitle() {
+        if ($this->currentExample) {
+            return $this->currentExample;
+        }
+        return 'ImagickPixel';
+    }
 
     function renderNav() {
-        echo "<ul class='nav nav-sidebar'>";
+        echo "<ul class='nav nav-sidebar smallPadding'>";
         foreach($this->imagePixelExamples as $imagePixelExample) {
             echo "<li>";
-            echo "<a href='/ImagickPixel/$imagePixelExample.php'>".$imagePixelExample."</a>";
+            echo "<a href='/ImagickPixel/$imagePixelExample'>".$imagePixelExample."</a>";
             echo "</li>";
         }
         echo "</ul>";

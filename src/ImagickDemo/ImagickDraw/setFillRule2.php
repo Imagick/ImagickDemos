@@ -25,10 +25,6 @@ class setFillRule2 extends \ImagickDemo\Example {
 
         $fillRules = [\Imagick::FILLRULE_NONZERO, \Imagick::FILLRULE_EVENODD];
 
-        $offset = 220;
-
-        $PI = 3.141592653589794;
-
         $points = 11;
         $size = 150;
 
@@ -36,7 +32,7 @@ class setFillRule2 extends \ImagickDemo\Example {
 
         for ($x = 0; $x < 2; $x++) {
 
-            $pointsArray = array();
+            //$pointsArray = array();
 
             $draw->setFillRule($fillRules[$x]);
             $draw->pathStart();

@@ -32,7 +32,7 @@ class pushPattern extends \ImagickDemo\Example {
 
         $draw->setStrokeWidth(1);
 
-        $success = $draw->pushPattern("MyFirstPattern", 0, 0, 50, 50);
+        $draw->pushPattern("MyFirstPattern", 0, 0, 50, 50);
         for ($x = 0; $x < 50; $x += 10) {
             for ($y = 0; $y < 50; $y += 5) {
                 $positionX = $x + (($y / 5) % 5);

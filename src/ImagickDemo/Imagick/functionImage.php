@@ -23,20 +23,18 @@ class functionImage extends \ImagickDemo\Example {
 
         try {
 
-            $quanta = pow(2, 16);
-
             //$channel = \Imagick::CHANNEL_RED | \Imagick::CHANNEL_GREEN |Imagick::CHANNEL_BLUE;
 
 //    if (false) {
             //convert -size 100x100 gradient: -function sinusoid 4,-90  gradient_bands.jpg
-            $arguments = array(7, -90);
+            //$arguments = array(7, -90);
             //$result = $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
 //    }
 //    else {
-            $arguments = array( -4.0 , 4.0, 0.5);
-            $arguments = array(3.5,-5.05,2.05,0.3);
+//            $arguments = array( -4.0 , 4.0, 0.5);
+//            $arguments = array(3.5,-5.05,2.05,0.3);
         $arguments = array(0.5, 1, 0);
-        $result = $imagick->functionImage(\Imagick::FUNCTION_POLYNOMIAL, $arguments);
+        $imagick->functionImage(\Imagick::FUNCTION_POLYNOMIAL, $arguments);
 
 //            $arguments = array(10);
 //            $result = $imagick->functionImage(\Imagick::FUNCTION_ARCTAN, $arguments);

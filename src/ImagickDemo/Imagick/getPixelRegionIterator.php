@@ -21,6 +21,7 @@ class getPixelRegionIterator extends \ImagickDemo\Example {
 
         $imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);
 
+        /** @noinspection PhpUnusedLocalVariableInspection */
         foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
             foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
                 if ($column % 2) {

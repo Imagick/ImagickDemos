@@ -50,25 +50,69 @@ $injector = bootstrap();
 $routesFunction = function(FastRoute\RouteCollector $r) {
     
 
-    $r->addRoute(
-      'GET',
-      '/ImagickDraw/{example:[a-zA-Z]+}', 
-      [\ImagickDemo\ImagickDrawNav::class, 'display']
-    );
-
-    $r->addRoute(
-        'GET', 
-        '/image/ImagickDraw/{example:[a-zA-Z]+}',
-        [\ImagickDemo\ImagickDrawNav::class, 'renderImage']
-    );
 
     $r->addRoute(
       'GET',
           '/Imagick',
           [\ImagickDemo\ImagickNav::class, 'displayIndex']
     );
-    
-    
+
+    $r->addRoute(
+      'GET',
+          '/ImagickDraw',
+          [\ImagickDemo\ImagickDrawNav::class, 'displayIndex']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/ImagickPixel',
+          [\ImagickDemo\ImagickPixelNav::class, 'displayIndex']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/ImagickPixelIterator',
+          [\ImagickDemo\ImagickPixelIteratorNav::class, 'displayIndex']
+    );
+
+
+
+    $r->addRoute(
+      'GET',
+          '/ImagickDraw/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickDrawNav::class, 'display']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/image/ImagickDraw/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickDrawNav::class, 'renderImage']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/ImagickPixel/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickPixelNav::class, 'display']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/image/ImagickPixel/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickPixelNav::class, 'renderImage']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/ImagickPixelIterator/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickPixelIteratorNav::class, 'display']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/image/ImagickPixelIterator/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickPixelIteratorNav::class, 'renderImage']
+    );
+
     $r->addRoute(
       'GET',
           '/Imagick/{example:[a-zA-Z]+}',

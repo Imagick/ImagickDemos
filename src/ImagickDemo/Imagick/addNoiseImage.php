@@ -17,8 +17,6 @@ class addNoiseImage extends \ImagickDemo\Example {
         $imagick = new \Imagick(realpath($this->imagePath));
 
 
-        $draw = new \ImagickDraw();
-
 //const NOISE_UNIFORM = 1;
 //const NOISE_GAUSSIAN = 2;
 //const NOISE_MULTIPLICATIVEGAUSSIAN = 3;

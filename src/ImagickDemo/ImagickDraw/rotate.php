@@ -14,10 +14,6 @@ class rotate extends \ImagickDemo\Example {
 
     function renderImage() {
 
-//skewX() skews the current coordinate system in the horizontal direction.
-
-        $PI = 3.141592653589794;
-
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 

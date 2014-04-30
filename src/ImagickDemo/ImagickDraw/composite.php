@@ -17,8 +17,6 @@ class composite extends \ImagickDemo\Example {
         $draw = new \ImagickDraw();
 
         $darkColor = new \ImagickPixel('brown');
-        $lightColor = new \ImagickPixel('LightCoral');
-
 
         $draw->setStrokeColor($darkColor);
         $draw->setFillColor('black');

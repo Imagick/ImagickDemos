@@ -95,13 +95,9 @@ END;
 
     }
 
-    function renderImageBarycentric() {
-
-        
-        
-    }
 
     function renderImageBarycentric2() {
+    
 
         require_once "../functions.php";
 
@@ -113,9 +109,7 @@ END;
         echo $imagick->getImageBlob();
     }
 
-    function renderImageBilinear() {
-        require_once "../functions.php";
-
+    function renderImage() {
 
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
 
@@ -127,15 +121,12 @@ END;
     
     function renderImagePolynomial() {
 
-
         try {
-
             $points = [1, 2, 1, 2, 1, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 400, 500, 3, 4, 5,];
 
             $imagick = new \Imagick();
             $imagick->newImage(500, 500, "white");
             $imagick->setImageFormat("png");
-
 
             $imagick->sparseColorImage(\Imagick::SPARSECOLORMETHOD_POLYNOMIAL, $points);
 
@@ -156,7 +147,6 @@ END;
     }
     
     function renderImageVoronoi() {
-        require_once "../functions.php";
 
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
 
@@ -167,7 +157,7 @@ END;
 
     }
     
-    function renderImage() {
+    function renderImageBarycentric() {
 
         $points = [[0, 0, 'skyblue'], [-1, 1, 'skyblue'], [1, 1, 'black'],];
 

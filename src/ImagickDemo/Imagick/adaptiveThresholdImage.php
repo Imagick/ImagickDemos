@@ -15,11 +15,7 @@ class adaptiveThresholdImage extends \ImagickDemo\Example {
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->imagePath));
-
-        $draw = new \ImagickDraw();
-
         $imagick->adaptiveThresholdImage(2, 2, 0.1);
-
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

@@ -33,13 +33,13 @@
                     <a href="/Imagick">Imagick</a>
                 </li>
                 <li class="active">
-                    <a href="/ImagickDraw">Draw</a>
+                    <a href="/ImagickDraw">ImagickDraw</a>
                 </li>
                 <li>
                     <a href="/ImagickPixel">ImagickPixel</a>
                 </li>
                 <li>
-                    <a href="/ImagickPixel">Imagick Pixel Interator</a>
+                    <a href="/ImagickPixelIterator">Imagick Pixel Interator</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

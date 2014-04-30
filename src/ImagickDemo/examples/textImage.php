@@ -79,9 +79,6 @@ $ypos = 0;
 
 list($lines, $lineHeight) = wordWrapAnnotation($imagick, $draw, $msg, 140);
 
-var_dump($lines);
-var_dump($lineHeight);
-exit(0);
 
 for($i = 0; $i < count($lines); $i++) {
     $imagick->annotateImage($draw, $xpos, $ypos + $i*$lineHeight, 0, $lines[$i]);

@@ -134,13 +134,22 @@ class ImagickDrawNav implements ActiveNav {
         $provider->share($this);
     }
 
+    function displayIndex(\Auryn\Provider $provider) {
+        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->share($this);
+    }
+
+
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\ImagickDraw\\' . $example;
         $provider->execute([$classname, 'renderImage']);
     }
 
     function renderTitle() {
-        return 'Imagick - '.$this->currentExample;
+        if ($this->currentExample) {
+            return $this->currentExample;
+        }
+        return 'ImagickDraw';
     }
     
     function renderPreviousButton() {
@@ -152,10 +161,7 @@ class ImagickDrawNav implements ActiveNav {
 
     
     function renderNav() {
-        echo "<h2>Imagick Draw</h2>";
-        
         echo "<ul class='nav nav-sidebar smallPadding'>";
-
         foreach ($this->imagickDrawExamples as $key => $imagickDrawExample) {
             echo "<li>";
             if ($key === intval($key)){
@@ -166,7 +172,6 @@ class ImagickDrawNav implements ActiveNav {
             }
             echo "</li>";
         }
-        
         echo "</ul>";
     }
 }

@@ -64,6 +64,7 @@ class setImageDelay extends \ImagickDemo\Example {
 
         foreach ($imagick as $frame) {
             $imagick->setImageDelay((($frameCount % 11) * 5));
+            //$frame->setImageDelay((($frameCount % 11) * 5));
             $frameCount++;
         }
 

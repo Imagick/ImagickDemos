@@ -21,7 +21,7 @@ class edgeExtend extends \ImagickDemo\Example {
         $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
 
         $desiredWidth = 1000;
-        $desiredHeight = 1500;
+        //$desiredHeight = 1500;
 
         $originalWidth = $imagick->getImageWidth();
 

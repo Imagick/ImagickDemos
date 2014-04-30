@@ -8,6 +8,9 @@ else {
     require_once('../vendor/autoload.php');
 }
 
+
+//Arctan function isn't in my current imagick.
+
 /**
  * @return \Auryn\Provider
  */
@@ -28,9 +31,13 @@ function bootstrap() {
         'DarkSlateGrey',
         'LightCoral'
     );
+    
+    //$injector->defineParam('imagePath', "../images/TestImage.jpg");
+    //$injector->defineParam('imagePath', "../images/TestImage2.jpg");
 
+    //$injector->defineParam('imagePath', "../images/fnord.png");
+    $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
     $injector->share($colors);
-
     $injector->share($injector); //yolo
 
     return $injector;
@@ -43,14 +50,30 @@ $injector = bootstrap();
 $routesFunction = function(FastRoute\RouteCollector $r) {
     
 
-    $r->addRoute('GET', '/ImagickDraw/{example:[a-zA-Z]+}', [\ImagickDemo\ImagickDraw\ImagickDraw::class, 'display']);
+    $r->addRoute(
+      'GET',
+      '/ImagickDraw/{example:[a-zA-Z]+}', 
+      [\ImagickDemo\ImagickDrawNav::class, 'display']
+    );
 
     $r->addRoute(
         'GET', 
         '/image/ImagickDraw/{example:[a-zA-Z]+}',
-        [\ImagickDemo\ImagickDraw\ImagickDraw::class, 'renderImage']
+        [\ImagickDemo\ImagickDrawNav::class, 'renderImage']
     );
-    
+
+    $r->addRoute(
+      'GET',
+          '/Imagick/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickNav::class, 'display']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/image/Imagick/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ImagickNav::class, 'renderImage']
+    );
+
     $r->addRoute('GET', '/', [\ImagickDemo\Index::class, 'display']);
     
 //    $r->addRoute('GET', '/ImagickDraw/affine', [\ImagickDemo\ImagickDraw\ImagickDraw::class, 'display']);
@@ -79,9 +102,37 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
 
 
+function process(\Auryn\Provider $injector, $handler, $vars) {
 
+    $lowried = [];
+    foreach ($vars as $key => $value) {
+        $lowried[':'.$key] = $value;
+    }
 
+   
 
+    $injector->alias('ImagickDemo\ActiveNav', 'ImagickDemo\DefaultNav');
+
+    $activeNav = $injector->execute($handler, $lowried);
+
+    $viewModel = $injector->make('Intahwebz\ViewModel\BasicViewModel');
+    $jigRenderer = $injector->make(Intahwebz\Jig\JigRender::class);
+    //$jigRenderer->bindViewModel($viewModel);
+    $jigRenderer->renderTemplateFile('index');
+}
+
+//$handler = [
+//    'ImagickDemo\ImagickNav',
+//    'display'
+//];
+//
+//$vars = [
+//  'example' => 'uniqueImageColors'
+//];
+//
+//process($injector, $handler, $vars);
+//
+//exit(0);
 
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
@@ -97,18 +148,8 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         // ... call $handler with $vars
-        
-        $lowried = [];
-        foreach ($vars as $key => $value) {
-            $lowried[':'.$key] = $value; 
-        }
-        
-        $injector->execute($handler, $lowried);
 
-        $viewModel = $injector->make('Intahwebz\ViewModel\BasicViewModel');
-        $jigRenderer = $injector->make(Intahwebz\Jig\JigRender::class);
-        //$jigRenderer->bindViewModel($viewModel);
-        $jigRenderer->renderTemplateFile('index');
+        process($injector, $handler, $vars);
 
         break;
 }

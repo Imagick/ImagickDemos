@@ -5,12 +5,10 @@ namespace BaseReality\Tool;
 define('PATH_TO_ROOT', './');
 
 require_once('./vendor/autoload.php');
-//\Intahwebz\Functions::load();
 
 use Intahwebz\Configurator\Configurator;
 
-
-class Configurate { //extends CliTool {
+class Configurate {
 
     private $filesToGenerate;
 
@@ -97,7 +95,6 @@ class Configurate { //extends CliTool {
 
 
 $tool = new Configurate();
-
 
 
 $properties = [];

@@ -22,15 +22,26 @@ class ImagickPixelNav {
         'setcolorValueQuantum',// ( int $color , float $value )
         'setHSL',// ( float $hue , float $saturation , float $luminosity )
     );
-    
-    function render() {
-        echo "<h2>ImagePixel</h2>";
-        foreach($this->imagePixelExamples as $imagePixelExample) {
-            echo "<div>";
-            echo "<a href='/ImagickPixel/$imagePixelExample.php'>".$imagePixelExample."</a>";
-            echo "</div>";
-        }
+
+
+    function renderPreviousButton() {
+
     }
+
+    function renderNextButton() {
+    }
+
+
+    function renderNav() {
+        echo "<ul class='nav nav-sidebar'>";
+        foreach($this->imagePixelExamples as $imagePixelExample) {
+            echo "<li>";
+            echo "<a href='/ImagickPixel/$imagePixelExample.php'>".$imagePixelExample."</a>";
+            echo "</li>";
+        }
+        echo "</ul>";
+    }
+
 
 
 }

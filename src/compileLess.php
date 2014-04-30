@@ -12,8 +12,8 @@ $parser = new Less_Parser();
 $cacheDir = '../var/cache/less';
 
 $compileItems = [
-    "../bootstrap-3.1.1/less/bootstrap.less" => '../imagick/css/bootstrap.css',
-    "../bootstrap-3.1.1/less/theme.less" => '../imagick/css/bootstrap-theme.css'
+    "../less/bootstrap/bootstrap.less" => '../imagick/css/bootstrap.css',
+    "../less/bootstrap/theme.less" => '../imagick/css/bootstrap-theme.css'
 ];
 
 foreach ($compileItems as $input => $output) {

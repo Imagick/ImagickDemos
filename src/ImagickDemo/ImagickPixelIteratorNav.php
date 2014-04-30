@@ -22,21 +22,33 @@ class ImagickPixelIteratorNav {
         'syncIterator',// => '__construct',
     );
 
-    function render() {
-        echo "<h2>ImagickPixelIteratorExample</h2>";
-        foreach($this->imagickPixelIteratorExamples as $key => $ImagickPixelIteratorExample) {
 
-            echo "<div>";
-            
+
+    function renderPreviousButton() {
+
+    }
+
+    function renderNextButton() {
+    }
+
+
+    function renderNav() {
+ 
+        echo "<ul class='nav nav-sidebar smallPadding'>";
+
+        foreach($this->imagickPixelIteratorExamples as $key => $ImagickPixelIteratorExample) {
+            echo "<li>";
             if ($key === intval($key)){
-            echo "<a href='?image=/ImagickPixelIterator/$ImagickPixelIteratorExample.php'>".$ImagickPixelIteratorExample."</a>";
+                echo "<a href='?image=/ImagickPixelIterator/$ImagickPixelIteratorExample.php'>".$ImagickPixelIteratorExample."</a>";
             }
             else {
                 echo "<a href='?image=/ImagickPixelIterator/$ImagickPixelIteratorExample.php'>".$key."</a>";
             }
-            echo "</div>";
 
+            echo "</li>";
         }
+
+        echo "</ul>";
                 
     }
 

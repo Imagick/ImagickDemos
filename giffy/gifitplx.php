@@ -105,23 +105,41 @@ foreach ($frames as $frame) {
 
     $imagickFrame->resizeImage(0, $height, \Imagick::FILTER_LANCZOS, 2, false);
 
+    
+    
+    
 
     $geo = $imagickFrame->getImageGeometry();
     $imagickFrame->cropImage($width, $height, ($geo['width'] - $width) / 2, 0);
     $imagickFrame->setImagePage($imagickFrame->getimageWidth(), $imagickFrame->getimageheight(), 0, 0);
 
-    //$imagickFrame->writeImage($frame."debug.gif");
+    
     
     //$imagickFrame->gaussianBlurImage(1, 0.5);
 
-    $paletteImage = clone $imagickFrame;
-    $paletteImage->quantizeImage(256, Imagick::COLORSPACE_RGB, 0, false, false);
+    //$imagickFrame->orderedPosterizeImage("o8x8");
+    //"o8x8,8"
+    //"o8x8,10"
     
-    //$imagickFrame->setImageDepth(8);
-    //$imagickFrame->quantizeImage(15,Imagick::COLORSPACE_TRANSPARENT,0,false,false);
-    //Imagick::mapImage ( Imagick $map , bool $dither )
-    $imagickFrame->remapImage($paletteImage, Imagick::DITHERMETHOD_FLOYDSTEINBERG);
+//    $identifyInfo = $imagickFrame->identifyimage();
+//    var_dump($identifyInfo);
 
+    $imagickFrame->writeImage($frame."debug.gif");
+    
+    //if (false) {
+        $paletteImage = clone $imagickFrame;
+        $paletteImage->quantizeImage(256, Imagick::COLORSPACE_YIQ, 0, false, false);
+        
+        //$imagickFrame->setImageDepth(8);
+        //$imagickFrame->quantizeImage(15,Imagick::COLORSPACE_TRANSPARENT,0,false,false);
+        //Imagick::mapImage ( Imagick $map , bool $dither )
+        $imagickFrame->remapImage($paletteImage, Imagick::DITHERMETHOD_FLOYDSTEINBERG);
+    //}
+    
+    
+    
+    
+    
     //Imagick::DITHERMETHOD_RIEMERSMA
     //Imagick::DITHERMETHOD_FLOYDSTEINBERG
     
@@ -133,7 +151,9 @@ foreach ($frames as $frame) {
     //posterizeImage ( int $levels , bool $dither )
     //$imagickFrame->remapimage()
         
-    //$imagickFrame->orderedPosterizeImage("o8x8");
+    
+    
+    
     $imagickFrame->setImageDelay($frameDelay);
     $animation->addImage($imagickFrame);
 }

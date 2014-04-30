@@ -4,7 +4,9 @@
 namespace ImagickDemo;
 
 
-class ImagickDrawNav {
+class ImagickDrawNav implements ActiveNav {
+    
+    private $currentExample;
 
     private $imagickDrawExamples = array(
         'affine',
@@ -63,8 +65,8 @@ class ImagickDrawNav {
         'pathLineToHorizontalAbsolute',
         'pathLineToHorizontalRelative',
         'pathLineToRelative',
-        'pathLineToVerticalAbsolute',
-        'pathLineToVerticalRelative',
+        //'pathLineToVerticalAbsolute',
+        //'pathLineToVerticalRelative',
         'pathMoveToAbsolute',
         'pathMoveToRelative',
         'pathStart',
@@ -122,12 +124,37 @@ class ImagickDrawNav {
         'skewY',
         'translate',
     );
-    
-    function render() {
 
+    function display($example, \Auryn\Provider $provider) {
+        ////$imageURL = '\ImagickDemo\ImagickDraw\'.$example;
+        $this->currentExample = $example;
+        $classname = 'ImagickDemo\ImagickDraw\\' . $example;
+        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->share($this);
+    }
+
+    function renderImage($example, \Auryn\Provider $provider) {
+        $classname = '\ImagickDemo\ImagickDraw\\' . $example;
+        $provider->execute([$classname, 'renderImage']);
+    }
+
+    function renderTitle() {
+        return 'Imagick - '.$this->currentExample;
+    }
+    
+    function renderPreviousButton() {
+
+    }
+
+    function renderNextButton() {
+    }
+
+    
+    function renderNav() {
         echo "<h2>Imagick Draw</h2>";
         
-        echo "<ul class='nav nav-sidebar'>";
+        echo "<ul class='nav nav-sidebar smallPadding'>";
 
         foreach ($this->imagickDrawExamples as $key => $imagickDrawExample) {
             echo "<li>";

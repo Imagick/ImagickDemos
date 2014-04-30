@@ -16,7 +16,7 @@ class spliceImage extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->spliceImage(50, 50, 100, 100);
 

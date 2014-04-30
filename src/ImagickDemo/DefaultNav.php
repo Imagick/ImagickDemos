@@ -11,6 +11,14 @@ class DefaultNav implements ActiveNav {
 
     function renderNextButton() {
     }
+    
+    function renderTitle() {
+        return "Hello!";
+    }
+    
+    function renderNav() {
+        
+    }
 }
 
  

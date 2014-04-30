@@ -13,7 +13,7 @@ class convolveImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
 

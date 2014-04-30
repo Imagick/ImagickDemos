@@ -17,7 +17,7 @@ class averageImages extends \ImagickDemo\Example {
 
         
         
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick2 = new \Imagick(realpath("../images/TestImage2.jpg"));
 

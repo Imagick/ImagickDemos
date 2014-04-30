@@ -16,7 +16,7 @@ class tintImage extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->tintImage('rgb(0, 128, 255)', 1);
 

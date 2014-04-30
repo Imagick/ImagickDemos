@@ -14,7 +14,7 @@ class chopImage extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->chopImage(200, 200, 100, 100);
 

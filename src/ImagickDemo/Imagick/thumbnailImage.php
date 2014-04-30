@@ -17,7 +17,7 @@ class thumbnailImage extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->setbackgroundcolor('rgb(64, 64, 64)');
 

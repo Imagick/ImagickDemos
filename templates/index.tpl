@@ -51,70 +51,82 @@
 </header>
 
 
-<div class='container'>
+<!-- <div class='container'>
 
     <div class="col-md-12">
-        <h2>{$activeNav->renderTitle() | nofilter}</h2>
-    </div>
+        <h2>{*$activeNav->renderTitle() | nofilter*}</h2>
+    </div> -->
 
     <!-- <div class="col-md-3">
-        {$activeNav->renderPreviousButton() | nofilter}
+        {*$activeNav->renderPreviousButton() | nofilter*}
     </div>
     
     <div class="col-md-3">
-        {$activeNav->renderNextButton() | nofilter}
+        {*$activeNav->renderNextButton() | nofilter*}
     </div> -->
         
-</div>
+<!-- </div> -->
 
 <div class='container'>
 
-    <div class="col-md-3" style='white-space: normal;'>
 
-        {* inject name='imagickNav' value='ImagickDemo\ImagickNav' *}
-        {* inject name='imagickDrawNav' value='ImagickDemo\ImagickDrawNav' *}
-        {* inject name='imagickPixelNav' value='ImagickDemo\ImagickPixelNav' *}
-        {* inject name='imagickPixelIteratorNav' value='ImagickDemo\ImagickPixelIteratorNav' *}
-
-        {inject name='activeNav' value='ImagickDemo\ActiveNav'}
-
-        {$activeNav->renderNav()}
-        {* $imagickDrawNav->renderNav() *}
-        {* $imagickPixelNav->renderNav() *}
-        {* $imagickPixelIteratorNav->renderNav() *}
-        
-        
-        
-    </div>
-
-    <div class="col-md-1">
-    </div>
-
-    <div class="col-md-9">
-      
-        <div class="row">
-        </div>
-        
-        <div class="row">
-            {inject name='example' value='ImagickDemo\Example'}
-            {$example->renderImageURL() | nofilter}
-            {$example->renderDescription() | nofilter}
-        </div>
-
-        <div class="row">
-        <div class="col-md-3">
-            {$activeNav->renderPreviousButton() | nofilter}
-        </div>
-
-        <div class="col-md-3">
-        </div>
-
-        <div class="col-md-3">
-            {$activeNav->renderNextButton() | nofilter}
-        </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+            <h2 class='noMarginTop'>{$activeNav->renderTitle() | nofilter}</h2>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-2">
+    
+            {* inject name='imagickNav' value='ImagickDemo\ImagickNav' *}
+            {* inject name='imagickDrawNav' value='ImagickDemo\ImagickDrawNav' *}
+            {* inject name='imagickPixelNav' value='ImagickDemo\ImagickPixelNav' *}
+            {* inject name='imagickPixelIteratorNav' value='ImagickDemo\ImagickPixelIteratorNav' *}
+    
+            {inject name='activeNav' value='ImagickDemo\ActiveNav'}
+    
+            {$activeNav->renderNav()}
+            {* $imagickDrawNav->renderNav() *}
+            {* $imagickPixelNav->renderNav() *}
+            {* $imagickPixelIteratorNav->renderNav() *}
+            
+        </div>
+    
+        <div class="col-md-1">
+        </div>
+    
+        <div class="col-md-8">
+            
+            <div class="row">
+                <div class="col-md-10">
+                    {inject name='example' value='ImagickDemo\Example'}
+                    {$example->renderImageURL() | nofilter}
+                    {$example->renderDescription() | nofilter}
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-3">
+                    {$activeNav->renderPreviousButton() | nofilter}
+                </div>
+        
+                <div class="col-md-4">
+                </div>
+        
+                <div class="col-md-3" style='text-align: right'>
+                    {$activeNav->renderNextButton() | nofilter}
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>  
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

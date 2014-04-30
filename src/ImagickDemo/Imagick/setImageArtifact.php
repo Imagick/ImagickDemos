@@ -13,7 +13,7 @@ class setImageArtifact extends \ImagickDemo\Example {
 
     function renderDescription() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
 
         $imagick->negateimage(false);

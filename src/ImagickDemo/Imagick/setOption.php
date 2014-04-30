@@ -16,7 +16,7 @@ class setOption extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->setImageFormat('jpg');
 
@@ -66,7 +66,7 @@ class setOption extends \ImagickDemo\Example {
                         <![CDATA[
         <?php
         
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
         $imagick->setImageFormat('jpg');
         $imagick->setOption('jpeg:extent', '40kb');
         

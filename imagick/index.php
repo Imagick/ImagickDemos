@@ -64,6 +64,13 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $r->addRoute(
       'GET',
+          '/Imagick',
+          [\ImagickDemo\ImagickNav::class, 'displayIndex']
+    );
+    
+    
+    $r->addRoute(
+      'GET',
           '/Imagick/{example:[a-zA-Z]+}',
           [\ImagickDemo\ImagickNav::class, 'display']
     );

@@ -36,8 +36,6 @@ function getNext($array, $current) {
 
 
 class ImagickNav implements ActiveNav {
-    
-    
 
     private $currentExample;
     
@@ -346,10 +344,10 @@ class ImagickNav implements ActiveNav {
 //'sigmoidalContrastImage',
         'sketchImage',
         'solarizeImage',
-        'sparseColorImage_barycentric',
-        'sparseColorImage_bilinear',
-        'sparseColorImage_shepards',
-        'sparseColorImage_voronoi',
+        'sparseColorImage',
+//        'sparseColorImage_bilinear',
+//        'sparseColorImage_shepards',
+//        'sparseColorImage_voronoi',
         'spliceImage',
         'spreadImage',
 //'steganoImage',
@@ -386,6 +384,14 @@ class ImagickNav implements ActiveNav {
         $provider->share($this);
     }
 
+    function displayIndex(\Auryn\Provider $provider) {
+
+//        $classname = 'ImagickDemo\Imagick\\' . $example;
+        //$provider->alias('ImagickDemo\Example', $classname);
+        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->share($this);
+    }
+
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Imagick\\' . $example;
@@ -398,7 +404,7 @@ class ImagickNav implements ActiveNav {
         if ($previous) {
             return "<a href='/Imagick/$previous'>
             <button type='button' class='btn btn-primary'>
-            Previous - $previous
+             <span class='glyphicon  glyphicon-arrow-left'></span> $previous
             </button>
             </a>";
         }
@@ -412,7 +418,7 @@ class ImagickNav implements ActiveNav {
         if ($next) {
             echo "<a href='/Imagick/$next'>
             <button type='button' class='btn btn-primary'>
-            Next - $next
+            $next <span class='glyphicon  glyphicon-arrow-right'></span>
             </button>
             </a>";
         }
@@ -422,7 +428,10 @@ class ImagickNav implements ActiveNav {
     }
     
     function renderTitle() {
-        return 'Imagick - '.$this->currentExample;
+        if ($this->currentExample) {
+            return $this->currentExample;
+        }
+        return 'Imagick';
     }
 
     function renderNav() {

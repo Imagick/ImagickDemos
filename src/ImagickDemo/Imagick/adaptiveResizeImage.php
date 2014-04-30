@@ -13,7 +13,7 @@ class adaptiveResizeImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
 
         $imagick->adaptiveResizeImage(200, 200, true);

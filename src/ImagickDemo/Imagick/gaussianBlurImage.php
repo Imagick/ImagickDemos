@@ -14,7 +14,7 @@ class gaussianBlurImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->gaussianBlurImage(10, 6, \Imagick::CHANNEL_GREEN);
 

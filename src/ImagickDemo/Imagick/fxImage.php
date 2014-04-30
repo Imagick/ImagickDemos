@@ -14,7 +14,7 @@ class fxImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         //http://www.imagemagick.org/script/fx.php
 

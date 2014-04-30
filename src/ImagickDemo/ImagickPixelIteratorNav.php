@@ -4,7 +4,7 @@
 namespace ImagickDemo;
 
 
-class ImagickPixelIteratorNav {
+class ImagickPixelIteratorNav implements ActiveNav {
 
     private $imagickPixelIteratorExamples = array(
         'clear' => 'resetIterator',

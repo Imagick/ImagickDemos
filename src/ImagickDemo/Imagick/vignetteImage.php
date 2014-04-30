@@ -14,7 +14,7 @@ class vignetteImage extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->vignetteImage(10, 155, 15, 5);
 

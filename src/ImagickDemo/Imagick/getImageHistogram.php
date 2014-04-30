@@ -10,7 +10,7 @@ class getImageHistogram extends \ImagickDemo\Example {
     }
 
     function renderDescription() {
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
 
         $imagick->adaptiveResizeImage(200, 200, true);

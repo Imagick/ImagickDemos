@@ -16,7 +16,7 @@ class getPixelRegionIterator extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->imagePath));
 
 
         $imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);

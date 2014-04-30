@@ -4,7 +4,7 @@
 namespace ImagickDemo;
 
 
-class ImagickPixelNav {
+class ImagickPixelNav  implements ActiveNav{
 
 
     private $imagePixelExamples = array(

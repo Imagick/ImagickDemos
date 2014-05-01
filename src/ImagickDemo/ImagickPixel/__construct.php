@@ -40,7 +40,7 @@ class __construct extends \ImagickDemo\Example {
         );
 
 //Create a ImagickDraw object to draw into.
-        $draw = new ImagickDraw();
+        $draw = new \ImagickDraw();
 
         $count = 0;
 
@@ -63,7 +63,7 @@ class __construct extends \ImagickDemo\Example {
         }
 
 //Create an image object which the draw commands can be rendered into
-        $image = new Imagick();
+        $image = new \Imagick();
         $image->newImage(500, 500, "blue");
         $image->setImageFormat("png");
 

@@ -5,7 +5,16 @@ namespace ImagickDemo\Example;
 class composite extends \ImagickDemo\Example {
 
 
-    private $listOfExamples = [['multiplyGradients', 'Multiply two gradients'], ['screenGradients', 'Screen two gradients'], ['divide', 'Divide image'], ['Dst_In', 'Dst_In'], ['Dst_Out', 'Dst_Out'], ['ATop', 'ATop'], ['Plus', 'Plus'], ['Minus', 'Minus'], ['CopyOpacity', 'CopyOpacity'], //(Set transparency from gray-scale mask)
+    private $listOfExamples = [
+        ['multiplyGradients', 'Multiply two gradients'],
+        ['screenGradients', 'Screen two gradients'],
+        ['divide', 'Divide image'], 
+        ['Dst_In', 'Dst_In'],
+        ['Dst_Out', 'Dst_Out'],
+        ['ATop', 'ATop'],
+        ['Plus', 'Plus'],
+        ['Minus', 'Minus'],
+        ['CopyOpacity', 'CopyOpacity'], //(Set transparency from gray-scale mask)
         ['CopyOpacity2', 'CopyOpacity2'], //(Set transparency from gray-scale mask)
     ];
 
@@ -63,13 +72,9 @@ class composite extends \ImagickDemo\Example {
 
 
     function multiplyGradients($width, $height) {
-
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
-
         $imagick2 = new \Imagick(realpath("../images/gradientRight.png"));
-
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
-
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
@@ -78,28 +83,17 @@ class composite extends \ImagickDemo\Example {
     function screenGradients($width, $height) {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
         $imagick2 = new \Imagick(realpath("../images/gradientRight.png"));
-
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_SCREEN, 0, 0);
-
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
 
 
     function divide($width, $height) {
-
         $imagick = new \Imagick(realpath("../images/text_scan.png"));
-
         $imagickCopy = clone $imagick;
-
         $imagickCopy->blurImage(0x20, 1);
-
-//    convert text_scan.png \( +clone -blur 0x20 \) \
-//        -compose Divide_Src -composite  text_scan_divide.png
-
-
         $imagick->compositeimage($imagickCopy, \Imagick::COMPOSITE_COLORDODGE, 0, 0);
-
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
@@ -111,20 +105,16 @@ class composite extends \ImagickDemo\Example {
      * @param $height
      */
     function Dst_In($width, $height) {
-
-//    $canvas = new \Imagick(realpath("../images/TestImage.jpg"));
-
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
         $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
-
         $imagick->setBackgroundColor('yellow');
         $imagick2->setBackgroundColor('yellow');
-
-        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_DSTIN, //\\Imagick::COMPOSITE_DSTATOP,
-            0, 0);
-
-//    $canvas->compositeimage($imagick, \\Imagick::COMPOSITE_ATOP, 0, 0);
-//    $canvas->setImageFormat('png');
+        $imagick->compositeimage(
+            $imagick2,
+            \Imagick::COMPOSITE_DSTIN,
+            0,
+            0
+        );
 
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();

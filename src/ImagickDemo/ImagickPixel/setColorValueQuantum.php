@@ -17,14 +17,14 @@ class setColorValueQuantum extends \ImagickDemo\Example {
     function renderImage() {
 
 
-        $image = new Imagick();
+        $image = new \Imagick();
 
 
         $quantumRange = $image->getQuantumRange();
 
 
 //Create a ImagickDraw object to draw into.
-        $draw = new ImagickDraw();
+        $draw = new \ImagickDraw();
 
 //Create an ImagickPixel with the predefined color 'red'
 

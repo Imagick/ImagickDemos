@@ -85,7 +85,7 @@ class setColorValue extends \ImagickDemo\Example {
         ////	IMAGICK_REGISTER_CONST_LONG("FILLRULE_NONZERO
         //
         ////Create an image object which the draw commands can be rendered into
-        //$image = new Imagick();
+        //$image = new \Imagick();
         //$image->newImage(500, 500, "white");
         //$image->setImageFormat("png");
         //
@@ -119,7 +119,7 @@ class setColorValue extends \ImagickDemo\Example {
         
         */
 
-        $draw = new ImagickDraw();
+        $draw = new \ImagickDraw();
         $draw->setStrokeWidth(1);
         $draw->setStrokeColor("rgba(0, 0, 0, 0.1)");
 //$draw->setStrokeOpacity(0.1);
@@ -127,7 +127,7 @@ class setColorValue extends \ImagickDemo\Example {
         $draw->line(0, 0, 500, 500);
         $draw->line(500, 0, 0, 500);
 
-        $drawing = new Imagick();
+        $drawing = new \Imagick();
         $drawing->newImage(500, 500, "red");
         $drawing->setImageFormat("png");
         $drawing->drawImage($draw);

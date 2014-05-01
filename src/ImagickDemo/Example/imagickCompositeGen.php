@@ -49,9 +49,9 @@ function mergeImages(array $srcImages, $outputHeight, $overlap, $contrast = 10, 
 
     $count = 0;
     $imagePosition = 0;
+    
     /** @var $image \Imagick */
     foreach ($images as $image) {
-
         $finalBlending = new \Imagick();
         $finalBlending->newImage($image->getImageWidth(), $image->getImageHeight(), 'white');
 
@@ -66,7 +66,6 @@ function mergeImages(array $srcImages, $outputHeight, $overlap, $contrast = 10, 
         }
 
         $image->compositeImage($finalBlending, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
-
         $canvas->compositeimage($image, \Imagick::COMPOSITE_BLEND, $imagePosition, 0);
 
         $imagePosition = $imagePosition + $image->getImageWidth() - $overlap;

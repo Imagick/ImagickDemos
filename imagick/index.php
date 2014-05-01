@@ -75,6 +75,12 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
           [\ImagickDemo\ImagickPixelIteratorNav::class, 'displayIndex']
     );
 
+    $r->addRoute(
+      'GET',
+          '/Example',
+          [\ImagickDemo\ExampleNav::class, 'displayIndex']
+    );
+
 
 
     $r->addRoute(
@@ -124,6 +130,20 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
           '/image/Imagick/{example:[a-zA-Z]+}',
           [\ImagickDemo\ImagickNav::class, 'renderImage']
     );
+
+    $r->addRoute(
+      'GET',
+          '/Example/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ExampleNav::class, 'display']
+    );
+
+    $r->addRoute(
+      'GET',
+          '/image/Example/{example:[a-zA-Z]+}',
+          [\ImagickDemo\ExampleNav::class, 'renderImage']
+    );
+
+
 
     $r->addRoute('GET', '/', [\ImagickDemo\Index::class, 'display']);
     
@@ -188,6 +208,7 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
+        echo "No route matched";
     break;
     
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:

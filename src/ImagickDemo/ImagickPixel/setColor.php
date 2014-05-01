@@ -14,7 +14,7 @@ class setColor extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        
+        $this->renderImage1();
     }
     
     function renderImage1() {

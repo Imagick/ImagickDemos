@@ -9,6 +9,38 @@ else {
 }
 
 
+function getPrevious($array, $current) {
+
+    $previous = null;
+
+    foreach ($array as $element) {
+        if ($current == $element) {
+            return $previous;
+        }
+        $previous = $element;
+    }
+
+    return null;
+}
+
+function getNext($array, $current) {
+    $next = false;
+
+    foreach ($array as $element) {
+
+        if ($next == true) {
+            return $element;
+        }
+        if ($current == $element) {
+            $next = true;
+        }
+    }
+
+    return null;
+}
+
+
+
 //Arctan function isn't in my current imagick.
 
 /**
@@ -65,7 +97,7 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $r->addRoute(
       'GET',
-          '/ImagickPixel',
+          '/ImagickPixel{trail:\/?}',
           [\ImagickDemo\ImagickPixelNav::class, 'displayIndex']
     );
 
@@ -80,8 +112,6 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
           '/Example',
           [\ImagickDemo\ExampleNav::class, 'displayIndex']
     );
-
-
 
     $r->addRoute(
       'GET',

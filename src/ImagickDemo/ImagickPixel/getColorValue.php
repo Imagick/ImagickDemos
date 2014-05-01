@@ -6,28 +6,25 @@ namespace ImagickDemo\ImagickPixel;
 class getColorValue extends \ImagickDemo\Example {
 
     function renderImageURL() {
-        return "<img src='/image/ImagickPixel/getColorValue'/>";
+        //return "<img src='/image/ImagickPixel/getColorValue'/>";
     }
 
+    
     function renderDescription() {
-        return "";
-    }
-
-    function renderImage() {
 
 
         $color = new \ImagickPixel('rgba(90%, 20%, 20%, 0.75)');
 
-        echo "Alpha value is " . $color->getColorValue(\Imagick::COLOR_ALPHA) . PHP_EOL;
-        echo "" . PHP_EOL;
-        echo "Red value is " . $color->getColorValue(\Imagick::COLOR_RED) . PHP_EOL;
-        echo "Green value is " . $color->getColorValue(\Imagick::COLOR_GREEN) . PHP_EOL;
-        echo "Blue value is " . $color->getColorValue(\Imagick::COLOR_BLUE) . PHP_EOL;
-        echo "" . PHP_EOL;
-        echo "Cyan value is " . $color->getColorValue(\Imagick::COLOR_CYAN) . PHP_EOL;
-        echo "Magenta value is " . $color->getColorValue(\Imagick::COLOR_MAGENTA) . PHP_EOL;
-        echo "Yellow value is " . $color->getColorValue(\Imagick::COLOR_YELLOW) . PHP_EOL;
-        echo "Black value is " . $color->getColorValue(\Imagick::COLOR_BLACK) . PHP_EOL;
+        echo "Alpha value is " . $color->getColorValue(\Imagick::COLOR_ALPHA) . "<br/>";
+        echo ""  . "<br/>";
+        echo "Red value is " . $color->getColorValue(\Imagick::COLOR_RED)  . "<br/>";
+        echo "Green value is " . $color->getColorValue(\Imagick::COLOR_GREEN)  . "<br/>";
+        echo "Blue value is " . $color->getColorValue(\Imagick::COLOR_BLUE)  . "<br/>";
+        echo "" . "<br/>";
+        echo "Cyan value is " . $color->getColorValue(\Imagick::COLOR_CYAN)  . "<br/>";
+        echo "Magenta value is " . $color->getColorValue(\Imagick::COLOR_MAGENTA)  . "<br/>";
+        echo "Yellow value is " . $color->getColorValue(\Imagick::COLOR_YELLOW)  . "<br/>";
+        echo "Black value is " . $color->getColorValue(\Imagick::COLOR_BLACK)  . "<br/>";
 
         /*
         

@@ -6,11 +6,10 @@ namespace ImagickDemo;
 
 class ImagickPixelNav implements ActiveNav, DemoNav {
 
-
     private $currentExample;
-    
+
     private $imagePixelExamples = array(
-        '__construct',
+        'construct',
             //'ImagickPixel.clear', 
         'getColor',// ([ bool $normalized = false ] )
         'getColorAsString',// ( void )
@@ -21,17 +20,40 @@ class ImagickPixelNav implements ActiveNav, DemoNav {
         'isSimilar',// ( ImagickPixel $color , float $fuzz )
         'setColor',// ( string $color )
         'setColorValue',// ( int $color , float $value )
-        'setcolorValueQuantum',// ( int $color , float $value )
+        'setColorValueQuantum',// ( int $color , float $value )
         'setHSL',// ( float $hue , float $saturation , float $luminosity )
     );
 
 
     function renderPreviousButton() {
+        $previous = getPrevious($this->imagePixelExamples, $this->currentExample);
 
+        if ($previous) {
+            return "<a href='/ImagickPixel/$previous'>
+            <button type='button' class='btn btn-primary'>
+             <span class='glyphicon glyphicon-arrow-left'></span> $previous
+            </button>
+            </a>";
+        }
+
+        return "";
     }
 
     function renderNextButton() {
+        $next = getNext($this->imagePixelExamples, $this->currentExample);
+
+        if ($next) {
+            echo "<a href='/ImagickPixel/$next'>
+            <button type='button' class='btn btn-primary'>
+            $next <span class='glyphicon  glyphicon-arrow-right'></span>
+            </button>
+            </a>";
+        }
+
+
+        return "";
     }
+
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\ImagickPixel\\' . $example;

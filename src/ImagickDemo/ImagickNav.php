@@ -4,35 +4,6 @@
 namespace ImagickDemo;
 
 
-function getPrevious($array, $current) {
-
-    $previous = null;
-
-    foreach ($array as $element) {
-        if ($current == $element) {
-            return $previous;
-        }
-        $previous = $element;
-    }
-
-    return null;
-}
-
-function getNext($array, $current) {
-    $next = false;
-    
-    foreach ($array as $element) {
-        
-        if ($next == true) {
-            return $element;
-        }
-        if ($current == $element) {
-            $next = true;
-        }
-    }
-
-    return null;
-}
 
 
 class ImagickNav implements ActiveNav {

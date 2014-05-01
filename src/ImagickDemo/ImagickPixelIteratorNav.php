@@ -9,11 +9,11 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
     private $currentExample;
     
     private $imagickPixelIteratorExamples = array(
-        'clear' => 'resetIterator',
-        '__construct',
+        'clear', // => 'resetIterator',
+        'construct',
             //'getCurrentIteratorRow',
         //'getIteratorRow' => 'setIteratorRow',
-            //'getNextIteratorRow',
+        'getNextIteratorRow',
             //'getPreviousIteratorRow',
             //'newPixelIterator', deprecated
             //'newPixelRegionIterator', deprecated
@@ -26,12 +26,36 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
 
 
 
-    function renderPreviousButton() {
 
+    function renderPreviousButton() {
+        $previous = getPrevious($this->imagickPixelIteratorExamples, $this->currentExample);
+
+        if ($previous) {
+            return "<a href='/ImagickPixelIterator/$previous'>
+            <button type='button' class='btn btn-primary'>
+             <span class='glyphicon glyphicon-arrow-left'></span> $previous
+            </button>
+            </a>";
+        }
+
+        return "";
     }
 
     function renderNextButton() {
+        $next = getNext($this->imagickPixelIteratorExamples, $this->currentExample);
+
+        if ($next) {
+            echo "<a href='/ImagickPixelIterator/$next'>
+            <button type='button' class='btn btn-primary'>
+            $next <span class='glyphicon  glyphicon-arrow-right'></span>
+            </button>
+            </a>";
+        }
+
+
+        return "";
     }
+
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\ImagickPixelIterator\\' . $example;
@@ -59,8 +83,6 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
         }
         return 'ImagickPixelIterator';
     }
-
-
 
 
     function renderNav() {

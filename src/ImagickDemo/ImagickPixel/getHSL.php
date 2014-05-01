@@ -7,14 +7,10 @@ namespace ImagickDemo\ImagickPixel;
 class getHSL extends \ImagickDemo\Example {
 
     function renderImageURL() {
-        return "<img src='/image/ImagickPixel/getHSL'/>";
+//        return "<img src='/image/ImagickPixel/getHSL'/>";
     }
-
+ 
     function renderDescription() {
-        return "";
-    }
-
-    function renderImage() {
 
 //Create an ImagickPixel color
         $color = new \ImagickPixel('rgb(90%, 10%, 10%)');

@@ -6,14 +6,10 @@ namespace ImagickDemo\ImagickPixel;
 class getColorAsString extends \ImagickDemo\Example {
 
     function renderImageURL() {
-        return "<img src='/image/ImagickPixel/getColorAsString'/>";
+//        return "<img src='/image/ImagickPixel/getColorAsString'/>";
     }
 
     function renderDescription() {
-        return "";
-    }
-
-    function renderImage() {
 
 //Create an ImagickPixel with the predefined color 'brown'
         $color = new \ImagickPixel('brown');

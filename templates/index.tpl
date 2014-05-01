@@ -16,15 +16,16 @@
 
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container">
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <!-- <nav class="collapse navbar-collapse navbar-default bs-navbar-collapse" role="navigation"> -->
+        <nav class="navbar-default" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/">Home</a>
                 </li>
-                <li>
+                <li class='active'>
                     <a href="/Imagick">Imagick</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="/ImagickDraw">ImagickDraw</a>
                 </li>
                 <li>

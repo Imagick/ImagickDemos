@@ -7,14 +7,11 @@ namespace ImagickDemo\ImagickPixel;
 class setHSL extends \ImagickDemo\Example {
 
     function renderImageURL() {
-        return "<img src='/image/ImagickPixel/setHSL'/>";
+    //    return "<img src='/image/ImagickPixel/setHSL'/>";
     }
+
 
     function renderDescription() {
-        return "";
-    }
-
-    function renderImage() {
 
 
 //Create an almost pure red color

@@ -1,5 +1,9 @@
 <?php
 
+
+namespace ImagickDemo\ImagickPixelIterator;
+
+
 class Pixel {
 
     public $r;
@@ -66,26 +70,42 @@ class PixelStack {
     }
 }
 
-$imagick = new Imagick(realpath("../images/TestImage.jpg"));
-$count = 0;
 
-$imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
+class syncIterator extends \ImagickDemo\Example {
 
-foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
-
-    $pixelStatck = new PixelStack();
-
-    foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
-
-        $pixelStatck->pushPixel($pixel->getColorValue(Imagick::COLOR_RED), $pixel->getColorValue(Imagick::COLOR_GREEN), $pixel->getColorValue(Imagick::COLOR_BLUE));
-
-        $color = sprintf("rgb(%d, %d, %d)", intval($pixelStatck->getAverageRed() * 255), intval($pixelStatck->getAverageGreen() * 255), intval($pixelStatck->getAverageBlue() * 255));
-
-        $pixel->setColor($color);
+    function renderImageURL() {
+        return "<img src='/image/ImagickPixelIterator/'/>";
     }
 
-    $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
-}
+    function renderDescription() {
+        return "";
+    }
 
-header("Content-Type: image/jpg");
-echo $imagick;
+    function renderImage() {
+
+
+        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $count = 0;
+
+        $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
+
+        foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+
+            $pixelStatck = new PixelStack();
+
+            foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+                /** @var $pixel \ImagickPixel */
+                $pixelStatck->pushPixel($pixel->getColorValue(\Imagick::COLOR_RED), $pixel->getColorValue(\Imagick::COLOR_GREEN), $pixel->getColorValue(\Imagick::COLOR_BLUE));
+
+                $color = sprintf("rgb(%d, %d, %d)", intval($pixelStatck->getAverageRed() * 255), intval($pixelStatck->getAverageGreen() * 255), intval($pixelStatck->getAverageBlue() * 255));
+
+                $pixel->setColor($color);
+            }
+
+            $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        }
+
+        header("Content-Type: image/jpg");
+        echo $imagick;
+    }
+}

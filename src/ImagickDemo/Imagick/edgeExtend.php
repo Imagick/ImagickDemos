@@ -41,7 +41,6 @@ class edgeExtend extends \ImagickDemo\Example {
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
 
-
 //Fyi it may be easier to think of the affine transform by 
 //how it works for a rotation:
 //$affineRotate = array(
@@ -52,6 +51,33 @@ class edgeExtend extends \ImagickDemo\Example {
 //    "tx" => 0,
 //    "ty" => 0,
 //);
+    }
+
+    function renderImage2() {
+
+        $image = new \Imagick();
+        $image->newImage(800, 800, new \ImagickPixel('red'));
+        $image->setImageFormat("png");
+        $type = $image->getFormat();
+        header("Content-type: $type");
+
+        $texture = new \Imagick(realpath($this->imagePath));
+        $texture->scaleimage($texture->getimagewidth() / 4, $texture->getimageheight() / 4);
+
+        $image->setimagevirtualpixelmethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
+        $image = $image->textureImage($texture);
+
+        echo $image;
+
+
+// Perform the distortion 
+
+
+//$imagick->cropImage ($imagick->getImageWidth() + 500 , $imagick->getImageHeight() /2, -100, 0);
+
+
+        header("Content-Type: image/jpg");
+        echo $imagick->getImageBlob();
 
     }
 }

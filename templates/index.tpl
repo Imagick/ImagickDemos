@@ -10,9 +10,8 @@
 
     <!-- IE8 shims deleted - use a decent browser -->
 </head>
+
 <body>
-
-
 
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container">
@@ -76,6 +75,15 @@
                 <div class="col-md-2">
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {inject name='control' value='ImagickDemo\Control'}
+                    {$control->render() | nofilter}
+                </div>
+
+            </div>
+            
     
             <div class="row">
                 <div class="col-md-3">

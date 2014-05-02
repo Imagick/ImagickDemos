@@ -1,37 +1,38 @@
 <?php
 
 
-namespace ImagickDemo;
+namespace ImagickDemo\ImagickPixel;
 
 
-class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
+use ImagickDemo\Navigation\ActiveNav;
+use ImagickDemo\Navigation\DemoNav;
+
+class ImagickPixelNav implements ActiveNav, DemoNav {
 
     private $currentExample;
-    
-    private $imagickPixelIteratorExamples = array(
-        'clear', // => 'resetIterator',
+
+    private $imagePixelExamples = array(
         'construct',
-            //'getCurrentIteratorRow',
-        //'getIteratorRow' => 'setIteratorRow',
-        'getNextIteratorRow',
-            //'getPreviousIteratorRow',
-            //'newPixelIterator', deprecated
-            //'newPixelRegionIterator', deprecated
-        'resetIterator',
-            //'setIteratorFirstRow',
-            //'setIteratorLastRow',
-        'setIteratorRow',
-        'syncIterator',// => '__construct',
+            //'ImagickPixel.clear', 
+        'getColor',// ([ bool $normalized = false ] )
+        'getColorAsString',// ( void )
+            //No idea    'ImagickPixel.getColorCount',// ( void )
+        'getColorValue',// ( int $color )
+        'getColorValueQuantum',// ( int $color )
+        'getHSL',// ( void )
+        'isSimilar',// ( ImagickPixel $color , float $fuzz )
+        'setColor',// ( string $color )
+        'setColorValue',// ( int $color , float $value )
+        'setColorValueQuantum',// ( int $color , float $value )
+        'setHSL',// ( float $hue , float $saturation , float $luminosity )
     );
 
 
-
-
     function renderPreviousButton() {
-        $previous = getPrevious($this->imagickPixelIteratorExamples, $this->currentExample);
+        $previous = getPrevious($this->imagePixelExamples, $this->currentExample);
 
         if ($previous) {
-            return "<a href='/ImagickPixelIterator/$previous'>
+            return "<a href='/ImagickPixel/$previous'>
             <button type='button' class='btn btn-primary'>
              <span class='glyphicon glyphicon-arrow-left'></span> $previous
             </button>
@@ -42,10 +43,10 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
     }
 
     function renderNextButton() {
-        $next = getNext($this->imagickPixelIteratorExamples, $this->currentExample);
+        $next = getNext($this->imagePixelExamples, $this->currentExample);
 
         if ($next) {
-            echo "<a href='/ImagickPixelIterator/$next'>
+            echo "<a href='/ImagickPixel/$next'>
             <button type='button' class='btn btn-primary'>
             $next <span class='glyphicon  glyphicon-arrow-right'></span>
             </button>
@@ -58,44 +59,41 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
 
 
     function renderImage($example, \Auryn\Provider $provider) {
-        $classname = '\ImagickDemo\ImagickPixelIterator\\' . $example;
+        $classname = '\ImagickDemo\ImagickPixel\\' . $example;
         $provider->execute([$classname, 'renderImageSafe']);
     }
 
     function display($example, \Auryn\Provider $provider) {
         $this->currentExample = $example;
-        $classname = 'ImagickDemo\ImagickPixelIterator\\' . $example;
+        $classname = 'ImagickDemo\ImagickPixel\\' . $example;
         $provider->alias('ImagickDemo\Example', $classname);
         $provider->alias('ImagickDemo\ActiveNav', get_class($this));
         $provider->share($this);
     }
-
 
     function displayIndex(\Auryn\Provider $provider) {
         $provider->alias('ImagickDemo\ActiveNav', get_class($this));
         $provider->share($this);
     }
 
-
     function renderTitle() {
         if ($this->currentExample) {
             return $this->currentExample;
         }
-        return 'ImagickPixelIterator';
+        return 'ImagickPixel';
     }
-
 
     function renderNav() {
         echo "<ul class='nav nav-sidebar smallPadding'>";
-
-        foreach($this->imagickPixelIteratorExamples as $key => $ImagickPixelIteratorExample) {
+        foreach($this->imagePixelExamples as $imagePixelExample) {
             echo "<li>";
-            echo "<a href='/ImagickPixelIterator/$ImagickPixelIteratorExample'>".$ImagickPixelIteratorExample."</a>";
+            echo "<a href='/ImagickPixel/$imagePixelExample'>".$imagePixelExample."</a>";
             echo "</li>";
         }
-
         echo "</ul>";
     }
+
+
 
 }
 

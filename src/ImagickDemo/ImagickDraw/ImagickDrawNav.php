@@ -1,8 +1,10 @@
 <?php
 
 
-namespace ImagickDemo;
+namespace ImagickDemo\ImagickDraw;
 
+
+use ImagickDemo\Navigation\ActiveNav;
 
 class ImagickDrawNav implements ActiveNav {
     

@@ -1,12 +1,22 @@
 <?php
 
 
-namespace ImagickDemo;
+namespace ImagickDemo\Imagick;
+
+
+function header($string, $replace = true, $http_response_code = null) {
+    global $imageType;
+
+    if (stripos($string, "Content-Type: image/") === 0) {
+        $imageType = substr($string, strlen("Content-Type: image/"));
+    }
+
+    \header($string, $replace, $http_response_code);
+}
 
 
 
-
-class ImagickNav implements ActiveNav {
+class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 
     private $currentExample;
     
@@ -356,9 +366,6 @@ class ImagickNav implements ActiveNav {
     }
 
     function displayIndex(\Auryn\Provider $provider) {
-
-//        $classname = 'ImagickDemo\Imagick\\' . $example;
-        //$provider->alias('ImagickDemo\Example', $classname);
         $provider->alias('ImagickDemo\ActiveNav', get_class($this));
         $provider->share($this);
     }
@@ -366,7 +373,14 @@ class ImagickNav implements ActiveNav {
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Imagick\\' . $example;
-        $provider->execute([$classname, 'renderImageSafe']);
+
+        
+        $provider->alias('ImagickDemo\Example', $classname);
+        
+        
+        $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
+        
+        //$provider->execute([$classname, 'renderImageSafe']);
     }
 
     function renderPreviousButton() {

@@ -13,7 +13,6 @@ class adaptiveBlurImage extends \ImagickDemo\Example {
     }
 
     function renderDescription() {
-
     }
 
     function renderImage() {

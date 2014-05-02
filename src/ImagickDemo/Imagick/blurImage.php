@@ -18,7 +18,5 @@ class blurImage extends \ImagickDemo\Example {
 
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
-
     }
-
 }

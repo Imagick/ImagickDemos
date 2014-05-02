@@ -11,12 +11,21 @@ class Example {
     protected $imagePath;
     
     function __construct(\ImagickDemo\Colors $colors, $imagePath) {
+        \Intahwebz\Functions::load();
         $this->colors = $colors;
         $this->imagePath = $imagePath;
     }
 
+    function getFilename() {
+        //TODO - add parameters
+        $fullClassName = get_class($this);
+        $classPathPart = str_replace('\\', '_', getNamespace($fullClassName));
+        
+        return $classPathPart.'_'.getClassName($fullClassName);
+    }
+
     function renderTitle() {
-        \Intahwebz\Functions::load();
+        
         return getClassName(get_class($this));
     }
     

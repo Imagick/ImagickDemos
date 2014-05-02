@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ImagickDemo;
+namespace ImagickDemo\Navigation;
 
 
 function getPrevious($array, $current) {

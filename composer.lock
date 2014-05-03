@@ -1,0 +1,494 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "8b51969973089e1b014bc26d74aaed4a",
+    "packages": [
+        {
+            "name": "intahwebz/configurator",
+            "version": "0.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/Configurator/Danack_Configurator_0.1.1.zip",
+                "reference": "Danack_Configurator_0.1.1.zip",
+                "shasum": "5ffc6adf6ff3356af79677320a2e153a4a9f2b37"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Intahwebz\\Configurator": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "Generates config files from PHP based templates and PHP style config files..",
+            "keywords": [
+                "UTF-8",
+                "config",
+                "php",
+                "tool"
+            ]
+        },
+        {
+            "name": "intahwebz/core",
+            "version": "0.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/intahwebz-core/Danack_intahwebz-core_0.2.0.zip",
+                "reference": "Danack_intahwebz-core_0.2.0.zip",
+                "shasum": "eac6cef98a60b8bfd49d8994ba1837e844a4327a"
+            },
+            "require": {
+                "psr/log": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Intahwebz": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "Core library that defines common interfaces used by the rest of the intahwebz..",
+            "keywords": [
+                "core",
+                "intahwebz",
+                "library"
+            ]
+        },
+        {
+            "name": "intahwebz/jig",
+            "version": "0.9.0",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/Jig/Danack_Jig_0.9.0.zip",
+                "reference": "Danack_Jig_0.9.0.zip",
+                "shasum": "cca7f451c7d00dfe21c31a281aa27f8e10368d8d"
+            },
+            "require": {
+                "intahwebz/core": "*",
+                "intahwebz/mb_extra": "1.0.0",
+                "nikic/php-parser": "v0.9.3",
+                "psr/log": "~1.0",
+                "rdlowrey/auryn": "dev-PluginExperiment2"
+            },
+            "require-dev": {
+                "intahwebz/form": "0.5.1",
+                "intahwebz/routing": "~0.9",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Intahwebz": "src/",
+                    "Intahwebz\\PHPCompiledTemplate": "src/Intahwebz/Jig/Tests/generatedTemplates/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "Lightweight, fast, flexible PHP templating system. Just like all the others.",
+            "keywords": [
+                "core",
+                "intahwebz",
+                "library"
+            ]
+        },
+        {
+            "name": "intahwebz/mb_extra",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/mb_extra/Danack_mb_extra_1.0.0.zip",
+                "reference": "Danack_mb_extra_1.0.0.zip",
+                "shasum": "898507cb876aee73a9b39d76df0e55979cb35510"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Intahwebz": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "A collection of PHP multi-byte string functions that are not present in the mb_string extension.",
+            "keywords": [
+                "UTF-8",
+                "mb_string",
+                "php",
+                "utf8"
+            ]
+        },
+        {
+            "name": "intahwebz/routing",
+            "version": "0.9.1",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/intahwebz-routing/Danack_intahwebz-routing_0.9.1.zip",
+                "reference": "Danack_intahwebz-routing_0.9.1.zip",
+                "shasum": "d56c207b209b82eb5d20ff5b80f80e13641ac7f8"
+            },
+            "require": {
+                "intahwebz/core": "*",
+                "intahwebz/mb_extra": "*"
+            },
+            "require-dev": {
+                "intahwebz/jig": "dev-master",
+                "phpunit/phpunit": "3.7.*",
+                "rdlowrey/auryn": "dev-PluginExperiment2",
+                "zendframework/zend-permissions-acl": ">=2.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Intahwebz\\PHPCompiledTemplate": "var/src/",
+                    "Intahwebz\\Routing": "src/"
+                }
+            }
+        },
+        {
+            "name": "intahwebz/weaver",
+            "version": "0.1.3",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/Weaver/Danack_Weaver_0.1.3.zip",
+                "reference": "Danack_Weaver_0.1.3.zip",
+                "shasum": "7f2edb1f30a09ed19a8b36fac16f57efd1177d8f"
+            },
+            "require": {
+                "intahwebz/core": ">=0.1.2",
+                "php": ">=5.4.0",
+                "zendframework/zend-code": "2.*"
+            },
+            "require-dev": {
+                "monolog/monolog": "1.4.0",
+                "phpunit/phpunit": "3.7.*",
+                "rdlowrey/auryn": "dev-DanackMaster",
+                "whatthejeff/nyancat-phpunit-resultprinter": "~1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Weaver": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "role": "Creator / Main Developer / Cake baker"
+                }
+            ],
+            "description": "An experiment in compositional programming.",
+            "homepage": "https://github.com/danack/Weaver",
+            "keywords": [
+                "AOP",
+                "idonteven",
+                "weaving",
+                "wtf"
+            ]
+        },
+        {
+            "name": "nikic/fast-route",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/FastRoute.git",
+                "reference": "bb016fd62e8410a65ab21daebc24b058a24a90eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/bb016fd62e8410a65ab21daebc24b058a24a90eb",
+                "reference": "bb016fd62e8410a65ab21daebc24b058a24a90eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FastRoute\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov",
+                    "email": "nikic@php.net"
+                }
+            ],
+            "description": "Fast request router for PHP",
+            "keywords": [
+                "router",
+                "routing"
+            ],
+            "support": {
+                "source": "https://github.com/nikic/FastRoute/tree/master",
+                "issues": "https://github.com/nikic/FastRoute/issues"
+            },
+            "time": "2014-04-29 05:20:49"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v0.9.3",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/nikic/php-parser/nikic_php-parser_v0.9.3.zip",
+                "reference": "nikic_php-parser_v0.9.3.zip",
+                "shasum": "2f0a2c838b87f484fd9f6800cdd8ff80a36937a7"
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPParser": "lib/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ]
+        },
+        {
+            "name": "oyejorge/less.php",
+            "version": "v1.7.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/oyejorge/less.php/oyejorge_less.php_v1.7.0.1.zip",
+                "reference": "oyejorge_less.php_v1.7.0.1.zip",
+                "shasum": "4396c110c0bd37b197a54ec8031b93b4f5a9cacc"
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "bin": [
+                "bin/lessc"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Less": "lib/"
+                },
+                "classmap": [
+                    "lessc.inc.php"
+                ]
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Schmidt",
+                    "homepage": "https://github.com/oyejorge"
+                },
+                {
+                    "name": "Matt Agar",
+                    "homepage": "https://github.com/agar"
+                },
+                {
+                    "name": "Martin Jantošovič",
+                    "homepage": "https://github.com/Mordred"
+                }
+            ],
+            "description": "PHP port of the Javascript version of LESS http://lesscss.org",
+            "homepage": "http://lessphp.gpeasy.com",
+            "keywords": [
+                "css",
+                "less",
+                "less.js",
+                "lesscss",
+                "php",
+                "stylesheet"
+            ]
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/php-fig/log/php-fig_log_1.0.0.zip",
+                "reference": "php-fig_log_1.0.0.zip",
+                "shasum": "e006b9f97750ce8a7e2111b3f7a57547c1fd1c8c"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ]
+        },
+        {
+            "name": "rdlowrey/auryn",
+            "version": "dev-PluginExperiment2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Auryn.git",
+                "reference": "51a81bc675abdb19921e2b6a1fd8235d0e543d62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Auryn/zipball/51a81bc675abdb19921e2b6a1fd8235d0e543d62",
+                "reference": "51a81bc675abdb19921e2b6a1fd8235d0e543d62",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Auryn": "lib"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "role": "Creator / Main Developer"
+                },
+                {
+                    "name": "Levi Morrison",
+                    "email": "levim@php.net",
+                    "homepage": "http://morrisonlevi.github.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
+            "homepage": "https://github.com/rdlowrey/Auryn",
+            "keywords": [
+                "dependency injection",
+                "dic",
+                "ioc"
+            ],
+            "support": {
+                "source": "https://github.com/Danack/Auryn/tree/PluginExperiment2",
+                "issues": "https://github.com/Danack/Auryn/issues"
+            },
+            "time": "2014-01-04 21:36:02"
+        },
+        {
+            "name": "zendframework/zend-code",
+            "version": "2.0.3",
+            "target-dir": "Zend/Code",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendCode/zendframework_Component_ZendCode_2.0.3.zip",
+                "reference": "zendframework_Component_ZendCode_2.0.3.zip",
+                "shasum": "03bc5d56c9263fe9f660ae3ebfa9f385622c0adb"
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/common": ">=2.1"
+            },
+            "suggest": {
+                "doctrine/common": "Doctrine\\Common >=2.1 for annotation features"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Code\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides facilities to generate arbitrary code using an object oriented interface",
+            "keywords": [
+                "code",
+                "zf2"
+            ]
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "nikic/fast-route": 20,
+        "rdlowrey/auryn": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

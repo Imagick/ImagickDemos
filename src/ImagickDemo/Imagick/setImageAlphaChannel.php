@@ -15,7 +15,7 @@ class setImageAlphaChannel extends \ImagickDemo\Example {
 
     function renderImage() {
 
-        $imagick2->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
+        //$imagick2->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
 
 
     }

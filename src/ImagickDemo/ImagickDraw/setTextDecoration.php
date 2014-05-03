@@ -29,6 +29,8 @@ class setTextDecoration extends \ImagickDemo\Example {
 
         $decorations = [\Imagick::DECORATION_NO, \Imagick::DECORATION_UNDERLINE, \Imagick::DECORATION_OVERLINE, \Imagick::DECORATION_LINETROUGH];
 
+        $offset = 0;
+        
         foreach ($decorations as $decoration) {
             $draw->setTextDecoration($decoration);
             $draw->annotation(50, 75 + $offset, "Lorem Ipsum!");

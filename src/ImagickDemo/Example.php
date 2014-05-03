@@ -10,23 +10,24 @@ class Example {
 
     protected $imagePath;
     
+    /** @var  \ImagickDemo\Control */
+    protected $imageControl;
+    
     function __construct(\ImagickDemo\Colors $colors, $imagePath) {
-        \Intahwebz\Functions::load();
         $this->colors = $colors;
         $this->imagePath = $imagePath;
     }
-    
+
     function getParameters() {
         return [];
     }
 
     function getFilename() {
         $fullClassName = get_class($this);
-        //$classPathPart = str_replace('\\', '_', getNamespace($fullClassName));
         $classPathPart = str_replace('\\', '/', getNamespace($fullClassName));
+        $filename = $classPathPart.'/'.getClassName($fullClassName);
         $params = $this->getParameters();
-        $filename = $classPathPart.'/'.getClassName($fullClassName); 
-        
+
         if (!empty($params)) {
             $filename .= '_'.md5(json_encode($params));
         }
@@ -35,16 +36,14 @@ class Example {
     }
 
     function renderTitle() {
-        
         return getClassName(get_class($this));
     }
     
     function renderImageURL() {
-        echo "An image url would go here.";
+        return "";
     }
     
     function renderImage() {
-        //TODO - show not implemented image.
         return "Image goes here?";
     }
     
@@ -61,9 +60,7 @@ class Example {
 
             $draw->setStrokeColor($strokeColor);
             $draw->setFillColor($lightColor);
-
             $draw->setStrokeWidth(1);
-
             $draw->setFontSize(24);
             $draw->setFont("../fonts/Arial.ttf");
 
@@ -75,13 +72,9 @@ class Example {
             $imagick->setImageFormat("png");
             $imagick->drawImage($draw);
 
-            //$imagick->scaleimage(2000, 1000);
-//Send the image to the browser
             header("Content-Type: image/png");
             echo $imagick->getImageBlob();
         }
-        
-        return null;
     }
     
     function renderDescription() {

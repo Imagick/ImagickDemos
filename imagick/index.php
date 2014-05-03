@@ -8,6 +8,8 @@ else {
     require_once('../vendor/autoload.php');
 }
 
+\Intahwebz\Functions::load();
+
 //yolo - We use a global to allow us to do a hack to make all the code examples
 //appear to use the standard 'header' function, but also capture the content type 
 //of the image
@@ -74,12 +76,22 @@ function bootstrap() {
 
     $injector->defineParam('pageTitle', "Imagick demos");
 
+    $injector->alias(Intahwebz\Request::class, Intahwebz\Routing\HTTPRequest::class);
+    $injector->define(
+        Intahwebz\Routing\HTTPRequest::class,
+         array(
+             ':server' => $_SERVER,
+             ':get' => $_GET,
+             ':post' => $_POST,
+             ':files' => $_FILES,
+             ':cookie' => $_COOKIE
+         )
+    );
+
     //$injector->defineParam('imagePath', "../images/fnord.png");
     $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
     $injector->defineParam('activeNav', 'blah');
-    
-    
     $injector->share($colors);
     $injector->share($injector); //yolo
 
@@ -91,9 +103,6 @@ function bootstrap() {
 
 
 $routesFunction = function(FastRoute\RouteCollector $r) {
-    
-
-
     $r->addRoute(
       'GET',
           '/Imagick',

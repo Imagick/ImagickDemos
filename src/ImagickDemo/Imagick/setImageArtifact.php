@@ -24,28 +24,21 @@ class setImageArtifact extends \ImagickDemo\Example {
 
 //header("Content-Type: image/jpg");
 //echo $imagick->getImageBlob();
-        try {
-            $imagick->setImageFormat('jpg');
+
+        $imagick->setImageFormat('jpg');
 //$imagick->deconstructimages();
 
-            $imagick->setImageArtifact('jpeg:extent', '40kb');
+        $imagick->setImageArtifact('jpeg:extent', '40kb');
 
-            $newExtent = $imagick->getImageArtifact('jpeg:extent');
-            $filepath = "/home/intahwebz/intahwebz/testExtent3asdsdsd.jpg";
-            $imagick->writeimage($filepath);
-            
-            
-
-
-            echo "done. File size is " . filesize($filepath) . "<br/>";
-
-            echo "newExtent = $newExtent<br/>";
-//echo "currentExtent = $currentExtent<br/>";
-
-        } catch (Exception $e) {
-            echo "Exception :" . $e->getMessage();
-        }
+        $newExtent = $imagick->getImageArtifact('jpeg:extent');
+        $filepath = "/home/intahwebz/intahwebz/testExtent3asdsdsd.jpg";
+        $imagick->writeimage($filepath);
+        
+        
 
 
+        echo "done. File size is " . filesize($filepath) . "<br/>";
+
+        echo "newExtent = $newExtent<br/>";
     }
 }

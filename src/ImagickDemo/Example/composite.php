@@ -74,7 +74,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
-    function multiplyGradients($width, $height) {
+    function multiplyGradients() {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
         $imagick2 = new \Imagick(realpath("../images/gradientRight.png"));
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
@@ -83,7 +83,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
-    function screenGradients($width, $height) {
+    function screenGradients() {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
         $imagick2 = new \Imagick(realpath("../images/gradientRight.png"));
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_SCREEN, 0, 0);
@@ -92,7 +92,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
-    function divide($width, $height) {
+    function divide() {
         $imagick = new \Imagick(realpath("../images/text_scan.png"));
         $imagickCopy = clone $imagick;
         $imagickCopy->blurImage(0x20, 1);
@@ -107,7 +107,7 @@ class composite extends \ImagickDemo\Example {
      * @param $width
      * @param $height
      */
-    function Dst_In($width, $height) {
+    function Dst_In() {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
         $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
         $imagick->setBackgroundColor('yellow');
@@ -129,7 +129,7 @@ class composite extends \ImagickDemo\Example {
      * @param $width
      * @param $height
      */
-    function Dst_Out($width, $height) {
+    function Dst_Out() {
 
         $imagick = new \Imagick();
         $imagick->setBackgroundColor('yellow');
@@ -149,7 +149,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
-    function ATop($width, $height) {
+    function ATop() {
 
         $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
         $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
@@ -165,7 +165,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
-    function Plus($width, $height) {
+    function Plus() {
 
         $redImagick = new \Imagick(realpath("../images/redDiscAlpha.png"));
         $greenImagick = new \Imagick(realpath("../images/greenDiscAlpha.png"));
@@ -182,7 +182,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
-    function Minus($width, $height) {
+    function Minus() {
 
 
         $rgbImagick = new \Imagick(realpath("../images/rgbDisc.png"));
@@ -202,7 +202,7 @@ class composite extends \ImagickDemo\Example {
      * @param $width
      * @param $height
      */
-    function CopyOpacity($width, $height) {
+    function CopyOpacity() {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
         $imagick2 = new \Imagick(realpath("../images/whiteDisc.png"));
 
@@ -218,7 +218,7 @@ class composite extends \ImagickDemo\Example {
      * @param $width
      * @param $height
      */
-    function CopyOpacity2($width, $height) {
+    function CopyOpacity2() {
         $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
 
         //This is vital - the image must have an alpha channel.

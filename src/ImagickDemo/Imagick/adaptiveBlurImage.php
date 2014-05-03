@@ -4,8 +4,18 @@ namespace ImagickDemo\Imagick;
 
 class adaptiveBlurImage extends \ImagickDemo\Example {
 
+    function __construct(\ImagickDemo\Control\ImageControl $imageControl) {
+        $this->imageControl = $imageControl;
+    }
+
+    function getParameters() {
+        return $this->imageControl->getParams();
+    }
+    
     function renderImageURL() {
-        return "<img src='/image/Imagick/adaptiveBlurImage'/>";
+        $params = $this->imageControl->getParamString();
+
+        return "<img src='/image/Imagick/adaptiveBlurImage?$params'/>";
     }
     
     function renderTitle() {
@@ -16,7 +26,7 @@ class adaptiveBlurImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
+        $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
         $imagick->adaptiveBlurImage(4, 3);
 
         header("Content-Type: image/jpg");

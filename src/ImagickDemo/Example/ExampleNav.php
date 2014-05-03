@@ -57,7 +57,6 @@ class ExampleNav implements \ImagickDemo\Navigation\ActiveNav {
     ];
     
     function __construct() {
-        \Intahwebz\Functions::load();
     }
 
     function display($example, \Auryn\Provider $provider) {

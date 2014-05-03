@@ -31,8 +31,8 @@ class psychdelicFontGif extends \ImagickDemo\Example {
 
             $draw = new \ImagickDraw();
 
-            $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
-            $lightColor = new \ImagickPixel('white');
+//            $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
+//            $lightColor = new \ImagickPixel('white');
 
             $name = 'Danack';
 

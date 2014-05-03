@@ -26,7 +26,17 @@ class setGravity extends \ImagickDemo\Example {
 
         $draw->setFontSize(24);
 
-        $gravitySettings = array(Imagick::GRAVITY_NORTHWEST => 'NorthWest', Imagick::GRAVITY_NORTH => 'North', Imagick::GRAVITY_NORTHEAST => 'NorthEast', Imagick::GRAVITY_WEST => 'West', Imagick::GRAVITY_CENTER => 'Centre', Imagick::GRAVITY_SOUTHWEST => 'SouthWest', Imagick::GRAVITY_SOUTH => 'South', Imagick::GRAVITY_SOUTHEAST => 'SouthEast', Imagick::GRAVITY_EAST => 'East');
+        $gravitySettings = array(
+            \Imagick::GRAVITY_NORTHWEST => 'NorthWest', 
+            \Imagick::GRAVITY_NORTH => 'North', 
+            \Imagick::GRAVITY_NORTHEAST => 'NorthEast', 
+            \Imagick::GRAVITY_WEST => 'West', 
+            \Imagick::GRAVITY_CENTER => 'Centre', 
+            \Imagick::GRAVITY_SOUTHWEST => 'SouthWest', 
+            \Imagick::GRAVITY_SOUTH => 'South', 
+            \Imagick::GRAVITY_SOUTHEAST => 'SouthEast', 
+            \Imagick::GRAVITY_EAST => 'East'
+        );
 
 
         $draw->setFont("../fonts/Arial.ttf");

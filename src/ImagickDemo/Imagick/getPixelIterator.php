@@ -22,6 +22,7 @@ class getPixelIterator extends \ImagickDemo\Example {
         /** @noinspection PhpUnusedLocalVariableInspection */
         foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
             foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+                /** @var $pixel \ImagickPixel */
                 if ($column % 2) {
                     $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
                 }

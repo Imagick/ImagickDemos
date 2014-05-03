@@ -11,8 +11,9 @@ namespace ImagickDemo\Imagick;
  * @param $height
  * @param $colorPoints - the point positions should be expressed in the range 0..1 space
  * @param $sparseMethod
- * @return \Imagick
+ * @param bool $absolute
  * @throws \InvalidArgumentException
+ * @return \Imagick
  */
 function createGradientImage($width, $height, $colorPoints, $sparseMethod, $absolute = false) {
 

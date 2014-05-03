@@ -39,10 +39,10 @@ class setFillRule2 extends \ImagickDemo\Example {
             for ($n = 0; $n < $points * 2; $n++) {
 
                 if ($n >= $points) {
-                    $angle = fmod($n * 360 * 4 / $points, 360) * $PI / 180;
+                    $angle = fmod($n * 360 * 4 / $points, 360) * pi() / 180;
                 }
                 else {
-                    $angle = fmod($n * 360 * 3 / $points, 360) * $PI / 180;
+                    $angle = fmod($n * 360 * 3 / $points, 360) * pi() / 180;
                 }
 
                 $positionX = $size * sin($angle);

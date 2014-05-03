@@ -28,6 +28,7 @@ class setIteratorRow extends \ImagickDemo\Example {
             $pixels = $imageIterator->getCurrentIteratorRow();
 
             foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+                /** @var $pixel \ImagickPixel */
                 $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
             }
 

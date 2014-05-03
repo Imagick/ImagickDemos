@@ -25,13 +25,13 @@ class setFontStyle extends \ImagickDemo\Example {
         $draw->setStrokeWidth(1);
 
         $draw->setFontSize(36);
-        $draw->setFontStyle(Imagick::STYLE_NORMAL);
+        $draw->setFontStyle(\Imagick::STYLE_NORMAL);
         $draw->annotation(50, 50, "Lorem Ipsum!");
 
-        $draw->setFontStyle(Imagick::STYLE_ITALIC);
+        $draw->setFontStyle(\Imagick::STYLE_ITALIC);
         $draw->annotation(50, 100, "Lorem Ipsum!");
 
-        $draw->setFontStyle(Imagick::STYLE_OBLIQUE);
+        $draw->setFontStyle(\Imagick::STYLE_OBLIQUE);
         $draw->annotation(50, 150, "Lorem Ipsum!");
 
 

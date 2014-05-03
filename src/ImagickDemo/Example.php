@@ -15,13 +15,23 @@ class Example {
         $this->colors = $colors;
         $this->imagePath = $imagePath;
     }
+    
+    function getParameters() {
+        return [];
+    }
 
     function getFilename() {
-        //TODO - add parameters
         $fullClassName = get_class($this);
-        $classPathPart = str_replace('\\', '_', getNamespace($fullClassName));
+        //$classPathPart = str_replace('\\', '_', getNamespace($fullClassName));
+        $classPathPart = str_replace('\\', '/', getNamespace($fullClassName));
+        $params = $this->getParameters();
+        $filename = $classPathPart.'/'.getClassName($fullClassName); 
         
-        return $classPathPart.'_'.getClassName($fullClassName);
+        if (!empty($params)) {
+            $filename .= '_'.md5(json_encode($params));
+        }
+
+        return $filename;
     }
 
     function renderTitle() {
@@ -42,7 +52,6 @@ class Example {
         try {
             /** @noinspection PhpVoidFunctionResultUsedInspection */
             $this->renderImage();
-            //exit(0);
         }
         catch(\Exception $e) {
             $draw = new \ImagickDraw();

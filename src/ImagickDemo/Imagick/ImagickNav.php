@@ -365,6 +365,10 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
         $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
+
+        $provider->defineParam('pageTitle', "Imagick - $example");
+        
+        
     }
 
     function displayIndex(\Auryn\Provider $provider) {

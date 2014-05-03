@@ -72,6 +72,8 @@ function bootstrap() {
     //$injector->defineParam('imagePath', "../images/TestImage.jpg");
     //$injector->defineParam('imagePath', "../images/TestImage2.jpg");
 
+    $injector->defineParam('pageTitle', "Imagick demos");
+
     //$injector->defineParam('imagePath', "../images/fnord.png");
     $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
@@ -210,10 +212,7 @@ $injector = bootstrap();
 
 $injector->defineParam('activeNav', $path);
 
-
-$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
-
-
+$routeInfo = $dispatcher->dispatch($httpMethod, $path);
 
 function process(\Auryn\Provider $injector, $handler, $vars) {
 
@@ -228,7 +227,10 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 
     $viewModel = $injector->make(Intahwebz\ViewModel\BasicViewModel::class);
     $jigRenderer = $injector->make(Intahwebz\Jig\JigRender::class);
-    //$jigRenderer->bindViewModel($viewModel);
+    $jigRenderer->bindViewModel($viewModel);
+
+    $viewModel->setVariable('pageTitle', "Imagick demos");
+    
     $jigRenderer->renderTemplateFile('index');
 }
 

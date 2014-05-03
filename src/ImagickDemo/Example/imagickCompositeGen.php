@@ -2,6 +2,7 @@
 
 namespace ImagickDemo\Example;
 
+
 function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
     $imagick = new \Imagick();
     $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
@@ -93,31 +94,26 @@ class imagickCompositeGen extends \ImagickDemo\Example {
     function renderImage() {
 
 
-        try {
-//Load the images 
-            $output = mergeImages(
-                [
-                    '../images/lories/6E6F9109.jpg',
-                    '../images/lories/IMG_1599.jpg', 
-                    '../images/lories/IMG_2561.jpg',
-                    '../images/lories/IMG_2837.jpg',
-                    '../images/lories/IMG_4023.jpg',
-                ], 
-                160,
-                40,
-                5);
+        //Load the images 
+        $output = mergeImages(
+            [
+                '../images/lories/6E6F9109.jpg',
+                '../images/lories/IMG_1599.jpg', 
+                '../images/lories/IMG_2561.jpg',
+                '../images/lories/IMG_2837.jpg',
+                '../images/lories/IMG_4023.jpg',
+            ], 
+            160,
+            40,
+            5);
 
-            //$output = generateBlendImage(200, 200, 5, 0.5);
+        //$output = generateBlendImage(200, 200, 5, 0.5);
 
 
-            $output->setImageFormat('png');
+        $output->setImageFormat('png');
 
-            header("Content-Type: image/png");
-            echo $output->getImageBlob();
-            exit(0);
-
-        } catch (\Exception $e) {
-            echo "Exception caught: " . $e->getMessage();
-        }
+        header("Content-Type: image/png");
+        echo $output->getImageBlob();
+        //echo "asdasd";
     }
 }

@@ -144,7 +144,9 @@ class ImagickDrawNav implements ActiveNav {
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\ImagickDraw\\' . $example;
-        $provider->execute([$classname, 'renderImage']);
+        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
+        //$provider->execute([$classname, 'renderImage']);
     }
 
     function renderTitle() {
@@ -153,15 +155,35 @@ class ImagickDrawNav implements ActiveNav {
         }
         return 'ImagickDraw';
     }
-    
-    function renderPreviousButton() {
 
+    function renderPreviousButton() {
+        $previous = getPrevious($this->imagickDrawExamples, $this->currentExample);
+
+        if ($previous) {
+            return "<a href='/ImagickDraw/$previous'>
+            <button type='button' class='btn btn-primary'>
+             <span class='glyphicon glyphicon-arrow-left'></span> $previous
+            </button>
+            </a>";
+        }
+
+        return "";
     }
 
     function renderNextButton() {
+        $next = getNext($this->imagickDrawExamples, $this->currentExample);
+
+        if ($next) {
+            echo "<a href='/ImagickDraw/$next'>
+            <button type='button' class='btn btn-primary'>
+            $next <span class='glyphicon  glyphicon-arrow-right'></span>
+            </button>
+            </a>";
+        }
+
+        return "";
     }
 
-    
     function renderNav() {
         echo "<ul class='nav nav-sidebar smallPadding'>";
         foreach ($this->imagickDrawExamples as $key => $imagickDrawExample) {

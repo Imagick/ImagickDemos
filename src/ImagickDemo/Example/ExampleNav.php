@@ -1,7 +1,21 @@
 <?php
 
 
-namespace ImagickDemo\Navigation;
+namespace ImagickDemo\Example;
+
+
+
+function header($string, $replace = true, $http_response_code = null) {
+    global $imageType;
+
+    if (stripos($string, "Content-Type: image/") === 0) {
+        $imageType = substr($string, strlen("Content-Type: image/"));
+    }
+
+    \header($string, $replace, $http_response_code);
+}
+
+
 
 
 function getPrevious($array, $current) {
@@ -35,7 +49,7 @@ function getNext($array, $current) {
 }
 
 
-class ExampleNav implements ActiveNav {
+class ExampleNav implements \ImagickDemo\Navigation\ActiveNav {
 
     private $currentExample;
     
@@ -62,18 +76,25 @@ class ExampleNav implements ActiveNav {
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Example\\' . $example;
-        $provider->execute([$classname, 'renderImageSafe']);
+        //$provider->execute([$classname, 'renderImageSafe']);
+        $provider->alias('ImagickDemo\Example', $classname);
+        
+        header("asfafs: asdsd");
+        
+        $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
     }
 
     function renderPreviousButton() {
         $previous = getPrevious($this->imagickExamples, $this->currentExample);
 
         if ($previous) {
-            return "<a href='/Example/$previous'>
+            $output = "<a href='/Example/$previous'>
             <button type='button' class='btn btn-primary'>
              <span class='glyphicon  glyphicon-arrow-left'></span> $previous
             </button>
             </a>";
+
+            return $output;
         }
 
         return "";

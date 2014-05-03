@@ -55,14 +55,15 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
             </a>";
         }
 
-
         return "";
     }
 
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\ImagickPixelIterator\\' . $example;
-        $provider->execute([$classname, 'renderImageSafe']);
+        //$provider->execute([$classname, 'renderImageSafe']);
+        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
     }
 
     function display($example, \Auryn\Provider $provider) {
@@ -72,7 +73,6 @@ class ImagickPixelIteratorNav implements ActiveNav, DemoNav {
         $provider->alias('ImagickDemo\ActiveNav', get_class($this));
         $provider->share($this);
     }
-
 
     function displayIndex(\Auryn\Provider $provider) {
         $provider->alias('ImagickDemo\ActiveNav', get_class($this));

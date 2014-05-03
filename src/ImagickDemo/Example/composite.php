@@ -61,9 +61,12 @@ class composite extends \ImagickDemo\Example {
         else {
             alert('image not found');
         }
-    }";
+    }
+    
+    </script>
+    ";
 
-
+        
     }
 
     function renderImage() {

@@ -60,7 +60,9 @@ class ImagickPixelNav implements ActiveNav, DemoNav {
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\ImagickPixel\\' . $example;
-        $provider->execute([$classname, 'renderImageSafe']);
+        //$provider->execute([$classname, 'renderImageSafe']);
+        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
     }
 
     function display($example, \Auryn\Provider $provider) {

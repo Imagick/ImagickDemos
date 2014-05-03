@@ -373,13 +373,8 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Imagick\\' . $example;
-
-        
         $provider->alias('ImagickDemo\Example', $classname);
-        
-        
         $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-        
         //$provider->execute([$classname, 'renderImageSafe']);
     }
 

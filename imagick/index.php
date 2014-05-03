@@ -8,6 +8,11 @@ else {
     require_once('../vendor/autoload.php');
 }
 
+//yolo - We use a global to allow us to do a hack to make all the code examples
+//appear to use the standard 'header' function, but also capture the content type 
+//of the image
+$imageType = null;
+
 
 function getPrevious($array, $current) {
 
@@ -69,7 +74,6 @@ function bootstrap() {
 
     //$injector->defineParam('imagePath', "../images/fnord.png");
     $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
-
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
     
     $injector->share($colors);
@@ -113,7 +117,7 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
     $r->addRoute(
       'GET',
           '/Example',
-          [\ImagickDemo\Navigation\ExampleNav::class, 'displayIndex']
+          [\ImagickDemo\Example\ExampleNav::class, 'displayIndex']
     );
 
     $r->addRoute(
@@ -167,13 +171,13 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
     $r->addRoute(
       'GET',
           '/Example/{example:[a-zA-Z]+}',
-          [\ImagickDemo\Navigation\ExampleNav::class, 'display']
+          [\ImagickDemo\Example\ExampleNav::class, 'display']
     );
 
     $r->addRoute(
       'GET',
           '/image/Example/{example:[a-zA-Z]+}',
-          [\ImagickDemo\Navigation\ExampleNav::class, 'renderImage']
+          [\ImagickDemo\Example\ExampleNav::class, 'renderImage']
     );
 
     $r->addRoute('GET', '/', [\ImagickDemo\Index::class, 'display']);

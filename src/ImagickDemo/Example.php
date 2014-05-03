@@ -42,7 +42,7 @@ class Example {
         try {
             /** @noinspection PhpVoidFunctionResultUsedInspection */
             $this->renderImage();
-            exit(0);
+            //exit(0);
         }
         catch(\Exception $e) {
             $draw = new \ImagickDraw();

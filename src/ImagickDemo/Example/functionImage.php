@@ -24,8 +24,6 @@ class functionImage extends \ImagickDemo\Example {
 
         $size = 200;
 
-        try {
-
             $quanta = pow(2, 16);
 
             //$channel = \Imagick::CHANNEL_RED | \Imagick::CHANNEL_GREEN |\Imagick::CHANNEL_BLUE;
@@ -68,11 +66,6 @@ class functionImage extends \ImagickDemo\Example {
 
             header("Content-Type: image/png");
             echo $imagick1->getImageBlob();
-            exit(0);
-        } catch (\Exception $e) {
-            var_dump($e);
-        }
-
     }
 
 }

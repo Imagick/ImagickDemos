@@ -75,6 +75,8 @@ function bootstrap() {
     //$injector->defineParam('imagePath', "../images/fnord.png");
     $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
+    $injector->defineParam('activeNav', 'blah');
+    
     
     $injector->share($colors);
     $injector->share($injector); //yolo
@@ -83,7 +85,7 @@ function bootstrap() {
 }
 
 
-$injector = bootstrap();
+
 
 
 $routesFunction = function(FastRoute\RouteCollector $r) {
@@ -198,6 +200,15 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
 
 
 //$uri = "/image/Imagick/averageImages";
+$path = $uri;
+$queryPosition = strpos($path, '?');
+if ($queryPosition !== false) {
+    $path = substr($path, 0, $queryPosition);
+}
+
+$injector = bootstrap();
+
+$injector->defineParam('activeNav', $path);
 
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);

@@ -5,8 +5,8 @@ namespace ImagickDemo\Navigation;
 
 
 class DefaultNav implements ActiveNav {
-    function renderPreviousButton() {
 
+    function renderPreviousButton() {
     }
 
     function renderNextButton() {

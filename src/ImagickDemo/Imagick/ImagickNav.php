@@ -356,24 +356,26 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'writeImagesFile',
 //}
     );
+    
+
 
     function display($example, \Auryn\Provider $provider) {
         $this->currentExample = $example;
         $classname = 'ImagickDemo\Imagick\\' . $example;
-        $provider->alias('ImagickDemo\Example', $classname);
-        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->alias(\ImagickDemo\Example::class, $classname);
+        $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
 
     function displayIndex(\Auryn\Provider $provider) {
-        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
 
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Imagick\\' . $example;
-        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
         //$provider->execute([$classname, 'renderImageSafe']);
     }

@@ -3,8 +3,6 @@
 
 namespace ImagickDemo\Example;
 
-
-
 function header($string, $replace = true, $http_response_code = null) {
     global $imageType;
 
@@ -14,9 +12,6 @@ function header($string, $replace = true, $http_response_code = null) {
 
     \header($string, $replace, $http_response_code);
 }
-
-
-
 
 function getPrevious($array, $current) {
 
@@ -60,24 +55,28 @@ class ExampleNav implements \ImagickDemo\Navigation\ActiveNav {
         'imagickCompositeGen',
         'composite' => 'composite',
     ];
+    
+    function __construct() {
+        \Intahwebz\Functions::load();
+    }
 
     function display($example, \Auryn\Provider $provider) {
         $this->currentExample = $example;
         $classname = 'ImagickDemo\Example\\' . $example;
-        $provider->alias('ImagickDemo\Example', $classname);
-        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->alias(\ImagickDemo\Example::class, $classname);
+        $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
 
     function displayIndex(\Auryn\Provider $provider) {
-        $provider->alias('ImagickDemo\ActiveNav', get_class($this));
+        $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
 
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Example\\' . $example;
         //$provider->execute([$classname, 'renderImageSafe']);
-        $provider->alias('ImagickDemo\Example', $classname);
+        $provider->alias(\ImagickDemo\Example::class, $classname);
         
         header("asfafs: asdsd");
         

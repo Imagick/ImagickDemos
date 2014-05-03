@@ -18,24 +18,8 @@
         <!-- <nav class="collapse navbar-collapse navbar-default bs-navbar-collapse" role="navigation"> -->
         <nav class="navbar-default" role="navigation">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li class='active'>
-                    <a href="/Imagick">Imagick</a>
-                </li>
-                <li>
-                    <a href="/ImagickDraw">ImagickDraw</a>
-                </li>
-                <li>
-                    <a href="/ImagickPixel">ImagickPixel</a>
-                </li>
-                <li>
-                    <a href="/ImagickPixelIterator">Imagick Pixel Interator</a>
-                </li>
-                <li>
-                    <a href="/Example">Example</a>
-                </li>
+                {inject name='navBar' value='ImagickDemo\NavigationBar'}
+                {$navBar->render() | nofilter}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://basereality.com">Danack homepage</a></li>
@@ -57,7 +41,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            {inject name='activeNav' value='ImagickDemo\ActiveNav'}
+            {inject name='activeNav' value='ImagickDemo\Navigation\ActiveNav'}
             {$activeNav->renderNav()}            
         </div>
     

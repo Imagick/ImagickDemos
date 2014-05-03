@@ -4,6 +4,10 @@ namespace ImagickDemo\Example;
 
 class psychedelicFont extends \ImagickDemo\Example {
 
+    function __construct() {
+        //todo - string used needs to be in params.
+    }
+    
     function renderImageURL() {
         return "<img src='/image/Example/psychedelicFont'/>";
     }
@@ -18,13 +22,12 @@ class psychedelicFont extends \ImagickDemo\Example {
 
     function renderImage() {
 
-
         $draw = new \ImagickDraw();
 
         $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
         $lightColor = new \ImagickPixel('white');
 
-        $name = 'Anthony';
+        $name = 'Danack';
 
         if (array_key_exists('name', $_REQUEST) == true) {
             $name = $_REQUEST['name'];

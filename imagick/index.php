@@ -16,35 +16,6 @@ else {
 $imageType = null;
 
 
-function getPrevious($array, $current) {
-
-    $previous = null;
-
-    foreach ($array as $element) {
-        if ($current == $element) {
-            return $previous;
-        }
-        $previous = $element;
-    }
-
-    return null;
-}
-
-function getNext($array, $current) {
-    $next = false;
-
-    foreach ($array as $element) {
-
-        if ($next == true) {
-            return $element;
-        }
-        if ($current == $element) {
-            $next = true;
-        }
-    }
-
-    return null;
-}
 
 
 
@@ -231,7 +202,7 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
     }
 
     $injector->alias(ImagickDemo\Navigation\ActiveNav::class, ImagickDemo\Navigation\DefaultNav::class);
-    $injector->alias(ImagickDemo\Control::class, ImagickDemo\Control\ImageControl::class);
+    $injector->alias(ImagickDemo\Control::class, ImagickDemo\Control\NullControl::class);
     $injector->execute($handler, $lowried);
 
     $viewModel = $injector->make(Intahwebz\ViewModel\BasicViewModel::class);

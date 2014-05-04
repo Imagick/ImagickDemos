@@ -5,23 +5,23 @@ namespace ImagickDemo\ImagickDraw;
 
 
 use ImagickDemo\Navigation\ActiveNav;
+use ImagickDemo\Control\ColorControl;
 
-class ImagickDrawNav implements ActiveNav {
+class ImagickDrawNav extends \ImagickDemo\Navigation\Nav implements ActiveNav {
     
-    private $currentExample;
 
     private $imagickDrawExamples = array(
-        'affine',
-        'annotation' => 'setFontSize',
-        'arc',
-        'bezier',
-        'circle',
+        [ 'affine', ColorControl::class ],
+        //[ 'annotation',  ColorControl::class ], //=> 'setFontSize',
+        [ 'arc', ColorControl::class ],
+        [ 'bezier', ColorControl::class ],
+        [ 'circle', ColorControl::class ],
             //'clear',
             //'color',
             //'comment',
-        'composite',
+        [ 'composite', ColorControl::class ],
             //'destroy',
-        'ellipse',
+        [ 'ellipse',ColorControl::class ],
         //    'getClipPath',
         //    'getClipRule',
         //    'getClipUnits',
@@ -49,7 +49,7 @@ class ImagickDrawNav implements ActiveNav {
         //    'getTextEncoding',
         //    'getTextUnderColor',
         //    'getVectorGraphics',
-        'line',
+        [ 'line', ColorControl::class ],
             //'matte', dont know how it works
 //        'pathClose' => 'pathStart',
 //        'pathCurveToAbsolute',
@@ -71,82 +71,115 @@ class ImagickDrawNav implements ActiveNav {
 //        //'pathLineToVerticalRelative',
 //        'pathMoveToAbsolute',
 //        'pathMoveToRelative',
-        'pathStart',
-        'point',
-        'polygon',
-        'polyline',
-        'pop' => 'push',
-        'popClipPath' => 'setClipPath',
+        [ 'pathStart',ColorControl::class ],
+        [ 'point',ColorControl::class ],
+        [ 'polygon',ColorControl::class ],
+        [ 'polyline',ColorControl::class ],
+        [ 'pop' ,ColorControl::class ], //=> 'push'
+        [ 'popClipPath' ,ColorControl::class ], //=> 'setClipPath'
             //'popDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
-        'popPattern' => 'pushPattern',
-        'push',
-        'pushClipPath' => 'setClipPath',
+        [ 'popPattern' ,ColorControl::class ], //=> 'pushPattern'
+        [ 'push',ColorControl::class ],
+        [ 'pushClipPath' ,ColorControl::class ], //=> 'setClipPath'
             // 'pushDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
-        'pushPattern',
-        'rectangle',
+        [ 'pushPattern', ColorControl::class ],
+        [ 'rectangle',ColorControl::class ],
             //'render', no idea what this does
-        'rotate',
-        'roundRectangle',
-        'scale',
-        'setClipPath',
-        'setClipRule',
-        'setClipUnits',
-        'setFillAlpha',
-        'setFillColor',
-        'setFillOpacity',
-        'setFillPatternURL' => 'pushPattern',
-        'setFillRule',
-        'setFillRule2',
-        'setFont',
+        [ 'rotate',ColorControl::class ],
+        [ 'roundRectangle',ColorControl::class ],
+        [ 'scale',ColorControl::class ],
+        [ 'setClipPath',ColorControl::class ],
+        [ 'setClipRule',ColorControl::class ],
+        [ 'setClipUnits',ColorControl::class ],
+        [ 'setFillAlpha',ColorControl::class ],
+        [ 'setFillColor',ColorControl::class ],
+        [ 'setFillOpacity',ColorControl::class ],
+        [ 'setFillPatternURL' ,ColorControl::class ], //=> 'pushPattern'
+        [ 'setFillRule',ColorControl::class ],
+        [ 'setFillRule2',ColorControl::class ],
+        [ 'setFont',ColorControl::class ],
             //'setFontFamily',
-        'setFontSize',
+        [ 'setFontSize',ColorControl::class ],
             //'setFontStretch', Does nothing?
-        'setFontStyle',
-        'setFontWeight',
-        'setGravity',
-        'setStrokeAlpha',
-        'setStrokeAntialias',
-        'setStrokeColor',
-        'setStrokeDashArray',
-        'setStrokeDashOffset',
-        'setStrokeLineCap',
-        'setStrokeLineJoin',
-        'setStrokeMiterLimit',
-        'setStrokeOpacity',
+        [ 'setFontStyle',ColorControl::class ],
+        [ 'setFontWeight',ColorControl::class ],
+        [ 'setGravity',ColorControl::class ],
+        [ 'setStrokeAlpha',ColorControl::class ],
+        [ 'setStrokeAntialias',ColorControl::class ],
+        [ 'setStrokeColor',ColorControl::class ],
+        [ 'setStrokeDashArray',ColorControl::class ],
+        [ 'setStrokeDashOffset',ColorControl::class ],
+        [ 'setStrokeLineCap',ColorControl::class ],
+        [ 'setStrokeLineJoin',ColorControl::class ],
+        [ 'setStrokeMiterLimit',ColorControl::class ],
+        [ 'setStrokeOpacity',ColorControl::class ],
             //'setStrokePatternURL',
-        'setStrokeWidth',
-        'setTextAlignment',
-        'setTextAntialias',
-        'setTextDecoration',
+        [ 'setStrokeWidth',ColorControl::class ],
+        [ 'setTextAlignment',ColorControl::class ],
+        [ 'setTextAntialias',ColorControl::class ],
+        [ 'setTextDecoration',ColorControl::class ],
             //'setTextEncoding',
-        'setTextUnderColor',
-        'setVectorGraphics', // seems broken
+        [ 'setTextUnderColor',ColorControl::class ],
+        [ 'setVectorGraphics', ColorControl::class ],// seems broken
             // 'setViewbox', no idea what this does
-        'skewX',
-        'skewY',
-        'translate',
+        [ 'skewX',ColorControl::class ],
+        [ 'skewY',ColorControl::class ],
+        [ 'translate',ColorControl::class ],
     );
 
+    function getBaseURI() {
+        return "ImagickDraw";
+    }
+
     function display($example, \Auryn\Provider $provider) {
-        ////$imageURL = '\ImagickDemo\ImagickDraw\'.$example;
         $this->currentExample = $example;
         $classname = 'ImagickDemo\ImagickDraw\\' . $example;
+        $provider->defineParam('imageBaseURL', '/image/ImagickDraw/'.$example);
+        $currentNavOption = $this->getCurrent($this->currentExample);
+  
+        $provider->alias(\ImagickDemo\Control::class, $currentNavOption->getControl());
+
+        $control = $provider->make(\ImagickDemo\Control::class);
+        
+        foreach($control->getParams() as $key => $value) {
+            $provider->defineParam($key, $value);
+        }
+
+
         $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
+
+
+
+    
 
     function displayIndex(\Auryn\Provider $provider) {
         $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
 
+    function getNavOptions() {
+        return $this->imagickDrawExamples;
+    }
+
 
     function renderImage($example, \Auryn\Provider $provider) {
+        $this->currentExample = $example;
         $classname = '\ImagickDemo\ImagickDraw\\' . $example;
+        $provider->defineParam('imageBaseURL', '/image/Imagick/'.$example);
         $provider->alias(\ImagickDemo\Example::class, $classname);
+        $currentNavOption = $this->getCurrent($this->currentExample);
+        $provider->alias(\ImagickDemo\Control::class, $currentNavOption->getControl());
+        $control = $provider->make(\ImagickDemo\Control::class);
+
+        foreach($control->getParams() as $key => $value) {
+            $provider->defineParam($key, $value);
+        }
+
         $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-        //$provider->execute([$classname, 'renderImage']);
+        
     }
 
     function renderTitle() {
@@ -156,37 +189,14 @@ class ImagickDrawNav implements ActiveNav {
         return 'ImagickDraw';
     }
 
-    function renderPreviousButton() {
-        $previous = getPrevious($this->imagickDrawExamples, $this->currentExample);
 
-        if ($previous) {
-            return "<a href='/ImagickDraw/$previous'>
-            <button type='button' class='btn btn-primary'>
-             <span class='glyphicon glyphicon-arrow-left'></span> $previous
-            </button>
-            </a>";
-        }
-
-        return "";
-    }
-
-    function renderNextButton() {
-        $next = getNext($this->imagickDrawExamples, $this->currentExample);
-
-        if ($next) {
-            echo "<a href='/ImagickDraw/$next'>
-            <button type='button' class='btn btn-primary'>
-            $next <span class='glyphicon  glyphicon-arrow-right'></span>
-            </button>
-            </a>";
-        }
-
-        return "";
-    }
 
     function renderNav() {
         echo "<ul class='nav nav-sidebar smallPadding'>";
-        foreach ($this->imagickDrawExamples as $key => $imagickDrawExample) {
+        foreach ($this->imagickDrawExamples as $key => $imagickExampleOption) {
+
+            $imagickDrawExample = $imagickExampleOption[0];
+
             echo "<li>";
             if ($key === intval($key)){
                 echo "<a href='/ImagickDraw/$imagickDrawExample'>".$imagickDrawExample."</a>";

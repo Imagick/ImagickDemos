@@ -18,7 +18,6 @@
 
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container">
-        <!-- <nav class="collapse navbar-collapse navbar-default bs-navbar-collapse" role="navigation"> -->
         <nav class="navbar-default" role="navigation">
             <ul class="nav navbar-nav">
                 {inject name='navBar' value='ImagickDemo\NavigationBar'}
@@ -36,8 +35,8 @@
 
     <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-1"></div>
-        <div class="col-md-8">
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-10">
             <h2 class='noMarginTop'>{$activeNav->renderTitle() | nofilter}</h2>
         </div>
     </div>
@@ -47,48 +46,44 @@
             {inject name='activeNav' value='ImagickDemo\Navigation\ActiveNav'}
             {$activeNav->renderNav()}            
         </div>
+
     
-        <div class="col-md-1">
-        </div>
-    
-        <div class="col-md-8">
+        <div class="col-md-10">
             
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-9">
                     {inject name='example' value='ImagickDemo\Example'}
-                    {$example->renderImageURL() | nofilter}
+
+                    {inject name='control' value='ImagickDemo\Control'}
+                    
+                    
+                    {$control->getURL() | nofilter}
+
                     {$example->renderDescription() | nofilter}
                 </div>
-                <div class="col-md-2">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    {inject name='control' value='ImagickDemo\Control'}
+                <div class="col-md-3">
+                    {*inject name='control' value='ImagickDemo\Control'*}
                     {$control->render() | nofilter}
                 </div>
-
             </div>
-            
     
             <div class="row">
                 <div class="col-md-3">
                     {$activeNav->renderPreviousButton() | nofilter}
                 </div>
         
-                <div class="col-md-4">
+                <div class="col-md-6">
                 </div>
         
                 <div class="col-md-3" style='text-align: right'>
                     {$activeNav->renderNextButton() | nofilter}
                 </div>
-                <div class="col-md-2">
-                </div>
+
             </div>
         </div>
 
     </div>
+    end of page
 </div>  
 
 

@@ -4,36 +4,33 @@
 namespace ImagickDemo;
 
 
+
 class Example {
 
     protected $colors;
 
     protected $imagePath;
     
-    /** @var  \ImagickDemo\Control */
-    protected $imageControl;
+    
     
     function __construct(\ImagickDemo\Colors $colors, $imagePath) {
         $this->colors = $colors;
-        $this->imagePath = $imagePath;
     }
 
-    function getParameters() {
-        return [];
-    }
 
-    function getFilename() {
-        $fullClassName = get_class($this);
-        $classPathPart = str_replace('\\', '/', getNamespace($fullClassName));
-        $filename = $classPathPart.'/'.getClassName($fullClassName);
-        $params = $this->getParameters();
 
-        if (!empty($params)) {
-            $filename .= '_'.md5(json_encode($params));
-        }
-
-        return $filename;
-    }
+//    function getFilename() {
+//        $fullClassName = get_class($this);
+//        $classPathPart = str_replace('\\', '/', getNamespace($fullClassName));
+//        $filename = $classPathPart.'/'.getClassName($fullClassName);
+//        //$params = $this->getParameters();
+//
+////        if (!empty($params)) {
+////            $filename .= '_'.md5(json_encode($params));
+////        }
+//
+//        return $filename;
+//    }
 
     function renderTitle() {
         return getClassName(get_class($this));

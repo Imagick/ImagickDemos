@@ -4,10 +4,6 @@ namespace ImagickDemo\Example;
 
 class psychedelicFont extends \ImagickDemo\Example {
 
-    function __construct() {
-        //todo - string used needs to be in params.
-    }
-    
     function renderImageURL() {
         return "<img src='/image/Example/psychedelicFont'/>";
     }
@@ -17,16 +13,10 @@ class psychedelicFont extends \ImagickDemo\Example {
     }
 
     function renderDescription() {
-
     }
 
     function renderImage() {
-
         $draw = new \ImagickDraw();
-
-        $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
-        $lightColor = new \ImagickPixel('white');
-
         $name = 'Danack';
 
         if (array_key_exists('name', $_REQUEST) == true) {
@@ -41,15 +31,13 @@ class psychedelicFont extends \ImagickDemo\Example {
         $draw->setfontsize(150);
 
         for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
-
             $hue = intval(170 + $strokeWidth * 360 / 25);
             $draw->setStrokeColor("hsl($hue, 255, 128)");
             $draw->setStrokeWidth($strokeWidth * 3);
             $draw->annotation(40, 150, $name);
         }
 
-
-//Create an image object which the draw commands can be rendered into
+        //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
         $imagick->newImage(650, 230, "#eee");
         $imagick->setImageFormat("png");

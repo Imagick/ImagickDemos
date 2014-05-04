@@ -21,6 +21,12 @@ class NullControl implements \ImagickDemo\Control {
     function getParamString() {
         return "";
     }
+
+    function getURL() {
+        return ""; 
+    }
+
+
 }
 
  

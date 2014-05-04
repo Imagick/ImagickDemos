@@ -13,9 +13,10 @@ class ImageExampleCache {
     
     private $imageCachePath;
     
-    function __construct(\ImagickDemo\Example $example, $imageCachePath) {
+    function __construct(\ImagickDemo\Example $example, $imageCachePath, \ImagickDemo\Control $control) {
         $this->example = $example;
         $this->imageCachePath = $imageCachePath;
+        $this->control = $control;
     }
 
 
@@ -26,9 +27,18 @@ class ImageExampleCache {
     function renderImage() {
 
         global $imageType;
+            
+        $fullClassName = get_class($this->example);
+        $classPathPart = str_replace('\\', '/', getNamespace($fullClassName));
+        $imageFilename = $classPathPart.'/'.getClassName($fullClassName);
 
         //generate the filename for the output image
-        $filename = $this->imageCachePath.$this->example->getFilename();
+        $filename = $this->imageCachePath.$imageFilename;
+        $params = $this->control->getParams();
+
+        if (!empty($params)) {
+            $filename .= '_'.md5(json_encode($params));
+        }
 
         $extensions = ["jpg", "gif", "png"];
         

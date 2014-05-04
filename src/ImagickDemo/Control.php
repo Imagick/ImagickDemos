@@ -17,6 +17,8 @@ interface Control {
      * @return string
      */
     function getParamString();
+    
+    function getURL();
 }
 
  

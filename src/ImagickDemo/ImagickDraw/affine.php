@@ -2,14 +2,27 @@
 
 namespace ImagickDemo\ImagickDraw;
 
+use ImagickDemo\Control\ColorControl;
+
 class affine extends \ImagickDemo\Example {
 
+    protected $backgroundColor;
+    protected $fillColor;
+    protected $strokeColor;
+
+    function __construct($backgroundColor, $fillColor, $strokeColor) {
+
+        $this->backgroundColor = $backgroundColor;
+        $this->fillColor =  $fillColor;
+        $this->strokeColor = $strokeColor;
+    }
+    
     function renderImageURL() {
         return "<img src='/image/ImagickDraw/affine'/>";
     }
 
     function renderDescription() {
-        return "Adjusts the current affine transformation matrix with the specified affine transformation matrix.
+        return "<br/>Adjusts the current affine transformation matrix with the specified affine transformation matrix.
         
             sx - The amount to scale the drawing in the x direction.<br/>
             sy - The amount to scale the drawing in the y direction,<br/>
@@ -25,13 +38,9 @@ class affine extends \ImagickDemo\Example {
         $draw = new \ImagickDraw();
 
         $draw->setStrokeWidth(1);
-
-        $darkColor = new \ImagickPixel('black');
-        $lightColor = new \ImagickPixel('LightCoral');
-
         $draw->setStrokeOpacity(1);
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($this->strokeColor);
+        $draw->setFillColor($this->fillColor);
 
         $draw->setStrokeWidth(2);
 
@@ -72,7 +81,7 @@ class affine extends \ImagickDemo\Example {
 
         //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 750, "SteelBlue2");
+        $image->newImage(500, 750, $this->backgroundColor);
         $image->setImageFormat("png");
 
         //Render the draw commands in the ImagickDraw object 
@@ -113,9 +122,7 @@ class affine extends \ImagickDemo\Example {
            </example>
           </para>
          </refsect1>
-        
-        
-        
+
         */
 
     }

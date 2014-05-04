@@ -14,37 +14,37 @@ function header($string, $replace = true, $http_response_code = null) {
     \header($string, $replace, $http_response_code);
 }
 
+use \ImagickDemo\Control\ImageControl;
+
+class ImagickNav extends \ImagickDemo\Navigation\Nav implements \ImagickDemo\Navigation\ActiveNav   {
 
 
-class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
-
-    private $currentExample;
     
-    private $imagickExamples = array(
+    private $imagickExamples = [
         
-        'adaptiveBlurImage',
-        'adaptiveResizeImage',
-        'adaptiveSharpenImage',
-        'adaptiveThresholdImage',
+        ['adaptiveBlurImage', ImageControl::class],
+        ['adaptiveResizeImage', ImageControl::class],
+        ['adaptiveSharpenImage', ImageControl::class],
+        ['adaptiveThresholdImage',  ImageControl::class],
 //'addImage',
-        'addNoiseImage',
-        'affineTransformImage', //Doesn't work?
+        ['addNoiseImage',  ImageControl::class],
+        ['affineTransformImage',  ImageControl::class], //Doesn't work?
 //'animateImages',
 //'annotateImage',
 //'appendImages',
-        'averageImages',
-        'blackThresholdImage',
-        'blurImage',
-        'borderImage',
-        'charcoalImage',
-        'chopImage',
+        ['averageImages',  ImageControl::class],
+        ['blackThresholdImage',  ImageControl::class],
+        ['blurImage',  ImageControl::class],
+        ['borderImage', ImageControl::class],
+        ['charcoalImage', ImageControl::class],
+        ['chopImage', ImageControl::class],
 //'clear',
-        'clipImage',
+        ['clipImage', ImageControl::class],
 //'clipPathImage',
-        'clutImage',
+        ['clutImage', ImageControl::class],
 //'coalesceImages',
-        'colorFloodfillImage',
-        'colorizeImage',
+        ['colorFloodfillImage', ImageControl::class],
+        ['colorizeImage', ImageControl::class],
 //'combineImages',
 //'commentImage',
 //'compareImageChannels',
@@ -52,18 +52,18 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'compareImages',
 //'compositeImage',
 //__construct',
-        'contrastImage',
+        ['contrastImage', ImageControl::class],
 //'contrastStretchImage',
-        'convolveImage',
-        'cropImage',
+        ['convolveImage', ImageControl::class],
+        ['cropImage', ImageControl::class],
 //'cropThumbnailImage',
 //'current',
 //'cycleColormapImage',
 //'decipherImage',
 //'deconstructImages',
 //'deleteImageArtifact',
-        'deskewImage',
-        'despeckleImage',
+        ['deskewImage', ImageControl::class],
+        ['despeckleImage', ImageControl::class],
 //'destroy',
 //'displayImage',
 //'displayImages',
@@ -72,21 +72,21 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'edgeImage',
 //'embossImage',
 //'encipherImage',
-        'edgeExtend',
-        'enhanceImage',
-        'equalizeImage',
+        ['edgeExtend', ImageControl::class],
+        ['enhanceImage', ImageControl::class],
+        ['equalizeImage', ImageControl::class],
 //'evaluateImage',
 //'exportImagePixels',
 //'extentImage',
 //'flattenImages',
-        'flipImage',
+        ['flipImage', ImageControl::class],
 //'floodFillPaintImage',
-        'flopImage',
+        ['flopImage', ImageControl::class],
 //'frameImage',
-        'functionImage',
-        'fxImage',
-        'gammaImage',
-        'gaussianBlurImage',
+        ['functionImage', ImageControl::class],
+        ['fxImage', ImageControl::class],
+        ['gammaImage', ImageControl::class],
+        ['gaussianBlurImage', ImageControl::class],
 //'getColorspace',
 //'getCompression',
 //'getCompressionQuality',
@@ -110,7 +110,7 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'getImageChannelKurtosis',
 //'getImageChannelMean',
 //'getImageChannelRange',
-        'getImageChannelStatistics',
+        ['getImageChannelStatistics', ImageControl::class],
 //'getImageClipMask',
 //'getImageColormapColor',
 //'getImageColors',
@@ -130,7 +130,7 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'getImageGravity',
 //'getImageGreenPrimary',
 //'getImageHeight',
-        'getImageHistogram',
+        ['getImageHistogram', ImageControl::class],
 //'getImageIndex',
 //'getImageInterlaceScheme',
 //'getImageInterpolateMethod',
@@ -167,8 +167,8 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'getOption',
 //'getPackageName',
 //'getPage',
-        'getPixelIterator',
-        'getPixelRegionIterator',
+        ['getPixelIterator', ImageControl::class],
+        ['getPixelRegionIterator', ImageControl::class],
 //'getPointSize',
 //'getQuantumDepth',
 //'getQuantumRange',
@@ -182,39 +182,39 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'haldClutImage',
 //'hasNextImage',
 //'hasPreviousImage',
-        'identifyImage',
+        ['identifyImage', ImageControl::class],
 //'implodeImage',
 //'importImagePixels',
 //'labelImage',
 //'levelImage',
 //'linearStretchImage',
 //'liquidRescaleImage',
-        'magnifyImage',
+        ['magnifyImage', ImageControl::class],
 //'mapImage',
 //'matteFloodfillImage',
 //'medianFilterImage',
 //'mergeImageLayers',
 //'minifyImage',
-        'modulateImage',
+        ['modulateImage', ImageControl::class],
 //'montageImage',
 //'morphImages',
 //'mosaicImages',
-        'motionBlurImage',
-        'negateImage',
+        ['motionBlurImage', ImageControl::class],
+        ['negateImage', ImageControl::class],
 //'newImage',
-        'newPseudoImage',
-        'newPseudoImage2',
+        ['newPseudoImage', ImageControl::class],
+        ['newPseudoImage2', ImageControl::class],
 //'nextImage',
-        'normalizeImage',
-        'oilPaintImage',
+        ['normalizeImage', ImageControl::class],
+        ['oilPaintImage', ImageControl::class],
 //'opaquePaintImage',
 //'optimizeImageLayers',
 //'orderedPosterizeImage',
 //'paintFloodfillImage',
 //'paintOpaqueImage',
 //'paintTransparentImage',
-        'pingImage',
-        'Quantum',
+        ['pingImage', ImageControl::class],
+        ['Quantum', null],
 //'pingImageBlob',
 //'pingImageFile',
 //'polaroidImage',
@@ -227,30 +227,30 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'queryFontMetrics',
 //'queryFonts',
 //'queryFormats',
-        'radialBlurImage',
+        ['radialBlurImage', ImageControl::class],
 //'raiseImage',
 //'randomThresholdImage',
 //'readImage',
 //'readImageBlob',
 //'readImageFile',
-        'recolorImage',
+        ['recolorImage', ImageControl::class],
 //'reduceNoiseImage',
-        'remapImage',
+        ['remapImage', ImageControl::class],
 //'removeImage',
 //'removeImageProfile',
 //'render',
-        'resampleImage',
+        ['resampleImage', ImageControl::class],
 //'resetImagePage',
 //'resizeImage',
 //'rollImage',
-        'rotateImage',
+        ['rotateImage', ImageControl::class],
 //'roundCorners',
 //'sampleImage',
-        'scaleImage',
-        'screenEmbed',
-        'segmentImage',
+        ['scaleImage', ImageControl::class],
+        ['screenEmbed', ImageControl::class],
+        ['segmentImage', ImageControl::class],
 //'separateImageChannel',
-        'sepiaToneImage',
+        ['sepiaToneImage', ImageControl::class],
 //'setBackgroundColor',
 //'setColorspace',
 //'setCompression',
@@ -262,7 +262,7 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'setGravity',
 //'setImage',
 //'setImageAlphaChannel',
-        'setImageArtifact',
+        ['setImageArtifact', ImageControl::class],
 //'setImageBackgroundColor',
 //'setImageBias',
 //'setImageBluePrimary',
@@ -276,7 +276,7 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'setImageCompressionQuality',
 
 //'setImageDepth',
-        'setImageDelay',
+        ['setImageDelay', ImageControl::class],
 //'setImageDispose',
 //'setImageExtent',
 //'setImageFilename',
@@ -300,7 +300,7 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'setImageResolution',
 //'setImageScene',
 
-        'setImageTicksPerSecond',
+        ['setImageTicksPerSecond', ImageControl::class],
 //'setImageType',
 //'setImageUnits',
 //'setImageVirtualPixelMethod',
@@ -308,7 +308,7 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'setInterlaceScheme',
 //'setIteratorIndex',
 //'setLastIterator',
-        'setOption',
+        ['setOption', ImageControl::class],
 //'setPage',
 //'setPointSize',
 //'setResolution',
@@ -317,58 +317,63 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
 //'setSize',
 //'setSizeOffset',
 //'setType',
-        'shadeImage',
-        'shadowImage',
-        'sharpenImage',
-        'shaveImage',
-        'shearImage',
+        ['shadeImage', ImageControl::class],
+        ['shadowImage', ImageControl::class],
+        ['sharpenImage', ImageControl::class],
+        ['shaveImage', ImageControl::class],
+        ['shearImage', ImageControl::class],
 //'sigmoidalContrastImage',
-        'sketchImage',
-        'solarizeImage',
-        'sparseColorImage',
+        ['sketchImage', ImageControl::class],
+        ['solarizeImage', ImageControl::class],
+        ['sparseColorImage', ImageControl::class],
 //        'sparseColorImage_bilinear',
 //        'sparseColorImage_shepards',
 //        'sparseColorImage_voronoi',
-        'spliceImage',
-        'spreadImage',
+        ['spliceImage', ImageControl::class],
+        ['spreadImage', ImageControl::class],
 //'steganoImage',
 //'stereoImage',
 //'stripImage',
-        'swirlImage',
+        ['swirlImage', ImageControl::class],
 //'textureImage',
 //'thresholdImage',
-        'thumbnailImage',
-        'tintImage', //what is this
-        'transformImage',
+        ['thumbnailImage', ImageControl::class],
+        ['tintImage',  ImageControl::class],//what is this
+        ['transformImage', ImageControl::class],
 //'transparentPaintImage',
-        'transposeImage',
-        'transverseImage',
-        'trimImage',
-        'uniqueImageColors',
-        'unsharpMaskImage',
+        ['transposeImage', ImageControl::class],
+        ['transverseImage', ImageControl::class],
+        ['trimImage', ImageControl::class],
+        ['uniqueImageColors', ImageControl::class],
+        ['unsharpMaskImage', ImageControl::class],
 //'valid',
-        'vignetteImage',
-        'waveImage',
+        ['vignetteImage', ImageControl::class],
+        ['waveImage', ImageControl::class],
 //'whiteThresholdImage',
 //'writeImage',
 //'writeImageFile',
 //'writeImages',
 //'writeImagesFile',
-//}
-    );
+    ];
+
+
+    function getNavOptions() {
+        return $this->imagickExamples;
+    }
     
-
-
+    
     function display($example, \Auryn\Provider $provider) {
         $this->currentExample = $example;
+        
         $classname = 'ImagickDemo\Imagick\\' . $example;
+        $provider->defineParam('imageBaseURL', '/image/Imagick/'.$example);
         $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
+        $currentNavOption = $this->getCurrent($this->currentExample);
+        $provider->alias(\ImagickDemo\Control::class, $currentNavOption->getControl());
+        $provider->share(\ImagickDemo\Control::class);
         $provider->share($this);
-
         $provider->defineParam('pageTitle', "Imagick - $example");
-        
-        
     }
 
     function displayIndex(\Auryn\Provider $provider) {
@@ -376,43 +381,19 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
         $provider->share($this);
     }
 
-
     function renderImage($example, \Auryn\Provider $provider) {
         $classname = '\ImagickDemo\Imagick\\' . $example;
+
+        $provider->defineParam('imageBaseURL', '/image/Imagick/'.$example);
+        
         $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-        //$provider->execute([$classname, 'renderImageSafe']);
     }
 
-    function renderPreviousButton() {
-        $previous = getPrevious($this->imagickExamples, $this->currentExample);
-
-        if ($previous) {
-            return "<a href='/Imagick/$previous'>
-            <button type='button' class='btn btn-primary'>
-             <span class='glyphicon  glyphicon-arrow-left'></span> $previous
-            </button>
-            </a>";
-        }
-
-        return "";
+    function getBaseURI() {
+        return "Imagick";
     }
 
-    function renderNextButton() {
-        $next = getNext($this->imagickExamples, $this->currentExample);
-
-        if ($next) {
-            echo "<a href='/Imagick/$next'>
-            <button type='button' class='btn btn-primary'>
-            $next <span class='glyphicon  glyphicon-arrow-right'></span>
-            </button>
-            </a>";
-        }
-
-        
-        return "";
-    }
-    
     function renderTitle() {
         if ($this->currentExample) {
             return $this->currentExample;
@@ -423,7 +404,9 @@ class ImagickNav implements \ImagickDemo\Navigation\ActiveNav {
     function renderNav() {
         echo "<ul class='nav nav-sidebar smallPadding'>";
 
-        foreach ($this->imagickExamples as $imagickExample) {
+        foreach ($this->imagickExamples as $imagickExampleOption) {
+
+            $imagickExample = $imagickExampleOption[0];
             echo "<li>";
                 echo "<a class='smallPadding' href='/Imagick/$imagickExample'>".$imagickExample."</a>";
             echo "</li>";

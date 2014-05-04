@@ -7,7 +7,7 @@ class NavOption {
 
     private $name;
     private $control;
-    
+
     function __construct($name, $control) {
         $this->name = $name;
         $this->control = $control;
@@ -28,12 +28,76 @@ class NavOption {
     }
 }
 
-abstract class Nav {
+class Nav {
 
     protected $currentExample;
 
-    abstract function getNavOptions();
-    abstract function getBaseURI();
+    private $examples;
+
+    /**
+     * @var \ImagickDemo\Control
+     */
+    private $control;
+
+    function __construct($examples, $category, $example) {
+        $this->examples = $examples;
+        $this->category = $category;
+        $this->currentExample = $example;
+    }
+
+    function getNavOptions() {
+        return $this->examples;
+    }
+
+    function getBaseURI() {
+        return $this->category;
+    }
+
+    function getURL() {
+        $navOption = $this->getCurrent();
+        
+        if ($navOption) {
+            $imageBaseURL = sprintf('/image/%s/%s', $this->category, $navOption->getName());
+            $params = '';
+            if ($this->control) {
+                $params = '?'.$this->control->getParamString();
+            }
+
+            return sprintf("<img src='%s%s' />", $imageBaseURL, $params );
+        }
+
+        return "";
+    }
+
+    function renderTitle() {
+        if ($this->currentExample) {
+            return $this->currentExample;
+        }
+        return $this->category;
+    }
+
+    function setupControlAndExample(\Auryn\Provider $injector) {
+        $navOption = $this->getCurrent();
+
+        if ($navOption) {
+            $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navOption->getName());
+            
+            $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
+
+            $controlName = $navOption->getControl();
+            
+            if ($controlName) {
+                $injector->alias(\ImagickDemo\Control::class, $controlName);
+                $this->control = $injector->make(\ImagickDemo\Control::class);
+
+                foreach($this->control->getParams() as $key => $value) {
+                    $injector->defineParam($key, $value);
+                }
+            }
+        }
+    }
+
+    
     
     /**
      * @param $array
@@ -55,13 +119,16 @@ abstract class Nav {
 
         return null;
     }
-    
-    function getCurrent($current) {
-        $array = $this->getNavOptions();
 
+    /**
+     * @return NavOption|null
+     */
+    function getCurrent() {
+
+        $array = $this->getNavOptions();
         foreach ($array as $element) {
 
-            if (strcmp($current, $element[0]) === 0) {
+            if (strcmp($this->currentExample, $element[0]) === 0) {
                 return new NavOption($element[0], $element[1]);
             }
         }
@@ -113,6 +180,20 @@ abstract class Nav {
         }
 
         return "";
+    }
+
+    function renderNav() {
+        echo "<ul class='nav nav-sidebar smallPadding'>";
+
+        foreach ($this->examples as $imagickExampleOption) {
+
+            $imagickExample = $imagickExampleOption[0];
+            echo "<li>";
+            echo "<a class='smallPadding' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
+            echo "</li>";
+        }
+
+        echo "</ul>";
     }
 }
 

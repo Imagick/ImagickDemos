@@ -19,6 +19,14 @@ class DefaultNav implements ActiveNav {
     function renderNav() {
         
     }
+
+    function getURL() {
+        
+    }
+
+    function renderDescription() {
+        return "I are description.";
+    }
 }
 
  

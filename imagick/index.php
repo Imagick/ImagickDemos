@@ -10,6 +10,7 @@ else {
 
 use ImagickDemo\Control\ColorControl;
 use ImagickDemo\Control\ImageControl;
+use ImagickDemo\Navigation\NavOption;
 
 \Intahwebz\Functions::load();
 
@@ -22,17 +23,17 @@ $imageType = null;
 function getImagickDrawExamples() {
 
     $imagickDrawExamples = array(
-        [ 'affine', ColorControl::class ],
+        new NavOption('affine', ColorControl::class, true ),
         //[ 'annotation',  ColorControl::class ], //=> 'setFontSize',
-        [ 'arc', ColorControl::class ],
-        [ 'bezier', ColorControl::class ],
-        [ 'circle', ColorControl::class ],
+        new NavOption( 'arc', ColorControl::class, true ),
+        new NavOption( 'bezier', ColorControl::class, true ),
+        new NavOption( 'circle', ColorControl::class, true ),
         //'clear',
         //'color',
         //'comment',
-        [ 'composite', ColorControl::class ],
+        new NavOption( 'composite', ColorControl::class, true ),
         //'destroy',
-        [ 'ellipse',ColorControl::class ],
+        new NavOption( 'ellipse',ColorControl::class, true ),
         //    'getClipPath',
         //    'getClipRule',
         //    'getClipUnits',
@@ -60,7 +61,7 @@ function getImagickDrawExamples() {
         //    'getTextEncoding',
         //    'getTextUnderColor',
         //    'getVectorGraphics',
-        [ 'line', ColorControl::class ],
+        new NavOption( 'line', ColorControl::class, true ),
         //'matte', dont know how it works
 //        'pathClose' => 'pathStart',
 //        'pathCurveToAbsolute',
@@ -82,60 +83,60 @@ function getImagickDrawExamples() {
 //        //'pathLineToVerticalRelative',
 //        'pathMoveToAbsolute',
 //        'pathMoveToRelative',
-        [ 'pathStart',ColorControl::class ],
-        [ 'point',ColorControl::class ],
-        [ 'polygon',ColorControl::class ],
-        [ 'polyline',ColorControl::class ],
-        [ 'pop' ,ColorControl::class ], //=> 'push'
-        [ 'popClipPath' ,ColorControl::class ], //=> 'setClipPath'
+        new NavOption( 'pathStart',ColorControl::class, true ),
+        new NavOption( 'point',ColorControl::class, true ),
+        new NavOption( 'polygon',ColorControl::class, true ),
+        new NavOption( 'polyline',ColorControl::class, true ),
+        new NavOption( 'pop' ,ColorControl::class, true ), //=> 'push'
+        new NavOption( 'popClipPath' ,ColorControl::class, true ), //=> 'setClipPath'
         //'popDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
-        [ 'popPattern' ,ColorControl::class ], //=> 'pushPattern'
-        [ 'push',ColorControl::class ],
-        [ 'pushClipPath' ,ColorControl::class ], //=> 'setClipPath'
+        new NavOption( 'popPattern' ,ColorControl::class, true ), //=> 'pushPattern'
+        new NavOption( 'push',ColorControl::class, true ),
+        new NavOption( 'pushClipPath' ,ColorControl::class, true ), //=> 'setClipPath'
         // 'pushDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
-        [ 'pushPattern', ColorControl::class ],
-        [ 'rectangle',ColorControl::class ],
+        new NavOption( 'pushPattern', ColorControl::class, true ),
+        new NavOption( 'rectangle',ColorControl::class, true ),
         //'render', no idea what this does
-        [ 'rotate',ColorControl::class ],
-        [ 'roundRectangle',ColorControl::class ],
-        [ 'scale',ColorControl::class ],
-        [ 'setClipPath',ColorControl::class ],
-        [ 'setClipRule',ColorControl::class ],
-        [ 'setClipUnits',ColorControl::class ],
-        [ 'setFillAlpha',ColorControl::class ],
-        [ 'setFillColor',ColorControl::class ],
-        [ 'setFillOpacity',ColorControl::class ],
-        [ 'setFillPatternURL' ,ColorControl::class ], //=> 'pushPattern'
-        [ 'setFillRule',ColorControl::class ],
-        [ 'setFillRule2',ColorControl::class ],
-        [ 'setFont',ColorControl::class ],
+        new NavOption( 'rotate',ColorControl::class, true ),
+        new NavOption( 'roundRectangle',ColorControl::class, true ),
+        new NavOption( 'scale',ColorControl::class, true ),
+        new NavOption( 'setClipPath',ColorControl::class, true ),
+        new NavOption( 'setClipRule',ColorControl::class, true ),
+        new NavOption( 'setClipUnits',ColorControl::class, true ),
+        new NavOption( 'setFillAlpha',ColorControl::class, true ),
+        new NavOption( 'setFillColor',ColorControl::class, true ),
+        new NavOption( 'setFillOpacity',ColorControl::class, true ),
+        new NavOption( 'setFillPatternURL' ,ColorControl::class, true ), //=> 'pushPattern'
+        new NavOption( 'setFillRule',ColorControl::class, true ),
+        new NavOption( 'setFillRule2',ColorControl::class, true ),
+        new NavOption( 'setFont',ColorControl::class, true ),
         //'setFontFamily',
-        [ 'setFontSize',ColorControl::class ],
+        new NavOption( 'setFontSize',ColorControl::class, true ),
         //'setFontStretch', Does nothing?
-        [ 'setFontStyle',ColorControl::class ],
-        [ 'setFontWeight',ColorControl::class ],
-        [ 'setGravity',ColorControl::class ],
-        [ 'setStrokeAlpha',ColorControl::class ],
-        [ 'setStrokeAntialias',ColorControl::class ],
-        [ 'setStrokeColor',ColorControl::class ],
-        [ 'setStrokeDashArray',ColorControl::class ],
-        [ 'setStrokeDashOffset',ColorControl::class ],
-        [ 'setStrokeLineCap',ColorControl::class ],
-        [ 'setStrokeLineJoin',ColorControl::class ],
-        [ 'setStrokeMiterLimit',ColorControl::class ],
-        [ 'setStrokeOpacity',ColorControl::class ],
+        new NavOption( 'setFontStyle',ColorControl::class, true ),
+        new NavOption( 'setFontWeight',ColorControl::class, true ),
+        new NavOption( 'setGravity',ColorControl::class, true ),
+        new NavOption( 'setStrokeAlpha',ColorControl::class, true ),
+        new NavOption( 'setStrokeAntialias',ColorControl::class, true ),
+        new NavOption( 'setStrokeColor',ColorControl::class, true ),
+        new NavOption( 'setStrokeDashArray',ColorControl::class, true ),
+        new NavOption( 'setStrokeDashOffset',ColorControl::class, true ),
+        new NavOption( 'setStrokeLineCap',ColorControl::class, true ),
+        new NavOption( 'setStrokeLineJoin',ColorControl::class, true ),
+        new NavOption( 'setStrokeMiterLimit',ColorControl::class, true ),
+        new NavOption( 'setStrokeOpacity',ColorControl::class, true ),
         //'setStrokePatternURL',
-        [ 'setStrokeWidth',ColorControl::class ],
-        [ 'setTextAlignment',ColorControl::class ],
-        [ 'setTextAntialias',ColorControl::class ],
-        [ 'setTextDecoration',ColorControl::class ],
+        new NavOption( 'setStrokeWidth',ColorControl::class, true ),
+        new NavOption( 'setTextAlignment',ColorControl::class, true ),
+        new NavOption( 'setTextAntialias',ColorControl::class, true ),
+        new NavOption( 'setTextDecoration',ColorControl::class, true ),
         //'setTextEncoding',
-        [ 'setTextUnderColor',ColorControl::class ],
-        [ 'setVectorGraphics', ColorControl::class ],// seems broken
+        new NavOption( 'setTextUnderColor',ColorControl::class, true ),
+        new NavOption( 'setVectorGraphics', ColorControl::class, true ),// seems broken
         // 'setViewbox', no idea what this does
-        [ 'skewX',ColorControl::class ],
-        [ 'skewY',ColorControl::class ],
-        [ 'translate',ColorControl::class ],
+        new NavOption( 'skewX',ColorControl::class, true ),
+        new NavOption( 'skewY',ColorControl::class, true ),
+        new NavOption( 'translate',ColorControl::class, true ),
     );
 
     return $imagickDrawExamples;
@@ -144,19 +145,19 @@ function getImagickDrawExamples() {
 
 function getImagickPixelExamples() {
      $imagePixelExamples = array(
-        ['construct', null],
+        new NavOption('construct', null, true),
         //'ImagickPixel.clear', 
-        ['getColor',  null],// ([ bool $normalized = false ] )
-        ['getColorAsString', null],// ( void )
+        new NavOption('getColor',  null, true),// (new NavOption( bool $normalized = false ) )
+        new NavOption('getColorAsString', null, true),// ( void )
         //No idea    'ImagickPixel.getColorCount',// ( void )
-        ['getColorValue', null],// ( int $color )
-        ['getColorValueQuantum', null],// ( int $color )
-        ['getHSL', null],// ( void )
-        ['isSimilar', null],// ( ImagickPixel $color , float $fuzz )
-        ['setColor', null],// ( string $color )
-        ['setColorValue', null],// ( int $color , float $value )
-        ['setColorValueQuantum', null],// ( int $color , float $value )
-        ['setHSL',  null],// ( float $hue , float $saturation , float $luminosity )
+        new NavOption('getColorValue', null, true),// ( int $color )
+        new NavOption('getColorValueQuantum', null, true),// ( int $color )
+        new NavOption('getHSL', null, true),// ( void )
+        new NavOption('isSimilar', null, false),// ( ImagickPixel $color , float $fuzz )
+        new NavOption('setColor', null, true),// ( string $color )
+        new NavOption('setColorValue', null, true),// ( int $color , float $value )
+        new NavOption('setColorValueQuantum', null, true),// ( int $color , float $value )
+        new NavOption('setHSL',  null, false),// ( float $hue , float $saturation , float $luminosity )
     );
 
     return $imagePixelExamples;
@@ -166,29 +167,29 @@ function getImagickExamples() {
 
     $imagickExamples = [
 
-        ['adaptiveBlurImage', ImageControl::class],
-        ['adaptiveResizeImage', ImageControl::class],
-        ['adaptiveSharpenImage', ImageControl::class],
-        ['adaptiveThresholdImage',  ImageControl::class],
+        new NavOption('adaptiveBlurImage', ImageControl::class, true),
+        new NavOption('adaptiveResizeImage', ImageControl::class, true),
+        new NavOption('adaptiveSharpenImage', ImageControl::class, true),
+        new NavOption('adaptiveThresholdImage',  ImageControl::class, true),
 //'addImage',
-        ['addNoiseImage',  ImageControl::class],
-        ['affineTransformImage',  ImageControl::class], //Doesn't work?
+        new NavOption('addNoiseImage',  ImageControl::class, true),
+        new NavOption('affineTransformImage',  ImageControl::class, true), //Doesn't work?
 //'animateImages',
 //'annotateImage',
 //'appendImages',
-        ['averageImages',  ImageControl::class],
-        ['blackThresholdImage',  ImageControl::class],
-        ['blurImage',  ImageControl::class],
-        ['borderImage', ImageControl::class],
-        ['charcoalImage', ImageControl::class],
-        ['chopImage', ImageControl::class],
+        new NavOption('averageImages',  ImageControl::class, true),
+        new NavOption('blackThresholdImage',  ImageControl::class, true),
+        new NavOption('blurImage',  ImageControl::class, true),
+        new NavOption('borderImage', ImageControl::class, true),
+        new NavOption('charcoalImage', ImageControl::class, true),
+        new NavOption('chopImage', ImageControl::class, true),
 //'clear',
-        ['clipImage', ImageControl::class],
+        new NavOption('clipImage', ImageControl::class, true),
 //'clipPathImage',
-        ['clutImage', ImageControl::class],
+        new NavOption('clutImage', ImageControl::class, true),
 //'coalesceImages',
-        ['colorFloodfillImage', ImageControl::class],
-        ['colorizeImage', ImageControl::class],
+        new NavOption('colorFloodfillImage', ImageControl::class, true),
+        new NavOption('colorizeImage', ImageControl::class, true),
 //'combineImages',
 //'commentImage',
 //'compareImageChannels',
@@ -196,18 +197,18 @@ function getImagickExamples() {
 //'compareImages',
 //'compositeImage',
 //__construct',
-        ['contrastImage', ImageControl::class],
+        new NavOption('contrastImage', ImageControl::class, true),
 //'contrastStretchImage',
-        ['convolveImage', ImageControl::class],
-        ['cropImage', ImageControl::class],
+        new NavOption('convolveImage', ImageControl::class, true),
+        new NavOption('cropImage', ImageControl::class, true),
 //'cropThumbnailImage',
 //'current',
 //'cycleColormapImage',
 //'decipherImage',
 //'deconstructImages',
 //'deleteImageArtifact',
-        ['deskewImage', ImageControl::class],
-        ['despeckleImage', ImageControl::class],
+        new NavOption('deskewImage', ImageControl::class, true),
+        new NavOption('despeckleImage', ImageControl::class, true),
 //'destroy',
 //'displayImage',
 //'displayImages',
@@ -216,21 +217,21 @@ function getImagickExamples() {
 //'edgeImage',
 //'embossImage',
 //'encipherImage',
-        ['edgeExtend', ImageControl::class],
-        ['enhanceImage', ImageControl::class],
-        ['equalizeImage', ImageControl::class],
+        new NavOption('edgeExtend', ImageControl::class, true),
+        new NavOption('enhanceImage', ImageControl::class, true),
+        new NavOption('equalizeImage', ImageControl::class, true),
 //'evaluateImage',
 //'exportImagePixels',
 //'extentImage',
 //'flattenImages',
-        ['flipImage', ImageControl::class],
+        new NavOption('flipImage', ImageControl::class, true),
 //'floodFillPaintImage',
-        ['flopImage', ImageControl::class],
+        new NavOption('flopImage', ImageControl::class, true),
 //'frameImage',
-        ['functionImage', ImageControl::class],
-        ['fxImage', ImageControl::class],
-        ['gammaImage', ImageControl::class],
-        ['gaussianBlurImage', ImageControl::class],
+        new NavOption('functionImage', ImageControl::class, true),
+        new NavOption('fxImage', ImageControl::class, true),
+        new NavOption('gammaImage', ImageControl::class, true),
+        new NavOption('gaussianBlurImage', ImageControl::class, true),
 //'getColorspace',
 //'getCompression',
 //'getCompressionQuality',
@@ -254,7 +255,7 @@ function getImagickExamples() {
 //'getImageChannelKurtosis',
 //'getImageChannelMean',
 //'getImageChannelRange',
-        ['getImageChannelStatistics', ImageControl::class],
+        new NavOption('getImageChannelStatistics', ImageControl::class, true),
 //'getImageClipMask',
 //'getImageColormapColor',
 //'getImageColors',
@@ -274,7 +275,7 @@ function getImagickExamples() {
 //'getImageGravity',
 //'getImageGreenPrimary',
 //'getImageHeight',
-        ['getImageHistogram', ImageControl::class],
+        new NavOption('getImageHistogram', ImageControl::class, true),
 //'getImageIndex',
 //'getImageInterlaceScheme',
 //'getImageInterpolateMethod',
@@ -311,8 +312,8 @@ function getImagickExamples() {
 //'getOption',
 //'getPackageName',
 //'getPage',
-        ['getPixelIterator', ImageControl::class],
-        ['getPixelRegionIterator', ImageControl::class],
+        new NavOption('getPixelIterator', ImageControl::class, true),
+        new NavOption('getPixelRegionIterator', ImageControl::class, true),
 //'getPointSize',
 //'getQuantumDepth',
 //'getQuantumRange',
@@ -326,39 +327,39 @@ function getImagickExamples() {
 //'haldClutImage',
 //'hasNextImage',
 //'hasPreviousImage',
-        ['identifyImage', ImageControl::class],
+        new NavOption('identifyImage', ImageControl::class, true),
 //'implodeImage',
 //'importImagePixels',
 //'labelImage',
 //'levelImage',
 //'linearStretchImage',
 //'liquidRescaleImage',
-        ['magnifyImage', ImageControl::class],
+        new NavOption('magnifyImage', ImageControl::class, true),
 //'mapImage',
 //'matteFloodfillImage',
 //'medianFilterImage',
 //'mergeImageLayers',
 //'minifyImage',
-        ['modulateImage', ImageControl::class],
+        new NavOption('modulateImage', ImageControl::class, true),
 //'montageImage',
 //'morphImages',
 //'mosaicImages',
-        ['motionBlurImage', ImageControl::class],
-        ['negateImage', ImageControl::class],
+        new NavOption('motionBlurImage', ImageControl::class, true),
+        new NavOption('negateImage', ImageControl::class, true),
 //'newImage',
-        ['newPseudoImage', ImageControl::class],
-        ['newPseudoImage2', ImageControl::class],
+        new NavOption('newPseudoImage', ImageControl::class, true),
+        new NavOption('newPseudoImage2', ImageControl::class, true),
 //'nextImage',
-        ['normalizeImage', ImageControl::class],
-        ['oilPaintImage', ImageControl::class],
+        new NavOption('normalizeImage', ImageControl::class, true),
+        new NavOption('oilPaintImage', ImageControl::class, true),
 //'opaquePaintImage',
 //'optimizeImageLayers',
 //'orderedPosterizeImage',
 //'paintFloodfillImage',
 //'paintOpaqueImage',
 //'paintTransparentImage',
-        ['pingImage', ImageControl::class],
-        ['Quantum', null],
+        new NavOption('pingImage', ImageControl::class, true),
+        new NavOption('Quantum', null, true),
 //'pingImageBlob',
 //'pingImageFile',
 //'polaroidImage',
@@ -371,30 +372,30 @@ function getImagickExamples() {
 //'queryFontMetrics',
 //'queryFonts',
 //'queryFormats',
-        ['radialBlurImage', ImageControl::class],
+        new NavOption('radialBlurImage', ImageControl::class, true),
 //'raiseImage',
 //'randomThresholdImage',
 //'readImage',
 //'readImageBlob',
 //'readImageFile',
-        ['recolorImage', ImageControl::class],
+        new NavOption('recolorImage', ImageControl::class, true),
 //'reduceNoiseImage',
-        ['remapImage', ImageControl::class],
+        new NavOption('remapImage', ImageControl::class, true),
 //'removeImage',
 //'removeImageProfile',
 //'render',
-        ['resampleImage', ImageControl::class],
+        new NavOption('resampleImage', ImageControl::class, true),
 //'resetImagePage',
 //'resizeImage',
 //'rollImage',
-        ['rotateImage', ImageControl::class],
+        new NavOption('rotateImage', ImageControl::class, true),
 //'roundCorners',
 //'sampleImage',
-        ['scaleImage', ImageControl::class],
-        ['screenEmbed', ImageControl::class],
-        ['segmentImage', ImageControl::class],
+        new NavOption('scaleImage', ImageControl::class, true),
+        new NavOption('screenEmbed', ImageControl::class, true),
+        new NavOption('segmentImage', ImageControl::class, true),
 //'separateImageChannel',
-        ['sepiaToneImage', ImageControl::class],
+        new NavOption('sepiaToneImage', ImageControl::class, true),
 //'setBackgroundColor',
 //'setColorspace',
 //'setCompression',
@@ -406,7 +407,7 @@ function getImagickExamples() {
 //'setGravity',
 //'setImage',
 //'setImageAlphaChannel',
-        ['setImageArtifact', ImageControl::class],
+        new NavOption('setImageArtifact', ImageControl::class, true),
 //'setImageBackgroundColor',
 //'setImageBias',
 //'setImageBluePrimary',
@@ -420,7 +421,7 @@ function getImagickExamples() {
 //'setImageCompressionQuality',
 
 //'setImageDepth',
-        ['setImageDelay', ImageControl::class],
+        new NavOption('setImageDelay', ImageControl::class, true),
 //'setImageDispose',
 //'setImageExtent',
 //'setImageFilename',
@@ -444,7 +445,7 @@ function getImagickExamples() {
 //'setImageResolution',
 //'setImageScene',
 
-        ['setImageTicksPerSecond', ImageControl::class],
+        new NavOption('setImageTicksPerSecond', ImageControl::class, true),
 //'setImageType',
 //'setImageUnits',
 //'setImageVirtualPixelMethod',
@@ -452,7 +453,7 @@ function getImagickExamples() {
 //'setInterlaceScheme',
 //'setIteratorIndex',
 //'setLastIterator',
-        ['setOption', ImageControl::class],
+        new NavOption('setOption', ImageControl::class, true),
 //'setPage',
 //'setPointSize',
 //'setResolution',
@@ -461,38 +462,38 @@ function getImagickExamples() {
 //'setSize',
 //'setSizeOffset',
 //'setType',
-        ['shadeImage', ImageControl::class],
-        ['shadowImage', ImageControl::class],
-        ['sharpenImage', ImageControl::class],
-        ['shaveImage', ImageControl::class],
-        ['shearImage', ImageControl::class],
+        new NavOption('shadeImage', ImageControl::class, true),
+        new NavOption('shadowImage', ImageControl::class, true),
+        new NavOption('sharpenImage', ImageControl::class, true),
+        new NavOption('shaveImage', ImageControl::class, true),
+        new NavOption('shearImage', ImageControl::class, true),
 //'sigmoidalContrastImage',
-        ['sketchImage', ImageControl::class],
-        ['solarizeImage', ImageControl::class],
-        ['sparseColorImage', ImageControl::class],
+        new NavOption('sketchImage', ImageControl::class, true),
+        new NavOption('solarizeImage', ImageControl::class, true),
+        new NavOption('sparseColorImage', ImageControl::class, true),
 //        'sparseColorImage_bilinear',
 //        'sparseColorImage_shepards',
 //        'sparseColorImage_voronoi',
-        ['spliceImage', ImageControl::class],
-        ['spreadImage', ImageControl::class],
+        new NavOption('spliceImage', ImageControl::class, true),
+        new NavOption('spreadImage', ImageControl::class, true),
 //'steganoImage',
 //'stereoImage',
 //'stripImage',
-        ['swirlImage', ImageControl::class],
+        new NavOption('swirlImage', ImageControl::class, true),
 //'textureImage',
 //'thresholdImage',
-        ['thumbnailImage', ImageControl::class],
-        ['tintImage',  ImageControl::class],//what is this
-        ['transformImage', ImageControl::class],
+        new NavOption('thumbnailImage', ImageControl::class, true),
+        new NavOption('tintImage',  ImageControl::class, true),//what is this
+        new NavOption('transformImage', ImageControl::class, true),
 //'transparentPaintImage',
-        ['transposeImage', ImageControl::class],
-        ['transverseImage', ImageControl::class],
-        ['trimImage', ImageControl::class],
-        ['uniqueImageColors', ImageControl::class],
-        ['unsharpMaskImage', ImageControl::class],
+        new NavOption('transposeImage', ImageControl::class, true),
+        new NavOption('transverseImage', ImageControl::class, true),
+        new NavOption('trimImage', ImageControl::class, true),
+        new NavOption('uniqueImageColors', ImageControl::class, true),
+        new NavOption('unsharpMaskImage', ImageControl::class, true),
 //'valid',
-        ['vignetteImage', ImageControl::class],
-        ['waveImage', ImageControl::class],
+        new NavOption('vignetteImage', ImageControl::class, true),
+        new NavOption('waveImage', ImageControl::class, true),
 //'whiteThresholdImage',
 //'writeImage',
 //'writeImageFile',
@@ -508,19 +509,19 @@ function getImagickExamples() {
 function getImagickPixelIteratorExamples() {
 
     $imagickPixelIteratorExamples = array(
-        ['clear', null ],// => 'resetIterator',
-        ['construct', null ],
+        new NavOption('clear', null, true ),// => 'resetIterator',
+        new NavOption('construct', null, true ),
         //'getCurrentIteratorRow',
         //'getIteratorRow' => 'setIteratorRow',
-        ['getNextIteratorRow', null ],
+        new NavOption('getNextIteratorRow', null, true ),
         //'getPreviousIteratorRow',
         //'newPixelIterator', deprecated
         //'newPixelRegionIterator', deprecated
-        ['resetIterator', null ],
+        new NavOption('resetIterator', null, true ),
         //'setIteratorFirstRow',
         //'setIteratorLastRow',
-        ['setIteratorRow',null ],
-        ['syncIterator', null ],// => '__construct',
+        new NavOption('setIteratorRow', null, true ),
+        new NavOption('syncIterator', null, true),// => '__construct',
     );
 
     return $imagickPixelIteratorExamples;
@@ -529,11 +530,11 @@ function getImagickPixelIteratorExamples() {
 //TODO - get a better name
 function getExampleExamples() {
     $imagickExamples = [
-        ['gradientReflection', null],
-        ['psychedelicFont', null],
-        ['imagickComposite', null],
-        ['imagickCompositeGen', null],
-        ['composite', null],  // => 'composite'
+        new NavOption('gradientReflection', null, true),
+        new NavOption('psychedelicFont', null, true),
+        new NavOption('imagickComposite', null, true),
+        new NavOption('imagickCompositeGen', null, true),
+        new NavOption('composite', null, true),  // => 'composite'
     ];
 
     return $imagickExamples;
@@ -579,8 +580,9 @@ function bootstrap() {
     //$injector->defineParam('imagePath', "../images/fnord.png");
     $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
-    $injector->defineParam('activeNav', 'blah');
+    $injector->defineParam('activeNav', null);
     $injector->share(ImagickDemo\Navigation\Nav::class);
+    $injector->alias(\ImagickDemo\Navigation\ActiveNav::class, \ImagickDemo\Navigation\DefaultNav::class);
     $injector->share($colors);
     $injector->share($injector); //yolo
 
@@ -595,8 +597,6 @@ function setupImage(\Auryn\Provider $injector, $category, $example = null) {
 
 function setupExample(\Auryn\Provider $injector, $category, $example = null, $image = false) {
 
-    $examples = [];
-    
     switch ($category) {
         case ('Imagick'): {
             $examples = getImagickExamples();
@@ -624,7 +624,8 @@ function setupExample(\Auryn\Provider $injector, $category, $example = null, $im
     }
 
     $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
-
+    $injector->alias(\ImagickDemo\Navigation\ActiveNav::class, \ImagickDemo\Navigation\Nav::class);
+    
     $nav = $injector->make(ImagickDemo\Navigation\Nav::class, [
         ':examples' => $examples,
         ':category' => $category,
@@ -635,31 +636,37 @@ function setupExample(\Auryn\Provider $injector, $category, $example = null, $im
 }
 
 
-
+function setupRootIndex(\Auryn\Provider $injector) {
+    //Nothing to do?
+}
 
 $routesFunction = function(FastRoute\RouteCollector $r) {
     
     $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Example}';
     
+    //Category indices
     $r->addRoute(
         'GET',
         "/$categories",
         'setupExample'
     );
 
+    //Category + example
     $r->addRoute(
         'GET',
         "/$categories/{example:[a-zA-Z]+}",
         'setupExample'
     );
 
+    //Images
     $r->addRoute(
       'GET',
           "/image/$categories/{example:[a-zA-Z]+}",
           'setupImage'
     );
 
-    $r->addRoute('GET', '/', [\ImagickDemo\Index::class, 'display']);
+    //root
+    $r->addRoute('GET', '/', 'setupRootIndex');
 };
 
 

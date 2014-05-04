@@ -31,7 +31,9 @@
     </div>
 </header>
 
-{inject name='nav' value='ImagickDemo\Navigation\Nav'}
+{inject name='nav' value='ImagickDemo\Navigation\ActiveNav'}
+
+
 
 <div class='container'>
 

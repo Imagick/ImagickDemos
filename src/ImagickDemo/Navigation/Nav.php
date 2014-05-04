@@ -3,35 +3,13 @@
 
 namespace ImagickDemo\Navigation;
 
-class NavOption {
 
-    private $name;
-    private $control;
 
-    function __construct($name, $control) {
-        $this->name = $name;
-        $this->control = $control;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getControl() {
-        return $this->control;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName() {
-        return $this->name;
-    }
-}
-
-class Nav {
+class Nav implements ActiveNav {
 
     protected $currentExample;
 
+    /** @var \ImagickDemo\Navigation\NavOption[]  */
     private $examples;
 
     /**
@@ -39,7 +17,7 @@ class Nav {
      */
     private $control;
 
-    function __construct($examples, $category, $example) {
+    function __construct($examples = null, $category, $example) {
         $this->examples = $examples;
         $this->category = $category;
         $this->currentExample = $example;
@@ -56,7 +34,14 @@ class Nav {
     function getURL() {
         $navOption = $this->getCurrent();
         
+        
+        
         if ($navOption) {
+
+            if ($navOption->hasImage() == false) {
+                return "";
+            }
+            
             $imageBaseURL = sprintf('/image/%s/%s', $this->category, $navOption->getName());
             $params = '';
             if ($this->control) {
@@ -106,12 +91,10 @@ class Nav {
      */
     function getPrevious($current) {
         $previous = null;
-        $array = $this->getNavOptions();
-
-        foreach ($array as $element) {
-            if (strcmp($current, $element[0]) === 0) {
+        foreach ($this->examples as $element) {
+            if (strcmp($current, $element->getName()) === 0) {
                 if ($previous) {
-                    return new NavOption($previous[0], $previous[1]);
+                    return $element;
                 }
             }
             $previous = $element;
@@ -124,12 +107,9 @@ class Nav {
      * @return NavOption|null
      */
     function getCurrent() {
-
-        $array = $this->getNavOptions();
-        foreach ($array as $element) {
-
-            if (strcmp($this->currentExample, $element[0]) === 0) {
-                return new NavOption($element[0], $element[1]);
+        foreach ($this->examples as $element) {
+            if (strcmp($this->currentExample, $element->getName()) === 0) {
+                return $element;
             }
         }
 
@@ -137,16 +117,13 @@ class Nav {
     }
 
     function getNext($current) {
-        $next = false;
-
-        $array = $this->getNavOptions();
-        
-        foreach ($array as $element) {
+        $next = false;        
+        foreach ($this->examples as $element) {
 
             if ($next == true) {
-                return new NavOption($element[0], $element[1]);
+                return $element;
             }
-            if (strcmp($current,$element[0]) === 0) {
+            if (strcmp($current,$element->getName()) === 0) {
                 $next = true;
             }
         }
@@ -186,8 +163,7 @@ class Nav {
         echo "<ul class='nav nav-sidebar smallPadding'>";
 
         foreach ($this->examples as $imagickExampleOption) {
-
-            $imagickExample = $imagickExampleOption[0];
+            $imagickExample = $imagickExampleOption->getName();
             echo "<li>";
             echo "<a class='smallPadding' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
             echo "</li>";

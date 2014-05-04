@@ -3,17 +3,12 @@
 namespace ImagickDemo\Imagick;
 
 
-class chopImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/chopImage'/>";
-    }
-
+class chopImage extends ImagickExample {
+    
     function renderDescription() {
     }
 
     function renderImage() {
-
         $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->chopImage(200, 200, 100, 100);

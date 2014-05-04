@@ -2,20 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
-class adaptiveBlurImage extends \ImagickDemo\Example {
+class adaptiveBlurImage extends ImagickExample {
 
-    function __construct($imagePath) {
-        $this->imagePath = $imagePath;
-    }
-
-    function renderImageURL() {
-        $params = $this->imageControl->getParamString();
-        return "<img src='/image/Imagick/adaptiveBlurImage?$params'/>";
-    }
-    
-    function renderTitle() {
-        return "Adaptive blur image";
-    }
 
     function renderDescription() {
     }

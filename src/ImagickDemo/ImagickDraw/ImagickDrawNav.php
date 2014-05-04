@@ -8,7 +8,6 @@ use ImagickDemo\Navigation\ActiveNav;
 use ImagickDemo\Control\ColorControl;
 
 class ImagickDrawNav extends \ImagickDemo\Navigation\Nav implements ActiveNav {
-    
 
     private $imagickDrawExamples = array(
         [ 'affine', ColorControl::class ],
@@ -136,24 +135,17 @@ class ImagickDrawNav extends \ImagickDemo\Navigation\Nav implements ActiveNav {
         $classname = 'ImagickDemo\ImagickDraw\\' . $example;
         $provider->defineParam('imageBaseURL', '/image/ImagickDraw/'.$example);
         $currentNavOption = $this->getCurrent($this->currentExample);
-  
         $provider->alias(\ImagickDemo\Control::class, $currentNavOption->getControl());
-
         $control = $provider->make(\ImagickDemo\Control::class);
         
         foreach($control->getParams() as $key => $value) {
             $provider->defineParam($key, $value);
         }
 
-
         $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
         $provider->share($this);
     }
-
-
-
-    
 
     function displayIndex(\Auryn\Provider $provider) {
         $provider->alias(\ImagickDemo\Navigation\ActiveNav::class, get_class($this));
@@ -163,7 +155,6 @@ class ImagickDrawNav extends \ImagickDemo\Navigation\Nav implements ActiveNav {
     function getNavOptions() {
         return $this->imagickDrawExamples;
     }
-
 
     function renderImage($example, \Auryn\Provider $provider) {
         $this->currentExample = $example;
@@ -179,7 +170,6 @@ class ImagickDrawNav extends \ImagickDemo\Navigation\Nav implements ActiveNav {
         }
 
         $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-        
     }
 
     function renderTitle() {
@@ -188,7 +178,6 @@ class ImagickDrawNav extends \ImagickDemo\Navigation\Nav implements ActiveNav {
         }
         return 'ImagickDraw';
     }
-
 
 
     function renderNav() {

@@ -372,6 +372,8 @@ class ImagickNav extends \ImagickDemo\Navigation\Nav implements \ImagickDemo\Nav
         $currentNavOption = $this->getCurrent($this->currentExample);
         $provider->alias(\ImagickDemo\Control::class, $currentNavOption->getControl());
         $provider->share(\ImagickDemo\Control::class);
+        
+        
         $provider->share($this);
         $provider->defineParam('pageTitle', "Imagick - $example");
     }
@@ -382,9 +384,17 @@ class ImagickNav extends \ImagickDemo\Navigation\Nav implements \ImagickDemo\Nav
     }
 
     function renderImage($example, \Auryn\Provider $provider) {
+
+        $this->currentExample = $example;
+        
         $classname = '\ImagickDemo\Imagick\\' . $example;
 
         $provider->defineParam('imageBaseURL', '/image/Imagick/'.$example);
+
+        
+        $currentNavOption = $this->getCurrent($this->currentExample);
+        $provider->alias(\ImagickDemo\Control::class, $currentNavOption->getControl());
+        $provider->share(\ImagickDemo\Control::class);
         
         $provider->alias(\ImagickDemo\Example::class, $classname);
         $provider->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);

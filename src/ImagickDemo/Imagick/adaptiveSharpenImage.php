@@ -3,14 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class adaptiveSharpenImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/adaptiveSharpenImage'/>";
-    }
+class adaptiveSharpenImage extends ImagickExample {
 
     function renderDescription() {
-
     }
 
     function renderImage() {

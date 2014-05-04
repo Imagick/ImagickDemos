@@ -10,27 +10,10 @@ class Example {
     protected $colors;
 
     protected $imagePath;
-    
-    
-    
-    function __construct(\ImagickDemo\Colors $colors, $imagePath) {
+
+    function __construct(\ImagickDemo\Colors $colors) {
         $this->colors = $colors;
     }
-
-
-
-//    function getFilename() {
-//        $fullClassName = get_class($this);
-//        $classPathPart = str_replace('\\', '/', getNamespace($fullClassName));
-//        $filename = $classPathPart.'/'.getClassName($fullClassName);
-//        //$params = $this->getParameters();
-//
-////        if (!empty($params)) {
-////            $filename .= '_'.md5(json_encode($params));
-////        }
-//
-//        return $filename;
-//    }
 
     function renderTitle() {
         return getClassName(get_class($this));

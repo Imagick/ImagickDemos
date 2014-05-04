@@ -5,6 +5,12 @@ namespace ImagickDemo\Imagick;
 
 class averageImages extends \ImagickDemo\Example {
 
+    
+    function __construct() {
+        echo "Needs two images";
+        exit(0);
+    }
+    
     function renderImageURL() {
         return "<img src='/image/Imagick/averageImages'/>";
     }

@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class affineTransformImage extends \ImagickDemo\Example {
+class affineTransformImage extends ImagickExample {
 
     function renderImageURL() {
         return "<img src='/image/Imagick/affineTransformImage'/>";

@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class adaptiveThresholdImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/adaptiveThresholdImage'/>";
-    }
+class adaptiveThresholdImage extends ImagickExample {
 
     function renderDescription() {
 

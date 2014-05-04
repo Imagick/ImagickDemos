@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class adaptiveResizeImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/adaptiveResizeImage'/>";
-    }
+class adaptiveResizeImage extends ImagickExample {
 
     function renderDescription() {
     }

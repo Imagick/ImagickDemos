@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class flopImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/flopImage'/>";
-    }
+class flopImage extends ImagickExample {
 
     function renderDescription() {
     }

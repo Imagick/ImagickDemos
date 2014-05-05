@@ -4,7 +4,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class setOption extends \ImagickDemo\Example {
+class setOption extends ImagickExample {
 
     function renderImageURL() {
         return "<img src='/image/Imagick/setOption'/>";
@@ -12,6 +12,11 @@ class setOption extends \ImagickDemo\Example {
 
     function renderDescription() {
 
+    }
+    
+    function renderImage2() {
+        $imagick->setOption('png:bit-depth', '8');
+        $imagick->setOption('png:color-type', 6);
     }
 
     function renderImage() {

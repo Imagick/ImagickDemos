@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class equalizeImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/equalizeImage'/>";
-    }
+class equalizeImage extends ImagickExample {
 
     function renderDescription() {
 

@@ -3,16 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class averageImages extends \ImagickDemo\Example {
-
-    
-    function __construct() {
-        
-    }
-    
-    function renderImageURL() {
-        return "<img src='/image/Imagick/averageImages'/>";
-    }
+class averageImages  extends ImagickExample  {
 
     function renderDescription() {
         return "Needs two images. Function is deprecated, and kills PHP. I suggest not using it.";
@@ -20,6 +11,7 @@ class averageImages extends \ImagickDemo\Example {
 
     function renderImage() {
 
+        return ;
         try {
         
         $imagick = new \Imagick(realpath($this->imagePath));

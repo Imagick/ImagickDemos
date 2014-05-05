@@ -3,11 +3,8 @@
 namespace ImagickDemo\Imagick;
 
 
-class clipImage extends \ImagickDemo\Example {
+class clipImage extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/clipImage'/>";
-    }
 
     function renderDescription() {
         return "Not working - needs a clip path defining.";
@@ -15,10 +12,7 @@ class clipImage extends \ImagickDemo\Example {
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->imagePath));
-
-
         $imagick->clipImage();
-
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

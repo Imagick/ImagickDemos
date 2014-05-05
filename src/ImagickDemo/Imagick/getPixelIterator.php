@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class getPixelIterator extends \ImagickDemo\Example {
+class getPixelIterator extends ImagickExample {
 
     function renderImageURL() {
         return "<img src='/image/Imagick/getPixelIterator'/>";

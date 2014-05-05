@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class modulateImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/modulateImage'/>";
-    }
+class modulateImage extends ImagickExample {
 
     function renderDescription() {
 

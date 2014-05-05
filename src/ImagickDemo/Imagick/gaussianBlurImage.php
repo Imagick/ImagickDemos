@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class gaussianBlurImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/gaussianBlurImage'/>";
-    }
+class gaussianBlurImage extends ImagickExample {
 
     function renderDescription() {
 

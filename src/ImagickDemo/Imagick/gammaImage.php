@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class gammaImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/gammaImage'/>";
-    }
+class gammaImage extends ImagickExample {
 
     function renderDescription() {
 

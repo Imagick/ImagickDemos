@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class distort extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/distort'/>";
-    }
+class distort extends ImagickExample {
 
     function renderDescription() {
 

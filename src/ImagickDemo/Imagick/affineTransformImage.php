@@ -5,10 +5,6 @@ namespace ImagickDemo\Imagick;
 
 class affineTransformImage extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/affineTransformImage'/>";
-    }
-
     function renderDescription() {
         return "Doesn't appear to be working.";
     }

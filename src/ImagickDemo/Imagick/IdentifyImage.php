@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class IdentifyImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "";
-    }
+class IdentifyImage extends ImagickExample {
 
     function renderImage() {
     }

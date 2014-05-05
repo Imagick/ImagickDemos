@@ -10,11 +10,7 @@ class adaptiveSharpenImage extends ImagickExample {
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->imagePath));
-
-
         $imagick->adaptiveSharpenImage(2, 20);
-
-
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

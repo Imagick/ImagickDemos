@@ -3,14 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class deskewImage extends \ImagickDemo\Example {
+class deskewImage extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/deskewImage'/>";
-    }
 
-    function renderDescription() {
-        
+    function renderDescription() {        
         return "Hint - look at the left edge of the left column. In the deskewed image it is vertical.";
     }
 

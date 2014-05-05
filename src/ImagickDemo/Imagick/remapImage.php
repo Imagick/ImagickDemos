@@ -13,14 +13,9 @@ class remapImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-
-
         $imagick = new \Imagick(realpath($this->imagePath));
-
         $imagick2 = new \Imagick(realpath("../images/TestImage2.jpg"));
-
         $imagick->remapImage($imagick2, true);
-
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

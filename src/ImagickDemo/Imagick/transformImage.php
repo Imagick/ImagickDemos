@@ -3,14 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class transformImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/transformImage'/>";
-    }
+class transformImage extends ImagickExample  {
 
     function renderDescription() {
-
     }
 
     function renderImage() {
@@ -19,5 +14,4 @@ class transformImage extends \ImagickDemo\Example {
         header("Content-Type: image/jpg");
         echo $newImage->getImageBlob();
     }
-
 }

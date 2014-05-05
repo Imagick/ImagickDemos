@@ -8,8 +8,8 @@ class ImagickExample extends \ImagickDemo\Example {
 
     protected $imagePath;
 
-    function __construct($imagePath) {
-        $this->imagePath = $imagePath;
+    function __construct($image) {
+        $this->imagePath = $image;
     }
 }
 

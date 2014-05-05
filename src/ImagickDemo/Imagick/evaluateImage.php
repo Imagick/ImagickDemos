@@ -3,14 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class evaluateImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/evaluateImage'/>";
-    }
+class evaluateImage extends ImagickExample {
 
     function renderDescription() {
-
     }
 
     function renderImage() {

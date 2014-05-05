@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class contrastImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/contrastImage'/>";
-    }
+class contrastImage extends ImagickExample {
 
     function renderDescription() {
 

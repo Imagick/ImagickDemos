@@ -5,16 +5,10 @@ namespace ImagickDemo\Imagick;
 
 class screenEmbed extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/screenEmbed'/>";
-    }
-
     function renderDescription() {
-
     }
 
     function renderImage() {
-
         $overlay = new \Imagick(realpath("../images/dickbutt.jpg"));
         $imagick = new \Imagick(realpath("../images/Screeny.png"));
 

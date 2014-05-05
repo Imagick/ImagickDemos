@@ -3,14 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class flipImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/flipImage'/>";
-    }
+class flipImage extends ImagickExample {
 
     function renderDescription() {
-
     }
 
     function renderImage() {

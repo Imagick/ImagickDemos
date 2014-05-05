@@ -3,19 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class pingImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        //return "<img src='/image/Imagick/pingImage'/>";
-    }
-
-//    function renderDescription() {
-//
-//    }
+class pingImage extends ImagickExample {
 
     function renderDescription() {
-
-
         echo "This method can be used to query image width, height, size, and format without reading the whole image in to memory.";
         
         $image = new \Imagick();

@@ -2,8 +2,94 @@
 
 require_once('../vendor/autoload.php');
 
+class HTMLPrinter {
+
+    /**
+     * @var URLResult[]
+     */
+    private $results; 
+    
+    function __construct(array $results) {
+        $this->results = $results;
+    }
+
+    function output($outputStream) {
+
+        fwrite($outputStream, "<html>");
+        fwrite($outputStream, "<body>");
+
+        fwrite($outputStream, "<table>");
+        
+        foreach ($this->results as $path => $result) {
+            if ($result) {
+                if ($result->getStatus() != 200) {
+                    fwrite($outputStream, "<tr>");
+        
+                    fwrite($outputStream, "<td>");
+                    fwrite($outputStream, "" . $result->getStatus());
+    
+                    fwrite($outputStream, "</td>");
+    
+                    fwrite($outputStream, "<td>");
+                    fwrite($outputStream, "" . $result->getPath());
+                    fwrite($outputStream, "</td>");
+                    
+                    fwrite($outputStream, "<td>");
+                    fwrite($outputStream, "" . $result->getErrorMessage());
+                    fwrite($outputStream, "</td>");
+        
+                    fwrite($outputStream, "</tr>");
+                }
+            }
+        }
+
+        fwrite($outputStream, "</table>");
+        fwrite($outputStream, "</body>");
+        fwrite($outputStream, "</html>");
+    }
+}
+
+
+class URLResult {
+
+    private $path;
+    private $status;
+    private $errorMessage;
+
+    function __construct($path, $status, $errorMessage = null) {
+        $this->path = $path;
+        $this->status = $status;
+        $this->errorMessage = $errorMessage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getErrorMessage() {
+        return $this->errorMessage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPath() {
+        return $this->path;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus() {
+        return $this->status;
+    }
+}
+
+
 class SiteChecker {
 
+    /**
+     * @var URLResult[]
+     */
     private $urlList = [];
     
     private $siteURL;
@@ -14,8 +100,8 @@ class SiteChecker {
         $this->siteURL = $siteURL;
     }
 
-    function getURL($url) {
-        $fullURL = $this->siteURL.$url;
+    function getURL($path) {
+        $fullURL = $this->siteURL.$path;
         echo "Getting $fullURL \n";
 
         $client = new \Artax\Client;
@@ -29,16 +115,17 @@ class SiteChecker {
 
         $status = $response->getStatus();
 
-        $this->urlList[$url] = $status;
+        //$this->urlList[$path] = $status;
 
         if ($status != 200) {
-            return null;
+            return new URLResult($path, $status, substr($response->getBody(), 200));
         }
 
         $contentTypeHeaders = $response->getHeader('Content-Type');
         
         if (array_key_exists(0, $contentTypeHeaders) == false) {
             throw new Exception("Content-type header not set.");
+            //return new URLResult($path, 500, "Content-type header not set.");
         }
 
         $contentType = $contentTypeHeaders[0];
@@ -73,7 +160,7 @@ class SiteChecker {
 
         if (strpos($href, '/') === 0) {
             if (array_key_exists($href, $this->urlList) == false) {
-                $this->urlList[$href] = -1;
+                $this->urlList[$href] = null;
             }
         }
     }
@@ -83,28 +170,28 @@ class SiteChecker {
 
         if (strpos($href, '/') === 0) {
             if (array_key_exists($href, $this->urlList) == false) {
-                $this->urlList[$href] = -1;
+                $this->urlList[$href] = null;
             }
         }
     }
     
     function checkURL($url) {
-
-        $this->urlList[$url] = -1;
+        $this->urlList[$url] = null;
         
         $finished = false;
         while ($finished == false) {
             $finished = true;
             foreach ($this->urlList as $nextURL => $result) {
-                if ($result == -1) {
-                    $this->checkURLInternal($nextURL);
+                if ($result == null) {
+                    $result = $this->checkURLInternal($nextURL);
+                    $this->urlList[$nextURL] = $result;
                     $finished = false;
                 }
             }
         }
     }
     
-    function checkURLInternal($url) {
+    function checkURLInternal($path) {
 
         $this->count++;
 
@@ -113,10 +200,14 @@ class SiteChecker {
             //return;
         }
 
-        $this->urlList[$url] = 0;
+        //$this->urlList[$path] = 0;
 
         try {
-            $body = $this->getURL($url);
+            $body = $this->getURL($path);
+
+            if ($body instanceof URLResult) {
+                return $body;
+            }
 
             if ($body) {
                 $fluentDOM = new FluentDOM();
@@ -124,26 +215,43 @@ class SiteChecker {
                 $dom->find('//a')->each([$this, 'parseLinkResult']);
                 $dom->find('//img')->each([$this, 'parseImgResult']);
             }
+            
+            return new URLResult($path, 200);
         }
         catch(InvalidArgumentException $iae) {
-            echo "Fluent dom exception on $url - ".$iae->getMessage(). " Exception type is ".get_class($iae)." \n";
+            //echo "Fluent dom exception on $path - ".$iae->getMessage(). " Exception type is ".get_class($iae)." \n";
+            return new URLResult($path, 500, "Fluent dom exception on $path - ".$iae->getMessage(). " Exception type is ".get_class($iae));
         }
         catch(Exception $e) {
-            echo "Error getting $url - ".$e->getMessage(). " Exception type is ".get_class($e)." \n";
+            //echo "Error getting $path - ".$e->getMessage(). " Exception type is ".get_class($e)." \n";
+            return new URLResult($path, 500, "Error getting $path - ".$e->getMessage(). " Exception type is ".get_class($e));
         }
+    }
+    
+    function getResults() {
+        return $this->urlList;
     }
 
-    function showResults() {
-        foreach ($this->urlList as $url => $status) {
-            if ($status != 200) {
-                echo "$status => $url\n";
-            }
-        }
-        
-        printf("Scanned %d urls ", $this->count);
-    }
+//    function showResults() {
+//        foreach ($this->urlList as $url => $status) {
+//            if ($status != 200) {
+//                echo "$status => $url\n";
+//            }
+//        }
+//        
+//        printf("Scanned %d urls ", $this->count);
+//    }
 }
 
 $siteChecker = new SiteChecker("http://imagick.test");
 $siteChecker->checkURL('/');
-$siteChecker->showResults();
+
+
+//$siteChecker->showResults();
+$printer = new HTMLPrinter($siteChecker->getResults());
+
+$outputStream = fopen("./checkResults.html", "w");
+
+$printer->output($outputStream);
+
+fclose($outputStream);

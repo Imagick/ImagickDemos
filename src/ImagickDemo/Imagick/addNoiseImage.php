@@ -5,10 +5,6 @@ namespace ImagickDemo\Imagick;
 
 class addNoiseImage extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/addNoiseImage'/>";
-    }
-
     function renderDescription() {
 
         //const NOISE_UNIFORM = 1;

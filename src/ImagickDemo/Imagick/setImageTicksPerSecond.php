@@ -6,16 +6,10 @@ namespace ImagickDemo\Imagick;
 
 class setImageTicksPerSecond extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/setImageTicksPerSecond'/>";
-    }
-
     function renderDescription() {
         return "//Modify an animated gif so the first half of the gif is played
         //at half the speed it currently is, and the second half to be 
         //played at double the speed it currently is";
-        
-
     }
 
     function renderImage() {

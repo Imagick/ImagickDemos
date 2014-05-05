@@ -4,14 +4,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class tintImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/tintImage'/>";
-    }
+class tintImage  extends ImagickExample {
 
     function renderDescription() {
-
     }
 
     function renderImage() {

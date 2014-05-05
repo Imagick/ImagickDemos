@@ -4,14 +4,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class edgeExtend extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/edgeExtend'/>";
-    }
+class edgeExtend extends ImagickExample {
 
     function renderDescription() {
-
     }
 
     function renderImage() {

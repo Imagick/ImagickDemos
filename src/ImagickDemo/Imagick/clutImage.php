@@ -3,27 +3,17 @@
 namespace ImagickDemo\Imagick;
 
 
-class clutImage extends \ImagickDemo\Example {
+class clutImage extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/clutImage'/>";
-    }
 
     function renderDescription() {
-
     }
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->imagePath));
-
-
         $clutImagick = new \Imagick(realpath("../images/TestImage4.gif"));
-
         $imagick->clutImage($clutImagick);
-
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
-
-
     }
 }

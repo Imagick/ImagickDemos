@@ -108,7 +108,6 @@ function getImagickDrawExamples() {
         new NavOption( 'setFillOpacity',ColorControl::class, true ),
         new NavOption( 'setFillPatternURL' ,ColorControl::class, true ), //=> 'pushPattern'
         new NavOption( 'setFillRule',ColorControl::class, true ),
-        new NavOption( 'setFillRule2',ColorControl::class, true ),
         new NavOption( 'setFont',ColorControl::class, true ),
         //'setFontFamily',
         new NavOption( 'setFontSize',ColorControl::class, true ),
@@ -348,7 +347,6 @@ function getImagickExamples() {
         new NavOption('negateImage', ImageControl::class, true),
 //'newImage',
         new NavOption('newPseudoImage', ImageControl::class, true),
-        new NavOption('newPseudoImage2', ImageControl::class, true),
 //'nextImage',
         new NavOption('normalizeImage', ImageControl::class, true),
         new NavOption('oilPaintImage', ImageControl::class, true),
@@ -726,6 +724,7 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 
 function myBad( Exception $ex ) {
     header("HTTP/1.0 500 Internal Server Error", true, 500);
+    echo $ex->getMessage();
 }
 
 set_exception_handler('myBad');

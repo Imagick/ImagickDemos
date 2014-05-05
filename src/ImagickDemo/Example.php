@@ -9,8 +9,6 @@ class Example {
 
     protected $colors;
 
-    protected $imagePath;
-
     function __construct(\ImagickDemo\Colors $colors) {
         $this->colors = $colors;
     }

@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class despeckleImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/despeckleImage'/>";
-    }
+class despeckleImage extends ImagickExample {
 
     function renderDescription() {
 

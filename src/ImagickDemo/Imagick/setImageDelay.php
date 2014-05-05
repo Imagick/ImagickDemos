@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class setImageDelay extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/setImageDelay'/>";
-    }
+class setImageDelay extends ImagickExample {
 
     function renderDescription() {
 

@@ -5,10 +5,6 @@ namespace ImagickDemo\Imagick;
 
 class fxImage extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/fxImage'/>";
-    }
-
     function renderDescription() {
         echo "This is very slow";
     }

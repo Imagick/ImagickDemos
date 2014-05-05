@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class getImageHistogram extends \ImagickDemo\Example {
+class getImageHistogram extends ImagickExample {
 
     function renderImageURL() {
         return "";

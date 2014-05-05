@@ -32,7 +32,7 @@ class ImageControl implements \ImagickDemo\Control {
     }
     
     function getParams() {
-        return ['image' => $this->option];
+        return ['image' => $this->image];
     }
 
     function getParamString() {

@@ -5,10 +5,6 @@ namespace ImagickDemo\Imagick;
 
 class functionImage extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/functionImage'/>";
-    }
-
     function renderDescription() {
     }
 

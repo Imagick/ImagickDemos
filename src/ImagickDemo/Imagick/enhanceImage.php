@@ -3,14 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class enhanceImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/enhanceImage'/>";
-    }
+class enhanceImage extends ImagickExample {
 
     function renderDescription() {
-
     }
 
     function renderImage() {

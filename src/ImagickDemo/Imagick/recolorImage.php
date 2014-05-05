@@ -4,19 +4,13 @@
 namespace ImagickDemo\Imagick;
 
 
-class recolorImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/recolorImage'/>";
-    }
+class recolorImage extends ImagickExample {
 
     function renderDescription() {
     }
 
     function renderImage() {
-
         $imagick = new \Imagick(realpath($this->imagePath));
-
         $remapColor = [ 1, 0, 0, 
                         0, 0, 1, 
                         0, 1, 0,];

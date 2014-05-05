@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class getImageChannelStatistics extends \ImagickDemo\Example {
+class getImageChannelStatistics extends ImagickExample {
 
     function renderImageURL() {
         return "<img src='/image/Imagick/getImageChannelStatistics'/>";

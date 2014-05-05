@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class cropImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/cropImage'/>";
-    }
+class cropImage extends ImagickExample {
 
     function renderDescription() {
     }

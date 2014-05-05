@@ -5,18 +5,11 @@ namespace ImagickDemo\Imagick;
 
 class getPixelIterator extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/getPixelIterator'/>";
-    }
-
     function renderDescription() {
     }
 
     function renderImage() {
-
         $imagick = new \Imagick(realpath($this->imagePath));
-
-
         $imageIterator = $imagick->getPixelIterator();
 
         /** @noinspection PhpUnusedLocalVariableInspection */
@@ -29,7 +22,6 @@ class getPixelIterator extends ImagickExample {
             }
             $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
         }
-
 
         header("Content-Type: image/jpg");
         echo $imagick;

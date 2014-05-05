@@ -3,11 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class remapImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Imagick/remapImage'/>";
-    }
+class remapImage extends ImagickExample {
 
     function renderDescription() {
     }

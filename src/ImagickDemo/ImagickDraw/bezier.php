@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class bezier extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/bezier'/>";
-    }
+class bezier extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -14,10 +10,12 @@ class bezier extends \ImagickDemo\Example {
 
     function renderImage() {
 
+        
+        
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('DarkSlateGrey');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $darkColor = new \ImagickPixel($this->strokeColor);
+        $lightColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeOpacity(1);
         $draw->setStrokeColor($darkColor);
@@ -41,7 +39,7 @@ class bezier extends \ImagickDemo\Example {
 
         //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, "SteelBlue2");
+        $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
         //Render the draw commands in the ImagickDraw object 

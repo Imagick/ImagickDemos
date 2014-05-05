@@ -1,11 +1,7 @@
 <?php
 namespace ImagickDemo\ImagickDraw;
 
-class skewX extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/skewX'/>";
-    }
+class skewX extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -32,7 +28,7 @@ class skewX extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 500, "SteelBlue2");
+        $image->newImage(500, 500, $this->backgroundColor);
         $image->setImageFormat("png");
 
 

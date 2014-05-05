@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeAlpha extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeAlpha'/>";
-    }
+class setStrokeAlpha extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -34,7 +30,7 @@ class setStrokeAlpha extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 400, "SteelBlue2");
+        $image->newImage(500, 400, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

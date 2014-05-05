@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFillRule extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setFillRule'/>";
-    }
+class setFillRule extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -20,7 +16,7 @@ class setFillRule extends \ImagickDemo\Example {
 
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('DarkSlateGrey');
+        $darkColor = new \ImagickPixel($this->strokeColor);
         $lightColor = new \ImagickPixel('LightCoral');
 
         $draw->setStrokeOpacity(1);
@@ -55,7 +51,7 @@ class setFillRule extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 500, "SteelBlue2");
+        $image->newImage(500, 500, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 
@@ -120,7 +116,7 @@ class setFillRule extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-//$image->newImage(700, 320, "SteelBlue2");
+//$image->newImage(700, 320, $this->backgroundColor);
 
         $image->newImage(700, 320, "#eee");
 
@@ -191,7 +187,7 @@ class setFillRule extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
             $image = new \Imagick();
-//$image->newImage(700, 320, "SteelBlue2");
+//$image->newImage(700, 320, $this->backgroundColor);
 
             $image->newImage(700, 320, "#eee");
 

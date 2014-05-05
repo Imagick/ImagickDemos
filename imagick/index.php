@@ -87,14 +87,14 @@ function getImagickDrawExamples() {
         new NavOption( 'point',ColorControl::class, true ),
         new NavOption( 'polygon',ColorControl::class, true ),
         new NavOption( 'polyline',ColorControl::class, true ),
-        new NavOption( 'pop' ,ColorControl::class, true ), //=> 'push'
-        new NavOption( 'popClipPath' ,ColorControl::class, true ), //=> 'setClipPath'
+        new NavOption( 'pop' ,ColorControl::class, true, 'push' ), //=> 'push'
+        new NavOption( 'popClipPath' ,ColorControl::class, true, 'setClipPath' ), //=> 'setClipPath'
         //'popDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
-        new NavOption( 'popPattern' ,ColorControl::class, true ), //=> 'pushPattern'
+        new NavOption( 'popPattern' ,ColorControl::class, true, 'pushPattern' ), //=> 'pushPattern'
         new NavOption( 'push',ColorControl::class, true ),
-        new NavOption( 'pushClipPath' ,ColorControl::class, true ), //=> 'setClipPath'
+        new NavOption( 'pushClipPath' ,ColorControl::class, true, 'setClipPath' ), //=> 'setClipPath'
         // 'pushDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
-        new NavOption( 'pushPattern', ColorControl::class, true ),
+        new NavOption( 'pushPattern', ColorControl::class, true),
         new NavOption( 'rectangle',ColorControl::class, true ),
         //'render', no idea what this does
         new NavOption( 'rotate',ColorControl::class, true ),
@@ -106,7 +106,7 @@ function getImagickDrawExamples() {
         new NavOption( 'setFillAlpha',ColorControl::class, true ),
         new NavOption( 'setFillColor',ColorControl::class, true ),
         new NavOption( 'setFillOpacity',ColorControl::class, true ),
-        new NavOption( 'setFillPatternURL' ,ColorControl::class, true ), //=> 'pushPattern'
+        //new NavOption( 'setFillPatternURL' ,ColorControl::class, true ), //=> 'pushPattern'
         new NavOption( 'setFillRule',ColorControl::class, true ),
         new NavOption( 'setFont',ColorControl::class, true ),
         //'setFontFamily',
@@ -356,7 +356,7 @@ function getImagickExamples() {
 //'paintFloodfillImage',
 //'paintOpaqueImage',
 //'paintTransparentImage',
-        new NavOption('pingImage', ImageControl::class, true),
+        new NavOption('pingImage', ImageControl::class, false),
         new NavOption('Quantum', null, false),
 //'pingImageBlob',
 //'pingImageFile',
@@ -576,8 +576,8 @@ function bootstrap() {
     );
 
     //$injector->defineParam('imagePath', "../images/fnord.png");
-    $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
-    $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
+//    $injector->defineParam('imagePath', "../images/Skyline_400.jpg");
+//    $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
     $injector->defineParam('activeNav', null);
     $injector->share(ImagickDemo\Navigation\Nav::class);
     $injector->alias(\ImagickDemo\Navigation\ActiveNav::class, \ImagickDemo\Navigation\DefaultNav::class);
@@ -589,7 +589,17 @@ function bootstrap() {
 
 function setupImage(\Auryn\Provider $injector, $category, $example = null) {
     setupExample($injector, $category, $example, true);
-    $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
+
+    //        $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
+    
+    if (false) {
+        $injector->execute([\ImagickDemo\Example::class, 'renderImage']);
+    }
+    else {
+        $object = $injector->make(\ImagickDemo\Example::class);
+        $injector->execute([$object, 'renderImage']);
+    }
+//    
     exit(0);
 }
 

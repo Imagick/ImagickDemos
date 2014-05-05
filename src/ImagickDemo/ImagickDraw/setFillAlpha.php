@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFillAlpha extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setFillAlpha'/>";
-    }
+class setFillAlpha extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -35,7 +31,7 @@ class setFillAlpha extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, "SteelBlue2");
+        $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

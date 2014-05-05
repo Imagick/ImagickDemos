@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setClipRule extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setClipRule'/>";
-    }
+class setClipRule extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -47,7 +43,7 @@ class setClipRule extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, "SteelBlue2");
+        $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

@@ -66,18 +66,21 @@ class Nav implements ActiveNav {
 
         if ($navOption) {
             $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navOption->getName());
-            
+            if($navOption->getURLName()) {
+                $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navOption->getURLName());
+            }
+
             $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
 
             $controlName = $navOption->getControl();
             
             if ($controlName) {
                 $injector->alias(\ImagickDemo\Control::class, $controlName);
-                $this->control = $injector->make(\ImagickDemo\Control::class);
-
-                foreach($this->control->getParams() as $key => $value) {
-                    $injector->defineParam($key, $value);
-                }
+//                $this->control = $injector->make(\ImagickDemo\Control::class);
+//
+//                foreach($this->control->getParams() as $key => $value) {
+//                    $injector->defineParam($key, $value);
+//                }
             }
         }
     }

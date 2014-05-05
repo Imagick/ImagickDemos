@@ -63,9 +63,6 @@ function createGradientImage($width, $height, $colorPoints, $sparseMethod, $abso
 
 class sparseColorImage extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/sparseColorImage'/>";
-    }
 
     function renderDescription() {
 
@@ -92,14 +89,11 @@ class sparseColorImage extends \ImagickDemo\Example {
   
 END;
   
-    return $foo;
+        return $foo;
 
     }
 
-
     function renderImageBarycentric2() {
-    
-
         require_once "../functions.php";
 
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];

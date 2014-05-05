@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeAntialias extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeAntialias'/>";
-    }
+class setStrokeAntialias extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -35,7 +31,7 @@ class setStrokeAntialias extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 250, "SteelBlue2");
+        $image->newImage(500, 250, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

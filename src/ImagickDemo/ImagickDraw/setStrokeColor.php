@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeColor extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeColor'/>";
-    }
+class setStrokeColor extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -38,7 +34,7 @@ class setStrokeColor extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 400, "SteelBlue2");
+        $image->newImage(500, 400, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

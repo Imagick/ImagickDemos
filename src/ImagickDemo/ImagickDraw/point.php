@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class point extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/point'/>";
-    }
+class point extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -28,7 +24,7 @@ class point extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, "SteelBlue2");
+        $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

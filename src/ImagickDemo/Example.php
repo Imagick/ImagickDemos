@@ -22,6 +22,7 @@ class Example {
     }
     
     function renderImage() {
+        echo "Hmm this should never be seen.";
         return "Image goes here?";
     }
     

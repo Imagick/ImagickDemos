@@ -10,10 +10,11 @@ class NavOption {
     private $control;
     private $hasImage;
 
-    function __construct($name, $control, $hasImage) {
+    function __construct($name, $control, $hasImage, $urlName = null) {
         $this->name = $name;
         $this->control = $control;
         $this->hasImage = $hasImage;
+        $this->urlName = $urlName;
     }
 
     function hasImage() {
@@ -23,14 +24,18 @@ class NavOption {
     /**
      * @return mixed
      */
-    public function getControl() {
+    function getControl() {
         return $this->control;
     }
 
     /**
      * @return mixed
      */
-    public function getName() {
+    function getName() {
         return $this->name;
+    }
+    
+    function getURLName() {
+        return $this->urlName;
     }
 }

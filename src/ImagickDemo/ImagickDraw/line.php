@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class line extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/line'/>";
-    }
+class line extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -17,7 +13,7 @@ class line extends \ImagickDemo\Example {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('DarkSlateGrey');
+        $darkColor = new \ImagickPixel($this->strokeColor);
         $lightColor = new \ImagickPixel('LightCoral');
 
         $draw->setStrokeColor($darkColor);
@@ -33,7 +29,7 @@ class line extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, "SteelBlue2");
+        $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

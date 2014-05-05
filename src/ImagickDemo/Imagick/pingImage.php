@@ -10,6 +10,10 @@ class pingImage extends ImagickExample {
         
         $image = new \Imagick();
         $image->pingImage(realpath($this->imagePath));
+        
+        
+        echo "For file: ".basename($this->imagePath)." <br/>";
+        
 
         echo "Width is " . $image->getImageWidth() . "<br/>";
         echo "Height is " . $image->getImageHeight() . "<br/>";

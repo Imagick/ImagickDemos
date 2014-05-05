@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeWidth extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeWidth'/>";
-    }
+class setStrokeWidth extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -37,7 +33,7 @@ class setStrokeWidth extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 400, "SteelBlue2");
+        $image->newImage(500, 400, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

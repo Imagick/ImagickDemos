@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFillColor extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setFillColor'/>";
-    }
+class setFillColor extends ImagickDrawExample {
 
     function renderDescription() {
         return "";

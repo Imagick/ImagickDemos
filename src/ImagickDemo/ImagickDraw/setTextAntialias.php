@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setTextAntialias extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setTextAntialias'/>";
-    }
+class setTextAntialias extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -35,7 +31,7 @@ class setTextAntialias extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 250, "SteelBlue2");
+        $imagick->newImage(500, 250, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

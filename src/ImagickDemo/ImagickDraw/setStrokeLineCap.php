@@ -2,11 +2,8 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeLineCap extends \ImagickDemo\Example {
+class setStrokeLineCap extends ImagickDrawExample {
 
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeLineCap'/>";
-    }
 
     function renderDescription() {
         return "";
@@ -38,7 +35,7 @@ class setStrokeLineCap extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(300, 300, "SteelBlue2");
+        $imagick->newImage(300, 300, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

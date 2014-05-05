@@ -5,10 +5,6 @@ namespace ImagickDemo\Imagick;
 
 class getImageChannelStatistics extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/getImageChannelStatistics'/>";
-    }
-
     function renderImage() {
         $imagick = new \Imagick(realpath("../images/fnord.png"));
         header("Content-Type: image/png");

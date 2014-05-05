@@ -6,12 +6,7 @@ namespace ImagickDemo\Imagick;
 
 class setOption extends ImagickExample {
 
-    function renderImageURL() {
-        return "<img src='/image/Imagick/setOption'/>";
-    }
-
     function renderDescription() {
-
     }
     
     function renderImage2() {

@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class polyline extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/polyline'/>";
-    }
+class polyline extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -33,7 +29,7 @@ class polyline extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 300, "SteelBlue2");
+        $image->newImage(500, 300, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

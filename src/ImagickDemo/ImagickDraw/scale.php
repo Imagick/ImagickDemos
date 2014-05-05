@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class scale extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/scale'/>";
-    }
+class scale extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -31,7 +27,7 @@ class scale extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 500, "SteelBlue2");
+        $image->newImage(500, 500, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

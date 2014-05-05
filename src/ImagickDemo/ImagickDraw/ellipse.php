@@ -2,26 +2,17 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class ellipse extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/ellipse'/>";
-    }
+class ellipse extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
     }
 
     function renderImage() {
-
-
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
-
         $darkColor = new \ImagickPixel('brown');
         $lightColor = new \ImagickPixel('LightCoral');
-
-
         $draw->setStrokeColor($darkColor);
         $draw->setFillColor($lightColor);
 
@@ -29,7 +20,6 @@ class ellipse extends \ImagickDemo\Example {
         $draw->setFontSize(72);
 
         $draw->ellipse(125, 70, 100, 50, 0, 360);
-
         $draw->ellipse(350, 70, 100, 50, 0, 315);
 
         $draw->push();
@@ -48,7 +38,7 @@ class ellipse extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, "SteelBlue2");
+        $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

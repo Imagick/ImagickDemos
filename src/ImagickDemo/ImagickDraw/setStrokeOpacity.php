@@ -3,11 +3,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeOpacity extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeOpacity'/>";
-    }
+class setStrokeOpacity extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -44,7 +40,7 @@ class setStrokeOpacity extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(550, 400, "SteelBlue2");
+        $image->newImage(550, 400, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

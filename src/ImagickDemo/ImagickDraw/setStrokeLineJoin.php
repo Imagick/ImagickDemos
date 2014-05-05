@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeLineJoin extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/setStrokeLineJoin'/>";
-    }
+class setStrokeLineJoin extends ImagickDrawExample {
 
     function renderDescription() {
         return "";
@@ -45,7 +41,7 @@ class setStrokeLineJoin extends \ImagickDemo\Example {
 
 //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 700, "SteelBlue2");
+        $image->newImage(500, 700, $this->backgroundColor);
         $image->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

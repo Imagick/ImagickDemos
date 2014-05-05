@@ -4,22 +4,7 @@ namespace ImagickDemo\ImagickDraw;
 
 use ImagickDemo\Control\ColorControl;
 
-class affine extends \ImagickDemo\Example {
-
-    protected $backgroundColor;
-    protected $fillColor;
-    protected $strokeColor;
-
-    function __construct($backgroundColor, $fillColor, $strokeColor) {
-
-        $this->backgroundColor = $backgroundColor;
-        $this->fillColor =  $fillColor;
-        $this->strokeColor = $strokeColor;
-    }
-    
-    function renderImageURL() {
-        return "<img src='/image/ImagickDraw/affine'/>";
-    }
+class affine extends ImagickDrawExample {
 
     function renderDescription() {
         return "<br/>Adjusts the current affine transformation matrix with the specified affine transformation matrix.

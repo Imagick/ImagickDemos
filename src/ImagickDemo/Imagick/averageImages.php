@@ -7,8 +7,7 @@ class averageImages extends \ImagickDemo\Example {
 
     
     function __construct() {
-        echo "Needs two images";
-        exit(0);
+        
     }
     
     function renderImageURL() {
@@ -16,7 +15,7 @@ class averageImages extends \ImagickDemo\Example {
     }
 
     function renderDescription() {
-        return "Function is deprecated, and kills PHP. I suggest not using it.";
+        return "Needs two images. Function is deprecated, and kills PHP. I suggest not using it.";
     }
 
     function renderImage() {
@@ -40,5 +39,4 @@ class averageImages extends \ImagickDemo\Example {
             echo "arrgh ".$e->getMessage();
         }
     }
-
 }

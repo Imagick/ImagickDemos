@@ -3,8 +3,43 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8b51969973089e1b014bc26d74aaed4a",
+    "hash": "156c4396b6a0663b372743491e6c4012",
     "packages": [
+        {
+            "name": "fluentdom/fluentdom",
+            "version": "v4.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_v4.1.1.zip",
+                "reference": "FluentDOM_FluentDOM_v4.1.1.zip",
+                "shasum": "7028c8a4ebc26fe46c9eeac3931001b3740e3da3"
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/FluentDOM.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "FluentDOM Contributors",
+                    "homepage": "https://github.com/FluentDOM/FluentDOM/contributors"
+                }
+            ],
+            "description": "A fluent api for the php dom extension.",
+            "homepage": "http://fluentdom.org",
+            "keywords": [
+                "dom",
+                "jquery",
+                "xml"
+            ]
+        },
         {
             "name": "intahwebz/configurator",
             "version": "0.1.1",
@@ -475,7 +510,82 @@
         }
     ],
     "packages-dev": [
-
+        {
+            "name": "rdlowrey/alert",
+            "version": "v0.1.2",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/rdlowrey/Alert/rdlowrey_Alert_v0.1.2.zip",
+                "reference": "rdlowrey_Alert_v0.1.2.zip",
+                "shasum": "66c314496be58626331f5bd6cfe9b9feeb4125e9"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Alert": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "Event loops for event-driven/async PHP",
+            "homepage": "https://github.com/rdlowrey/alert",
+            "keywords": [
+                "async",
+                "events",
+                "libevent",
+                "non-blocking"
+            ]
+        },
+        {
+            "name": "rdlowrey/artax",
+            "version": "v0.7.0",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/rdlowrey/Artax/rdlowrey_Artax_v0.7.0.zip",
+                "reference": "rdlowrey_Artax_v0.7.0.zip",
+                "shasum": "35a1211171e7587196eca4a7067ef1d03a89460f"
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "rdlowrey/alert": "~0.1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "An object-oriented HTTP/1.1 client with no cURL dependency",
+            "homepage": "https://github.com/rdlowrey/Artax",
+            "keywords": [
+                "async",
+                "client",
+                "http",
+                "parallel",
+                "rest"
+            ]
+        }
     ],
     "aliases": [
 

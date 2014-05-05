@@ -359,7 +359,7 @@ function getImagickExamples() {
 //'paintOpaqueImage',
 //'paintTransparentImage',
         new NavOption('pingImage', ImageControl::class, true),
-        new NavOption('Quantum', null, true),
+        new NavOption('Quantum', null, false),
 //'pingImageBlob',
 //'pingImageFile',
 //'polaroidImage',
@@ -724,9 +724,15 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 //
 //exit(0);
 
+function myBad( Exception $ex ) {
+    header("HTTP/1.0 500 Internal Server Error", true, 500);
+}
+
+set_exception_handler('myBad');
+
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        // ... 404 Not Found
+        header("HTTP/1.0 404 Not Found", true, 404);
         echo "No route matched";
     break;
     

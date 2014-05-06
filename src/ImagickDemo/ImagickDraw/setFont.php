@@ -12,14 +12,18 @@ class setFont extends ImagickDrawExample {
 
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('brown');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(2);
         $draw->setFontSize(36);
+
+        echo "filesize is ".filesize("../fonts/Tahoma.ttf");
+        
+        exit(0);
 
         $draw->setFont("../fonts/Arial.ttf");
         $draw->annotation(50, 50, "Lorem Ipsum!");
@@ -27,16 +31,18 @@ class setFont extends ImagickDrawExample {
         $draw->setFont("../fonts/Consolas.ttf");
         $draw->annotation(50, 100, "Lorem Ipsum!");
 
-        $draw->setFont("../fonts/Tahoma");
-        $draw->annotation(50, 150, "Lorem Ipsum!");
+//        $draw->setFont("../fonts/Tahoma.ttf");
+//        $draw->annotation(50, 150, "Lorem Ipsum!");
 
         $draw->setFont("../fonts/CANDY.TTF");
         $draw->annotation(50, 200, "Lorem Ipsum!");
 
         $draw->setFont("../fonts/Inconsolata-dz.otf");
         $draw->annotation(50, 250, "Lorem Ipsum!");
+        
 
-//Create an image object which the draw commands can be rendered into
+
+        //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
         $imagick->newImage(500, 500, $this->backgroundColor);
         $imagick->setImageFormat("png");

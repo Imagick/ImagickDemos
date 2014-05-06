@@ -146,17 +146,17 @@ function getImagickPixelExamples() {
      $imagePixelExamples = array(
         new NavOption('construct', null, true),
         //'ImagickPixel.clear', 
-        new NavOption('getColor',  null, true),// (new NavOption( bool $normalized = false ) )
-        new NavOption('getColorAsString', null, true),// ( void )
-        //No idea    'ImagickPixel.getColorCount',// ( void )
-        new NavOption('getColorValue', null, true),// ( int $color )
-        new NavOption('getColorValueQuantum', null, true),// ( int $color )
-        new NavOption('getHSL', null, true),// ( void )
-        new NavOption('isSimilar', null, false),// ( ImagickPixel $color , float $fuzz )
-        new NavOption('setColor', null, true),// ( string $color )
-        new NavOption('setColorValue', null, true),// ( int $color , float $value )
-        new NavOption('setColorValueQuantum', null, true),// ( int $color , float $value )
-        new NavOption('setHSL',  null, false),// ( float $hue , float $saturation , float $luminosity )
+        new NavOption('getColor',  null, false),
+        new NavOption('getColorAsString', null, false),
+        //No idea    'ImagickPixel.getColorCount',
+        new NavOption('getColorValue', null, false),
+        new NavOption('getColorValueQuantum', null, false),
+        new NavOption('getHSL', null, false),
+        new NavOption('isSimilar', null, false),
+        new NavOption('setColor', null, true),
+        new NavOption('setColorValue', null, true),
+        new NavOption('setColorValueQuantum', null, true),
+        new NavOption('setHSL',  null, false),
     );
 
     return $imagePixelExamples;

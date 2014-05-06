@@ -5,24 +5,17 @@ namespace ImagickDemo\ImagickPixel;
 
 class getColorAsString extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-//        return "<img src='/image/ImagickPixel/getColorAsString'/>";
-    }
 
     function renderDescription() {
 
-//Create an ImagickPixel with the predefined color 'brown'
+        //Create an ImagickPixel with the predefined color 'brown'
         $color = new \ImagickPixel('brown');
-
         $color->setColorValue(\Imagick::COLOR_ALPHA, 64 / 256.0);
-
         $colorInfo = $color->getColorAsString();
-
         print_r($colorInfo);
-//Outputs
+    //Outputs
 
-
-//Note - currently it is not possible to get the alpha of the color through this method.
+    //Note - currently it is not possible to get the alpha of the color through this method.
 
 
         /*

@@ -5,7 +5,7 @@ namespace ImagickDemo\ImagickDraw;
 class setClipPath extends ImagickDrawExample {
 
     function renderDescription() {
-        return "";
+        return "This appears to be bugged.";
     }
 
     function renderImage() {

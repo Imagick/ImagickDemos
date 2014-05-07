@@ -525,9 +525,10 @@ function getExampleExamples() {
     $imagickExamples = [
         new NavOption('gradientReflection',  true),
         new NavOption('psychedelicFont', true),
+        new NavOption('psychedelicFontGif', true),
         new NavOption('imagickComposite', true),
         new NavOption('imagickCompositeGen', true),
-        new NavOption('composite', true),  // => 'composite'
+        new NavOption('composite', true),
     ];
 
     return $imagickExamples;
@@ -692,6 +693,8 @@ $uri = '/';
 if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
+
+//$uri = '/image/Example/psychedelicFontGif?';
 
 $path = $uri;
 $queryPosition = strpos($path, '?');

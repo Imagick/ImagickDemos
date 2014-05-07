@@ -2,33 +2,23 @@
 
 namespace ImagickDemo\Example;
 
-class psychdelicFontGif extends \ImagickDemo\ExampleWithoutControl {
-
-    function renderTitle() {
-        return "";
-    }
+class psychedelicFontGif extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
-
     }
 
     function renderImage() {
-
 
         set_time_limit(3000);
 
         $aniGif = new \Imagick();
         $aniGif->setFormat("gif");
 
-
         $maxFrames = 20;
 
         for ($frame = 0; $frame < $maxFrames; $frame++) {
 
             $draw = new \ImagickDraw();
-
-//            $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
-//            $lightColor = new \ImagickPixel('white');
 
             $name = 'Danack';
 
@@ -42,8 +32,6 @@ class psychdelicFontGif extends \ImagickDemo\ExampleWithoutControl {
             $draw->setFont("../fonts/CANDY.TTF");
 
             $draw->setfontsize(150);
-
-            echo "Frame $frame \n";
 
             for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
                 $hue = intval(fmod(($frame * 360 / $maxFrames) + 170 + $strokeWidth * 360 / 25, 360));
@@ -73,11 +61,13 @@ class psychdelicFontGif extends \ImagickDemo\ExampleWithoutControl {
 
         $aniGif->deconstructImages();
 
-//there more than one file, so must be using writeImages()
-        $aniGif->writeImages("/home/intahwebz/intahwebz/basereality/imagick/Danack.gif", true);
+//        header("Content-Type: image/gif");
+//        $aniGif->getimagesblob();
+        //there more than one file, so must be using writeImages()
+        $aniGif->writeImages("../var/cache/imageCache/Danack.gif", true);
 
 //$aniGif->writeimagesfile();
-        echo "done";
+        //echo "done";
 
     }
 }

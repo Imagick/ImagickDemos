@@ -7,9 +7,9 @@ use Intahwebz\Request;
 
 class ColorControl implements \ImagickDemo\Control {
 
-    private $backgroundColor = "rgb(225, 225, 225)";//"#eee";//"SteelBlue2";
-    private $strokeColor = 'rgb(0, 0, 0)';//'DarkSlateGrey';
-    private $fillColor = 'DodgerBlue2';//'LightCoral';
+    private $backgroundColor = "rgb(225, 225, 225)";
+    private $strokeColor = 'rgb(0, 0, 0)';
+    private $fillColor = 'DodgerBlue2';
 
     private $imageBaseURL;
 

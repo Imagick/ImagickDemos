@@ -59,7 +59,7 @@
                     {$example->renderDescription() | nofilter}
                 </div>
                 <div class="col-md-3">
-                    {$example->renderControl() | nofilter}
+                    {$example->getControl()->render() | nofilter}
                 </div>
             </div>
     

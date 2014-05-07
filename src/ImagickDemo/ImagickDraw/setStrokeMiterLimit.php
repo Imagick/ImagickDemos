@@ -13,13 +13,13 @@ class setStrokeMiterLimit extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('black');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
-        $draw->setStrokeColor($darkColor);
+        $draw->setStrokeColor($strokeColor);
         $draw->setStrokeOpacity(0.6);
 
-        $draw->setFillColor($lightColor);
+        $draw->setFillColor($fillColor);
         $draw->setStrokeWidth(10);
 
         $yOffset = 100;

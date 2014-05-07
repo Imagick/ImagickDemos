@@ -12,10 +12,11 @@ class composite extends ImagickDrawExample {
         //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('brown');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor('black');
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setFillOpacity(1);
 
@@ -23,7 +24,7 @@ class composite extends ImagickDrawExample {
         $draw->setFontSize(72);
 
         $draw->setStrokeOpacity(1);
-        $draw->setStrokeColor($darkColor);
+        $draw->setStrokeColor($strokeColor);
 
         $draw->setStrokeWidth(2);
 

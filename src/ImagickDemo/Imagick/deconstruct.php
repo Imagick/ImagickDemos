@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class deconstruct extends \ImagickDemo\Example {
+class deconstruct extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
 

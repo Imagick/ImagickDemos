@@ -65,6 +65,7 @@ abstract class OptionControl implements \ImagickDemo\Control {
         }
 
         $output .= "</select>";
+        $output .= "<br/>&nbsp;<br/>";
         $output .= "<button type='submit' class='btn btn-default'>Update</button>";
         $output .= "</form>";
 

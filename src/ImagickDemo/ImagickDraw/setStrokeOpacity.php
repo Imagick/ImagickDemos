@@ -16,11 +16,11 @@ class setStrokeOpacity extends ImagickDrawExample {
 
         $draw->setStrokeWidth(1);
 
-        $darkColor = new \ImagickPixel('black');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(10);
 

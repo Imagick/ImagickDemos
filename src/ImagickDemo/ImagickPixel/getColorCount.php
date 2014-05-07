@@ -3,11 +3,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColorCount extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-//        return "<img src='/image/ImagickPixel/getColorCount'/>";
-    }
+class getColorCount extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
 

@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\Example;
 
-class functionImage extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Example/functionImage'/>";
-    }
+class functionImage extends \ImagickDemo\ExampleWithoutControl {
 
     function renderTitle() {
         return "";

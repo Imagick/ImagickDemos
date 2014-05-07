@@ -5,11 +5,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class getIteratorRow extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/getIteratorRow'/>";
-    }
+class getIteratorRow extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

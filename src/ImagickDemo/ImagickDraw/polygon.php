@@ -14,14 +14,14 @@ class polygon extends ImagickDrawExample {
         $draw = new \ImagickDraw();
 
 
-        $darkColor = new \ImagickPixel('black');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeOpacity(1);
-        $draw->setStrokeColor($darkColor);
+        $draw->setStrokeColor($strokeColor);
         $draw->setStrokeWidth(4);
 
-        $draw->setFillColor($lightColor);
+        $draw->setFillColor($fillColor);
 
         $points = [['x' => 40 * 5, 'y' => 10 * 5], ['x' => 20 * 5, 'y' => 20 * 5], ['x' => 70 * 5, 'y' => 50 * 5], ['x' => 60 * 5, 'y' => 15 * 5],];
 

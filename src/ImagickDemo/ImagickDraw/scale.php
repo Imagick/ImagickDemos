@@ -15,10 +15,10 @@ class scale extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('maroon');
+        $fillColor = new \ImagickPixel($this->fillColor);
         $color = new \ImagickPixel('LightCoral');
 
-        $draw->setFillColor($darkColor);
+        $draw->setFillColor($fillColor);
         $draw->rectangle(200, 200, 300, 300);
 
         $draw->setFillColor($color);

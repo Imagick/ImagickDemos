@@ -13,11 +13,11 @@ class setTextAntialias extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $strokeColor = new \ImagickPixel('none');
-        $lightColor = new \ImagickPixel('brown');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeColor($strokeColor);
-        $draw->setFillColor($lightColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(1);
 

@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Example;
 
-class composite extends \ImagickDemo\Example {
+class composite extends \ImagickDemo\ExampleWithoutControl {
 
 
     private $listOfExamples = [
@@ -18,14 +18,6 @@ class composite extends \ImagickDemo\Example {
         ['CopyOpacity2', 'CopyOpacity2'], //(Set transparency from gray-scale mask)
     ];
 
-
-    function renderImageURL() {
-        return "<img src='/image/Example/composite'/>";
-    }
-
-    function renderTitle() {
-        return "";
-    }
 
     function renderDescription() {
 
@@ -104,8 +96,8 @@ class composite extends \ImagickDemo\Example {
 
     /**
      * This is meant to be a simple alpha mask
-     * @param $width
-     * @param $height
+     * @internal param $width
+     * @internal param $height
      */
     function Dst_In() {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
@@ -126,8 +118,8 @@ class composite extends \ImagickDemo\Example {
 
     /**
      * This is meant to be an inversed alpha mask
-     * @param $width
-     * @param $height
+     * @internal param $width
+     * @internal param $height
      */
     function Dst_Out() {
 
@@ -199,8 +191,8 @@ class composite extends \ImagickDemo\Example {
 
     /**
      * This is meant to be a simple alpha mask
-     * @param $width
-     * @param $height
+     * @internal param $width
+     * @internal param $height
      */
     function CopyOpacity() {
         $imagick = new \Imagick(realpath("../images/gradientDown.png"));
@@ -215,8 +207,8 @@ class composite extends \ImagickDemo\Example {
 
     /**
      * This is meant to be a simple alpha mask
-     * @param $width
-     * @param $height
+     * @internal param $width
+     * @internal param $height
      */
     function CopyOpacity2() {
         $imagick = new \Imagick(realpath("../images/TestImage.jpg"));

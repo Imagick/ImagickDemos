@@ -4,11 +4,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class clear extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixel/clear'/>";
-    }
+class clear extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

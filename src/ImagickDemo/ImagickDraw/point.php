@@ -13,9 +13,9 @@ class point extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('brown');
+        $fillColor = new \ImagickPixel($this->fillColor);
 
-        $draw->setFillColor($darkColor);
+        $draw->setFillColor($fillColor);
 
         for ($x = 0; $x < 50000; $x++) {
             $draw->point(rand(0, 500), rand(0, 500));

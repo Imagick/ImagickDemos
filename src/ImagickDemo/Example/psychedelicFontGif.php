@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\Example;
 
-class psychdelicFontGif extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Example/psychdelicFontGif'/>";
-    }
+class psychdelicFontGif extends \ImagickDemo\ExampleWithoutControl {
 
     function renderTitle() {
         return "";

@@ -3,18 +3,13 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class setIteratorRow extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/setIteratorRow'/>";
-    }
+class setIteratorRow extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";
     }
 
     function renderImage() {
-
 
         $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
 

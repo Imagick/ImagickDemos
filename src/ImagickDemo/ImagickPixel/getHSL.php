@@ -4,12 +4,12 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getHSL extends \ImagickDemo\Example {
+class getHSL extends \ImagickDemo\ExampleWithoutControl {
 
     function renderImageURL() {
-//        return "<img src='/image/ImagickPixel/getHSL'/>";
     }
- 
+    
+    
     function renderDescription() {
 
 //Create an ImagickPixel color

@@ -2,11 +2,7 @@
 
 namespace ImagickDemo\Example;
 
-class compositeText extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Example/compositeText'/>";
-    }
+class compositeText extends \ImagickDemo\ExampleWithoutControl {
 
     function renderTitle() {
         return "";

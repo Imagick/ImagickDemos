@@ -4,15 +4,14 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class setHSL extends \ImagickDemo\Example {
+class setHSL extends \ImagickDemo\ExampleWithoutControl {
 
     function renderImageURL() {
-    //    return "<img src='/image/ImagickPixel/setHSL'/>";
     }
 
     function renderDescription() {
 
-//Create an almost pure red color
+        //Create an almost pure red color
         $color = new \ImagickPixel('rgb(90%, 10%, 10%)');
 
         //Get it's HSL values
@@ -27,10 +26,9 @@ class setHSL extends \ImagickDemo\Example {
         //Set the ImagickPixel to the new color
         $colorInfo = $color->setHSL($newHue, $colorInfo['saturation'], $colorInfo['luminosity']);
 
-//Check that the new color is blue/green
+        //Check that the new color is blue/green
         $colorInfo = $color->getcolor();
         print_r($colorInfo);
-
 
         /*
         

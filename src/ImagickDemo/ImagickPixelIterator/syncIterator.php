@@ -71,11 +71,7 @@ class PixelStack {
 }
 
 
-class syncIterator extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/'/>";
-    }
+class syncIterator extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

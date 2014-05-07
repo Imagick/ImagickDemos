@@ -4,36 +4,21 @@
 namespace ImagickDemo;
 
 
-
-class Example {
-
-    protected $colors;
-
+interface renderableExample {
+    function renderImageURL();
     /**
-     * @var \ImagickDemo\Control Control
+     * @return \ImagickDemo\Control
      */
-    protected $control;
+    function getControl();
+}
 
-    function __construct(\ImagickDemo\Control\NullControl $control) {
-        $this->control = $control;
-    }
+abstract class Example implements renderableExample {
 
-    function renderControl() {}
     
-    function getURL() {}
-
-    function getControl() {
-        return $this->control;
-    }
-
     function renderTitle() {
         return getClassName(get_class($this));
     }
     
-    function renderImageURL() {
-        return $this->control->getURL();
-    }
-
     function renderImage() {
         echo "Hmm this should never be seen.";
         return "Image goes here?";
@@ -45,6 +30,7 @@ class Example {
             $this->renderImage();
         }
         catch(\Exception $e) {
+            //tODO set a header
             $draw = new \ImagickDraw();
 
             $strokeColor = new \ImagickPixel('none');

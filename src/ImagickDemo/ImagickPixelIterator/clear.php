@@ -4,11 +4,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class clear extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/clear'/>";
-    }
+class clear extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

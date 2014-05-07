@@ -8,13 +8,23 @@ class setOption extends ImagickExample {
 
     function renderDescription() {
     }
-    
-    function renderImage2() {
-        $imagick->setOption('png:bit-depth', '8');
-        $imagick->setOption('png:color-type', 6);
-    }
 
     function renderImage() {
+        $this->renderImage2();
+    }
+    
+    function renderImage1() {
+        $imagick = new \Imagick(realpath($this->imagePath));
+        //$imagick->setOption('png:bit-depth', '8');
+        $imagick->setOption('png:bit-depth', '4');
+        $imagick->setOption('png:color-type', 6);
+        
+
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+
+    function renderImage2() {
 
         $imagick = new \Imagick(realpath($this->imagePath));
 

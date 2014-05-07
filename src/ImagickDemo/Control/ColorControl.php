@@ -27,10 +27,10 @@ class ColorControl implements \ImagickDemo\Control {
             
             $this->fillColor = $request->getVariable('fillColor', $this->fillColor);
             new \ImagickPixel($this->fillColor);
-
         }
         catch (\Exception $e) {
             //TODO - error message about colors not being valid
+            
         }
 
         $this->imageBaseURL = $imageBaseURL;

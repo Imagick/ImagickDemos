@@ -9,7 +9,6 @@ class getImageChannelStatistics extends ImagickExample {
         $imagick = new \Imagick(realpath("../images/fnord.png"));
         header("Content-Type: image/png");
         echo $imagick->getimageblob();
-        //exit(0);
     }
 
     function renderDescription() {

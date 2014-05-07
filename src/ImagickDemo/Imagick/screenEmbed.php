@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class screenEmbed extends \ImagickDemo\Example {
+class screenEmbed extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
     }

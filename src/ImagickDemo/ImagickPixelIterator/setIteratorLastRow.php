@@ -6,11 +6,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class setIteratorLastRow extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/setIteratorLastRow'/>";
-    }
+class setIteratorLastRow extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

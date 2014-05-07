@@ -3,11 +3,7 @@
 
 namespace ImagickDemo\Example;
 
-class pseudoBorked extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Example/pseudoBorked'/>";
-    }
+class pseudoBorked extends \ImagickDemo\ExampleWithoutControl {
 
     function renderTitle() {
         return "";

@@ -9,16 +9,14 @@ class polyline extends ImagickDrawExample {
     }
 
     function renderImage() {
-
-//Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('black');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeOpacity(1);
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(5);
 
@@ -27,19 +25,17 @@ class polyline extends ImagickDrawExample {
         $draw->polyline($points);
 
 
-//Create an image object which the draw commands can be rendered into
+        //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
         $image->newImage(500, 300, $this->backgroundColor);
         $image->setImageFormat("png");
 
-//Render the draw commands in the ImagickDraw object 
-//into the image.
+        //Render the draw commands in the ImagickDraw object 
+        //into the image.
         $image->drawImage($draw);
 
-//Send the image to the browser
+        //Send the image to the browser
         header("Content-Type: image/png");
         echo $image->getImageBlob();
-
-
     }
 }

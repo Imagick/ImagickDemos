@@ -3,11 +3,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class getNextIteratorRow extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/getNextIteratorRow'/>";
-    }
+class getNextIteratorRow extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

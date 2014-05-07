@@ -5,13 +5,12 @@ namespace ImagickDemo\ImagickPixel;
 
 define('NL', '<br/>');
 
-class isSimilar extends \ImagickDemo\Example {
+class isSimilar extends \ImagickDemo\ExampleWithoutControl {
+
 
     function renderImageURL() {
-    //    return "<img src='/image/ImagickPixel/isSimilar'/>";
     }
-
-
+    
     function renderDescription() {
 
         echo "These tests need a modern version of Imagick due to the https://github.com/mkoppanen/imagick/issues/10 <br/> Also, a distance of '1' is the maximum distance in the color space e.g. from 0, 0, 0 to 255, ";

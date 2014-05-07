@@ -13,11 +13,11 @@ class skewY extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('maroon');
+        $fillColor = new \ImagickPixel($this->fillColor);
         $color = new \ImagickPixel('LightCoral');
 
-//$draw->setStrokeColor($darkColor);
-        $draw->setFillColor($darkColor);
+//$draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
         $draw->rectangle(200, 200, 300, 300);
 
 //$draw->setStrokeColor($color);

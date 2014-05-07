@@ -77,11 +77,7 @@ function mergeImages(array $srcImages, $outputHeight, $overlap, $contrast = 10, 
 }
 
 
-class imagickCompositeGen extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Example/imagickCompositeGen'/>";
-    }
+class imagickCompositeGen extends \ImagickDemo\ExampleWithoutControl {
 
     function renderTitle() {
         return "";

@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class construct extends \ImagickDemo\Example {
+class construct extends \ImagickDemo\ExampleWithoutControl {
 
     private $columns = 4;
 
@@ -25,10 +25,6 @@ class construct extends \ImagickDemo\Example {
         "rgb(100%, 0%, 0%)", //  range 0.0% - 100.0%
         "rgba(100%, 0%, 0%, 1.0)", //  the same, with an explicit alpha value
     );
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixel/construct'/>";
-    }
 
     function renderDescription() {
         $output = "<table>";

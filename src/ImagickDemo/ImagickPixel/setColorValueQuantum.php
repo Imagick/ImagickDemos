@@ -4,11 +4,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class setColorValueQuantum extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixel/setColorValueQuantum'/>";
-    }
+class setColorValueQuantum extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

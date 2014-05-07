@@ -86,11 +86,10 @@ class Nav implements ActiveNav {
         }
     }
 
-    
-    
+
     /**
-     * @param $array
      * @param $current
+     * @internal param $array
      * @return NavOption
      */
     function getPrevious($current) {
@@ -139,7 +138,7 @@ class Nav implements ActiveNav {
         $previousNavOption = $this->getPrevious($this->currentExample);
 
         if ($previousNavOption) {
-            return "<a href='/Imagick/".$previousNavOption->getName()."'>
+            return "<a href='/".$this->category."/".$previousNavOption->getName()."'>
             <button type='button' class='btn btn-primary'>
              <span class='glyphicon glyphicon-arrow-left'></span> ".$previousNavOption->getName()."
             </button>
@@ -153,7 +152,7 @@ class Nav implements ActiveNav {
         $nextNavOption = $this->getNext($this->currentExample);
 
         if ($nextNavOption) {
-            echo "<a href='/Imagick/".$nextNavOption->getName()."'>
+            echo "<a href='/".$this->category."/".$nextNavOption->getName()."'>
             <button type='button' class='btn btn-primary'>
             ".$nextNavOption->getName()." <span class='glyphicon  glyphicon-arrow-right'></span>
             </button>

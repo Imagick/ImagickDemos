@@ -5,6 +5,10 @@ namespace ImagickDemo\Imagick;
 
 class pingImage extends ImagickExample {
 
+    function renderImageURL() {
+        return "";
+    }
+
     function renderDescription() {
         echo "This method can be used to query image width, height, size, and format without reading the whole image in to memory.";
         

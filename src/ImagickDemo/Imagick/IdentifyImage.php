@@ -8,6 +8,10 @@ class IdentifyImage extends ImagickExample {
     function renderImage() {
     }
 
+    function renderImageURL() {
+        return "";
+    }
+
     function renderDescription() {
 
         $imagick = new \Imagick(realpath("../images/fnord.png"));

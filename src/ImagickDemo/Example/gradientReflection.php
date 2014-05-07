@@ -3,11 +3,7 @@
 
 namespace ImagickDemo\Example;
 
-class gradientReflection extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/Example/gradientReflection'/>";
-    }
+class gradientReflection extends \ImagickDemo\ExampleWithoutControl {
 
     function renderTitle() {
         return "";

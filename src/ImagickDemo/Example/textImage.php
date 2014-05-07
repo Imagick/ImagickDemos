@@ -3,11 +3,8 @@
 
 namespace ImagickDemo\Example;
 
-class textImage extends \ImagickDemo\Example {
+class textImage extends \ImagickDemo\ExampleWithoutControl {
 
-    function renderImageURL() {
-        return "<img src='/image/Example/textImage'/>";
-    }
 
     function renderTitle() {
         return "";

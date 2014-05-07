@@ -3,11 +3,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class setColorValue extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixel/setColorValue'/>";
-    }
+class setColorValue extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

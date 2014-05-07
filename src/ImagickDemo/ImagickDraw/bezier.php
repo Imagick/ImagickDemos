@@ -14,12 +14,12 @@ class bezier extends ImagickDrawExample {
         
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel($this->strokeColor);
-        $lightColor = new \ImagickPixel($this->fillColor);
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeOpacity(1);
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(2);
 

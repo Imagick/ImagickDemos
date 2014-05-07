@@ -12,11 +12,11 @@ class setClipRule extends ImagickDrawExample {
 
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('brown');
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeOpacity(1);
         $draw->setStrokeWidth(2);

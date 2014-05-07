@@ -4,7 +4,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class setImageTicksPerSecond extends \ImagickDemo\Example {
+class setImageTicksPerSecond extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "//Modify an animated gif so the first half of the gif is played

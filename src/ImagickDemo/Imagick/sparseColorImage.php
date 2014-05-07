@@ -61,7 +61,7 @@ function createGradientImage($width, $height, $colorPoints, $sparseMethod, $abso
 }
 
 
-class sparseColorImage extends \ImagickDemo\Example {
+class sparseColorImage extends \ImagickDemo\ExampleWithoutControl {
 
     /**
      * @var \ImagickDemo\Control\SparseColorControl

@@ -11,10 +11,10 @@ class ellipse extends ImagickDrawExample {
     function renderImage() {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
-        $darkColor = new \ImagickPixel('brown');
-        $lightColor = new \ImagickPixel('LightCoral');
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(2);
         $draw->setFontSize(72);

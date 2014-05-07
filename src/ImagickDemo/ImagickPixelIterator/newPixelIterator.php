@@ -5,11 +5,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class newPixelIterator extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/newPixelIterator'/>";
-    }
+class newPixelIterator extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "";

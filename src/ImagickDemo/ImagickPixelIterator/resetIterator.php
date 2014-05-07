@@ -3,11 +3,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class resetIterator extends \ImagickDemo\Example {
-
-    function renderImageURL() {
-        return "<img src='/image/ImagickPixelIterator/resetIterator'/>";
-    }
+class resetIterator extends \ImagickDemo\ExampleWithoutControl {
 
     function renderDescription() {
         return "Reset a pixel iterator so that you can iterate over it again.";

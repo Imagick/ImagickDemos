@@ -16,15 +16,15 @@ class setFillRule extends ImagickDrawExample {
 
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel($this->strokeColor);
-        $lightColor = new \ImagickPixel('LightCoral');
+        $strokeColor = new \ImagickPixel($this->strokeColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeOpacity(1);
         $draw->setStrokeWidth(1.5);
 
 
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $fillRules = [\Imagick::FILLRULE_NONZERO, \Imagick::FILLRULE_EVENODD];
 
@@ -68,12 +68,12 @@ class setFillRule extends ImagickDrawExample {
 
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
-        $lightColor = new \ImagickPixel('DodgerBlue2');
+        $fillColor = new \ImagickPixel($this->fillColor);
+        $strokeColor = new \ImagickPixel($this->strokeColor);
 
         $draw->setStrokeWidth(1);
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
 
         $fillRules = [\Imagick::FILLRULE_NONZERO, \Imagick::FILLRULE_EVENODD];
 
@@ -83,9 +83,6 @@ class setFillRule extends ImagickDrawExample {
         $draw->translate(175, 160);
 
         for ($x = 0; $x < 2; $x++) {
-
-            //$pointsArray = array();
-
             $draw->setFillRule($fillRules[$x]);
             $draw->pathStart();
             for ($n = 0; $n < $points * 2; $n++) {
@@ -139,12 +136,12 @@ class setFillRule extends ImagickDrawExample {
 
             $draw = new \ImagickDraw();
 
-            $darkColor = new \ImagickPixel('rgb(0, 0, 0)');
-            $lightColor = new \ImagickPixel('DodgerBlue2');
+            $strokeColor = new \ImagickPixel($this->strokeColor);
+            $fillColor = new \ImagickPixel($this->fillColor);
 
             $draw->setStrokeWidth(1);
-            $draw->setStrokeColor($darkColor);
-            $draw->setFillColor($lightColor);
+            $draw->setStrokeColor($strokeColor);
+            $draw->setFillColor($fillColor);
 
             $fillRules = [\Imagick::FILLRULE_NONZERO, \Imagick::FILLRULE_EVENODD];
 

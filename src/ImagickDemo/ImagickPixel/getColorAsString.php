@@ -3,8 +3,11 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColorAsString extends \ImagickDemo\Example {
+class getColorAsString extends \ImagickDemo\ExampleWithoutControl {
 
+    function renderImageURL() {
+        return "";
+    }
 
     function renderDescription() {
 
@@ -19,8 +22,7 @@ class getColorAsString extends \ImagickDemo\Example {
 
 
         /*
-          
-         
+
         <refsect1 role="examples">
           &reftitle.examples;
           <para>

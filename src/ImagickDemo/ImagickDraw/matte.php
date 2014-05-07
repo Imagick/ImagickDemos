@@ -5,7 +5,10 @@ namespace ImagickDemo\ImagickDraw;
 class matte extends ImagickDrawExample {
 
     function renderDescription() {
-        return "";
+
+//        $paintTypes = [\Imagick::PAINT_POINT, \Imagick::PAINT_REPLACE, \Imagick::PAINT_FLOODFILL, \Imagick::PAINT_FILLTOBORDER, \Imagick::PAINT_RESET];
+        
+        return '\Imagick::PAINT_POINT, \Imagick::PAINT_REPLACE, \Imagick::PAINT_FLOODFILL, \Imagick::PAINT_FILLTOBORDER, \Imagick::PAINT_RESET';
     }
 
     function renderImage() {
@@ -21,17 +24,11 @@ class matte extends ImagickDrawExample {
 
         $draw->setStrokeWidth(2);
         $draw->setFontSize(72);
-
-
-        $paintTypes = [\Imagick::PAINT_POINT, \Imagick::PAINT_REPLACE, \Imagick::PAINT_FLOODFILL, \Imagick::PAINT_FILLTOBORDER, \Imagick::PAINT_RESET];
-
+        //$paintTypes = [\Imagick::PAINT_POINT, \Imagick::PAINT_REPLACE, \Imagick::PAINT_FLOODFILL, \Imagick::PAINT_FILLTOBORDER, \Imagick::PAINT_RESET];
 
         $draw->rectangle(100, 100, 300, 200);
-
         $draw->matte(120, 120, \Imagick::PAINT_FLOODFILL);
-
-
-//$draw->rectangle(125, 170, 100, 150);
+        //$draw->rectangle(125, 170, 100, 150);
 
 
 //Create an image object which the draw commands can be rendered into

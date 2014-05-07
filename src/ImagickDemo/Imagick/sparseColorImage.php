@@ -63,6 +63,22 @@ function createGradientImage($width, $height, $colorPoints, $sparseMethod, $abso
 
 class sparseColorImage extends \ImagickDemo\Example {
 
+    /**
+     * @var \ImagickDemo\Control\SparseColorControl
+     */
+    private $sparseControl;
+    
+    function __construct(\ImagickDemo\Control\SparseColorControl $sparseControl) {
+        $this->sparseControl = $sparseControl;
+    }
+
+    function renderControl() {
+        return $this->sparseControl->render();
+    }
+    
+    function getURL() {
+        return $this->sparseControl->getURL();
+    }
 
     function renderDescription() {
 
@@ -90,49 +106,47 @@ class sparseColorImage extends \ImagickDemo\Example {
 END;
   
         return $foo;
-
     }
 
+
+    function renderImage() {
+        $function = $this->sparseControl->getOptionValue();
+        
+        if (method_exists($this, $function)) {
+            call_user_func([$this, $function]);
+            return;
+        }
+
+        $this->renderImageBilinear();
+    }
+    
+
     function renderImageBarycentric2() {
-        require_once "../functions.php";
-
+        //require_once "../functions.php";
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
-
         $imagick = createGradientImage(400, 400, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
-
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
 
-    function renderImage() {
-
+    function renderImageBilinear() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
-
         $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_BILINEAR);
-
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
     
     function renderImagePolynomial() {
-
-        try {
-            $points = [1, 2, 1, 2, 1, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 400, 500, 3, 4, 5,];
-
-            $imagick = new \Imagick();
-            $imagick->newImage(500, 500, "white");
-            $imagick->setImageFormat("png");
-
-            $imagick->sparseColorImage(\Imagick::SPARSECOLORMETHOD_POLYNOMIAL, $points);
-
-            header("Content-Type: image/png");
-            echo $imagick->getImageBlob();
-
-        } catch (\Exception $e) {
-            echo "Exception: " . $e->getMessage();
-            echo "hmm";
-        }
+        //TODO - this doesn't appear to work correctly.
+        $points = [1, 2, 1, 2, 1, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 400, 500, 3, 4, 5,];
+        $imagick = new \Imagick();
+        $imagick->newImage(500, 500, "white");
+        $imagick->setImageFormat("png");
+        $imagick->sparseColorImage(\Imagick::SPARSECOLORMETHOD_POLYNOMIAL, $points);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
     }
+
 
     function renderImageShepards() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
@@ -141,27 +155,53 @@ END;
         echo $imagick->getImageBlob();
     }
     
-    function renderImageVoronoi() {
+    function renderImageShepardsAlt1() {
 
-        $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
-
-        $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_VORONOI);
-
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
-
+//        convert -size 100x100 xc:none +antialias -fill none -strokewidth 0.5 \
+//        -stroke Gold        -draw "path 'M 20,70  A 1,1 0 0,1 80,50'" \
+//        -stroke DodgerBlue  -draw "line 30,10  50,80" \
+//        -stroke Red         -draw "circle 80,60  82,60" \
+//        sparse_source.gif
+//        
+//          convert sparse_source.gif txt:- |\
+//        sed '1d; / 0) /d; s/:.* /,/;' |\
+//        convert sparse_source.gif -alpha off \
+//        -sparse-color shepards '@-' sparse_fill.png
+        
+        
     }
     
-    function renderImageBarycentric() {
-
-        $points = [[0, 0, 'skyblue'], [-1, 1, 'skyblue'], [1, 1, 'black'],];
-
-        $imagick = createGradientImage(600, 200, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
-
+    
+    function renderImageVoronoi() {
+        $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
+        $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_VORONOI);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
+    }
 
 
+    
+    function renderImageBarycentric() {
+        $points = [[0, 0, 'skyblue'], [-1, 1, 'skyblue'], [1, 1, 'black'],];
+        $imagick = createGradientImage(600, 200, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+    
+    function renderImageInverse() {
+
+        //TODO - add inverse to Imagick
+//        convert -size 100x100 xc: -sparse-color  Inverse \
+//        '30,10 red  10,80 blue  70,60 lime  80,20 yellow' \
+//        -fill white -stroke black \
+//        -draw 'circle 30,10 30,12  circle 10,80 10,82' \
+//        -draw 'circle 70,60 70,62  circle 80,20 80,22' \
+//        sparse_inverse.png
+        
+        
+    }
+    
+    
         /*
         
         Fill an image with color with the defined sparse color method.
@@ -252,5 +292,4 @@ END;
         
         */
 
-    }
 }

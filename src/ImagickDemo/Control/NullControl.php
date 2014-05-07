@@ -6,6 +6,12 @@ namespace ImagickDemo\Control;
 
 class NullControl implements \ImagickDemo\Control {
 
+    private $imageBaseURL;
+    
+    function __construct(\Intahwebz\Request $request, $imageBaseURL) {
+        $this->imageBaseURL = $imageBaseURL;
+    }
+    
     function render() { }
 
     /**
@@ -21,12 +27,10 @@ class NullControl implements \ImagickDemo\Control {
     function getParamString() {
         return "";
     }
-
+    
     function getURL() {
-        return ""; 
+        return sprintf("<img src='%s?%s' />", $this->imageBaseURL, $this->getParamString() );
     }
-
-
 }
 
  

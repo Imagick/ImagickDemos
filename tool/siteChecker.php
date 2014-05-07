@@ -44,6 +44,7 @@ class HTMLPrinter {
         }
 
         fwrite($outputStream, "</table>");
+        fprintf($outputStream, "<span>There were %d URLs scanned succesfully.</span>", count($this->results));
         fwrite($outputStream, "</body>");
         fwrite($outputStream, "</html>");
     }
@@ -217,6 +218,9 @@ class SiteChecker {
             }
             
             return new URLResult($path, 200);
+        }
+        catch (Artax\SocketException $se) {
+            return new URLResult($path, 500, "Artax\SocketException on $path - ".$se->getMessage(). " Exception type is ".get_class($se));
         }
         catch(InvalidArgumentException $iae) {
             //echo "Fluent dom exception on $path - ".$iae->getMessage(). " Exception type is ".get_class($iae)." \n";

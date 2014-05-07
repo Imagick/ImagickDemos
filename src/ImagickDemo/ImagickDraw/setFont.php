@@ -21,18 +21,14 @@ class setFont extends ImagickDrawExample {
         $draw->setStrokeWidth(2);
         $draw->setFontSize(36);
 
-        echo "filesize is ".filesize("../fonts/Tahoma.ttf");
-        
-        exit(0);
-
         $draw->setFont("../fonts/Arial.ttf");
         $draw->annotation(50, 50, "Lorem Ipsum!");
 
         $draw->setFont("../fonts/Consolas.ttf");
         $draw->annotation(50, 100, "Lorem Ipsum!");
 
-//        $draw->setFont("../fonts/Tahoma.ttf");
-//        $draw->annotation(50, 150, "Lorem Ipsum!");
+        $draw->setFont("../fonts/Roboto-ThinItalic.ttf");
+        $draw->annotation(50, 150, "Lorem Ipsum!");
 
         $draw->setFont("../fonts/CANDY.TTF");
         $draw->annotation(50, 200, "Lorem Ipsum!");

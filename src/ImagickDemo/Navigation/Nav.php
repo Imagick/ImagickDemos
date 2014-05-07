@@ -33,15 +33,13 @@ class Nav implements ActiveNav {
 
     function getURL() {
         $navOption = $this->getCurrent();
-        
-        
-        
+
         if ($navOption) {
 
             if ($navOption->hasImage() == false) {
                 return "";
             }
-            
+
             $imageBaseURL = sprintf('/image/%s/%s', $this->category, $navOption->getName());
             $params = '';
             if ($this->control) {
@@ -72,16 +70,19 @@ class Nav implements ActiveNav {
 
             $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
 
-            $controlName = $navOption->getControl();
-            
-            if ($controlName) {
-                $injector->alias(\ImagickDemo\Control::class, $controlName);
-//                $this->control = $injector->make(\ImagickDemo\Control::class);
-//
-//                foreach($this->control->getParams() as $key => $value) {
-//                    $injector->defineParam($key, $value);
-//                }
-            }
+//            $controlName = $navOption->getControl();
+//            
+//            if ($controlName) {
+//                //TODO - this is totally wrong.
+//                //Examples can have multiple controls?
+//                $injector->alias(\ImagickDemo\Control::class, $controlName);
+//                $injector->share(\ImagickDemo\Control::class);
+////                $this->control = $injector->make(\ImagickDemo\Control::class);
+////
+////                foreach($this->control->getParams() as $key => $value) {
+////                    $injector->defineParam($key, $value);
+////                }
+//            }
         }
     }
 

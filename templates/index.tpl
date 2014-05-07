@@ -50,20 +50,16 @@
             {$nav->renderNav()}
         </div>
 
-    
         <div class="col-md-10">
-            
             <div class="row">
                 <div class="col-md-9">
                     {inject name='example' value='ImagickDemo\Example'}
                     {inject name='control' value='ImagickDemo\Control'}
-
-                    {$nav->getURL() | nofilter}
+                    {$example->renderImageURL() | nofilter}
                     {$example->renderDescription() | nofilter}
-
                 </div>
                 <div class="col-md-3">
-                    {$control->render() | nofilter}
+                    {$example->renderControl() | nofilter}
                 </div>
             </div>
     

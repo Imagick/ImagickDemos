@@ -5,21 +5,16 @@ namespace ImagickDemo\ImagickDraw;
 class setFontStyle extends ImagickDrawExample {
 
     function renderDescription() {
-        return "";
+        return "Fonts depend on ghostscript";
     }
 
     function renderImage() {
 
         $draw = new \ImagickDraw();
 
-        $darkColor = new \ImagickPixel('brown');
-        $lightColor = new \ImagickPixel('LightCoral');
-
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
-
+        $draw->setStrokeColor($this->strokeColor);
+        $draw->setFillColor($this->fillColor);
         $draw->setStrokeWidth(1);
-
         $draw->setFontSize(36);
         $draw->setFontStyle(\Imagick::STYLE_NORMAL);
         $draw->annotation(50, 50, "Lorem Ipsum!");

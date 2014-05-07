@@ -15,10 +15,10 @@ class arc extends ImagickDrawExample {
         $draw->setStrokeWidth(1);
 
         $darkColor = new \ImagickPixel($this->strokeColor);
-        $lightColor = new \ImagickPixel($this->fillColor);
+        $fillColor = new \ImagickPixel($this->fillColor);
 
         $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+        $draw->setFillColor($fillColor);
 
         $draw->setStrokeWidth(2);
 

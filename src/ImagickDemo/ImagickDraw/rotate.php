@@ -10,7 +10,7 @@ class rotate extends ImagickDrawExample {
 
     function renderImage() {
 
-//Create a ImagickDraw object to draw into.
+        //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
         $darkColor = new \ImagickPixel('maroon');

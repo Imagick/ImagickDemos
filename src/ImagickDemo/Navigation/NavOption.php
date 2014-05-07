@@ -7,12 +7,12 @@ namespace ImagickDemo\Navigation;
 class NavOption {
 
     private $name;
-    private $control;
+    //private $control;
     private $hasImage;
 
-    function __construct($name, $control, $hasImage, $urlName = null) {
+    function __construct($name, $hasImage, $urlName = null) {
         $this->name = $name;
-        $this->control = $control;
+        //$this->control = $control;
         $this->hasImage = $hasImage;
         $this->urlName = $urlName;
     }
@@ -21,12 +21,12 @@ class NavOption {
         return $this->hasImage;
     }
     
-    /**
-     * @return mixed
-     */
-    function getControl() {
-        return $this->control;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    function getControl() {
+//        return $this->control;
+//    }
 
     /**
      * @return mixed

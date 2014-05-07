@@ -13,6 +13,7 @@ class ImagickDrawExample extends \ImagickDemo\Example {
         $this->backgroundColor = $colorControl->getBackgroundColor();
         $this->fillColor =  $colorControl->getFillColor();
         $this->strokeColor = $colorControl->getStrokeColor();
+        $this->control = $colorControl;
     }
 }
 

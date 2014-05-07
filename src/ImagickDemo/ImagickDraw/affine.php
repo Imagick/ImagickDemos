@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\Control\ColorControl;
 
 class affine extends ImagickDrawExample {
 

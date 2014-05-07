@@ -20,7 +20,6 @@ class newPseudoImage extends ImagickExample {
         $imagick->setImageFormat("jpg");
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
-
     }
 
 
@@ -50,7 +49,6 @@ class newPseudoImage extends ImagickExample {
 
         $canvas->compositeImage($im, \Imagick::COMPOSITE_SRCOVER, 20, 10);
         $canvas->compositeImage($refl, \Imagick::COMPOSITE_SRCOVER, 20, $im->getImageHeight() + 10);
-
 
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();

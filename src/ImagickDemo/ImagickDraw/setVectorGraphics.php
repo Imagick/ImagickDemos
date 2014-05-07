@@ -59,7 +59,6 @@ class setVectorGraphics extends ImagickDrawExample {
 //Send the image to the browser
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
-
     }
 }
 

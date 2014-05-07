@@ -22,7 +22,8 @@ class setFontSize extends ImagickDrawExample {
 
         $draw->setStrokeWidth(2);
 
-        $draw->setFont("../fonts/CANDY.TTF");
+        //$draw->setFont("../fonts/CANDY.TTF");
+        $draw->setFont("../fonts/Arial.TTF");
 
         $sizes = [24, 36, 48, 60, 72];
 

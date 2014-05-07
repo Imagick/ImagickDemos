@@ -9,8 +9,21 @@ class Example {
 
     protected $colors;
 
-    function __construct(\ImagickDemo\Colors $colors) {
-        $this->colors = $colors;
+    /**
+     * @var \ImagickDemo\Control Control
+     */
+    protected $control;
+
+    function __construct(\ImagickDemo\Control\NullControl $control) {
+        $this->control = $control;
+    }
+
+    function renderControl() {}
+    
+    function getURL() {}
+
+    function getControl() {
+        return $this->control;
     }
 
     function renderTitle() {
@@ -18,9 +31,9 @@ class Example {
     }
     
     function renderImageURL() {
-        return "";
+        return $this->control->getURL();
     }
-    
+
     function renderImage() {
         echo "Hmm this should never be seen.";
         return "Image goes here?";

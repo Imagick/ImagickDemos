@@ -96,19 +96,18 @@
 
 <script type="text/javascript">
     
-    //http://colpick.com/plugin
+    //http://colpick.com/plugin - I love you color picker
     
     function addColorSelector(selector, targetElement) {
         $(selector).colpick({
             colorScheme:'dark',
             layout:'rgbhex',
             color:'ff8800',
-            onSubmit:function(hsb, hex, rgb, el) {
-                $(el).css('background-color', '#' + hex);
-                $(el).colpickHide();
-                $(targetElement).val("rgb('"+ rgb.r + "', '" + rgb.g + "', '" + rgb.b + "')")
-                
-            }
+            submit: false,
+            onChange:function(hsb, hex, rgb, el) {
+                $(el).children().css('background-color', '#' + hex);
+                $(targetElement).val("rgb("+ rgb.r + ", " + rgb.g + ", " + rgb.b + ")")
+            },
         });
     }
 

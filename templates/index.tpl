@@ -10,7 +10,7 @@
 
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/imagick.css" rel="stylesheet">
-
+    <link href="/css/colpick.css" rel="stylesheet">
     <!-- IE8 shims deleted - use a decent browser -->
 </head>
 
@@ -52,13 +52,13 @@
 
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     {inject name='example' value='ImagickDemo\Example'}
                     {inject name='control' value='ImagickDemo\Control'}
                     {$example->renderImageURL() | nofilter}
                     {$example->renderDescription() | nofilter}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {$example->getControl()->render() | nofilter}
                 </div>
             </div>
@@ -91,5 +91,32 @@
 
 <script src="/js/jquery-1.11.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/colpick.js"></script>
+
+
+<script type="text/javascript">
+    
+    //http://colpick.com/plugin
+    
+    function addColorSelector(selector, targetElement) {
+        $(selector).colpick({
+            colorScheme:'dark',
+            layout:'rgbhex',
+            color:'ff8800',
+            onSubmit:function(hsb, hex, rgb, el) {
+                $(el).css('background-color', '#' + hex);
+                $(el).colpickHide();
+                $(targetElement).val("rgb('"+ rgb.r + "', '" + rgb.g + "', '" + rgb.b + "')")
+                
+            }
+        });
+    }
+
+    addColorSelector("#fillColorSelector", "#fillColor");
+    
+</script>
+
+
+
 </body>
 </html>

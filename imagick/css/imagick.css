@@ -8,3 +8,8 @@
 .noMarginTop {
     margin-top: 0px;
 }
+
+.standardCell {
+    /* padding-left: 3px; */
+    padding-right: 4px;
+}

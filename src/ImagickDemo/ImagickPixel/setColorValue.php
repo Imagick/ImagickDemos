@@ -10,17 +10,11 @@ class setColorValue extends \ImagickDemo\ExampleWithoutControl {
     }
 
     function renderImage() {
-
         $image = new \Imagick();
-
-
-
         $draw = new \ImagickDraw();
 
-    
         $color = new \ImagickPixel('blue');
         $color->setcolorValue(\Imagick::COLOR_RED, 128);
-
 
         //Set the stroke and fill colour and draw a rectangle
         $draw->setstrokewidth(1.0);

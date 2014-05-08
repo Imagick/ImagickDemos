@@ -4,19 +4,17 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class construct extends \ImagickDemo\ExampleWithoutControl {
+class construct extends \ImagickDemo\Imagick\ImagickExample  {
 
     function renderDescription() {
         return "";
     }
 
     function renderImage() {
+        $imagick = new \Imagick(realpath($this->imagePath));
+        //$imageIterator = $imagick->getPixelIterator();
 
-
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
-
-
-        $imageIterator = $imagick->getPixelIterator();
+        $imageIterator = new \ImagickPixelIterator($imagick);
 
         foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
             foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
@@ -27,7 +25,6 @@ class construct extends \ImagickDemo\ExampleWithoutControl {
             }
             $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
         }
-
 
         header("Content-Type: image/jpg");
         echo $imagick;

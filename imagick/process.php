@@ -502,8 +502,8 @@ function getImagickExamples() {
 function getImagickPixelIteratorExamples() {
 
     $imagickPixelIteratorExamples = array(
-        new NavOption('clear', true ),// => 'resetIterator',
-        new NavOption('construct', true ),
+        new NavOption('clear', true ),
+        new NavOption('construct', true),
         //'getCurrentIteratorRow',
         //'getIteratorRow' => 'setIteratorRow',
         new NavOption('getNextIteratorRow', true ),
@@ -580,7 +580,7 @@ function bootstrap() {
 function setupImage(\Auryn\Provider $injector, $category, $example = null) {
     setupExample($injector, $category, $example, true);
 
-    $cache = true;
+    $cache = false;
 
     if ($cache == true) {
         $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
@@ -694,7 +694,7 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
 
-//$uri = '/image/Example/psychedelicFontGif?';
+//$uri = '/image/Example/imagickCompositeGen?';
 
 $path = $uri;
 $queryPosition = strpos($path, '?');

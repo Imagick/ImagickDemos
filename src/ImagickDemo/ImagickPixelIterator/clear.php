@@ -4,18 +4,16 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class clear extends \ImagickDemo\ExampleWithoutControl {
+class clear extends \ImagickDemo\Imagick\ImagickExample {
 
     function renderDescription() {
         return "";
     }
 
     function renderImage() {
+        $imagick = new \Imagick(realpath($this->imagePath));
 
-
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
-
-        $imageIterator = $imagick->getPixelRegionIterator(200, 200, 250, 200);
+        $imageIterator = $imagick->getPixelRegionIterator(100, 100, 250, 200);
 
         foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
             /** @var $pixel \ImagickPixel */
@@ -31,7 +29,5 @@ class clear extends \ImagickDemo\ExampleWithoutControl {
 
         header("Content-Type: image/jpg");
         echo $imagick;
-
-
     }
 }

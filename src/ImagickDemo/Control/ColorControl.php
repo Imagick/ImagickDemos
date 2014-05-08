@@ -12,25 +12,25 @@ class ColorControl implements \ImagickDemo\Control {
     private $fillColor = 'DodgerBlue2';
 
     private $imageBaseURL;
+    
+    private $errors = [];
 
     function __construct(Request $request, $imageBaseURL) {
-        $this->backgroundColor = $request->getVariable('backgroundColor', $this->backgroundColor);
-        $this->strokeColor = $request->getVariable('strokeColor', $this->strokeColor);
-        $this->fillColor = $request->getVariable('fillColor', $this->fillColor);
+//        $this->backgroundColor = $request->getVariable('backgroundColor', $this->backgroundColor);
+//        $this->strokeColor = $request->getVariable('strokeColor', $this->strokeColor);
+//        $this->fillColor = $request->getVariable('fillColor', $this->fillColor);
+
+        $colorTypes = ['backgroundColor', 'strokeColor', 'fillColor'];
         
-        try {
-            $this->backgroundColor = $request->getVariable('backgroundColor', $this->backgroundColor);
-            new \ImagickPixel($this->backgroundColor);
-            
-            $this->strokeColor = $request->getVariable('strokeColor', $this->strokeColor);
-            new \ImagickPixel($this->strokeColor);
-            
-            $this->fillColor = $request->getVariable('fillColor', $this->fillColor);
-            new \ImagickPixel($this->fillColor);
-        }
-        catch (\Exception $e) {
-            //TODO - error message about colors not being valid
-            
+        foreach ($colorTypes as $colorType) {
+            $nextColor = $request->getVariable($colorType, $this->{$colorType});
+            try {
+                new \ImagickPixel($nextColor);
+                $this->{$colorType} = $nextColor;
+            }
+            catch (\Exception $e) {
+                $this->errors[] = "Color '$nextColor' for $colorType was not valid.";
+            }
         }
 
         $this->imageBaseURL = $imageBaseURL;
@@ -78,14 +78,98 @@ class ColorControl implements \ImagickDemo\Control {
     function render() {
         $output = "";
         $output .= "<form method='GET' accept-charset='utf-8'>";
-        $output .= "backgroundColor = <input type='text' name='backgroundColor' value='".safeText($this->backgroundColor)."'/><br/>";
-        $output .= "strokeColor = <input type='text' name='strokeColor' value='".safeText($this->strokeColor)."'/> <br/>";
-        $output .= "fillColor = <input type='text' name='fillColor' value='".safeText($this->fillColor)."' /><br/>";
-        
-        
-        $output .= "<button type='submit' class='btn btn-default'>Update</button>";
-        $output .= "</form>";
 
+
+        $sStrokeColor = safeText($this->strokeColor);
+        $sFillColor = safeText($this->fillColor);
+
+        $fillPixel = new \ImagickPixel($this->fillColor);
+        $fillString = $fillPixel->getcolor();
+        $fillString = sprintf("rgb(%d, %d, %d)", $fillString['r'], $fillString['g'], $fillString['b']); 
+         
+        
+        $sBackgroundColor = safeText($this->backgroundColor);
+        
+        
+        if (count($this->errors)) {
+            foreach ($this->errors as $error) {
+                $output .= $error."<br/>";
+            }
+        }
+        
+        
+        $output .= <<< END
+        
+        <table>
+            <tr>
+                <td class='standardCell'>
+                    Background
+                </td>
+                <td class='standardCell'>
+                    <input type='text' name='backgroundColor' value='$sBackgroundColor'/>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td class='standardCell'>
+                    Stroke
+                </td>
+                <td class='standardCell'>
+                    <input type='text' name='strokeColor' value='$sStrokeColor'/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class='standardCell'>
+                    Fill
+                </td>
+                <td class='standardCell'>
+                    <input type='text' id='fillColor' name='fillColor' value='$sFillColor' />
+                    
+                    <span id='fillColorSelector' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
+                        <span style='background-color: $fillString; margin: 2px; width: 20px; display: inline-block;'>
+                            &nbsp;
+                        </span>
+                    </span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class='standardCell'>
+                </td>
+                <td class='standardCell'>
+                    <button type='submit' class='btn btn-default'>Update</button>
+                </td>
+            </tr>
+
+        </table>
+        </form>
+
+
+
+
+        
+END;
+        
+        $output .= <<< END
+
+        <div style='height=20px'>&nbsp;
+        </div>
+
+        Colors can be: 
+        <ul>
+            <li>RGB number - #ff00ff </li>
+            <li>RGBA number - #ff00ff7f</li>
+            <li>RGB string - rgb(225, 225, 225) </li>
+            <li>RGBA string - 'rgba(90%, 20%, 20%, 0.75)' </li>
+            <li>HSL string - hsl(50, 200, 128)</li>
+            <li><a href='http://www.imagemagick.org/script/color.php'>Color string</a> - 'pink', 'DodgerBlue1' </li>
+        </ul>
+END;
+
+        
+        
         return $output;
     }
 }

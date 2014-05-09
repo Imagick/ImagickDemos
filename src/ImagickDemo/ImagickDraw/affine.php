@@ -6,18 +6,20 @@ namespace ImagickDemo\ImagickDraw;
 class affine extends ImagickDrawExample {
 
     function renderDescription() {
-        return "<br/>Adjusts the current affine transformation matrix with the specified affine transformation matrix.
+        return nl2br("Adjusts the current affine transformation matrix with the specified affine transformation matrix.
         
-            sx - The amount to scale the drawing in the x direction.<br/>
-            sy - The amount to scale the drawing in the y direction,<br/>
-            rx - The amount to rotate the drawing for ,<br/>
-            ry - 0,<br/>
-            tx - The amount to translate the drawing in the x direction.<br/>
-            ty - The amount to translate the drawing in the y direction.<br/>";
+            sx - The amount to scale the drawing in the x direction.
+            sy - The amount to scale the drawing in the y direction.
+            rx - The amount to rotate the drawing for each unit in the x direction.
+            ry - The amount to rotate the drawing for each unit in the y direction.
+            tx - The amount to translate the drawing in the x direction.
+            ty - The amount to translate the drawing in the y direction.");
     }
 
     function renderImage() {
 
+        //Example CompleteExample
+        
         //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
@@ -30,7 +32,6 @@ class affine extends ImagickDrawExample {
 
         $PI = 3.141592653589794;
         $angle = 60 * $PI / 360;
-
 
         //Scale the drawing co-ordinates.
         $affineScale = array("sx" => 1.75, "sy" => 1.75, "rx" => 0, "ry" => 0, "tx" => 0, "ty" => 0);
@@ -47,7 +48,6 @@ class affine extends ImagickDrawExample {
 
         //The identiy affine matrix
         $affineIdentity = array("sx" => 1, "sy" => 1, "rx" => 0, "ry" => 0, "tx" => 0, "ty" => 0);
-
 
         $examples = [$affineScale, $affineShear, $affineRotate, $affineTranslate, $affineIdentity,];
 
@@ -75,41 +75,40 @@ class affine extends ImagickDrawExample {
         //Send the image to the browser
         header("Content-Type: image/png");
         echo $image->getImageBlob();
-
-
-        /*
         
-        Adjusts the current affine transformation matrix with the specified affine transformation matrix.
-        
-            sx - The amount to scale the drawing in the x direction.
-            sy - The amount to scale the drawing in the y direction,
-            rx - The amount to rotate the drawing for ,
-            ry - 0,
-            tx - The amount to translate the drawing in the x direction.
-            ty - The amount to translate the drawing in the y direction.
-        
-        
-        
-        <refsect1 role="examples">
-          &reftitle.examples;
-          <para>
-           <example>
-            <title>Basic <function>substr</function> usage</title>
-            <programlisting role="php">
-        <![CDATA[
-        <?php
-        
-        
-        
-        ]]>
-            </screen>
-           </example>
-          </para>
-         </refsect1>
-
-        */
-
+        //ExampleEnd
     }
-
-
 }
+
+
+/*
+     
+     Adjusts the current affine transformation matrix with the specified affine transformation matrix.
+     
+         sx - The amount to scale the drawing in the x direction.
+         sy - The amount to scale the drawing in the y direction,
+         rx - The amount to rotate the drawing for ,
+         ry - 0,
+         tx - The amount to translate the drawing in the x direction.
+         ty - The amount to translate the drawing in the y direction.
+     
+     
+     
+     <refsect1 role="examples">
+       &reftitle.examples;
+       <para>
+        <example>
+         <title>Basic <function>substr</function> usage</title>
+         <programlisting role="php">
+     <![CDATA[
+     <?php
+     
+     
+     
+     ]]>
+         </screen>
+        </example>
+       </para>
+      </refsect1>
+
+     */

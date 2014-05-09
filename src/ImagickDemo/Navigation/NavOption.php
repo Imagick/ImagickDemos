@@ -20,13 +20,6 @@ class NavOption {
     function hasImage() {
         return $this->hasImage;
     }
-    
-//    /**
-//     * @return mixed
-//     */
-//    function getControl() {
-//        return $this->control;
-//    }
 
     /**
      * @return mixed

@@ -11,7 +11,7 @@ class ImageControl extends OptionControl {
     }
     
     function getDefaultOption() {
-        return 'Skyline';
+        return 'Lorikeet';//'Skyline';
     }
     
     function getOptions() {
@@ -19,7 +19,7 @@ class ImageControl extends OptionControl {
             "../images/Skyline_400.jpg" => 'Skyline',
             "../images/Biter_500.jpg" => 'Lorikeet',
         ];
-        
+
         return $images;
     }
 

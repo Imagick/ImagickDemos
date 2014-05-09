@@ -33,8 +33,6 @@
 
 {inject name='nav' value='ImagickDemo\Navigation\ActiveNav'}
 
-
-
 <div class='container'>
 
     <div class="row">
@@ -56,6 +54,7 @@
                     {inject name='example' value='ImagickDemo\Example'}
                     {inject name='control' value='ImagickDemo\Control'}
                     {$example->renderImageURL() | nofilter}
+                    <br/>
                     {$example->renderDescription() | nofilter}
                 </div>
                 <div class="col-md-4">

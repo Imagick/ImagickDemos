@@ -69,23 +69,8 @@ class Nav implements ActiveNav {
             }
 
             $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
-
-//            $controlName = $navOption->getControl();
-//            
-//            if ($controlName) {
-//                //TODO - this is totally wrong.
-//                //Examples can have multiple controls?
-//                $injector->alias(\ImagickDemo\Control::class, $controlName);
-//                $injector->share(\ImagickDemo\Control::class);
-////                $this->control = $injector->make(\ImagickDemo\Control::class);
-////
-////                foreach($this->control->getParams() as $key => $value) {
-////                    $injector->defineParam($key, $value);
-////                }
-//            }
         }
     }
-
 
     /**
      * @param $current
@@ -97,7 +82,7 @@ class Nav implements ActiveNav {
         foreach ($this->examples as $element) {
             if (strcmp($current, $element->getName()) === 0) {
                 if ($previous) {
-                    return $element;
+                    return $previous;
                 }
             }
             $previous = $element;

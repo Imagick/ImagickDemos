@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-class adaptiveBlurImage extends ImagickExample {
+class adaptiveBlurImage extends \ImagickDemo\ExampleWithRadiusSigmaControlControl {
 
 
     function renderDescription() {

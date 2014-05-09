@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 //TODO - Arctan function isn't in my current imagick.
 
 use ImagickDemo\Navigation\NavOption;
@@ -447,6 +443,9 @@ function getImagickExamples() {
         //'setIteratorIndex',
         //'setLastIterator',
         new NavOption('setOption', true),
+        new NavOption('setProgressMonitor', true),
+
+        
         //'setPage',
         //'setPointSize',
         //'setResolution',
@@ -464,21 +463,18 @@ function getImagickExamples() {
         new NavOption('sketchImage', true),
         new NavOption('solarizeImage', true),
         new NavOption('sparseColorImage', true),
-        //        'sparseColorImage_bilinear',
-        //        'sparseColorImage_shepards',
-        //        'sparseColorImage_voronoi',
         new NavOption('spliceImage', true),
         new NavOption('spreadImage', true),
         //'steganoImage',
         //'stereoImage',
         //'stripImage',
         new NavOption('swirlImage', true),
-        //new NavOption('textureImage',  true),
+        new NavOption('textureImage',  true),
         //'thresholdImage',
         new NavOption('thumbnailImage', true),
         new NavOption('tintImage',  true),//what is this
         new NavOption('transformImage', true),
-        //'transparentPaintImage',
+        new NavOption('transparentPaintImage', true),
         new NavOption('transposeImage', true),
         new NavOption('transverseImage', true),
         new NavOption('trimImage', true),
@@ -493,6 +489,8 @@ function getImagickExamples() {
 //'writeImages',
 //'writeImagesFile',
     ];
+
+    
 
     return $imagickExamples;
 }
@@ -597,6 +595,80 @@ function setupImage(\Auryn\Provider $injector, $category, $example = null) {
     exit(0);
 }
 
+
+
+function setupHelp(\Auryn\Provider $injector, $category, $example = null) {
+    setupExample($injector, $category, $example, true);
+
+    if ($example == null) {
+        echo "Example not set, cannot generate help.";
+        return;
+    }
+    echo "Do something";
+
+
+    $examples = getExamples($category, $example);
+    
+    foreach ($examples as $title => $example) {
+        echo "<h2>$title</h2>";
+        echo nl2br($example);
+    }
+    
+}
+
+/**
+ * @param $category
+ * @param $example
+ * @return array
+ */
+function getExamples($category, $example) {
+
+    $result = array();
+    
+    $filename = "../src/ImagickDemo/$category/$example.php";
+    
+    $contents = @file_get_contents($filename);
+
+    if ($contents) {
+        $currentPosition = 0;
+        $finished = false;
+        
+        while($finished == false) {
+            
+            $nextExampleStart = strpos($contents, '//Example ', $currentPosition);
+            
+            if (!$nextExampleStart) {
+                break;
+            }
+            
+            $endOfLine = strpos($contents, "\n", $nextExampleStart);
+            
+            if (!$endOfLine) {
+                echo "Failed to read example title";
+                return [];
+            }
+
+            $titleStart = $nextExampleStart + strlen('//Example ');
+            
+            $exampleTitle = substr($contents, $titleStart, $endOfLine - $titleStart);
+
+            $exampleEnd = strpos($contents, '//ExampleEnd', $endOfLine);
+            
+            if (!$exampleEnd) {
+                break;
+            }
+
+            $exampleText = substr($contents, $endOfLine + 1, $exampleEnd - ($endOfLine + 1));
+            $result[$exampleTitle] = $exampleText;
+            $currentPosition = $exampleEnd + strlen('//ExampleEnd');
+        }
+    }
+    
+    return $result;
+}
+
+
+
 function setupExample(\Auryn\Provider $injector, $category, $example = null, $image = false) {
 
     $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
@@ -680,6 +752,12 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
           'setupImage'
     );
 
+    $r->addRoute(
+      'GET',
+          "/help/$categories/{example:[a-zA-Z]+}",
+          'setupHelp'
+    );
+    
     //root
     $r->addRoute('GET', '/', 'setupRootIndex');
 };
@@ -694,7 +772,7 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
 
-//$uri = '/image/Example/imagickCompositeGen?';
+//$uri = '/image/Imagick/setProgressMonitor?image=Skyline';
 
 $path = $uri;
 $queryPosition = strpos($path, '?');
@@ -702,7 +780,7 @@ if ($queryPosition !== false) {
     $path = substr($path, 0, $queryPosition);
 }
 
-$injector = bootstrap();
+$injector = bootstrap(); 
 
 $injector->defineParam('activeNav', $path);
 
@@ -717,6 +795,10 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 
     $injector->execute($handler, $lowried);
 }
+
+
+
+
 
 //$handler = [
 //    'ImagickDemo\ImagickNav',

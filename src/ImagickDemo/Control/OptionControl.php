@@ -47,16 +47,13 @@ abstract class OptionControl implements \ImagickDemo\Control {
     function getOptionValue() {
         return $this->image;
     }
-
-    function render() {
-        $output = "";
-        $output .= "<form method='GET' accept-charset='utf-8'>";
+    
+    function renderFormElements() {
+        $output = '';
         $output .= "<select name='".$this->getName()."'>";
-
         $images = $this->getOptions();
 
         foreach ($images as $key => $image) {
-
             $selected = '';
             if (strcmp($image, $this->option) === 0) {
                 $selected = "selected='selected'";
@@ -65,6 +62,14 @@ abstract class OptionControl implements \ImagickDemo\Control {
         }
 
         $output .= "</select>";
+        
+        return $output;
+    }
+
+    function render() {
+        $output = "";
+        $output .= "<form method='GET' accept-charset='utf-8'>";
+        $output .= $this->renderFormElements();
         $output .= "<br/>&nbsp;<br/>";
         $output .= "<button type='submit' class='btn btn-default'>Update</button>";
         $output .= "</form>";

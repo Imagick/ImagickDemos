@@ -9,7 +9,7 @@ class edgeExtend extends ImagickExample {
     function renderDescription() {
     }
 
-    function renderImage() {
+    function renderImage2() {
 
         $imagick = new \Imagick(realpath($this->imagePath));
 
@@ -48,7 +48,7 @@ class edgeExtend extends ImagickExample {
 //);
     }
 
-    function renderImage2() {
+    function renderImage() {
 
         $image = new \Imagick();
         $image->newImage(800, 800, new \ImagickPixel('red'));

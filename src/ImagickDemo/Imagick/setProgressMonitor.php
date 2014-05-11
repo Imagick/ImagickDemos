@@ -4,9 +4,10 @@ namespace ImagickDemo\Imagick;
 
 
 function someProgress($offset, $span) {
-//    if (((100 * $offset) / $span)  > 50) {
-//        return false;
-//    }
+    if (((100 * $offset) / $span)  > 50) {
+        //return false;
+        return 0;
+    }
     return true;
 }
 
@@ -43,17 +44,14 @@ class setProgressMonitor extends ImagickExample {
             };
 
             $imagick = new \Imagick(realpath($this->imagePath));
-            $imagick->setProgressMonitor($callback);
-            echo "Done 1\n";
-            $imagick->waveImage(8, 25);
+            //$imagick->setProgressMonitor($callback);
+            //$imagick->setProgressMonitor(null);
             $imagick->setProgressMonitor(__NAMESPACE__.'\someProgress');
 
             $imagick->waveImage(2, 15);
-            //$imagick->sketchimage(6, 15, 45);
-            echo "Done 2\n";
-
-            //        header("Content-Type: image/jpg");
-    //        echo $imagick->getImageBlob();
+            //$imagick->sketchimage(6, 15, 45);         
+            //header("Content-Type: image/jpg");
+            echo "Data len is: ".strlen($imagick->getImageBlob());
         }
         catch(\ImagickException $e) {
             echo "ImagickException caught: ".$e->getMessage()." Exception type is ".get_class($e);

@@ -12,7 +12,7 @@ class newPseudoImage extends ImagickExample {
     function renderImage() {
         $this->renderImage1();
     }
-    
+
     function renderImage1() {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(200, 200, 'gradient:');

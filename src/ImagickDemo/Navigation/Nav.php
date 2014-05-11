@@ -64,12 +64,14 @@ class Nav implements ActiveNav {
 
         if ($navOption) {
             $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navOption->getName());
-            if($navOption->getURLName()) {
-                $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navOption->getURLName());
-            }
-
-            $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
+            //if($navOption->getURLName()) {
+            //$exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navOption->getURLName());
         }
+        else {
+            $exampleClassname = sprintf('ImagickDemo\%s\nullExample', $this->category);
+        }
+
+        $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
     }
 
     /**

@@ -75,7 +75,7 @@ class textImage extends \ImagickDemo\ExampleWithoutControl {
 
 //$imagick->blurImage(5, 5);
 
-        $msg = "go home yankees";
+        $msg = "Danack";
 
         $xpos = 0;
         $ypos = 0;

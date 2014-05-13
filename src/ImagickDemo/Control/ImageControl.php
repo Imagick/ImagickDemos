@@ -11,7 +11,7 @@ class ImageControl extends OptionControl {
     }
     
     function getDefaultOption() {
-        return 'Lorikeet';//'Skyline';
+        return 'Lorikeet';
     }
     
     function getOptions() {
@@ -26,7 +26,6 @@ class ImageControl extends OptionControl {
     function getImagePath() {
         return $this->image;
     }
-    
 }
 
  

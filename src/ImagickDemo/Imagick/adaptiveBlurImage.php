@@ -21,8 +21,12 @@ class adaptiveBlurImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
+        
+        $radius = $this->rsiControl->getRadius();
+        $sigma = $this->rsiControl->getSigma();
+
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
-        $imagick->adaptiveBlurImage(4, 3);
+        $imagick->adaptiveBlurImage($radius, $sigma);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

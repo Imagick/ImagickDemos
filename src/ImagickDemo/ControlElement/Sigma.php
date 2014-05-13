@@ -1,11 +1,11 @@
 <?php
 
 
-namespace ImagickDemo\Control;
+namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Sigma implements \ImagickDemo\Control { 
+class Sigma implements ControlElement { 
 
     private $sigma = 1;
 
@@ -37,7 +37,7 @@ class Sigma implements \ImagickDemo\Control {
                     Sigma
                 </td>
                 <td class='standardCell'>
-                    <input type='text' name='g' value='$sSigma'/>
+                    <input type='text' name='sigma' value='$sSigma'/>
                 </td>
             </tr>
 ";

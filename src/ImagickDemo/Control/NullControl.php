@@ -12,7 +12,7 @@ class NullControl implements \ImagickDemo\Control {
         $this->imageBaseURL = $imageBaseURL;
     }
     
-    function renderFormElement() { }
+    function renderForm() { }
 
     /**
      * @return array
@@ -21,13 +21,6 @@ class NullControl implements \ImagickDemo\Control {
         return [];
     }
 
-//    /**
-//     * @return string
-//     */
-//    function getParamString() {
-//        return "";
-//    }
-    
     function getURL() {
         return sprintf("<img src='%s' />", $this->imageBaseURL);
     }

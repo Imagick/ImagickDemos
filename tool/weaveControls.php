@@ -13,16 +13,15 @@ else {
 use Weaver\CompositeWeaveGenerator;
 
 $controls = [
-    ['ImagickDemo\Control\Radius', 'ImagickDemo\Control\Sigma', 'ImagickDemo\Control\Image'],
+    ['ImagickDemo\ControlElement\Radius', 'ImagickDemo\ControlElement\Sigma', 'ImagickDemo\ControlElement\Image'],
+    ['ImagickDemo\ControlElement\R', 'ImagickDemo\ControlElement\G', 'ImagickDemo\ControlElement\B', 'ImagickDemo\ControlElement\A'],
+
+    ['ImagickDemo\ControlElement\Image', 'ImagickDemo\ControlElement\R', 'ImagickDemo\ControlElement\G', 'ImagickDemo\ControlElement\B', 'ImagickDemo\ControlElement\A'],
 ];
 
 \Intahwebz\Functions::load();
 
 foreach ($controls as $components) {
-
-
-    
-
     $lazyWeaveInfo = new \Weaver\CompositeWeaveInfo(
         'ImagickDemo\Control\ControlComposite',
         $components, 
@@ -31,13 +30,8 @@ foreach ($controls as $components) {
             'getParams' => 'array',
         ]
     );
-
     $weaveMethod = new CompositeWeaveGenerator($lazyWeaveInfo);
-
     $weaveMethod->writeClass('../var/compile/');
-
-    //$weaveMethod->writeClass('../var/compile/');
-
 }
 
 

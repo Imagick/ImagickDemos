@@ -7,7 +7,7 @@ namespace ImagickDemo\Imagick;
 class tintImage extends \ImagickDemo\Example {
 
     /**
-     * @var \ImagickDemo\Control\TintAndImageControl
+     * @var \ImagickDemo\Control\ControlCompositeXRXGXBXA
      */
     private $tintAndImageControl;
 
@@ -16,11 +16,8 @@ class tintImage extends \ImagickDemo\Example {
      */
     private $imagePath;
     
-    function __construct(\ImagickDemo\Control\TintAndImageControl $tintAndImageControl) {
+    function __construct(\ImagickDemo\Control\ControlCompositeXRXGXBXA $tintAndImageControl) {
         $this->tintAndImageControl = $tintAndImageControl;
-        $this->imagePath = $tintAndImageControl->getImagePath();
-
-        
     }
     
     function renderDescription() {
@@ -39,10 +36,19 @@ class tintImage extends \ImagickDemo\Example {
 
 
     function renderImage() {
-        $tint = new \ImagickPixel('rgba(255, 0, 0, 1)');
+
+        $red = $this->tintAndImageControl->getR();
+        $green = $this->tintAndImageControl->getG();
+        $blue = $this->tintAndImageControl->getB();
+        $alpha = $this->tintAndImageControl->getA();
+        $alpha = $alpha / 100;
+        
+        
         $imagick = new \Imagick();
         $imagick->newPseudoImage(200, 200, 'gradient:');
-        //$imagick->tintImage($tint, 50);
+
+        $tint = new \ImagickPixel("rgb($red, $green, $blue)");
+        $imagick->tintImage($tint, $alpha);
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
@@ -50,7 +56,7 @@ class tintImage extends \ImagickDemo\Example {
     
 
     function renderImageasdd() {
-        $tintControl = $this->tintAndImageControl->getTintControl();
+        //$tintControl = $this->tintAndImageControl->getTintControl();
         $red = 255;//$tintControl->getR();
         $green = 255;//$tintControl->getG();
         $blue = 0;//$tintControl->getB();

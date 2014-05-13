@@ -16,9 +16,6 @@ class ColorControl implements \ImagickDemo\Control {
     private $errors = [];
 
     function __construct(Request $request, $imageBaseURL) {
-//        $this->backgroundColor = $request->getVariable('backgroundColor', $this->backgroundColor);
-//        $this->strokeColor = $request->getVariable('strokeColor', $this->strokeColor);
-//        $this->fillColor = $request->getVariable('fillColor', $this->fillColor);
 
         $colorTypes = ['backgroundColor', 'strokeColor', 'fillColor'];
         
@@ -75,7 +72,7 @@ class ColorControl implements \ImagickDemo\Control {
             '&fillColor='.$this->fillColor;
     }
     
-    function render() {
+    function renderForm() {
         $output = "";
         $output .= "<form method='GET' accept-charset='utf-8'>";
 
@@ -96,8 +93,7 @@ class ColorControl implements \ImagickDemo\Control {
                 $output .= $error."<br/>";
             }
         }
-        
-        
+
         $output .= <<< END
         
         <table>
@@ -146,10 +142,6 @@ class ColorControl implements \ImagickDemo\Control {
         </table>
         </form>
 
-
-
-
-        
 END;
         
         $output .= <<< END

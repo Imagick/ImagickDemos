@@ -4,7 +4,7 @@
 namespace ImagickDemo\Control;
 
 
-class SparseColorControl extends OptionControl{
+class SparseColorControl extends OptionControl {
 
     function getName() {
         return 'sparse';

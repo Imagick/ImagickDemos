@@ -53,7 +53,7 @@
                 <div class="col-md-8">
                     {inject name='example' value='ImagickDemo\Example'}
                     <br/>
-                    {$example->renderImageURL() | nofilter}
+                    {$example->getControl()->getURL() | nofilter}
                 </div>
                 <div class="col-md-4">
                     {$example->getControl()->renderForm() | nofilter}

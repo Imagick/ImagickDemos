@@ -21,10 +21,10 @@ class setProgressMonitor extends ImagickExample {
     }
     
     function someProgress($offset, $span) {
-//        if (((100 * $offset) / $span)  > 50) {
-//            return false;
-//        }
-        echo ".";
+        if (((100 * $offset) / $span)  > 50) {
+            return false;
+        }
+
         return true;
     }
 

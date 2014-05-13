@@ -1,11 +1,11 @@
 <?php
 
 
-namespace ImagickDemo\Control;
+namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Radius implements \ImagickDemo\Control {
+class Radius implements ControlElement {
 
     private $radius = 5;
 
@@ -36,7 +36,7 @@ class Radius implements \ImagickDemo\Control {
                     Radius
                 </td>
                 <td class='standardCell'>
-                    <input type='text' name='r' value='$sRadius'/>
+                    <input type='text' name='radius' value='$sRadius'/>
                 </td>
             </tr>
 ";

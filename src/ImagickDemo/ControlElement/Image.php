@@ -1,11 +1,11 @@
 <?php
 
 
-namespace ImagickDemo\Control;
+namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Image {
+class Image implements ControlElement {
 
     private $imagePath;
     
@@ -24,12 +24,19 @@ class Image {
                 $this->imagePath = $imagePath;
             }
         }
+        //zendcode eats braces
     }
 
+    /**
+     * @return array
+     */
     function getParams() {
         return ['image' => $this->imageName];
     }
 
+    /**
+     * @return string
+     */
     function renderFormElement() {
         $output = '';
         $output .= "<select name='image'>";

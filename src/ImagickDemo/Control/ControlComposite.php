@@ -4,7 +4,8 @@
 namespace ImagickDemo\Control;
 
 
-class ControlComposite {
+
+class ControlComposite implements \ImagickDemo\Control {
     
     private $imageBaseURL;
     
@@ -60,5 +61,4 @@ class ControlComposite {
 
         return sprintf("<img src='%s%s' />", $this->imageBaseURL, $paramString);
     }
-
 }

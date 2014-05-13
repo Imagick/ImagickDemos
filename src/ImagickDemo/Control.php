@@ -6,19 +6,14 @@ namespace ImagickDemo;
 
 interface Control {
 
-    /**
-     * @return array
-     */
-    function render();
+    function renderFormElement();
 
     function getParams();
 
-    /**
-     * @return string
-     */
-    function getParamString();
+    //function getURL(); //{
+        //return sprintf("<img src='%s?%s' />", $this->imageBaseURL, $this->getParamString() );
+    //}
     
-    function getURL();
 }
 
  

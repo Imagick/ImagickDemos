@@ -283,39 +283,6 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 }
 
 
-function checkOutstanding() {
-
-    $imagickExamples = getImagickExamples();
-    
-    require_once "test.php";
-    
-    foreach ($magickFunctions as $magickFunction) {
-
-        $functionName = $magickFunction;
-        if (strpos($functionName, "Magick") === 0) {
-            $functionName = substr($functionName, strlen("Magick"));
-        }
-
-        $present = false;
-
-        foreach ($imagickExamples as $example) {
-            if (strcasecmp($example->getName(), $functionName) === 0) {
-                $present = true;
-            }
-        }
-        
-        if ($present == false) {
-            echo $functionName;
-            echo "<br/>";
-        }
-    }
-    
-    exit(0);
-}
-
-checkOutstanding();
-
-
 
 //$handler = [
 //    'ImagickDemo\ImagickNav',

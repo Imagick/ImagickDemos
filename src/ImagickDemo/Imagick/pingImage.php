@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class pingImage extends ImagickExample {
+class pingImage extends \ImagickDemo\ExampleWithoutControlOrImage {
 
     function renderImageURL() {
         return "";

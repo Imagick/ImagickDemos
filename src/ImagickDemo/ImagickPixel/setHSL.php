@@ -4,7 +4,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class setHSL extends \ImagickDemo\ExampleWithoutControl {
+class setHSL extends \ImagickDemo\ExampleWithoutControlOrImage {
 
     function renderImageURL() {
     }

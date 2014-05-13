@@ -4,19 +4,19 @@
 namespace ImagickDemo;
 
 
-class ExampleWithoutControl extends \ImagickDemo\Example {
+class ExampleWithoutControlOrImage extends \ImagickDemo\Example {
 
     /**
      * @var Control\NullControl
      */
     private $control;
     
-    function __construct(\ImagickDemo\Control\NullControl $control) {
+    function __construct(\ImagickDemo\Control\NullNoImageControl $control) {
         $this->control = $control;
     }
     
     function renderImageURL() {
-        return $this->getControl()->getURL();
+        return "";
     }
 
     /**
@@ -25,8 +25,6 @@ class ExampleWithoutControl extends \ImagickDemo\Example {
     function getControl() {
         return $this->control;
     }
-
-
 }
 
  

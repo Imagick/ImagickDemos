@@ -13,7 +13,7 @@ class mosaicImage extends \ImagickDemo\ExampleWithoutControl {
         $imagick = new \Imagick();
         $imagick->newimage(500, 500, 'white');
 
-        $imagick->setimageformat('png');
+        
         
         $images = [
             "../images/dickbutt.jpg"
@@ -21,15 +21,18 @@ class mosaicImage extends \ImagickDemo\ExampleWithoutControl {
 
         foreach ($images as $image) {
             $nextImage = new \Imagick(realpath($image));
-            $nextImage->setPage(100, 100, 50, 50);
+            //$nextImage->setPage(100, 100, 50, 50);
             $imagick->addImage($nextImage);
         }
 
         @$imagick->mosaicimages();
 
-        //header("Content-Type: image/jpg");
+
+        $imagick->setimageformat('png');
+        //header("Content-Type: image/png");
         $blah = $imagick->getImageBlob();
         
-        echo "bytes = ".strlen($blah);
+        echo "bytes = ".strlen($blah)."<br/>";
+        echo $blah;
     }
 }

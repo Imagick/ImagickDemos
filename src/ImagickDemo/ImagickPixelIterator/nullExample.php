@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class nullExample extends \ImagickDemo\NullExample  {
+class nullExample extends \ImagickDemo\ExampleWithoutControlOrImage {
 
     function renderDescription() {
         return "Imagick Pixel summary";

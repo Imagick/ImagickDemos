@@ -5,7 +5,7 @@ namespace ImagickDemo\ImagickPixel;
 
 define('NL', '<br/>');
 
-class isSimilar extends \ImagickDemo\ExampleWithoutControl {
+class isSimilar extends \ImagickDemo\ExampleWithoutControlOrImage {
 
 
     function renderImageURL() {

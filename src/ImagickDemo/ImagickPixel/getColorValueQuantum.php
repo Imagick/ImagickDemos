@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColorValueQuantum extends \ImagickDemo\ExampleWithoutControl {
+class getColorValueQuantum extends \ImagickDemo\ExampleWithoutControlOrImage {
 
     function renderImageURL() {
     }

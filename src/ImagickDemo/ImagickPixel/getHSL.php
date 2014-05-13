@@ -4,11 +4,11 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getHSL extends \ImagickDemo\ExampleWithoutControl {
+class getHSL extends \ImagickDemo\ExampleWithoutControlOrImage {
 
-    function renderImageURL() {
-    }
-    
+//    function renderImageURL() {
+//    }
+//    
     
     function renderDescription() {
 

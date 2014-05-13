@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColor extends \ImagickDemo\ExampleWithoutControl {
+class getColor extends \ImagickDemo\ExampleWithoutControlOrImage {
 
     function renderImageURL() {
         return "";

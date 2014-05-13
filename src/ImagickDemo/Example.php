@@ -17,8 +17,7 @@ abstract class Example implements renderableExample {
     function renderImageURL() {
         return $this->getControl()->getURL();
     }
-    
-    
+
     function renderTitle() {
         return getClassName(get_class($this));
     }

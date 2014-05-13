@@ -4,7 +4,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class Quantum extends ImagickExample {
+class Quantum extends \ImagickDemo\ExampleWithoutControlOrImage {
 
     function renderImageURL() {
         return "";

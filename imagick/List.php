@@ -72,7 +72,7 @@ function getImagickDrawExamples() {
         new NavOption( 'point',true ),
         new NavOption( 'polygon',true ),
         new NavOption( 'polyline',true ),
-        new NavOption( 'pop' ,true, 'push' ), //=> 'push'
+        new NavOption( 'pop' ,true, 'push' ),
         new NavOption( 'popClipPath' ,true, 'setClipPath' ), //=> 'setClipPath'
         //'popDefs', DrawPushDefs() indicates that commands up to a terminating DrawPopDefs() command create named elements (e.g. clip-paths, textures, etc.) which may safely be processed earlier for the sake of efficiency.
         new NavOption( 'popPattern' ,true, 'pushPattern' ), //=> 'pushPattern'

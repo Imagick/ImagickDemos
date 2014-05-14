@@ -61,7 +61,7 @@ function createGradientImage($width, $height, $colorPoints, $sparseMethod, $abso
 }
 
 
-class sparseColorImage extends \ImagickDemo\ExampleWithoutControl {
+class sparseColorImage extends \ImagickDemo\Example {
 
     /**
      * @var \ImagickDemo\Control\SparseColorControl
@@ -72,11 +72,21 @@ class sparseColorImage extends \ImagickDemo\ExampleWithoutControl {
         $this->sparseControl = $sparseControl;
     }
 
-    function renderControl() {
-        return $this->sparseControl->render();
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->sparseControl;
     }
+
+
+
+//    function renderControl() {
+//        return $this->sparseControl->render();
+//    }
+
     
-    function getURL() {
+    function renderImageURL() {
         return $this->sparseControl->getURL();
     }
 

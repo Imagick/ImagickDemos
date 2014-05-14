@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "156c4396b6a0663b372743491e6c4012",
+    "hash": "19f6f8393a30e6d38426ee045267b668",
     "packages": [
         {
             "name": "fluentdom/fluentdom",

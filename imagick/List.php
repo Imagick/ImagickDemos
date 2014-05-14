@@ -189,7 +189,7 @@ function getImagickExamples() {
         //'compareImageChannels',
         //'compareImageLayers',
         //'compareImages',
-        //'compositeImage',
+        new NavOption('compositeImage', true),
         // CompositeLayers
         //__construct',
         new NavOption('contrastImage', true),
@@ -214,7 +214,7 @@ function getImagickExamples() {
         //'edgeImage',
         //'embossImage',
         //'encipherImage',
-        new NavOption('edgeExtend', true),
+
         new NavOption('enhanceImage', true),
         new NavOption('equalizeImage', true),
         //'evaluateImage',
@@ -643,6 +643,7 @@ SetImageWhitePoint
 //TODO - get a better name
 function getExampleExamples() {
     $imagickExamples = [
+        new NavOption('edgeExtend', true),
         new NavOption('gradientReflection',  true),
         new NavOption('psychedelicFont', true),
         new NavOption('psychedelicFontGif', true),

@@ -1,30 +1,26 @@
 <?php
 
 
-namespace ImagickDemo\Imagick;
+namespace ImagickDemo\Example;
 
+use ImagickDemo\Imagick\ImagickExample;
 
 class edgeExtend extends ImagickExample {
 
     function renderDescription() {
     }
 
-    function renderImage2() {
-
-        $imagick = new \Imagick(realpath($this->imagePath));
-
+    function renderImage() {
+        $imagick = new \Imagick(realpath($this->imagePath));        
         $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
-
         $desiredWidth = 1000;
-        //$desiredHeight = 1500;
-
         $originalWidth = $imagick->getImageWidth();
 
-//Make the image be the desired width.
+        //Make the image be the desired width.
         $imagick->sampleimage($desiredWidth, $imagick->getImageHeight());
 
-//Now scale, rotate, translate (aka affine project) it
-//to be how you want
+        //Now scale, rotate, translate (aka affine project) it
+        //to be how you want
         $points = array(//The x scaling factor is 0.5 when the desired width is double
             //the source width
             ($originalWidth / $desiredWidth), 0, //Don't scale vertically
@@ -46,29 +42,5 @@ class edgeExtend extends ImagickExample {
 //    "tx" => 0,
 //    "ty" => 0,
 //);
-    }
-
-    function renderImage() {
-
-        $image = new \Imagick();
-        $image->newImage(400, 400, new \ImagickPixel('red'));
-        $image->setImageFormat("png");
-        $type = $image->getImageFormat();
-
-        $texture = new \Imagick(realpath($this->imagePath));
-        $texture->scaleimage($texture->getimagewidth() / 4, $texture->getimageheight() / 4);
-
-        $image->setimagevirtualpixelmethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $image = $image->textureImage($texture);
-
-
-        echo "Content-type: $type";
-        //header("Content-type: $type");
-
-//        header("Content-Type: image/jpg");
-//        echo $image->getImageBlob();
-        //echo $image;
-        //echo "wat";
-
     }
 }

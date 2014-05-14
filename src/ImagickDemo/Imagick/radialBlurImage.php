@@ -10,7 +10,9 @@ class radialBlurImage extends ImagickExample {
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->radialBlurImage(10);
+        $imagick->radialBlurImage(3);
+        $imagick->radialBlurImage(5);
+        $imagick->radialBlurImage(7);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

@@ -160,6 +160,12 @@ class SiteChecker {
         echo "Getting $fullURL \n";
 
         $client = new \Artax\Client;
+
+//        connecttimeout
+//        transfertimeout
+//        keepalivetimeout
+        
+        $client->setOption('transfertimeout', 25);
         $response = $client->request($fullURL);
 
 //        echo "Response status code: ", $response->getStatus(), "\n";
@@ -302,20 +308,11 @@ class SiteChecker {
     function getResults() {
         return $this->urlsChecked;
     }
-
-//    function showResults() {
-//        foreach ($this->urlList as $url => $status) {
-//            if ($status != 200) {
-//                echo "$status => $url\n";
-//            }
-//        }
-//        
-//        printf("Scanned %d urls ", $this->count);
-//    }
 }
 
 $siteChecker = new SiteChecker("http://imagick.test");
 $siteChecker->checkURL('/');
+//$siteChecker->checkURL('/image/Imagick/edgeExtend?image=Lorikeet');
 
 
 //$siteChecker->showResults();

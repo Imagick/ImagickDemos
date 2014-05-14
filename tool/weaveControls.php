@@ -13,10 +13,38 @@ else {
 use Weaver\CompositeWeaveGenerator;
 
 $controls = [
-    ['ImagickDemo\ControlElement\Radius', 'ImagickDemo\ControlElement\Sigma', 'ImagickDemo\ControlElement\Image'],
-    ['ImagickDemo\ControlElement\R', 'ImagickDemo\ControlElement\G', 'ImagickDemo\ControlElement\B', 'ImagickDemo\ControlElement\A'],
+    [
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Image'
+    ],
+    [
+        'ImagickDemo\ControlElement\R',
+        'ImagickDemo\ControlElement\G',
+        'ImagickDemo\ControlElement\B',
+        'ImagickDemo\ControlElement\A'
+    ],
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\R',
+        'ImagickDemo\ControlElement\G',
+        'ImagickDemo\ControlElement\B',
+        'ImagickDemo\ControlElement\A'
+    ],
+    [
+        'ImagickDemo\ControlElement\Image',
+        '\ImagickDemo\ControlElement\BlackPoint',
+        '\ImagickDemo\ControlElement\WhitePoint',
+        '\ImagickDemo\ControlElement\X',
+        '\ImagickDemo\ControlElement\Y' 
+    ],
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Noise', 
+    ],
 
-    ['ImagickDemo\ControlElement\Image', 'ImagickDemo\ControlElement\R', 'ImagickDemo\ControlElement\G', 'ImagickDemo\ControlElement\B', 'ImagickDemo\ControlElement\A'],
+    
+    
 ];
 
 \Intahwebz\Functions::load();

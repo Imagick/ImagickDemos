@@ -16,7 +16,7 @@ class ExampleWithoutControl extends \ImagickDemo\Example {
     }
     
     function renderImageURL() {
-        return $this->getControl()->getURL();
+        return $this->control->getURL();
     }
 
     /**

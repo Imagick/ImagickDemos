@@ -52,7 +52,7 @@ function fatalErrorShutdownHandler() {
         case (E_PARSE): {
             // fatal error
             header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
-            errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
+            var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
             exit(0);
         }
 

@@ -38,7 +38,14 @@ class Image implements ControlElement {
      * @return string
      */
     function renderFormElement() {
-        $output = '';
+
+
+        $output = "<tr>
+                    <td class='standardCell'>Image
+                </td>
+                <td class='standardCell'>";
+
+
         $output .= "<select name='image'>";
 
         foreach ($this->images as $imagePath => $imageName) {
@@ -49,7 +56,9 @@ class Image implements ControlElement {
             $output .= "<option value='".$imageName."' $selected>$imageName</option>";
         }
 
-        $output .= "</select>";
+        $output .= "</select>
+                    </td>
+            </tr>";
 
         return $output;
     }

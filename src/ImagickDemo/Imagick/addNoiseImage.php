@@ -3,36 +3,41 @@
 namespace ImagickDemo\Imagick;
 
 
-class addNoiseImage extends ImagickExample {
+class addNoiseImage extends \ImagickDemo\Example {
+
+    /**
+     * @var \ImagickDemo\Control\ControlCompositeXImageXBlackPointXWhitePointXXXY
+     */
+    private $control;
+
+    function __construct(\ImagickDemo\Control\ControlCompositeXImageXNoise $control) {
+        $this->control = $control;
+    }
+
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->control;
+    }
+
 
     function renderDescription() {
 
-        //const NOISE_UNIFORM = 1;
-        //const NOISE_GAUSSIAN = 2;
-        //const NOISE_MULTIPLICATIVEGAUSSIAN = 3;
-        //const NOISE_IMPULSE = 4;
-        //const NOISE_LAPLACIAN = 5;
-        //const NOISE_POISSON = 6;
-        //const NOISE_RANDOM = 7;
+        return "NOISE_UNIFORM = 1;
+        NOISE_GAUSSIAN = 2;
+        NOISE_MULTIPLICATIVEGAUSSIAN = 3;
+        NOISE_IMPULSE = 4;
+        NOISE_LAPLACIAN = 5;
+        NOISE_POISSON = 6;
+        NOISE_RANDOM = 7; ";
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-
-
-//const NOISE_UNIFORM = 1;
-//const NOISE_GAUSSIAN = 2;
-//const NOISE_MULTIPLICATIVEGAUSSIAN = 3;
-//const NOISE_IMPULSE = 4;
-//const NOISE_LAPLACIAN = 5;
-//const NOISE_POISSON = 6;
-//const NOISE_RANDOM = 7;
-
-
-        $imagick->addNoiseImage(\Imagick::NOISE_POISSON);
-
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
+        $noiseType = $this->control->getNoiseType();
+        $imagick->addNoiseImage($noiseType);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
-
     }
 }

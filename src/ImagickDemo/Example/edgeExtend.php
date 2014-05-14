@@ -3,17 +3,30 @@
 
 namespace ImagickDemo\Example;
 
-use ImagickDemo\Imagick\ImagickExample;
 
-class edgeExtend extends ImagickExample {
+class edgeExtend extends \ImagickDemo\Example {
+
+    private $control;
+    
+    function __construct(\ImagickDemo\Control\ControlCompositeXImageXVirtualPixel $control) {
+        $this->control = $control;
+    }
 
     function renderDescription() {
     }
 
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->control;
+    }
+
+
     function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));        
-        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $desiredWidth = 1000;
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
+        $imagick->setImageVirtualPixelMethod($this->control->getVirtualPixelType());
+        $desiredWidth = 800;
         $originalWidth = $imagick->getImageWidth();
 
         //Make the image be the desired width.

@@ -43,8 +43,11 @@ $controls = [
         'ImagickDemo\ControlElement\Noise', 
     ],
 
-    
-    
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\VirtualPixel'
+    ],
+
 ];
 
 \Intahwebz\Functions::load();

@@ -28,6 +28,5 @@ class construct extends \ImagickDemo\Imagick\ImagickExample  {
 
         header("Content-Type: image/jpg");
         echo $imagick;
-
     }
 }

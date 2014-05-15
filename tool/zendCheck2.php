@@ -12,6 +12,7 @@ require_once('../vendor/autoload.php');
 class OutputClass
 {
 
+    /*
     public function thisIsOkay()
     {
         if (true) {
@@ -33,12 +34,13 @@ class OutputClass
         if (true) {
             echo "true"; //next line has spaces after bracket
         } 
-    }
+    } 
+    */
 
     public function thisIsBroken()
     {
         if (true) {
-            echo "true"; //Next line ends on bracket
+            echo "true"; //Next line has two brackets
         }
     }
 }

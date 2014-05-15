@@ -14,7 +14,8 @@ class psychedelicFontGif extends \ImagickDemo\ExampleWithoutControl {
         $aniGif = new \Imagick();
         $aniGif->setFormat("gif");
 
-        $maxFrames = 20;
+        $maxFrames = 11;
+        $scale = 0.25;
 
         for ($frame = 0; $frame < $maxFrames; $frame++) {
 
@@ -28,21 +29,30 @@ class psychedelicFontGif extends \ImagickDemo\ExampleWithoutControl {
 
             $draw->setStrokeOpacity(1);
 
-            $draw->setFillColor('black');
+            
             $draw->setFont("../fonts/CANDY.TTF");
 
-            $draw->setfontsize(150);
+            $draw->setfontsize(150 * $scale);
 
             for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
                 $hue = intval(fmod(($frame * 360 / $maxFrames) + 170 + $strokeWidth * 360 / 25, 360));
-                $draw->setStrokeColor("hsl($hue, 255, 128)");
-                $draw->setStrokeWidth($strokeWidth * 3);
-                $draw->annotation(60, 165, $name);
+                $color = "hsl($hue, 255, 128)";
+                $draw->setStrokeColor($color);
+                $draw->setFillColor($color);
+                $draw->setStrokeWidth($strokeWidth * 3 * $scale);
+                $draw->annotation(60 * $scale, 165 * $scale, $name);
             }
+
+            $draw->setStrokeColor('none');
+            $draw->setFillColor('black');
+            $draw->setStrokeWidth(0);
+            $draw->annotation(60 * $scale, 165 * $scale, $name);
+            
+            
 
             //Create an image object which the draw commands can be rendered into
             $imagick = new \Imagick();
-            $imagick->newImage(650, 230, "#eee");
+            $imagick->newImage(650 * $scale, 230 * $scale, "#eee");
             $imagick->setImageFormat("png");
 
             //Render the draw commands in the ImagickDraw object
@@ -55,16 +65,13 @@ class psychedelicFontGif extends \ImagickDemo\ExampleWithoutControl {
             $imagick->destroy();
         }
 
-
-        $aniGif->setImageIterations(0);
-
-
+        $aniGif->setImageIterations(0); //loop forever
         $aniGif->deconstructImages();
 
-//        header("Content-Type: image/gif");
-//        $aniGif->getimagesblob();
+        header("Content-Type: image/gif");
+        echo $aniGif->getimagesblob();
         //there more than one file, so must be using writeImages()
-        $aniGif->writeImages("../var/cache/imageCache/Danack.gif", true);
+        //$aniGif->writeImages("../var/cache/imageCache/Danack.gif", true);
 
 //$aniGif->writeimagesfile();
         //echo "done";

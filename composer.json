@@ -4,12 +4,13 @@
     "//": "LOCALHACK",
 
     "repositories": [
-        {
-            "packagist": false
-        },
+        
         {
             "type": "vcs",
             "url": "https://github.com/Danack/Auryn"
+        },
+        {
+            "packagist": false
         },
         { 
             "type": "composer",
@@ -27,14 +28,17 @@
     },
 
     "require":{
+        "intahwebz/weaver": ">=0.1.3",
         "intahwebz/configurator": "0.1.1",
         "nikic/fast-route": "dev-master",
         "rdlowrey/auryn": "dev-PluginExperiment2",
         "intahwebz/jig": "0.9.0",
         "intahwebz/routing": ">=0.9.1",
-        "intahwebz/weaver": ">=0.1.3",
         "fluentdom/fluentdom": ">=v4.1.1",
-        "oyejorge/less.php": "v1.7.0.1"
+        "oyejorge/less.php": "v1.7.0.1",
+        "zendframework/zend-code": "2.*"
+        
+        
     },
     "autoload": {
         "psr-0": {

@@ -3,10 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class adaptiveThresholdImage extends \ImagickDemo\Example {
+class thresholdImage extends \ImagickDemo\Example {
 
     private $control;
-    
+
     function __construct(\ImagickDemo\Control\ImageControl $control) {
         $this->control = $control;
     }
@@ -18,16 +18,13 @@ class adaptiveThresholdImage extends \ImagickDemo\Example {
         return $this->control;
     }
 
-
     function renderDescription() {
+        return "Convert an image into a black and white image with all pixels above the threshold converted to white, those below to black.";
     }
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
-        
-        
-        
-        $imagick->adaptiveThresholdImage(2, 2, 0.1);
+        $imagick->thresholdimage(0.5 * \Imagick::getQuantum());
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

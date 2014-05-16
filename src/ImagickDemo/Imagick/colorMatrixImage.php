@@ -24,8 +24,6 @@ class colorMatrixImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $radius = $this->rsiControl->getRadius();
-        $sigma = $this->rsiControl->getSigma();
 
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
 

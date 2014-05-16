@@ -3,10 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class adaptiveThresholdImage extends \ImagickDemo\Example {
+class randomThresholdImage extends \ImagickDemo\Example {
 
     private $control;
-    
+
     function __construct(\ImagickDemo\Control\ImageControl $control) {
         $this->control = $control;
     }
@@ -18,16 +18,17 @@ class adaptiveThresholdImage extends \ImagickDemo\Example {
         return $this->control;
     }
 
-
     function renderDescription() {
+        return "";
     }
 
     function renderImage() {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         
-        
-        
-        $imagick->adaptiveThresholdImage(2, 2, 0.1);
+        $imagick->randomThresholdimage(
+            0.2 * \Imagick::getQuantum(),
+            0.9 * \Imagick::getQuantum()
+        );
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }

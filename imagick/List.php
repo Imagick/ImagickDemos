@@ -164,14 +164,13 @@ function getImagickExamples() {
         //'animateImages',
         new NavOption('annotateImage',  true),
         //'appendImages',
-//AutoGammaImage
-//AutoLevelImage
+        new NavOption('autoLevelImage',  true),
         //new NavOption('averageImages',  true),
         new NavOption('blackThresholdImage',  true),
-//BrightnessContrastImage
-        //BlueShiftImage
+        new NavOption('blueShiftImage',  true),
         new NavOption('blurImage',  true),
         new NavOption('borderImage', true),
+        new NavOption('brightnessContrastImage', true),
         new NavOption('charcoalImage', true),
         new NavOption('chopImage', true),
         //ClipImage
@@ -183,7 +182,7 @@ function getImagickExamples() {
         //deprecated - new NavOption('colorFloodfillImage', true),
         //ColorDecisionListImage
         new NavOption('colorizeImage', true),
-//ColorMatrixImage
+        new NavOption('colorMatrixImage', true),
         //'combineImages',
         //'commentImage',
         //'compareImageChannels',
@@ -209,7 +208,7 @@ function getImagickExamples() {
         //'destroy',
         //'displayImage',
         //'displayImages',
-        //'distortImage',
+        new NavOption('distortImage', true),
         //'drawImage',
         //'edgeImage',
         //'embossImage',
@@ -217,17 +216,17 @@ function getImagickExamples() {
 
         new NavOption('enhanceImage', true),
         new NavOption('equalizeImage', true),
-        //'evaluateImage',
+//'evaluateImage',
         //'exportImagePixels',
-        //'extentImage',
-//FilterImage
+//'extentImage',
+        //FilterImage - this appears to be a duplicate function
         //FrameImage
         //'flattenImages',
         new NavOption('flipImage', true),
         new NavOption('floodFillPaintImage', true),
         new NavOption('flopImage', true),
         new NavOption('forwardFourierTransformImage', false),
-        //'frameImage',
+        new NavOption('frameImage', true),
         new NavOption('functionImage', true),
         new NavOption('fxImage', true),
         new NavOption('gammaImage', true),
@@ -369,20 +368,21 @@ function getImagickExamples() {
         //'previewImages',
         //'previousImage',
         //'profileImage',
-        //'quantizeImage',
+        
+        new NavOption('quantizeImage', true),
         //'quantizeImages',
         //'queryFontMetrics',
         //'queryFonts',
         //'queryFormats',
         new NavOption('radialBlurImage', true),
-//'raiseImage',
-        //'randomThresholdImage',
+        new NavOption('raiseImage', true),
+        new NavOption('randomThresholdImage', true),
         //'readImage',
         //'readImageBlob',
         //'readImageFile',
         new NavOption('recolorImage', true),
         new NavOption('reduceNoiseImage', true),
-        //new NavOption('remapImage', true),
+//new NavOption('remapImage', true),
         //'removeImage',
         //'removeImageProfile',
         //'render',
@@ -397,8 +397,8 @@ function getImagickExamples() {
         new NavOption('scaleImage', true),
         new NavOption('screenEmbed', true),
         new NavOption('segmentImage', true),
-//SelectiveBlurImage
-        //'separateImageChannel',
+        new NavOption('selectiveBlurImage', true),
+        new NavOption('separateImageChannel', true),
         new NavOption('sepiaToneImage', true),
         //'setBackgroundColor',
         //'setColorspace',
@@ -471,10 +471,11 @@ function getImagickExamples() {
         new NavOption('shaveImage', true),
         new NavOption('shearImage', true),
         new NavOption('sigmoidalContrastImage', true),
-        //SimilarityImage
+//new NavOption('similarityImage', true),
+        
         new NavOption('sketchImage', true),
         new NavOption('sketchImage', true),
-//SmushImages
+        new NavOption('smushImages', true),
         new NavOption('solarizeImage', true),
         new NavOption('sparseColorImage', true),
         new NavOption('spliceImage', true),
@@ -484,28 +485,31 @@ function getImagickExamples() {
         //'stereoImage',
         //'stripImage',
         new NavOption('swirlImage', true),
-        //ThresholdImage
         new NavOption('textureImage',  true),
-        //'thresholdImage',
+        new NavOption('thresholdImage',  true),
         new NavOption('thumbnailImage', true),
         new NavOption('tintImage',  true),//what is this
         new NavOption('transformImage', true),
         new NavOption('transparentPaintImage', true),
         new NavOption('transposeImage', true),
-//TransformImageColorspace
+        new NavOption('transformImageColorspace', true),
         new NavOption('transverseImage', true),
         new NavOption('trimImage', true),
         new NavOption('uniqueImageColors', true),
         new NavOption('unsharpMaskImage', true),
-        //'valid',
         new NavOption('vignetteImage', true),
         new NavOption('waveImage', true),
-        //'whiteThresholdImage',
-        //'writeImage',
-        //'writeImageFile',
-        //'writeImages',
-        //'writeImagesFile',
+        new NavOption('whiteThresholdImage', true),
     ];
+    
+    //Things not sure whether to demo
+    //'valid',
+    //'writeImage',
+    //'writeImageFile',
+    //'writeImages',
+    //'writeImagesFile',
+    
+    
 
     return $imagickExamples;
 }

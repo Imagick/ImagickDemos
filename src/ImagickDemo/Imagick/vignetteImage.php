@@ -6,11 +6,11 @@ namespace ImagickDemo\Imagick;
 class vignetteImage extends \ImagickDemo\Example {
 
     /**
-     * @var \ImagickDemo\Control\ControlCompositeXImageXBlackPointXWhitePointXXXY
+     * @var \ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY
      */
     private $control;
     
-    function __construct(\ImagickDemo\Control\ControlCompositeXImageXBlackPointXWhitePointXXXY $control) {
+    function __construct(\ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY $control) {
         $this->control = $control;
     }
 

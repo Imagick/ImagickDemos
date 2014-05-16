@@ -18,6 +18,9 @@ class NullExample extends \ImagickDemo\Example {
     function renderImageURL() {
         return "";
     }
+    
+    function renderImage() {
+    }
 
     /**
      * @return \ImagickDemo\Control

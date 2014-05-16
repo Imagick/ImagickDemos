@@ -10,9 +10,11 @@ class uniqueImageColors extends ImagickExample {
     }
 
     function renderImage() {
-        $imagick = new \Imagick(realpath("../images/coolGif.gif"));
+        $imagick = new \Imagick(realpath($this->getControl()->getImagePath()));
+        //Reduce the image to 256 colours nicely.
+        $imagick->quantizeImage(256, \Imagick::COLORSPACE_YIQ, 0, false, false);
         $imagick->uniqueImageColors();
-        $imagick->scaleimage($imagick->getImageWidth() * 4, $imagick->getImageHeight() * 4);
+        $imagick->scaleimage($imagick->getImageWidth(), $imagick->getImageHeight() * 20);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }

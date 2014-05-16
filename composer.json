@@ -36,9 +36,7 @@
         "intahwebz/routing": ">=0.9.1",
         "fluentdom/fluentdom": ">=v4.1.1",
         "oyejorge/less.php": "v1.7.0.1",
-        "zendframework/zend-code": "2.*"
-        
-        
+        "zendframework/zend-code": "2.0.3"
     },
     "autoload": {
         "psr-0": {

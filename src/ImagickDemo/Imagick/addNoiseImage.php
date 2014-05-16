@@ -6,11 +6,11 @@ namespace ImagickDemo\Imagick;
 class addNoiseImage extends \ImagickDemo\Example {
 
     /**
-     * @var \ImagickDemo\Control\ControlCompositeXImageXBlackPointXWhitePointXXXY
+     * @var \ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY
      */
     private $control;
 
-    function __construct(\ImagickDemo\Control\ControlCompositeXImageXNoise $control) {
+    function __construct(\ImagickDemo\Control\ControlCompositeImageNoise $control) {
         $this->control = $control;
     }
 
@@ -23,7 +23,6 @@ class addNoiseImage extends \ImagickDemo\Example {
 
 
     function renderDescription() {
-
         return "NOISE_UNIFORM = 1;
         NOISE_GAUSSIAN = 2;
         NOISE_MULTIPLICATIVEGAUSSIAN = 3;

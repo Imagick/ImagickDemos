@@ -14,7 +14,7 @@ class fxImage extends ImagickExample {
         $imagick = new \Imagick(realpath($this->imagePath));
         //$imagick->newPseudoImage(10, 256, "gradient:white-black");
         //http://www.imagemagick.org/script/fx.php
-        $fx = "(1.0/(1.0+exp(10.0*(0.5-u)))-0.006693)*1.0092503";
+        //$fx = "(1.0/(1.0+exp(10.0*(0.5-u)))-0.006693)*1.0092503";
         //$fx = "1/2";
         $fx = "(1.0/(1.0+exp(10.0*(0.5-u)))-0.006693)*1.0092503";
         

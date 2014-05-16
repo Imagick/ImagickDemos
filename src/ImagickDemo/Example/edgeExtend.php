@@ -8,7 +8,7 @@ class edgeExtend extends \ImagickDemo\Example {
 
     private $control;
     
-    function __construct(\ImagickDemo\Control\ControlCompositeXImageXVirtualPixel $control) {
+    function __construct(\ImagickDemo\Control\ControlCompositeImageVirtualPixel $control) {
         $this->control = $control;
     }
 

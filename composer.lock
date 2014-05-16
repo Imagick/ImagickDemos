@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e0311df5a1260659cb545cb5966cb85b",
+    "hash": "366fa9d2fd8468e535488dafe9fb5ab4",
     "packages": [
         {
             "name": "fluentdom/fluentdom",
@@ -476,33 +476,24 @@
         },
         {
             "name": "zendframework/zend-code",
-            "version": "2.3.0",
+            "version": "2.0.3",
             "target-dir": "Zend/Code",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendCode/zendframework_Component_ZendCode_2.3.0.zip",
-                "reference": "zendframework_Component_ZendCode_2.3.0.zip",
-                "shasum": "c27a0084d0c8f93dcf955f49e7512a50c65c90d2"
+                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendCode/zendframework_Component_ZendCode_2.0.3.zip",
+                "reference": "zendframework_Component_ZendCode_2.0.3.zip",
+                "shasum": "03bc5d56c9263fe9f660ae3ebfa9f385622c0adb"
             },
             "require": {
-                "php": ">=5.3.23",
-                "zendframework/zend-eventmanager": "self.version"
+                "php": ">=5.3.3"
             },
             "require-dev": {
-                "doctrine/common": ">=2.1",
-                "zendframework/zend-stdlib": "self.version"
+                "doctrine/common": ">=2.1"
             },
             "suggest": {
-                "doctrine/common": "Doctrine\\Common >=2.1 for annotation features",
-                "zendframework/zend-stdlib": "Zend\\Stdlib component"
+                "doctrine/common": "Doctrine\\Common >=2.1 for annotation features"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev",
-                    "dev-develop": "2.3-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Zend\\Code\\": ""
@@ -514,85 +505,6 @@
             "description": "provides facilities to generate arbitrary code using an object oriented interface",
             "keywords": [
                 "code",
-                "zf2"
-            ]
-        },
-        {
-            "name": "zendframework/zend-eventmanager",
-            "version": "2.3.0",
-            "target-dir": "Zend/EventManager",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendEventManager/zendframework_Component_ZendEventManager_2.3.0.zip",
-                "reference": "zendframework_Component_ZendEventManager_2.3.0.zip",
-                "shasum": "19683eab8f6622d013f7d97ea8e308b97f663847"
-            },
-            "require": {
-                "php": ">=5.3.23",
-                "zendframework/zend-stdlib": "self.version"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev",
-                    "dev-develop": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Zend\\EventManager\\": ""
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": " ",
-            "keywords": [
-                "eventmanager",
-                "zf2"
-            ]
-        },
-        {
-            "name": "zendframework/zend-stdlib",
-            "version": "2.3.0",
-            "target-dir": "Zend/Stdlib",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendStdlib/zendframework_Component_ZendStdlib_2.3.0.zip",
-                "reference": "zendframework_Component_ZendStdlib_2.3.0.zip",
-                "shasum": "c61a659a0fa2afcbf915e1e6ea22017c2ee9b81d"
-            },
-            "require": {
-                "php": ">=5.3.23"
-            },
-            "require-dev": {
-                "zendframework/zend-eventmanager": "self.version",
-                "zendframework/zend-serializer": "self.version",
-                "zendframework/zend-servicemanager": "self.version"
-            },
-            "suggest": {
-                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
-                "zendframework/zend-serializer": "Zend\\Serializer component",
-                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev",
-                    "dev-develop": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Zend\\Stdlib\\": ""
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": " ",
-            "keywords": [
-                "stdlib",
                 "zf2"
             ]
         }

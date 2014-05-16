@@ -13,6 +13,7 @@ else {
 use Weaver\CompositeWeaveGenerator;
 
 $controls = [
+
     [
         'ImagickDemo\ControlElement\Radius',
         'ImagickDemo\ControlElement\Sigma',
@@ -47,7 +48,36 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\VirtualPixel'
     ],
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Swirl'
+    ],
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Amplitude',
+        'ImagickDemo\ControlElement\Length'
+    ],
 
+    [
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\MeanOffset',
+        'ImagickDemo\ControlElement\Image'
+    ],
+
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Amount',
+        'ImagickDemo\ControlElement\UnsharpThreshold',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\SolarizeThreshold',
+    ],
 ];
 
 \Intahwebz\Functions::load();

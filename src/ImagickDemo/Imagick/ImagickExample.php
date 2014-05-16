@@ -6,7 +6,7 @@ namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Control\ImageControl;
 
-class ImagickExample extends \ImagickDemo\Example {
+abstract class ImagickExample extends \ImagickDemo\Example {
 
     protected $imagePath;
 
@@ -24,9 +24,9 @@ class ImagickExample extends \ImagickDemo\Example {
         return $this->imageControl;
     }
 
-    function renderControl() {
-        return $this->imageControl->render();
-    }
+//    function renderControl() {
+//        return $this->imageControl->render();
+//    }
 
     function getURL() {
         return $this->imageControl->getURL();

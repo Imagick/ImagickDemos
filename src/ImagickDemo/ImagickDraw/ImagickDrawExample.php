@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class ImagickDrawExample extends \ImagickDemo\Example {
+abstract class ImagickDrawExample extends \ImagickDemo\Example {
 
     protected $backgroundColor;
     protected $fillColor;

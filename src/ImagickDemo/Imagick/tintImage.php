@@ -7,16 +7,11 @@ namespace ImagickDemo\Imagick;
 class tintImage extends \ImagickDemo\Example {
 
     /**
-     * @var \ImagickDemo\Control\ControlCompositeXRXGXBXA
+     * @var \ImagickDemo\Control\ControlCompositeRGBA
      */
     private $tintAndImageControl;
-
-    /**
-     * @var int|null|string
-     */
-    private $imagePath;
     
-    function __construct(\ImagickDemo\Control\ControlCompositeXRXGXBXA $tintAndImageControl) {
+    function __construct(\ImagickDemo\Control\ControlCompositeRGBA $tintAndImageControl) {
         $this->tintAndImageControl = $tintAndImageControl;
     }
     

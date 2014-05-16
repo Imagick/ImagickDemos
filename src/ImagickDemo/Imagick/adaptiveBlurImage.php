@@ -5,11 +5,11 @@ namespace ImagickDemo\Imagick;
 class adaptiveBlurImage extends \ImagickDemo\Example {
 
     /**
-     * @var
+     * @var \ImagickDemo\Control\ControlCompositeRadiusSigmaImage
      */
     private $rsiControl;
     
-    function __construct(\ImagickDemo\Control\ControlCompositeXRadiusXSigmaXImage $rsiControl) {
+    function __construct(\ImagickDemo\Control\ControlCompositeRadiusSigmaImage $rsiControl) {
         $this->rsiControl = $rsiControl;
     }
 

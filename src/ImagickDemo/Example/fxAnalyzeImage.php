@@ -54,7 +54,7 @@ class fxAnalyzeImage extends \ImagickDemo\ExampleWithoutControl {
         $fillColor = new \ImagickPixel('red');
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
-        $draw->setStrokeWidth(1);
+        $draw->setStrokeWidth(0);
         $draw->setFontSize(72);
         $previous = false;
 

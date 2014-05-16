@@ -22,10 +22,7 @@ abstract class Example implements renderableExample {
         return getClassName(get_class($this));
     }
     
-    function renderImage() {
-        echo "Hmm this should never be seen.";
-        return "Image goes here?";
-    }
+    abstract function renderImage();
     
     function renderImageSafe() {
         try {

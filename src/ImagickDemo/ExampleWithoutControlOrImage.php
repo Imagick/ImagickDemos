@@ -18,6 +18,9 @@ class ExampleWithoutControlOrImage extends \ImagickDemo\Example {
     function renderImageURL() {
         return "";
     }
+    
+    function renderImage() {
+    }
 
     /**
      * @return \ImagickDemo\Control

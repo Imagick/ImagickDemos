@@ -52,13 +52,10 @@ class forwardFourierTransformImage extends ImagickExample {
 
     function renderImage() {
 
-
         try {
             $imagick = new \Imagick(realpath($this->imagePath));
             $imagick->resizeimage(512, 512, \Imagick::FILTER_LANCZOS, 1);
-            
-            
-            
+
             if (false) {
                 header("Content-Type: image/png");
                 echo $imagick->getImageBlob();
@@ -66,14 +63,8 @@ class forwardFourierTransformImage extends ImagickExample {
             }
 
             $mask = createMask();
-            
             $imagick->forwardFourierTransformImage(true);
     
-            //echo "The image has ".$imagick->getNumberImages();
-    //        header("Content-Type: image/jpg");
-    //        echo $imagick->getImageBlob();
-            //$imagickPhase = $imagick->getimageindex(1);
-
             @$imagick->setimageindex(0);
             $magnitude = $imagick->getimage();
             

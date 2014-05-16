@@ -8,6 +8,9 @@ class getColorValue extends \ImagickDemo\ExampleWithoutControl {
     function renderImageURL() { 
     }
     
+    function renderImage() {
+    }
+    
     function renderDescription() {
         $color = new \ImagickPixel('rgba(90%, 20%, 20%, 0.75)');
 

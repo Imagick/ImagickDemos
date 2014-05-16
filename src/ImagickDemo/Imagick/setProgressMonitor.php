@@ -3,58 +3,71 @@
 namespace ImagickDemo\Imagick;
 
 
-function someProgress($offset, $span) {
-    if (((100 * $offset) / $span)  > 50) {
-        //return false;
-        return 0;
-    }
-    return true;
-}
 
+class setProgressMonitor extends \ImagickDemo\Example {
 
-
-
-
-class setProgressMonitor extends ImagickExample {
-
-    function renderDescription() {
+    /**
+     * @var \ImagickDemo\Control\ImageControl
+     */
+    private $control;
+    
+    function __construct(\ImagickDemo\Control\ImageControl $control) {
+        $this->control = $control;
     }
     
-    function someProgress($offset, $span) {
-        if (((100 * $offset) / $span)  > 50) {
-            return false;
-        }
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->control;
+    }
 
-        return true;
+    function renderImageURL() {
+        return "";
     }
 
     function renderImage() {
+    }
 
+    function renderDescription() {
+
+        $abortReason = null;
+        
         try {
+            $imagick = new \Imagick(realpath($this->control->getImagePath()));
             $startTime = time();
-            $callback = function ($offset, $span) use ($startTime) {                
-//                if (time() - $startTime > 5) {
-//                    echo "Image is taking to long to proces";
-//                    return false;
-//                }
-                if (rand(0, 20) == 0) {
-                    echo "Progress is $offset / $span \n";
+
+            $callback = function ($offset, $span)  use ($startTime, &$abortReason) {
+                if (((100 * $offset) / $span)  > 20) {
+                    $abortReason = "Processing reached 20%";
+                    return false;
+                }
+
+                $nowTime = time();
+
+                if ($nowTime - $startTime > 5) {
+                    $abortReason = "Image processing took more than 5 seconds";
+                    return false;
+                }
+                if (($offset % 5) == 0) {
+                    echo "Progress: $offset / $span <br/>";
                 }
                 return true;
             };
 
-            $imagick = new \Imagick(realpath($this->imagePath));
-            //$imagick->setProgressMonitor($callback);
-            //$imagick->setProgressMonitor(null);
-            $imagick->setProgressMonitor(__NAMESPACE__.'\someProgress');
+            $imagick->setProgressMonitor($callback);
 
             $imagick->waveImage(2, 15);
-            //$imagick->sketchimage(6, 15, 45);         
-            //header("Content-Type: image/jpg");
+
             echo "Data len is: ".strlen($imagick->getImageBlob());
         }
         catch(\ImagickException $e) {
-            echo "ImagickException caught: ".$e->getMessage()." Exception type is ".get_class($e);
+            if ($abortReason != null) {
+                echo "Image processing was aborted: ".$abortReason."<br/>";
+            }
+            else {
+                echo "ImagickException caught: ".$e->getMessage()." Exception type is ".get_class($e);
+            }
         }
     }
 }

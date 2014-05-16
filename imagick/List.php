@@ -328,7 +328,7 @@ function getImagickExamples() {
         //'hasNextImage',
         //'hasPreviousImage',
         new NavOption('identifyImage', false),
-        new NavOption('inverseFourierTransformImage', false),        
+        new NavOption('inverseFourierTransformImage', false, 'forwardFourierTransformImage'),
         //'implodeImage',
         //'importImagePixels',
         //'labelImage',

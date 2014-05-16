@@ -36,7 +36,6 @@ class VirtualPixel implements ControlElement {
                 $this->virtualPixelType = $noiseType;
             }
         }
-
     }
 
     /**

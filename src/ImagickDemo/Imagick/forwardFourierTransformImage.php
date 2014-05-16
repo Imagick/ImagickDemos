@@ -27,9 +27,6 @@ function createMask() {
 
     $imagick->gaussianBlurImage(20, 20);
 
- 
-    
-
     $imagick->autoLevelImage();
 
     //$imagick->negateImage(true);

@@ -78,6 +78,11 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\SolarizeThreshold',
     ],
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ColorSpace',
+    ],
+    
 ];
 
 \Intahwebz\Functions::load();

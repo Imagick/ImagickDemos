@@ -258,7 +258,8 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
 
-// $uri = '/image/Imagick/setProgressMonitor?image=Skyline';
+// $uri = '/image/Imagick/raiseImage?image=Lorikeet';
+
 
 $path = $uri;
 $queryPosition = strpos($path, '?');

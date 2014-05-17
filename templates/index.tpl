@@ -68,6 +68,7 @@
                 </div>
         
                 <div class="col-md-6">
+                    {$example->renderCodeLink() | nofilter}
                 </div>
         
                 <div class="col-md-3" style='text-align: right'>
@@ -98,7 +99,8 @@
     //http://colpick.com/plugin - I love you color picker
     
     function addColorSelector(selector, targetElement) {
-        $(selector).colpick({
+    
+        var params = {
             colorScheme:'dark',
             layout:'rgbhex',
             color:'ff8800',
@@ -107,10 +109,25 @@
                 $(el).children().css('background-color', '#' + hex);
                 $(targetElement).val("rgb("+ rgb.r + ", " + rgb.g + ", " + rgb.b + ")")
             },
-        });
+        };
+
+        var startColor = $(selector).data('color');
+
+        if (startColor !== undefined) {
+            params.color = startColor;
+        }
+
+        $(selector).colpick(params);
     }
 
+    //These are currently hardcoded - todo add JS page injection.
+    addColorSelector("#backgroundColorSelector", "#backgroundColor");
+    addColorSelector("#strokeColorSelector", "#strokeColor");
     addColorSelector("#fillColorSelector", "#fillColor");
+    
+
+
+    
     
 </script>
 

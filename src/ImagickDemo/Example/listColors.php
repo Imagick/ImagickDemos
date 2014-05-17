@@ -96,12 +96,6 @@ class listColors extends \ImagickDemo\Example {
                 $output .= $hexString;
                 $output .= "</td>";
 
-                /*$output .= "<td>";
-                $colorArray = $pixelColor->getColor();
-                $output .= var_export($colorArray, true);
-                $output .= $pixelColor->getcolorasstring();
-                $output .= "<td>"; */
-
             $output .= "</tr>";
         }
         

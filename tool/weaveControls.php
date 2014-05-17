@@ -90,6 +90,12 @@ $controls = [
         'ImagickDemo\ControlElement\H20',
     ],
 
+    [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        
+    ],
     
     
 ];

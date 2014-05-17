@@ -10,11 +10,11 @@ abstract class ImagickDrawExample extends \ImagickDemo\Example {
     protected $strokeColor;
 
     /**
-     * @var \ImagickDemo\Control\ColorControl
+     * @var \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor
      */
     private $colorControl;
 
-    function __construct(\ImagickDemo\Control\ColorControl $colorControl) {
+    function __construct(\ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor $colorControl) {
         $this->backgroundColor = $colorControl->getBackgroundColor();
         $this->fillColor =  $colorControl->getFillColor();
         $this->strokeColor = $colorControl->getStrokeColor();

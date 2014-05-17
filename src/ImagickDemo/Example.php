@@ -14,6 +14,8 @@ interface renderableExample {
 
 abstract class Example implements renderableExample {
 
+    abstract function renderImage();
+
     function renderImageURL() {
         return $this->getControl()->getURL();
     }
@@ -21,9 +23,7 @@ abstract class Example implements renderableExample {
     function renderTitle() {
         return getClassName(get_class($this));
     }
-    
-    abstract function renderImage();
-    
+
     function renderImageSafe() {
         try {
             /** @noinspection PhpVoidFunctionResultUsedInspection */
@@ -59,6 +59,14 @@ abstract class Example implements renderableExample {
         return "";
     }
     
+    
+    function renderCodeLink() {
+        $classname = get_class($this);
+        $classname = str_replace('\\', '/', $classname);
+        $url = "https://github.com/Danack/Imagick-demos/blob/master/src/".$classname.".php";
+
+        return "<a href='$url' target='_blank'>Source code on Github</a>";
+    }
 }
 
  

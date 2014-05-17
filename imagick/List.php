@@ -173,7 +173,6 @@ function getImagickExamples() {
         new NavOption('brightnessContrastImage', true),
         new NavOption('charcoalImage', true),
         new NavOption('chopImage', true),
-        //ClipImage
         //'clear',
         //new NavOption('clipImage', true),
         //'clipPathImage',
@@ -187,7 +186,7 @@ function getImagickExamples() {
         //'commentImage',
         //'compareImageChannels',
         //'compareImageLayers',
-        //'compareImages',
+//'compareImages',
         new NavOption('compositeImage', true),
         // CompositeLayers
         //__construct',
@@ -358,7 +357,7 @@ function getImagickExamples() {
         //'orderedPosterizeImage',
         //'paintOpaqueImage',
         //'paintTransparentImage',
-        //deprecated - paintfloodfillimage
+        
         new NavOption('pingImage', false),
         new NavOption('Quantum', null, false),
         //'pingImageBlob',
@@ -368,7 +367,6 @@ function getImagickExamples() {
         //'previewImages',
         //'previousImage',
         //'profileImage',
-        
         new NavOption('quantizeImage', true),
         //'quantizeImages',
         //'queryFontMetrics',
@@ -391,8 +389,8 @@ function getImagickExamples() {
         //'resizeImage',
         new NavOption('rollImage', true),
         new NavOption('rotateImage', true),
-        //RotationalBlurImage
-        //'roundCorners',
+        new NavOption('rotationalBlurImage', true),
+        new NavOption('roundCorners', true),
         //'sampleImage',
         new NavOption('scaleImage', true),
         new NavOption('screenEmbed', true),
@@ -483,7 +481,6 @@ function getImagickExamples() {
         //StatisticImage
         //'steganoImage',
         //'stereoImage',
-        //'stripImage',
         new NavOption('swirlImage', true),
         new NavOption('textureImage',  true),
         new NavOption('thresholdImage',  true),
@@ -503,6 +500,8 @@ function getImagickExamples() {
     ];
     
     //Things not sure whether to demo
+    //deprecated - paintfloodfillimage
+    //'stripImage',
     //'valid',
     //'writeImage',
     //'writeImageFile',

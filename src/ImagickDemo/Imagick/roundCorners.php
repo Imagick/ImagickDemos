@@ -12,6 +12,7 @@ class roundCorners extends ImagickExample {
         $imagick = new \Imagick(realpath($this->imagePath));
 
         $imagick->setBackgroundColor('red');
+
         
         $x_rounding = 40;
         $y_rounding = 40;

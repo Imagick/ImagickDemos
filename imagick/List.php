@@ -478,9 +478,7 @@ function getImagickExamples() {
         new NavOption('sparseColorImage', true),
         new NavOption('spliceImage', true),
         new NavOption('spreadImage', true),
-        //StatisticImage
-        //'steganoImage',
-        //'stereoImage',
+        new NavOption('statisticImage', true),
         new NavOption('swirlImage', true),
         new NavOption('textureImage',  true),
         new NavOption('thresholdImage',  true),
@@ -500,6 +498,8 @@ function getImagickExamples() {
     ];
     
     //Things not sure whether to demo
+    //'steganoImage',
+    //'stereoImage',
     //deprecated - paintfloodfillimage
     //'stripImage',
     //'valid',

@@ -9,10 +9,11 @@ class A implements ControlElement {
 
     private $a = "100";
 
+    const aName = 'a';
 //    private $errors = [];
 
     function __construct(Request $request) {
-        $this->a = $request->getVariable('a', $this->a);
+        $this->a = $request->getVariable(self::aName, $this->a);
         $this->a = intval($this->a);
         if ($this->a < 0) {
             $this->a = 0;
@@ -25,26 +26,20 @@ class A implements ControlElement {
 
     function getParams() {
         return [
-            'a' => $this->a,
+            self::aName => $this->a,
         ];
     }
 
     function renderFormElement() {
         $sA = safeText($this->a);
    
-//        if (count($this->errors)) {
-//            foreach ($this->errors as $error) {
-//                $output .= $error."<br/>";
-//            }
-//        }
-
         $output = "
             <tr>
                 <td class='standardCell'>
                     Alpha
                 </td>
                 <td class='standardCell'>
-                    <input type='text' name='b' value='$sA'/>
+                    <input type='text' name='".self::aName."' value='$sA'/>
                 </td>
             </tr>";
 

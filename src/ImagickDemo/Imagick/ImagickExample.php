@@ -24,10 +24,6 @@ abstract class ImagickExample extends \ImagickDemo\Example {
         return $this->imageControl;
     }
 
-//    function renderControl() {
-//        return $this->imageControl->render();
-//    }
-
     function getURL() {
         return $this->imageControl->getURL();
     }

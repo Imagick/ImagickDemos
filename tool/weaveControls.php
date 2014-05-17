@@ -82,6 +82,15 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\ColorSpace',
     ],
+
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StatisticType',
+        'ImagickDemo\ControlElement\W20',
+        'ImagickDemo\ControlElement\H20',
+    ],
+
+    
     
 ];
 

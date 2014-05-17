@@ -9,49 +9,39 @@ class Nav implements ActiveNav {
 
     protected $currentExample;
 
-    /** @var \ImagickDemo\Navigation\NavOption[]  */
-    private $examples;
+    /**
+     * @var \ImagickDemo\ExampleList
+     */
+    private $exampleList;
 
     /**
-     * @var \ImagickDemo\Control
+     * @param \ImagickDemo\ExampleList $exampleList
+     * @param $category
+     * @param $example
      */
-    private $control;
-
-    function __construct($examples = null, $category, $example) {
-        $this->examples = $examples;
+    function __construct(\ImagickDemo\ExampleList $exampleList, $category, $example) {
+        $this->exampleList = $exampleList;
         $this->category = $category;
         $this->currentExample = $example;
     }
 
+    /**
+     * @return NavOption[]
+     */
     function getNavOptions() {
-        return $this->examples;
+        return $this->exampleList->getExamples();
     }
 
+    /**
+     * @return mixed
+     */
     function getBaseURI() {
         return $this->category;
     }
 
-    function getURL() {
-        $navOption = $this->getCurrent();
-
-        if ($navOption) {
-
-            if ($navOption->hasImage() == false) {
-                return "";
-            }
-
-            $imageBaseURL = sprintf('/image/%s/%s', $this->category, $navOption->getName());
-            $params = '';
-            if ($this->control) {
-                $params = '?'.$this->control->getParamString();
-            }
-
-            return sprintf("<img src='%s%s' />", $imageBaseURL, $params );
-        }
-
-        return "";
-    }
-
+    /**
+     * @return mixed
+     */
     function renderTitle() {
         if ($this->currentExample) {
             return $this->currentExample;
@@ -59,6 +49,9 @@ class Nav implements ActiveNav {
         return $this->category;
     }
 
+    /**
+     * @param \Auryn\Provider $injector
+     */
     function setupControlAndExample(\Auryn\Provider $injector) {
         $navOption = $this->getCurrent();
 
@@ -84,7 +77,7 @@ class Nav implements ActiveNav {
      */
     function getPrevious($current) {
         $previous = null;
-        foreach ($this->examples as $element) {
+        foreach ($this->exampleList->getExamples() as $element) {
             if (strcmp($current, $element->getName()) === 0) {
                 if ($previous) {
                     return $previous;
@@ -100,7 +93,7 @@ class Nav implements ActiveNav {
      * @return NavOption|null
      */
     function getCurrent() {
-        foreach ($this->examples as $element) {
+        foreach ($this->exampleList->getExamples() as $element) {
             if (strcmp($this->currentExample, $element->getName()) === 0) {
                 return $element;
             }
@@ -109,10 +102,13 @@ class Nav implements ActiveNav {
         return null;
     }
 
+    /**
+     * @param $current
+     * @return NavOption|null
+     */
     function getNext($current) {
         $next = false;        
-        foreach ($this->examples as $element) {
-
+        foreach ($this->exampleList->getExamples() as $element) {
             if ($next == true) {
                 return $element;
             }
@@ -124,6 +120,9 @@ class Nav implements ActiveNav {
         return null;
     }
 
+    /**
+     * @return string
+     */
     function renderPreviousButton() {
         $previousNavOption = $this->getPrevious($this->currentExample);
 
@@ -138,6 +137,9 @@ class Nav implements ActiveNav {
         return "";
     }
 
+    /**
+     * @return string
+     */
     function renderNextButton() {
         $nextNavOption = $this->getNext($this->currentExample);
 
@@ -152,10 +154,13 @@ class Nav implements ActiveNav {
         return "";
     }
 
+    /**
+     * 
+     */
     function renderNav() {
         echo "<ul class='nav nav-sidebar smallPadding'>";
 
-        foreach ($this->examples as $imagickExampleOption) {
+        foreach ($this->exampleList->getExamples() as $imagickExampleOption) {
             $imagickExample = $imagickExampleOption->getName();
             echo "<li>";
             echo "<a class='smallPadding' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";

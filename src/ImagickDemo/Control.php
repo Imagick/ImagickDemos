@@ -9,6 +9,8 @@ interface Control {
     function renderForm();
 
     function getParams();
+    
+    function getURL();
 }
 
  

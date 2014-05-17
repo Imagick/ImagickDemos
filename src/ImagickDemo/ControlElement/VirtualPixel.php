@@ -36,6 +36,7 @@ class VirtualPixel implements ControlElement {
                 $this->virtualPixelType = $noiseType;
             }
         }
+        //Zendcode eats braces
     }
 
     /**

@@ -1,9 +1,19 @@
+.smallPadding > tbody > tr > td,
 .smallPadding > li > a {
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+
+.smallPadding > tbody > tr > td{
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
 
 .noMarginTop {
     margin-top: 0px;

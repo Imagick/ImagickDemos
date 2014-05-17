@@ -5,7 +5,7 @@ namespace ImagickDemo;
 
 
 interface renderableExample {
-    //function renderImageURL();
+
     /**
      * @return \ImagickDemo\Control
      */
@@ -56,7 +56,6 @@ abstract class Example implements renderableExample {
     }
     
     function renderDescription() {
-        //return "Choose something mofo.";
         return "";
     }
     

@@ -18,16 +18,12 @@ class transformImageColorspace extends \ImagickDemo\Example {
     }
     
     function renderDescription() {
+        //http://www.imagemagick.org/Usage/color_basics/
     }
 
     function renderImage() {
-        
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
-
-        //brightnessContrastImage(float brigthness, float contrast[, int channel])
-
         $colorSpace = $this->rsiControl->getColorSpaceType();
-        
         $imagick->transformimagecolorspace($colorSpace);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();

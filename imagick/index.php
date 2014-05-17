@@ -73,9 +73,7 @@ function fatalErrorShutdownHandler() {
 }
 
 register_shutdown_function('fatalErrorShutdownHandler');
-
 set_error_handler('errorHandler');
-
 set_exception_handler('myBad');
 
 require_once "process.php";

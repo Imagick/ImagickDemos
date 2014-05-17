@@ -5,7 +5,7 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class ColorSpace implements ControlElement {
+class DistortionType implements ControlElement {
 
     private $colorSpaceType = \Imagick::COLORSPACE_RGB;
     
@@ -13,8 +13,9 @@ class ColorSpace implements ControlElement {
     
     private $colorSpaceName = 'Edge';
 
-    This is not useful - all of the things below require radically different 
-    variables
+    //TODO Figure out how to support distortion 
+//    This is not useful - all of the things below require radically different 
+//    variables
     
     private $colorSpaceTypes = [
 

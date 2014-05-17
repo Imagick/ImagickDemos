@@ -7,7 +7,7 @@ use Intahwebz\Request;
 
 class Amplitude implements ControlElement {
 
-    private $amplitude = 0;
+    private $amplitude = 5;
 
     const name = 'amplitude';
     

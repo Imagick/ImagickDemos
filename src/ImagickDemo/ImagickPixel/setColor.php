@@ -14,8 +14,8 @@ class setColor extends \ImagickDemo\ExampleWithoutControl {
         $draw = new \ImagickDraw();
 
         //Create an ImagickPixel with the predefined color 'red'
-        $strokeColor = new \ImagickPixel('firebrick');
-
+        ///$strokeColor = new \ImagickPixel('firebrick');
+        $strokeColor = new \ImagickPixel('green');
         $fillColor = new \ImagickPixel();
         $fillColor->setColor('rgba(100%, 75%, 0%, 1.0)');
 

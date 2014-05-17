@@ -37,13 +37,13 @@ class tintImage extends \ImagickDemo\Example {
         $blue = $this->tintAndImageControl->getB();
         $alpha = $this->tintAndImageControl->getA();
         $alpha = $alpha / 100;
-        
-        
+
         $imagick = new \Imagick();
-        $imagick->newPseudoImage(200, 200, 'gradient:');
+        $imagick->newPseudoImage(400, 400, 'gradient:black-white');
 
         $tint = new \ImagickPixel("rgb($red, $green, $blue)");
-        $imagick->tintImage($tint, $alpha);
+        $opacity = new \ImagickPixel("rgb(128, 128, 128, $alpha)");
+        $imagick->tintImage($tint, $opacity);
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();

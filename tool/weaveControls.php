@@ -94,10 +94,11 @@ $controls = [
         'ImagickDemo\ControlElement\BackgroundColor',
         'ImagickDemo\ControlElement\StrokeColor',
         'ImagickDemo\ControlElement\FillColor',
-        
     ],
-    
-    
+    [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\DistortionExample',
+    ],
 ];
 
 \Intahwebz\Functions::load();

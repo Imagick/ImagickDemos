@@ -16,7 +16,6 @@ class setVectorGraphics extends ImagickDrawExample {
         $strokeColor = new \ImagickPixel($this->strokeColor);
         $fillColor = new \ImagickPixel($this->fillColor);
 
-
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
 

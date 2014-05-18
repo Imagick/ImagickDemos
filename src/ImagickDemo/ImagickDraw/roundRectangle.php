@@ -2,7 +2,20 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class roundRectangle extends ImagickDrawExample {
+class roundRectangle extends \ImagickDemo\Example {
+
+    private $control;
+    
+    function __construct(\ImagickDemo\Control\RoundRectangleControl $control) {
+        $this->control = $control;
+    }
+
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->control;
+    }
 
     function renderDescription() {
         return "";
@@ -10,12 +23,11 @@ class roundRectangle extends ImagickDrawExample {
 
     function renderImage() {
 
-//Create a ImagickDraw object to draw into.
+        //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $strokeColor = new \ImagickPixel($this->strokeColor);
-        $fillColor = new \ImagickPixel($this->fillColor);
-
+        $strokeColor = new \ImagickPixel($this->control->getStrokeColor());
+        $fillColor = new \ImagickPixel($this->control->getFillColor());
 
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
@@ -23,18 +35,30 @@ class roundRectangle extends ImagickDrawExample {
         $draw->setStrokeOpacity(1);
         $draw->setStrokeWidth(2);
 
-        $draw->roundRectangle(50, 50, 200, 200, 5, 5);
+        $startX = $this->control->getStartX();
+        $startY = $this->control->getStartY();
+        $endX   = $this->control->getEndX();
+        $endY   = $this->control->getEndY();
+        $roundX = $this->control->getRoundX();
+        $roundY = $this->control->getRoundY();
 
-        $draw->roundRectangle(300, 50, 450, 200, 25, 25);
+        $draw->roundRectangle(
+             $startX, 
+             $startY,
+             $endX,
+             $endY,
+             $roundX,
+             $roundY
+        );
 
-        $draw->roundRectangle(50, 300, 200, 450, 50, 10);
-
-        $draw->roundRectangle(300, 300, 450, 450, 150, 150);
+//        $draw->roundRectangle(300, 50, 450, 200, 25, 25);
+//        $draw->roundRectangle(50, 300, 200, 450, 50, 10);
+//        $draw->roundRectangle(300, 300, 450, 450, 150, 150);
 
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, $this->backgroundColor);
+        $imagick->newImage(500, 500, $this->control->getBackgroundColor());
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

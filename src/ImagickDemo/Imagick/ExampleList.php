@@ -197,7 +197,8 @@ class ExampleList implements \ImagickDemo\ExampleList {
             new NavOption('magnifyImage'),
             //'mapImage',
             //'matteFloodfillImage',
-            //'medianFilterImage',
+            new NavOption('medianFilterImage'),
+
             //'mergeImageLayers',
             //'minifyImage',
             new NavOption('modulateImage'),
@@ -369,12 +370,8 @@ class ExampleList implements \ImagickDemo\ExampleList {
         //'writeImages',
         //'writeImagesFile',
 
-
-
         return $imagickExamples;
     }
-
-
 }
 
 

@@ -2,7 +2,20 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setTextDecoration extends ImagickDrawExample {
+class setTextDecoration extends \ImagickDemo\Example {
+
+    function __construct(\ImagickDemo\Control\TextDecoration $control) {
+        $this->control = $control;
+        
+    }
+
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->control; 
+    }
+
 
     function renderDescription() {
         return "";
@@ -13,30 +26,24 @@ class setTextDecoration extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $strokeColor = new \ImagickPixel($this->strokeColor);
-        $fillColor = new \ImagickPixel($this->fillColor);
-
+        $strokeColor = new \ImagickPixel($this->control->getStrokeColor());
+        $fillColor = new \ImagickPixel($this->control->getFillColor());
+        $decoration = $this->control->getTextDecoration();
+        
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
-
         $draw->setStrokeWidth(2);
-
         $draw->setFontSize(72);
+    
+        $draw->setTextDecoration($decoration);
+        $draw->annotation(50, 75, "Lorem Ipsum!");
+        //$offset += 100;
 
-        $decorations = [\Imagick::DECORATION_NO, \Imagick::DECORATION_UNDERLINE, \Imagick::DECORATION_OVERLINE, \Imagick::DECORATION_LINETROUGH];
-
-        $offset = 0;
-        
-        foreach ($decorations as $decoration) {
-            $draw->setTextDecoration($decoration);
-            $draw->annotation(50, 75 + $offset, "Lorem Ipsum!");
-            $offset += 100;
-        }
 
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, $this->backgroundColor);
+        $imagick->newImage(500, 500, $this->control->getBackgroundColor());
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

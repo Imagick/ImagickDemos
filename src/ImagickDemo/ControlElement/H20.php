@@ -5,8 +5,33 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class H20 implements ControlElement {
 
+//class H20 extends ValueElement {
+//
+//    function getDefault() {
+//        return 5;
+//    }
+//    function getMin() {
+//        return 0;
+//    }
+//    
+//    function getMax() {
+//        return 20;
+//    }
+//    function getVariableName() {
+//        return 'h20';
+//    }
+//    
+//    function getDisplayName() {
+//        return 'Height';
+//    }
+//
+//    function getH20() {
+//        return $this->getValue();
+//    }
+
+class H20 implements ControlElement {
+    
     private $h20 = "5";
 
     const h20Name = 'h20';

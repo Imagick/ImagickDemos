@@ -5,37 +5,26 @@ namespace ImagickDemo\ImagickDraw;
 class composite extends ImagickDrawExample {
 
     function renderDescription() {
-        return "";
+        return "TODO - completely replace this with a non-file based example.";
     }
 
     function renderImage() {
         //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
-
         $strokeColor = new \ImagickPixel($this->strokeColor);
         $fillColor = new \ImagickPixel($this->fillColor);
-
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
-
         $draw->setFillOpacity(1);
-
         $draw->setStrokeWidth(2);
         $draw->setFontSize(72);
-
         $draw->setStrokeOpacity(1);
         $draw->setStrokeColor($strokeColor);
-
         $draw->setStrokeWidth(2);
-
         $draw->setFont("../fonts/CANDY.TTF");
-
         $draw->setFontSize(140);
-
         $draw->rectangle(0, 0, 1000, 300);
-
         $draw->setFillColor('white');
-
         $draw->setfillopacity(1);
         $draw->annotation(50, 180, "Lorem Ipsum!");
 

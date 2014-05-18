@@ -20,6 +20,10 @@ $controls = [
         'ImagickDemo\ControlElement\Image'
     ],
     [
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Image'
+    ],
+    [
         'ImagickDemo\ControlElement\R',
         'ImagickDemo\ControlElement\G',
         'ImagickDemo\ControlElement\B',
@@ -94,6 +98,7 @@ $controls = [
         'ImagickDemo\ControlElement\StrokeColor',
         'ImagickDemo\ControlElement\FillColor',
     ],
+   
     [
         'ImagickDemo\ControlElement\BackgroundColor',
         'ImagickDemo\ControlElement\StrokeColor',
@@ -104,11 +109,95 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\DistortionExample',
     ],
+
+
+    'ImagickDemo\Control\ArcControl' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\EndX',
+        'ImagickDemo\ControlElement\EndY',
+        'ImagickDemo\ControlElement\StartAngle',
+        'ImagickDemo\ControlElement\EndAngle',
+    ],
+
+    'ImagickDemo\Control\CircleControl' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\OriginX',
+        'ImagickDemo\ControlElement\OriginY',
+        'ImagickDemo\ControlElement\EndX',
+        'ImagickDemo\ControlElement\EndY',
+    ],
+
+
+    'ImagickDemo\Control\TranslateControl' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\FillModifiedColor',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\EndX',
+        'ImagickDemo\ControlElement\EndY',
+        'ImagickDemo\ControlElement\TranslateX',
+        'ImagickDemo\ControlElement\TranslateY',
+    ],
+
+
+    
+    'ImagickDemo\Control\SkewControl' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\FillModifiedColor',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\EndX',
+        'ImagickDemo\ControlElement\EndY',
+        'ImagickDemo\ControlElement\Skew',
+    ],
+
+    
+    
+    'ImagickDemo\Control\TextUnderControl' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\TextUnderColor',
+    ],
+
+    'ImagickDemo\Control\TextDecoration' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\TextDecoration',
+    ],
+
+
+    'ImagickDemo\Control\RoundRectangleControl' => [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\EndX',
+        'ImagickDemo\ControlElement\EndY',
+        'ImagickDemo\ControlElement\RoundX',
+        'ImagickDemo\ControlElement\RoundY',
+    ],
+    
+    
+    
+
 ];
 
 \Intahwebz\Functions::load();
 
-foreach ($controls as $components) {
+foreach ($controls as $outputClassname => $components) {
     $lazyWeaveInfo = new \Weaver\CompositeWeaveInfo(
         'ImagickDemo\Control\ControlComposite',
         $components, 
@@ -118,7 +207,15 @@ foreach ($controls as $components) {
         ]
     );
     $weaveMethod = new CompositeWeaveGenerator($lazyWeaveInfo);
-    $weaveMethod->writeClass('../var/compile/');
+    
+    if (is_int($outputClassname) == false) {
+        $weaveMethod->writeClass('../var/compile/', $outputClassname);
+    }
+    else {
+        $weaveMethod->writeClass('../var/compile/');
+    }
+    
+    
 }
 
 

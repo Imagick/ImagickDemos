@@ -5,13 +5,11 @@ namespace ImagickDemo\ImagickDraw;
 class setFontStyle extends ImagickDrawExample {
 
     function renderDescription() {
-        return "Fonts depend on ghostscript";
+        return "Fonts depend on ghostscript <br/>";
     }
 
     function renderImage() {
-
         $draw = new \ImagickDraw();
-
         $draw->setStrokeColor($this->strokeColor);
         $draw->setFillColor($this->fillColor);
         $draw->setStrokeWidth(1);
@@ -28,7 +26,7 @@ class setFontStyle extends ImagickDrawExample {
 
 //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500, 500, $this->backgroundColor);
+        $imagick->newImage(350, 300, $this->backgroundColor);
         $imagick->setImageFormat("png");
 
 //Render the draw commands in the ImagickDraw object 

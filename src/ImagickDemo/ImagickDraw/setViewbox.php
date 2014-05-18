@@ -29,13 +29,9 @@ class setViewbox extends ImagickDrawExample {
         
          */
 
-
         $draw->circle(250, 250, 250, 0);
-
         $draw->setviewbox(0, 0, 200, 200);
-
         $draw->circle(125, 250, 250, 250);
-
         $draw->translate(250, 125);
         $draw->circle(0, 0, 125, 0);
 

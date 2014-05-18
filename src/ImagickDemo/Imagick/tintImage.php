@@ -31,7 +31,6 @@ class tintImage extends \ImagickDemo\Example {
 
 
     function renderImage() {
-
         $red = $this->tintAndImageControl->getR();
         $green = $this->tintAndImageControl->getG();
         $blue = $this->tintAndImageControl->getB();

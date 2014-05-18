@@ -142,6 +142,7 @@
     addColorSelector("#strokeColorSelector", "#strokeColor");
     addColorSelector("#fillColorSelector", "#fillColor");
     addColorSelector("#fillModifiedColorSelector", "#fillModifiedColor");
+    addColorSelector("#textUnderColorSelector", "#textUnderColor");
     
 
 

@@ -28,6 +28,11 @@ function bootstrap() {
     $injector->defineParam('imageBaseURL', null);
     $injector->defineParam('pageTitle', "Imagick demos");
 
+    $injector->defineParam('standardImageWidth', 500);
+    $injector->defineParam('standardImagHeight', 500);
+    $injector->defineParam('smallImageWidth', 350); 
+    $injector->defineParam('smallImageHeight', 300);
+
     $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\NullExample::class);
     $injector->alias(ImagickDemo\Control::class, ImagickDemo\Control\NullControl::class);
     $injector->alias(Intahwebz\Request::class, Intahwebz\Routing\HTTPRequest::class);

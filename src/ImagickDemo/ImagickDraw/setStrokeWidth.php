@@ -13,7 +13,6 @@ class setStrokeWidth extends ImagickDrawExample {
 //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-
         $draw->setStrokeWidth(1);
 
         $strokeColor = new \ImagickPixel($this->strokeColor);
@@ -22,7 +21,7 @@ class setStrokeWidth extends ImagickDrawExample {
         $draw->setStrokeColor($strokeColor);
         $draw->setFillColor($fillColor);
 
-//$draw->setStrokeWidth(1);
+        //$draw->setStrokeWidth(1);
         $draw->line(100, 100, 400, 145);
         $draw->rectangle(100, 200, 225, 350);
 
@@ -30,8 +29,7 @@ class setStrokeWidth extends ImagickDrawExample {
         $draw->line(100, 120, 400, 165);
         $draw->rectangle(275, 200, 400, 350);
 
-
-//Create an image object which the draw commands can be rendered into
+        //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
         $image->newImage(500, 400, $this->backgroundColor);
         $image->setImageFormat("png");

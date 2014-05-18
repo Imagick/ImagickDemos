@@ -21,11 +21,11 @@ class haldClutImage extends \ImagickDemo\Example {
     }
 
     function renderImage() {
-        $radius = $this->rsiControl->getRadius();
-        $sigma = $this->rsiControl->getSigma();
+
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
 
-        $imagickPalette = new \Imagick("../images/LowContrast.jpg");
+        $imagickPalette = new \Imagick("../images/hald/hald_8.png");
+        $imagickPalette->sepiatoneImage(55);
         $imagick->haldClutImage($imagickPalette);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();

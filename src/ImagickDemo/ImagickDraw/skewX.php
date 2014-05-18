@@ -1,49 +1,64 @@
 <?php
 namespace ImagickDemo\ImagickDraw;
 
-class skewX extends ImagickDrawExample {
+class skewX extends \ImagickDemo\Example {
+
+    /**
+     * @var \ImagickDemo\Control\SkewControl
+     */
+    private $control;
+
+    function __construct(\ImagickDemo\Control\SkewControl $skewControl) {
+        $this->control = $skewControl;
+    }
+
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->control;
+    }
 
     function renderDescription() {
         return "";
     }
 
     function renderImage() {
-
-//skewX() skews the current coordinate system in the horizontal direction.
-
-//Create a ImagickDraw object to draw into.
+        //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw();
 
-        $fillColor = new \ImagickPixel($this->fillColor);
-        $color = new \ImagickPixel('LightCoral');
+        $fillColor = new \ImagickPixel($this->control->getFillColor());
+        $fillModifiedColor = new \ImagickPixel($this->control->getFillModifiedColor());
+        $strokeColor = new \ImagickPixel($this->control->getStrokeColor());
 
-//$draw->setStrokeColor($strokeColor);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setStrokeWidth(2);
+
+        $startX = $this->control->getStartX();
+        $startY = $this->control->getStartY();
+        $endX = $this->control->getEndX();
+        $endY = $this->control->getEndY();
+        $skew = $this->control->getSkew();
+
         $draw->setFillColor($fillColor);
-        $draw->rectangle(200, 200, 300, 300);
+        $draw->rectangle($startX, $startY, $endX, $endY);
 
-//$draw->setStrokeColor($color);
-        $draw->setFillColor($color);
-        $draw->skewX(20);
-        $draw->rectangle(200, 200, 300, 300);
+        $draw->setFillColor($fillModifiedColor);
+        $draw->skewX($skew);
+        $draw->rectangle($startX, $startY, $endX, $endY);
 
-//Create an image object which the draw commands can be rendered into
+        //Create an image object which the draw commands can be rendered into
         $image = new \Imagick();
-        $image->newImage(500, 500, $this->backgroundColor);
+        $image->newImage(500, 500, $this->control->getBackgroundColor());
         $image->setImageFormat("png");
 
-
-//Render the draw commands in the ImagickDraw object 
-//into the image.
+        //Render the draw commands in the ImagickDraw object 
+        //into the image.
         $image->drawImage($draw);
 
-//Send the image to the browser
+        //Send the image to the browser
         header("Content-Type: image/png");
         echo $image->getImageBlob();
-
-
-//This produces an image of a red rectangle on a yellow background 
-
-
     }
 
 }

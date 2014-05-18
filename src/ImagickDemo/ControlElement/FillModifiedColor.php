@@ -6,17 +6,17 @@ namespace ImagickDemo\ControlElement;
 use Intahwebz\Request;
 
 
-class FillColor implements ControlElement {
+class FillModifiedColor implements ControlElement {
 
-    private $fillColor = 'DodgerBlue2';
+    private $fillModifiedColor = 'LightCoral';
 
-    const fillColorName = 'fillColor';
+    const fillModifiedColorName = 'fillModifiedColor';
 
     function __construct(Request $request) {
-        $nextColor = $request->getVariable(self::fillColorName, $this->fillColor);
+        $nextColor = $request->getVariable(self::fillModifiedColorName, $this->fillModifiedColor);
         try {
             new \ImagickPixel($nextColor);
-            $this->fillColor = $nextColor;
+            $this->fillModifiedColor = $nextColor;
         }
         catch (\Exception $e) {
             //$this->errors[] = "Color '$nextColor' for $colorType was not valid.";
@@ -28,8 +28,8 @@ class FillColor implements ControlElement {
     /**
      * @return string
      */
-    public function getFillColor() {
-        return $this->fillColor;
+    public function getFillModifiedColor() {
+        return $this->fillModifiedColor;
     }
 
     /**
@@ -37,7 +37,7 @@ class FillColor implements ControlElement {
      */
     function getParams() {
         return [
-            self::fillColorName => $this->fillColor,
+            self::fillModifiedColorName => $this->fillModifiedColor,
         ];
     }
 
@@ -47,8 +47,8 @@ class FillColor implements ControlElement {
     function renderFormElement() {
         $output = "";
 
-        $sFillColor = safeText($this->fillColor);
-        $fillPixel = new \ImagickPixel($this->fillColor);
+        $sFillColor = safeText($this->fillModifiedColor);
+        $fillPixel = new \ImagickPixel($this->fillModifiedColor);
         $fillColor = $fillPixel->getcolor();
         $fillString = sprintf("rgb(%d, %d, %d)", $fillColor['r'], $fillColor['g'], $fillColor['b']); 
         $fillStringHex = sprintf("%02x%02x%02x", $fillColor['r'], $fillColor['g'], $fillColor['b']);
@@ -57,12 +57,12 @@ class FillColor implements ControlElement {
 
             <tr>
                 <td class='standardCell'>
-                    Fill
+                    Fill modified
                 </td>
                 <td class='standardCell'>
-                    <input type='text' id='fillColor' name='".self::fillColorName."' value='$sFillColor'  />
+                    <input type='text' id='fillModifiedColor' name='".self::fillModifiedColorName."' value='$sFillColor'  />
                     
-                    <span id='fillColorSelector' data-color='$fillStringHex' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
+                    <span id='fillModifiedColorSelector' data-color='$fillStringHex' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
                         <span style='background-color: $fillString; margin: 2px; width: 20px; display: inline-block;'>
                             &nbsp;
                         </span>

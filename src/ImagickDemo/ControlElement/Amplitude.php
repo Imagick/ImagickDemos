@@ -34,7 +34,7 @@ class Amplitude implements ControlElement {
         $output .= "
             <tr>
                 <td class='standardCell'>
-                    ".self::name."
+                    Amplitude
                 </td>
                 <td class='standardCell'>
                     <input type='text' name='".self::name."' value='$sAmplitude'/>

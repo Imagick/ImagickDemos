@@ -3,9 +3,13 @@
 
 namespace ImagickDemo;
 
+use ImagickDemo\Navigation\ActiveNav;
 
 class NavigationBar {
 
+    /**
+     * @var Navigation\ActiveNav
+     */
     private $activeNav;
     
     private $navOptions = [
@@ -17,7 +21,7 @@ class NavigationBar {
         "/Example" => "Example",
     ];
     
-    function __construct($activeNav) {
+    function __construct(ActiveNav $activeNav) {
         $this->activeNav = $activeNav;
     }
     
@@ -26,7 +30,7 @@ class NavigationBar {
 
         foreach ($this->navOptions as $url => $name) {
             $activeClass = '';
-            if (strcmp($url, $this->activeNav) === 0) {
+            if (strcmp($url, '/'.$this->activeNav->getCategory()) === 0) {
                 $activeClass = 'active';
             }
             $output .= "<li class='$activeClass'>";

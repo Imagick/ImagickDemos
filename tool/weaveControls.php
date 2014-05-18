@@ -89,11 +89,16 @@ $controls = [
         'ImagickDemo\ControlElement\W20',
         'ImagickDemo\ControlElement\H20',
     ],
-
     [
         'ImagickDemo\ControlElement\BackgroundColor',
         'ImagickDemo\ControlElement\StrokeColor',
         'ImagickDemo\ControlElement\FillColor',
+    ],
+    [
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+        'ImagickDemo\ControlElement\FillModifiedColor',
     ],
     [
         'ImagickDemo\ControlElement\Image',

@@ -27,6 +27,10 @@ class DefaultNav implements ActiveNav {
     function renderDescription() {
         return "I are description.";
     }
+    
+    function getCategory(){
+        return '';
+    }
 }
 
  

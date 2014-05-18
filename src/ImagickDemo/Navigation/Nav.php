@@ -25,6 +25,10 @@ class Nav implements ActiveNav {
         $this->currentExample = $example;
     }
 
+    function getCategory() {
+        return $this->category;
+    }
+    
     /**
      * @return NavOption[]
      */
@@ -154,20 +158,55 @@ class Nav implements ActiveNav {
         return "";
     }
 
-    /**
-     * 
-     */
-    function renderNav() {
+    
+    function renderVertical() {
+
         echo "<ul class='nav nav-sidebar smallPadding'>";
 
         foreach ($this->exampleList->getExamples() as $imagickExampleOption) {
+
             $imagickExample = $imagickExampleOption->getName();
+            
+            $active = '';
+            
+            if ($this->currentExample === $imagickExample) {
+                $active = 'navActive';
+            }
+
             echo "<li>";
-            echo "<a class='smallPadding' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
+            echo "<a class='smallPadding $active' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
             echo "</li>";
         }
 
         echo "</ul>";
+    }
+
+    function renderHorizontal() {
+        foreach ($this->exampleList->getExamples() as $imagickExampleOption) {
+            $imagickExample = $imagickExampleOption->getName();
+            printf(
+                "<a class='smallPadding' href='/%s/%s'>%s</a> ",
+                $this->category,
+                $imagickExample,
+                str_replace('Image', '', $imagickExample)
+            );
+        }
+    }
+    
+    /**
+     * 
+     */
+    function renderNav($horizontal = false) {
+        
+        if ($horizontal == true) {
+            $this->renderHorizontal();   
+        }
+        else {
+            $this->renderVertical();
+        }
+        
+        
+  
     }
 }
 

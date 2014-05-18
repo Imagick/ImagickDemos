@@ -9,8 +9,7 @@ interface ActiveNav {
     function renderNextButton();
     function renderTitle();
     function renderNav();
-    //function getURL();
- //   function renderDescription();
+    function getCategory();
 }
 
  

@@ -9,15 +9,15 @@ class ExampleList implements \ImagickDemo\ExampleList {
 
     function getExamples() {
         $imagickExamples = [
-            new NavOption('edgeExtend', true),
-            new NavOption('gradientReflection',  true),
-            new NavOption('psychedelicFont', true),
-            new NavOption('psychedelicFontGif', true),
-            new NavOption('imagickComposite', true),
-            new NavOption('imagickCompositeGen', true),
-            new NavOption('fxAnalyzeImage', true),
-            new NavOption('listColors', true),
-            new NavOption('composite', true),
+            new NavOption('edgeExtend'),
+            new NavOption('gradientReflection'),
+            new NavOption('psychedelicFont'),
+            new NavOption('psychedelicFontGif'),
+            new NavOption('imagickComposite'),
+            new NavOption('imagickCompositeGen'),
+            new NavOption('fxAnalyzeImage'),
+            new NavOption('listColors'),
+            new NavOption('composite'),
         ];
 
         return $imagickExamples;

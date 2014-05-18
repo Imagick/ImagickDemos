@@ -3,25 +3,19 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class setIteratorRow extends \ImagickDemo\ExampleWithoutControl {
+class setIteratorRow extends \ImagickDemo\Imagick\ImagickExample {
 
     function renderDescription() {
         return "";
     }
 
     function renderImage() {
-
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
-
+        $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
         $imageIterator = $imagick->getPixelRegionIterator(200, 200, 200, 200);
 
-
         for ($x = 0; $x < 20; $x++) {
-
             $imageIterator->setIteratorRow(rand(0, 100));
-
             $pixels = $imageIterator->getCurrentIteratorRow();
-
             foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
                 /** @var $pixel \ImagickPixel */
                 $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/

@@ -13,7 +13,7 @@ abstract class ImagickExample extends \ImagickDemo\Example {
     /**
      * @var \ImagickDemo\Control\ImageControl
      */
-    private $imageControl;
+    protected $imageControl;
     
     function __construct(ImageControl $imageControl) {
         $this->imageControl = $imageControl;

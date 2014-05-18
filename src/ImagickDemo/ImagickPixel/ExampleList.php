@@ -9,19 +9,19 @@ class ExampleList implements \ImagickDemo\ExampleList {
 
     function getExamples() {
         $imagePixelExamples = array(
-            new NavOption('construct', true),
+            new NavOption('construct'),
             //'ImagickPixel.clear', 
-            new NavOption('getColor',  false),
-            new NavOption('getColorAsString', false),
+            new NavOption('getColor'),
+            new NavOption('getColorAsString'),
             //No idea    'ImagickPixel.getColorCount',
-            new NavOption('getColorValue', false),
-            new NavOption('getColorValueQuantum', false),
-            new NavOption('getHSL', false),
-            new NavOption('isSimilar', false),
-            new NavOption('setColor', true),
-            new NavOption('setColorValue', true),
-            new NavOption('setColorValueQuantum', true),
-            new NavOption('setHSL', false),
+            new NavOption('getColorValue'),
+            new NavOption('getColorValueQuantum'),
+            new NavOption('getHSL'),
+            new NavOption('isSimilar'),
+            new NavOption('setColor'),
+            new NavOption('setColorValue'),
+            new NavOption('setColorValueQuantum'),
+            new NavOption('setHSL'),
         );
 
         return $imagePixelExamples;

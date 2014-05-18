@@ -12,19 +12,19 @@ class ExampleList implements \ImagickDemo\ExampleList {
     function getExamples() {
 
         $imagickPixelIteratorExamples = array(
-            new NavOption('clear', true ),
-            new NavOption('construct', true),
+            new NavOption('clear'),
+            new NavOption('construct'),
             //'getCurrentIteratorRow',
             //'getIteratorRow' => 'setIteratorRow',
-            new NavOption('getNextIteratorRow', true ),
+            new NavOption('getNextIteratorRow'),
             //'getPreviousIteratorRow',
             //'newPixelIterator', deprecated
             //'newPixelRegionIterator', deprecated
-            new NavOption('resetIterator', true ),
+            new NavOption('resetIterator'),
             //'setIteratorFirstRow',
             //'setIteratorLastRow',
-            new NavOption('setIteratorRow', true ),
-            new NavOption('syncIterator', true, 'construct'),// => '__construct',
+            new NavOption('setIteratorRow'),
+            new NavOption('syncIterator', 'construct'),// => '__construct',
         );
 
         return $imagickPixelIteratorExamples;

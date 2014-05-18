@@ -34,7 +34,7 @@ class Length implements ControlElement {
         $output .= "
             <tr>
                 <td class='standardCell'>
-                    ".self::lengthName."
+                    Length
                 </td>
                 <td class='standardCell'>
                     <input type='text' name='".self::lengthName."' value='$sLength'/>

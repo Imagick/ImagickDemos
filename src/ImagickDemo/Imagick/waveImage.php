@@ -18,8 +18,6 @@ class waveImage extends \ImagickDemo\Example {
     function renderDescription() {
     }
 
-    
-    
     function renderImage() {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $amplitude = $this->control->getAmplitude();

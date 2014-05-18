@@ -53,15 +53,15 @@ function bootstrap() {
 }
 
 function setupImage(\Auryn\Provider $injector, $category, $example = null) {
-    
-    if (strlen($example) === 0) {
-        $example = null;
-    }
-    
-    setupExample($injector, $category, $example, true);
 
     $cache = false;
 
+    if (strlen($example) === 0) {
+        $example = null;
+    }
+
+    setupExample($injector, $category, $example, true);
+    
     if ($cache == true) {
         $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
     }

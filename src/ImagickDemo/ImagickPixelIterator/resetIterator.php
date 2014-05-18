@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class resetIterator extends \ImagickDemo\ExampleWithoutControl {
+class resetIterator extends \ImagickDemo\Imagick\ImagickExample {
 
     function renderDescription() {
         return "Reset a pixel iterator so that you can iterate over it again.";
@@ -12,7 +12,7 @@ class resetIterator extends \ImagickDemo\ExampleWithoutControl {
     function renderImage() {
 
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath($this->getControl()->getImagePath()));
 
         $imageIterator = $imagick->getPixelIterator();
 

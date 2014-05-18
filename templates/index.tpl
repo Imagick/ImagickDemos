@@ -35,31 +35,48 @@
 
 <div class='container'>
 
-    <div class="row">
-        <div class="col-md-2"></div>
-        <!-- <div class="col-md-1"></div> -->
+    <!-- <div class="row" style="font-size: 12px">
+        <div class="col-md-12">
+            {* $nav->renderNav(true) *}
+        </div>
+    </div> -->
+
+    
+    
+    <!-- <div class="row">
+        <div class="col-md-2"></div> 
+        <! - - <div class="col-md-1"></div> - ->
         <div class="col-md-10">
-            <h2 class='noMarginTop'>{$nav->renderTitle() | nofilter}</h2>
+            <h2 class='noMarginTop'>{*$nav->renderTitle() | nofilter*}</h2>
         </div>
     </div>
+    -->
 
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2" style="font-size: 12px">
             {$nav->renderNav()}
         </div>
 
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-8">
-                    {inject name='example' value='ImagickDemo\Example'}
-                    {$example->renderDescription() | nofilter}
 
-                    <br/>
-                    {$example->renderImageURL() | nofilter}
-                </div>
-                <div class="col-md-4">
-                    {$example->getControl()->renderForm() | nofilter}
-                </div>
+                <h4 class='noMarginTop'>{$nav->renderTitle() | nofilter}</h4>
+
+                    <div class="row">
+                    <div class="col-md-8">
+ 
+                        {inject name='example' value='ImagickDemo\Example'}
+                        {$example->renderDescription() | nofilter}    
+
+                        {$example->renderImageURL() | nofilter}
+                    </div>
+                    <div class="col-md-4">
+                        {$example->getControl()->renderForm() | nofilter}
+                    </div>
+                    </div>
+            </div>
+            <div class="row">
+                <span style="display: 10px">&nbsp;</span>
             </div>
     
             <div class="row">
@@ -67,7 +84,7 @@
                     {$nav->renderPreviousButton() | nofilter}
                 </div>
         
-                <div class="col-md-6">
+                <div class="col-md-6" style="text-align: center">
                     {$example->renderCodeLink() | nofilter}
                 </div>
         
@@ -124,6 +141,7 @@
     addColorSelector("#backgroundColorSelector", "#backgroundColor");
     addColorSelector("#strokeColorSelector", "#strokeColor");
     addColorSelector("#fillColorSelector", "#fillColor");
+    addColorSelector("#fillModifiedColorSelector", "#fillModifiedColor");
     
 
 

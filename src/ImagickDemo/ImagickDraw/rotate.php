@@ -2,7 +2,36 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class rotate extends ImagickDrawExample {
+class rotate extends \ImagickDemo\Example {
+
+
+    protected $backgroundColor;
+    protected $fillColor;
+    protected $strokeColor;
+    protected $modifiedFillColor;
+
+    /**
+     * @var \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor
+     */
+    private $colorControl;
+
+    function __construct(\ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor $colorControl) {
+
+        $this->backgroundColor = $colorControl->getBackgroundColor();
+        $this->fillColor =  $colorControl->getFillColor();
+        $this->modifiedFillColor = $colorControl->getFillModifiedColor();
+        $this->strokeColor = $colorControl->getStrokeColor();
+        $this->colorControl = $colorControl;
+        
+    }
+
+    /**
+     * @return \ImagickDemo\Control
+     */
+    function getControl() {
+        return $this->colorControl;
+    }
+
 
     function renderDescription() {
         return "";
@@ -14,7 +43,7 @@ class rotate extends ImagickDrawExample {
         $draw = new \ImagickDraw();
 
         $fillColor = new \ImagickPixel($this->fillColor);
-        $color = new \ImagickPixel('LightCoral');
+        $fillModifiedColor = new \ImagickPixel($this->modifiedFillColor);
         $strokeColor = new \ImagickPixel($this->strokeColor);
 
         $draw->setStrokeColor($strokeColor);
@@ -23,7 +52,7 @@ class rotate extends ImagickDrawExample {
         $draw->setFillColor($fillColor);
         $draw->rectangle(200, 200, 300, 300);
 
-        $draw->setFillColor($color);
+        $draw->setFillColor($fillModifiedColor);
         $draw->rotate(15);
         $draw->rectangle(200, 200, 300, 300);
 

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "366fa9d2fd8468e535488dafe9fb5ab4",
+    "hash": "c1750fa19070b90da1e44a13cd976062",
     "packages": [
         {
             "name": "fluentdom/fluentdom",
@@ -267,12 +267,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "bb016fd62e8410a65ab21daebc24b058a24a90eb"
+                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/bb016fd62e8410a65ab21daebc24b058a24a90eb",
-                "reference": "bb016fd62e8410a65ab21daebc24b058a24a90eb",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/7dc9a43cb856debc22fe158a1144018e16f7a637",
+                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637",
                 "shasum": ""
             },
             "require": {
@@ -305,7 +305,7 @@
                 "source": "https://github.com/nikic/FastRoute/tree/master",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2014-04-29 05:20:49"
+            "time": "2014-05-17 11:33:04"
         },
         {
             "name": "nikic/php-parser",
@@ -424,25 +424,28 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "dev-PluginExperiment2",
+            "version": "dev-v1.0.0-pluginWithParamDelegation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Auryn.git",
-                "reference": "51a81bc675abdb19921e2b6a1fd8235d0e543d62"
+                "reference": "eacf9eac33be7880bb0c4296d5f4e70c139fd870"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Auryn/zipball/51a81bc675abdb19921e2b6a1fd8235d0e543d62",
-                "reference": "51a81bc675abdb19921e2b6a1fd8235d0e543d62",
+                "url": "https://api.github.com/repos/Danack/Auryn/zipball/eacf9eac33be7880bb0c4296d5f4e70c139fd870",
+                "reference": "eacf9eac33be7880bb0c4296d5f4e70c139fd870",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Auryn": "lib"
+                "psr-4": {
+                    "Auryn\\": "lib/"
                 }
             },
             "license": [
@@ -459,6 +462,12 @@
                     "email": "levim@php.net",
                     "homepage": "http://morrisonlevi.github.com/",
                     "role": "Developer"
+                },
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
@@ -469,10 +478,10 @@
                 "ioc"
             ],
             "support": {
-                "source": "https://github.com/Danack/Auryn/tree/PluginExperiment2",
+                "source": "https://github.com/Danack/Auryn/tree/v1.0.0-pluginWithParamDelegation",
                 "issues": "https://github.com/Danack/Auryn/issues"
             },
-            "time": "2014-01-04 21:36:02"
+            "time": "2014-05-22 14:16:37"
         },
         {
             "name": "zendframework/zend-code",
@@ -588,7 +597,12 @@
         }
     ],
     "aliases": [
-
+        {
+            "alias": "dev-PluginExperiment2",
+            "alias_normalized": "dev-PluginExperiment2",
+            "version": "dev-v1.0.0-pluginWithParamDelegation",
+            "package": "rdlowrey/auryn"
+        }
     ],
     "minimum-stability": "dev",
     "stability-flags": {

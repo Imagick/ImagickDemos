@@ -23,6 +23,9 @@ abstract class Example implements renderableExample {
     function renderTitle() {
         return getClassName(get_class($this));
     }
+    
+    function renderSubImage($subImageType) {
+    }
 
     function renderImageSafe() {
         try {

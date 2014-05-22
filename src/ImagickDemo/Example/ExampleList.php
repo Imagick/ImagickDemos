@@ -10,6 +10,7 @@ class ExampleList implements \ImagickDemo\ExampleList {
     function getExamples() {
         $imagickExamples = [
             new NavOption('edgeExtend'),
+            new NavOption('compressImages'),
             new NavOption('gradientReflection'),
             new NavOption('psychedelicFont'),
             new NavOption('psychedelicFontGif'),
@@ -17,6 +18,7 @@ class ExampleList implements \ImagickDemo\ExampleList {
             new NavOption('imagickCompositeGen'),
             new NavOption('fxAnalyzeImage'),
             new NavOption('listColors'),
+            //new NavOption('svgExample'),
             new NavOption('composite'),
         ];
 

@@ -12,6 +12,8 @@ else {
 function myBad( Exception $ex ) {
     header("HTTP/1.0 500 Internal Server Error", true, 500);
     echo "Exception ".get_class($ex).': '.$ex->getMessage();
+
+    var_dump($ex->getTrace());
 }
 
 
@@ -75,5 +77,6 @@ function fatalErrorShutdownHandler() {
 register_shutdown_function('fatalErrorShutdownHandler');
 set_error_handler('errorHandler');
 set_exception_handler('myBad');
+
 
 require_once "process.php";

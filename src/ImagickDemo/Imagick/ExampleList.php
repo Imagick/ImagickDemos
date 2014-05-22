@@ -5,6 +5,10 @@ namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Navigation\NavOption;
 
+
+
+
+
 class ExampleList implements \ImagickDemo\ExampleList {
 
     /**
@@ -331,6 +335,8 @@ class ExampleList implements \ImagickDemo\ExampleList {
             new NavOption('shaveImage'),
             new NavOption('shearImage'),
             new NavOption('sigmoidalContrastImage'),
+            
+            
 //new NavOption('similarityImage', true),
 
             new NavOption('sketchImage'),
@@ -341,6 +347,7 @@ class ExampleList implements \ImagickDemo\ExampleList {
             new NavOption('spliceImage'),
             new NavOption('spreadImage'),
             new NavOption('statisticImage'),
+            new NavOption('subImageMatch'),
             new NavOption('swirlImage'),
             new NavOption('textureImage'),
             new NavOption('thresholdImage'),

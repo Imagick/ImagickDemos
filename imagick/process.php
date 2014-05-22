@@ -20,7 +20,7 @@ function bootstrap() {
         "../templates/",
         "../var/compile/",
         'tpl',
-        \Intahwebz\Jig\JigRender::COMPILE_CHECK_MTIME
+        \Intahwebz\Jig\JigRender::COMPILE_CHECK_EXISTS
     );
 
     $injector->share($jigConfig);
@@ -33,10 +33,16 @@ function bootstrap() {
     $injector->defineParam('smallImageWidth', 350); 
     $injector->defineParam('smallImageHeight', 300);
 
-    $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\NullExample::class);
     $injector->alias(ImagickDemo\Control::class, ImagickDemo\Control\NullControl::class);
     $injector->alias(Intahwebz\Request::class, Intahwebz\Routing\HTTPRequest::class);
+    $injector->alias(\ImagickDemo\ExampleList::class, \ImagickDemo\NullExampleList::class);
+    $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\NullExample::class);
+    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\NullNav::class);
 
+    $injector->share(\ImagickDemo\Control::class);
+    $injector->share(\ImagickDemo\Example::class);
+    $injector->share(ImagickDemo\Navigation\Nav::class);
+    
     $injector->define(
     Intahwebz\Routing\HTTPRequest::class,
         array(
@@ -49,15 +55,74 @@ function bootstrap() {
     );
 
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
-    $injector->defineParam('activeNav', null);
-    $injector->share(ImagickDemo\Navigation\Nav::class);
-    $injector->alias(\ImagickDemo\Navigation\ActiveNav::class, \ImagickDemo\Navigation\DefaultNav::class);
     $injector->share($injector); //yolo - use injector as service locator
 
     return $injector;
 }
 
-function setupImage(\Auryn\Provider $injector, $category, $example = null) {
+function getExampleDefinition($category, $example) {
+
+    $imagickExamples = [
+        'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Control\ControlCompositeRadiusSigmaImage::class],
+        'pingImage' => ['pingImage', \ImagickDemo\Control\ImageControl::class],
+    ];
+
+    $examples = [
+        'Imagick' => $imagickExamples
+    ];
+
+    if (!isset($examples[$category][$example])) {
+        throw new \Exception("Somethings fucky: example [$category][$example] doesn't exist.");
+    }
+    
+    return $examples[$category][$example];
+}
+
+function setupImageDelegation(\Auryn\Provider $injector, $category, $example) {
+
+    list($function, $controlClass) = getExampleDefinition($category, $example);
+
+    $params = ['imagePath', 'radius', 'sigma'];
+    
+    foreach ($params as $param) {
+        $paramGet = 'get'.ucfirst($param);
+        $injector->delegateParam(
+            $param,
+            [$controlClass, $paramGet]
+        );
+    }
+
+    require_once dirname(__FILE__).'/../src/examples.php';
+    $injector->execute($function);
+    exit(0);
+}
+
+//function setupImage(\Auryn\Provider $injector, $category, $example = null) {
+//
+//    $cache = false;
+//
+//    if (strlen($example) === 0) {
+//        $example = null;
+//    }
+//
+//    setupExample($injector, $category, $example, true);
+//    
+//    if ($cache == true) {
+//        $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
+//    }
+//    else {
+//        if (false) {
+//            $injector->execute([\ImagickDemo\Example::class, 'renderImage']);
+//        }
+//        else {
+//            $object = $injector->make(\ImagickDemo\Example::class);
+//            $injector->execute([$object, 'renderImage']);
+//        }
+//    }
+//    exit(0);
+//}
+
+function setupSubImage(\Auryn\Provider $injector, $category, $example, $subImageType) {
 
     $cache = false;
 
@@ -67,25 +132,52 @@ function setupImage(\Auryn\Provider $injector, $category, $example = null) {
 
     setupExample($injector, $category, $example, true);
     
-    if ($cache == true) {
-        $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-    }
-    else {
+    $injector->defineParam('subImageType', $subImageType);
+
+//    if ($cache == true) {
+//        $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
+//    }
+//    else {
         if (false) {
             $injector->execute([\ImagickDemo\Example::class, 'renderImage']);
         }
         else {
             $object = $injector->make(\ImagickDemo\Example::class);
-            $injector->execute([$object, 'renderImage']);
+            $injector->execute([$object, 'renderSubImage']);
         }
-    }
+    //}
     exit(0);
+}
+
+function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) {
+
+    $exampleInfo = getExampleDefinition($category, $example);
+
+    $function = $exampleInfo[0];
+    $controlClass = $exampleInfo[1];
+
+    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
+    $injector->defineParam('activeCategory', $category);
+
+    $injector->alias(\ImagickDemo\Control::class, $controlClass);
+
+    $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
+
+    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
+    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
+        ':category' => $category,
+        ':example' => $example
+    ]);
+
+    
+    $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $example));
+
+    renderTemplate($injector);
 }
 
 
 
-function setupExample(\Auryn\Provider $injector, $category, $example = null, $image = false) {
-
+function setupCatergoryDelegation(\Auryn\Provider $injector, $category, $example = null) {
     $validCatergories = [
         'Imagick',
         'ImagickDraw',
@@ -93,26 +185,100 @@ function setupExample(\Auryn\Provider $injector, $category, $example = null, $im
         'ImagickPixelIterator',
         'Example',
     ];
-    
+
     if (in_array($category, $validCatergories) == false) {
         throw new \Exception("Category is not valid.");
     }
+//
+//    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
+//
+//
+//    $injector->alias('ImagickDemo\ExampleList', "ImagickDemo\\".$category."\\ExampleList");
+//    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\Nav::class);
+//
+//    $nav = $injector->make(ImagickDemo\Navigation\Nav::class, [
+//        ':category' => $category,
+//        ':example' => $example
+//    ]);
+//
+//    $nav->setupControlAndExample($injector);
+//
+//    if ($image == false) {
+//        renderTemplate($injector);
+//    }
 
-    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
-    $injector->alias('ImagickDemo\ExampleList', "ImagickDemo\\".$category."\\ExampleList");
-    $injector->alias(\ImagickDemo\Navigation\ActiveNav::class, \ImagickDemo\Navigation\Nav::class);
 
-    $nav = $injector->make(ImagickDemo\Navigation\Nav::class, [
+//    $imagickExamples = [
+//        'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Control\ControlCompositeRadiusSigmaImage::class]
+//    ];
+//
+//    $examples = [
+//        'Imagick' => $imagickExamples
+//    ];
+
+//    if (!isset($examples[$category][$example])) {
+//        throw new \Exception("Somethings fucky: example [$category][$example] doesn't exist.");
+//    }
+
+//    $exampleInfo = $examples[$category][$example];
+
+//    $function = $exampleInfo[0];
+    //$controlClass = $exampleInfo[1];
+
+    $injector->defineParam('imageBaseURL', '/image/'.$category);
+    $injector->defineParam('activeCategory', $category);
+
+//    $injector->alias(\ImagickDemo\Control::class, $controlClass);
+    $injector->share(\ImagickDemo\Control::class);
+    $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
+    $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\IndexExample', $category));
+    
+    
+
+    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
+    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
         ':category' => $category,
         ':example' => $example
     ]);
 
-    $nav->setupControlAndExample($injector);
+    //$injector->share(\ImagickDemo\Example::class);
+    //$injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $example));
 
-    if ($image == false) {
-        renderTemplate($injector);
-    }
+    renderTemplate($injector);
 }
+
+
+//function setupExample(\Auryn\Provider $injector, $category, $example = null, $image = false) {
+//
+//    $validCatergories = [
+//        'Imagick',
+//        'ImagickDraw',
+//        'ImagickPixel',
+//        'ImagickPixelIterator',
+//        'Example',
+//    ];
+//    
+//    if (in_array($category, $validCatergories) == false) {
+//        throw new \Exception("Category is not valid.");
+//    }
+//
+//    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
+//    
+//
+//    $injector->alias('ImagickDemo\ExampleList', "ImagickDemo\\".$category."\\ExampleList");
+//    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
+//
+//    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
+//        ':category' => $category,
+//        ':example' => $example
+//    ]);
+//
+//    //$nav->setupControlAndExample($injector);
+//
+//    if ($image == false) {
+//        renderTemplate($injector);
+//    }
+//}
 
 function renderTemplate(\Auryn\Provider $injector) {
     $viewModel = $injector->make(Intahwebz\ViewModel\BasicViewModel::class);
@@ -124,6 +290,9 @@ function renderTemplate(\Auryn\Provider $injector) {
 
 
 function setupRootIndex(\Auryn\Provider $injector) {
+    $injector->alias(\ImagickDemo\Example::class, ImagickDemo\HomePageExample::class);
+
+    //TODO - setup 
     renderTemplate($injector);
 }
 
@@ -135,21 +304,30 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
     $r->addRoute(
       'GET',
           "/$categories",
-          'setupExample'
+          //'setupExample'
+          'setupCatergoryDelegation'
     );
 
     //Category + example
     $r->addRoute(
-      'GET',
-          "/$categories/{example:[a-zA-Z]+}",
-          'setupExample'
+        'GET',
+        "/$categories/{example:[a-zA-Z]+}",
+        //'setupExample'
+        'setupExampleDelegation'
     );
 
     //Images
     $r->addRoute(
       'GET',
-          "/image/$categories/{example:[a-zA-Z]*}",
-          'setupImage'
+          "/image/$categories/{example:[a-zA-Z]+}",
+          //'setupImage'
+          'setupImageDelegation'
+    );
+
+    $r->addRoute(
+      'GET',
+          "/subimage/$categories/{example:[a-zA-Z]*}/{subImageType:[a-zA-Z]*}",
+          'setupSubImage'
     );
 
     $r->addRoute(
@@ -173,7 +351,9 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
 }
 
 // $uri = '/image/Imagick/raiseImage?image=Lorikeet';
+//$uri = '/Imagick/subImageMatch?image=Lorikeet';
 
+//$uri = '/image/Imagick/adaptiveBlurImage?radius=5&sigma=1&image=Lorikeet';
 
 $path = $uri;
 $queryPosition = strpos($path, '?');

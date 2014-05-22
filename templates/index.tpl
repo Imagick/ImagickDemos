@@ -31,7 +31,10 @@
     </div>
 </header>
 
-{inject name='nav' value='ImagickDemo\Navigation\ActiveNav'}
+{* inject name='nav' value='ImagickDemo\Navigation\ActiveNav' *}
+{inject name='nav' value='ImagickDemo\Navigation\Nav'}
+{inject name='control' value='ImagickDemo\Control'}
+{inject name='example' value='ImagickDemo\Example'}
 
 <div class='container'>
 
@@ -60,18 +63,16 @@
         <div class="col-md-10">
             <div class="row">
 
-                <h4 class='noMarginTop'>{$nav->renderTitle() | nofilter}</h4>
+                <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
 
                     <div class="row">
                     <div class="col-md-8">
  
-                        {inject name='example' value='ImagickDemo\Example'}
                         {$example->renderDescription() | nofilter}    
-
-                        {$example->renderImageURL() | nofilter}
+                        {$control->getURL() | nofilter}
                     </div>
                     <div class="col-md-4">
-                        {$example->getControl()->renderForm() | nofilter}
+                        {$control->renderForm() | nofilter}
                     </div>
                     </div>
             </div>
@@ -143,11 +144,6 @@
     addColorSelector("#fillColorSelector", "#fillColor");
     addColorSelector("#fillModifiedColorSelector", "#fillModifiedColor");
     addColorSelector("#textUnderColorSelector", "#textUnderColor");
-    
-
-
-    
-    
 </script>
 
 

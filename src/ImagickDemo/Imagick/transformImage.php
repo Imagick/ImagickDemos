@@ -3,15 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class transformImage extends ImagickExample  {
+class transformImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $newImage = $imagick->transformimage("400x600", "200x300");
-        header("Content-Type: image/jpg");
-        echo $newImage->getImageBlob();
-    }
 }

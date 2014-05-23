@@ -3,15 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class charcoalImage extends ImagickExample {
+class charcoalImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
-    }
-
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->charcoalImage(4, 4);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
+    function render() {
+        return $this->renderImageURL();
     }
 }

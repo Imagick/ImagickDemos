@@ -3,19 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class cropImage extends ImagickExample {
+class cropImage extends  \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-
-        $imagick = new \Imagick(realpath($this->imagePath));
-
-        $imagick->cropImage(200, 200, 120, 50);
-
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-
-    }
+  
 }

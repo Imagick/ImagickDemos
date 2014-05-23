@@ -2,18 +2,13 @@
 
 namespace ImagickDemo\Imagick;
 
-class rotationalBlurImage extends ImagickExample {
+class rotationalBlurImage extends \ImagickDemo\Example {
 
     function renderDescription() {
-        return "I have no idea how this is different from radialBlurImage. radialBlur is deprecated in ImageMagick";
+        $output = "I have no idea how this is different from radialBlurImage. radialBlur is deprecated in ImageMagick";
+        $output .= $this->renderImageURL();
+        return $output;
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->rotationalBlurImage(3);
-        $imagick->rotationalBlurImage(5);
-        $imagick->rotationalBlurImage(7);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

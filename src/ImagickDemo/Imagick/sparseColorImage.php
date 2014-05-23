@@ -72,23 +72,47 @@ class sparseColorImage extends \ImagickDemo\Example {
         $this->sparseControl = $sparseControl;
     }
 
-    /**
-     * @return \ImagickDemo\Control
-     */
-    function getControl() {
-        return $this->sparseControl;
+    function render() {
+        $output = $this->renderDescription();
+        $output .= $this->renderCustomImageURL();
+        
+        return $output;
+    }
+
+    function renderCustomImageURL() {
+        //return sprintf("<img src='/customImage/Imagick/sparseColorImage/%s' />", $this->control->getParams());
+
+        return sprintf(
+            "<img src='/customImage/Imagick/sparseColorImage/%s' />", 
+            $this->sparseControl->getSparseColorType()
+        );
     }
 
 
-
-//    function renderControl() {
-//        return $this->sparseControl->render();
-//    }
-
-    
     function renderImageURL() {
-        return $this->sparseControl->getURL();
+
+        return $this->sparseControl->getParamString();
+        //return sprintf("<img src='%s'/>", $this->sparseControl->getURL());
+
+//        "/customImage/$categories/{example:[a-zA-Z]*}/{customImage:[a-zA-Z]+}",
+//        $function = $this->sparseControl->getOptionValue();
     }
+
+
+    function renderImage() {
+        
+
+        if (method_exists($this, $function)) {
+            call_user_func([$this, $function]);
+            return;
+        }
+
+        $this->renderImageBilinear();
+    }
+
+
+
+
 
     function renderDescription() {
 
@@ -119,20 +143,8 @@ END;
     }
 
 
-    function renderImage() {
-        $function = $this->sparseControl->getOptionValue();
-        
-        if (method_exists($this, $function)) {
-            call_user_func([$this, $function]);
-            return;
-        }
-
-        $this->renderImageBilinear();
-    }
-    
 
     function renderImageBarycentric2() {
-        //require_once "../functions.php";
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(400, 400, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
         header("Content-Type: image/png");

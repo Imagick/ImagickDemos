@@ -3,19 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class modulateImage extends ImagickExample {
+class modulateImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
-
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
 
-        $imagick->modulateImage(128, 128, 128);
-
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-
-    }
 }

@@ -3,15 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class reduceNoiseImage extends ImagickExample {
+class reduceNoiseImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
-
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        @$imagick->reduceNoiseImage(5);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+   
 }

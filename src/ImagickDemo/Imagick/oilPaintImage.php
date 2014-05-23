@@ -3,15 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class oilPaintImage extends ImagickExample {
+class oilPaintImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->oilPaintImage(4.0);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

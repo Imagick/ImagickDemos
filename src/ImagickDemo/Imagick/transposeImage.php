@@ -3,15 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class transposeImage  extends ImagickExample  {
+class transposeImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
-    }
-
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->transposeImage();
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
+    function render() {
+        return $this->renderImageURL();
     }
 }

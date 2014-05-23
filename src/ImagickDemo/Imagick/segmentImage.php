@@ -3,15 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class segmentImage extends ImagickExample {
+class segmentImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->segmentImage(\Imagick::COLORSPACE_RGB, 10, 5);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

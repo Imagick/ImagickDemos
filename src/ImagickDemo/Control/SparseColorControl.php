@@ -11,7 +11,7 @@ class SparseColorControl extends OptionControl {
     }
 
     function getDefaultOption() {
-        return 'Bilinear';
+        return 'renderImageVoronoi';
     }
 
     function getOptions() {
@@ -25,6 +25,10 @@ class SparseColorControl extends OptionControl {
         ];
 
         return $images;
+    }
+
+    function getSparseColorType() {
+        return $this->getOptionValue();
     }
 }
 

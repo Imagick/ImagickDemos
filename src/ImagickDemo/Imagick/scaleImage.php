@@ -3,15 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class scaleImage extends ImagickExample {
+class scaleImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->scaleImage(150, 150, true);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
 }

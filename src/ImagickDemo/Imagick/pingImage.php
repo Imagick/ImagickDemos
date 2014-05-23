@@ -13,19 +13,8 @@ class pingImage extends \ImagickDemo\Example {
     function __construct(\ImagickDemo\Control\ImageControl $control) {
         $this->control = $control;
     }
-    
-    function renderImageURL() {
-        return "";
-    }
-    
-    function getControl() {
-        return $this->control;
-    }
-    
-    function renderImage() {
-    }
 
-    function renderDescription() {
+    function render() {
         echo "This method can be used to query image width, height, size, and format without reading the whole image in to memory.";
         
         $image = new \Imagick();

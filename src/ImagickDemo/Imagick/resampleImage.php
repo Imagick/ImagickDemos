@@ -3,15 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class resampleImage extends ImagickExample {
+class resampleImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->resampleImage(200, 200, \Imagick::FILTER_LANCZOS, 1);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
 }

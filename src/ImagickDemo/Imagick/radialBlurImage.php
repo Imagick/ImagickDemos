@@ -3,17 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class radialBlurImage extends ImagickExample {
+class radialBlurImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->radialBlurImage(3);
-        $imagick->radialBlurImage(5);
-        $imagick->radialBlurImage(7);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

@@ -5,8 +5,10 @@ namespace ImagickDemo\Control;
 
 abstract class OptionControl implements \ImagickDemo\Control {
 
-    protected $image = null;
+
     protected $option = null;
+    
+    private $imageBaseURL;
 
     abstract function getName();
     abstract function getDefaultOption();
@@ -14,13 +16,19 @@ abstract class OptionControl implements \ImagickDemo\Control {
 
     function __construct(\Intahwebz\Request $request, $imageBaseURL) {
         $this->option = $this->getDefaultOption();
-        $this->option = $request->getVariable($this->getName(), $this->option);
-        $images = $this->getOptions();
-        foreach ($images as $key => $value) {
-            if (strcmp($this->option, $value) === 0 || $this->image == null) {
-                $this->image = $key;
-            }
+        $newOption = $request->getVariable($this->getName(), $this->option);
+        
+        if (array_key_exists($newOption, $this->getOptions())) {
+            $this->option = $newOption;
         }
+//        
+        
+//        $images = $this->getOptions();
+//        foreach ($images as $key => $value) {
+//            if (strcmp($this->option, $key) === 0 || $this->option === null) {
+//                $this->option = $key;
+//            }
+//        }
         $this->imageBaseURL = $imageBaseURL;
     }
 
@@ -40,12 +48,11 @@ abstract class OptionControl implements \ImagickDemo\Control {
         return $this->getName()."=".$this->option;
     }
 
-    function getImagePath() {
-        return $this->image;
-    }
     
-    function getOptionValue() {
-        return $this->image;
+    //Call this from the extended class to give a 
+    //real name to the variable
+    protected function getOptionValue() {
+        return $this->option;
     }
     
     function renderFormElement() {
@@ -55,10 +62,10 @@ abstract class OptionControl implements \ImagickDemo\Control {
 
         foreach ($images as $key => $image) {
             $selected = '';
-            if (strcmp($image, $this->option) === 0) {
+            if (strcmp($key, $this->option) === 0) {
                 $selected = "selected='selected'";
             }
-            $output .= "<option value='".$image."' $selected>$image</option>";
+            $output .= "<option value='".$key."' $selected>$image</option>";
         }
 
         $output .= "</select>";

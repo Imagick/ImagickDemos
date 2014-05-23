@@ -8,11 +8,9 @@ class adaptiveBlurImage extends \ImagickDemo\Example {
         return "Adaptive blur image";
     }
 
-    function renderDescription() {
-        return "This is a description. <br/>";
-    }
-
     function render() {
-        return $this->renderImageURL();
+        $output = "This is a description. <br/>";
+        $output .= $this->renderImageURL();
+        return $output;
     }
 }

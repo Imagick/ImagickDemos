@@ -3,15 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class shadeImage extends ImagickExample {
+class shadeImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->shadeImage(true, 45, 20);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

@@ -3,29 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class fxImage extends ImagickExample {
+class fxImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
         echo "This is very slow";
-    }
-
-    function renderImage() {
-        //$imagick = new \Imagick();
-        $imagick = new \Imagick(realpath($this->imagePath));
-        //$imagick->newPseudoImage(10, 256, "gradient:white-black");
-        //http://www.imagemagick.org/script/fx.php
-        //$fx = "(1.0/(1.0+exp(10.0*(0.5-u)))-0.006693)*1.0092503";
-        //$fx = "1/2";
-        $fx = "(1.0/(1.0+exp(10.0*(0.5-u)))-0.006693)*1.0092503";
-        
-        $blah = $imagick->fxImage($fx);
-        header("Content-Type: image/jpg");
-
-        $blah->setimageformat('jpg');
-        
-        echo $blah->getImageBlob();
-        
-        //echo "blaj";
+        return $this->renderImageURL();
     }
 
     function renderImage2() {

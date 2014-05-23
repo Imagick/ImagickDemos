@@ -4,46 +4,18 @@
 namespace ImagickDemo\Imagick;
 
 
-class setImageTicksPerSecond extends \ImagickDemo\ExampleWithoutControl {
+class setImageTicksPerSecond extends \ImagickDemo\Example {
 
-    function renderDescription() {
-        return "//Modify an animated gif so the first half of the gif is played
+    function render() {
+        $output = "//Modify an animated gif so the first half of the gif is played
         //at half the speed it currently is, and the second half to be 
         //played at double the speed it currently is";
+
+        $output .= $this->renderImageURL();
+        return $output;
     }
 
-    function renderImage() {
 
-        $imagick = new \Imagick(realpath("../images/coolGif.gif"));
-        $imagick = $imagick->coalesceImages();
-
-        $totalFrames = $imagick->getNumberImages();
-
-        $frameCount = 0;
-
-        foreach ($imagick as $frame) {
-
-            $imagick->setImageTicksPerSecond(50);
-
-            if ($frameCount < ($totalFrames / 2)) {
-                //Modify the frame to be displayed for twice as long as it currently is.
-                $imagick->setImageTicksPerSecond(50);
-            }
-            else {
-                //Modify the frame to be displayed for half as long as it currently is.
-                $imagick->setImageTicksPerSecond(200);
-            }
-            $frameCount++;
-        }
-
-        $imagick = $imagick->deconstructImages();
-
-        //$imagick->writeImages("/home/intahwebz/intahwebz/basereality/imagick/frameRate.gif", true);
-
-        header("Content-Type: image/gif");
-        echo $imagick->getImagesBlob();
-
-    }
 
 }
 

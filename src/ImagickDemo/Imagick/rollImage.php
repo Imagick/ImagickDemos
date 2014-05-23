@@ -3,15 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class rollImage extends ImagickExample {
+class rollImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->rollimage(180, 30);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

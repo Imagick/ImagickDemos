@@ -65,7 +65,352 @@ function getExampleDefinition($category, $example) {
 
     $imagickExamples = [
         'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Control\ControlCompositeRadiusSigmaImage::class],
+
+        'adaptiveResizeImage' => ['adaptiveResizeImage', \ImagickDemo\Control\ImageControl::class],
+        'adaptiveSharpenImage' => ['adaptiveSharpenImage', \ImagickDemo\Control\ControlCompositeRadiusSigmaImage::class ],
+        'adaptiveThresholdImage' => ['adaptiveThresholdImage', \ImagickDemo\Control\ImageControl::class ],
+        //'addImage',
+        'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Control\ControlCompositeImageNoise::class],
+        'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ImageControl::class], //Doesn't work?
+        //'animateImages',
+        'annotateImage' => ['annotateImage', \ImagickDemo\Control\ImageControl::class],
+        //'appendImages',
+        'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
+        //new NavOption('averageImages',  true),
+        'blackThresholdImage' => ['blackThresholdImage', \ImagickDemo\Control\ImageControl::class],
+        'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Control\ImageControl::class],
+        'blurImage' => ['blurImage', \ImagickDemo\Control\ImageControl::class],
+        'borderImage' => ['borderImage', \ImagickDemo\Control\ImageControl::class],
+        'brightnessContrastImage' => ['brightnessContrastImage', ImagickDemo\Control\BrightnessContrastImage::class],
+        'charcoalImage' => ['charcoalImage', \ImagickDemo\Control\ImageControl::class],
+        'chopImage' => ['chopImage', \ImagickDemo\Control\ImageControl::class],
+        //'clear',
+        //new NavOption('clipImage', true),
+        //'clipPathImage',
+        'clutImage' => ['clutImage', \ImagickDemo\Control\ImageControl::class],
+        //'coalesceImages',
+        //deprecated - new NavOption('colorFloodfillImage', true),
+        //ColorDecisionListImage
+        'colorizeImage' => ['colorizeImage', \ImagickDemo\Control\ImageControl::class],
+        'colorMatrixImage' => ['colorMatrixImage', \ImagickDemo\Control\ImageControl::class],
+        //'combineImages',
+        //'commentImage',
+        //'compareImageChannels',
+        //'compareImageLayers',
+//'compareImages',
+        'compositeImage' => ['compositeImage',\ImagickDemo\Control\ImageControl::class ],
+        // CompositeLayers
+        //__construct',
+        'contrastImage' => ['contrastImage', \ImagickDemo\Control\ImageControl::class],
+        //'contrastStretchImage',
+       'convolveImage' => ['convolveImage', \ImagickDemo\Control\ImageControl::class],
+       'cropImage' => ['cropImage', \ImagickDemo\Control\ImageControl::class],
+        //'cropThumbnailImage',
+        //'current',
+        //'cycleColormapImage',
+        // ConstituteImage
+        // DestroyImage
+        //'decipherImage',
+        //'deconstructImages',
+        //'deleteImageArtifact',
+        'deskewImage' => ['deskewImage', \ImagickDemo\Control\NullControl::class ],
+        'despeckleImage' => ['despeckleImage', \ImagickDemo\Control\ImageControl::class],
+        //'destroy',
+        //'displayImage',
+        //'displayImages',
+        'distortImage' => ['distortImage', \ImagickDemo\Control\ImageControl::class],
+        //'drawImage',
+        //'edgeImage',
+        //'embossImage',
+        //'encipherImage',
+
+        'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
+        'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
+//'evaluateImage',
+        //'exportImagePixels',
+//'extentImage',
+        //FilterImage - this appears to be a duplicate function
+        //FrameImage
+        //'flattenImages',
+        'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
+        'floodFillPaintImage' => ['floodFillPaintImage', \ImagickDemo\Control\ImageControl::class],
+        'flopImage' => ['flopImage', \ImagickDemo\Control\ImageControl::class],
+        'forwardFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
+        'frameImage' => ['frameImage', \ImagickDemo\Control\ImageControl::class],
+        'functionImage' => ['functionImage', \ImagickDemo\Control\ImageControl::class],
+        'fxImage' => ['fxImage', \ImagickDemo\Control\ImageControl::class],
+        'gammaImage' => ['gammaImage', \ImagickDemo\Control\ImageControl::class],
+        'gaussianBlurImage' => ['gaussianBlurImage', \ImagickDemo\Control\ImageControl::class],
+        //'getColorspace',
+        //'getCompression',
+        //'getCompressionQuality',
+        //'getCopyright',
+        //'getFilename',
+        //'getFont',
+        //'getFormat',
+        //'getGravity',
+        //'getHomeURL',
+        //'getImage',
+        //'getImageAlphaChannel',
+        //'getImageArtifact',
+        //'getImageBackgroundColor',
+        //'getImageBlob',
+        //'getImageBluePrimary',
+        //'getImageBorderColor',
+        //'getImageChannelDepth',
+        //'getImageChannelDistortion',
+        //'getImageChannelDistortions',
+        //'getImageChannelExtrema',
+        //'getImageChannelKurtosis',
+        //'getImageChannelMean',
+        //'getImageChannelRange',
+        'getImageChannelStatistics' => ['getImageChannelStatistics', \ImagickDemo\Control\ImageControl::class],
+        //'getImageClipMask',
+        //'getImageColormapColor',
+        //'getImageColors',
+        //'getImageColorspace',
+        //'getImageCompose',
+        //'getImageCompression',
+        //'getCompressionQuality',
+        //'getImageDelay',
+        //'getImageDepth',
+        //'getImageDispose',
+        //'getImageDistortion',
+        //'getImageExtrema',
+        //'getImageFilename',
+        //'getImageFormat',
+        //'getImageGamma',
+        //'getImageGeometry',
+        //'getImageGravity',
+        //'getImageGreenPrimary',
+        //'getImageHeight',
+        'getImageHistogram' => ['getImageHistogram', \ImagickDemo\Control\ImageControl::class],
+        //'getImageIndex',
+        //'getImageInterlaceScheme',
+        //'getImageInterpolateMethod',
+        //'getImageIterations',
+        //'getImageLength',
+        //'getImageMagickLicense',
+        //'getImageMatte',
+        //'getImageMatteColor',
+        //'getImageOrientation',
+        //'getImagePage',
+        //'getImagePixelColor',
+        //'getImageProfile',
+        //'getImageProfiles',
+        //'getImageProperties',
+        //'getImageProperty',
+        //'getImageRedPrimary',
+        //'getImageRegion',
+        //'getImageRenderingIntent',
+        //'getImageResolution',
+        //'getImagesBlob',
+        //'getImageScene',
+        //'getImageSignature',
+        //'getImageSize',
+        //'getImageTicksPerSecond',
+        //'getImageTotalInkDensity',
+        //'getImageType',
+        //'getImageUnits',
+        //'getImageVirtualPixelMethod',
+        //'getImageWhitePoint',
+        //'getImageWidth',
+        //'getInterlaceScheme',
+        //'getIteratorIndex',
+        //'getNumberImages',
+        //'getOption',
+        //'getPackageName',
+        //'getPage',
+        'getPixelIterator' => ['getPixelIterator', \ImagickDemo\Control\ImageControl::class],
+        'getPixelRegionIterator' => ['getPixelRegionIterator', \ImagickDemo\Control\ImageControl::class],
+        //'getPointSize',
+        //'getQuantumDepth',
+        //'getQuantumRange',
+        //'getReleaseDate',
+        //'getResource',
+        //'getResourceLimit',
+        //'getSamplingFactors',
+        //'getSize',
+        //'getSizeOffset',
+        //'getVersion',
+
+        'haldClutImage' => ['haldClutImage', \ImagickDemo\Control\ImageControl::class],
+        //'hasNextImage',
+        //'hasPreviousImage',
+        'identifyImage' => ['identifyImage', \ImagickDemo\Control\ImageControl::class],
+        'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
+        //'implodeImage',
+        //'importImagePixels',
+        //'labelImage',
+        //'levelImage',
+        //'linearStretchImage',
+        //'liquidRescaleImage',
+        'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ImageControl::class],
+        //'mapImage',
+        //'matteFloodfillImage',
+        'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ImageControl::class],
+
+        //'mergeImageLayers',
+        //'minifyImage',
+        'modulateImage' => ['modulateImage', \ImagickDemo\Control\ImageControl::class],
+        //'montageImage',
+        //'morphImages',
+        // MorphologyImage
+        'mosaicImage' => ['mosaicImage', \ImagickDemo\Control\ImageControl::class],
+        'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Control\ImageControl::class],
+        'negateImage' => ['negateImage', \ImagickDemo\Control\ImageControl::class],
+        //'newImage',
+        'newPseudoImage' => ['newPseudoImage', \ImagickDemo\Control\ImageControl::class],
+        //'nextImage',
+        'normalizeImage' => ['normalizeImage', \ImagickDemo\Control\ImageControl::class],
+        'oilPaintImage' => ['oilPaintImage', \ImagickDemo\Control\ImageControl::class],
+        //'opaquePaintImage',
+        //'optimizeImageLayers',
+        // OptimizeImageTransparency
+        //'orderedPosterizeImage',
+        //'paintOpaqueImage',
+        //'paintTransparentImage',
+
         'pingImage' => ['pingImage', \ImagickDemo\Control\ImageControl::class],
+        
+        'Quantum'  => ['Quantum', \ImagickDemo\Control\NullControl::class],
+        //'pingImageBlob',
+        //'pingImageFile',
+        //'polaroidImage',
+        //'posterizeImage',
+        //'previewImages',
+        //'previousImage',
+        //'profileImage',
+        'quantizeImage' => ['quantizeImage', \ImagickDemo\Control\ImageControl::class],
+        //'quantizeImages',
+        //'queryFontMetrics',
+        //'queryFonts',
+        //'queryFormats',
+        'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ImageControl::class],
+        'raiseImage' => ['raiseImage', \ImagickDemo\Control\ImageControl::class],
+        'randomThresholdImage' => ['randomThresholdImage', \ImagickDemo\Control\ImageControl::class],
+        //'readImage',
+        //'readImageBlob',
+        //'readImageFile',
+        'recolorImage' => ['recolorImage', \ImagickDemo\Control\ImageControl::class],
+        'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Control\ImageControl::class],
+//new NavOption('remapImage', true),
+        //'removeImage',
+        //'removeImageProfile',
+        //'render',
+        'resampleImage' => ['resampleImage', \ImagickDemo\Control\ImageControl::class],
+        //'resetImagePage',
+        //'resizeImage',
+        'rollImage' => ['rollImage', \ImagickDemo\Control\ImageControl::class],
+        'rotateImage' => ['rotateImage', \ImagickDemo\Control\ImageControl::class],
+        'rotationalBlurImage' => ['rotationalBlurImage', \ImagickDemo\Control\ImageControl::class],
+        'roundCorners' => ['roundCorners', \ImagickDemo\Control\ImageControl::class],
+        //'sampleImage',
+        'scaleImage' => ['scaleImage', \ImagickDemo\Control\ImageControl::class],
+        'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\ImageControl::class],
+        'segmentImage' => ['segmentImage', \ImagickDemo\Control\ImageControl::class],
+        'selectiveBlurImage' => ['selectiveBlurImage',\ImagickDemo\Control\ControlCompositeImageRadiusSigmaAmountUnsharpThresholdChannel::class ],
+        'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Control\ImageControl::class],
+        'sepiaToneImage' => ['sepiaToneImage', \ImagickDemo\Control\ImageControl::class],
+        //'setBackgroundColor',
+        //'setColorspace',
+        //'setCompression',
+        //'setCompressionQuality',
+        //'setFilename',
+        //'setFirstIterator',
+        //'setFont',
+        //'setFormat',
+        //'setGravity',
+        //'setImage',
+        //'setImageAlphaChannel',
+        'setImageArtifact' => ['setImageArtifact', \ImagickDemo\Control\ImageControl::class],
+        //'setImageBackgroundColor',
+        //'setImageBias',
+        //'setImageBluePrimary',
+        //'setImageBorderColor',
+        //'setImageChannelDepth',
+        //'setImageClipMask',
+        //'setImageColormapColor',
+        //'setImageColorspace',
+        //'setImageCompose',
+        //'setImageCompression',
+        //'setImageCompressionQuality',
+        //'setImageDepth',
+        'setImageDelay' => ['setImageDelay', \ImagickDemo\Control\ImageControl::class],
+        //'setImageDispose',
+        //'setImageExtent',
+        //'setImageFilename',
+        //'setImageFormat',
+        //'setImageGamma',
+        //'setImageGravity',
+        //'setImageGreenPrimary',
+        //'setImageIndex',
+        //'setImageInterlaceScheme',
+        //'setImageInterpolateMethod',
+        //'setImageIterations',
+        //'setImageMatte',
+        //'setImageMatteColor',
+        //'setImageOpacity',
+        //'setImageOrientation',
+        //'setImagePage',
+        //'setImageProfile',
+        //'setImageProperty',
+        //'setImageRedPrimary',
+        //'setImageRenderingIntent',
+        //'setImageResolution',
+        //'setImageScene',
+        'setImageTicksPerSecond' => ['setImageTicksPerSecond', \ImagickDemo\Control\ImageControl::class ],
+        //'setImageType',
+        //'setImageUnits',
+        //'setImageVirtualPixelMethod',
+        //'setImageWhitePoint',
+        //'setInterlaceScheme',
+        //'setIteratorIndex',
+        //'setLastIterator',
+        'setOption' => ['setOption', \ImagickDemo\Control\ImageControl::class ],
+        'setProgressMonitor' => ['setProgressMonitor', \ImagickDemo\Control\NullControl::class],
+        //'setPage',
+        //'setPointSize',
+        //'setResolution',
+        //'setResourceLimit',
+        //'setSamplingFactors',
+        //'setSize',
+        //'setSizeOffset',
+        //'setType',
+        'shadeImage' => ['shadeImage', \ImagickDemo\Control\ImageControl::class ],
+        'shadowImage' => ['shadowImage', \ImagickDemo\Control\ImageControl::class ],
+        'sharpenImage' => ['sharpenImage', \ImagickDemo\Control\ImageControl::class],
+        'shaveImage' => ['shaveImage', \ImagickDemo\Control\ImageControl::class],
+        'shearImage' => ['shearImage', \ImagickDemo\Control\ImageControl::class],
+        'sigmoidalContrastImage' => ['sigmoidalContrastImage',\ImagickDemo\Control\ImageControl::class ],
+
+
+        //new NavOption('similarityImage', true),
+
+        'sketchImage' => ['sketchImage', \ImagickDemo\Control\ImageControl::class],
+        'smushImages' => ['smushImages', \ImagickDemo\Control\ImageControl::class],
+        'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ControlCompositeImageSolarizeThreshold::class],
+        'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\SparseColorControl::class],
+        'spliceImage' => ['spliceImage', \ImagickDemo\Control\ImageControl::class],
+        'spreadImage' => ['spreadImage', \ImagickDemo\Control\ImageControl::class],
+        'statisticImage' => ['statisticImage', \ImagickDemo\Control\ControlCompositeImageStatisticTypeW20H20::class],
+        'subImageMatch' => ['subImageMatch', \ImagickDemo\Control\ImageControl::class],
+        'swirlImage' => ['swirlImage', \ImagickDemo\Control\ControlCompositeImageSwirl::class],
+        'textureImage' => ['textureImage', \ImagickDemo\Control\ImageControl::class],
+        'thresholdImage' => ['thresholdImage', \ImagickDemo\Control\ImageControl::class],
+        'thumbnailImage' => ['thumbnailImage', \ImagickDemo\Control\ImageControl::class],
+        'tintImage' => ['tintImage', \ImagickDemo\Control\ControlCompositeRGBA::class],
+        'transformImage' => ['transformImage', \ImagickDemo\Control\ImageControl::class],
+        'transparentPaintImage' => ['transparentPaintImage', \ImagickDemo\Control\ImageControl::class],
+        'transposeImage' => ['transposeImage', \ImagickDemo\Control\ImageControl::class],
+        'transformImageColorspace' => ['transformImageColorspace', \ImagickDemo\Control\ImageControl::class],
+        'transverseImage' => ['transverseImage', \ImagickDemo\Control\ImageControl::class],
+        'trimImage' => ['trimImage', \ImagickDemo\Control\ImageControl::class],
+        'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ImageControl::class],
+        'unsharpMaskImage' => ['unsharpMaskImage',\ImagickDemo\Control\ControlCompositeImageRadiusSigmaAmountUnsharpThresholdChannel::class ],
+        'vignetteImage' => ['vignetteImage', \ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY::class],
+        'waveImage' => ['waveImage', \ImagickDemo\Control\ControlCompositeImageAmplitudeLength::class],
+        'whiteThresholdImage' => ['whiteThresholdImage', \ImagickDemo\Control\ImageControl::class],
     ];
 
     $imagickDrawExamples = [
@@ -205,7 +550,7 @@ function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
 
     $provider->share($controlClass);
 
-    $params = ['a', 'amount', 'amplitidude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'channel', 'colorElement', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noise', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y',];
+    $params = ['a', 'amount', 'amplitidude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y',];
 
     foreach ($params as $param) {
         $paramGet = 'get'.ucfirst($param);
@@ -298,6 +643,29 @@ function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) 
     $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $function));
     renderTemplate($injector);
 }
+
+
+function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example, $customImage) {
+
+    
+    list($function, $controlClass) = getExampleDefinition($category, $example);
+
+    $injector->defineParam('imageBaseURL', '/customImagae/'.$category.'/'.$example);
+    $injector->defineParam('activeCategory', $category);
+
+    $injector->alias(\ImagickDemo\Control::class, $controlClass);
+    $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
+
+    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
+    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
+        ':category' => $category,
+        ':example' => $example
+    ]);
+
+    $className = sprintf('ImagickDemo\%s\%s', $category, $function);
+    $injector->execute([$className, $customImage]);
+}
+
 
 
 
@@ -420,6 +788,8 @@ function setupRootIndex(\Auryn\Provider $injector) {
     renderTemplate($injector);
 }
 
+
+
 $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Example}';
@@ -450,8 +820,8 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $r->addRoute(
       'GET',
-          "/subimage/$categories/{example:[a-zA-Z]*}/{subImageType:[a-zA-Z]*}",
-          'setupSubImage'
+          "/customImage/$categories/{example:[a-zA-Z]*}/{customImage:[a-zA-Z]+}",
+          'setupCustomImageDelegation'
     );
 
     $r->addRoute(
@@ -478,6 +848,8 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
 //$uri = '/Imagick/subImageMatch?image=Lorikeet';
 
 //$uri = '/image/Imagick/adaptiveBlurImage?radius=5&sigma=1&image=Lorikeet';
+//$uri = '/customImage/Imagick/foo/bar';
+
 
 $path = $uri;
 $queryPosition = strpos($path, '?');
@@ -495,6 +867,10 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
     foreach ($vars as $key => $value) {
         $lowried[':'.$key] = $value;
     }
+    
+//    var_dump($handler);
+//    var_dump($lowried);
+//    exit(0);
 
     $injector->execute($handler, $lowried);
 }

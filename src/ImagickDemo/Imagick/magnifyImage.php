@@ -3,15 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class magnifyImage extends ImagickExample {
+class magnifyImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->magnifyImage();
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

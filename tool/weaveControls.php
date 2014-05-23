@@ -189,9 +189,12 @@ $controls = [
         'ImagickDemo\ControlElement\RoundX',
         'ImagickDemo\ControlElement\RoundY',
     ],
-    
-    
-    
+
+    'ImagickDemo\Control\BrightnessContrastImage' => [
+        'ImagickDemo\ControlElement\Image',
+        '\ImagickDemo\ControlElement\Brightness',
+        '\ImagickDemo\ControlElement\Contrast',
+    ],
 
 ];
 

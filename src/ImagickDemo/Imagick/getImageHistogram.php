@@ -5,11 +5,8 @@ namespace ImagickDemo\Imagick;
 
 class getImageHistogram extends ImagickExample {
 
-    function renderImageURL() {
-        return "";
-    }
 
-    function renderDescription() {
+    function render() {
         $imagick = new \Imagick(realpath($this->imagePath));
 
 

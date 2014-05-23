@@ -3,15 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class transverseImage extends ImagickExample {
+class transverseImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
-    }
-
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->transverseImage();
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
+    function render() {
+        return $this->renderImageURL();
     }
 }

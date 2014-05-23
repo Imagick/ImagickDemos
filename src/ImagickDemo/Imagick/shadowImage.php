@@ -3,15 +3,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class shadowImage extends ImagickExample {
+class shadowImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
-    function renderImage() {
-        $imagick = new \Imagick(realpath($this->imagePath));
-        $imagick->shadowImage(1, 1, 0, 0);
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+
 }

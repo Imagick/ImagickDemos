@@ -3,12 +3,9 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColorValueQuantum extends \ImagickDemo\ExampleWithoutControlOrImage {
+class getColorValueQuantum extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-    }
-    
-    function renderDescription() {
+    function render() {
         $color = new \ImagickPixel('rgb(165, 42, 42)');
         $colorRed = $color->getColorValueQuantum(\Imagick::COLOR_RED);
         $colorGreen = $color->getColorValueQuantum(\Imagick::COLOR_GREEN);

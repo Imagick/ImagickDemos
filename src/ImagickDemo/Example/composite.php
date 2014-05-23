@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Example;
 
-class composite extends \ImagickDemo\ExampleWithoutControl {
+class composite extends \ImagickDemo\Example {
 
 
     private $listOfExamples = [
@@ -19,12 +19,10 @@ class composite extends \ImagickDemo\ExampleWithoutControl {
     ];
 
 
-    function renderDescription() {
+    function render() {
 
         echo "Select a demo:<br/>";
-
         echo "<select onchange='setExample(this);'>";
-
         echo "<option value='-1' >Choose a composite demo</option>";
 
         foreach ($this->listOfExamples as $example) {
@@ -32,7 +30,6 @@ class composite extends \ImagickDemo\ExampleWithoutControl {
         }
 
         echo "</select>";
-
 
         echo "
    

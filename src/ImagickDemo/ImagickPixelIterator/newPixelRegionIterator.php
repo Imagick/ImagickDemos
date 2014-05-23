@@ -6,12 +6,9 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class newPixelRegionIterator extends \ImagickDemo\ExampleWithoutControl {
+class newPixelRegionIterator extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
         return "";
-    }
-
-    function renderImage() {
     }
 }

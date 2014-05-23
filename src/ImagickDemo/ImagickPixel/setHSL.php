@@ -4,12 +4,9 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class setHSL extends \ImagickDemo\ExampleWithoutControlOrImage {
+class setHSL extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-    }
-
-    function renderDescription() {
+    function render() {
 
         //Create an almost pure red color
         $color = new \ImagickPixel('rgb(90%, 10%, 10%)');

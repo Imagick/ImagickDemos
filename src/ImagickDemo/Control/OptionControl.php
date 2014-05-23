@@ -29,7 +29,7 @@ abstract class OptionControl implements \ImagickDemo\Control {
     }
 
     function getURL() {
-        return sprintf("<img src='%s?%s' />", $this->imageBaseURL, $this->getParamString() );
+        return sprintf("%s?%s", $this->imageBaseURL, $this->getParamString() );
     }
 
     function getParams() {

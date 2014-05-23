@@ -5,13 +5,10 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class getIteratorRow extends \ImagickDemo\ExampleWithoutControl {
+class getIteratorRow extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
         return "";
-    }
-
-    function renderImage() {
     }
 }
  

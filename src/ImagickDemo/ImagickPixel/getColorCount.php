@@ -3,9 +3,9 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColorCount extends \ImagickDemo\ExampleWithoutControl {
+class getColorCount extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
 
         //Create an ImagickPixel with the predefined color 'brown'
         $color = new \ImagickPixel('red');

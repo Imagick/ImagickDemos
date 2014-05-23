@@ -3,15 +3,10 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColorValue extends \ImagickDemo\ExampleWithoutControl {
+class getColorValue extends \ImagickDemo\Example {
 
-    function renderImageURL() { 
-    }
-    
-    function renderImage() {
-    }
-    
-    function renderDescription() {
+
+    function render() {
         $color = new \ImagickPixel('rgba(90%, 20%, 20%, 0.75)');
 
         echo "Alpha value is " . $color->getColorValue(\Imagick::COLOR_ALPHA) . "<br/>";

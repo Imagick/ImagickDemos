@@ -4,15 +4,11 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getHSL extends \ImagickDemo\ExampleWithoutControlOrImage {
+class getHSL extends \ImagickDemo\Example {
 
-//    function renderImageURL() {
-//    }
-//    
+
     
-    function renderDescription() {
-
-//Create an ImagickPixel color
+    function render() {
         $color = new \ImagickPixel('rgb(90%, 10%, 10%)');
 
         $colorInfo = $color->getHSL();

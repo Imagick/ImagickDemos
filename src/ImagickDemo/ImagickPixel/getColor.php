@@ -3,13 +3,11 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class getColor extends \ImagickDemo\ExampleWithoutControlOrImage {
+class getColor extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "";
-    }
+
     
-    function renderDescription() {
+    function render() {
 
         echo "Create an ImagickPixel with the predefined color 'brown'<br/>";
 

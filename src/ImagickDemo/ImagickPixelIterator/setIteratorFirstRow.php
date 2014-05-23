@@ -6,12 +6,9 @@
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-class setIteratorFirstRow extends \ImagickDemo\ExampleWithoutControl {
+class setIteratorFirstRow extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
         return "";
-    }
-
-    function renderImage() {
     }
 }

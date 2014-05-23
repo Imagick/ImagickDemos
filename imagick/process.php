@@ -9,6 +9,7 @@
 //of the image
 $imageType = null;
 
+use \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor;
 
 /**
  * @return \Auryn\Provider
@@ -92,8 +93,8 @@ function getExampleDefinition($category, $example) {
         'pushClipPath' => ['setClipPath', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
         
         'pushPattern' => ['pushPattern', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-        'rectangle' => ['rectangle', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-        'render' => ['render', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'rectangle' => ['rectangle', ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'render' => ['render', ControlCompositeBackgroundColorStrokeColorFillColor::class],
         'rotate' => ['rotate', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
         'roundRectangle' => ['roundRectangle', \ImagickDemo\Control\RoundRectangleControl::class],
         'scale' => ['scale', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
@@ -135,11 +136,60 @@ function getExampleDefinition($category, $example) {
         'skewY' => ['skewY', \ImagickDemo\Control\SkewControl::class],
         'translate' => ['translate', \ImagickDemo\Control\TranslateControl::class],
     ];
+
+
+    $imagickPixelExamples = [
+        'construct' => ['construct', \ImagickDemo\Control\NullControl::class],
+        'getColor' => ['getColor', \ImagickDemo\Control\NullControl::class],
+        'getColorAsString' => ['getColorAsString', \ImagickDemo\Control\NullControl::class],
+        'getColorCount' => ['getColorCount', \ImagickDemo\Control\NullControl::class],
+        'getColorValue' => ['getColorValue', \ImagickDemo\Control\NullControl::class],
+        'getColorValueQuantum' => ['getColorValueQuantum', \ImagickDemo\Control\NullControl::class],
+        'getHSL' => ['getHSL', \ImagickDemo\Control\NullControl::class],
+        'isSimilar' => ['isSimilar', \ImagickDemo\Control\NullControl::class],
+        'setColor' => ['setColor', \ImagickDemo\Control\NullControl::class],
+        'setColorValue' => ['setColorValue', \ImagickDemo\Control\NullControl::class],
+        'setColorValueQuantum' => ['setColorValueQuantum', \ImagickDemo\Control\NullControl::class],
+        'setHSL' => ['setHSL', \ImagickDemo\Control\NullControl::class],
+    ];
     
+    
+    $imagickPixelIteratorExamples = [
+        'clear' => ['clear', \ImagickDemo\Control\ImageControl::class],
+        'construct' => ['construct', \ImagickDemo\Control\ImageControl::class],
+            //'getCurrentIteratorRow',
+            //'getIteratorRow' => 'setIteratorRow',
+        'getNextIteratorRow' => ['getNextIteratorRow', \ImagickDemo\Control\ImageControl::class ],
+            //'getPreviousIteratorRow',
+            //'newPixelIterator', deprecated
+            //'newPixelRegionIterator', deprecated
+        'resetIterator' => ['resetIterator', \ImagickDemo\Control\ImageControl::class],
+            //'setIteratorFirstRow',
+            //'setIteratorLastRow',
+        'setIteratorRow' => ['setIteratorRow', \ImagickDemo\Control\ImageControl::class],
+        'syncIterator' => ['construct', \ImagickDemo\Control\ImageControl::class],
+    ];
+
+    $tutorialExamples = [
+        'composite' => ['composite', \ImagickDemo\Control\NullControl::class ],
+        'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
+        'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
+        'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
+        'psychedelicFont' => ['psychedelicFont', \ImagickDemo\Control\NullControl::class],
+        'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
+        'imagickComposite' => ['imagickComposite', \ImagickDemo\Control\NullControl::class],
+        'imagickCompositeGen' => ['imagickCompositeGen', \ImagickDemo\Control\NullControl::class],
+        'fxAnalyzeImage' => ['fxAnalyzeImage', \ImagickDemo\Control\NullControl::class],
+        'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
+        
+    ];    
     
     $examples = [
         'Imagick' => $imagickExamples,
         'ImagickDraw' => $imagickDrawExamples,
+        'ImagickPixel' => $imagickPixelExamples,
+        'ImagickPixelIterator' => $imagickPixelIteratorExamples,
+        'Example' => $tutorialExamples,
     ];
 
     if (!isset($examples[$category][$example])) {
@@ -155,7 +205,7 @@ function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
 
     $provider->share($controlClass);
 
-    $params = ['a', 'amount', 'amplitidude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'channel', 'colorElement', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noise', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixel', 'whitePoint', 'x', 'y',];
+    $params = ['a', 'amount', 'amplitidude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'channel', 'colorElement', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noise', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y',];
 
     foreach ($params as $param) {
         $paramGet = 'get'.ucfirst($param);

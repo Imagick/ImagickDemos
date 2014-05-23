@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class construct extends \ImagickDemo\ExampleWithoutControl {
+class construct extends \ImagickDemo\Example {
 
     private $columns = 4;
 
@@ -26,7 +26,7 @@ class construct extends \ImagickDemo\ExampleWithoutControl {
         "rgba(100%, 0%, 0%, 1.0)", //  the same, with an explicit alpha value
     );
 
-    function renderDescription() {
+    function render() {
         $output = "<table>";
         for ($x=0 ; $x<count($this->exampleColors); $x++) {
 
@@ -34,7 +34,6 @@ class construct extends \ImagickDemo\ExampleWithoutControl {
                 if ($x  != 0) {
                     $output .= "</tr>";
                 }
-
                 $output .= "<tr>";
             }
 
@@ -48,55 +47,13 @@ class construct extends \ImagickDemo\ExampleWithoutControl {
         }
 
         $output .= "</tr>";
-        
-
         $output .= "</table>";
-        
+        $output .= $this->renderImageURL();
+
         return $output;
     }
 
-    function renderImage() {
-       
-//Create a ImagickDraw object to draw into.
-        $draw = new \ImagickDraw();
 
-        $count = 0;
-
-        $black = new \ImagickPixel('rgb(0, 0, 0)');
-
-        foreach ($this->exampleColors as $exampleColor) {
-            $color = new \ImagickPixel($exampleColor);
-
-            //Set the stroke and fill colour and draw a rectangle
-            $draw->setstrokewidth(1.0);
-            $draw->setStrokeColor($black);
-            $draw->setFillColor($color);
-
-            $offsetX = ($count % $this->columns) * 50 + 5;
-            $offsetY = intval($count / $this->columns) * 50 + 5;
-
-            $draw->rectangle(0 + $offsetX, 0 + $offsetY, 40 + $offsetX, 40 + $offsetY);
-
-            $count++;
-        }
-
-//Create an image object which the draw commands can be rendered into
-        $image = new \Imagick();
-        $image->newImage(350, 350, "blue");
-        $image->setImageFormat("png");
-
-//Render the draw commands in the ImagickDraw object 
-//into the image.
-        $image->drawImage($draw);
-
-//Send the image to the browser
-        header("Content-Type: image/png");
-        echo $image->getImageBlob();
-
-
-//This produces an image of a red rectangle on a yellow background 
-
-    }
 
 }
 

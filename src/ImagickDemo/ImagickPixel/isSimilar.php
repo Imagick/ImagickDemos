@@ -5,15 +5,11 @@ namespace ImagickDemo\ImagickPixel;
 
 define('NL', '<br/>');
 
-class isSimilar extends \ImagickDemo\ExampleWithoutControlOrImage {
+class isSimilar extends \ImagickDemo\Example {
 
+    function render() {
 
-    function renderImageURL() {
-    }
-    
-    function renderDescription() {
-
-        echo "These tests need a modern version of Imagick due to the https://github.com/mkoppanen/imagick/issues/10 <br/> Also, a distance of '1' is the maximum distance in the color space e.g. from 0, 0, 0 to 255, ";
+        echo "These tests need a modern version of Imagick due to the https://github.com/mkoppanen/imagick/issues/10 <br/> Also, a distance of '1' is the maximum distance in the color space e.g. from 0, 0, 0 to 255, 255, 255 in RGB <br/>";
 
         $root3 = 1.732050807568877;
 
@@ -42,13 +38,21 @@ class isSimilar extends \ImagickDemo\ExampleWithoutControlOrImage {
 
                 $color1Pixel = new \ImagickPixel($color1);
                 $color2Pixel = new \ImagickPixel($color2);
+                
+                
 
-                $isSimilar = $color1Pixel->isSimilar($color2Pixel, $testDistance);
+                $isSimilar = $color1Pixel->isPixelSimilar($color2Pixel, $testDistance);
 
                 if ($isSimilar !== $expectation) {
                     echo "Test distance failed. Color [$color1] compared to color [$color2] is not within distance $testDistance FAILED.".NL;
                 }
+
+                if ($isSimilar) {
+                    printf("%s %s are similar <br/>", $color1, $color2);
+                }
+                else {
+                    printf("%s %s are different <br/>", $color1, $color2);
+                }
             }
-            echo "success".NL;
     }
 }

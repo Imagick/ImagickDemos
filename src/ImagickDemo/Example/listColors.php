@@ -7,31 +7,9 @@ use ImagickDemo\Control\NullControl;
 
 class listColors extends \ImagickDemo\Example {
 
+  
 
-    /**
-     * @var \ImagickDemo\Control\NullControl
-     */
-    private $control;
-
-    function __construct(NullControl $control) {
-        $this->control = $control;
-    }
-
-    /**
-     * @return \ImagickDemo\Control
-     */
-    function getControl() {
-        return $this->control;
-    }
-
-    function renderImageURL() {
-
-    }
-
-    function renderImage() {
-    }
-
-    function renderDescription() {
+    function render() {
         
         $output = "<table class='smallPadding' width='100%'>";
         $output .= "<tbody>";

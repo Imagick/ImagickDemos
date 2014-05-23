@@ -4,10 +4,9 @@ namespace ImagickDemo\Example;
 
 
 
-class compressImages extends \ImagickDemo\ExampleWithoutControl {
+class compressImages extends \ImagickDemo\Example {
 
-    function renderDescription() {
-
+    function render() {
 
 //        $blurString = $this->compressJpgWithBlur();
 

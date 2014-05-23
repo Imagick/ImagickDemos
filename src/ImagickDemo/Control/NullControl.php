@@ -22,7 +22,7 @@ class NullControl implements \ImagickDemo\Control {
     }
 
     function getURL() {
-        return sprintf("<img src='%s' />", $this->imageBaseURL);
+        return $this->imageBaseURL;
     }
 }
 

@@ -58,7 +58,7 @@ class ControlComposite implements \ImagickDemo\Control {
             $paramString .= $separator.$key."=".$value;
             $separator = '&';
         }
-
-        return sprintf("<img src='%s%s' />", $this->imageBaseURL, $paramString);
+        //return sprintf("<img src='%s%s' />", $this->imageBaseURL, $paramString);
+        return $this->imageBaseURL.$paramString;
     }
 }

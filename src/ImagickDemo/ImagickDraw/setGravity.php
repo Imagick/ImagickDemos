@@ -4,60 +4,11 @@ namespace ImagickDemo\ImagickDraw;
 
 class setGravity extends ImagickDrawExample {
 
-    function renderDescription() {
+    function getDescription() {
         return "";
     }
 
-    function renderImage() {
-
-        $draw = new \ImagickDraw();
-
-        $strokeColor = new \ImagickPixel($this->strokeColor);
-        $fillColor = new \ImagickPixel($this->fillColor);
-
-        $draw->setStrokeColor($strokeColor);
-        $draw->setFillColor($fillColor);
-
-        $draw->setStrokeWidth(1);
-
-        $draw->setFontSize(24);
-
-        $gravitySettings = array(
-            \Imagick::GRAVITY_NORTHWEST => 'NorthWest', 
-            \Imagick::GRAVITY_NORTH => 'North', 
-            \Imagick::GRAVITY_NORTHEAST => 'NorthEast', 
-            \Imagick::GRAVITY_WEST => 'West', 
-            \Imagick::GRAVITY_CENTER => 'Centre', 
-            \Imagick::GRAVITY_SOUTHWEST => 'SouthWest', 
-            \Imagick::GRAVITY_SOUTH => 'South', 
-            \Imagick::GRAVITY_SOUTHEAST => 'SouthEast', 
-            \Imagick::GRAVITY_EAST => 'East'
-        );
-
-
-        $draw->setFont("../fonts/Arial.ttf");
-
-        foreach ($gravitySettings as $type => $description) {
-            $draw->setGravity($type);
-            $draw->annotation(50, 50, '"' . $description . '"');
-        }
-
-
-//Create an image object which the draw commands can be rendered into
-        $imagick = new \Imagick();
-        $imagick->newImage(500, 500, $this->backgroundColor);
-        $imagick->setImageFormat("png");
-
-//Render the draw commands in the ImagickDraw object 
-//into the image.
-        $imagick->drawImage($draw);
-
-//Send the image to the browser
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
-
-
-    }
+ 
 
 }
 

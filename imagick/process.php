@@ -67,8 +67,79 @@ function getExampleDefinition($category, $example) {
         'pingImage' => ['pingImage', \ImagickDemo\Control\ImageControl::class],
     ];
 
+    $imagickDrawExamples = [
+        'affine' => ['affine', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'arc' => ['arc', \ImagickDemo\Control\ArcControl::class],
+        'bezier' => ['bezier', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'circle' => ['circle', \ImagickDemo\Control\CircleControl::class],
+        'composite' => ['composite', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'ellipse' => ['ellipse', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'line' => ['line', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'matte' => ['matte', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'pathStart' => ['pathStart', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'point' => ['point', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'polygon' => ['polygon', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'polyline' => ['polyline', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+
+        'pop' => ['push', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'popClipPath' => ['setClipPath', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+
+        'popPattern' => ['pushPattern', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+
+        'popDefs' => ['popDefs', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'push' => ['push', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+
+        'pushClipPath' => ['setClipPath', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        
+        'pushPattern' => ['pushPattern', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'rectangle' => ['rectangle', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'render' => ['render', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'rotate' => ['rotate', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'roundRectangle' => ['roundRectangle', \ImagickDemo\Control\RoundRectangleControl::class],
+        'scale' => ['scale', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'setClipPath' => ['setClipPath', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setClipRule' => ['setClipRule', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setClipUnits' => ['setClipUnits', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFillAlpha' => ['setFillAlpha', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFillColor' => ['setFillColor', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFillOpacity' => ['setFillOpacity', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFillRule' => ['setFillRule', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFont' => ['setFont', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFontFamily' => ['setFontFamily', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFontSize' => ['setFontSize', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFontStretch' => ['setFontStretch', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFontStyle' => ['setFontStyle', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setFontWeight' => ['setFontWeight', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setGravity' => ['setGravity', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeAlpha' => ['setStrokeAlpha', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeAntialias' => ['setStrokeAntialias', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeColor' => ['setStrokeColor', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeDashArray' => ['setStrokeDashArray', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeDashOffset' => ['setStrokeDashOffset', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        
+        'setStrokeLineCap' => ['setStrokeLineCap', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+
+        'setStrokeLineJoin' => ['setStrokeLineJoin', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        
+        
+        'setStrokeMiterLimit' => ['setStrokeMiterLimit', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeOpacity' => ['setStrokeOpacity', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setStrokeWidth' => ['setStrokeWidth', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setTextAlignment' => ['setTextAlignment', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setTextAntialias' => ['setTextAntialias', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setTextDecoration' => ['setTextDecoration', \ImagickDemo\Control\TextDecoration::class],
+        'setTextUnderColor' => ['setTextUnderColor', \ImagickDemo\Control\TextUnderControl::class],
+        'setVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'setViewBox' => ['setViewBox', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'skewX' => ['skewX', \ImagickDemo\Control\SkewControl::class],
+        'skewY' => ['skewY', \ImagickDemo\Control\SkewControl::class],
+        'translate' => ['translate', \ImagickDemo\Control\TranslateControl::class],
+    ];
+    
+    
     $examples = [
-        'Imagick' => $imagickExamples
+        'Imagick' => $imagickExamples,
+        'ImagickDraw' => $imagickDrawExamples,
     ];
 
     if (!isset($examples[$category][$example])) {
@@ -78,22 +149,31 @@ function getExampleDefinition($category, $example) {
     return $examples[$category][$example];
 }
 
-function setupImageDelegation(\Auryn\Provider $injector, $category, $example) {
+function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
 
     list($function, $controlClass) = getExampleDefinition($category, $example);
 
-    $params = ['imagePath', 'radius', 'sigma'];
-    
+    $provider->share($controlClass);
+
+    $params = ['a', 'amount', 'amplitidude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'channel', 'colorElement', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noise', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixel', 'whitePoint', 'x', 'y',];
+
     foreach ($params as $param) {
         $paramGet = 'get'.ucfirst($param);
-        $injector->delegateParam(
+        $provider->delegateParam(
             $param,
             [$controlClass, $paramGet]
         );
     }
 
-    require_once dirname(__FILE__).'/../src/examples.php';
-    $injector->execute($function);
+    
+    $namespace = sprintf('ImagickDemo\%s\functions', $category);
+    $namespace::load(); 
+    
+//    var_dump($category);
+//    var_dump($function);
+//    exit(0);
+
+    $provider->execute($function);
     exit(0);
 }
 
@@ -151,16 +231,12 @@ function setupSubImage(\Auryn\Provider $injector, $category, $example, $subImage
 
 function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) {
 
-    $exampleInfo = getExampleDefinition($category, $example);
-
-    $function = $exampleInfo[0];
-    $controlClass = $exampleInfo[1];
+    list($function, $controlClass) = getExampleDefinition($category, $example);
 
     $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
     $injector->defineParam('activeCategory', $category);
 
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
-
     $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
 
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
@@ -169,9 +245,7 @@ function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) 
         ':example' => $example
     ]);
 
-    
-    $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $example));
-
+    $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $function));
     renderTemplate($injector);
 }
 
@@ -415,4 +489,35 @@ switch ($routeInfo[0]) {
 }
 
 
+/*
 
+function renderImageSafe() {
+    try {
+        $this->renderImage();
+    }
+    catch(\Exception $e) {
+        $draw = new \ImagickDraw();
+
+        $strokeColor = new \ImagickPixel('none');
+        $lightColor = new \ImagickPixel('brown');
+
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($lightColor);
+        $draw->setStrokeWidth(1);
+        $draw->setFontSize(24);
+        $draw->setFont("../fonts/Arial.ttf");
+
+        $draw->setTextAntialias(false);
+        $draw->annotation(50, 75, $e->getMessage());
+
+        $imagick = new \Imagick();
+        $imagick->newImage(500, 250, "SteelBlue2");
+        $imagick->setImageFormat("png");
+        $imagick->drawImage($draw);
+
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+}
+
+*/

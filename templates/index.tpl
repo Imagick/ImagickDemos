@@ -67,9 +67,7 @@
 
                     <div class="row">
                     <div class="col-md-8">
- 
-                        {$example->renderDescription() | nofilter}    
-                        {$control->getURL() | nofilter}
+                        {$example->render() | nofilter}
                     </div>
                     <div class="col-md-4">
                         {$control->renderForm() | nofilter}
@@ -101,8 +99,6 @@
         <?php
         echo "<br/><br/><br/><span style='font-size: 8px; display: block;'>Peak memory ". number_format(memory_get_peak_usage())."</span>";
         ?>
-        
-        
     </div>
 </div>  
 

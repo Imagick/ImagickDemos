@@ -26,17 +26,7 @@ abstract class Example implements renderableExample {
         return sprintf("<img src='%s' />", $this->control->getURL());
     }
 
-    function renderCustomImageURL(\ImagickDemo\Control $control) {
-        $paramsString = '';
 
-        $separator = '';
-        foreach ($control->getParams() as $key => $value) {
-            $paramsString .= $separator.$key.'='.$value; 
-            $separator = '&';
-        }
-
-        return sprintf("<img src='/customImage/Imagick/distortImage/foo?%s' />", $paramsString);
-    }
     
     
     function renderCodeLink() {

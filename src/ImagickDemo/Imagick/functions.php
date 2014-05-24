@@ -364,12 +364,30 @@ function equalizeImage($imagePath) {
 
 function evaluateimage() {
     $imagick = new \Imagick();
-    $imagick->newimage(400, 400, "white");
-    $imagick->evaluateimage(\Imagick::EVALUATE_COSINE, "4,-90");
+    $size = 200;
+    $imagick->newPseudoImage($size, $size, 'gradient:black-white');
+    $imagick->evaluateimage(\Imagick::EVALUATE_COSINE, 1);
     $imagick->setimageformat('png');
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+
+
+function evaluateimage2() {
+
+    $size = 200;
+
+    $imagick1 = new \Imagick();
+    $imagick1->newPseudoImage($size, $size, 'gradient:black-white');
+    $arguments = array(4, -90);
+    $imagick1->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
+    $imagick1->evaluateimage(\Imagick::EVALUATE_MULTIPLY, 2);
+    $imagick1->setimageformat('png');
+    header("Content-Type: image/png");
+    echo $imagick1->getImageBlob();
+}
+
+
 
 
 function createMask() {
@@ -497,7 +515,7 @@ function frameimage($imagePath) {
 
 
 
-function fxImage($imagePath) {
+function fxImageFile($imagePath) {
     //$imagick = new \Imagick();
     $imagick = new \Imagick(realpath($imagePath));
     //$imagick->newPseudoImage(10, 256, "gradient:white-black");
@@ -514,6 +532,22 @@ function fxImage($imagePath) {
     echo $blah->getImageBlob();
 
     //echo "blaj";
+}
+
+function fxImage() {
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage(200, 200, "xc:white");
+
+    //convert -size 100x100 xc:  -channel G \
+//-fx  \
+//-separate  fx_radial_gradient.png
+
+    $fx = 'xx=i-w/2; yy=j-h/2; rr=hypot(xx,yy); (.5-rr/140)*1.2+.5';
+    $fxImage = $imagick->fxImage($fx);
+
+    header("Content-Type: image/png");
+    $fxImage->setimageformat('png');
+    echo $fxImage->getImageBlob();
 }
 
 
@@ -661,6 +695,19 @@ function negateImage($imagePath) {
     echo $imagick->getImageBlob();
 }
 
+
+    
+function newPseudoImage() { 
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage(200, 200, 'gradient:red-blue');
+    $imagick->sigmoidalcontrastimage(true, 14, 90);
+    $imagick->setImageFormat("jpg");
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+
+
+
 function normalizeImage() {
     $imagick = new \Imagick(realpath("../images/LowContrast.jpg"));
     $original = clone $imagick;
@@ -804,9 +851,11 @@ function rotationalBlurImage($imagePath) {
 
 
 
-function roundCornersImage($imagePath) {
+function roundCorners($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->setBackgroundColor('red');
+
+    $imagick->setbackgroundcolor('pink');
 
     $x_rounding = 40;
     $y_rounding = 40;

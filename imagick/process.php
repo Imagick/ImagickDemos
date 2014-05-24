@@ -27,6 +27,8 @@ function bootstrap() {
     $injector->share($jigConfig);
 
     $injector->defineParam('imageBaseURL', null);
+    $injector->defineParam('customImageBaseURL', null);
+    
     $injector->defineParam('pageTitle', "Imagick demos");
 
     $injector->defineParam('standardImageWidth', 500);
@@ -126,7 +128,7 @@ function getExampleDefinition($category, $example) {
 
         'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
         'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
-//'evaluateImage',
+        'evaluateImage' =>  ['evaluateimage', \ImagickDemo\Control\ImageControl::class],
         //'exportImagePixels',
 //'extentImage',
         //FilterImage - this appears to be a duplicate function
@@ -590,7 +592,7 @@ function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) 
 }
 
 
-function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example, $customImage) {
+function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example) {
 
     list($function, $controlClass) = getExampleDefinition($category, $example);
 
@@ -607,7 +609,7 @@ function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $examp
     ]);
 
     $className = sprintf('ImagickDemo\%s\%s', $category, $function);
-    $injector->execute([$className, 'renderCustomImage'], [':customImage' => $customImage]);
+    $injector->execute([$className, 'renderCustomImage']);
 }
 
 
@@ -684,7 +686,7 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $r->addRoute(
       'GET',
-          "/customImage/$categories/{example:[a-zA-Z]*}/{customImage:[0-9a-zA-Z_-]+}",
+          "/customImage/$categories/{example:[a-zA-Z]*}",
           'setupCustomImageDelegation'
     );
 
@@ -708,10 +710,7 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
 
-//$uri = '/customImage/Imagick/foo/bar';
-
-//$uri = "/image/ImagickDraw/pushClipPath?background=rgb(225,%20225,%20225)&strokeColor=rgb(0,%200,%200)&fillColor=DodgerBlue2";
-
+//$uri = "/customImage/Imagick/distortImage?image=Lorikeet&distortion=9";
 
 $path = $uri;
 $queryPosition = strpos($path, '?');
@@ -756,7 +755,7 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND: {
         header("HTTP/1.0 404 Not Found", true, 404);
-        echo "No route matched";
+        echo "No route matched. No route matched.No route matched.No route matched.No route matched.No route matched.No route matched.No route matched.";
         break;
     }
 

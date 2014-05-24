@@ -32,7 +32,7 @@ class composite extends \ImagickDemo\Example {
 
     }
     
-    function renderCustomImage($customImage) {
+    function renderCustomImage() {
         $methods = [ 
             'multiplyGradients' => 'multiplyGradients',
             'screenGradients' => 'screenGradients',
@@ -45,6 +45,8 @@ class composite extends \ImagickDemo\Example {
             'CopyOpacity' => 'CopyOpacity', 
             'CopyOpacity2' => 'CopyOpacity2',
         ];
+
+        $customImage  = $this->compositeExampleControl->getCompositeExampleType();
 
         if (array_key_exists($customImage, $methods) == false) {
             throw new \Exception("Unknown composite method $customImage");  

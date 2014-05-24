@@ -209,6 +209,7 @@ class SiteChecker {
             }
 
             case ('image/gif') :
+            case ('image/jpeg') :
             case ('image/jpg') :
             case ('image/png') : {
                 //echo "Image with status - $status\n";

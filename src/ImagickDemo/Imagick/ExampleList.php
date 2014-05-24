@@ -79,7 +79,8 @@ class ExampleList implements \ImagickDemo\ExampleList {
 
             new NavOption('enhanceImage'),
             new NavOption('equalizeImage'),
-//'evaluateImage',
+            new NavOption('evaluateImage'),
+//'',
             //'exportImagePixels',
 //'extentImage',
             //FilterImage - this appears to be a duplicate function

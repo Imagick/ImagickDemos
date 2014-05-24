@@ -27,6 +27,6 @@ class TextDecoration extends OptionKeyElement {
     }
 
     function getTextDecoration() {
-        return $this->value;
+        return $this->key;
     }
 }

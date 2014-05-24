@@ -90,7 +90,7 @@ class sparseColorImage extends \ImagickDemo\Example {
         return $this->sparseControl->getParamString();
     }
 
-    function renderCustomImage($customImage) {
+    function renderCustomImage() {
         $methods = [
             'renderImageBarycentric2' => 'renderImageBarycentric2',
             'renderImageBilinear' => 'renderImageBilinear',
@@ -101,11 +101,13 @@ class sparseColorImage extends \ImagickDemo\Example {
             'renderImageBarycentric' => 'renderImageBarycentric',
         ];
 
-        if (array_key_exists($customImage, $methods) == false) {
-            throw new \Exception("Unknown composite method $customImage");
+        $sparseType = $this->sparseControl->getSparseColorType();
+        
+        if (array_key_exists($sparseType, $methods) == false) {
+            throw new \Exception("Unknown composite method $sparseType");
         }
 
-        $method = $methods[$customImage];
+        $method = $methods[$sparseType];
         $this->{$method}();
     }
 

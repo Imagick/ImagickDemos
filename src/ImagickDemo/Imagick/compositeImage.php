@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class compositeImage extends  \ImagickDemo\Example {
+class compositeImage extends \ImagickDemo\Example {
 
     function render() {
         return $this->renderImageURL();

@@ -3,7 +3,8 @@
 namespace ImagickDemo\Imagick;
 
 
-class getImageChannelStatistics extends ImagickExample {
+class getImageChannelStatistics extends \ImagickDemo\Example {
+
 
     function renderImage() {
         $imagick = new \Imagick(realpath("../images/fnord.png"));
@@ -11,7 +12,7 @@ class getImageChannelStatistics extends ImagickExample {
         echo $imagick->getimageblob();
     }
 
-    function renderDescription() {
+    function render() {
 
         $imagick = new \Imagick(realpath("../images/fnord.png"));
 

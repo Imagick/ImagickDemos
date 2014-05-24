@@ -118,7 +118,7 @@ function getExampleDefinition($category, $example) {
         //'destroy',
         //'displayImage',
         //'displayImages',
-        'distortImage' => ['distortImage', \ImagickDemo\Control\ImageControl::class],
+        'distortImage' => ['distortImage', \ImagickDemo\Control\DistortTypeControl::class],
         //'drawImage',
         //'edgeImage',
         //'embossImage',
@@ -248,7 +248,7 @@ function getExampleDefinition($category, $example) {
         'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ImageControl::class],
         //'mapImage',
         //'matteFloodfillImage',
-        'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ImageControl::class],
+        'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ControlCompositeRadiusImage::class],
 
         //'mergeImageLayers',
         //'minifyImage',
@@ -309,7 +309,7 @@ function getExampleDefinition($category, $example) {
         'scaleImage' => ['scaleImage', \ImagickDemo\Control\ImageControl::class],
         'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\ImageControl::class],
         'segmentImage' => ['segmentImage', \ImagickDemo\Control\ImageControl::class],
-        'selectiveBlurImage' => ['selectiveBlurImage',\ImagickDemo\Control\ControlCompositeImageRadiusSigmaAmountUnsharpThresholdChannel::class ],
+        'selectiveBlurImage' => ['selectiveBlurImage',ImagickDemo\Control\SelectiveBlurImage::class ],
         'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Control\ImageControl::class],
         'sepiaToneImage' => ['sepiaToneImage', \ImagickDemo\Control\ImageControl::class],
         //'setBackgroundColor',
@@ -403,7 +403,7 @@ function getExampleDefinition($category, $example) {
         'transformImage' => ['transformImage', \ImagickDemo\Control\ImageControl::class],
         'transparentPaintImage' => ['transparentPaintImage', \ImagickDemo\Control\ImageControl::class],
         'transposeImage' => ['transposeImage', \ImagickDemo\Control\ImageControl::class],
-        'transformImageColorspace' => ['transformImageColorspace', \ImagickDemo\Control\ImageControl::class],
+        'transformImageColorspace' => ['transformImageColorspace', \ImagickDemo\Control\ControlCompositeImageColorSpace::class],
         'transverseImage' => ['transverseImage', \ImagickDemo\Control\ImageControl::class],
         'trimImage' => ['trimImage', \ImagickDemo\Control\ImageControl::class],
         'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ImageControl::class],
@@ -516,7 +516,7 @@ function getExampleDefinition($category, $example) {
     ];
 
     $tutorialExamples = [
-        'composite' => ['composite', \ImagickDemo\Control\NullControl::class ],
+        'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
         'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
         'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
         'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
@@ -550,7 +550,7 @@ function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
 
     $provider->share($controlClass);
 
-    $params = ['a', 'amount', 'amplitidude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y',];
+    $params = ['a', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'threshold', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'h20'];
 
     foreach ($params as $param) {
         $paramGet = 'get'.ucfirst($param);
@@ -563,64 +563,8 @@ function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
     
     $namespace = sprintf('ImagickDemo\%s\functions', $category);
     $namespace::load(); 
-    
-//    var_dump($category);
-//    var_dump($function);
-//    exit(0);
 
     $provider->execute($function);
-    exit(0);
-}
-
-//function setupImage(\Auryn\Provider $injector, $category, $example = null) {
-//
-//    $cache = false;
-//
-//    if (strlen($example) === 0) {
-//        $example = null;
-//    }
-//
-//    setupExample($injector, $category, $example, true);
-//    
-//    if ($cache == true) {
-//        $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-//    }
-//    else {
-//        if (false) {
-//            $injector->execute([\ImagickDemo\Example::class, 'renderImage']);
-//        }
-//        else {
-//            $object = $injector->make(\ImagickDemo\Example::class);
-//            $injector->execute([$object, 'renderImage']);
-//        }
-//    }
-//    exit(0);
-//}
-
-function setupSubImage(\Auryn\Provider $injector, $category, $example, $subImageType) {
-
-    $cache = false;
-
-    if (strlen($example) === 0) {
-        $example = null;
-    }
-
-    setupExample($injector, $category, $example, true);
-    
-    $injector->defineParam('subImageType', $subImageType);
-
-//    if ($cache == true) {
-//        $injector->execute([\ImagickDemo\ImageExampleCache::class, 'renderImageSafe']);
-//    }
-//    else {
-        if (false) {
-            $injector->execute([\ImagickDemo\Example::class, 'renderImage']);
-        }
-        else {
-            $object = $injector->make(\ImagickDemo\Example::class);
-            $injector->execute([$object, 'renderSubImage']);
-        }
-    //}
     exit(0);
 }
 
@@ -647,12 +591,10 @@ function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) 
 
 function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example, $customImage) {
 
-    
     list($function, $controlClass) = getExampleDefinition($category, $example);
 
     $injector->defineParam('imageBaseURL', '/customImagae/'.$category.'/'.$example);
     $injector->defineParam('activeCategory', $category);
-
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
 
@@ -663,10 +605,8 @@ function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $examp
     ]);
 
     $className = sprintf('ImagickDemo\%s\%s', $category, $function);
-    $injector->execute([$className, $customImage]);
+    $injector->execute([$className, 'renderCustomImage'], [':customImage' => $customImage]);
 }
-
-
 
 
 function setupCatergoryDelegation(\Auryn\Provider $injector, $category, $example = null) {
@@ -681,96 +621,21 @@ function setupCatergoryDelegation(\Auryn\Provider $injector, $category, $example
     if (in_array($category, $validCatergories) == false) {
         throw new \Exception("Category is not valid.");
     }
-//
-//    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
-//
-//
-//    $injector->alias('ImagickDemo\ExampleList', "ImagickDemo\\".$category."\\ExampleList");
-//    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\Nav::class);
-//
-//    $nav = $injector->make(ImagickDemo\Navigation\Nav::class, [
-//        ':category' => $category,
-//        ':example' => $example
-//    ]);
-//
-//    $nav->setupControlAndExample($injector);
-//
-//    if ($image == false) {
-//        renderTemplate($injector);
-//    }
-
-
-//    $imagickExamples = [
-//        'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Control\ControlCompositeRadiusSigmaImage::class]
-//    ];
-//
-//    $examples = [
-//        'Imagick' => $imagickExamples
-//    ];
-
-//    if (!isset($examples[$category][$example])) {
-//        throw new \Exception("Somethings fucky: example [$category][$example] doesn't exist.");
-//    }
-
-//    $exampleInfo = $examples[$category][$example];
-
-//    $function = $exampleInfo[0];
-    //$controlClass = $exampleInfo[1];
 
     $injector->defineParam('imageBaseURL', '/image/'.$category);
     $injector->defineParam('activeCategory', $category);
 
-//    $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->share(\ImagickDemo\Control::class);
     $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
     $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\IndexExample', $category));
-    
-    
-
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
     $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
         ':category' => $category,
         ':example' => $example
     ]);
 
-    //$injector->share(\ImagickDemo\Example::class);
-    //$injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $example));
-
     renderTemplate($injector);
 }
-
-
-//function setupExample(\Auryn\Provider $injector, $category, $example = null, $image = false) {
-//
-//    $validCatergories = [
-//        'Imagick',
-//        'ImagickDraw',
-//        'ImagickPixel',
-//        'ImagickPixelIterator',
-//        'Example',
-//    ];
-//    
-//    if (in_array($category, $validCatergories) == false) {
-//        throw new \Exception("Category is not valid.");
-//    }
-//
-//    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
-//    
-//
-//    $injector->alias('ImagickDemo\ExampleList', "ImagickDemo\\".$category."\\ExampleList");
-//    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
-//
-//    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
-//        ':category' => $category,
-//        ':example' => $example
-//    ]);
-//
-//    //$nav->setupControlAndExample($injector);
-//
-//    if ($image == false) {
-//        renderTemplate($injector);
-//    }
-//}
 
 function renderTemplate(\Auryn\Provider $injector) {
     $viewModel = $injector->make(Intahwebz\ViewModel\BasicViewModel::class);
@@ -789,7 +654,6 @@ function setupRootIndex(\Auryn\Provider $injector) {
 }
 
 
-
 $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Example}';
@@ -798,7 +662,6 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
     $r->addRoute(
       'GET',
           "/$categories",
-          //'setupExample'
           'setupCatergoryDelegation'
     );
 
@@ -806,7 +669,6 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
     $r->addRoute(
         'GET',
         "/$categories/{example:[a-zA-Z]+}",
-        //'setupExample'
         'setupExampleDelegation'
     );
 
@@ -814,13 +676,12 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
     $r->addRoute(
       'GET',
           "/image/$categories/{example:[a-zA-Z]+}",
-          //'setupImage'
           'setupImageDelegation'
     );
 
     $r->addRoute(
       'GET',
-          "/customImage/$categories/{example:[a-zA-Z]*}/{customImage:[a-zA-Z]+}",
+          "/customImage/$categories/{example:[a-zA-Z]*}/{customImage:[0-9a-zA-Z_-]+}",
           'setupCustomImageDelegation'
     );
 
@@ -844,10 +705,6 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
 
-// $uri = '/image/Imagick/raiseImage?image=Lorikeet';
-//$uri = '/Imagick/subImageMatch?image=Lorikeet';
-
-//$uri = '/image/Imagick/adaptiveBlurImage?radius=5&sigma=1&image=Lorikeet';
 //$uri = '/customImage/Imagick/foo/bar';
 
 

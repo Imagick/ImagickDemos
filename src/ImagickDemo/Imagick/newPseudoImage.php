@@ -4,9 +4,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class newPseudoImage extends ImagickExample {
+class newPseudoImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
     function renderImage() {
@@ -21,7 +22,6 @@ class newPseudoImage extends ImagickExample {
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }
-
 
     function renderImage2() {
         $im = new \Imagick(realpath('../images/TestImage.jpg'));

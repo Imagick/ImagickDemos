@@ -3,10 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class negateImage extends ImagickExample {
+class negateImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
-
-
 }

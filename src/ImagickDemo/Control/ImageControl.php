@@ -4,7 +4,7 @@
 namespace ImagickDemo\Control;
 
 
-class ImageControl extends OptionControl {
+class ImageControl extends OptionValueControl {
 
     function getName() {
         return 'image';
@@ -24,7 +24,7 @@ class ImageControl extends OptionControl {
     }
 
     function getImagePath() {
-        return $this->image;
+        return $this->getOptionValue();
     }
 }
 

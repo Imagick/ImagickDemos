@@ -3,10 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class getPixelIterator extends ImagickExample {
+class getPixelIterator extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
-
-
 }

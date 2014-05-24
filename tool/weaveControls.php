@@ -196,6 +196,18 @@ $controls = [
         '\ImagickDemo\ControlElement\Contrast',
     ],
 
+    'ImagickDemo\Control\SelectiveBlurImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Threshold',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    
+
+    
+    
 ];
 
 \Intahwebz\Functions::load();

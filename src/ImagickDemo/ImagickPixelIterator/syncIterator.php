@@ -1,15 +1,9 @@
 <?php
 
-
 namespace ImagickDemo\ImagickPixelIterator;
 
 
-
-
-
-class syncIterator extends \ImagickDemo\Imagick\ImagickExample {
-
-
+class syncIterator extends \ImagickDemo\Example {
 
     function render() {
         $output = "<br/>";
@@ -17,6 +11,4 @@ class syncIterator extends \ImagickDemo\Imagick\ImagickExample {
 
         return $output;
     }
-
-
 }

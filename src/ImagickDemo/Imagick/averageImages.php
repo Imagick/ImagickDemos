@@ -3,9 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class averageImages  extends ImagickExample  {
+class averageImages  extends \ImagickDemo\Example  {
 
-    function renderDescription() {
+    function render() {
         return "Needs two images. Function is deprecated, and kills PHP. I suggest not using it.";
     }
 

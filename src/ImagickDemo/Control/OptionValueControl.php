@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\Control;
 
-abstract class OptionControl implements \ImagickDemo\Control {
+abstract class OptionValueControl implements \ImagickDemo\Control {
 
     protected $option = null;
     
@@ -16,8 +16,10 @@ abstract class OptionControl implements \ImagickDemo\Control {
     function __construct(\Intahwebz\Request $request, $imageBaseURL) {
         $this->option = $this->getDefaultOption();
         $newOption = $request->getVariable($this->getName(), $this->option);
-        
-        if (array_key_exists($newOption, $this->getOptions())) {
+
+        $needle = array_search($newOption, $this->getOptions());
+        if ($needle !== null) {
+            $this->value =  $needle;
             $this->option = $newOption;
         }
 
@@ -44,9 +46,13 @@ abstract class OptionControl implements \ImagickDemo\Control {
     //Call this from the extended class to give a 
     //real name to the variable
     protected function getOptionValue() {
-        return $this->option;
+        return $this->value;
     }
-
+    
+    function isDisplaySelect() {
+        return false;
+    }
+    
     function renderFormElement() {
         $output = '';
         $output .= "<select name='".$this->getName()."'>";
@@ -58,7 +64,7 @@ abstract class OptionControl implements \ImagickDemo\Control {
                 $selected = "selected='selected'";
             }
 
-            $output .= "<option value='".$key."' $selected>$image</option>";
+            $output .= "<option value='".$image."' $selected>$image</option>";
         }
 
         $output .= "</select>";

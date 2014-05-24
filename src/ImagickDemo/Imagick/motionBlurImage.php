@@ -3,10 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class motionBlurImage extends ImagickExample {
+class motionBlurImage extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
-
-
 }

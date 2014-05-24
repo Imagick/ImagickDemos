@@ -4,56 +4,96 @@ namespace ImagickDemo\Example;
 
 class composite extends \ImagickDemo\Example {
 
+    /**
+     * @var \ImagickDemo\Control\CompositeExampleControl
+     */
+    private $compositeExampleControl;
 
-    private $listOfExamples = [
-        ['multiplyGradients', 'Multiply two gradients'],
-        ['screenGradients', 'Screen two gradients'],
-        ['divide', 'Divide image'], 
-        ['Dst_In', 'Dst_In'],
-        ['Dst_Out', 'Dst_Out'],
-        ['ATop', 'ATop'],
-        ['Plus', 'Plus'],
-        ['Minus', 'Minus'],
-        ['CopyOpacity', 'CopyOpacity'], //(Set transparency from gray-scale mask)
-        ['CopyOpacity2', 'CopyOpacity2'], //(Set transparency from gray-scale mask)
-    ];
-
+    function __construct(\ImagickDemo\Control\CompositeExampleControl $compositeExampleControl) {
+        $this->compositeExampleControl = $compositeExampleControl;
+    }
 
     function render() {
+        $output = $this->renderDescription();
+        $output .= $this->renderCustomImageURL();
 
-        echo "Select a demo:<br/>";
-        echo "<select onchange='setExample(this);'>";
-        echo "<option value='-1' >Choose a composite demo</option>";
+        return $output;
+    }
 
-        foreach ($this->listOfExamples as $example) {
-            echo "<option value='" . $example[0] . "'>" . $example[1] . "</option>";
-        }
+//    function renderImageURL() {
+//        return sprintf("<img src='%s' />", $this->control->getURL());
+//    }
 
-        echo "</select>";
+    function renderCustomImageURL() {
+        return sprintf(
+            "<img src='/customImage/Example/composite/%s' />",
+            $this->compositeExampleControl->getCompositeExampleType()
+        );
 
-        echo "
-   
-
-    <script type='text/javascript'>
-
-    function setExample(dropdown, baseURL) {
-        var value = $(dropdown).val();
-
-        var url = baseURL + '?example=' + encodeURIComponent(value);
-
-        var image = $('#exampleImage');
-
-        if (image) {
-            image.attr('src', url);
-            image.css('display', 'inline-block');
-        }
-        else {
-            alert('image not found');
-        }
     }
     
-    </script>
-    ";
+    function renderCustomImage($customImage) {
+        $methods = [ 
+            'multiplyGradients' => 'multiplyGradients',
+            'screenGradients' => 'screenGradients',
+            'divide' => 'divide',
+            'Dst_In' => 'Dst_In',
+            'Dst_Out' => 'Dst_Out',
+            'ATop' => 'ATop',
+            'Plus' => 'Plus',
+            'Minus' => 'Minus',
+            'CopyOpacity' => 'CopyOpacity', 
+            'CopyOpacity2' => 'CopyOpacity2',
+        ];
+
+        if (array_key_exists($customImage, $methods) == false) {
+            throw new \Exception("Unknown composite method $customImage");  
+        }
+
+        $method = $methods[$customImage];
+        $this->{$method}();
+    }
+    
+
+    function renderDescription() {
+        return "Select a demo:<br/>";
+    }
+    
+    function renderasd() {
+
+//        echo "Select a demo:<br/>";
+//        echo "<select onchange='setExample(this);'>";
+//        echo "<option value='-1' >Choose a composite demo</option>";
+//
+//        foreach ($this->listOfExamples as $example) {
+//            echo "<option value='" . $example[0] . "'>" . $example[1] . "</option>";
+//        }
+//
+//        echo "</select>";
+//
+//        echo "
+//   
+//
+//    <script type='text/javascript'>
+//
+//    function setExample(dropdown, baseURL) {
+//        var value = $(dropdown).val();
+//
+//        var url = baseURL + '?example=' + encodeURIComponent(value);
+//
+//        var image = $('#exampleImage');
+//
+//        if (image) {
+//            image.attr('src', url);
+//            image.css('display', 'inline-block');
+//        }
+//        else {
+//            alert('image not found');
+//        }
+//    }
+//    
+//    </script>
+//    ";
 
         
     }
@@ -113,24 +153,21 @@ class composite extends \ImagickDemo\Example {
     }
 
 
+
     /**
      * This is meant to be an inversed alpha mask
      * @internal param $width
      * @internal param $height
      */
     function Dst_Out() {
-
         $imagick = new \Imagick();
         $imagick->setBackgroundColor('yellow');
         $imagick->newPseudoImage(500, 500, 'gradient:white-black');
-
-        $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
-
-
-        $imagick2->setBackgroundColor('yellow');
-
-        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_DSTOUT, //\\Imagick::COMPOSITE_DSTATOP,
-            0, 0);
+//        $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
+//        $imagick2->setBackgroundColor('yellow');
+//
+//        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_DSTOUT, //\\Imagick::COMPOSITE_DSTATOP,
+//            0, 0);
 
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
@@ -171,6 +208,7 @@ class composite extends \ImagickDemo\Example {
     }
 
 
+
     function Minus() {
 
 
@@ -200,6 +238,8 @@ class composite extends \ImagickDemo\Example {
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
+
+
 
 
     /**

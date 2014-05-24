@@ -80,7 +80,7 @@ class ColorSpace implements ControlElement {
         return $output;
     }
 
-    function getColorSpaceType() {
+    function getColorSpace() {
         return $this->colorSpaceType;
     }
 }

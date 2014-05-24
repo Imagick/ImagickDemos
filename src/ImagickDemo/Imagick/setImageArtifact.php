@@ -4,7 +4,11 @@
 namespace ImagickDemo\Imagick;
 
 
-class setImageArtifact extends ImagickExample {
+class setImageArtifact extends \ImagickDemo\Example {
+
+    function render() {
+        return $this->renderImageURL();
+    }
 
     function makeImage() {
         $imagick = new \Imagick(realpath($this->imagePath));

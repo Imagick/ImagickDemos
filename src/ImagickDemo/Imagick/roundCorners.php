@@ -3,9 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 
-class roundCorners extends ImagickExample {
+class roundCorners extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
 
 

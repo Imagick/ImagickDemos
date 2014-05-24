@@ -13,22 +13,35 @@ namespace ImagickDemo\Imagick;
 class distortImage extends \ImagickDemo\Example {
 
     /**
-     * @var \ImagickDemo\Control\ControlCompositeImageDistortionExample
+     * @var \ImagickDemo\ControlElement\DistortionExample
      */
     private $rsiControl;
     
-    function __construct(\ImagickDemo\Control\ControlCompositeImageDistortionExample $rsiControl) {
+    function __construct(\ImagickDemo\ControlElement\DistortionExample $rsiControl) {
         $this->rsiControl = $rsiControl;
     }
 
     function getControl() {
         return $this->rsiControl;
     }
-    
-    function getFunctionName() {
-        $distortion = $this->rsiControl->getDistortionType();
 
-        $functions = [
+    function render() {
+        $output = $this->renderDescription();
+        $output .= $this->renderCustomImageURL();
+
+        return $output;
+    }
+    
+    function renderCustomImageURL() {
+        return sprintf(
+            "<img src='/customImage/Imagick/distortImage/%s' />",
+            $this->rsiControl->getDistortionType()
+        );
+    }
+
+    function renderCustomImage($customImage) {
+
+        $methods = [
             \Imagick::DISTORTION_AFFINE => "renderImageAffine",
             \Imagick::DISTORTION_AFFINEPROJECTION => "renderImageAffineProjection",
             \Imagick::DISTORTION_ARC => "renderImageArc",
@@ -45,25 +58,27 @@ class distortImage extends \ImagickDemo\Example {
             \Imagick::DISTORTION_SENTINEL => 'renderImageBarrelSentinel',
         ];
 
-        if (array_key_exists($distortion, $functions)) {
-            $functionName = $functions[$distortion];
-            return $functionName;
+        if (array_key_exists($customImage, $methods) == false) {
+            throw new \Exception("Unknown composite method $customImage");
         }
 
-        return null;
+        $method = $methods[$customImage];
+        $this->{$method}();
     }
     
     function renderDescription() {
 
         //http://stackoverflow.com/questions/12276098/understanding-perspective-projection-distortion-imagemagick
         
-        $functionName = $this->getFunctionName();
-        if ($functionName){
-            echo "Using function :".$functionName;
-        }
-        else {
-            echo "Function $functionName not implemented yet.";
-        }
+//        $functionName = $this->getFunctionName();
+//        if ($functionName){
+//            echo "Using function :".$functionName;
+//        }
+//        else {
+//            echo "Function $functionName not implemented yet.";
+//        }
+        
+        return "Some distortion.";
     }
 
     function renderImage() {

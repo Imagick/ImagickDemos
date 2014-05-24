@@ -76,7 +76,7 @@ class Channel implements ControlElement {
         return $output;
     }
 
-    function getChannelValue() {
+    function getChannel() {
         return $this->channelValue;
     }
 }

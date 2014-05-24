@@ -372,6 +372,75 @@ function evaluateimage() {
 }
 
 
+function createMask() {
+
+    $draw = new \ImagickDraw();
+
+    $draw->setStrokeOpacity(0);
+    $draw->setStrokeColor('rgb(255, 255, 255)');
+    $draw->setFillColor('rgb(255, 255, 255)');
+
+    //Draw a circle on the y-axis, with it's centre
+    //at x, y that touches the origin
+    $draw->circle(250, 250, 220, 250);
+    //$draw->point(256, 256);
+
+    $imagick = new \Imagick();
+    $imagick->newImage(512, 512, "black");
+    $imagick->drawImage($draw);
+    $imagick->gaussianBlurImage(20, 20);
+    $imagick->autoLevelImage();
+
+    //$imagick->negateImage(true);
+
+    if (false) {
+        $imagick->setImageFormat('png');
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+        exit(0);
+    }
+
+    return $imagick;
+}
+
+function forwardFourierTransformImage($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->resizeimage(512, 512, \Imagick::FILTER_LANCZOS, 1);
+
+    if (false) {
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+        exit(0);
+    }
+
+    $mask = createMask();
+    $imagick->forwardFourierTransformImage(true);
+
+    @$imagick->setimageindex(0);
+    $magnitude = $imagick->getimage();
+
+    @$imagick->setimageindex(1);
+    $imagickPhase = $imagick->getimage();
+
+    if (true) {
+        $imagickPhase->compositeImage($mask, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
+    }
+
+    if (false) {
+        $output = clone $imagickPhase;
+        $output->setimageformat('png');
+        header("Content-Type: image/png");
+        echo $output->getImageBlob();
+    }
+
+    $magnitude->inverseFourierTransformImage($imagickPhase, true);
+
+    $magnitude->setimageformat('png');
+    header("Content-Type: image/png");
+    echo $magnitude->getImageBlob();
+}
+
+
 
 function flipImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -1088,14 +1157,14 @@ function thumbnailImage($imagePath) {
 }
 
 
-function tintImage($red, $green, $blue, $alpha) {
-    $alpha = $alpha / 100;
+function tintImage($r, $g, $b, $a) {
+    $a = $a / 100;
 
     $imagick = new \Imagick();
     $imagick->newPseudoImage(400, 400, 'gradient:black-white');
 
-    $tint = new \ImagickPixel("rgb($red, $green, $blue)");
-    $opacity = new \ImagickPixel("rgb(128, 128, 128, $alpha)");
+    $tint = new \ImagickPixel("rgb($r, $g, $b)");
+    $opacity = new \ImagickPixel("rgb(128, 128, 128, $a)");
     $imagick->tintImage($tint, $opacity);
     $imagick->setImageFormat('png');
     header("Content-Type: image/png");
@@ -1191,9 +1260,9 @@ function uniqueImageColors($imagePath) {
 
 
 
-function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThresholdImage) {
+function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThreshold) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->unsharpMaskImage($radius, $sigma, $amount, $unsharpThresholdImage);
+    $imagick->unsharpMaskImage($radius, $sigma, $amount, $unsharpThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

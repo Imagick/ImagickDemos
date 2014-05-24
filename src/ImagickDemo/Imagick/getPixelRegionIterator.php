@@ -4,10 +4,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class getPixelRegionIterator extends ImagickExample {
+class getPixelRegionIterator extends \ImagickDemo\Example {
 
-    function renderDescription() {
+    function render() {
+        return $this->renderImageURL();
     }
-
-
 }

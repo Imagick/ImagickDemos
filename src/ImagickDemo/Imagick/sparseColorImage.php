@@ -75,42 +75,39 @@ class sparseColorImage extends \ImagickDemo\Example {
     function render() {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();
-        
+
         return $output;
     }
 
     function renderCustomImageURL() {
-        //return sprintf("<img src='/customImage/Imagick/sparseColorImage/%s' />", $this->control->getParams());
-
         return sprintf(
             "<img src='/customImage/Imagick/sparseColorImage/%s' />", 
             $this->sparseControl->getSparseColorType()
         );
     }
 
-
     function renderImageURL() {
-
         return $this->sparseControl->getParamString();
-        //return sprintf("<img src='%s'/>", $this->sparseControl->getURL());
-
-//        "/customImage/$categories/{example:[a-zA-Z]*}/{customImage:[a-zA-Z]+}",
-//        $function = $this->sparseControl->getOptionValue();
     }
 
+    function renderCustomImage($customImage) {
+        $methods = [
+            'renderImageBarycentric2' => 'renderImageBarycentric2',
+            'renderImageBilinear' => 'renderImageBilinear',
+            'renderImagePolynomial' => 'renderImagePolynomial',
+            'renderImageShepards' => 'renderImageShepards',
+            //'renderImageShepardsAlt1' => '',
+            'renderImageVoronoi' => 'renderImageVoronoi',
+            'renderImageBarycentric' => 'renderImageBarycentric',
+        ];
 
-    function renderImage() {
-        
-
-        if (method_exists($this, $function)) {
-            call_user_func([$this, $function]);
-            return;
+        if (array_key_exists($customImage, $methods) == false) {
+            throw new \Exception("Unknown composite method $customImage");
         }
 
-        $this->renderImageBilinear();
+        $method = $methods[$customImage];
+        $this->{$method}();
     }
-
-
 
 
 
@@ -170,6 +167,8 @@ END;
     }
 
 
+    
+
     function renderImageShepards() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(600, 600, $points, \Imagick::SPARSECOLORMETHOD_SPEPARDS);
@@ -189,11 +188,11 @@ END;
 //        sed '1d; / 0) /d; s/:.* /,/;' |\
 //        convert sparse_source.gif -alpha off \
 //        -sparse-color shepards '@-' sparse_fill.png
-        
-        
     }
-    
-    
+
+
+
+
     function renderImageVoronoi() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_VORONOI);
@@ -202,7 +201,6 @@ END;
     }
 
 
-    
     function renderImageBarycentric() {
         $points = [[0, 0, 'skyblue'], [-1, 1, 'skyblue'], [1, 1, 'black'],];
         $imagick = createGradientImage(600, 200, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);

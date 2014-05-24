@@ -5,26 +5,29 @@ namespace ImagickDemo\Imagick;
 
 class functionImage extends \ImagickDemo\Example {
 
+    /**
+     * @var \ImagickDemo\Control\ImagickFunctionControl
+     */
     private $functionControl;
+
     
     function __construct(\ImagickDemo\Control\ImagickFunctionControl $control) {
         $this->functionControl = $control;
     }
-
-    function renderDescription() {
-    }
-
-    function renderImageURL() {
-        return $this->functionControl->getURL();
-    }
-
     
-    function getControl() {
-        return $this->functionControl;
+    function renderDescription() {
+        return '';
     }
 
-    function renderImage() {
-        $function = $this->functionControl->getOptionValue();
+    function render() {
+        $output = $this->renderDescription();
+        $output .= $this->renderCustomImageURL($this->functionControl);
+
+        return $output;
+    }
+
+    function renderCustomImage() {
+        $function = $this->functionControl->getDistortionType();
 
         if (method_exists($this, $function)) {
             call_user_func([$this, $function]);

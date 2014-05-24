@@ -24,6 +24,10 @@ class NullControl implements \ImagickDemo\Control {
     function getURL() {
         return $this->imageBaseURL;
     }
+
+    function getCustomImageURL() {
+        return $this->imageBaseURL;
+    }
 }
 
  

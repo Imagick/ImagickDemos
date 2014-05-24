@@ -1,24 +1,28 @@
 <?php
 
 
-namespace ImagickDemo\Control;
+namespace ImagickDemo\ControlElement;
+
+use Intahwebz\Request;
 
 
-class SparseColorControl extends OptionControl {
+class SparseColorType extends OptionKeyElement {
 
-    function getName() {
-        return 'sparse';
-    }
 
-    function getDefaultOption() {
+    protected function getDefault() {
         return 'renderImageVoronoi';
     }
 
-    
-    
-    
-    function getOptions() {
-        $images = [
+    protected function getVariableName() {
+        return 'sparse';
+    }
+
+    protected function getDisplayName() {
+        return "Sparse color type";
+    }
+
+    protected function getOptions() {
+        return [
             'renderImageBilinear' => 'Bilinear',
             'renderImageVoronoi' => 'Voronoi',
             'renderImageBarycentric' => 'Barycentric',
@@ -26,12 +30,10 @@ class SparseColorControl extends OptionControl {
             'renderImagePolynomial' => 'Polynomial',
             'renderImageShepards' => 'Shepards',
         ];
-
-        return $images;
     }
 
     function getSparseColorType() {
-        return $this->getOptionValue();
+        return $this->getKey();
     }
 }
 

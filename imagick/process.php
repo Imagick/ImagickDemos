@@ -118,7 +118,7 @@ function getExampleDefinition($category, $example) {
         //'destroy',
         //'displayImage',
         //'displayImages',
-        'distortImage' => ['distortImage', \ImagickDemo\Control\DistortTypeControl::class],
+        'distortImage' => ['distortImage', \ImagickDemo\Control\ControlCompositeImageDistortionType::class],
         //'drawImage',
         //'edgeImage',
         //'embossImage',
@@ -386,7 +386,6 @@ function getExampleDefinition($category, $example) {
 
 
         //new NavOption('similarityImage', true),
-
         'sketchImage' => ['sketchImage', \ImagickDemo\Control\ImageControl::class],
         'smushImages' => ['smushImages', \ImagickDemo\Control\ImageControl::class],
         'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ControlCompositeImageSolarizeThreshold::class],
@@ -526,7 +525,7 @@ function getExampleDefinition($category, $example) {
         'imagickCompositeGen' => ['imagickCompositeGen', \ImagickDemo\Control\NullControl::class],
         'fxAnalyzeImage' => ['fxAnalyzeImage', \ImagickDemo\Control\NullControl::class],
         'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
-        
+        'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
     ];    
     
     $examples = [
@@ -573,6 +572,8 @@ function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) 
     list($function, $controlClass) = getExampleDefinition($category, $example);
 
     $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
+    $injector->defineParam('customImageBaseURL', '/customImage/'.$category.'/'.$example);
+    
     $injector->defineParam('activeCategory', $category);
 
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
@@ -593,7 +594,8 @@ function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $examp
 
     list($function, $controlClass) = getExampleDefinition($category, $example);
 
-    $injector->defineParam('imageBaseURL', '/customImagae/'.$category.'/'.$example);
+    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
+    $injector->defineParam('customImageBaseURL', '/customImage/'.$category.'/'.$example);
     $injector->defineParam('activeCategory', $category);
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
@@ -623,6 +625,7 @@ function setupCatergoryDelegation(\Auryn\Provider $injector, $category, $example
     }
 
     $injector->defineParam('imageBaseURL', '/image/'.$category);
+    $injector->defineParam('customImageBaseURL', '/customImage/'.$category);
     $injector->defineParam('activeCategory', $category);
 
     $injector->share(\ImagickDemo\Control::class);
@@ -706,6 +709,8 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
 }
 
 //$uri = '/customImage/Imagick/foo/bar';
+
+//$uri = "/image/ImagickDraw/pushClipPath?background=rgb(225,%20225,%20225)&strokeColor=rgb(0,%200,%200)&fillColor=DodgerBlue2";
 
 
 $path = $uri;

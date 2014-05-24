@@ -5,28 +5,32 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-abstract class OptionElement implements ControlElement {
+abstract class OptionKeyElement implements ControlElement {
 
     abstract protected function getDefault();
     abstract protected function getVariableName();
     abstract protected function getDisplayName();
     abstract protected function getOptions();
 
+    protected $key;
     protected $value;
-    protected $display;
 
     function __construct(Request $request) {
-        $value = $this->getDefault();
-        $newValue = $request->getVariable($this->getVariableName(), $value);
+        $this->key = $this->getDefault();
+        $newKey = $request->getVariable($this->getVariableName(), $this->key);
 
-        foreach ($this->getOptions() as $value => $displayName) {
-            if (strcmp($newValue, $value) === 0 || $this->value == null) {
-                $this->value = $newValue;
-                $this->display = $displayName;
+        foreach ($this->getOptions() as $key => $value) {
+            if (strcmp($newKey, $key) === 0) {
+                $this->key = $key;
+                $this->value = $value;
                 break;
             }
         }
         //blah 
+    }
+
+    protected function getKey() {
+        return $this->key;
     }
 
     protected function getValue() {
@@ -35,7 +39,7 @@ abstract class OptionElement implements ControlElement {
     
     function getParams() {
         return [
-            $this->getVariableName() => $this->value,
+            $this->getVariableName() => $this->key,
         ];
     }
 
@@ -51,12 +55,12 @@ abstract class OptionElement implements ControlElement {
 
         $output .= "<select name='".$this->getVariableName()."'>";
 
-        foreach ($this->getOptions() as $value => $displayName) {
+        foreach ($this->getOptions() as $key => $value) {
             $selected = '';
-            if ($value == $this->value) { //Unsafe compare?
+            if ($key == $this->key) { //Unsafe compare?
                 $selected = "selected='selected'";
             }
-            $output .= "<option value='".$value."' $selected>$displayName</option>";
+            $output .= "<option value='".$key."' $selected>$value</option>";
         }
 
         $output .= "</select>

@@ -3,13 +3,14 @@
 
 namespace ImagickDemo\Control;
 
-abstract class OptionValueControl implements \ImagickDemo\Control {
+abstract class OptionValueControl implements \ImagickDemo\ControlElement\ControlElement {
 
     protected $option = null;
     
     private $imageBaseURL;
 
     abstract function getName();
+    abstract function getDisplayName();
     abstract function getDefaultOption();
     abstract function getOptions();
 
@@ -30,9 +31,9 @@ abstract class OptionValueControl implements \ImagickDemo\Control {
         return $this->option;
     }
 
-    function getURL() {
-        return sprintf("%s?%s", $this->imageBaseURL, $this->getParamString() );
-    }
+//    function getURL() {
+//        return sprintf("%s?%s", $this->imageBaseURL, $this->getParamString() );
+//    }
 
     function getParams() {
         return [$this->getName() => $this->option];
@@ -54,7 +55,7 @@ abstract class OptionValueControl implements \ImagickDemo\Control {
     }
     
     function renderFormElement() {
-        $output = '';
+        $output = $this->getDisplayName();
         $output .= "<select name='".$this->getName()."'>";
         $images = $this->getOptions();
 

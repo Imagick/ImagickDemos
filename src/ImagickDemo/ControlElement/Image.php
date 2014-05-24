@@ -3,69 +3,35 @@
 
 namespace ImagickDemo\ControlElement;
 
+use ImagickDemo\Control\OptionValueControl;
 use Intahwebz\Request;
 
 //TODO - rename this to imagePath
-class Image implements ControlElement {
 
-    private $imagePath;
-    
-    private $imageName = 'Lorikeet';
+class Image extends \ImagickDemo\ControlElement\OptionValueElement {
+    protected function getDefault() {
+        return 'Lorikeet';
+    }
 
-    private $images = [
-        "../images/Skyline_400.jpg" => 'Skyline',
-        "../images/Biter_500.jpg" => 'Lorikeet',
-    ];
+    protected function getVariableName() {
+        return 'image';
+    }
 
-    function __construct(Request $request) {//, $imageBaseURL) {
-        $this->imageName = $request->getVariable('image', $this->imageName);
+    protected function getDisplayName() {
+        return "Image";
+    }
+
+    function getOptions() {
+        $images = [
+            "../images/Skyline_400.jpg" => 'Skyline',
+            "../images/Biter_500.jpg" => 'Lorikeet',
+        ];
         
-        foreach ($this->images as $imagePath => $value) {
-            if (strcmp($this->imageName, $value) === 0 || $this->imageName == null) {
-                $this->imagePath = $imagePath;
-            }
-        }
-        //zendcode eats braces
-    }
-
-    /**
-     * @return array
-     */
-    function getParams() {
-        return ['image' => $this->imageName];
-    }
-
-    /**
-     * @return string
-     */
-    function renderFormElement() {
-
-
-        $output = "<tr>
-                    <td class='standardCell'>Image
-                </td>
-                <td class='standardCell'>";
-
-
-        $output .= "<select name='image'>";
-
-        foreach ($this->images as $imagePath => $imageName) {
-            $selected = '';
-            if (strcmp($imageName, $this->imageName) === 0) {
-                $selected = "selected='selected'";
-            }
-            $output .= "<option value='".$imageName."' $selected>$imageName</option>";
-        }
-
-        $output .= "</select>
-                    </td>
-            </tr>";
-
-        return $output;
+        return $images;
     }
 
     function getImagePath() {
-        return $this->imagePath;
+        return $this->getOptionKey();
     }
 }
 

@@ -6,8 +6,16 @@ namespace ImagickDemo\Example;
 
 use Imagick;
 
-class svgExample extends \ImagickDemo\ExampleWithoutControl {
+class svgExample extends \ImagickDemo\Example {
 
+    
+    function render() {
+        
+    }
+
+
+    
+    
     
     function renderImage() {
 

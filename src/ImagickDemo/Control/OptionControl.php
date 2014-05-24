@@ -28,9 +28,9 @@ abstract class OptionControl implements \ImagickDemo\Control {
         return $this->option;
     }
 
-    function getURL() {
-        return sprintf("%s?%s", $this->imageBaseURL, $this->getParamString() );
-    }
+//    function getURL() {
+//        return sprintf("%s?%s", $this->imageBaseURL, $this->getParamString() );
+//    }
 
     function getParams() {
         return [$this->getName() => $this->option];

@@ -107,9 +107,21 @@ $controls = [
     ],
     [
         'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\DistortionExample',
+        'ImagickDemo\ControlElement\DistortionType',
     ],
 
+
+    'ImagickDemo\Control\ImageControl' => [
+        'ImagickDemo\ControlElement\Image',
+    ],
+
+    'ImagickDemo\Control\ImagickFunctionControl' => [
+        'ImagickDemo\ControlElement\FunctionType',
+    ],
+
+    'ImagickDemo\Control\SparseColorControl' => [
+        'ImagickDemo\ControlElement\SparseColorType',
+    ],
 
     'ImagickDemo\Control\ArcControl' => [
         'ImagickDemo\ControlElement\BackgroundColor',

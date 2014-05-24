@@ -4,13 +4,9 @@
 namespace ImagickDemo\Imagick;
 
 
-class Quantum extends \ImagickDemo\ExampleWithoutControlOrImage {
+class Quantum extends \ImagickDemo\Example {
 
-    function renderImageURL() {
-        return "";
-    }
-
-    function renderDescription() {
+    function render() {
         $imagick = new \Imagick();
         $quantumRange = $imagick->getQuantumRange();
         print_r($quantumRange);

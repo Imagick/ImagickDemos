@@ -652,7 +652,7 @@ function setClipPath($strokeColor, $fillColor, $backgroundColor) {
     $draw->rectangle(0, 0, 250, 250);
     $draw->popClipPath();
     $draw->setClipPath($clipPathName);
-    $draw->rectangle(200, 200, 300, 300);
+    $draw->rectangle(100, 100, 400, 400);
 
     $imagick = new \Imagick();
     $imagick->newImage(500, 500, $backgroundColor);

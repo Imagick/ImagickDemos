@@ -20,6 +20,8 @@ class ExampleList implements \ImagickDemo\ExampleList {
             new NavOption('listColors'),
             //new NavOption('svgExample'),
             new NavOption('composite'),
+            new NavOption('svgExample'),
+            
         ];
 
         return $imagickExamples;

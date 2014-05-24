@@ -4,7 +4,7 @@ namespace ImagickDemo\ControlElement;
 
 
 
-class TextDecoration extends OptionElement {
+class TextDecoration extends OptionKeyElement {
     protected function getDefault() {
         return \Imagick::DECORATION_UNDERLINE;
     }

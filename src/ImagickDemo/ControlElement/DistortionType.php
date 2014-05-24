@@ -1,24 +1,28 @@
 <?php
 
 
-namespace ImagickDemo\Control;
+namespace ImagickDemo\ControlElement;
+
+use Intahwebz\Request;
 
 
-class DistortionControl extends OptionControl {
-
-    function getName() {
+class DistortionType extends OptionKeyElement {
+    protected function getDefault() {
         return \Imagick::DISTORTION_AFFINE;
     }
 
-    function getDefaultOption() {
-        return 'Affine';
+    protected function getVariableName() {
+        return 'distortion';
     }
 
-    function getOptions() {
-        $images = [
+    protected function getDisplayName() {
+        return "Distortion type";
+    }
 
+    protected function getOptions() {
+        $colorSpaceTypes = [
             \Imagick::DISTORTION_AFFINE => 'Affine',
-            \Imagick::DISTORTION_AFFINEPROJECTION => 'AFFINEPROJECTION',
+            \Imagick::DISTORTION_AFFINEPROJECTION => 'Affine projection',
             \Imagick::DISTORTION_ARC => 'Arc',
             \Imagick::DISTORTION_BILINEAR => 'Bilinear',
             \Imagick::DISTORTION_PERSPECTIVE => 'Perspective',
@@ -30,12 +34,14 @@ class DistortionControl extends OptionControl {
             \Imagick::DISTORTION_BARREL => 'Barrel',
             \Imagick::DISTORTION_BARRELINVERSE => 'Barrel inverse',
             \Imagick::DISTORTION_SHEPARDS => 'Shepards',
-            \Imagick::DISTORTION_SENTINEL => 'Sentinel',
-            
-            
+            // \Imagick::DISTORTION_SENTINEL => 'Sentinel', doesn't work
         ];
 
-        return $images;
+        return $colorSpaceTypes;
+    }
+
+    function getDistortionType() {
+        return $this->getKey();
     }
 }
 

@@ -8,9 +8,11 @@ namespace ImagickDemo\Control;
 class ControlComposite implements \ImagickDemo\Control {
     
     private $imageBaseURL;
+    private $customImageBaseURL;
     
-    function __construct($imageBaseURL) {
+    function __construct($imageBaseURL, $customImageBaseURL) {
         $this->imageBaseURL = $imageBaseURL;
+        $this->customImageBaseURL = $customImageBaseURL;
     }
 
     /**
@@ -61,4 +63,18 @@ class ControlComposite implements \ImagickDemo\Control {
         //return sprintf("<img src='%s%s' />", $this->imageBaseURL, $paramString);
         return $this->imageBaseURL.$paramString;
     }
+
+
+    function getCustomImageURL() {
+        $paramString = '';
+        $params = $this->getParams();
+        $separator = '?';
+        foreach ($params as $key => $value) {
+            $paramString .= $separator.$key."=".$value;
+            $separator = '&';
+        }
+
+        return $this->customImageBaseURL.$paramString;
+    }
+    
 }

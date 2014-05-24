@@ -7,8 +7,6 @@ class setClipPath extends ImagickDrawExample {
     function getDescription() {
         return "This appears to be bugged.";
     }
-
-
 }
 
 

@@ -11,6 +11,8 @@ interface Control {
     function getParams();
     
     function getURL();
+
+    function getCustomImageURL();
 }
 
  

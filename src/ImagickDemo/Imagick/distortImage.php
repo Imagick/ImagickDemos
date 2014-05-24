@@ -13,11 +13,11 @@ namespace ImagickDemo\Imagick;
 class distortImage extends \ImagickDemo\Example {
 
     /**
-     * @var \ImagickDemo\ControlElement\DistortionExample
+     * @var \ImagickDemo\Control\ControlCompositeImageDistortionType
      */
     private $rsiControl;
-    
-    function __construct(\ImagickDemo\ControlElement\DistortionExample $rsiControl) {
+
+    function __construct(\ImagickDemo\Control\ControlCompositeImageDistortionType $rsiControl) {
         $this->rsiControl = $rsiControl;
     }
 
@@ -27,19 +27,12 @@ class distortImage extends \ImagickDemo\Example {
 
     function render() {
         $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL();
+        $output .= sprintf("<img src='%s' />", $this->rsiControl->getCustomImageURL());
 
         return $output;
     }
     
-    function renderCustomImageURL() {
-        return sprintf(
-            "<img src='/customImage/Imagick/distortImage/%s' />",
-            $this->rsiControl->getDistortionType()
-        );
-    }
-
-    function renderCustomImage($customImage) {
+    function renderCustomImage() {
 
         $methods = [
             \Imagick::DISTORTION_AFFINE => "renderImageAffine",
@@ -58,6 +51,8 @@ class distortImage extends \ImagickDemo\Example {
             \Imagick::DISTORTION_SENTINEL => 'renderImageBarrelSentinel',
         ];
 
+        $customImage = $this->rsiControl->getDistortionType();
+        
         if (array_key_exists($customImage, $methods) == false) {
             throw new \Exception("Unknown composite method $customImage");
         }
@@ -81,16 +76,16 @@ class distortImage extends \ImagickDemo\Example {
         return "Some distortion.";
     }
 
-    function renderImage() {
-        $functionName = $this->getFunctionName();
-        if ($functionName) {
-            $this->{$functionName}();
-        }
-        else {
-            echo "Function $functionName not implemented yet.";
-            exit(0);
-        }
-    }
+//    function renderImage() {
+//        $functionName = $this->getFunctionName();
+//        if ($functionName) {
+//            $this->{$functionName}();
+//        }
+//        else {
+//            echo "Function $functionName not implemented yet.";
+//            exit(0);
+//        }
+//    }
 
     /**
      * 

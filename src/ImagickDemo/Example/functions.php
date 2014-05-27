@@ -50,10 +50,7 @@ function fxAnalyzeImage() {
 
     $x = 0;
 
-
-
     foreach ($reds as $red) {
-
         $pos = $red * $graphHeight / 256;
 
         if ($previous !== false) {
@@ -275,7 +272,12 @@ function fxAnalyzeImage() {
     function edgeExtend($virtualPixelType, $imagePath) {
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->setImageVirtualPixelMethod($virtualPixelType);
-        $desiredWidth = 800;
+
+        $imagick->scaleimage(400, 300, true);
+
+        $imagick->setbackgroundcolor('pink');
+       
+        $desiredWidth = 600;
         $originalWidth = $imagick->getImageWidth();
 
         //Make the image be the desired width.
@@ -472,29 +474,42 @@ function svgExample() {
 
     </svg>';
 
-    /*
-
-    $SVG = '<?xml version="1.0" encoding="utf-8"?>';
-    $SVG .= '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
-    $SVG .= '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="158px" height="92px" viewBox="0 0 158 92" enable-background="new 0 0 158 92" xml:space="preserve">';
-    $SVG .= '<text transform="matrix(1 0 0 1 32 58)" font-family="Lobster" font-style="normal" font-size="20px" font-weight="400">Lobster</text>';
-    $SVG .= '</svg>';
-    
-    */
-
-
         $image = new \Imagick();
 
         $image->readImageBlob($svg);
-
-
         $image->setImageFormat("jpg");
         header("Content-Type: image/jpg");
         echo $image;
-
-
     }
 
+
+function screenEmbed() {
+    $overlay = new \Imagick(realpath("../images/dickbutt.jpg"));
+    $imagick = new \Imagick(realpath("../images/Screeny.png"));
+
+    $overlay->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+
+    $width = $overlay->getImageWidth();
+    $height = $overlay->getImageHeight();
+
+        $offset = 332.9;
+
+    $points = array(    
+        0, 0, 364 - $offset, 51, 
+        $width, 0, 473.4 - $offset, 23, 
+        0, $height, 433.5 - $offset, 182, 
+        $width, $height, 523 - $offset, 119.4
+    );
+
+    $overlay->modulateImage(97, 100, 0);
+    $overlay->distortImage(\Imagick::DISTORTION_PERSPECTIVE, $points, true);
+
+    $imagick->compositeImage($overlay, \Imagick::COMPOSITE_OVER, 364.5 - $offset, 23.5);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+
+}
 
     
 }

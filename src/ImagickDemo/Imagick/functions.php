@@ -66,27 +66,22 @@ function addNoiseImage($noiseType, $imagePath) {
     }
 
 
-    function annotateImage($imagePath) {
-        $imagick = new \Imagick(realpath($imagePath));
+function annotateImage($imagePath, $strokeColor, $fillColor) {
+    $imagick = new \Imagick(realpath($imagePath));
 
-        $draw = new \ImagickDraw();
+    $draw = new \ImagickDraw();
+    $draw->setStrokeColor($strokeColor);
+    $draw->setFillColor($fillColor);
 
-        $darkColor = new \ImagickPixel('brown');
-        $lightColor = new \ImagickPixel('LightCoral');
+    $draw->setStrokeWidth(2);
+    $draw->setFontSize(36);
 
-        $draw->setStrokeColor($darkColor);
-        $draw->setFillColor($lightColor);
+    $draw->setFont("../fonts/Arial.ttf");
+    $imagick->annotateimage($draw, 40, 40, 0, "Lorem Ipsum!");
 
-        $draw->setStrokeWidth(2);
-        $draw->setFontSize(36);
-
-        $draw->setFont("../fonts/Arial.ttf");
-        $imagick->annotateimage($draw, 20, 20, 0, "Lorem Ipsum!");
-
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-
-    }
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
 
 function autoLevelImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -119,17 +114,17 @@ function blackThresholdImage($imagePath) {
     echo $imagick->getImageBlob();
 }
 
-function blueShiftImage($imagePath) {
+function blueShiftImage($imagePath, $blueShift) {
     //TODO add blue shift control
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->blueShiftImage(1.5);
+    $imagick->blueShiftImage($blueShift);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
 
-function blurImage($imagePath) {
+function blurImage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->blurImage(5, 5);
+    $imagick->blurImage($radius, $sigma, $channel);
 
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -362,32 +357,61 @@ function equalizeImage($imagePath) {
 
 
 
-function evaluateimage() {
+function evaluateimage($evaluateType, $firstTerm, $gradientStartColor, $gradientEndColor) {
     $imagick = new \Imagick();
-    $size = 200;
-    $imagick->newPseudoImage($size, $size, 'gradient:black-white');
-    $imagick->evaluateimage(\Imagick::EVALUATE_COSINE, 1);
+    $size = 400;
+    $imagick->newPseudoImage(
+        $size,
+        $size,
+        "gradient:$gradientStartColor-$gradientEndColor"
+    );
+    
+    $quantumScaledTypes = [
+        \Imagick::EVALUATE_ADD,
+        \Imagick::EVALUATE_AND,
+        \Imagick::EVALUATE_MAX,
+        \Imagick::EVALUATE_MIN,
+        \Imagick::EVALUATE_OR,
+        \Imagick::EVALUATE_SET,
+        \Imagick::EVALUATE_SUBTRACT,
+        \Imagick::EVALUATE_XOR,
+        \Imagick::EVALUATE_THRESHOLD,
+        \Imagick::EVALUATE_THRESHOLDBLACK,
+        \Imagick::EVALUATE_THRESHOLDWHITE,
+        \Imagick::EVALUATE_ADDMODULUS,
+    ];
+
+    $unscaledTypes = [
+        \Imagick::EVALUATE_DIVIDE,
+        \Imagick::EVALUATE_MULTIPLY,
+        \Imagick::EVALUATE_RIGHTSHIFT,
+        \Imagick::EVALUATE_LEFTSHIFT,
+        \Imagick::EVALUATE_POW,
+        \Imagick::EVALUATE_LOG,
+        \Imagick::EVALUATE_GAUSSIANNOISE,
+        \Imagick::EVALUATE_IMPULSENOISE,
+        \Imagick::EVALUATE_LAPLACIANNOISE,
+        \Imagick::EVALUATE_MULTIPLICATIVENOISE,
+        \Imagick::EVALUATE_POISSONNOISE,
+        \Imagick::EVALUATE_UNIFORMNOISE,
+        \Imagick::EVALUATE_COSINE,
+        \Imagick::EVALUATE_SINE,
+    ];
+
+    if (in_array($evaluateType, $unscaledTypes)) {
+        $imagick->evaluateimage($evaluateType, $firstTerm);
+    }
+    else if (in_array($evaluateType, $quantumScaledTypes)) {
+        $imagick->evaluateimage($evaluateType, $firstTerm * \Imagick::getQuantum());
+    }
+    else {
+        throw new \Exception("Evaluation type $evaluateType is not listed as either scaled or unscaled");
+    }
+
     $imagick->setimageformat('png');
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-
-
-function evaluateimage2() {
-
-    $size = 200;
-
-    $imagick1 = new \Imagick();
-    $imagick1->newPseudoImage($size, $size, 'gradient:black-white');
-    $arguments = array(4, -90);
-    $imagick1->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
-    $imagick1->evaluateimage(\Imagick::EVALUATE_MULTIPLY, 2);
-    $imagick1->setimageformat('png');
-    header("Content-Type: image/png");
-    echo $imagick1->getImageBlob();
-}
-
-
 
 
 function createMask() {
@@ -1021,7 +1045,7 @@ function shadeImage($imagePath) {
 
 function shadowImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->shadowImage(1, 1, 0, 0);
+    $imagick->shadowImage(0.4, 10, 50, 5);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

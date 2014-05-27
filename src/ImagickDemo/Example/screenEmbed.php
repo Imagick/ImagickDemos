@@ -1,10 +1,9 @@
 <?php
 
-namespace ImagickDemo\Imagick;
+namespace ImagickDemo\Example;
 
 
-class annotateImage extends \ImagickDemo\Example {
-
+class screenEmbed  extends \ImagickDemo\Example {
 
     function render() {
         $output = "This is a description. <br/>";

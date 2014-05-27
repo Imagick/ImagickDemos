@@ -8,11 +8,12 @@ use Imagick;
 
 class svgExample extends \ImagickDemo\Example {
 
-    
-    function render() {
-        
-    }
 
+    function render() {
+        $output = "This is a description. <br/>";
+        $output .= $this->renderImageURL();
+        return $output;
+    }
 
     
     

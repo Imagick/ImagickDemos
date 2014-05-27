@@ -8,7 +8,7 @@ use Intahwebz\Request;
 
 class FunctionType extends OptionKeyElement {
     protected function getDefault() {
-        return 'renderImagePolynomial';
+        return 'renderImageSinusoid';
     }
 
     protected function getVariableName() {
@@ -23,11 +23,12 @@ class FunctionType extends OptionKeyElement {
         return [
             "renderImagePolynomial" => 'Polynomial',
             "renderImageSinusoid" => 'Sinusoid',
+            "renderImageArcsin" => "Arc sin",
             "renderImageArctan" => "Arc tan"
         ];
     }
 
-    function getDistortionType() {
+    function getFunctionType() {
         return $this->getKey();
     }
 }

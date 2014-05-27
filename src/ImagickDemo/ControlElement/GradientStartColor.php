@@ -4,21 +4,21 @@
 namespace ImagickDemo\ControlElement;
 
 
-class TextUnderColor extends ColorElement {
+class GradientStartColor extends ColorElement {
 
     protected function getDefault() {
-        return 'DeepPink2';
+        return 'black';
     }
 
     protected function getVariableName() {
-        return 'textUnderColor';
+        return 'gradientStartColor';
     }
 
     protected function getDisplayName() {
-        return 'Text under color';
+        return 'Gradient start';
     }
 
-    function getTextUnderColor() {
+    function getGradientStartColor() {
         return $this->getValue();
     }
 }

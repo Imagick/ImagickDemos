@@ -11,6 +11,93 @@ $imageType = null;
 
 use \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor;
 
+
+
+
+function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
+
+    //$graphWidth = 255;
+    $sampleHeight = 20;
+    //$graphHeight = 127;
+    $border = 2;
+
+    $imagick->transposeImage();
+    //$imagick->flopImage();
+    $imagick->scaleImage($graphWidth, $sampleHeight);
+
+    $imageIterator = new \ImagickPixelIterator($imagick);
+
+    $luminosityArray = [];
+
+    foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+            /** @var $pixel \ImagickPixel */
+
+            if (false) {
+                $color = $pixel->getColor();
+                $luminosityArray[] = $color['r'];
+            }
+            else {
+                $hsl = $pixel->getHSL() ;
+                $luminosityArray[] = ($hsl['luminosity']);
+            }
+        }
+        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        break;
+    }
+
+    $draw = new \ImagickDraw();
+
+    $strokeColor = new \ImagickPixel('red');
+    $fillColor = new \ImagickPixel('red');
+    $draw->setStrokeColor($strokeColor);
+    $draw->setFillColor($fillColor);
+    $draw->setStrokeWidth(0);
+    $draw->setFontSize(72);
+    $draw->setStrokeAntiAlias(true);
+    $previous = false;
+
+    $x = 0;
+
+    foreach ($luminosityArray as $luminosity) {
+        $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1) );
+        
+        if ($previous !== false) {
+            //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
+            $draw->line($x - 1, $previous, $x, $pos);
+        }
+        $x += 1;
+        $previous = $pos;
+    }
+
+    //exit(0);
+
+
+    $plot = new \Imagick();
+    $plot->newImage($graphWidth, $graphHeight, 'white');
+    $plot->drawImage($draw);
+
+//    $plot->setImageFormat("png");
+//    header("Content-Type: image/png");
+//    echo $plot;
+//    exit(0);
+//    
+
+    $outputImage = new \Imagick();
+    $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
+    $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    //$imagick->resizeimage($imagick->getImageWidth(), $sampleHeight, \Imagick::FILTER_LANCZOS, 1);
+
+    $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
+    $outputImage->borderimage('black', $border, $border);
+
+    $outputImage->setImageFormat("png");
+    header("Content-Type: image/png");
+    echo $outputImage;
+}
+
+
 /**
  * @return \Auryn\Provider
  */
@@ -75,13 +162,16 @@ function getExampleDefinition($category, $example) {
         'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Control\ControlCompositeImageNoise::class],
         'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ImageControl::class], //Doesn't work?
         //'animateImages',
-        'annotateImage' => ['annotateImage', \ImagickDemo\Control\ImageControl::class],
+        'annotateImage' => ['annotateImage', \ImagickDemo\Control\AnnotateImageControl::class],
+
+        
+        
         //'appendImages',
         'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
         //new NavOption('averageImages',  true),
         'blackThresholdImage' => ['blackThresholdImage', \ImagickDemo\Control\ImageControl::class],
-        'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Control\ImageControl::class],
-        'blurImage' => ['blurImage', \ImagickDemo\Control\ImageControl::class],
+        'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Control\BlueShiftControl::class],
+        'blurImage' => ['blurImage', \ImagickDemo\Control\BlurControl::class],
         'borderImage' => ['borderImage', \ImagickDemo\Control\ImageControl::class],
         'brightnessContrastImage' => ['brightnessContrastImage', ImagickDemo\Control\BrightnessContrastImage::class],
         'charcoalImage' => ['charcoalImage', \ImagickDemo\Control\ImageControl::class],
@@ -128,7 +218,7 @@ function getExampleDefinition($category, $example) {
 
         'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
         'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
-        'evaluateImage' =>  ['evaluateimage', \ImagickDemo\Control\ImageControl::class],
+        'evaluateImage' =>  ['evaluateimage', \ImagickDemo\Control\EvaluateTypeControl::class],
         //'exportImagePixels',
 //'extentImage',
         //FilterImage - this appears to be a duplicate function
@@ -139,7 +229,7 @@ function getExampleDefinition($category, $example) {
         'flopImage' => ['flopImage', \ImagickDemo\Control\ImageControl::class],
         'forwardFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
         'frameImage' => ['frameImage', \ImagickDemo\Control\ImageControl::class],
-        'functionImage' => ['functionImage', \ImagickDemo\Control\ImageControl::class],
+        'functionImage' => ['functionImage', \ImagickDemo\Control\ImagickFunctionControl::class],
         'fxImage' => ['fxImage', \ImagickDemo\Control\ImageControl::class],
         'gammaImage' => ['gammaImage', \ImagickDemo\Control\ImageControl::class],
         'gaussianBlurImage' => ['gaussianBlurImage', \ImagickDemo\Control\ImageControl::class],
@@ -528,6 +618,10 @@ function getExampleDefinition($category, $example) {
         'fxAnalyzeImage' => ['fxAnalyzeImage', \ImagickDemo\Control\NullControl::class],
         'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
         'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
+
+        'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
+        'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
+        
     ];    
     
     $examples = [
@@ -551,7 +645,7 @@ function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
 
     $provider->share($controlClass);
 
-    $params = ['a', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'fillColor', 'fillModifiedColor', 'g', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'threshold', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'h20'];
+    $params = ['a', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'blueShift', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'g', 'gradientStartColor', 'gradientEndColor', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'secondTerm', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'h20'];
 
     foreach ($params as $param) {
         $paramGet = 'get'.ucfirst($param);

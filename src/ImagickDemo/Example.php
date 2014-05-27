@@ -26,9 +26,6 @@ abstract class Example implements renderableExample {
         return sprintf("<img src='%s' />", $this->control->getURL());
     }
 
-
-    
-    
     function renderCodeLink() {
         //TODO - this is the wrong link.
         $classname = get_class($this);

@@ -21,6 +21,8 @@ class ExampleList implements \ImagickDemo\ExampleList {
             //new NavOption('svgExample'),
             new NavOption('composite'),
             new NavOption('svgExample'),
+            new NavOption('screenEmbed'),
+            new NavOption('gradientGeneration'),
             
         ];
 

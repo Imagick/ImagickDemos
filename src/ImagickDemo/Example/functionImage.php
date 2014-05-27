@@ -4,12 +4,33 @@ namespace ImagickDemo\Example;
 
 class functionImage extends \ImagickDemo\ExampleWithoutControl {
 
+    private $control;
+    
+    function __construct($control) {
+        $this->control = $control;
+    }
+    
     function renderTitle() {
         return "";
     }
+    
+    function render() {
+        $output = $this->renderDescription();
+        $output .= $this->renderCustomImageURL();
+
+        return $output;
+    }
+
+    function renderCustomImageURL() {
+        return sprintf(
+            "<img src='/customImage/Imagick/sparseColorImage/%s' />",
+            $this->sparseControl->getSparseColorType()
+        );
+    }
+
 
     function renderDescription() {
-
+        return "";
     }
 
     function renderImage() {

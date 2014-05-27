@@ -6,8 +6,6 @@ namespace ImagickDemo\Example;
 
 class edgeExtend extends \ImagickDemo\Example {
 
-
-
     function render() {
         $output = "<br/>";
         $output .= $this->renderImageURL();
@@ -20,7 +18,4 @@ class edgeExtend extends \ImagickDemo\Example {
     function getControl() {
         return $this->control;
     }
-
-
- 
 }

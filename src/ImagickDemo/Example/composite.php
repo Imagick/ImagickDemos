@@ -20,16 +20,12 @@ class composite extends \ImagickDemo\Example {
         return $output;
     }
 
-//    function renderImageURL() {
-//        return sprintf("<img src='%s' />", $this->control->getURL());
-//    }
 
     function renderCustomImageURL() {
         return sprintf(
-            "<img src='/customImage/Example/composite/%s' />",
-            $this->compositeExampleControl->getCompositeExampleType()
+            "<img src='%s' />",
+            $this->compositeExampleControl->getCustomImageURL()
         );
-
     }
     
     function renderCustomImage() {

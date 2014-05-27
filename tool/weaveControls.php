@@ -117,6 +117,10 @@ $controls = [
 
     'ImagickDemo\Control\ImagickFunctionControl' => [
         'ImagickDemo\ControlElement\FunctionType',
+        'ImagickDemo\ControlElement\FirstTerm',
+        'ImagickDemo\ControlElement\SecondTerm',
+        'ImagickDemo\ControlElement\ThirdTerm',
+        'ImagickDemo\ControlElement\FourthTerm'
     ],
 
     'ImagickDemo\Control\SparseColorControl' => [
@@ -216,9 +220,38 @@ $controls = [
         'ImagickDemo\ControlElement\Channel',
     ],
 
-    
 
+    'ImagickDemo\Control\BlurControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Channel',
+    ],
     
+    
+    'ImagickDemo\Control\BlueShiftControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\BlueShift',
+    ],
+
+   
+    'ImagickDemo\Control\EvaluateTypeControl' => [
+        'ImagickDemo\ControlElement\EvaluateType',
+        'ImagickDemo\ControlElement\FirstTerm',
+        'ImagickDemo\ControlElement\GradientStartColor',
+        'ImagickDemo\ControlElement\GradientEndColor',
+    ],
+
+    'ImagickDemo\Control\CompositeExampleControl' => [
+        'ImagickDemo\ControlElement\CompositeExample',
+    ],
+    
+    //    'ImagickDemo\Control\AnnotateImageControl' => [
+    //        'ImagickDemo\Control\ImageControl',
+    //        'ImagickDemo\ControlElement\StrokeColor',
+    //        'ImagickDemo\ControlElement\FillColor',
+    //    ],
+    //    
     
 ];
 

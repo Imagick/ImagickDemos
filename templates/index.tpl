@@ -140,6 +140,9 @@
     addColorSelector("#fillColorSelector", "#fillColor");
     addColorSelector("#fillModifiedColorSelector", "#fillModifiedColor");
     addColorSelector("#textUnderColorSelector", "#textUnderColor");
+    addColorSelector("#gradientStartColorSelector", "#gradientStartColor");
+    addColorSelector("#gradientEndColorSelector", "#gradientEndColor");
+
 </script>
 
 

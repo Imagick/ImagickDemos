@@ -87,11 +87,13 @@ $controls = [
         'ImagickDemo\ControlElement\ColorSpace',
     ],
 
-    [
+    'ImagickDemo\Control\StatisticControl' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\StatisticType',
         'ImagickDemo\ControlElement\W20',
         'ImagickDemo\ControlElement\H20',
+        'ImagickDemo\ControlElement\Channel'
+        
     ],
     [
         'ImagickDemo\ControlElement\BackgroundColor',
@@ -246,13 +248,19 @@ $controls = [
         'ImagickDemo\ControlElement\CompositeExample',
     ],
     
-    //    'ImagickDemo\Control\AnnotateImageControl' => [
-    //        'ImagickDemo\Control\ImageControl',
-    //        'ImagickDemo\ControlElement\StrokeColor',
-    //        'ImagickDemo\ControlElement\FillColor',
-    //    ],
-    //    
-    
+    'ImagickDemo\Control\AnnotateImageControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+    ],
+
+    'ImagickDemo\Control\SigmoidalContrastControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Sharpening',
+        'ImagickDemo\ControlElement\Midpoint',
+        'ImagickDemo\ControlElement\SigmoidalContrast'
+    ],
+
 ];
 
 \Intahwebz\Functions::load();

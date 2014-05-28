@@ -5,53 +5,34 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class A implements ControlElement {
 
-    private $a = "100";
+class A extends ValueElement {
 
-    const aName = 'a';
-//    private $errors = [];
-
-    function __construct(Request $request) {
-        $this->a = $request->getVariable(self::aName, $this->a);
-        $this->a = intval($this->a);
-        if ($this->a < 0) {
-            $this->a = 0;
-        }
-        if ($this->a > 255) {
-            $this->a = 255;
-        }
-        //zendcode eats braces
+    protected function getDefault() {
+        return 100;
     }
 
-    function getParams() {
-        return [
-            self::aName => $this->a,
-        ];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $sA = safeText($this->a);
-   
-        $output = "
-            <tr>
-                <td class='standardCell'>
-                    Alpha
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::aName."' value='$sA'/>
-                </td>
-            </tr>";
-
-        return $output;
+    protected function getMax() {
+        return 255;
     }
 
-    /**
-     * @return string
-     */
-    public function getA() {
-        return $this->a;
+    protected function getVariableName() {
+        return 'a';
+    }
+
+    protected function getDisplayName() {
+        return 'A';
+    }
+
+    function getA() {
+        return $this->getValue();
     }
 }
+
+
 
  

@@ -5,53 +5,31 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class SolarizeThreshold implements ControlElement {
 
-    private $solarizeThreshold = 0;
 
-    const name = 'solarizeThreshold';
-    
-    function __construct(Request $request) {
-        $this->solarizeThreshold = floatval($request->getVariable(self::name, $this->solarizeThreshold));
-        
-        if ($this->solarizeThreshold < 0) {
-            $this->solarizeThreshold = 0;
-        }
-        if ($this->solarizeThreshold > (pow(2, 16) - 1)) {
-            $this->solarizeThreshold = pow(2, 16) - 1;
-        }
-        //zendcode eats braces
+class SolarizeThreshold extends ValueElement {
+
+    protected function getDefault() {
+        return 0.2;
     }
 
-    function getParams() {
-        return [self::name => $this->solarizeThreshold];
+    protected function getMin() {
+        return 0;
     }
 
-
-    function renderFormElement() {
-        $output = '';
-        $sSolarizeThreshold = safeText($this->solarizeThreshold);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    ".self::name."
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::name."' value='$sSolarizeThreshold'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 1;
     }
 
-    /**
-     * @return string
-     */
-    public function getSolarizeThreshold() {
-        return $this->solarizeThreshold;
+    protected function getVariableName() {
+        return 'solarizeThreshold';
+    }
+
+    protected function getDisplayName() {
+        return 'Solarize threshold';
+    }
+
+    function getSolarizeThreshold() {
+        return $this->getValue();
     }
 }
-
- 

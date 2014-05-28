@@ -5,52 +5,31 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Length implements ControlElement {
 
-    private $length = 20;
+class Length extends ValueElement {
 
-    const lengthName = 'length';
-    
-    function __construct(Request $request) {
-        $this->length = floatval($request->getVariable(self::lengthName, $this->length));
-        
-        if ($this->length < 0) {
-            $this->length = 0;
-        }
-        if ($this->length > 50) {
-            $this->length = 50;
-        }
-        //Zend code eats braces
+    protected function getDefault() {
+        return 20;
     }
 
-    function getParams() {
-        return [self::lengthName => $this->length];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $output = '';
-        $sLength = safeText($this->length);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    Length
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::lengthName."' value='$sLength'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 500;
     }
 
-    /**
-     * @return string
-     */
-    public function getLength() {
-        return $this->length;
+    protected function getVariableName() {
+        return 'length';
+    }
+
+    protected function getDisplayName() {
+        return 'Length';
+    }
+
+    function getLength() {
+        return $this->getValue();
     }
 }
 
- 

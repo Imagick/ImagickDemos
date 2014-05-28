@@ -5,51 +5,31 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Amount implements ControlElement {
 
-    private $amount = 5;
+class Amount extends ValueElement {
 
-    const amountName = 'amount';
-    
-    function __construct(Request $request) {
-        $this->amount = floatval($request->getVariable(self::amountName, $this->amount));
-        
-        if ($this->amount < 0) {
-            $this->amount = 0;
-        }
-        if ($this->amount > 20) {
-            $this->amount = 20;
-        }
-        //blah
+    protected function getDefault() {
+        return 5;
     }
 
-    function getParams() {
-        return [self::amountName => $this->amount];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $output = '';
-        $sAmount = safeText($this->amount);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    ".self::amountName."
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::amountName."' value='$sAmount'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 20;
     }
 
-    /**
-     * @return string
-     */
-    public function getAmount() {
-        return $this->amount;
+    protected function getVariableName() {
+        return 'amount';
+    }
+
+    protected function getDisplayName() {
+        return 'Amount';
+    }
+
+    function getAmount() {
+        return $this->getValue();
     }
 }
 

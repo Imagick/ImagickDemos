@@ -5,52 +5,30 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Radius implements ControlElement {
 
-    private $radius = 5;
+class Radius extends ValueElement {
 
-    function __construct(Request $request) {
-        $this->radius = floatval($request->getVariable('radius', $this->radius));
-        
-        if ($this->radius < 0) {
-            $this->radius = 0;
-        }
-        if ($this->radius > 10) {
-            $this->radius = 10;
-        }
-        //blah
+    protected function getDefault() {
+        return 5;
     }
 
-    function getParams() {
-        return ['radius' => $this->radius];
+    protected function getMin() {
+        return 0;
     }
 
-
-    function renderFormElement() {
-        $output = '';
-        $sRadius = safeText($this->radius);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    Radius
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='radius' value='$sRadius'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 10;
     }
 
-    /**
-     * @return string
-     */
-    public function getRadius() {
-        return $this->radius;
+    protected function getVariableName() {
+        return 'radius';
     }
 
+    protected function getDisplayName() {
+        return 'Radius';
+    }
+
+    function getRadius() {
+        return $this->getValue();
+    }
 }
-
- 

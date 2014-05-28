@@ -11,6 +11,12 @@ $distanceBetweenCircles = 30 * $imageSize / 400;
 
 $root2 = 1.414213562373095;
 
+
+$palette = new Imagick();
+
+$palette->newpseudoimage(256, 256, 'gradient:black-white');
+$palette->quantizeImage(253, \Imagick::COLORSPACE_GRAY, 8, false, false);
+
     
 for($count=0 ; $count<3 * $imageFrames ; $count++){
 
@@ -48,16 +54,21 @@ for($count=0 ; $count<3 * $imageFrames ; $count++){
     $frame->newImage($imageSize, $imageSize, "rgb(255, 255, 255)");
     
     $frame->drawimage($drawing);
+
+    $frame->clutimage($palette);
     
+
     $frame->setImageDelay(2);
     $aniGif->addImage($frame);
 }
 
 
-$aniGif->deconstructImages();
-//there more than one file, so must be using writeImages()
-$aniGif->writeImages("/home/intahwebz/intahwebz/basereality/imagick/aTestGif.gif", true);
+$result = $aniGif->deconstructImages();
 
+
+//there more than one file, so must be using writeImages()
+$aniGif->writeImages("./aTestGif.gif", true);
+$result->writeImages("./aTestGif_deconstructed.gif", true);
 
 //header('Content-type: image/gif');
 //$aniGif->getimageblob();

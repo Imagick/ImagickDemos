@@ -219,7 +219,7 @@ class ExampleList implements \ImagickDemo\ExampleList {
             new NavOption('normalizeImage'),
             new NavOption('oilPaintImage'),
             //'opaquePaintImage',
-            //'optimizeImageLayers',
+            new NavOption('optimizeImageLayers'),
             // OptimizeImageTransparency
             //'orderedPosterizeImage',
             //'paintOpaqueImage',

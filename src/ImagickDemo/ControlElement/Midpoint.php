@@ -3,32 +3,31 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
 
-class R extends ValueElement {
+
+class Midpoint extends ValueElement {
 
     protected function getDefault() {
-        return 100;
+        return 4;
     }
 
     protected function getMin() {
-        return 0;
+        return -100;
     }
 
     protected function getMax() {
-        return 255;
+        return 100;
     }
 
     protected function getVariableName() {
-        return 'r';
+        return 'midpoint';
     }
 
     protected function getDisplayName() {
-        return 'R';
+        return 'Midpoint';
     }
 
-    function getR() {
+    function getMidpoint() {
         return $this->getValue();
     }
 }
-

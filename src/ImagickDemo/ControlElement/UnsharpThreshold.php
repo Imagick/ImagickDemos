@@ -3,54 +3,31 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
 
-class UnsharpThreshold implements ControlElement {
 
-    private $unsharpThreshold = 0;
+class UnsharpThreshold extends ValueElement {
 
-    const unsharpThresholdName = 'unsharpThreshold';
-    
-    function __construct(Request $request) {
-        $this->unsharpThreshold = floatval($request->getVariable(self::unsharpThresholdName, $this->unsharpThreshold));
-        
-        if ($this->unsharpThreshold < 0) {
-            $this->unsharpThreshold = 0;
-        }
-        if ($this->unsharpThreshold > 20) {
-            $this->unsharpThreshold = 20;
-        }
-        //zendcode eats braces
+    protected function getDefault() {
+        return 0;
     }
 
-    function getParams() {
-        return [self::unsharpThresholdName => $this->unsharpThreshold];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $output = '';
-        $sUnsharpThreshold = safeText($this->unsharpThreshold);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    ".self::unsharpThresholdName."
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::unsharpThresholdName."' value='$sUnsharpThreshold'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 20;
     }
 
-    /**
-     * @return string
-     */
-    public function getUnsharpThreshold() {
-        return $this->unsharpThreshold;
+    protected function getVariableName() {
+        return 'unsharpThreshold';
+    }
+
+    protected function getDisplayName() {
+        return 'Unsharp threshold';
+    }
+
+    function getUnsharpThreshold() {
+        return $this->getValue();
     }
 }
-
- 

@@ -5,58 +5,29 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class WhitePoint implements ControlElement {
+class WhitePoint extends ValueElement {
 
-    private $whitePoint = 200;
-
-    const whitePointName = 'whitePoint';
-    
-    function __construct(Request $request) {
-        $this->whitePoint = $request->getVariable(self::whitePointName, $this->whitePoint);
-        $this->whitePoint = intval($this->whitePoint);
-        if ($this->whitePoint < 0) {
-            $this->whitePoint = 0;
-        }
-        if ($this->whitePoint > 255) {
-            $this->whitePoint = 255;
-        }
-        //zendcode eats braces
+    protected function getDefault() {
+        return 200;
     }
 
-    function getParams() {
-        return [
-            self::whitePointName => $this->whitePoint,
-        ];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $sBlackPoint = safeText($this->whitePoint);
-   
-//        if (count($this->errors)) {
-//            foreach ($this->errors as $error) {
-//                $output .= $error."<br/>";
-//            }
-//        }
-
-        $output = "
-            <tr>
-                <td class='standardCell'>
-                    White point
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::whitePointName."' value='$sBlackPoint'/>
-                </td>
-            </tr>";
-
-        return $output;
+    protected function getMax() {
+        return 255;
     }
 
-    /**
-     * @return string
-     */
-    public function getWhitePoint() {
-        return $this->whitePoint;
+    protected function getVariableName() {
+        return 'whitePoint';
+    }
+
+    protected function getDisplayName() {
+        return 'WhitePoint';
+    }
+
+    function getWhitePoint() {
+        return $this->getValue();
     }
 }
-
- 

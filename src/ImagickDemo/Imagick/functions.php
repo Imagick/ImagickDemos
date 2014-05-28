@@ -46,24 +46,30 @@ function addNoiseImage($noiseType, $imagePath) {
     echo $imagick->getImageBlob();
 }
 
-    function affineTransformImage($imagePath) {
-        $imagick = new \Imagick(realpath($imagePath));
-        $draw = new \ImagickDraw();
+function affineTransformImage($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $draw = new \ImagickDraw();
 
-        $angle = 1 ;
+    $angle = 45 ;
 
-        $affineRotate = array("sx" => cos($angle), "sy" => cos($angle), "rx" => sin($angle), "ry" => -sin($angle), "tx" => 0, "ty" => 0,);
+    $affineRotate = array(
+        "sx" => cos($angle), "sy" => cos($angle), 
+        "rx" => sin($angle), "ry" => -sin($angle), 
+        "tx" => 0, "ty" => 0,);
 
-        $draw->affine($affineRotate);
+    $draw->affine($affineRotate);
 
-        //$draw->translate(50, 50);
-        //$draw->rotate(45);
+    //$draw->translate(50, 50);
+    //$draw->rotate(45);
 
-        $imagick->affineTransformImage($draw);
+    $result = $imagick->affineTransformImage($draw);
+    
+//    var_dump($result);
+//    exit(0);
 
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
-    }
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
 
 
 function annotateImage($imagePath, $strokeColor, $fillColor) {
@@ -1078,14 +1084,13 @@ function shearimage($imagePath) {
 
 
 
-
-function sigmoidalcontrastimage($imagePath) {
+function sigmoidalcontrastimage($imagePath, $sharpening, $midpoint, $sigmoidalContrast) {
     $imagick = new \Imagick(realpath($imagePath));
     //Need some stereo image to work with.
     $imagick->sigmoidalcontrastimage(
-            false, //sharpen 
-                7,
-                90
+        $sharpening, //sharpen 
+        $midpoint,
+        $sigmoidalContrast * \Imagick::getQuantum()
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1105,19 +1110,22 @@ function smushImages($imagePath) {
 
     $imagick = new \Imagick(realpath($imagePath));
     $imagick2 = new \Imagick(realpath("../images/coolGif.gif"));
-    $imagick->addimage($imagick2);
-    $blah = $imagick->smushImages(true, 0);
+    
 
-    $blah->setImageFormat('jpg');
+    $imagick->addimage($imagick2);
+
+    $smushed = $imagick->smushImages(false, 50);
+
+    $smushed->setImageFormat('jpg');
     header("Content-Type: image/jpg");
-    echo $blah->getImageBlob();
+    echo $smushed->getImageBlob();
 }
 
 
 
 function solarizeImage($imagePath, $solarizeThreshold) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->solarizeImage($solarizeThreshold);
+    $imagick->solarizeImage($solarizeThreshold * \Imagick::getQuantum());
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1141,13 +1149,14 @@ function spreadImage($imagePath) {
 
 
 
-function statisticImage($imagePath, $statisticType, $w20, $h20) {
+function statisticImage($imagePath, $statisticType, $w20, $h20, $channel) {
 
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->statisticImage(
-            $statisticType,
-                $w20,
-                $h20
+        $statisticType,
+        $w20,
+        $h20,
+        $channel
     );
 
     header("Content-Type: image/jpg");

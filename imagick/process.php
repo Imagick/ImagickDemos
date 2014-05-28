@@ -474,7 +474,7 @@ function getExampleDefinition($category, $example) {
         'sharpenImage' => ['sharpenImage', \ImagickDemo\Control\ImageControl::class],
         'shaveImage' => ['shaveImage', \ImagickDemo\Control\ImageControl::class],
         'shearImage' => ['shearImage', \ImagickDemo\Control\ImageControl::class],
-        'sigmoidalContrastImage' => ['sigmoidalContrastImage',\ImagickDemo\Control\ImageControl::class ],
+        'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Control\SigmoidalContrastControl::class ],
 
 
         //new NavOption('similarityImage', true),
@@ -484,7 +484,7 @@ function getExampleDefinition($category, $example) {
         'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\SparseColorControl::class],
         'spliceImage' => ['spliceImage', \ImagickDemo\Control\ImageControl::class],
         'spreadImage' => ['spreadImage', \ImagickDemo\Control\ImageControl::class],
-        'statisticImage' => ['statisticImage', \ImagickDemo\Control\ControlCompositeImageStatisticTypeW20H20::class],
+        'statisticImage' => ['statisticImage', \ImagickDemo\Control\StatisticControl::class],
         'subImageMatch' => ['subImageMatch', \ImagickDemo\Control\ImageControl::class],
         'swirlImage' => ['swirlImage', \ImagickDemo\Control\ControlCompositeImageSwirl::class],
         'textureImage' => ['textureImage', \ImagickDemo\Control\ImageControl::class],
@@ -645,8 +645,9 @@ function setupImageDelegation(\Auryn\Provider $provider, $category, $example) {
 
     $provider->share($controlClass);
 
-    $params = ['a', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'blueShift', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'g', 'gradientStartColor', 'gradientEndColor', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'secondTerm', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'h20'];
+    $params = ['a', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'blackPoint', 'blueShift', 'brightness', 'channel', 'colorElement', 'contrast', 'colorSpace', 'distortionExample', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'g', 'gradientStartColor', 'gradientEndColor', 'height', 'image', 'imagePath', 'length', 'meanOffset', 'noiseType', 'originX', 'originY', 'r', 'radius', 'roundX', 'roundY', 'secondTerm', 'sigma', 'skew', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'h20', 'sharpening', 'midpoint', 'sigmoidalContrast',];
 
+    
     foreach ($params as $param) {
         $paramGet = 'get'.ucfirst($param);
         $provider->delegateParam(

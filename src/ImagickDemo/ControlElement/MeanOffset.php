@@ -5,54 +5,30 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class MeanOffset implements ControlElement {
 
-    private $meanOffset = 5;
-    
-    const name = 'meanOffset';
+class MeanOffset extends ValueElement {
 
-    function __construct(Request $request) {
-        $this->meanOffset = floatval($request->getVariable(self::name, $this->meanOffset));
-        
-        if ($this->meanOffset < 0) {
-            $this->meanOffset = 0;
-        }
-        if ($this->meanOffset > 10) {
-            $this->meanOffset = 10;
-        }
-        //blah
+    protected function getDefault() {
+        return 5;
     }
 
-    function getParams() {
-        return [self::name => $this->meanOffset];
+    protected function getMin() {
+        return 0;
     }
 
-
-    function renderFormElement() {
-        $output = '';
-        $sMeanOffset = safeText($this->meanOffset);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    Mean offset
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::name."' value='$sMeanOffset'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 10;
     }
 
-    /**
-     * @return string
-     */
-    public function getMeanOffset() {
-        return $this->meanOffset;
+    protected function getVariableName() {
+        return 'meanOffset';
     }
 
+    protected function getDisplayName() {
+        return 'Mean offset';
+    }
+
+    function getMeanOffset() {
+        return $this->getValue();
+    }
 }
-
- 

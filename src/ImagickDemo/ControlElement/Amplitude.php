@@ -5,52 +5,31 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Amplitude implements ControlElement {
 
-    private $amplitude = 5;
+class Amplitude extends ValueElement {
 
-    const name = 'amplitude';
-    
-    function __construct(Request $request) {
-        $this->amplitude = floatval($request->getVariable(self::name, $this->amplitude));
-        
-        if ($this->amplitude < 0) {
-            $this->amplitude = 0;
-        }
-        if ($this->amplitude > 20) {
-            $this->amplitude = 20;
-        }
-        //Zendcode eats braces
+    protected function getDefault() {
+        return 5;
     }
 
-    function getParams() {
-        return [self::name => $this->amplitude];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $output = '';
-        $sAmplitude = safeText($this->amplitude);
-
-        $output .= "
-            <tr>
-                <td class='standardCell'>
-                    Amplitude
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::name."' value='$sAmplitude'/>
-                </td>
-            </tr>
-";
-
-        return $output;
+    protected function getMax() {
+        return 20;
     }
 
-    /**
-     * @return string
-     */
-    public function getAmplitude() {
-        return $this->amplitude;
+    protected function getVariableName() {
+        return 'amplitude';
+    }
+
+    protected function getDisplayName() {
+        return 'Amplitude';
+    }
+
+    function getAmplitude() {
+        return $this->getValue();
     }
 }
-
  

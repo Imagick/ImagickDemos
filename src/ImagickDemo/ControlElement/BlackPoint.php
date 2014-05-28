@@ -5,58 +5,32 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class BlackPoint implements ControlElement {
 
-    private $blackPoint = 10;
 
-    const blackPointName = 'blackPoint';
-    
-    function __construct(Request $request) {
-        $this->blackPoint = $request->getVariable(self::blackPointName, $this->blackPoint);
-        $this->blackPoint = intval($this->blackPoint);
-        if ($this->blackPoint < 0) {
-            $this->blackPoint = 0;
-        }
-        if ($this->blackPoint > 255) {
-            $this->blackPoint = 255;
-        }
-        //zendcode eats braces
+
+class BlackPoint extends ValueElement {
+
+    protected function getDefault() {
+        return 10;
     }
 
-    function getParams() {
-        return [
-            self::blackPointName => $this->blackPoint,
-        ];
+    protected function getMin() {
+        return 0;
     }
 
-    function renderFormElement() {
-        $sBlackPoint = safeText($this->blackPoint);
-   
-//        if (count($this->errors)) {
-//            foreach ($this->errors as $error) {
-//                $output .= $error."<br/>";
-//            }
-//        }
-
-        $output = "
-            <tr>
-                <td class='standardCell'>
-                    Black point
-                </td>
-                <td class='standardCell'>
-                    <input type='text' name='".self::blackPointName."' value='$sBlackPoint'/>
-                </td>
-            </tr>";
-
-        return $output;
+    protected function getMax() {
+        return 255;
     }
 
-    /**
-     * @return string
-     */
-    public function getBlackPoint() {
-        return $this->blackPoint;
+    protected function getVariableName() {
+        return 'blackPoint';
+    }
+
+    protected function getDisplayName() {
+        return 'Black point';
+    }
+
+    function getBlackPoint() {
+        return $this->getValue();
     }
 }
-
- 

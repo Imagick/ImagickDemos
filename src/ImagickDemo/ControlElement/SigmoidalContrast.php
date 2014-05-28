@@ -3,32 +3,31 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
 
-class R extends ValueElement {
+
+class SigmoidalContrast extends ValueElement {
 
     protected function getDefault() {
-        return 100;
+        return 0.5;
     }
 
     protected function getMin() {
-        return 0;
+        return -1000;
     }
 
     protected function getMax() {
-        return 255;
+        return 1000;
     }
 
     protected function getVariableName() {
-        return 'r';
+        return 'sigmoidalContrast';
     }
 
     protected function getDisplayName() {
-        return 'R';
+        return 'Contrast';
     }
 
-    function getR() {
+    function getSigmoidalContrast() {
         return $this->getValue();
     }
 }
-

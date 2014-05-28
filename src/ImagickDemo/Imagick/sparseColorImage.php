@@ -81,13 +81,9 @@ class sparseColorImage extends \ImagickDemo\Example {
 
     function renderCustomImageURL() {
         return sprintf(
-            "<img src='/customImage/Imagick/sparseColorImage/%s' />", 
-            $this->sparseControl->getSparseColorType()
+            "<img src='%s' />", 
+            $this->sparseControl->getCustomImageURL()
         );
-    }
-
-    function renderImageURL() {
-        return $this->sparseControl->getParamString();
     }
 
     function renderCustomImage() {

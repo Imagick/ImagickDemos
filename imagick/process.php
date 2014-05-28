@@ -806,6 +806,7 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
 }
 
 //$uri = "/customImage/Imagick/distortImage?image=Lorikeet&distortion=9";
+//$uri = "/customImage/Imagick/sparseColorImage/renderImageVoronoi";
 
 $path = $uri;
 $queryPosition = strpos($path, '?');
@@ -823,10 +824,6 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
     foreach ($vars as $key => $value) {
         $lowried[':'.$key] = $value;
     }
-    
-//    var_dump($handler);
-//    var_dump($lowried);
-//    exit(0);
 
     $injector->execute($handler, $lowried);
 }

@@ -39,6 +39,13 @@ class ControlComposite implements \ImagickDemo\Control {
 
         $output .= "
             <tr>
+                <td class='standardCell'>&nbsp;
+                </td>
+                <td class='standardCell'>&nbsp;
+                </td>
+            </tr>
+        
+            <tr>
                 <td class='standardCell'>
                 </td>
                 <td class='standardCell'>

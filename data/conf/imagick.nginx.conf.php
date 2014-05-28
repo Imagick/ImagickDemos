@@ -20,7 +20,7 @@ server {
 
     listen 80;
     listen 8080;
-    server_name imagick.test imagick.intahwebz.com imagick.intahwebz.test;
+    server_name imagick.test imagick.intahwebz.com imagick.intahwebz.test phpimagick.com phpimagick.test;
 
     access_log  ${'nginx.log.directory'}/imagick.access.log;
     error_log  ${'nginx.log.directory'}/imagick.error.log;
@@ -41,7 +41,7 @@ server {
     #	root   /usr/share/nginx/html;
     #}
 
-    fastcgi_intercept_errors on;
+    fastcgi_intercept_errors off;
 
     # this prevents hidden files (beginning with a period) from being served
     location ~ /\.          { access_log off; log_not_found off; deny all; }
@@ -72,5 +72,3 @@ server {
 END;
 
 return $config;
-
-?>

@@ -13,18 +13,56 @@ class Parameter {
     
     private $name;
     
+    private $description;
+    
+    
+    
     function __construct($type, $name) {
         $this->type = $type;
         $this->name = $name;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
+    function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType() {
+        return $this->type;
     }
 }
 
 class ManualEntry {
 
+    private $functionName;
+    
     private $description;
+    
+    private $methodDescription;
     
     /** @var  Parameter[] */
     private $parameters;
+
+    function setFunctionName($functionName) {
+        $this->functionName = $functionName;
+    }
+
+    function setMethodDescription($methodDescription) {
+        $this->methodDescription = $methodDescription;
+    }
     
     function addParam(Parameter $parameter) {
         $this->parameters[] = $parameter;
@@ -33,8 +71,29 @@ class ManualEntry {
     function setDescription($description) {
         $this->description = $description;
     }
+
     function addParamDescription($term, $description) {
-        echo "term $term, description $description\n";
+        foreach($this->parameters as $parameter) {
+            if ($parameter->getName() === $term) {
+                $parameter->setDescription($description);
+            }
+        }
+    }
+    
+    function toString() {
+        $output =  "";
+        
+        $output .= $this->functionName."\n";
+        $output .= "\n";
+        $output .= $this->methodDescription."\n";
+        $output .= "\n";
+
+        foreach ($this->parameters as $parameter) {
+            $output .=   $parameter->getType()." ".$parameter->getName()." ".$parameter->getDescription()."\n";
+        }
+        
+
+        return $output;
     }
 }
 
@@ -208,12 +267,6 @@ echo $image;
 END;
 
 
-//
-//
-//
-//    $result = $sxe->xpath('//c:refnamediv');
-//
-
 
     $body = str_replace('&reftitle.returnvalues', 'returnvalues', $body);
     $body = str_replace('&reftitle.examples', 'examples', $body);
@@ -250,13 +303,8 @@ END;
 
         $manualEntry->addParam(new Parameter($type, $name));
     };
-//    $imgClosure = function (DOMElement $element) use ($urlToCheck) {
-//        $this->parseImgResult($element, $urlToCheck->getUrl());
-//    };
-//
 
-    
-    
+
     
     $dom->find('//ref:methodparam')->each($methodParam);
 
@@ -266,69 +314,62 @@ END;
 
     $dom->find('//ref:refsect1[@role="description"]/ref:para')->each($description);
 
-
-    $paramDescription = function (DOMElement $element) use($manualEntry) {
-        $fluentDOM = new FluentDOM();
-        $fluentDOM->load($element);
-       
-        $term = null;
-        $description = null;
-        
-        $termCallback = function (DOMElement $element) {
-            var_dump($element);
-        };
-
-        $descriptionCallback = function (DOMElement $element) use (&$description) {
-            var_dump($element);
-        };
-
-        //$fluentDOM->namespaces(['ref' => 'http://docbook.org/ns/docbook']);
-
-        //$fluentDOM->find("/varlistentry/term/parameter", $termCallback);
-        $fluentDOM->find("*", $termCallback);
-        //$fluentDOM->find("/varlistentry/listitem/para", $descriptionCallback);
-
-//        $manualEntry->addParamDescription($term, $description);
-        
-    };
-
-//    <variablelist>
-//    <varlistentry>
-//     <term><parameter>draw_settings</parameter></term>
-//     <listitem>
-//      <para>
-//    The ImagickDraw object that contains settings for drawing the text
-//    </para>
-//     </listitem>
-//    </varlistentry>
-    
-    $paramDescriptionBlock = $dom->find('//ref:refsect1[@role="parameters"]/ref:para/ref:variablelist');
+    $paramDescriptionBlock = $dom->find('//ref:refsect1[@role="parameters"]/ref:para/ref:variablelist/ref:varlistentry');
     
     foreach ($paramDescriptionBlock as $element) {
         /** @var DOMElement $element */
-        //echo get_class($element);
 
+        //echo "Found entry \n";
+        $paramName = null;
+        $paramDescription = null;
+        
         $subDOM = new FluentDOM();
         $subDOM->load($element);
-
         $subDOM->namespaces(['ref' => 'http://docbook.org/ns/docbook']);
         
-        //$termBlock = $subDOM->find("child::*");
-        $termBlock = $subDOM->find("ref:varlistentry/ref:term/ref:parameter");
-
-        
+        $termBlock = $subDOM->find("child::ref:term/ref:parameter");
         foreach ($termBlock as $term) {
             /** @var DOMElement $term */
-            
-            var_dump($term);
-            echo $term->nodeName."\n";
+            //echo $term->textContent."\n";
+            $paramName .= trim($term->textContent);
         }
-        
+
+        $descriptionBlock = $subDOM->find("child::ref:listitem/ref:para");
+        foreach ($descriptionBlock as $description) {
+            /** @var DOMElement $term */
+            $paramDescription .= trim($description->textContent);
+        }
+
+        $manualEntry->addParamDescription($paramName, $paramDescription);
     }
 
-//    var_dump($manualEntry);
+    $nameBlock = $dom->find('//ref:refnamediv/ref:refname');
+    
+    if ($nameBlock->count()) {
+        foreach ($nameBlock as $nameElement) {
+            /** @var DOMElement $term */
+            $manualEntry->setFunctionName($nameElement->textContent);
+        }
+    }
+    else {
+        echo "No method name found.";
+    }
 
- //   var_dump($parameters);
+    if ($nameBlock->count()) {
+        $methodDescriptionBlock = $dom->find('//ref:refnamediv/ref:refpurpose');
+    
+        foreach ($methodDescriptionBlock as $methodDescriptionElement) {
+            /** @var DOMElement $term */
+            $manualEntry->setMethodDescription($methodDescriptionElement->textContent);
+        }
+    }
+    else {
+        echo "No description found.";
+    }
+    
+
+    
+    echo $manualEntry->toString();
 }
 
 $baseURL = "https://svn.php.net/repository/phpdoc/en/trunk/reference/imagick/";

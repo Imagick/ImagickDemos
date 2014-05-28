@@ -3,7 +3,6 @@
 
 namespace ImagickDemo\ControlElement;
 
-use ImagickDemo\Control\OptionValueControl;
 use Intahwebz\Request;
 
 //TODO - rename this to imagePath

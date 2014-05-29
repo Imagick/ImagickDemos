@@ -261,6 +261,13 @@ $controls = [
         'ImagickDemo\ControlElement\SigmoidalContrast'
     ],
 
+    'ImagickDemo\Control\ChopControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height',
+    ],
 ];
 
 \Intahwebz\Functions::load();

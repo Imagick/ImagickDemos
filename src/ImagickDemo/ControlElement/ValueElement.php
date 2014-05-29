@@ -18,6 +18,15 @@ abstract class ValueElement implements ControlElement {
     function __construct(Request $request) {
         
         $value = $this->getDefault();
+        
+        if ($this->getDefault() > $this->getMax()) {
+            trigger_error("Default is bigger than max in ".get_class($this).", someone has dun goofed", E_USER_NOTICE);
+        }
+
+        if ($this->getDefault() < $this->getMin()) {
+            trigger_error("Default is bigger than max in ".get_class($this).", someone has dun goofed", E_USER_NOTICE);
+        }
+        
 
         $value = $request->getVariable($this->getVariableName(), $value);
         

@@ -26,7 +26,7 @@ class Height extends ValueElement {
         return 'Height';
     }
 
-    function getH20() {
+    function getHeight() {
         return $this->getValue();
     }
 }

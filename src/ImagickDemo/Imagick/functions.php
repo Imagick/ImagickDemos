@@ -163,9 +163,9 @@ function charcoalImage($imagePath) {
     echo $imagick->getImageBlob();
 }
 
-function chopImage($imagePath) {
+function chopImage($imagePath, $startX, $startY, $width, $height) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->chopImage(200, 200, 100, 100);
+    $imagick->chopImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1059,12 +1059,10 @@ function shadowImage($imagePath) {
 
 function sharpenimage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->sharpenimage(3, 15);
+    $imagick->sharpenimage(5, 5);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-
-
 
 function shaveImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));

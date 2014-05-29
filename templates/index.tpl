@@ -31,10 +31,11 @@
     </div>
 </header>
 
-{* inject name='nav' value='ImagickDemo\Navigation\ActiveNav' *}
 {inject name='nav' value='ImagickDemo\Navigation\Nav'}
 {inject name='control' value='ImagickDemo\Control'}
 {inject name='example' value='ImagickDemo\Example'}
+{inject name='docHelper' value='ImagickDemo\DocHelper'}
+
 
 <div class='container'>
 
@@ -44,8 +45,6 @@
         </div>
     </div> -->
 
-    
-    
     <!-- <div class="row">
         <div class="col-md-2"></div> 
         <! - - <div class="col-md-1"></div> - ->
@@ -75,6 +74,10 @@
                     </div>
             </div>
             <div class="row">
+                
+                <div class="col-md-12">
+                    {$docHelper->showDoc() | nofilter}
+                </div>
                 <span style="display: 10px">&nbsp;</span>
             </div>
     
@@ -83,8 +86,9 @@
                     {$nav->renderPreviousButton() | nofilter}
                 </div>
         
-                <div class="col-md-6" style="text-align: center">
-                    {$example->renderCodeLink() | nofilter}
+                <div class="col-md-6" >
+                    {*$example->renderCodeLink() | nofilter *}
+
                 </div>
         
                 <div class="col-md-3" style='text-align: right'>

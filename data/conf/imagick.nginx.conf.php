@@ -25,7 +25,7 @@ server {
     access_log  ${'nginx.log.directory'}/imagick.access.log;
     error_log  ${'nginx.log.directory'}/imagick.error.log;
 
-    root ${'github.root.directory'}/imagick-demos/imagick;
+    root ${'imagick.root.directory'}/imagick;
 
     client_max_body_size 1m;
 
@@ -65,7 +65,7 @@ server {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
         fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
-        include       ${'basereality.root.directory'}/conf/fastcgi.conf;
+        include       ${'imagick.root.directory'}/conf/fastcgi.conf;
     }
 }
 

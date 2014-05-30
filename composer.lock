@@ -3,16 +3,16 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "be7fa4ab416cb5b3e2dc062552445769",
+    "hash": "3b1e8938cf5d1fc6e565e1a4fcfcba1c",
     "packages": [
         {
             "name": "danack/danack-code",
-            "version": "2.3.2",
+            "version": "2.3.4",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/DanackCode/Danack_DanackCode_2.3.2.zip",
-                "reference": "Danack_DanackCode_2.3.2.zip",
-                "shasum": "43df745ef46c5c3bc050cf3262d243393bd48f2e"
+                "url": "http://satis.basereality.com/packages/Danack/DanackCode/Danack_DanackCode_2.3.4.zip",
+                "reference": "Danack_DanackCode_2.3.4.zip",
+                "shasum": "f170d7811841bdf479fafe2feac46fff1d73e0be"
             },
             "require": {
                 "php": ">=5.3.23",
@@ -252,15 +252,15 @@
         },
         {
             "name": "intahwebz/weaver",
-            "version": "0.2.1",
+            "version": "0.2.2",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/Weaver/Danack_Weaver_0.2.1.zip",
-                "reference": "Danack_Weaver_0.2.1.zip",
-                "shasum": "313fb036f218a9350512225be4fec6decc5894f1"
+                "url": "http://satis.basereality.com/packages/Danack/Weaver/Danack_Weaver_0.2.2.zip",
+                "reference": "Danack_Weaver_0.2.2.zip",
+                "shasum": "249225e2fb50025fc8c9476cb4de76c311fe5fb9"
             },
             "require": {
-                "danack/danack-code": "2.3.2",
+                "danack/danack-code": "2.3.4",
                 "intahwebz/core": ">=0.1.2",
                 "php": ">=5.4.0"
             },
@@ -516,40 +516,6 @@
                 "issues": "https://github.com/Danack/Auryn/issues"
             },
             "time": "2014-05-22 14:16:37"
-        },
-        {
-            "name": "zendframework/zend-code",
-            "version": "2.0.3",
-            "target-dir": "Zend/Code",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendCode/zendframework_Component_ZendCode_2.0.3.zip",
-                "reference": "zendframework_Component_ZendCode_2.0.3.zip",
-                "shasum": "03bc5d56c9263fe9f660ae3ebfa9f385622c0adb"
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "doctrine/common": ">=2.1"
-            },
-            "suggest": {
-                "doctrine/common": "Doctrine\\Common >=2.1 for annotation features"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Zend\\Code\\": ""
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "provides facilities to generate arbitrary code using an object oriented interface",
-            "keywords": [
-                "code",
-                "zf2"
-            ]
         },
         {
             "name": "zendframework/zend-eventmanager",

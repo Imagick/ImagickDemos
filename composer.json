@@ -27,7 +27,7 @@
     },
 
     "require":{
-        "intahwebz/weaver": ">=0.1.3",
+        "intahwebz/weaver": ">=0.2.1",
         "intahwebz/configurator": "0.1.1",
         "nikic/fast-route": "dev-master",
         "rdlowrey/auryn": "dev-v1.0.0-pluginWithParamDelegation as dev-PluginExperiment2",

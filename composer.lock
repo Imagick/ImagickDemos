@@ -3,25 +3,59 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c1750fa19070b90da1e44a13cd976062",
+    "hash": "be7fa4ab416cb5b3e2dc062552445769",
     "packages": [
         {
-            "name": "fluentdom/fluentdom",
-            "version": "v4.1.1",
+            "name": "danack/danack-code",
+            "version": "2.3.2",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_v4.1.1.zip",
-                "reference": "FluentDOM_FluentDOM_v4.1.1.zip",
-                "shasum": "7028c8a4ebc26fe46c9eeac3931001b3740e3da3"
+                "url": "http://satis.basereality.com/packages/Danack/DanackCode/Danack_DanackCode_2.3.2.zip",
+                "reference": "Danack_DanackCode_2.3.2.zip",
+                "shasum": "43df745ef46c5c3bc050cf3262d243393bd48f2e"
             },
             "require": {
-                "php": ">=5.2.0"
+                "php": ">=5.3.23",
+                "zendframework/zend-eventmanager": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Danack\\Code\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides facilities to generate arbitrary code using an object oriented interface",
+            "keywords": [
+                "code",
+                "zf2"
+            ]
+        },
+        {
+            "name": "fluentdom/fluentdom",
+            "version": "5.0.0-RC1",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_5.0.0-RC1.zip",
+                "reference": "FluentDOM_FluentDOM_5.0.0-RC1.zip",
+                "shasum": "8ddd6cc976c982fb544232ac7c10795c83420688"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "suggest": {
+                "carica/phpcss": "Allows to use css selectors with FluentDOM::QueryCss()."
             },
             "type": "library",
             "autoload": {
                 "files": [
                     "src/FluentDOM.php"
-                ]
+                ],
+                "psr-4": {
+                    "FluentDOM\\": "src/FluentDOM"
+                }
             },
             "license": [
                 "MIT"
@@ -75,12 +109,12 @@
         },
         {
             "name": "intahwebz/core",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/intahwebz-core/Danack_intahwebz-core_0.2.0.zip",
-                "reference": "Danack_intahwebz-core_0.2.0.zip",
-                "shasum": "eac6cef98a60b8bfd49d8994ba1837e844a4327a"
+                "url": "http://satis.basereality.com/packages/Danack/intahwebz-core/Danack_intahwebz-core_0.2.1.zip",
+                "reference": "Danack_intahwebz-core_0.2.1.zip",
+                "shasum": "24af5476e4c00aa1ec7ba3686627751013c7b288"
             },
             "require": {
                 "psr/log": "~1.0"
@@ -218,17 +252,17 @@
         },
         {
             "name": "intahwebz/weaver",
-            "version": "0.1.3",
+            "version": "0.2.1",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/Weaver/Danack_Weaver_0.1.3.zip",
-                "reference": "Danack_Weaver_0.1.3.zip",
-                "shasum": "7f2edb1f30a09ed19a8b36fac16f57efd1177d8f"
+                "url": "http://satis.basereality.com/packages/Danack/Weaver/Danack_Weaver_0.2.1.zip",
+                "reference": "Danack_Weaver_0.2.1.zip",
+                "shasum": "313fb036f218a9350512225be4fec6decc5894f1"
             },
             "require": {
+                "danack/danack-code": "2.3.2",
                 "intahwebz/core": ">=0.1.2",
-                "php": ">=5.4.0",
-                "zendframework/zend-code": "2.*"
+                "php": ">=5.4.0"
             },
             "require-dev": {
                 "monolog/monolog": "1.4.0",
@@ -514,6 +548,85 @@
             "description": "provides facilities to generate arbitrary code using an object oriented interface",
             "keywords": [
                 "code",
+                "zf2"
+            ]
+        },
+        {
+            "name": "zendframework/zend-eventmanager",
+            "version": "2.3.0",
+            "target-dir": "Zend/EventManager",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendEventManager/zendframework_Component_ZendEventManager_2.3.0.zip",
+                "reference": "zendframework_Component_ZendEventManager_2.3.0.zip",
+                "shasum": "19683eab8f6622d013f7d97ea8e308b97f663847"
+            },
+            "require": {
+                "php": ">=5.3.23",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\EventManager\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": " ",
+            "keywords": [
+                "eventmanager",
+                "zf2"
+            ]
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "2.3.0",
+            "target-dir": "Zend/Stdlib",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendStdlib/zendframework_Component_ZendStdlib_2.3.0.zip",
+                "reference": "zendframework_Component_ZendStdlib_2.3.0.zip",
+                "shasum": "c61a659a0fa2afcbf915e1e6ea22017c2ee9b81d"
+            },
+            "require": {
+                "php": ">=5.3.23"
+            },
+            "require-dev": {
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-serializer": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-serializer": "Zend\\Serializer component",
+                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Stdlib\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": " ",
+            "keywords": [
+                "stdlib",
                 "zf2"
             ]
         }

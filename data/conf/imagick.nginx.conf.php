@@ -65,7 +65,7 @@ server {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
         fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
-        include       ${'imagick.root.directory'}/conf/fastcgi.conf;
+        include       ${'basereality.root.directory'}/conf/fastcgi.conf;
     }
 }
 

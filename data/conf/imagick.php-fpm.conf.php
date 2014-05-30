@@ -49,7 +49,7 @@ php_admin_value[error_log] = ${'php.errorlog.directory'}/\$pool-error.log
 
 security.limit_extensions = .php
 
-include = ${'basereality.root.directory'}/autogen/basereality.php.fpm.ini
+include = ${'imagick.root.directory'}/autogen/imagick-demos.php.fpm.ini
 
 END;
 

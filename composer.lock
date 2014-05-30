@@ -462,12 +462,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Auryn.git",
-                "reference": "eacf9eac33be7880bb0c4296d5f4e70c139fd870"
+                "reference": "97359fefaba4a8e5d26e14ced840bc6b0a25c798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Auryn/zipball/eacf9eac33be7880bb0c4296d5f4e70c139fd870",
-                "reference": "eacf9eac33be7880bb0c4296d5f4e70c139fd870",
+                "url": "https://api.github.com/repos/Danack/Auryn/zipball/97359fefaba4a8e5d26e14ced840bc6b0a25c798",
+                "reference": "97359fefaba4a8e5d26e14ced840bc6b0a25c798",
                 "shasum": ""
             },
             "require": {
@@ -515,7 +515,7 @@
                 "source": "https://github.com/Danack/Auryn/tree/v1.0.0-pluginWithParamDelegation",
                 "issues": "https://github.com/Danack/Auryn/issues"
             },
-            "time": "2014-05-22 14:16:37"
+            "time": "2014-05-30 17:03:13"
         },
         {
             "name": "zendframework/zend-eventmanager",

@@ -57,6 +57,7 @@ class Configurate {
             $this->inputDir.'data/conf/imagick.nginx.conf.php' => $this->outputDir.'autogen/imagick.nginx.conf',
             $this->inputDir.'data/conf/imagick.php-fpm.conf.php' => $this->outputDir.'autogen/imagick.php-fpm.conf',
             $this->inputDir.'data/conf/imagick-demos.php.ini.php' => $this->outputDir.'autogen/imagick-demos.php.ini',
+            $this->inputDir.'data/conf/addImagickConfig.sh.php' => $this->outputDir.'autogen/addImagickConfig.sh',
         );
     }
 
@@ -68,7 +69,7 @@ class Configurate {
             throw new \Exception("Configurate does not have it's environment set.");
         }
 
-        $configurator->addConfig($this->environment, "/home/intahwebz/intahwebz/conf/deployConfig.php");
+        $configurator->addConfig($this->environment, "./deployConfig.php");
 
         foreach($this->filesToGenerate as $inputFilename => $outputFilename){
             $configFile = $configurator->configurate($inputFilename);
@@ -101,7 +102,21 @@ $properties = [];
 $properties['inputDir'] = PATH_TO_ROOT;
 $properties['outputDir'] = PATH_TO_ROOT;
 
-$tool->setArg(0, 'centos_guest');
+if ($argc <= 1) {
+    echo "Please select a config from: ";
+    var_dump(array(
+        'amazonec2',
+        'macports',
+        'centos',
+        'centos_guest',
+    ));
+    exit(0);
+}
+
+$config = $argv[1];
+
+
+$tool->setArg(0, $config);
 
 $tool->init(
     $properties 

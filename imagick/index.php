@@ -12,10 +12,17 @@ else {
 
 
 function myBad( Exception $ex ) {
-    header("HTTP/1.0 500 Internal Server Error", true, 500);
+    
+    if (headers_sent() == false) {
+        header("HTTP/1.0 500 Internal Server Error", true, 500);
+    }
+    else {
+        echo "sup<br/>";
+    }
     echo "Exception ".get_class($ex).': '.$ex->getMessage();
 
-    var_dump($ex->getTrace());
+    //TODO - format this
+    //var_dump($ex->getTrace());
 }
 
 

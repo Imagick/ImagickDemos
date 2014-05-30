@@ -6,10 +6,27 @@ namespace ImagickDemo\ImagickPixelIterator {
         static function load() {
         }
     }
+
+/**
+ * Hack the header function to allow us to capture the image type,
+ * while still having clean example code.
+ *
+ * @param $string
+ * @param bool $replace
+ * @param null $http_response_code
+ */
+function header($string, $replace = true, $http_response_code = null) {
+    global $imageType;
+    global $imageCache;
+
+    if (stripos($string, "Content-Type: image/") === 0) {
+        $imageType = substr($string, strlen("Content-Type: image/"));
+    }
+
+    if ($imageCache == false) {
+        \header($string, $replace, $http_response_code);
+    }
 }
-
-namespace {
-
 
 
 function clear($imagePath) {

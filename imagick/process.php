@@ -8,6 +8,7 @@
 //appear to use the standard 'header' function, but also capture the content type 
 //of the image
 $imageType = null;
+$imageCache = true;
 
 
 /**
@@ -69,9 +70,55 @@ function bootstrap() {
 function setupImageDelegation(\Auryn\Provider $injector, $category, $example) {
     $function = setupExampleInjection($injector, $category, $example);
     $namespace = sprintf('ImagickDemo\%s\functions', $category);
-    $namespace::load(); 
-    $injector->execute($function);
-    exit(0);
+    $namespace::load();
+
+    global $imageCache;
+
+    $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
+    
+    if ($imageCache == false) {        
+        $injector->execute($functionFullname);   
+    }
+    else {
+        global $imageType;
+
+        $filename = "../var/cache/imageCache/".$category.'/'.$example;
+        $control = $injector->make(\ImagickDemo\Control::class);
+        $params = $control->getParams();
+        
+        if (!empty($params)) {
+            $filename .= '_'.md5(json_encode($params));
+        }
+    
+        $extensions = ["jpg", "gif", "png"];
+        
+        foreach ($extensions as $extension) {
+            $filenameWithExtension = $filename.".".$extension;
+            if (file_exists($filenameWithExtension) == true) {
+                \header("Content-Type: image/".$extension);
+                readfile($filenameWithExtension);
+                //It was read from cache, no need to process further
+                exit(0);
+            }
+        }
+    
+        ob_start();
+
+        $injector->execute($functionFullname);
+
+        if ($imageType == null) {
+            throw new \Exception("imageType not set, can't cache image correctly.");
+        }
+
+        $image = ob_get_contents();
+        @mkdir(dirname ($filename), 0755, true);
+        //TODO - is this atomic?
+        file_put_contents($filename.".".strtolower($imageType), $image);
+        ob_end_flush();
+        //ob_end_clean();
+    }
+
+    exit(0);   
 }
 
 function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) {

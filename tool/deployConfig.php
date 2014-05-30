@@ -34,8 +34,10 @@ $amazonec2 = [
     'phpfpm.conf.directory' => '/etc/php-fpm.d',
     'phpfpm.pid.directory' => '/var/run/php-fpm',
 
-    'php.log.directory' => '/var/log/php-fpm',
-    'php.errorlog.directory' => '/var/log/php-fpm',
+    #'php.log.directory' => '/var/log/php-fpm',
+    #'php.errorlog.directory' => '/var/log/php-fpm',
+    'php.log.directory' => '/var/log/php',
+    'php.errorlog.directory' => '/var/log/php',
     'php.session.directory' => '/var/lib/php/session',
 
     'mysql.casetablenames' => '0',

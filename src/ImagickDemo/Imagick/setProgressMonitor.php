@@ -14,22 +14,9 @@ class setProgressMonitor extends \ImagickDemo\Example {
     function __construct(\ImagickDemo\Control\ImageControl $control) {
         $this->control = $control;
     }
-    
-    /**
-     * @return \ImagickDemo\Control
-     */
-    function getControl() {
-        return $this->control;
-    }
 
-    function renderImageURL() {
-        return "";
-    }
 
-    function renderImage() {
-    }
-
-    function renderDescription() {
+    function render() {
 
         $abortReason = null;
         

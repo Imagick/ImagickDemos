@@ -222,7 +222,7 @@ class PixelStack {
 
 function syncIteratorImage($imagePath) {
 
-    $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+    $imagick = new \Imagick(realpath($imagePath));
     $count = 0;
 
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);

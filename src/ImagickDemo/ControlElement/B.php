@@ -3,8 +3,6 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
-
 
 class B extends ValueElement {
 

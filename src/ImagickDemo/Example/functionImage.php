@@ -23,11 +23,10 @@ class functionImage extends \ImagickDemo\Example {
 
     function renderCustomImageURL() {
         return sprintf(
-            "<img src='/customImage/Imagick/sparseColorImage/%s' />",
-            $this->sparseControl->getSparseColorType()
+            "<img src='%s' />",
+            $this->control->getURL()
         );
     }
-
 
     function renderDescription() {
         return "";

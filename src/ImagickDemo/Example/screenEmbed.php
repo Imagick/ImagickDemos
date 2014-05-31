@@ -3,7 +3,7 @@
 namespace ImagickDemo\Example;
 
 
-class screenEmbed  extends \ImagickDemo\Example {
+class screenEmbed extends \ImagickDemo\Example {
 
     function render() {
         $output = "This is a description. <br/>";

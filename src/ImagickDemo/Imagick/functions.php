@@ -1189,7 +1189,7 @@ function stereoImage($imagePath) {
 }
 
 
-function subImageMatch() {
+function subImageMatch($imagePath) {
 
     //Similarity score is: 0
     //array(4) { ["x"]=> int(250) ["y"]=> int(110) ["width"]=> int(40) ["height"]=> int(40)
@@ -1298,18 +1298,17 @@ function transformImageColorspace($imagePath, $colorSpace, $channel) {
 
 
 function transparentPaintImage() {
-    $imagick = new \Imagick(realpath("../images/stock-photo-portrait-of-a-young-sexy-woman-with-shopping-bags-posing-against-a-removable-green-chroma-key-168933251.jpg"));
+    //TODO - get a green screen image
+    $imagick = new \Imagick(realpath($imagePath));
 
     $imagick->setimageformat('png');
 
     $imagick->transparentPaintImage(
-    //TODO - shouldn't need quantum scaling.
-            '#06ae37', 0, 0.04 * \Imagick::getQuantum(), false
+        '#06ae37', 0, 0.04 * \Imagick::getQuantum(), false
     );
 
     $imagick->transparentPaintImage(
-    //TODO - shouldn't need quantum scaling.
-            '#24b74f', 0, 0.04 * \Imagick::getQuantum(), false
+        '#24b74f', 0, 0.04 * \Imagick::getQuantum(), false
     );
 
     $imagick->despeckleimage();

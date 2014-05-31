@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 
-class IdentifyImage extends \ImagickDemo\Example {
+class identifyImage extends \ImagickDemo\Example {
 
     function render() {
         $imagick = new \Imagick(realpath("../images/fnord.png"));

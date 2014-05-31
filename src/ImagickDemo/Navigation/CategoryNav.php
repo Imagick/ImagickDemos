@@ -69,7 +69,7 @@ class CategoryNav implements Nav {
     }
 
     /**
-     * @param $current
+     * @internal param $current
      * @internal param $array
      * @return string
      */
@@ -103,7 +103,7 @@ class CategoryNav implements Nav {
     }
 
     /**
-     * @param $current
+     * @internal param $current
      * @return string
      */
     function getNextName() {
@@ -471,7 +471,6 @@ class CategoryNav implements Nav {
             'roundCorners' => ['roundCorners', \ImagickDemo\Control\ImageControl::class],
             //'sampleImage',
             'scaleImage' => ['scaleImage', \ImagickDemo\Control\ImageControl::class],
-            'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\ImageControl::class],
             'segmentImage' => ['segmentImage', \ImagickDemo\Control\ImageControl::class],
             'selectiveBlurImage' => ['selectiveBlurImage', \ImagickDemo\Control\SelectiveBlurImage::class ],
             'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Control\ImageControl::class],
@@ -597,8 +596,8 @@ class CategoryNav implements Nav {
             'push' => ['push', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
             'pushClipPath' => ['setClipPath', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'pushPattern' => ['pushPattern', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-            'rectangle' => ['rectangle', ControlCompositeBackgroundColorStrokeColorFillColor::class],
-            'render' => ['render', ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'rectangle' => ['rectangle', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'render' => ['render', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'rotate' => ['rotate', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
             'roundRectangle' => ['roundRectangle', \ImagickDemo\Control\RoundRectangleControl::class],
             'scale' => ['scale', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],

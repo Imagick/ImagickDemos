@@ -20,8 +20,6 @@ class evaluateImage extends \ImagickDemo\Example {
 
         $size = 200;
 
-        $quanta = pow(2, 16);
-
         /*
             const EVALUATE_ADD = 1;
             const EVALUATE_AND = 2;

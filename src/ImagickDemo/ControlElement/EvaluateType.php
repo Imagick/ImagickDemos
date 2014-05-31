@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+
 
 
 class EvaluateType extends OptionKeyElement {

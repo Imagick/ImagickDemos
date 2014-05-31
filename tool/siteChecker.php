@@ -160,19 +160,9 @@ class SiteChecker {
         echo "Getting $fullURL \n";
 
         $client = new \Artax\Client;
-
-//        connecttimeout
-//        transfertimeout
-//        keepalivetimeout
         
         $client->setOption('transfertimeout', 25);
         $response = $client->request($fullURL);
-
-//        echo "Response status code: ", $response->getStatus(), "\n";
-//        echo "Response reason:      ", $response->getReason(), "\n";
-//        echo "Response protocol:    ", $response->getProtocol(), "\n";
-//        print_r($response->getAllHeaders());
-
         $status = $response->getStatus();
 
         $this->urlsChecked[] = new URLResult(
@@ -264,17 +254,13 @@ class SiteChecker {
         
         $path = $urlToCheck->getUrl();
 
-        if ($this->count > 300) {
+        //if ($this->count > 300) {
             //echo "Aborting - too many\n";
             //return;
-        }
+        //}
 
         try {
             $body = $this->getURL($urlToCheck);
-
-//            if ($body instanceof URLResult) {
-//                return $body;
-//            }
 
             if ($body) {
                 $fluentDOM = new FluentDOM();
@@ -311,13 +297,14 @@ class SiteChecker {
     }
 }
 
-$siteChecker = new SiteChecker("http://imagick.test");
+//$siteChecker = new SiteChecker("http://imagick.test");
+$siteChecker = new SiteChecker("http://test.phpimagick.com");
 $siteChecker->checkURL('/');
 //$siteChecker->checkURL('/image/Imagick/edgeExtend?image=Lorikeet');
 
 
 //$siteChecker->showResults();
-$printer = new HTMLPrinter($siteChecker->getResults(), "http://imagick.test");
+$printer = new HTMLPrinter($siteChecker->getResults(), "http://test.phpimagick.com");
 
 $outputStream = fopen("./checkResults.html", "w");
 

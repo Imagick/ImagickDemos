@@ -3,10 +3,10 @@
 
 namespace ImagickDemo\Example;
 
-class textImage extends \ImagickDemo\ExampleWithoutControl {
+class textImage extends \ImagickDemo\Example {
 
 
-    function renderTitle() {
+    function render() {
         return "";
     }
 

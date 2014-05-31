@@ -2,9 +2,9 @@
 
 namespace ImagickDemo\Example;
 
-class compositeText extends \ImagickDemo\ExampleWithoutControl {
+class compositeText extends \ImagickDemo\Example {
 
-    function renderTitle() {
+    function render() {
         return "";
     }
 

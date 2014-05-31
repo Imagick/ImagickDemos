@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3b1e8938cf5d1fc6e565e1a4fcfcba1c",
+    "hash": "227c602796bc0b67d849b25577ce8a09",
     "packages": [
         {
             "name": "danack/danack-code",
@@ -35,27 +35,21 @@
         },
         {
             "name": "fluentdom/fluentdom",
-            "version": "5.0.0-RC1",
+            "version": "v4.1.1",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_5.0.0-RC1.zip",
-                "reference": "FluentDOM_FluentDOM_5.0.0-RC1.zip",
-                "shasum": "8ddd6cc976c982fb544232ac7c10795c83420688"
+                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_v4.1.1.zip",
+                "reference": "FluentDOM_FluentDOM_v4.1.1.zip",
+                "shasum": "7028c8a4ebc26fe46c9eeac3931001b3740e3da3"
             },
             "require": {
-                "php": ">=5.4.0"
-            },
-            "suggest": {
-                "carica/phpcss": "Allows to use css selectors with FluentDOM::QueryCss()."
+                "php": ">=5.2.0"
             },
             "type": "library",
             "autoload": {
                 "files": [
                     "src/FluentDOM.php"
-                ],
-                "psr-4": {
-                    "FluentDOM\\": "src/FluentDOM"
-                }
+                ]
             },
             "license": [
                 "MIT"

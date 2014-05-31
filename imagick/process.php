@@ -36,10 +36,9 @@ function bootstrap() {
     $injector->defineParam('smallImageHeight', 300);
 
     $injector->alias(ImagickDemo\Control::class, ImagickDemo\Control\NullControl::class);
-    $injector->alias(Intahwebz\Request::class, Intahwebz\Routing\HTTPRequest::class);
-    $injector->alias(\ImagickDemo\ExampleList::class, \ImagickDemo\NullExampleList::class);
-    $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\NullExample::class);
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\NullNav::class);
+    $injector->alias(Intahwebz\Request::class, Intahwebz\Routing\HTTPRequest::class);
+    $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\NullExample::class);
 
     $injector->share(\ImagickDemo\Control::class);
     $injector->share(\ImagickDemo\Example::class);
@@ -75,7 +74,7 @@ function setupImageDelegation(\Auryn\Provider $injector, $category, $example) {
     global $imageCache;
 
     $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
-    
+
     if ($imageCache == false) {        
         $injector->execute($functionFullname);   
     }
@@ -128,7 +127,15 @@ function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) 
 
 function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
 
-    $exampleDefinition = getExampleDefinition($category, $example);
+    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
+    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
+        ':category' => $category,
+        ':example' => $example
+    ]);
+
+    $categoryNav = $injector->make(ImagickDemo\Navigation\CategoryNav::class);
+    
+    $exampleDefinition = $categoryNav->getExampleDefinition($category, $example);
     $function = $exampleDefinition[0];
     $controlClass = $exampleDefinition[1];
 
@@ -144,13 +151,6 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     $injector->defineParam('activeCategory', $category);
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->share($controlClass);
-    $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
-
-    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
-    $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
-        ':category' => $category,
-        ':example' => $example
-    ]);
 
     $injector->define(ImagickDemo\DocHelper::class, [
         ':category' => $category,

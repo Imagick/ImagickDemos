@@ -82,9 +82,10 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\SolarizeThreshold',
     ],
-    [
+    'ImagickDemo\Control\TransformColorSpaceControl' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\ColorSpace',
+        'ImagickDemo\ControlElement\ChannelNumber'
     ],
 
     'ImagickDemo\Control\StatisticControl' => [

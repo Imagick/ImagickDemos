@@ -1283,9 +1283,14 @@ function transformimage($imagePath) {
 
 
 
-function transformimagecolorspace($imagePath, $colorSpace) {
+function transformImageColorspace($imagePath, $colorSpace, $channel) {
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->transformimagecolorspace($colorSpace);
+    
+    //\Imagick::COLORSPACE_LAB
+    
+    $imagick->separateImageChannel($channel);
+    
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

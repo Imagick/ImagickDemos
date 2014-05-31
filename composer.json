@@ -33,7 +33,7 @@
         "rdlowrey/auryn": "dev-v1.0.0-pluginWithParamDelegation as dev-PluginExperiment2",
         "intahwebz/jig": "0.9.0",
         "intahwebz/routing": ">=0.9.1",
-        "fluentdom/fluentdom": ">=v4.1.1",
+        "fluentdom/fluentdom": "v4.1.1",
         "oyejorge/less.php": "v1.7.0.1"
     },
     "autoload": {

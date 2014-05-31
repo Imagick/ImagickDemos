@@ -2,9 +2,9 @@
 
 namespace ImagickDemo\Example;
 
-class evaluateImage extends \ImagickDemo\ExampleWithoutControl {
+class evaluateImage extends \ImagickDemo\Example {
 
-    function renderTitle() {
+    function render() {
         return "";
     }
 

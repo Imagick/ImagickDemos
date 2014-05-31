@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Example;
 
-class functionImage extends \ImagickDemo\ExampleWithoutControl {
+class functionImage extends \ImagickDemo\Example {
 
     private $control;
     

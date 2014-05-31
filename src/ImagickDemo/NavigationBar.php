@@ -3,7 +3,6 @@
 
 namespace ImagickDemo;
 
-use ImagickDemo\Navigation\Nav;
 
 class NavigationBar {
 

@@ -4,14 +4,14 @@
 namespace ImagickDemo\ImagickPixel;
 
 
-class clear extends \ImagickDemo\ExampleWithoutControl {
+class clear extends \ImagickDemo\Example {
 
     function renderDescription() {
         return "";
     }
 
-    function renderImage() {
-
+    function render() {
+        return "";
     }
 
 }

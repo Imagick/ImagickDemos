@@ -3,14 +3,9 @@
 
 namespace ImagickDemo\Example;
 
-use ImagickDemo\Control\NullControl;
-
 class listColors extends \ImagickDemo\Example {
 
-  
-
     function render() {
-        
         $output = "<table class='smallPadding' width='100%'>";
         $output .= "<tbody>";
         

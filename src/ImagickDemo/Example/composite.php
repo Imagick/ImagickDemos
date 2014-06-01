@@ -50,72 +50,46 @@ class composite extends \ImagickDemo\Example {
 
         $method = $methods[$customImage];
         $this->{$method}();
+
+        exit(0);
     }
-    
 
     function renderDescription() {
         return "Select a demo:<br/>";
     }
+
+    private function gradientDown() {
+        $imagick = new \Imagick();
+        $imagick->newpseudoimage(500, 500, 'gradient:black-white');
+
+        return $imagick;
+    }
+
+    private function gradientRight() {
+        $imagick = new \Imagick();
+        $imagick->newpseudoimage(500, 500, 'gradient:black-white');
+        $imagick->rotateimage('black', -90);
+
+        return $imagick;
+    }
     
-    function renderasd() {
-
-//        echo "Select a demo:<br/>";
-//        echo "<select onchange='setExample(this);'>";
-//        echo "<option value='-1' >Choose a composite demo</option>";
-//
-//        foreach ($this->listOfExamples as $example) {
-//            echo "<option value='" . $example[0] . "'>" . $example[1] . "</option>";
-//        }
-//
-//        echo "</select>";
-//
-//        echo "
-//   
-//
-//    <script type='text/javascript'>
-//
-//    function setExample(dropdown, baseURL) {
-//        var value = $(dropdown).val();
-//
-//        var url = baseURL + '?example=' + encodeURIComponent(value);
-//
-//        var image = $('#exampleImage');
-//
-//        if (image) {
-//            image.attr('src', url);
-//            image.css('display', 'inline-block');
-//        }
-//        else {
-//            alert('image not found');
-//        }
-//    }
-//    
-//    </script>
-//    ";
-
-        
-    }
-
-    function renderImage() {
-        $this->multiplyGradients(400, 400);
-    }
-
 
     function multiplyGradients() {
-        $imagick = new \Imagick(realpath("../images/gradientDown.png"));
-        $imagick2 = new \Imagick(realpath("../images/gradientRight.png"));
-        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
+        $imagick1 = $this->gradientDown();
+        $imagick2 = $this->gradientRight();
+        $imagick1->compositeimage($imagick2, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
         header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        echo $imagick1->getImageBlob();
     }
 
 
     function screenGradients() {
-        $imagick = new \Imagick(realpath("../images/gradientDown.png"));
-        $imagick2 = new \Imagick(realpath("../images/gradientRight.png"));
-        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_SCREEN, 0, 0);
+        $imagick1 = $this->gradientDown();
+        $imagick2 = $this->gradientRight();
+        $imagick1->compositeimage($imagick2, \Imagick::COMPOSITE_SCREEN, 0, 0);
+        $imagick1->setImageFormat("png");
         header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        echo $imagick1->getImageBlob();
     }
 
 

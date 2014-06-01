@@ -8,7 +8,7 @@
 //appear to use the standard 'header' function, but also capture the content type 
 //of the image
 $imageType = null;
-$imageCache = true;
+$imageCache = false;
 
 
 /**
@@ -282,7 +282,7 @@ if(array_key_exists('REQUEST_URI', $_SERVER)){
     $uri = $_SERVER['REQUEST_URI'];
 }
 
-//$uri = "/customImage/Imagick/sparseColorImage/renderImageVoronoi";
+//$uri = "/customImage/Example/composite?compositeExample=multiplyGradients";
 
 $path = $uri;
 $queryPosition = strpos($path, '?');

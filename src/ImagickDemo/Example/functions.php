@@ -264,10 +264,10 @@ function fxAnalyzeImage() {
         //Load the images 
         $output = mergeImages(
             [
-                '../images/lories/6E6F9109.jpg',
-                '../images/lories/IMG_1599.jpg',
-                '../images/lories/IMG_2561.jpg',
-                '../images/lories/IMG_2837.jpg',
+                '../images/lories/6E6F9109_480.jpg',
+                '../images/lories/IMG_1599_480.jpg',
+                '../images/lories/IMG_2561_480.jpg',
+                '../images/lories/IMG_2837_480.jpg',
                 //'../images/lories/IMG_4023.jpg',
             ],
             $size,

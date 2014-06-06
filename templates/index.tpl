@@ -140,12 +140,14 @@
 
     //These are currently hardcoded - todo add JS page injection.
     addColorSelector("#backgroundColorSelector", "#backgroundColor");
+    addColorSelector("#colorSelector", "#color");
     addColorSelector("#strokeColorSelector", "#strokeColor");
     addColorSelector("#fillColorSelector", "#fillColor");
     addColorSelector("#fillModifiedColorSelector", "#fillModifiedColor");
     addColorSelector("#textUnderColorSelector", "#textUnderColor");
     addColorSelector("#gradientStartColorSelector", "#gradientStartColor");
     addColorSelector("#gradientEndColorSelector", "#gradientEndColor");
+    addColorSelector("#thresholdColorSelector", "#thresholdColor");
 
 </script>
 

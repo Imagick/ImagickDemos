@@ -4,10 +4,12 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+
+
+class Gamma extends ValueElement {
 
     protected function getDefault() {
-        return 5;
+        return 2.2;
     }
 
     protected function getMin() {
@@ -15,18 +17,22 @@ class Height extends ValueElement {
     }
 
     protected function getMax() {
-        return 20;
+        return 10;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'gamma';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Gamma';
     }
 
-    function getHeight() {
+    function getGamma() {
         return $this->getValue();
     }
 }
+
+
+
+ 

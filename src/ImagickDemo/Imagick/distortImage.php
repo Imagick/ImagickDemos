@@ -31,7 +31,7 @@ class distortImage extends \ImagickDemo\Example {
 
         return $output;
     }
-    
+
     function renderCustomImage() {
 
         $methods = [

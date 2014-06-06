@@ -3,20 +3,11 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
 
-class Width extends ValueElement {
+class Width5 extends ValueElement {
 
-    private $default;
-    
-    function __construct(Request $request, $defaultWidth = 50) {
-        $this->default = $defaultWidth;
-
-        parent::__construct($request);
-    }
-    
     protected function getDefault() {
-        return $this->default;
+        return 5;
     }
 
     protected function getMin() {
@@ -24,7 +15,7 @@ class Width extends ValueElement {
     }
 
     protected function getMax() {
-        return 500;
+        return 100;
     }
 
     protected function getVariableName() {

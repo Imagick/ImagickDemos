@@ -4,10 +4,12 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+
+
+class ThresholdAngle extends ValueElement {
 
     protected function getDefault() {
-        return 5;
+        return 10;
     }
 
     protected function getMin() {
@@ -15,18 +17,18 @@ class Height extends ValueElement {
     }
 
     protected function getMax() {
-        return 20;
+        return 90;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'thresholdAngle';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Threshold angle';
     }
 
-    function getHeight() {
+    function getThresholdAngle() {
         return $this->getValue();
     }
 }

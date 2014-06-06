@@ -4,29 +4,29 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+class Saturation extends ValueElement {
 
     protected function getDefault() {
-        return 5;
-    }
-
-    protected function getMin() {
         return 0;
     }
 
+    protected function getMin() {
+        return -200;
+    }
+
     protected function getMax() {
-        return 20;
+        return 200;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'saturation';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Saturation';
     }
 
-    function getHeight() {
+    function getSaturation() {
         return $this->getValue();
     }
 }

@@ -14,6 +14,198 @@ use Weaver\CompositeWeaveGenerator;
 
 $controls = [
 
+    'ImagickDemo\Imagick\Control\adaptiveBlurImage' => [
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Channel'
+    ],
+
+    'ImagickDemo\Imagick\Control\adaptiveResizeImage' => [
+        'ImagickDemo\ControlElement\ResizeWidth',
+        'ImagickDemo\ControlElement\ResizeHeight',
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\BestFit'
+    ],
+
+    'ImagickDemo\Imagick\Control\adaptiveSharpenImage' => [
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Channel'
+    ],
+
+    'ImagickDemo\Imagick\Control\adaptiveThresholdImage' => [
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height',
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\AdaptiveOffset'
+    ],
+    
+    'ImagickDemo\Imagick\Control\addNoiseImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Noise',
+        'ImagickDemo\ControlElement\Channel'
+    ],
+
+    'ImagickDemo\Imagick\Control\annotateImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+    ],
+
+    'ImagickDemo\Imagick\Control\blackThresholdImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ThresholdColor',
+    ],
+
+    'ImagickDemo\Imagick\Control\BlueShiftControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\BlueShift',
+    ],
+
+
+    'ImagickDemo\Imagick\Control\BlurControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    'ImagickDemo\Imagick\Control\borderImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height',
+        'ImagickDemo\ControlElement\Color',
+    ],
+
+    'ImagickDemo\Imagick\Control\brightnessContrastImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Brightness',
+        'ImagickDemo\ControlElement\Contrast',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    
+    'ImagickDemo\Imagick\Control\charcoalImage' => [
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Image'
+    ],
+    
+
+    'ImagickDemo\Imagick\Control\chopImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height50',
+    ],
+
+    'ImagickDemo\Imagick\Control\colorizeImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Color',
+        'ImagickDemo\ControlElement\Opacity',
+    ],
+
+
+    'ImagickDemo\Imagick\Control\contrastImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ContrastType',
+    ],
+
+
+    'ImagickDemo\Imagick\Control\cropImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height50',
+    ],
+
+    'ImagickDemo\Imagick\Control\deskewImage' => [
+        'ImagickDemo\ControlElement\ThresholdAngle',
+    ],
+    
+    'ImagickDemo\Imagick\Control\frameimage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Color',
+        'ImagickDemo\ControlElement\Width5',
+        'ImagickDemo\ControlElement\Height5',
+        'ImagickDemo\ControlElement\InnerBevel',
+        'ImagickDemo\ControlElement\OuterBevel',
+    ],
+
+    'ImagickDemo\Imagick\Control\gammaImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Gamma',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+    
+    'ImagickDemo\Imagick\Control\gaussianBlurImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+        
+     'ImagickDemo\Imagick\Control\modulateImage' => [
+         'ImagickDemo\ControlElement\Image',
+         'ImagickDemo\ControlElement\ModulateHue',
+         'ImagickDemo\ControlElement\ModulateSaturation',
+         'ImagickDemo\ControlElement\ModulateBrightness',
+    ],
+
+    'ImagickDemo\Imagick\Control\motionBlurImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius20',
+        'ImagickDemo\ControlElement\Sigma20',
+        'ImagickDemo\ControlElement\Angle',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    'ImagickDemo\Imagick\Control\negateImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\GrayOnly',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    'ImagickDemo\Imagick\Control\oilPaintImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius'
+    ],
+
+    
+    'ImagickDemo\Imagick\Control\randomThresholdimage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\LowThreshold',
+        'ImagickDemo\ControlElement\HighThreshold',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    
+    'ImagickDemo\Imagick\Control\reduceNoiseImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ReduceNoise',
+    ],
+
+
+    'ImagickDemo\Imagick\Control\rollImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\RollX',
+        'ImagickDemo\ControlElement\RollY',
+    ],
+    
+    
+    'ImagickDemo\Imagick\Control\SigmoidalContrastControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Sharpening',
+        'ImagickDemo\ControlElement\Midpoint',
+        'ImagickDemo\ControlElement\SigmoidalContrast'
+    ],
+    
+    
     [
         'ImagickDemo\ControlElement\Radius',
         'ImagickDemo\ControlElement\Sigma',
@@ -43,10 +235,7 @@ $controls = [
         '\ImagickDemo\ControlElement\X',
         '\ImagickDemo\ControlElement\Y' 
     ],
-    [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\Noise', 
-    ],
+
 
     [
         'ImagickDemo\ControlElement\Image',
@@ -209,11 +398,7 @@ $controls = [
         'ImagickDemo\ControlElement\RoundY',
     ],
 
-    'ImagickDemo\Control\BrightnessContrastImage' => [
-        'ImagickDemo\ControlElement\Image',
-        '\ImagickDemo\ControlElement\Brightness',
-        '\ImagickDemo\ControlElement\Contrast',
-    ],
+
 
     'ImagickDemo\Control\SelectiveBlurImage' => [
         'ImagickDemo\ControlElement\Image',
@@ -223,19 +408,6 @@ $controls = [
         'ImagickDemo\ControlElement\Channel',
     ],
 
-
-    'ImagickDemo\Control\BlurControl' => [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\Radius',
-        'ImagickDemo\ControlElement\Sigma',
-        'ImagickDemo\ControlElement\Channel',
-    ],
-    
-    
-    'ImagickDemo\Control\BlueShiftControl' => [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\BlueShift',
-    ],
 
    
     'ImagickDemo\Control\EvaluateTypeControl' => [
@@ -249,26 +421,9 @@ $controls = [
         'ImagickDemo\ControlElement\CompositeExample',
     ],
     
-    'ImagickDemo\Control\AnnotateImageControl' => [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\StrokeColor',
-        'ImagickDemo\ControlElement\FillColor',
-    ],
 
-    'ImagickDemo\Control\SigmoidalContrastControl' => [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\Sharpening',
-        'ImagickDemo\ControlElement\Midpoint',
-        'ImagickDemo\ControlElement\SigmoidalContrast'
-    ],
 
-    'ImagickDemo\Control\ChopControl' => [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\StartX',
-        'ImagickDemo\ControlElement\StartY',
-        'ImagickDemo\ControlElement\Width',
-        'ImagickDemo\ControlElement\Height',
-    ],
+
 ];
 
 \Intahwebz\Functions::load();
@@ -290,22 +445,7 @@ foreach ($controls as $outputClassname => $components) {
     else {
         $weaveMethod->writeClass('../var/compile/');
     }
-    
-    
 }
-
-
-
-//
-////This always needs to be last
-//$weaver->writeClosureFactories(
-//       '../generated/',
-//           'Example',
-//           'ClosureFactory',
-//           $weaver->getClosureFactories()
-//);
-
-
 
 
  

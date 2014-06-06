@@ -6,8 +6,15 @@ namespace ImagickDemo\Imagick;
 
 class newPseudoImage extends \ImagickDemo\Example {
 
+    function renderDescription() {
+        return "TODO add more gradient examples in a tutorial: <br/>";
+    }
+    
     function render() {
-        return $this->renderImageURL();
+        $output = $this->renderDescription();
+        $output .= $this->renderImageURL();
+
+        return $output ;
     }
 
     function renderImage() {

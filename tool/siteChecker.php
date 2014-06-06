@@ -297,17 +297,15 @@ class SiteChecker {
     }
 }
 
-//$siteChecker = new SiteChecker("http://imagick.test");
-$siteChecker = new SiteChecker("http://test.phpimagick.com");
+$site = "http://imagick.test";
+//$site = "http://test.phpimagick.com"
+
+$siteChecker = new SiteChecker($site);
 $siteChecker->checkURL('/');
 //$siteChecker->checkURL('/image/Imagick/edgeExtend?image=Lorikeet');
 
-
-//$siteChecker->showResults();
-$printer = new HTMLPrinter($siteChecker->getResults(), "http://test.phpimagick.com");
-
+$printer = new HTMLPrinter($siteChecker->getResults(), $site);
 $outputStream = fopen("./checkResults.html", "w");
-
 $printer->output($outputStream);
 
 fclose($outputStream);

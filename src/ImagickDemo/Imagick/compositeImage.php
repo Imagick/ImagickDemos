@@ -6,31 +6,14 @@ namespace ImagickDemo\Imagick;
 class compositeImage extends \ImagickDemo\Example {
 
     function render() {
-        return $this->renderImageURL();
+
+        $tutorialURL = '/Example/composite';
+        
+        $output = '';
+        $output .= "This is a simple example. Please look at the <a href='$tutorialURL'>full composite tutorial</a> for more examples.<br/>";
+        
+        $output .= $this->renderImageURL();
+        
+        return $output;
     }
-
-//    function renderImage1() {
-//
-//        $img1 = new \Imagick();
-//        $img1->readImage(realpath("../images/Biter_500.jpg"));
-//
-//        $img2 = new \Imagick();
-//        $img2->setOption('compose:args', '50');
-//        $img2->readImage(realpath("../images/Skyline_400.jpg"));
-//
-//        $img1->resizeimage(
-//             $img2->getImageWidth(),
-//             $img2->getImageHeight(),
-//             \Imagick::FILTER_LANCZOS,
-//             1
-//        );
-//
-//        $img1->compositeImage($img2, \Imagick::COMPOSITE_DISSOLVE, 0, 0);
-//        //$img1->writeImage("images/3.jpg");
-//        header("Content-Type: image/jpg");
-//        echo $img1->getImageBlob();
-//    }
-
-
-
 }

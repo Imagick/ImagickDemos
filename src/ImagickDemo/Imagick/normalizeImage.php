@@ -5,8 +5,12 @@ namespace ImagickDemo\Imagick;
 
 class normalizeImage extends \ImagickDemo\Example {
 
+    
+    
     function render() {
-        return $this->renderImageURL();
+        $output = "Original on left side, normalised on right. <br/>";
+        $output .= $this->renderImageURL();
+        return $output;
     }
 
 

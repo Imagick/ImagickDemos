@@ -4,10 +4,12 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+
+
+class RollY extends ValueElement {
 
     protected function getDefault() {
-        return 5;
+        return 100;
     }
 
     protected function getMin() {
@@ -15,18 +17,22 @@ class Height extends ValueElement {
     }
 
     protected function getMax() {
-        return 20;
+        return 800;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'rollY';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Roll Y';
     }
 
-    function getHeight() {
+    function getRollY() {
         return $this->getValue();
     }
 }
+
+
+
+ 

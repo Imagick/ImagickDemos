@@ -5,7 +5,13 @@ namespace ImagickDemo\Imagick;
 
 class getImageChannelStatistics extends \ImagickDemo\Example {
 
-
+    private $imageControl;
+    
+    function __construct(\ImagickDemo\Control\ImageControl $imageControl) {
+        $this->imageControl = $imageControl;
+    }
+    
+    
     function renderImage() {
         $imagick = new \Imagick(realpath("../images/fnord.png"));
         header("Content-Type: image/png");
@@ -14,81 +20,72 @@ class getImageChannelStatistics extends \ImagickDemo\Example {
 
     function render() {
 
-        $imagick = new \Imagick(realpath("../images/fnord.png"));
-
-        $newCanvas = new \Imagick();
-        $newCanvas->newImage($imagick->getImageWidth(), $imagick->getImageHeight(), 'rgba(255, 255, 0, 1)', 'png');
-
-        $newCanvas->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
-
-//header("Content-Type: image/png");
-//echo $newCanvas->getImageBlob();
-//exit(0);
+        $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
 
         function dumpInfo(\Imagick $imagick) {
 
+            $channels = [
+                \Imagick::CHANNEL_RED => 'Red',
+                \Imagick::CHANNEL_GREEN => 'Green',
+                \Imagick::CHANNEL_BLUE => 'Blue',
+                \Imagick::CHANNEL_ALPHA => 'Alpha',
+                \Imagick::CHANNEL_BLACK => 'Black/index',
+            ];
+
+            
             $identifyInfo = $imagick->getImageChannelStatistics();
 
+            $output = '<table>';
+
+            $headers = [
+                'mean',
+                'minima',
+                'maxima',
+                'standardDeviation',
+                'depth'
+            ];
+
+            $output .= '<thead><th></th>';
+            foreach ($headers as $header) {
+                $output .= '<th>';
+                $output .= $header;
+                $output .= '</th>';
+            }
+            $output .= '</thead>';
+
+            
             foreach ($identifyInfo as $key => $value) {
 
-                echo "$key :";
+                $output .= '<tr>';
 
-                if (is_array($value) == true) {
-                    var_dump($value);
-                }
-                else {
-                    echo $value;
+                $output .= '<td>';
+                    if (array_key_exists($key, $channels)) {
+                       $output .= $channels[$key];
+                    }
+                    else {
+                        $output .= $key;
+                    }
+                $output .= '</td>';
+
+                foreach ($headers as $header) {
+                    $output .= '<td>';
+                    if (array_key_exists($header, $value)) {
+                        $output .= $value[$header];
+                    }
+                    else {
+                        $output .= '-'; 
+                    }
+                    $output .= '</td>';
                 }
 
-                echo "<br/>";
+                $output .= '</tr>';
             }
+            
+            $output .= '</table>';
+                
+            return $output;
         }
 
-        dumpInfo($imagick);
-        echo "<br/><br/>";
-        dumpInfo($newCanvas);
-
-//Array (
-//    [0] => Array (
-//        [mean] => 0
-//        [minima] => 1.0E+37
-//        [maxima] => -1.0E-37
-//        [standardDeviation] => 0
-//        [depth] => 1
-//)
-//[1] => Array (
-//        [mean] => 23313.62737415
-//        [minima] => 0
-//        [maxima] => 65535
-//        [standardDeviation] => 19872.553413701
-//        [depth] => 8 )
-//    [2] => Array (
-//
-//    [mean] => 17901.918582313
-//    [minima] => 0
-//    [maxima] => 65535
-//    [standardDeviation] => 12436.215219275
-//    [depth] => 8 )
-//    [4] => Array (
-//        [mean] => 12943.608840816
-//        [minima] => 0
-//        [maxima] => 65535
-//        [standardDeviation] => 12513.107409344
-//        [depth] => 8 )
-//    [8] => Array (
-//        [mean] => 0
-//        [minima] => 1.0E+37
-//        [maxima] => -1.0E-37
-//        [standardDeviation] => 0
-//        [depth] => 1
-//)
-//    [32] => Array (
-//        [mean] => 0
-//        [minima] => 1.0E+37
-//        [maxima] => -1.0E-37
-//        [standardDeviation] => 0
-//        [depth] => 1 )
-//)
-
+        echo dumpInfo($imagick);
     }
 }

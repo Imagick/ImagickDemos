@@ -4,7 +4,9 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+
+
+class ReduceNoise extends ValueElement {
 
     protected function getDefault() {
         return 5;
@@ -15,18 +17,22 @@ class Height extends ValueElement {
     }
 
     protected function getMax() {
-        return 20;
+        return 100;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'reduceNoise';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Reduce noise';
     }
 
-    function getHeight() {
+    function getReduceNoise() {
         return $this->getValue();
     }
 }
+
+
+
+ 

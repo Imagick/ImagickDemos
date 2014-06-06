@@ -5,13 +5,12 @@ namespace ImagickDemo\ControlElement;
 
 use Intahwebz\Request;
 
-class Width extends ValueElement {
+class AdaptiveOffset extends ValueElement {
 
     private $default;
     
-    function __construct(Request $request, $defaultWidth = 50) {
-        $this->default = $defaultWidth;
-
+    function __construct(Request $request) {
+        $this->default = \Imagick::getQuantum() / 2;
         parent::__construct($request);
     }
     
@@ -24,18 +23,18 @@ class Width extends ValueElement {
     }
 
     protected function getMax() {
-        return 500;
+        return \Imagick::getQuantum();
     }
 
     protected function getVariableName() {
-        return 'width';
+        return 'adaptiveOffset';
     }
 
     protected function getDisplayName() {
-        return 'Width';
+        return 'Offset';
     }
 
-    function getWidth() {
+    function getAdaptiveOffset() {
         return $this->getValue();
     }
 }

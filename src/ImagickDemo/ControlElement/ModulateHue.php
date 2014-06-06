@@ -4,10 +4,10 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+class ModulateHue extends ValueElement {
 
     protected function getDefault() {
-        return 5;
+        return 150;
     }
 
     protected function getMin() {
@@ -15,18 +15,18 @@ class Height extends ValueElement {
     }
 
     protected function getMax() {
-        return 20;
+        return 200;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'hue';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Hue';
     }
 
-    function getHeight() {
+    function getHue() {
         return $this->getValue();
     }
 }

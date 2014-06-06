@@ -4,10 +4,10 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Height extends ValueElement {
+class InnerBevel extends ValueElement {
 
     protected function getDefault() {
-        return 5;
+        return 3;
     }
 
     protected function getMin() {
@@ -15,18 +15,18 @@ class Height extends ValueElement {
     }
 
     protected function getMax() {
-        return 20;
+        return 50;
     }
 
     protected function getVariableName() {
-        return 'height';
+        return 'innerBevel';
     }
 
     protected function getDisplayName() {
-        return 'Height';
+        return 'Inner bevel';
     }
 
-    function getHeight() {
+    function getInnerBevel() {
         return $this->getValue();
     }
 }

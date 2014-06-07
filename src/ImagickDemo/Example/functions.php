@@ -68,7 +68,7 @@ function fxAnalyzeImage() {
     $x = 0;
 
     foreach ($reds as $red) {
-        $pos = $red * $graphHeight / 256;
+        $pos = $graphHeight - ($red * $graphHeight / 256);
 
         if ($previous !== false) {
             $draw->line($x-1, $previous, $x, $pos);

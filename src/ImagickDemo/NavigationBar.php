@@ -15,7 +15,7 @@ class NavigationBar {
         "/ImagickDraw" => "ImagickDraw",
         "/ImagickPixel" => "ImagickPixel",
         "/ImagickPixelIterator" => "Imagick Pixel Interator",
-        "/Example" => "Example",
+        "/Example" => "Tutorial",
     ];
     
     function __construct($activeCategory = null) {

@@ -212,7 +212,6 @@ function colorFloodfillImage($imagePath) {
 
 function colorizeImage($imagePath, $color, $opacity) {
     $imagick = new \Imagick(realpath($imagePath));
-    //$color = new \ImagickPixel("rgba(0, 155, 128, 0.15)");
     $opacity = $opacity / 255.0;
     $opacityColor = new \ImagickPixel("rgba(0, 0, 0, $opacity)");
     $imagick->colorizeImage($color, $opacityColor);

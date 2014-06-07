@@ -22,10 +22,7 @@
             <ul class="nav navbar-nav">
                 {inject name='navBar' value='ImagickDemo\NavigationBar'}
                 {$navBar->render() | nofilter}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://basereality.com">Danack homepage</a></li>
-                <li><a href="https://github.com/Danack/Imagick-demos">Source code</a></li>
+                <li class='navbar-right'><a href="https://github.com/Danack/Imagick-demos" target='_blank'>Source code</a></li>
             </ul>
         </nav>
     </div>
@@ -36,23 +33,7 @@
 {inject name='example' value='ImagickDemo\Example'}
 {inject name='docHelper' value='ImagickDemo\DocHelper'}
 
-
 <div class='container'>
-
-    <!-- <div class="row" style="font-size: 12px">
-        <div class="col-md-12">
-            {* $nav->renderNav(true) *}
-        </div>
-    </div> -->
-
-    <!-- <div class="row">
-        <div class="col-md-2"></div> 
-        <! - - <div class="col-md-1"></div> - ->
-        <div class="col-md-10">
-            <h2 class='noMarginTop'>{*$nav->renderTitle() | nofilter*}</h2>
-        </div>
-    </div>
-    -->
 
     <div class="row">
         <div class="col-md-2" style="font-size: 12px">

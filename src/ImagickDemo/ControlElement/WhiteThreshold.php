@@ -4,10 +4,10 @@
 namespace ImagickDemo\ControlElement;
 
 
-class Threshold extends ValueElement {
+class WhiteThreshold extends ValueElement {
 
     function getDefault() {
-        return 0.5;
+        return 0.9;
     }
     
     function getMin() {
@@ -15,18 +15,18 @@ class Threshold extends ValueElement {
     }
     
     function getMax() {
-        return 255;
+        return 1;
     }
     
     function getVariableName() {
-        return 'threshold';
+        return 'whiteThreshold';
     }
     
     function getDisplayName() {
-        return 'Threshold';
+        return 'White threshold';
     }
 
-    function getThreshold() {
+    function getWhiteThreshold() {
         return $this->getValue();
     }
 }

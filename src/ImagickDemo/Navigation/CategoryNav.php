@@ -468,15 +468,15 @@ class CategoryNav implements Nav {
             //'resetImagePage',
             //'resizeImage',
             'rollImage' => ['rollImage', \ImagickDemo\Imagick\Control\rollImage::class],
-            'rotateImage' => ['rotateImage', \ImagickDemo\Control\ImageControl::class],
+            'rotateImage' => ['rotateImage', \ImagickDemo\Imagick\Control\rotateimage::class],
             'rotationalBlurImage' => ['rotationalBlurImage', \ImagickDemo\Control\ImageControl::class],
             'roundCorners' => ['roundCorners', \ImagickDemo\Control\ImageControl::class],
             //'sampleImage',
             'scaleImage' => ['scaleImage', \ImagickDemo\Control\ImageControl::class],
-            'segmentImage' => ['segmentImage', \ImagickDemo\Control\ImageControl::class],
+            'segmentImage' => ['segmentImage', \ImagickDemo\Imagick\Control\segmentImage::class],
             'selectiveBlurImage' => ['selectiveBlurImage', \ImagickDemo\Control\SelectiveBlurImage::class ],
-            'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Control\ImageControl::class],
-            'sepiaToneImage' => ['sepiaToneImage', \ImagickDemo\Control\ImageControl::class],
+            'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Imagick\Control\separateImageChannel::class],
+            'sepiaToneImage' => ['sepiaToneImage', \ImagickDemo\Imagick\Control\sepiaToneImage::class],
             //'setBackgroundColor',
             //'setColorspace',
             //'setCompression',
@@ -544,38 +544,66 @@ class CategoryNav implements Nav {
             //'setType',
             'shadeImage' => ['shadeImage', \ImagickDemo\Control\ImageControl::class ],
             'shadowImage' => ['shadowImage', \ImagickDemo\Control\ImageControl::class ],
-            'sharpenImage' => ['sharpenImage', \ImagickDemo\Control\ImageControl::class],
+            'sharpenImage' => ['sharpenImage', \ImagickDemo\Imagick\Control\sharpenImage::class],
             'shaveImage' => ['shaveImage', \ImagickDemo\Control\ImageControl::class],
-            'shearImage' => ['shearImage', \ImagickDemo\Control\ImageControl::class],
+            'shearImage' => ['shearImage', \ImagickDemo\Imagick\Control\shearImage::class],
             'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Control\SigmoidalContrastControl::class ],
 
 
             //new NavOption('similarityImage', true),
-            'sketchImage' => ['sketchImage', \ImagickDemo\Control\ImageControl::class],
+            'sketchImage' => [
+                'sketchImage',
+                \ImagickDemo\Imagick\Control\sketchImage::class,
+                'defaultParams' => [
+                    'sigma' => 15
+                ]
+            ],
             'smushImages' => ['smushImages', \ImagickDemo\Control\ImageControl::class],
             'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ControlCompositeImageSolarizeThreshold::class],
             'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\SparseColorControl::class],
-            'spliceImage' => ['spliceImage', \ImagickDemo\Control\ImageControl::class],
-            'spreadImage' => ['spreadImage', \ImagickDemo\Control\ImageControl::class],
+            'spliceImage' => ['spliceImage', \ImagickDemo\Imagick\Control\spliceImage::class],
+            'spreadImage' => ['spreadImage', \ImagickDemo\Imagick\Control\spreadImage::class],
             'statisticImage' => ['statisticImage', \ImagickDemo\Control\StatisticControl::class],
             'subImageMatch' => ['subImageMatch', \ImagickDemo\Control\ImageControl::class],
             'swirlImage' => ['swirlImage', \ImagickDemo\Control\ControlCompositeImageSwirl::class],
             'textureImage' => ['textureImage', \ImagickDemo\Control\ImageControl::class],
-            'thresholdImage' => ['thresholdImage', \ImagickDemo\Control\ImageControl::class],
+            'thresholdImage' => [
+                'thresholdImage',
+                \ImagickDemo\Imagick\Control\thresholdImage::class
+            ],
             'thumbnailImage' => ['thumbnailImage', \ImagickDemo\Control\ImageControl::class],
-            'tintImage' => ['tintImage', \ImagickDemo\Control\ControlCompositeRGBA::class],
+            'tintImage' => [
+                'tintImage',
+                \ImagickDemo\Control\ControlCompositeRGBA::class,
+                'defaultParams' => [
+                    'g' => 50
+                ]
+            ],
             'transformImage' => ['transformImage', \ImagickDemo\Control\ImageControl::class],
-            'transparentPaintImage' => ['transparentPaintImage', \ImagickDemo\Control\ImageControl::class],
+            'transparentPaintImage' => [
+                'transparentPaintImage',
+                \ImagickDemo\Imagick\Control\transparentPaintImage::class,
+                'defaultParams' => [
+                    'color' => 'rgb(39, 194, 255)'
+                ]
+            ],
             'transposeImage' => ['transposeImage', \ImagickDemo\Control\ImageControl::class],
             'transformImageColorspace' => ['transformImageColorspace', \ImagickDemo\Control\TransformColorSpaceControl::class],
 
             'transverseImage' => ['transverseImage', \ImagickDemo\Control\ImageControl::class],
-            'trimImage' => ['trimImage', \ImagickDemo\Control\ImageControl::class],
+            'trimImage' => [
+                'trimImage',
+                \ImagickDemo\Imagick\Control\trimImage::class,
+                'defaultParams' => [
+                    'color' => 'rgb(39, 194, 255)' 
+                ]
+            ],
+        
             'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ImageControl::class],
             'unsharpMaskImage' => ['unsharpMaskImage',\ImagickDemo\Control\ControlCompositeImageRadiusSigmaAmountUnsharpThresholdChannel::class ],
             'vignetteImage' => ['vignetteImage', \ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY::class],
-            'waveImage' => ['waveImage', \ImagickDemo\Control\ControlCompositeImageAmplitudeLength::class],
-            'whiteThresholdImage' => ['whiteThresholdImage', \ImagickDemo\Control\ImageControl::class],
+            'waveImage' => ['waveImage', \ImagickDemo\Imagick\Control\waveImage::class],
+            'whiteThresholdImage' => ['whiteThresholdImage', \ImagickDemo\Imagick\Control\whiteThresholdImage::class],
         ];
 
         $imagickDrawExamples = [

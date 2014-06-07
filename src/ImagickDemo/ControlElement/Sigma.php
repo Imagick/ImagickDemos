@@ -4,9 +4,17 @@
 namespace ImagickDemo\ControlElement;
 
 
+use Intahwebz\Request;
 
 
 class Sigma extends ValueElement {
+
+    private $defaultSigma;
+
+    function __construct(Request $request, $defaultSigma = 1) {
+        $this->defaultSigma = $defaultSigma;
+        parent::__construct($request);
+    }
 
     protected function getDefault() {
         return 1;

@@ -4,21 +4,12 @@
 namespace ImagickDemo\ControlElement;
 
 
-use Intahwebz\Request;
 
 
-class G extends ValueElement {
+class Sepia extends ValueElement {
 
-    private $defaultGreen;
-
-    function __construct(Request $request, $defaultG = 100) {
-        $this->defaultGreen = $defaultG;
-        parent::__construct($request);
-    }
-    
-    
     protected function getDefault() {
-        return $this->defaultGreen;
+        return 55;
     }
 
     protected function getMin() {
@@ -30,15 +21,18 @@ class G extends ValueElement {
     }
 
     protected function getVariableName() {
-        return 'g';
+        return 'sepia';
     }
 
     protected function getDisplayName() {
-        return 'Green';
+        return 'Sepia';
     }
 
-    function getG() {
+    function getSepia() {
         return $this->getValue();
     }
 }
 
+
+
+ 

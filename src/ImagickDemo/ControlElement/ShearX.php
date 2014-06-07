@@ -4,21 +4,12 @@
 namespace ImagickDemo\ControlElement;
 
 
-use Intahwebz\Request;
 
 
-class G extends ValueElement {
+class ShearX extends ValueElement {
 
-    private $defaultGreen;
-
-    function __construct(Request $request, $defaultG = 100) {
-        $this->defaultGreen = $defaultG;
-        parent::__construct($request);
-    }
-    
-    
     protected function getDefault() {
-        return $this->defaultGreen;
+        return 15;
     }
 
     protected function getMin() {
@@ -30,15 +21,18 @@ class G extends ValueElement {
     }
 
     protected function getVariableName() {
-        return 'g';
+        return 'shearX';
     }
 
     protected function getDisplayName() {
-        return 'Green';
+        return 'Shear X';
     }
 
-    function getG() {
+    function getShearX() {
         return $this->getValue();
     }
 }
 
+
+
+ 

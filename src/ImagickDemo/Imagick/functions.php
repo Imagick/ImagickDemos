@@ -431,7 +431,7 @@ function flipImage($imagePath) {
 
 //TODO Get a green screen image.
 function floodFillPaintImage() {
-    $imagick = new \Imagick(realpath("../images/DatCat-shutterStock.jpg"));
+    $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
     $imagick->floodFillPaintImage(
             'white',
                 0.3 * \Imagick::getQuantum(),
@@ -833,9 +833,9 @@ function rollImage($imagePath, $rollX, $rollY) {
     echo $imagick->getImageBlob();
 }
 
-function rotateimage($imagePath) {
+function rotateimage($imagePath, $angle, $color) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->rotateimage('rgb(128, 32, 32)', 15);
+    $imagick->rotateimage($color, $angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -848,9 +848,6 @@ function rotationalBlurImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-
-
-
 
 function roundCorners($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -885,9 +882,9 @@ function scaleImage($imagePath) {
 
 
 
-function segmentImage($imagePath) {
+function segmentImage($imagePath, $colorSpace, $clusterThreshold, $smoothThreshold) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->segmentImage(\Imagick::COLORSPACE_RGB, 10, 5);
+    $imagick->segmentImage($colorSpace, $clusterThreshold, $smoothThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -905,10 +902,9 @@ function selectiveBlurImage($imagePath, $radius, $sigma, $threshold, $channel) {
 }
 
 
-function separateimagechannel($imagePath) {
+function separateimagechannel($imagePath, $channel) {
     $imagick = new \Imagick(realpath($imagePath));
-    //TODO needs control
-    $imagick->separateimagechannel(\Imagick::CHANNEL_BLUE);
+    $imagick->separateimagechannel($channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -916,9 +912,9 @@ function separateimagechannel($imagePath) {
 
 
 
-function sepiaToneImage($imagePath) {
+function sepiaToneImage($imagePath, $sepia) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->sepiaToneImage(55);
+    $imagick->sepiaToneImage($sepia);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1028,9 +1024,9 @@ function shadowImage($imagePath) {
 }
 
 
-function sharpenimage($imagePath) {
+function sharpenimage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->sharpenimage(5, 5);
+    $imagick->sharpenimage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1044,9 +1040,9 @@ function shaveImage($imagePath) {
 
 
 
-function shearimage($imagePath) {
+function shearimage($imagePath, $color, $shearX, $shearY) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->shearimage('rgb(128, 32, 32)', 15, 0);
+    $imagick->shearimage($color, $shearX, $shearY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1067,9 +1063,9 @@ function sigmoidalcontrastimage($imagePath, $sharpening, $midpoint, $sigmoidalCo
 
 
 
-function sketchimage($imagePath) {
+function sketchimage($imagePath, $radius, $sigma, $angle) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->sketchimage(6, 15, 45);
+    $imagick->sketchimage($radius, $sigma, $angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1101,17 +1097,17 @@ function solarizeImage($imagePath, $solarizeThreshold) {
 
 
 
-function spliceImage($imagePath) {
+function spliceImage($imagePath, $startX, $startY, $width, $height) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->spliceImage(50, 50, 100, 100);
+    $imagick->spliceImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
 
 
-function spreadImage($imagePath) {
+function spreadImage($imagePath, $radius) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->spreadImage(5);
+    $imagick->spreadImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1189,9 +1185,9 @@ function textureImage($imagePath) {
 }
 
 
-function thresholdimage($imagePath) {
+function thresholdimage($imagePath, $threshold, $channel) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->thresholdimage(0.5 * \Imagick::getQuantum());
+    $imagick->thresholdimage($threshold * \Imagick::getQuantum(), $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -1242,20 +1238,17 @@ function transformImageColorspace($imagePath, $colorSpace, $channel) {
 }
 
 
-function transparentPaintImage() {
-    //TODO - get a green screen image
-    $imagick = new \Imagick(realpath($imagePath));
+function transparentPaintImage($color, $alpha, $fuzz) {
+    $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
 
+    //Need to be in a format that supports transparency
     $imagick->setimageformat('png');
 
     $imagick->transparentPaintImage(
-        '#06ae37', 0, 0.04 * \Imagick::getQuantum(), false
+        $color, $alpha, $fuzz * \Imagick::getQuantum(), false
     );
 
-    $imagick->transparentPaintImage(
-        '#24b74f', 0, 0.04 * \Imagick::getQuantum(), false
-    );
-
+    //Not required, but helps tidy up left over pixels
     $imagick->despeckleimage();
 
     header("Content-Type: image/png");
@@ -1283,10 +1276,10 @@ function transverseImage($imagePath) {
 }
 
 
-function trimImage() {
-    $imagick = new \Imagick(realpath("../images/DatCat-shutterStock.jpg"));
-    $imagick->borderImage("#00ff00", 10, 10);
-    $imagick->trimImage(0.07 * \Imagick::getQuantum());
+function trimImage($color, $fuzz) {
+    $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
+    $imagick->borderImage($color, 10, 10);
+    $imagick->trimImage($fuzz * \Imagick::getQuantum());
 
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1332,10 +1325,10 @@ function waveImage($imagePath, $amplitude, $length) {
     echo $imagick->getImageBlob();
 }
 
-function whiteThresholdImage($imagePath) {
+function whiteThresholdImage($imagePath, $color) {
     $imagick = new \Imagick(realpath($imagePath));
     //TODO needs a control
-    $imagick->whiteThresholdImage('rgb(230, 230, 230)');
+    $imagick->whiteThresholdImage($color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

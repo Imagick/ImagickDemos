@@ -196,14 +196,112 @@ $controls = [
         'ImagickDemo\ControlElement\RollX',
         'ImagickDemo\ControlElement\RollY',
     ],
-    
-    
+
+    'ImagickDemo\Imagick\Control\rotateimage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Angle',
+        'ImagickDemo\ControlElement\Color',
+    ],
+
+    'ImagickDemo\Imagick\Control\segmentImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ClusterThreshold',
+        'ImagickDemo\ControlElement\SmoothThreshold',
+        'ImagickDemo\ControlElement\ColorSpace',
+    ],
+
+
+    'ImagickDemo\Imagick\Control\separateImageChannel' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+
+    'ImagickDemo\Imagick\Control\sepiaToneImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Sepia',
+    ],
+
+    'ImagickDemo\Imagick\Control\sharpenImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+        'ImagickDemo\ControlElement\Channel'
+    ],
+
+    'ImagickDemo\Imagick\Control\shearImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\shearX',
+        'ImagickDemo\ControlElement\shearY',
+        'ImagickDemo\ControlElement\color'
+    ],
+
     'ImagickDemo\Imagick\Control\SigmoidalContrastControl' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Sharpening',
         'ImagickDemo\ControlElement\Midpoint',
         'ImagickDemo\ControlElement\SigmoidalContrast'
     ],
+
+
+  
+
+
+    'ImagickDemo\Imagick\Control\sketchImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\radius',
+        'ImagickDemo\ControlElement\sigma',
+        'ImagickDemo\ControlElement\angle'
+    ],
+
+
+
+    'ImagickDemo\Imagick\Control\spliceImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\StartX',
+        'ImagickDemo\ControlElement\StartY',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height50',
+    ],
+
+
+
+    'ImagickDemo\Imagick\Control\spreadImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+    ],
+    
+    'ImagickDemo\Imagick\Control\thresholdImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Threshold',
+        'ImagickDemo\ControlElement\Channel',
+    ],
+    
+
+    'ImagickDemo\Imagick\Control\transparentPaintImage' => [
+        'ImagickDemo\ControlElement\Color',
+        'ImagickDemo\ControlElement\Alpha',
+        'ImagickDemo\ControlElement\Fuzz'
+    ],
+    
+    'ImagickDemo\Imagick\Control\trimImage' => [
+        'ImagickDemo\ControlElement\Color',
+        'ImagickDemo\ControlElement\Fuzz'
+    ],
+    
+    
+    'ImagickDemo\Imagick\Control\waveImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Amplitude',
+        'ImagickDemo\ControlElement\Length'
+    ],
+    
+
+
+    'ImagickDemo\Imagick\Control\whiteThresholdImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Color',
+    ],
+    
     
     
     [
@@ -245,11 +343,9 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Swirl'
     ],
-    [
-        'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\Amplitude',
-        'ImagickDemo\ControlElement\Length'
-    ],
+    
+    
+
 
     [
         'ImagickDemo\ControlElement\Radius',

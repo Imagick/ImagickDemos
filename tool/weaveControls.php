@@ -124,7 +124,7 @@ $controls = [
     ],
 
     'ImagickDemo\Imagick\Control\deskewImage' => [
-        'ImagickDemo\ControlElement\ThresholdAngle',
+        'ImagickDemo\ControlElement\Threshold',
     ],
     
     'ImagickDemo\Imagick\Control\frameimage' => [
@@ -169,6 +169,11 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\GrayOnly',
         'ImagickDemo\ControlElement\Channel',
+    ],
+    
+
+    'ImagickDemo\Imagick\Control\newPseudoImage' => [
+        'ImagickDemo\ControlElement\CanvasType',
     ],
 
     'ImagickDemo\Imagick\Control\oilPaintImage' => [

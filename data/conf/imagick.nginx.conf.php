@@ -59,6 +59,17 @@ server {
         expires 24h;
         add_header Pragma public;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+    }
+   
+    location ~ ^/(status|ping)$ {
+
+        if ( $remote_addr != 127.0.0.1 ) { return 444;} 
+   
+        access_log off;
+        allow 127.0.0.1;
+        deny all;
+        include fastcgi_params;
+        fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
    }
 
     location  / {

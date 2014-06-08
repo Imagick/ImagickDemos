@@ -24,8 +24,6 @@ abstract class OptionValueElement implements ControlElement {
             $this->key =  $needle;
             $this->value = $newValue;
         }
-
-        //blah 
     }
 
     protected function getOptionKey() {

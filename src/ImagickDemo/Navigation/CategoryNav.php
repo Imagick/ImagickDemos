@@ -426,7 +426,7 @@ class CategoryNav implements Nav {
             'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Imagick\Control\motionBlurImage::class],
             'negateImage' => ['negateImage', \ImagickDemo\Imagick\Control\negateImage::class],
             //'newImage',
-            'newPseudoImage' => ['newPseudoImage', \ImagickDemo\Control\ImageControl::class],
+            'newPseudoImage' => ['newPseudoImage', \ImagickDemo\Imagick\Control\newPseudoImage::class],
             //'nextImage',
             'normalizeImage' => ['normalizeImage', \ImagickDemo\Control\ImageControl::class],
             'oilPaintImage' => ['oilPaintImage', \ImagickDemo\Imagick\Control\oilPaintImage::class],

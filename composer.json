@@ -30,6 +30,7 @@
         "intahwebz/weaver": ">=0.2.2",
         "intahwebz/configurator": "0.1.1",
         "nikic/fast-route": "dev-master",
+        "rdlowrey/artax": "v0.7.0",
         "rdlowrey/auryn": "dev-v1.0.0-pluginWithParamDelegation as dev-PluginExperiment2",
         "intahwebz/jig": "0.9.0",
         "intahwebz/routing": ">=0.9.1",

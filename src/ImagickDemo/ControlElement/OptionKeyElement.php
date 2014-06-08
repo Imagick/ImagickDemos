@@ -25,8 +25,7 @@ abstract class OptionKeyElement implements ControlElement {
                 $this->value = $value;
                 break;
             }
-        }
-        //blah 
+        } 
     }
 
     protected function getKey() {

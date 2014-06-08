@@ -82,8 +82,8 @@
     </div>
     <div>
         <?php
-        echo "<br/><br/><br/><span style='font-size: 8px; display: block;'>Peak memory ". number_format(memory_get_peak_usage())."</span>";
-        ?>
+        echo "<br/><br/><br/><span style='font-size: 8px; display: block;'>Peak memory ". number_format(memory_get_peak_usage())." - <a href='/info'>Status</a> </span>";
+        ?> 
     </div>
 </div>  
 

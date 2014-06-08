@@ -307,15 +307,17 @@ function cropImage($imagePath, $startX, $startY, $width, $height) {
 }
 
 
-//TODO - thresholdAngle does bugger all
-function deskewImage($thresholdAngle) {
+/**
+ * @param $threshold - separates the background from the foreground
+ */
+function deskewImage($threshold) {
 
     $imagick = new \Imagick(realpath("../images/NYTimes-Page1-11-11-1918.jpg"));
 
     $deskewImagick = clone $imagick;
     
     //This is the only thing required for deskewing.
-    $deskewImagick->deskewImage($thresholdAngle);
+    $deskewImagick->deskewImage($threshold);
 
     //The rest of this example is to make the result obvious - because
     //otherwise the result is not obvious.
@@ -703,10 +705,15 @@ function negateImage($imagePath, $grayOnly, $channel) {
 
 
     
-function newPseudoImage() { 
+function newPseudoImage($canvasType) {
+    
+    echo "hmm";
+    echo $canvasType;
+    exit(0);
+    
     $imagick = new \Imagick();
-    $imagick->newPseudoImage(200, 200, 'gradient:red-blue');
-    $imagick->sigmoidalcontrastimage(true, 14, 90);
+    $imagick->newPseudoImage(300, 300, $canvasType);
+    //$imagick->sigmoidalcontrastimage(true, 14, 90);
     $imagick->setImageFormat("jpg");
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

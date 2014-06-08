@@ -157,7 +157,7 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         ':example' => $example
     ]);
 
-    $params = ['a', 'adaptiveOffset', 'alpha', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'bestFit', 'blackPoint', 'blueShift', 'brightness', 'channel', 'clusterThreshold', 'color', 'colorElement', 'colorSpace',  'contrast',  'contrastType', 'distortionExample', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'fuzz', 'g', 'gamma', 'gradientStartColor', 'gradientEndColor', 'grayOnly', 'height', 'highThreshold', 'hue', 'image', 'imagePath', 'innerBevel', 'length', 'lowThreshold', 'meanOffset', 'noiseType', 'opacity', 'originX', 'originY', 'outerBevel', 'r', 'radius', 'reduceNoise', 'rollX', 'rollY', 'roundX', 'roundY', 'saturation', 'secondTerm', 'sepia', 'shearX', 'shearY', 'sigma', 'skew', 'smoothThreshold', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'thresholdAngle', 'thresholdColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'width', 'h20', 'sharpening', 'midpoint', 'sigmoidalContrast',];
+    $params = ['a', 'adaptiveOffset', 'alpha', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'bestFit', 'blackPoint', 'blueShift', 'brightness', 'canvasType', 'channel', 'clusterThreshold', 'color', 'colorElement', 'colorSpace',  'contrast',  'contrastType', 'distortionExample', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'fuzz', 'g', 'gamma', 'gradientStartColor', 'gradientEndColor', 'grayOnly', 'height', 'highThreshold', 'hue', 'image', 'imagePath', 'innerBevel', 'length', 'lowThreshold', 'meanOffset', 'noiseType', 'opacity', 'originX', 'originY', 'outerBevel', 'r', 'radius', 'reduceNoise', 'rollX', 'rollY', 'roundX', 'roundY', 'saturation', 'secondTerm', 'sepia', 'shearX', 'shearY', 'sigma', 'skew', 'smoothThreshold', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'thresholdAngle', 'thresholdColor', 'translateX', 'translateY', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'width', 'h20', 'sharpening', 'midpoint', 'sigmoidalContrast',];
 
 
 
@@ -233,6 +233,115 @@ function setupRootIndex(\Auryn\Provider $injector) {
 }
 
 
+
+
+function setupInfo() {
+
+    $knownServers = [
+        'imagick.test',
+        'phpimagick.com'
+    ];
+
+    $serverName = null;
+
+    if(array_key_exists("SERVER_NAME", $_SERVER)) {
+        $allgedServerName = strtolower($_SERVER["SERVER_NAME"]);
+        
+        if (in_array($allgedServerName, $knownServers)) {
+            $serverName = $allgedServerName;
+        }
+    }
+
+    $client = new Artax\Client;
+    $url ="http://".$serverName."/www-status?full&json";
+    $response = $client->request($url);
+
+    $headers = [
+        "pool" => "Pool name",
+        "process manager" => "Process manager",
+        "start time" => "Start time",
+        "start since" => "Uptime",
+        "accepted conn" => "Accepted connections",
+        "listen queue" => "Listen queue",
+        "max listen queue" => "Max listen queue",
+        "listen queue len" => "Listen queue length",
+        "idle processes" => "Idle processes",
+        "active processes" => "Active processes",
+        "total processes" => "Total processes",
+        "max active processes" => "Max active processes",
+        "max children reached" => "Max children reached",
+        "slow requests" => "Slow requests",
+    ];
+
+    $json = json_decode($response->getBody(), true);
+
+    echo "<table>";
+    foreach ($headers as $header => $display) {
+        echo "<tr><td>";
+        echo $display;
+        echo "</td><td>";
+        echo $json[$header];
+        echo "</td></tr>";
+    }
+    echo "</table>";
+    
+    echo "<table>";
+
+    $processHeaders = [
+        "pid",
+        "state",
+        "start time",
+        "start since",
+        "requests",
+        "request duration",
+        //"request method",
+        "request URI",
+        "content length",
+        //"user",
+        "script",
+        "last request cpu",
+        "last request memory",
+    ];
+
+    foreach ($processHeaders as $processHeader) {
+        echo "<th>";
+        echo $processHeader;
+        echo "</th>";
+    }
+
+    foreach ($json['processes'] as $process) {
+        echo "<tr>";
+        
+            foreach ($processHeaders as $processHeader) {
+                echo "<td align='right'>";
+                if (array_key_exists($processHeader, $process)) {
+                    $text = $process[$processHeader];
+
+                    $text = str_replace([
+                        '/home/github/imagick-demos//imagick',
+                        '/home/github/imagick-demos/imagick'
+                        ],
+                        '',
+                        $text
+                    );
+                    
+                    echo $text;
+                }
+                else {
+                    echo "-";
+                }
+                echo "</td>";
+            }
+        
+        
+        echo "</tr>";
+    }
+
+    echo "</table>";
+
+}
+
+
 $routesFunction = function(FastRoute\RouteCollector $r) {
 
     $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Example}';
@@ -269,10 +378,14 @@ $routesFunction = function(FastRoute\RouteCollector $r) {
           "/help/$categories/{example:[a-zA-Z]+}",
           'setupHelp'
     );
+
+    $r->addRoute('GET', '/info', 'setupInfo');
     
     //root
     $r->addRoute('GET', '/', 'setupRootIndex');
 };
+
+
 
 
 $dispatcher = FastRoute\simpleDispatcher($routesFunction);

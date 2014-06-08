@@ -6,6 +6,7 @@ chown intahwebz:www-data imagick-demos
 su intahwebz
 git clone https://github.com/Danack/Imagick-demos imagick-demos/
 
+cd imagick-demos
 /usr/local/bin/php -d allow_url_fopen=1 ./lib/composer install 
 
 cd tool

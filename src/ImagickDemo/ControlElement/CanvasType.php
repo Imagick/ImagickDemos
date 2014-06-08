@@ -24,8 +24,8 @@ class CanvasType extends OptionKeyElement {
         return [
             "GRANITE:" => "Granite",
             "LOGO:" => "Logo",
-            "NETSCAPE" => "Netscape web safe colors",
-            "WIZARD" => "Wizard",
+            "NETSCAPE:" => "Netscape web safe colors",
+            "WIZARD:" => "Wizard",
             "canvas:khaki" => "Canvas constant",
             "xc:wheat" => "Canvas constant shorthand",
             "rose:" => "Rose",
@@ -43,7 +43,7 @@ class CanvasType extends OptionKeyElement {
     }
 
     function getCanvasType() {
-        return $this->getOptionKey();
+        return $this->getKey();
     }
 }
 

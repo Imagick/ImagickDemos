@@ -706,11 +706,6 @@ function negateImage($imagePath, $grayOnly, $channel) {
 
     
 function newPseudoImage($canvasType) {
-    
-    echo "hmm";
-    echo $canvasType;
-    exit(0);
-    
     $imagick = new \Imagick();
     $imagick->newPseudoImage(300, 300, $canvasType);
     //$imagick->sigmoidalcontrastimage(true, 14, 90);

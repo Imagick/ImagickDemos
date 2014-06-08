@@ -530,21 +530,22 @@ $controls = [
 \Intahwebz\Functions::load();
 
 foreach ($controls as $outputClassname => $components) {
-    $lazyWeaveInfo = new \Weaver\CompositeWeaveInfo(
+    $compositeWeaveInfo = new \Weaver\CompositeWeaveInfo(
         'ImagickDemo\Control\ControlComposite',
-        $components, 
+        
         [
             'renderFormElement' => 'string',
             'getParams' => 'array',
         ]
     );
-    $weaveMethod = new CompositeWeaveGenerator($lazyWeaveInfo);
-    
+
+    $weave = \Weaver\Weaver::weave($components, $compositeWeaveInfo);
+
     if (is_int($outputClassname) == false) {
-        $weaveMethod->writeClass('../var/compile/', $outputClassname);
+        $weave->writeFile('../var/compile/', $outputClassname);
     }
     else {
-        $weaveMethod->writeClass('../var/compile/');
+        $weave->writeFile('../var/compile/');
     }
 }
 

@@ -15,6 +15,9 @@ cd tool
 /usr/local/bin/php weaveControls.php
 
 #need to make dir?
+#mkdir ../var/cache
+#mkdir ../var/cache/less
+
 /usr/local/bin/php compileLess.php
 
 #back to root

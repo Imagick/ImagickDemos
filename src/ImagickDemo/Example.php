@@ -16,6 +16,7 @@ abstract class Example implements renderableExample {
 
     function __construct(\ImagickDemo\Control $control) {
         $this->control = $control;
+        
     }
 
     function renderTitle() {

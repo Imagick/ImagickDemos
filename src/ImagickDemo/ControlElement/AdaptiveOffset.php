@@ -10,12 +10,16 @@ class AdaptiveOffset extends ValueElement {
     private $default;
     
     function __construct(Request $request) {
-        $this->default = \Imagick::getQuantum() / 2;
+        $this->default = \Imagick::getQuantum() / 8;
         parent::__construct($request);
     }
     
     protected function getDefault() {
         return $this->default;
+    }
+
+    protected function filterValue($value) {
+        return intval($value);
     }
 
     protected function getMin() {

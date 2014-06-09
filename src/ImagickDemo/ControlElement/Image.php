@@ -24,6 +24,7 @@ class Image extends \ImagickDemo\ControlElement\OptionValueElement {
         $images = [
             "../images/Skyline_400.jpg" => 'Skyline',
             "../images/Biter_500.jpg" => 'Lorikeet',
+            "../images/SydneyPeople_400.jpg" => 'People',
         ];
         
         return $images;

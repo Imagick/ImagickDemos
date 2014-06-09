@@ -181,6 +181,15 @@ $controls = [
         'ImagickDemo\ControlElement\Radius'
     ],
 
+    'ImagickDemo\Imagick\Control\raiseImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height',
+        'ImagickDemo\ControlElement\X',
+        'ImagickDemo\ControlElement\Y',
+        'ImagickDemo\ControlElement\Raise',
+    ],
+
     
     'ImagickDemo\Imagick\Control\randomThresholdimage' => [
         'ImagickDemo\ControlElement\Image',
@@ -202,11 +211,21 @@ $controls = [
         'ImagickDemo\ControlElement\RollY',
     ],
 
-    'ImagickDemo\Imagick\Control\rotateimage' => [
+    'ImagickDemo\Imagick\Control\rotateImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Angle',
         'ImagickDemo\ControlElement\Color',
     ],
+
+    'ImagickDemo\Imagick\Control\quantizeImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\NumberColors',
+        'ImagickDemo\ControlElement\ColorSpace',
+        'ImagickDemo\ControlElement\TreeDepth',
+        'ImagickDemo\ControlElement\Dither',
+    ],
+    
+    
 
     'ImagickDemo\Imagick\Control\segmentImage' => [
         'ImagickDemo\ControlElement\Image',
@@ -235,9 +254,9 @@ $controls = [
 
     'ImagickDemo\Imagick\Control\shearImage' => [
         'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\shearX',
-        'ImagickDemo\ControlElement\shearY',
-        'ImagickDemo\ControlElement\color'
+        'ImagickDemo\ControlElement\ShearX',
+        'ImagickDemo\ControlElement\ShearY',
+        'ImagickDemo\ControlElement\Color'
     ],
 
     'ImagickDemo\Imagick\Control\SigmoidalContrastControl' => [
@@ -386,6 +405,7 @@ $controls = [
         'ImagickDemo\ControlElement\Channel'
         
     ],
+    
     [
         'ImagickDemo\ControlElement\BackgroundColor',
         'ImagickDemo\ControlElement\StrokeColor',
@@ -521,8 +541,17 @@ $controls = [
     'ImagickDemo\Control\CompositeExampleControl' => [
         'ImagickDemo\ControlElement\CompositeExample',
     ],
-    
 
+
+    'ImagickDemo\ImagickDraw\Control\matte' => [   
+        'ImagickDemo\ControlElement\PaintType',
+        'ImagickDemo\ControlElement\BackgroundColor',
+        'ImagickDemo\ControlElement\StrokeColor',
+        'ImagickDemo\ControlElement\FillColor',
+    ],
+   
+    
+    
 
 
 ];

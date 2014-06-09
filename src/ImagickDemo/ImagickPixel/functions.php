@@ -30,6 +30,7 @@ function header($string, $replace = true, $http_response_code = null) {
     }
 }
 
+//Example ImagickPixel::construct
 function construct() {
 
     $columns = 4;
@@ -77,6 +78,7 @@ function construct() {
     echo $image->getImageBlob();
 }
 
+//Example ImagickPixel::setColor
 function setColor() {
     $draw = new \ImagickDraw();
 
@@ -99,7 +101,7 @@ function setColor() {
     echo $image->getImageBlob();
 }
 
-
+//Example ImagickPixel::setColorValue
 function setColorValue() {
     $image = new \Imagick();
     $draw = new \ImagickDraw();
@@ -156,7 +158,7 @@ function setColorValue() {
 */
 }
 
-
+//Example ImagickPixel::setColorValueQuantum
 function setColorValueQuantum() {
     $image = new \Imagick();
 

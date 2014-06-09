@@ -41,42 +41,53 @@
         </div>
 
         <div class="col-md-10">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
+                </div>
+                <div class="col-md-4" style='text-align: right'>
+                    {$nav->renderPreviousLink() | nofilter}
+                    {$nav->renderNextLink() | nofilter}
+                </div>
+            </div>
+            
             <div class="row">
 
-                <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
+                <div class="col-md-8">
+                    {$example->render() | nofilter}
+                </div>
+
+                <div class="col-md-4">
+                    {$control->renderForm() | nofilter}
+                    <!-- <br/>
+                    <span style='min-height: 30px'>&nbsp;</span>
 
                     <div class="row">
-                    <div class="col-md-8">
-                        {$example->render() | nofilter}
-                    </div>
-                    <div class="col-md-4">
-                        {$control->renderForm() | nofilter}
-                    </div>
-                    </div>
+                        <div class="col-md-6">
+                            {$nav->renderPreviousButton() | nofilter}
+                        </div>
+                        <div class="col-md-3" style='text-align: right'>
+                            {$nav->renderNextButton() | nofilter}
+                        </div>
+                    </div> -->
+                    
+                </div>
             </div>
             <div class="row">
                 
                 <div class="col-md-12">
                     {$docHelper->showDoc() | nofilter}
                 </div>
-                <span style="display: 10px">&nbsp;</span>
             </div>
     
+
             <div class="row">
-                <div class="col-md-3">
-                    {$nav->renderPreviousButton() | nofilter}
+                <div class="col-md-12">
+                    {$docHelper->showExamples() | nofilter}
                 </div>
-        
-                <div class="col-md-6" >
-                    {*$example->renderCodeLink() | nofilter *}
-
-                </div>
-        
-                <div class="col-md-3" style='text-align: right'>
-                    {$nav->renderNextButton() | nofilter}
-                </div>
-
             </div>
+            
         </div>
 
     </div>

@@ -3,8 +3,74 @@
 require_once('../vendor/autoload.php');
 
 
-$entityBlock = <<< END
 
+
+function getExamples() {
+
+
+    $directory = new RecursiveDirectoryIterator('../src');
+    $iterator = new RecursiveIteratorIterator($directory);
+    $files = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::MATCH);
+
+    $examples = [];
+
+    $category = null;
+    $function = null;
+    
+
+    foreach ($files as $file) {
+        /** @var $file SplFileInfo */
+        $filename = $file->getPath()."/".$file->getFilename();
+
+        // open the file 
+        $fileLines = file($filename);
+
+        if (!$fileLines) {
+            throw new \Exception("Failed to open $filename");
+        }
+
+        $currentExample = null;
+
+        foreach ($fileLines as $fileLine) {
+            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator)::(\w+)#";
+            $matchCount = preg_match($pattern, $fileLine, $matches);
+
+            if ($matchCount == true) {
+                if ($currentExample !== null) {
+                    $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
+                }
+                $currentExample = '';
+                $category = $matches[1];
+                $function = $matches[2];
+            }
+            else if ($currentExample !== null) {
+                $currentExample .= $fileLine;
+
+                if (substr_compare($fileLine, "}", 0, 1) === 0) {
+                    if ($currentExample !== null) {
+                        $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
+                    }
+
+                    
+                    
+                    $currentExample = null;
+                    $category = null;
+                    $function = null;
+                }
+            }
+        }
+
+        if ($currentExample !== null) {
+            $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
+        }
+        $currentExample = null;
+    }
+
+    return $examples;
+}
+
+
+$entityBlock = <<< END
 
 
 <!-- Imagick generic return types -->
@@ -992,7 +1058,6 @@ foreach ($urlList as $subdir => $entries) {
             }
         }
     }
-
 }
 
 
@@ -1018,6 +1083,13 @@ foreach ($urlList as $subdir => $entries) {
     
 }
 
+$examples = getExamples();
+
+
+
+
+$exampleEntries = var_export($examples, true);
+
 $manualEntries = var_export($manualEntries, true);
 
 $output = <<< END
@@ -1026,6 +1098,9 @@ $output = <<< END
 namespace ImagickDemo;
 
 class DocHelper {
+
+
+    private \$exampleEntries = $exampleEntries;
 
     private \$manualEntries = $manualEntries;
 
@@ -1050,9 +1125,7 @@ class DocHelper {
         //\$output .= "<tr><td colspan='3'>".\$manualEntry['description']."</td></tr>";
 
         \$output .= \$manualEntry['description'];
-        
-      
-    
+
         if (count(\$manualEntry['parameters'])) {
             \$output .= "<h5>Parameters</h5>";
 
@@ -1073,9 +1146,43 @@ class DocHelper {
         return \$output; 
     }
 
+
+    function showExamples() {
+
+        \$output = "";
+
+        if (isset(\$this->exampleEntries[\$this->category][\$this->example]) == false) {
+            return "";
+            //return "No example for ".\$this->category. " ".\$this->example ;
+        }
+        
+        \$examples = \$this->exampleEntries[\$this->category][\$this->example];
+        
+        \$count = 1;
+        foreach (\$examples as \$example) {
+            \$example = unserialize(\$example);
+            /** @var \$example \ImagickDemo\CodeExample */
+            
+            if (count(\$examples) > 1) {
+                \$output .= "Example \$count <br/><pre>";
+            }
+            else {
+                \$output .= "Example <br/><pre>";
+            }
+                \$output .=  \$example->getLines();
+            \$output .=  "</pre>";
+        }
+        
+        return \$output;
+    }
+
 }
 END;
 
 $path = "../var/compile/ImagickDemo/DocHelper.php";
 
-file_put_contents($path, $output);
+$result = file_put_contents($path, $output);
+
+if ($result === false) {
+    throw new \Exception("Failed to write file.");
+}

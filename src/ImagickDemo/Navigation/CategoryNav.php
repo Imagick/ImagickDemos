@@ -138,6 +138,19 @@ class CategoryNav implements Nav {
         return "";
     }
 
+    function renderPreviousLink() {
+        $previousNavName = $this->getPreviousName();
+
+        if ($previousNavName) {
+            return "<a href='/".$this->category."/".$previousNavName."'>
+             <span class='glyphicon glyphicon-arrow-left'></span> ".$previousNavName."
+            </a>";
+        }
+
+        return "";
+    }
+    
+    
     /**
      * @return string
      */
@@ -149,6 +162,18 @@ class CategoryNav implements Nav {
             <button type='button' class='btn btn-primary'>
             ".$nextName." <span class='glyphicon  glyphicon-arrow-right'></span>
             </button>
+            </a>";
+        }
+
+        return "";
+    }
+
+    function renderNextLink() {
+        $nextName = $this->getNextName();
+
+        if ($nextName) {
+            echo "<a href='/".$this->category."/".$nextName."'>
+            ".$nextName." <span class='glyphicon  glyphicon-arrow-right'></span>
             </a>";
         }
 
@@ -232,7 +257,7 @@ class CategoryNav implements Nav {
             'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Imagick\Control\addNoiseImage::class],
             'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ImageControl::class], //Doesn't work?
             //'animateImages',
-            'annotateImage' => ['annotateImage', \ImagickDemo\Imagick\Control\AnnotateImageControl::class],
+            'annotateImage' => ['annotateImage', \ImagickDemo\Imagick\Control\annotateImage::class],
 
             //'appendImages',
             'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
@@ -447,13 +472,20 @@ class CategoryNav implements Nav {
             //'previewImages',
             //'previousImage',
             //'profileImage',
-            'quantizeImage' => ['quantizeImage', \ImagickDemo\Control\ImageControl::class],
+            'quantizeImage' => ['quantizeImage', \ImagickDemo\Imagick\Control\quantizeImage::class],
             //'quantizeImages',
             //'queryFontMetrics',
             //'queryFonts',
             //'queryFormats',
             'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ImageControl::class],
-            'raiseImage' => ['raiseImage', \ImagickDemo\Control\ImageControl::class],
+            'raiseImage' => [
+                'raiseImage',
+                \ImagickDemo\Imagick\Control\raiseImage::class,
+                'defaultParams' => [
+                    'width' => 15,
+                    'height' => 15
+                ]
+            ],
             'randomThresholdImage' => ['randomThresholdImage', \ImagickDemo\Imagick\Control\randomThresholdimage::class],
             //'readImage',
             //'readImageBlob',
@@ -468,7 +500,7 @@ class CategoryNav implements Nav {
             //'resetImagePage',
             //'resizeImage',
             'rollImage' => ['rollImage', \ImagickDemo\Imagick\Control\rollImage::class],
-            'rotateImage' => ['rotateImage', \ImagickDemo\Imagick\Control\rotateimage::class],
+            'rotateImage' => ['rotateImage', \ImagickDemo\Imagick\Control\rotateImage::class],
             'rotationalBlurImage' => ['rotationalBlurImage', \ImagickDemo\Control\ImageControl::class],
             'roundCorners' => ['roundCorners', \ImagickDemo\Control\ImageControl::class],
             //'sampleImage',
@@ -547,7 +579,7 @@ class CategoryNav implements Nav {
             'sharpenImage' => ['sharpenImage', \ImagickDemo\Imagick\Control\sharpenImage::class],
             'shaveImage' => ['shaveImage', \ImagickDemo\Control\ImageControl::class],
             'shearImage' => ['shearImage', \ImagickDemo\Imagick\Control\shearImage::class],
-            'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Control\SigmoidalContrastControl::class ],
+            'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class ],
 
 
             //new NavOption('similarityImage', true),
@@ -614,7 +646,7 @@ class CategoryNav implements Nav {
             'composite' => ['composite', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'ellipse' => ['ellipse', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'line' => ['line', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-            'matte' => ['matte', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'matte' => ['matte', \ImagickDemo\ImagickDraw\Control\matte::class],
             'pathStart' => ['pathStart', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'point' => ['point', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'polygon' => ['polygon', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],

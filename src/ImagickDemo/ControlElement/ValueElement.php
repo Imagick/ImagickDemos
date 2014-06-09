@@ -37,8 +37,11 @@ abstract class ValueElement implements ControlElement {
             $value  = $this->getMax();
         }
         
-        $this->value = $value;
-        //zendcode eats braces
+        $this->value = $this->filterValue($value);
+    }
+    
+    protected function filterValue($value) {
+        return $value;
     }
 
     protected function getValue() {

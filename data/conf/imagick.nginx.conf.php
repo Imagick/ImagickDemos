@@ -63,7 +63,7 @@ server {
    
     location ~ ^/(status|ping)$ {
 
-        if ( $remote_addr != 127.0.0.1 ) { return 444;} 
+        if ( \$remote_addr != 127.0.0.1 ) { return 444;} 
    
         access_log off;
         allow 127.0.0.1;

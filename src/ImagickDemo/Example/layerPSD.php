@@ -47,6 +47,10 @@ END;
         return $output;
     }
 
+
+    
+    
+
     function renderCustomImage() {
         $files = [
             realpath("../images/LayerTest.psd")."[1]",

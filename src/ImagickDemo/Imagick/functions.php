@@ -928,19 +928,26 @@ function sepiaToneImage($imagePath, $sepia) {
 
 //Example Imagick::setImageArtifact
 function setImageArtifact($imagePath) {
-    //TODO - should this be here?
     $imagick = new \Imagick(realpath($imagePath));
-    //$imagick->negateimage(false);
-//$currentExtent = $imagick->getImageArtifact('jpeg:extent');
-//header("Content-Type: image/jpg");
-//echo $imagick->getImageBlob();
+    
+    //$imagick->setImageArtifact('jpeg:extent', '10kb');
+    /* Don't write any ancillary chunks except for gAMA */
+    //"png:include-chunk","none,gama"
+    //SetImageArtifact(image,"png:include-chunk","none,trns,gama");
+
+//        /* Only write PNG32 formatted PNG (32-bit RGBA), 8 bits per channel */
+//        "png:format","png32"
+
+
+//    Wand artifacts are like properties
+//    except they are not exported.  They are needed for some method such
+//    as setting compose:args for the composite DisplaceCompositeOp compose
+//    operator.
+    
+    //SetImageArtifact(blend_image,"compose:args","20x80");
+
     $imagick->setImageFormat('jpg');
-//$imagick->deconstructimages();
-    $imagick->setImageArtifact('jpeg:extent', '40kb');
-    //$newExtent = $imagick->getImageArtifact('jpeg:extent');
-    //$filepath = "/home/intahwebz/intahwebz/testExtent3asdsdsd.jpg";
-    //$imagick->writeimage($filepath);
-    header("Content-Type: image/gif");
+    header("Content-Type: image/jpg");
     echo $imagick->getImagesBlob();
 }
 
@@ -991,13 +998,29 @@ function setImageTicksPerSecond() {
     }
 
     $imagick = $imagick->deconstructImages();
-
-    //$imagick->writeImages("/home/intahwebz/intahwebz/basereality/imagick/frameRate.gif", true);
-
     header("Content-Type: image/gif");
     echo $imagick->getImagesBlob();
 }
 
+
+
+//Example Imagick::setIteratorIndex
+function setIteratorIndex() {
+
+    $imagick = new \Imagick(realpath("../images/LayerTest.psd"));
+
+    $output = new \Imagick();
+    $imagick->setIteratorIndex(1);
+    $output->addImage($imagick->getimage());
+
+    $imagick->setIteratorIndex(2);
+    $output->addImage($imagick->getimage());
+
+    $merged = @$output->flattenimages();
+    $merged->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $merged->getImageBlob();
+}
 
 
 

@@ -11,6 +11,7 @@ class NullControl implements \ImagickDemo\Control {
     
     function __construct(\Intahwebz\Request $request, $imageBaseURL, $customImageBaseURL) {
         $this->imageBaseURL = $imageBaseURL;
+        $this->customImageBaseURL = $customImageBaseURL;
     }
     
     function renderForm() { }

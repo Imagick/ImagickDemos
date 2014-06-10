@@ -562,7 +562,7 @@ class CategoryNav implements Nav {
             //'setImageVirtualPixelMethod',
             //'setImageWhitePoint',
             //'setInterlaceScheme',
-            //'setIteratorIndex',
+            'setIteratorIndex' => ['setIteratorIndex', \ImagickDemo\Control\NullControl::class ],
             //'setLastIterator',
             'setOption' => ['setOption', \ImagickDemo\Control\ImageControl::class ],
             'setProgressMonitor' => ['setProgressMonitor', \ImagickDemo\Control\NullControl::class],

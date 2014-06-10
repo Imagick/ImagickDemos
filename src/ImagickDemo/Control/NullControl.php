@@ -7,8 +7,9 @@ namespace ImagickDemo\Control;
 class NullControl implements \ImagickDemo\Control {
 
     private $imageBaseURL;
+    private $customImageBaseURL;
     
-    function __construct(\Intahwebz\Request $request, $imageBaseURL) {
+    function __construct(\Intahwebz\Request $request, $imageBaseURL, $customImageBaseURL) {
         $this->imageBaseURL = $imageBaseURL;
     }
     
@@ -26,7 +27,7 @@ class NullControl implements \ImagickDemo\Control {
     }
 
     function getCustomImageURL() {
-        return $this->imageBaseURL;
+        return $this->customImageBaseURL;
     }
 }
 

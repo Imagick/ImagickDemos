@@ -1468,6 +1468,9 @@ function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
 
     $svg = $draw->getVectorGraphics();
 
+    var_dump($svg);
+    exit(0);
+    
     $draw2 = new \ImagickDraw();
     $draw2->setvectorgraphics($svg);
 

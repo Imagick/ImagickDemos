@@ -745,6 +745,7 @@ class CategoryNav implements Nav {
             'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
+            'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
 
         ];

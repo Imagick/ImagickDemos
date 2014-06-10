@@ -16,7 +16,6 @@ function getExamples() {
 
     $category = null;
     $function = null;
-    
 
     foreach ($files as $file) {
         /** @var $file SplFileInfo */
@@ -46,13 +45,12 @@ function getExamples() {
             else if ($currentExample !== null) {
                 $currentExample .= $fileLine;
 
-                if (substr_compare($fileLine, "}", 0, 1) === 0) {
+                if (substr_compare($fileLine, "}", 0, 1) === 0 ||
+                    substr_compare($fileLine, "//Example end", 0, strlen("//Example end")) === 0) {
                     if ($currentExample !== null) {
                         $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
                     }
 
-                    
-                    
                     $currentExample = null;
                     $category = null;
                     $function = null;

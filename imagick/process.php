@@ -405,6 +405,8 @@ if ($queryPosition !== false) {
     $path = substr($path, 0, $queryPosition);
 }
 
+
+
 $injector = bootstrap(); 
 $routeInfo = $dispatcher->dispatch($httpMethod, $path);
 

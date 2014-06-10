@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickDraw;
 
 
-class affine extends ImagickDrawExample {
+class affine extends \ImagickDemo\Example {
 
     function getDescription() {
         $output = nl2br("Adjusts the current affine transformation matrix with the specified affine transformation matrix.
@@ -15,11 +15,17 @@ class affine extends ImagickDrawExample {
             tx - The amount to translate the drawing in the x direction.
             ty - The amount to translate the drawing in the y direction.");
 
-
         
         return $output;
     }
 
+    function render() {
+        $output = $this->getDescription();
+        $output .= $this->renderImageURL();
+
+        return $output;
+    }
+    
 
 }
 

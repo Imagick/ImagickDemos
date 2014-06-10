@@ -1029,6 +1029,14 @@ function setOption($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->setImageFormat('jpg');
     $imagick->setOption('jpeg:extent', '20kb');
+    
+    //"jpeg:perserve","yes"
+    
+    //"quantum:format","floating-point"
+    //"quantum:polarity","min-is-white"
+    //"jpeg:size","120x120"
+    
+    
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

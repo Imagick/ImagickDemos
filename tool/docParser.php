@@ -31,7 +31,7 @@ function getExamples() {
         $currentExample = null;
 
         foreach ($fileLines as $fileLine) {
-            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator)::(\w+)#";
+            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator)::(\w+)\s?(.*)?#";
             $matchCount = preg_match($pattern, $fileLine, $matches);
 
             if ($matchCount == true) {
@@ -41,12 +41,29 @@ function getExamples() {
                 $currentExample = '';
                 $category = $matches[1];
                 $function = $matches[2];
+
+                if ($category == '') {
+                    echo "wut";
+                }
+                
+                //TODO - back to classes, set $matches[3] as example description.
             }
             else if ($currentExample !== null) {
+
+                if(substr_compare($fileLine, "//Example end", 0, strlen("//Example end")) === 0) {
+                    if ($currentExample !== null) {
+                        $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
+                    }
+
+                    $currentExample = null;
+                    $category = null;
+                    $function = null;
+                    continue;
+                }
+
                 $currentExample .= $fileLine;
 
-                if (substr_compare($fileLine, "}", 0, 1) === 0 ||
-                    substr_compare($fileLine, "//Example end", 0, strlen("//Example end")) === 0) {
+                if (substr_compare($fileLine, "}", 0, 1) === 0 ) {
                     if ($currentExample !== null) {
                         $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
                     }
@@ -1084,8 +1101,6 @@ foreach ($urlList as $subdir => $entries) {
 $examples = getExamples();
 
 
-
-
 $exampleEntries = var_export($examples, true);
 
 $manualEntries = var_export($manualEntries, true);
@@ -1169,6 +1184,7 @@ class DocHelper {
             }
                 \$output .=  \$example->getLines();
             \$output .=  "</pre>";
+            \$count++;
         }
         
         return \$output;

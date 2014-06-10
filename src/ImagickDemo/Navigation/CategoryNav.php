@@ -564,7 +564,7 @@ class CategoryNav implements Nav {
             //'setInterlaceScheme',
             'setIteratorIndex' => ['setIteratorIndex', \ImagickDemo\Control\NullControl::class ],
             //'setLastIterator',
-            'setOption' => ['setOption', \ImagickDemo\Control\ImageControl::class ],
+            'setOption' => ['setOption', \ImagickDemo\Imagick\Control\setOption::class ],
             'setProgressMonitor' => ['setProgressMonitor', \ImagickDemo\Control\NullControl::class],
             //'setPage',
             //'setPointSize',

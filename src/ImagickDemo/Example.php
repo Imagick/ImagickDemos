@@ -12,6 +12,9 @@ interface renderableExample {
 
 abstract class Example implements renderableExample {
 
+    /**
+     * @var Control
+     */
     protected $control;
 
     function __construct(\ImagickDemo\Control $control) {

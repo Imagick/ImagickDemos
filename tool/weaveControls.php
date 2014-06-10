@@ -245,6 +245,11 @@ $controls = [
         'ImagickDemo\ControlElement\Sepia',
     ],
 
+    'ImagickDemo\Imagick\Control\setOption' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ImageOption',
+    ],
+
     'ImagickDemo\Imagick\Control\sharpenImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Radius',

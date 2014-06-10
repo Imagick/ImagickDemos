@@ -16,12 +16,12 @@ abstract class ImagickDrawExample extends \ImagickDemo\Example {
 
     abstract function getDescription();
     
-    /**
-     * @return \ImagickDemo\Control
-     */
-    function getControl() {
-        return $this->colorControl;
-    }
+//    /**
+//     * @return \ImagickDemo\Control
+//     */
+//    function getControl() {
+//        return $this->colorControl;
+//    }
 
     function render() {
         $output = $this->getDescription();

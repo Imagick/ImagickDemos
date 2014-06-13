@@ -447,7 +447,7 @@ class CategoryNav implements Nav {
             //'montageImage',
             //'morphImages',
             // MorphologyImage
-            'mosaicImage' => ['mosaicImage', \ImagickDemo\Control\ImageControl::class],
+            //'mosaicImages' => ['mosaicImages', \ImagickDemo\Control\ImageControl::class],
             'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Imagick\Control\motionBlurImage::class],
             'negateImage' => ['negateImage', \ImagickDemo\Imagick\Control\negateImage::class],
             //'newImage',
@@ -522,7 +522,7 @@ class CategoryNav implements Nav {
             //'setImageAlphaChannel',
             'setImageArtifact' => ['setImageArtifact', \ImagickDemo\Control\ImageControl::class],
             //'setImageBackgroundColor',
-            //'setImageBias',
+            'setImageBias' => ['setImageBias', \ImagickDemo\Control\NullControl::class],
             //'setImageBluePrimary',
             //'setImageBorderColor',
             //'setImageChannelDepth',
@@ -746,6 +746,9 @@ class CategoryNav implements Nav {
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
             'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],
+
+            'logoTshirt' => ['logoTshirt', \ImagickDemo\Control\NullControl::class],
+
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
 
         ];

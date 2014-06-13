@@ -9,7 +9,7 @@ namespace ImagickDemo\ControlElement;
 class SmoothThreshold extends ValueElement {
 
     protected function getDefault() {
-        return 0.1;
+        return 5;
     }
 
     protected function getMin() {

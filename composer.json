@@ -19,6 +19,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/nikic/FastRoute"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/nrk/predis"
         }
     ],
 
@@ -35,11 +39,13 @@
         "intahwebz/jig": "0.9.0",
         "intahwebz/routing": ">=0.9.1",
         "fluentdom/fluentdom": "v4.1.1",
-        "oyejorge/less.php": "v1.7.0.1"
+        "oyejorge/less.php": "v1.7.0.1",
+        "predis/predis": "dev-v0.9/phpdoc-method-tags as v0.8.4"
     },
     "autoload": {
         "psr-0": {
-            "ImagickDemo": ["./src/", "./var/compile" ]
+            "ImagickDemo": ["./src/", "./var/compile" ],
+            "Stats": ["./src/", "./var/compile" ]
         }
     },
     

@@ -311,6 +311,10 @@ function contrastImage($imagePath, $contrastType) {
 function convolveImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
+
+    //TODO - this does nothing.
+    $imagick->setImageBias(0.5 * \Imagick::getQuantum());
+    
     $imagick->convolveImage($edgeFindingKernel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -676,7 +680,8 @@ function mosaicImages() {
     $imagick->newimage(500, 500, 'white');
 
     $images = [
-        "../images/dickbutt.jpg"
+        "../images/Biter_500.jpg",
+        "../images/SydneyPeople_400.jpg",
     ];
 
     foreach ($images as $image) {
@@ -952,6 +957,30 @@ function setImageArtifact($imagePath) {
 }
 
 
+function setImageBias() {
+
+    $imagick = new \Imagick(realpath("../images/stack.jpg"));
+
+    //@$imagick->medianFilterImage(2);
+    $imagick->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
+//    @$imagick->medianFilterImage(2);
+//    
+    $xKernel = array(
+        -0.70, 0, 0.70,
+        -0.70, 0, 0.70,
+        -0.70, 0, 0.70
+    );
+
+//    $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
+
+    //$imagick->setImageBias(0.5);
+    $imagick->convolveImage($xKernel, \Imagick::CHANNEL_ALL);
+    //$imagick->setImageBias(-0.5);
+
+    header('Content-type: image/jpeg');
+    echo $imagick->getImageBlob();
+}
+
 
 //Example Imagick::setImageDelay
 function setImageDelay() {
@@ -1149,6 +1178,7 @@ function spreadImage($imagePath, $radius) {
 function statisticImage($imagePath, $statisticType, $w20, $h20, $channel) {
 
     $imagick = new \Imagick(realpath($imagePath));
+    
     $imagick->statisticImage(
         $statisticType,
         $w20,

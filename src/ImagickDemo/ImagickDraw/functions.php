@@ -411,7 +411,12 @@ function polyline($strokeColor, $fillColor, $backgroundColor) {
 
     $draw->setStrokeWidth(5);
 
-    $points = [['x' => 40 * 5, 'y' => 10 * 5], ['x' => 20 * 5, 'y' => 20 * 5], ['x' => 70 * 5, 'y' => 50 * 5], ['x' => 60 * 5, 'y' => 15 * 5],];
+    $points = [
+        ['x' => 40 * 5, 'y' => 10 * 5],
+        ['x' => 20 * 5, 'y' => 20 * 5],
+        ['x' => 70 * 5, 'y' => 50 * 5],
+        ['x' => 60 * 5, 'y' => 15 * 5]
+    ];
 
     $draw->polyline($points);
 

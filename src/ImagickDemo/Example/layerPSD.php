@@ -58,10 +58,27 @@ END;
         ];
 
         $imagick = new \Imagick($files);
-        $merged = @$imagick->flattenimages();
+        $merged = @$imagick->mergeImageLayers(\Imagick::LAYERMETHOD_COALESCE);
         $merged->setImageFormat('png');
         header("Content-Type: image/png");
         echo $merged->getImageBlob();
     }
 //Example end
 }
+
+
+
+
+//	const LAYERMETHOD_UNDEFINED = 0;
+//	const LAYERMETHOD_COALESCE = 1;
+//	const LAYERMETHOD_COMPAREANY = 2;
+//	const LAYERMETHOD_COMPARECLEAR = 3;
+//	const LAYERMETHOD_COMPAREOVERLAY = 4;
+//	const LAYERMETHOD_DISPOSE = 5;
+//	const LAYERMETHOD_OPTIMIZE = 6;
+//	const LAYERMETHOD_OPTIMIZEPLUS = 8;
+//	const LAYERMETHOD_OPTIMIZETRANS = 9;
+//	const LAYERMETHOD_COMPOSITE = 12;
+//	const LAYERMETHOD_OPTIMIZEIMAGE = 7;
+//	const LAYERMETHOD_REMOVEDUPS = 10;
+//	const LAYERMETHOD_REMOVEZERO = 11;

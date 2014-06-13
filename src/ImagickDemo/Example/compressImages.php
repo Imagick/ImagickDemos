@@ -7,8 +7,10 @@ namespace ImagickDemo\Example;
 class compressImages extends \ImagickDemo\Example {
 
     function render() {
-
-//        $blurString = $this->compressJpgWithBlur();
+        return "Compression examples go here.";
+    }
+    
+    function renderDead() {
 
         $imagick = $this->getJpg();
 

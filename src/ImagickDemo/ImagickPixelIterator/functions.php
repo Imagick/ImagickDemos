@@ -53,8 +53,6 @@ function clear($imagePath) {
 //Example ImagickPixelIterator::construct
 function construct($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    //$imageIterator = $imagick->getPixelIterator();
-
     $imageIterator = new \ImagickPixelIterator($imagick);
 
     foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */

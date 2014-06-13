@@ -2,71 +2,34 @@
 
 //TODO - Arctan function isn't in my current imagick.
 
+require "../../imagick-demos.conf.php";
+require "../src/bootstrap.php";
+
 \Intahwebz\Functions::load();
 
-//yolo - We use a global to allow us to do a hack to make all the code examples
-//appear to use the standard 'header' function, but also capture the content type 
-//of the image
-$imageType = null;
-$imageCache = false;
+use ImagickDemo\Queue\ImagickTask;
+use ImagickDemo\Queue\RedisTaskQueue;
+use Intahwebz\Request;
 
 
-/**
- * @return \Auryn\Provider
- */
-function bootstrap() {
 
-    $injector = new Auryn\Provider();
-    $jigConfig = new Intahwebz\Jig\JigConfig(
-        "../templates/",
-        "../var/compile/",
-        'tpl',
-        \Intahwebz\Jig\JigRender::COMPILE_CHECK_EXISTS
-    );
+function serverCachedFileIfExists($filename) {
+    $extensions = ["jpg", "gif", "png"];
+    
+    foreach ($extensions as $extension) {
+        $filenameWithExtension = $filename.".".$extension;
+        if (file_exists($filenameWithExtension) == true) {
+            \header("Content-Type: image/".$extension);
+            readfile($filenameWithExtension);
+            //It was read from cache, no need to process further
+            exit(0);
+        }
+    }
 
-    $injector->share($jigConfig);
-
-    $injector->defineParam('imageBaseURL', null);
-    $injector->defineParam('customImageBaseURL', null);
-    $injector->defineParam('pageTitle', "Imagick demos");
-    //TODO - move these elsewhere or delete
-    $injector->defineParam('standardImageWidth', 500);
-    $injector->defineParam('standardImagHeight', 500);
-    $injector->defineParam('smallImageWidth', 350); 
-    $injector->defineParam('smallImageHeight', 300);
-
-    $injector->alias(ImagickDemo\Control::class, ImagickDemo\Control\NullControl::class);
-    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\NullNav::class);
-    $injector->alias(Intahwebz\Request::class, Intahwebz\Routing\HTTPRequest::class);
-    $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\NullExample::class);
-
-    $injector->share(\ImagickDemo\Control::class);
-    $injector->share(\ImagickDemo\Example::class);
-    $injector->share(ImagickDemo\Navigation\Nav::class);
-
-    $injector->define(ImagickDemo\DocHelper::class, [
-        ':category' => null,
-        ':example' => null
-    ]);
-
-    $injector->define(
-    Intahwebz\Routing\HTTPRequest::class,
-        array(
-            ':server' => $_SERVER,
-            ':get' => $_GET,
-            ':post' => $_POST,
-            ':files' => $_FILES,
-            ':cookie' => $_COOKIE
-        )
-    );
-
-    $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
-    $injector->share($injector); //yolo - use injector as service locator
-
-    return $injector;
 }
 
-function setupImageDelegation(\Auryn\Provider $injector, $category, $example) {
+
+function setupImageDelegation(\Auryn\Provider $injector, Request $request, $category, $example) {
     $function = setupExampleInjection($injector, $category, $example);
     $namespace = sprintf('ImagickDemo\%s\functions', $category);
     $namespace::load();
@@ -80,41 +43,41 @@ function setupImageDelegation(\Auryn\Provider $injector, $category, $example) {
     }
     else {
         global $imageType;
-
-        $filename = "../var/cache/imageCache/".$category.'/'.$example;
         $control = $injector->make(\ImagickDemo\Control::class);
-        $params = $control->getParams();
+        $filename = getImageCacheFilename($category, $example, $control->getParams());
+        serverCachedFileIfExists($filename);
         
-        if (!empty($params)) {
-            $filename .= '_'.md5(json_encode($params));
-        }
-    
-        $extensions = ["jpg", "gif", "png"];
-        
-        foreach ($extensions as $extension) {
-            $filenameWithExtension = $filename.".".$extension;
-            if (file_exists($filenameWithExtension) == true) {
-                \header("Content-Type: image/".$extension);
-                readfile($filenameWithExtension);
-                //It was read from cache, no need to process further
-                exit(0);
+        if (true) {
+
+            $job = $request->getVariable('job');
+            if ($job === false) {
+                $task = new ImagickTask($category, $example, $control);
+                $queue = $injector->make('ImagickDemo\Queue\RedisTaskQueue');
+                $queue->pushTask($task);
+                $job = 0;
+  //              echo "task pushed";
             }
+            else {
+                $job++;
+//                echo "incremented job";
+            }
+
+            if ($job > 20) {
+                //probably ought to time out at some point.
+            }
+            
+
+            usleep(1000);
+            $url = $control->getURL()."&job=".$job;
+            //echo "Redirect to ".$url;
+            header('Location: '.$url, 307);
+
         }
-    
-        ob_start();
-
-        $injector->execute($functionFullname);
-
-        if ($imageType == null) {
-            throw new \Exception("imageType not set, can't cache image correctly.");
+        else {
+            $image = createAndCacheFile($injector, $functionFullname, $filename);
+            header("Content-Type: image/".$imageType);
+            echo $image;
         }
-
-        $image = ob_get_contents();
-        @mkdir(dirname ($filename), 0755, true);
-        //TODO - is this atomic?
-        file_put_contents($filename.".".strtolower($imageType), $image);
-        ob_end_flush();
-        //ob_end_clean();
     }
 
     exit(0);   
@@ -157,17 +120,7 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         ':example' => $example
     ]);
 
-    $params = ['a', 'adaptiveOffset', 'alpha', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'bestFit', 'blackPoint', 'blueShift', 'brightness', 'canvasType', 'channel', 'clusterThreshold', 'color', 'colorElement', 'colorSpace',  'contrast',  'contrastType', 'distortionExample', 'dither', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'fuzz', 'g', 'gamma', 'gradientStartColor', 'gradientEndColor', 'grayOnly', 'height', 'highThreshold', 'hue', 'image', 'imagePath', 'innerBevel', 'length', 'lowThreshold', 'meanOffset', 'noiseType', 'numberColors', 'opacity', 'originX', 'originY', 'outerBevel', 'paintType', 'r', 'raise', 'radius', 'reduceNoise', 'rollX', 'rollY', 'roundX', 'roundY', 'saturation', 'secondTerm', 'sepia', 'shearX', 'shearY', 'sigma', 'skew', 'smoothThreshold', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'thresholdAngle', 'thresholdColor', 'translateX', 'translateY', 'treeDepth', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'x', 'y', 'w20', 'width', 'h20', 'sharpening', 'midpoint', 'sigmoidalContrast',];
-
-
-    foreach ($params as $param) {
-        $paramGet = 'get'.ucfirst($param);
-        $injector->delegateParam(
-                 $param,
-                     [$controlClass, $paramGet]
-        );
-    }
-
+    delegateAllTheThings($injector, $controlClass);
     $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $function));
 
     return $function;
@@ -193,7 +146,7 @@ function setupCatergoryDelegation(\Auryn\Provider $injector, $category) {
     if (in_array($category, $validCatergories) == false) {
         throw new \Exception("Category is not valid.");
     }
-    
+
     $injector->defineParam('imageBaseURL', '/image/'.$category);
     $injector->defineParam('customImageBaseURL', '/customImage/'.$category);
     $injector->defineParam('activeCategory', $category);
@@ -406,8 +359,7 @@ if ($queryPosition !== false) {
 }
 
 
-
-$injector = bootstrap(); 
+$injector = bootstrapInjector(); 
 $routeInfo = $dispatcher->dispatch($httpMethod, $path);
 
 function process(\Auryn\Provider $injector, $handler, $vars) {

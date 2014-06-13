@@ -93,7 +93,7 @@ $centos = [
     'basereality.chroot.directory' => '/home/intahwebz/current',
     'basereality.root.directory' => '/home/intahwebz/current',
     'basereality.cache.directory' => '/home/intahwebz/current/var/cache',
-    'imagick.root.directory' => '/home/github/imagick-demo/',
+    'imagick.root.directory' => '/home/github/imagick-demos/imagick-demos/',
     
     'github.root.directory' => '/home/github/',
     
@@ -130,7 +130,7 @@ $centos_guest = [
     'basereality.root.directory' => '/home/intahwebz/intahwebz',
     'basereality.cache.directory' => '/home/intahwebz/intahwebz/var/cache',
 
-    'imagick.root.directory' => '/home/github/imagick-demos/',
+    'imagick.root.directory' => '/home/github/imagick-demos/imagick-demos/',
     
     'github.root.directory' => '/home/github/',
     

@@ -9,7 +9,7 @@ namespace ImagickDemo\ControlElement;
 class ClusterThreshold extends ValueElement {
 
     protected function getDefault() {
-        return 0.2;
+        return 5;
     }
 
     protected function getMin() {

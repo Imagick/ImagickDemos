@@ -227,9 +227,6 @@ function setupInfo() {
     ];
 
 
-    
-    
-    
     $json = json_decode($response->getBody(), true);
 
     echo "<table>";
@@ -295,14 +292,12 @@ function setupInfo() {
             
             echo "</tr>";
         }
-        
     }
 
     echo "</table>";
 
     echo "<br/>";
     echo "<a href='http://127.0.0.1:9002'>SupervisorD</a>";
-
 }
 
 

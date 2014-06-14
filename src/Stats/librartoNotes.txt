@@ -1,0 +1,58 @@
+
+Metric Properties
+Some common properties are supported across all types of metrics:
+
+name - Each metric has a name that is unique to its class of metrics e.g. a gauge name must be unique amongst gauges. The name identifies a metric in subsequent API calls to store/query individual measurements and can be up to 63 characters in length. Valid characters for metric names are 'A-Za-z0-9.:-_'. The metric namespace is case insensitive.
+
+period - The period of a metric is an integer value that describes (in seconds) the standard reporting period of the metric. Setting the period enables Metrics to detect abnormal interruptions in reporting and aids in analytics.
+
+description - The description of a metric is a string and may contain spaces. The description can be used to explain precisely what a metric is measuring, but is not required.
+
+display_name  - More descriptive name of the metric which will be used in views on the Metrics website. Allows more characters than the metric name, including spaces, parentheses, colons and more.
+attributes
+
+
+
+Measurement Properties
+
+Each individual metric corresponds to a series of individual measurements. Some common properties are supported across all measurements.
+
+measure_time - The epoch time at which an individual measurement occurred with a maximum resolution of seconds.
+
+value - The numeric value of an individual measurement. Multiple formats are supported (e.g. integer, floating point, etc) but the value must be numeric.
+
+source - Source is an optional property that can be used to subdivide a common gauge/counter amongst multiple members of a population. For example the number of requests/second serviced by an application could be broken up amongst a group of server instances in a scale-out tier by setting the hostname as the value of source.
+
+
+
+
+
+Gauge Specific Parameters
+
+Gauges support an optional, more complex parameter set which you can use to report multi-sample measurements:
+
+count - Indicates the request corresponds to a multi-sample measurement. This is useful if measurements are taken very frequently in a closed loop and the metric value is only periodically reported. If count is set, then sum must also be set in order to calculate an average value for the recorded metric measurement. Additionally min, max, and sum_squares may also be set when count is set. The value parameter should not be set if count is set.
+
+sum - If count was set, sum must be set to the summation of the individual measurements. The combination of count and sum are used to calculate an average value for the recorded metric measurement.
+
+max - If count was set, max can be used to report the largest individual measurement amongst the averaged set.
+
+min - If count was set, min can be used to report the smallest individual measurement amongst the averaged set.
+
+sum_squares - If count was set, sum_squares report the summation of the squared individual measurements. If sum_squares is set, a standard deviation can be calculated for the recorded metric measurement.
+
+
+
+Timer are buckets.
+
+min, max, sum, and count, 90th percentile sent to librato separately.
+
+
+
+## Statsd format
+
+dotted.metric.name:[+,-]value|type[|rate]
+
+metrics.api.globs:1|c
+business.functions.glork:320|ms
+system.cpu.goblets:14.2|g

@@ -61,16 +61,17 @@ server {
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
     }
    
-    location ~ ^/(status|ping)$ {
+    location ~ ^/(www-status|ping)$ {
 
         if ( \$remote_addr != 127.0.0.1 ) { return 444;} 
    
         access_log off;
         allow 127.0.0.1;
         deny all;
-        include fastcgi_params;
+        fastcgi_param  QUERY_STRING       $query_string;
+        include       ${'basereality.root.directory'}/conf/fastcgi.conf;
         fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
-   }
+    }
 
     location  / {
         try_files \$uri /index.php =404;

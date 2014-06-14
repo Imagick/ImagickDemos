@@ -226,6 +226,10 @@ function setupInfo() {
         "slow requests" => "Slow requests",
     ];
 
+
+    
+    
+    
     $json = json_decode($response->getBody(), true);
 
     echo "<table>";
@@ -262,35 +266,42 @@ function setupInfo() {
         echo "</th>";
     }
 
-    foreach ($json['processes'] as $process) {
-        echo "<tr>";
-        
-            foreach ($processHeaders as $processHeader) {
-                echo "<td align='right'>";
-                if (array_key_exists($processHeader, $process)) {
-                    $text = $process[$processHeader];
-
-                    $text = str_replace([
-                        '/home/github/imagick-demos//imagick',
-                        '/home/github/imagick-demos/imagick'
-                        ],
-                        '',
-                        $text
-                    );
-                    
-                    echo $text;
+    if (isset($json['processes']) && is_array($json['processes'])) {
+    
+        foreach ($json['processes'] as $process) {
+            echo "<tr>";
+            
+                foreach ($processHeaders as $processHeader) {
+                    echo "<td align='right'>";
+                    if (array_key_exists($processHeader, $process)) {
+                        $text = $process[$processHeader];
+    
+                        $text = str_replace([
+                            '/home/github/imagick-demos//imagick',
+                            '/home/github/imagick-demos/imagick'
+                            ],
+                            '',
+                            $text
+                        );
+                        
+                        echo $text;
+                    }
+                    else {
+                        echo "-";
+                    }
+                    echo "</td>";
                 }
-                else {
-                    echo "-";
-                }
-                echo "</td>";
-            }
+            
+            
+            echo "</tr>";
+        }
         
-        
-        echo "</tr>";
     }
 
     echo "</table>";
+
+    echo "<br/>";
+    echo "<a href='http://127.0.0.1:9002'>SupervisorD</a>";
 
 }
 

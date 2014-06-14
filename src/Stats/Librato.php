@@ -3,19 +3,22 @@
 
 namespace Stats;
 
-//use Artax\Client;
+
 
 class Librato {
 
     private $libratoKey;
     
-    function __construct($libratoKey) {
+    function __construct($libratoKey, $libratoUsername) {
         $this->libratoKey = $libratoKey;
+        $this->libratoUsername = $libratoUsername;
     }
 
-    function send() {
-
-        $username = "Danack@basereality.com";
+    /**
+     * @param $guages
+     * @param $counters 
+     */
+    function send($gauges, $counters) {
 
         $client = new \Artax\Client;
 
@@ -23,38 +26,33 @@ class Librato {
             'connectTimeout'        => 15,      // Timeout connect attempts after N seconds
             'transferTimeout'       => 30,      // Timeout transfers after N seconds
         ]);
-            
-            
+
         $request = new \Artax\Request();
         $request->setUri("https://metrics-api.librato.com/v1/metrics");
         $request->setProtocol('1.1');
         $request->setMethod('POST');
         $request->setHeader("Content-Type", "application/json");
 
-        $auth = base64_encode($username.':'.$this->libratoKey);
+        $auth = base64_encode($this->libratoUsername.':'.$this->libratoKey);
         $request->setHeader("Authorization", "Basic $auth");
 
+        $data = [];
 
-        $data = [
-            "gauges" => [
-                [
-                    "name" => "imageQueue",
-                    "value" => 4,
-                    "source" => "test.phpimagick.com",
-                    "measure_time" => time()
-                ]
-            ],
-            "counters" => [
-                [
-                    "name" => "requests",
-                    "value" => 5,
-                    "source" => "test.phpimagick.com",
-                    "measure_time" => time() + 20
-                ]
-            ]
-        ];
+        if (count($gauges)) {
+            $gaugeEntries = [];
+            foreach ($gauges as $gauge) {
+                $gaugeEntries[] = $gauge->convertToArray();
+            }
+            $data["gauges"] = $gaugeEntries;
+        }
 
-
+        if (count($counters)) {
+            $counterEntries = [];
+            foreach ($counters as $counter) {
+                $counterEntries[] = $counter->convertToArray();
+            }
+            $data["counters"] = $counterEntries;
+        }
 
         $body = json_encode($data);
 
@@ -62,22 +60,11 @@ class Librato {
 
         try {
             $response = $client->request($request);
-    
             echo "Status ".$response->getStatus()."\n";
             echo $response->getBody();
-
         }
         catch(\Artax\SocketException $se) {
             echo "Artax\\SocketExeption".$se->getMessage();
         }
-
-        exit(0);
-
-        $client = new Client();
-            
-        $response = $client->request($body);
-        echo "Status is ".    $response->getStatus()."\n";
-
-        var_dump($response->getBody());
     }
 }

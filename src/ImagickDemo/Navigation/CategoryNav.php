@@ -200,18 +200,26 @@ class CategoryNav implements Nav {
         echo "</ul>";
     }
 
-//    function renderHorizontal() {
-//        foreach ($this->exampleList->getExamples() as $imagickExampleOption) {
-//            $imagickExample = $imagickExampleOption->getName();
-//            printf(
-//                "<a class='smallPadding' href='/%s/%s'>%s</a> ",
-//                $this->category,
-//                $imagickExample,
-//                str_replace('Image', '', $imagickExample)
-//            );
-//        }
-//    }
+    function renderHorizontal() {
+
+        echo "<div style='font-size: 12px'>";
+        
+        foreach ($this->exampleList as $exampleName => $exampleDefinition) {
+            $imagickExample = $exampleName;
+            $active = '';
+
+            if ($this->currentExample === $imagickExample) {
+                $active = 'navActive';
+            }
+            //echo "<li>";
+            echo "<a class='smallPadding $active' href='/".$this->category."/$imagickExample'>".$imagickExample."</a> ";
+            //echo "</span>";
+        }
+        echo "<div>";
+    }
     
+
+
     /**
      * 
      */
@@ -220,6 +228,7 @@ class CategoryNav implements Nav {
 //            $this->renderHorizontal();
 //        }
 //        else {
+            //$this->renderHorizontal();
             $this->renderVertical();
         //}
     }

@@ -89,7 +89,19 @@ function bootstrapInjector() {
             ':libratoUsername' => $libratorUsername
         ]
     );
+
     
+    $injector->define(
+         'Stats\AsyncStats',
+         [ ':statsSourceName' => $statsSourceName]
+    );
+
+    
+    $injector->define(
+         '\Stats\SimpleStats',
+         [ ':statsSourceName' => $statsSourceName]
+    );
+
     $redisParameters = array(
         'connection_timeout' => 30,
         'read_write_timeout' => 30,

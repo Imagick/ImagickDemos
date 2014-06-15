@@ -6,7 +6,6 @@ namespace Stats;
 
 class Counter {
 
-
     private $name;
 
     private $value;
@@ -28,7 +27,7 @@ class Counter {
             "value" => $this->value,
             "source" => $this->source,
         ];
-
+        //var_dump($array);
         return $array;
     }
 }

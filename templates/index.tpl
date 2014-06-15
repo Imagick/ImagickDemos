@@ -107,7 +107,7 @@
 <script type="text/javascript">
     
     //http://colpick.com/plugin - I love you color picker
-    
+
     function addColorSelector(selector, targetElement) {
     
         var params = {

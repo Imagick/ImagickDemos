@@ -68,7 +68,7 @@ server {
         access_log off;
         allow 127.0.0.1;
         deny all;
-        fastcgi_param  QUERY_STRING       $query_string;
+        fastcgi_param  QUERY_STRING       \$query_string;
         include       ${'basereality.root.directory'}/conf/fastcgi.conf;
         fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
     }

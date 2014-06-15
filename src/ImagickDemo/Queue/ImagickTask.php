@@ -81,12 +81,6 @@ class ImagickTask implements Task {
         $image = createAndCacheFile($injector, $functionFullname, $filename);
 
         $imageSize = strlen($image);
-        
-        echo "image data size is ".$imageSize."\n";
-
-        $stats = new \Stats\AsyncStats();
-
-        $stats->recordCount(self::getClassKey(), $imageSize, 'test.phpimagick.com');
 
     }
 

@@ -22,6 +22,19 @@ function myBad( Exception $ex ) {
     }
     echo "Exception ".get_class($ex).': '.$ex->getMessage();
 
+    foreach ($ex->getTrace() as $tracePart) {
+        
+        if (isset($tracePart['file']) && isset($tracePart['line'])) {
+            echo $tracePart['file']." ".$tracePart['line']."<br/>";   
+        }
+        else if(isset($tracePart["function"])) {
+            echo $tracePart["function"]."<br/>";   
+        }
+        else {
+            var_dump($tracePart);
+        }
+    }
+
     //TODO - format this
     //var_dump($ex->getTrace());
 }

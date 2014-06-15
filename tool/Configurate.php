@@ -54,8 +54,9 @@ class Configurate {
         $this->outputDir = $properties['outputDir'];
     
         $this->filesToGenerate = array(
-
+            
             $this->inputDir.'data/conf/imageTaskRunner.conf.php' => $this->outputDir.'autogen/imageTaskRunner.conf',
+            $this->inputDir.'data/conf/libratoStats.conf.php' => $this->outputDir.'autogen/libratoStats.conf',
             $this->inputDir.'data/conf/imagick.nginx.conf.php' => $this->outputDir.'autogen/imagick.nginx.conf',
             $this->inputDir.'data/conf/imagick.php-fpm.conf.php' => $this->outputDir.'autogen/imagick.php-fpm.conf',
             $this->inputDir.'data/conf/imagick-demos.php.ini.php' => $this->outputDir.'autogen/imagick-demos.php.ini',

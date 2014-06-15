@@ -38,10 +38,14 @@ class Librato {
 
         $data = [];
 
+        //working
+        //"{"gauges":[{"name":"Queue.ImagickTaskQueue","value":0,"source":"test.phpimagick.com"}]}"
+
         if (count($gauges)) {
             $gaugeEntries = [];
             foreach ($gauges as $gauge) {
-                $gaugeEntries[] = $gauge->convertToArray();
+                $arrayed = $gauge->convertToArray();
+                $gaugeEntries = array_merge($gaugeEntries, $arrayed);
             }
             $data["gauges"] = $gaugeEntries;
         }
@@ -49,7 +53,13 @@ class Librato {
         if (count($counters)) {
             $counterEntries = [];
             foreach ($counters as $counter) {
-                $counterEntries[] = $counter->convertToArray();
+                $arrayed = $counter->convertToArray();
+                if (is_array($arrayed) == true) {
+                    $counterEntries = array_merge($counterEntries, $arrayed);
+                }
+                else {
+                    $counterEntries[] = $arrayed;
+                }
             }
             $data["counters"] = $counterEntries;
         }
@@ -57,6 +67,8 @@ class Librato {
         $body = json_encode($data);
 
         $request->setBody($body);
+        
+        var_dump($body);
 
         try {
             $response = $client->request($request);

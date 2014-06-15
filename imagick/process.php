@@ -46,28 +46,34 @@ function setupImageDelegation(\Auryn\Provider $injector, Request $request, $cate
         $control = $injector->make(\ImagickDemo\Control::class);
         $filename = getImageCacheFilename($category, $example, $control->getParams());
         serverCachedFileIfExists($filename);
-        
-        if (true) {
+
+        $task = $request->getVariable('task', true);
+
+        if ($task) {
 
             $job = $request->getVariable('job');
             if ($job === false) {
-                $task = new ImagickTask($category, $example, $control);
+                $task = $injector->make(
+                     'ImagickDemo\Queue\ImagickTask',
+                     [
+                         ':category' => $category,
+                         ':functionName' => $example
+                     ]
+                );
+
                 $queue = $injector->make('ImagickDemo\Queue\RedisTaskQueue');
                 $queue->pushTask($task);
                 $job = 0;
-  //              echo "task pushed";
             }
             else {
                 $job++;
-//                echo "incremented job";
             }
 
             if ($job > 20) {
                 //probably ought to time out at some point.
             }
-            
 
-            usleep(1000);
+            usleep(500000);
             $url = $control->getURL()."&job=".$job;
             //echo "Redirect to ".$url;
             header('Location: '.$url, 307);
@@ -365,6 +371,9 @@ if ($queryPosition !== false) {
 }
 
 
+$startTime = microtime(true);
+
+
 $injector = bootstrapInjector(); 
 $routeInfo = $dispatcher->dispatch($httpMethod, $path);
 
@@ -402,6 +411,16 @@ switch ($routeInfo[0]) {
         break;
     }
 }
+
+
+$time = microtime(true) - $startTime;
+
+$asyncStats = $injector->make('Stats\AsyncStats');
+
+$asyncStats->recordTime(
+    \ImagickDemo\Queue\ImagickTaskRunner::event_pageGenerated,
+    $time
+);
 
 
 /*

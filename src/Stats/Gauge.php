@@ -38,8 +38,40 @@ class Gauge {
             "source" => $this->source,
         ];
 
-        return $array;
+        return [$array];
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMeasureTime() {
+        return $this->measure_time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSource() {
+        return $this->source;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue() {
+        return $this->value;
+    }
+    
+    
+    
+    
 }
 
  

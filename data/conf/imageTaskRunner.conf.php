@@ -6,7 +6,7 @@ $config = <<< END
 [program:imageTaskRunner]
 directory=${'imagick.root.directory'}/tool
 command=/usr/local/bin/php Runner.php 
-process_name=%(program_name)_%(process_num)
+process_name=%(program_name)s_%(process_num)d
 numprocs=2
 autostart=true
 autorestart=true

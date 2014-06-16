@@ -86,6 +86,7 @@ class AsyncStats {
 
 
     /**
+     * @param array $requiredTimers
      * @return SummaryTimer[]
      */
     function summariseTimers($requiredTimers = array()) {

@@ -72,7 +72,7 @@ class ControlComposite implements \ImagickDemo\Control {
     }
 
 
-    function getCustomImageURL() {
+    function getCustomImageURL(array $extraParams = []) {
         $paramString = '';
         $params = $this->getParams();
         $separator = '?';
@@ -80,6 +80,12 @@ class ControlComposite implements \ImagickDemo\Control {
             $paramString .= $separator.$key."=".$value;
             $separator = '&';
         }
+
+        foreach ($extraParams as $key => $value) {
+            $paramString .= $separator.$key."=".$value;
+            $separator = '&';
+        }
+        
 
         return $this->customImageBaseURL.$paramString;
     }

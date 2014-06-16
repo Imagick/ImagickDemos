@@ -63,18 +63,20 @@ function fxAnalyzeImage() {
     $draw->setStrokeWidth(0);
     $draw->setFontSize(72);
     $draw->setStrokeAntiAlias(false);
-    $previous = false;
+    $previous = 0;
+    $first = true;
 
     $x = 0;
 
     foreach ($reds as $red) {
         $pos = $graphHeight - ($red * $graphHeight / 256);
 
-        if ($previous !== false) {
+        if ($first !== true) {
             $draw->line($x-1, $previous, $x, $pos);
         }
         $x += 1;
         $previous = $pos;
+        $first = false;
     }
 
 

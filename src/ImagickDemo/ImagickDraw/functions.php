@@ -1480,8 +1480,8 @@ function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
 
     $svg = $draw->getVectorGraphics();
 
-    htmlentities(var_dump($svg));
-    exit(0);
+//    htmlentities(var_dump($svg));
+//    exit(0);
     
 }
 

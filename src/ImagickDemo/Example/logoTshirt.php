@@ -26,6 +26,17 @@ function getAverageColorString(\Imagick $imagick) {
 }
 
 class logoTshirt extends \ImagickDemo\Example {
+
+    /**
+     * @var \Intahwebz\Request
+     */
+    private $request;
+
+    function __construct(\ImagickDemo\Control $control, \Intahwebz\Request $request) {
+        $this->control = $control;
+        $this->request = $request;
+    }
+    
     
     function renderTitle() {
         return "";
@@ -33,15 +44,17 @@ class logoTshirt extends \ImagickDemo\Example {
 
     function render() {
         $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL();
+        $output .= $this->renderCustomImageURL('simple');
+
+        $output .= $this->renderCustomImageURL('creases');
 
         return $output;
     }
 
-    function renderCustomImageURL() {
+    function renderCustomImageURL($type) {
         return sprintf(
             "<img src='%s' />",
-            $this->control->getCustomImageURL()
+            $this->control->getCustomImageURL([ 'type' => $type] )
         );
     }
 
@@ -52,8 +65,26 @@ END;
         return $output;
     }
 
+    function renderCustomImage() {
+        
+        $imageType = $this->request->getVariable('type', 'simple');
+        
+        switch($imageType) {
+            
+            case('simple'): {
+                $this->renderCustomImageSimple()
+                exit(0);
+            }
 
-    function renderCustomImageasdad() {
+            case('creases'): {
+                $this->renderCustomImageCreases();
+                break;
+            }
+        }
+    }
+    
+
+    function renderCustomImageSimple() {
         $tshirt = new \Imagick(realpath("../images/tshirt/tshirt.jpg"));
         $logo = new \Imagick(realpath("../images/tshirt/Logo.png"));
         $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, TRUE);
@@ -94,28 +125,12 @@ END;
             //$shading->sigmoidalcontrastimage()
 
         $shading->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $shading->getImageBlob();
-        exit(0);
-
-
 
         //Paint the logo onto the mask, SRCIN just uses the logo's color
         $mask->compositeimage($logo, \Imagick::COMPOSITE_SRCIN, 110, 75);
         $mask->compositeimage($shading, \Imagick::COMPOSITE_MODULATE, 0, 0);
-
-
         $tshirt->compositeimage($mask, \Imagick::COMPOSITE_DEFAULT, 0, 0);
-        
-//
-//        $mask->setImageFormat('png');
-//        header("Content-Type: image/png");
-//        echo $mask->getImageBlob();
-//        
-//        exit(0);
-//
 
-        
 //        //Paint the result of the logo + mask onto the tshirt.
 //        $tshirt->compositeimage($logo, \Imagick::COMPOSITE_ATOP, 110, 75);
 
@@ -130,7 +145,7 @@ END;
 
     
     
-    function renderCustomImage() {
+    function renderCustomImageCreases() {
         $tshirt = new \Imagick(realpath("../images/tshirt/tshirt.jpg"));
         $logo = new \Imagick(realpath("../images/tshirt/Logo.png"));
         $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, TRUE);

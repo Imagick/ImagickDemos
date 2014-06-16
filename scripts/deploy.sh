@@ -1,4 +1,6 @@
 
+cd /home
+
 
 mkdir imagick-demos
 chown intahwebz:www-data imagick-demos
@@ -24,3 +26,8 @@ cd tool
 exit 
 cd ../autogen
 sh addImagickConfig.sh
+
+
+/etc/init.d/php-fpm restart
+nginx -s reload
+/etc/init.d/supervisord restart

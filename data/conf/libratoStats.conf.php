@@ -5,7 +5,7 @@ $config = <<< END
 
 [program:libratoStats]
 directory=${'imagick.root.directory'}/tool
-command=/usr/local/bin/php libratorTest.php 
+command=/usr/local/bin/php libratoTest.php 
 process_name=%(program_name)s
 numprocs=1
 autostart=true

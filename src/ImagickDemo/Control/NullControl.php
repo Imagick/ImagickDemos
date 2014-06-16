@@ -27,8 +27,17 @@ class NullControl implements \ImagickDemo\Control {
         return $this->imageBaseURL;
     }
 
-    function getCustomImageURL() {
-        return $this->customImageBaseURL;
+    function getCustomImageURL(array $extraParams = array()) {
+
+        $paramString = '';
+        $separator = '?';
+
+        foreach ($extraParams as $key => $value) {
+            $paramString .= $separator.$key."=".$value;
+            $separator = '&';
+        }
+
+        return $this->customImageBaseURL.$paramString;
     }
 }
 

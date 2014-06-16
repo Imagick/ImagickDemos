@@ -12,7 +12,7 @@ interface Control {
     
     function getURL();
 
-    function getCustomImageURL();
+    function getCustomImageURL(array $extraParams = []);
 }
 
  

@@ -244,15 +244,6 @@ function colorMatrixImage($imagePath) {
 
     $colorMatrix = [
         1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
-        0.0, 1.5, 0.0, 0.0, 0.0, -0.157,
-        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
-        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
-        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
-    ];
-
-    $colorMatrix = [
-        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
         0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
         0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
         0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
@@ -783,7 +774,8 @@ function randomThresholdimage($imagePath, $lowThreshold, $highThreshold, $channe
 
     $imagick->randomThresholdimage(
         $lowThreshold * \Imagick::getQuantum(),
-        $highThreshold * \Imagick::getQuantum()
+        $highThreshold * \Imagick::getQuantum(),
+        $channel
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -990,7 +982,8 @@ function setImageDelay() {
     $frameCount = 0;
 
     foreach ($imagick as $frame) {
-        $imagick->setImageDelay((($frameCount % 11) * 5));
+        /** @var $frame \Imagick */
+        $frame->setImageDelay((($frameCount % 11) * 5));
         $frameCount++;
     }
 
@@ -1012,16 +1005,16 @@ function setImageTicksPerSecond() {
     $frameCount = 0;
 
     foreach ($imagick as $frame) {
-
-        $imagick->setImageTicksPerSecond(50);
+        /** @var $frame \Imagick */
+//        $frame->setImageTicksPerSecond(50);
 
         if ($frameCount < ($totalFrames / 2)) {
             //Modify the frame to be displayed for twice as long as it currently is.
-            $imagick->setImageTicksPerSecond(50);
+            $frame->setImageTicksPerSecond(50);
         }
         else {
             //Modify the frame to be displayed for half as long as it currently is.
-            $imagick->setImageTicksPerSecond(200);
+            $frame->setImageTicksPerSecond(200);
         }
         $frameCount++;
     }
@@ -1220,10 +1213,14 @@ function subImageMatch($imagePath) {
     $bestMatch = null;
     $comparison = $imagick->subImageMatch($imagick2, $bestMatch, $similarity);
 
+    //Do something with $comparison
+    
     echo "Similarity score is: ".$similarity;
     foreach($bestMatch as $key => $value) {
         echo "$key : $value <br/>";
     }
+    
+    
 }
 
 

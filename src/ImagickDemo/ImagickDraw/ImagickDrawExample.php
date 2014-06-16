@@ -9,19 +9,12 @@ abstract class ImagickDrawExample extends \ImagickDemo\Example {
     protected $fillColor;
     protected $strokeColor;
 
-    /**
-     * @var \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor
-     */
-    private $colorControl;
+//    /**
+//     * @var \ImagickDemo\Control
+//     */
+//    protected $colorControl;
 
     abstract function getDescription();
-    
-//    /**
-//     * @return \ImagickDemo\Control
-//     */
-//    function getControl() {
-//        return $this->colorControl;
-//    }
 
     function render() {
         $output = $this->getDescription();

@@ -40,7 +40,7 @@ class functionImage extends \ImagickDemo\Example {
 
         $size = 200;
 
-            $quanta = pow(2, 16);
+            //$quanta = pow(2, 16);
 
             //$channel = \Imagick::CHANNEL_RED | \Imagick::CHANNEL_GREEN |\Imagick::CHANNEL_BLUE;
 

@@ -27,7 +27,10 @@ class Counter {
             "value" => $this->value,
             "source" => $this->source,
         ];
-        //var_dump($array);
+        if ($this->measure_time != null) {
+            $array['measure_time'] = $this->measure_time;
+        }
+
         return $array;
     }
 }

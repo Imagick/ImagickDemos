@@ -21,7 +21,7 @@ class setHSL extends \ImagickDemo\Example {
         }
 
         //Set the ImagickPixel to the new color
-        $colorInfo = $color->setHSL($newHue, $colorInfo['saturation'], $colorInfo['luminosity']);
+        $color->setHSL($newHue, $colorInfo['saturation'], $colorInfo['luminosity']);
 
         //Check that the new color is blue/green
         $colorInfo = $color->getcolor();

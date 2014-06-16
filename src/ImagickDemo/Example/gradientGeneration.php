@@ -111,8 +111,6 @@ class gradientGeneration extends \ImagickDemo\Example {
     function renderCustomImage123() {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(10, 256, 'gradient:black-white');
-        $arguments = array(4, -90);
-
         $imagick->evaluateimage(\Imagick::EVALUATE_SINE, 0.5);
         $imagick->normalizeImage();
         $imagick->evaluateimage(\Imagick::EVALUATE_COSINE, 8);

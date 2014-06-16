@@ -61,7 +61,7 @@ END;
         $merged = @$imagick->mergeImageLayers(\Imagick::LAYERMETHOD_COALESCE);
         $merged->setImageFormat('png');
         header("Content-Type: image/png");
-        echo $merged->getImageBlob();
+        echo $merged->getimageblob();
     }
 //Example end
 }

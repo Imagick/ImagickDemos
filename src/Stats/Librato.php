@@ -15,8 +15,8 @@ class Librato {
     }
 
     /**
-     * @param $guages
-     * @param $counters 
+     * @param $gauges Gauge[]
+     * @param $counters Counter[]
      */
     function send($gauges, $counters) {
 

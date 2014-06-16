@@ -87,7 +87,16 @@
                     {$docHelper->showExamples() | nofilter}
                 </div>
             </div>
+
+            {inject name='banner' value='ImagickDemo\Banners\Banner'}
             
+
+            <div class="row">
+                <div class="col-md-12">
+                    {$banner->render() | nofilter}
+                </div>
+            </div>
+
         </div>
 
     </div>

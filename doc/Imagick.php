@@ -413,10 +413,8 @@ class Imagick implements Iterator, Traversable {
     const STATISTIC_MODE = 6;
     const STATISTIC_NONPEAK = 7;
     const STATISTIC_STANDARD_DEVIATION = 8;
-        
-    
 
-	/**
+    /**
 	 * (PECL imagick 2.0.0)<br/>
 	 * Removes repeated portions of images to optimize
 	 * @link http://php.net/manual/en/imagick.optimizeimagelayers.php
@@ -6028,7 +6026,7 @@ class ImagickPixel  {
      * Gets the quantum depth as an integer
      * @return int The quantum value e.g. 65535 when ImageMagick was compiled with Q16.
      */
-    public function getQuantum() { }
+    public static function getQuantum() { }
 
     /**
      * Apply color transformation to an image. The method permits saturation changes, hue rotation, luminance to alpha, and various other effects. Although variable-sized transformation matrices can be used, typically one uses a 5x5 matrix for an RGBA image and a 6x6 for CMYKA (or RGBA with offsets). The matrix is similar to those used by Adobe Flash except offsets are in column 6 rather than 5 (in support of CMYKA images) and offsets are normalized (divide Flash offset by 255).
@@ -6095,7 +6093,34 @@ class ImagickPixel  {
      * Which channels the function should be applied to. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
      * </p>
      */
-    public function statisticImage($type, $width, $height , $channel = Imagick::CHANNEL_DEFAULT) {}
+    public function statisticImage($type, $width, $height, $channel = Imagick::CHANNEL_DEFAULT) {}
+
+    /**
+     * Set a callback that will be called during the processing of the Imagick image. <p>
+     * The callback function should be of the form 
+     *     function ($offset, $span) {}
+     * where $offset is the progress of the current operation, and span is the approximate 
+     * duration the operation will take. These values are approximate, and it's common to see
+     * values of 'offset' greater than 'span'.
+     * 
+     * It is recommended to only set one progress callback rather than attempting multiple 
+     * callbacks.
+     * </p>
+     * @param callable $callback
+     */
+    public function setProgressMonitor(callable $callback) {}
+
+
+    /**
+     * Applies a rotation blur effect to an image.
+     * @param $angle The angle the image should be rotated by 
+     * @param int $channel [optional] <p>
+     * Which channels the function should be applied to. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
+     * </p>
+     */
+    public function rotationalBlurImage($angle, $channel = Imagick::CHANNEL_DEFAULT) {}
+    
+    
     
 }
 // End of imagick v.3.1.0RC1

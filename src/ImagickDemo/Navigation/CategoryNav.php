@@ -217,11 +217,10 @@ class CategoryNav implements Nav {
         }
         echo "<div>";
     }
-    
 
 
     /**
-     * 
+     * @param bool $horizontal
      */
     function renderNav($horizontal = false) {
 //        if ($horizontal == true) {

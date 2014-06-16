@@ -72,7 +72,7 @@ END;
         switch($imageType) {
             
             case('simple'): {
-                $this->renderCustomImageSimple()
+                $this->renderCustomImageSimple();
                 exit(0);
             }
 

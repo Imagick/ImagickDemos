@@ -1215,12 +1215,14 @@ function subImageMatch($imagePath) {
 
     //Do something with $comparison
     
+   
+    
     echo "Similarity score is: ".$similarity;
     foreach($bestMatch as $key => $value) {
         echo "$key : $value <br/>";
     }
     
-    
+    return $comparison;
 }
 
 

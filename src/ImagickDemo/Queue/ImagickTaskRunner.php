@@ -52,10 +52,16 @@ class ImagickTaskRunner {
             }
     
             echo "A task! ".$task->getFunctionName()."\n";
-            $startTime = microtime(true);
-            $task->execute($this->injector);
-            $time = microtime(true) - $startTime;
-            $this->asyncStats->recordTime(self::event_imageGenerated, $time);
+            
+            try {
+                $startTime = microtime(true);
+                $task->execute($this->injector);
+                $time = microtime(true) - $startTime;
+                $this->asyncStats->recordTime(self::event_imageGenerated, $time);
+            }
+            catch(\Auryn\BadArgumentException $bae) {
+                //Log failed job
+            }
         }
     }
 }

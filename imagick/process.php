@@ -31,6 +31,8 @@ function serverCachedFileIfExists($filename) {
 
 function setupImageDelegation(\Auryn\Provider $injector, Request $request, $category, $example) {
     $function = setupExampleInjection($injector, $category, $example);
+
+
     $namespace = sprintf('ImagickDemo\%s\functions', $category);
     $namespace::load();
 
@@ -57,7 +59,7 @@ function setupImageDelegation(\Auryn\Provider $injector, Request $request, $cate
                      'ImagickDemo\Queue\ImagickTask',
                      [
                          ':category' => $category,
-                         ':functionName' => $example
+                         ':functionName' => $function
                      ]
                 );
 

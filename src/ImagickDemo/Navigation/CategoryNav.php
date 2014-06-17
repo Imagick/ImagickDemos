@@ -343,7 +343,9 @@ class CategoryNav implements Nav {
             //'getColorspace',
             //'getCompression',
             //'getCompressionQuality',
-            //'getCopyright',
+            'getCopyright',
+
+            'getCopyright'  => ['getCopyright', \ImagickDemo\Control\NullControl::class],
             //'getFilename',
             //'getFont',
             //'getFormat',

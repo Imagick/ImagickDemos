@@ -366,18 +366,24 @@ class Imagick implements Iterator, Traversable {
 	const DISTORTION_UNDEFINED = 0;
 	const DISTORTION_AFFINE = 1;
 	const DISTORTION_AFFINEPROJECTION = 2;
-	const DISTORTION_ARC = 9;
-	const DISTORTION_BILINEAR = 6;
+    const DISTORTION_SCALEROTATETRANSLATE = 3;
 	const DISTORTION_PERSPECTIVE = 4;
 	const DISTORTION_PERSPECTIVEPROJECTION = 5;
-	const DISTORTION_SCALEROTATETRANSLATE = 3;
+    const DISTORTION_BILINEAR = 6;
+    // DISTORTION_BILINEARFORWARD = DISTORTION_BILINEAR
+    const DISTORTION_BILINEARREVERSE = 7;
 	const DISTORTION_POLYNOMIAL = 8;
+    const DISTORTION_ARC = 9;
 	const DISTORTION_POLAR = 10;
 	const DISTORTION_DEPOLAR = 11;
+    const DISTORTION_CYLINDER2PLANE = 12;
+    const DISTORTION_PLANE2CYLINDER = 13;
 	const DISTORTION_BARREL = 14;
 	const DISTORTION_BARRELINVERSE = 15;
 	const DISTORTION_SHEPARDS = 16;
+    const DISTORTION_RESIZE = 17;
 	const DISTORTION_SENTINEL = 18;
+
 	const LAYERMETHOD_MERGE = 13;
 	const LAYERMETHOD_FLATTEN = 14;
 	const LAYERMETHOD_MOSAIC = 15;
@@ -3968,7 +3974,7 @@ class Imagick implements Iterator, Traversable {
 	 * @return string a string containing the copyright notice of Imagemagick and
 	 * Magickwand C API.
 	 */
-	public function getcopyright () {}
+	public static function getcopyright () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>
@@ -3992,7 +3998,7 @@ class Imagick implements Iterator, Traversable {
 	 * @link http://php.net/manual/en/imagick.gethomeurl.php
 	 * @return string a link to the imagemagick homepage.
 	 */
-	public function gethomeurl () {}
+	public static function gethomeurl () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>
@@ -4020,7 +4026,7 @@ class Imagick implements Iterator, Traversable {
 	 * @link http://php.net/manual/en/imagick.getpackagename.php
 	 * @return string the ImageMagick package name as a string.
 	 */
-	public function getpackagename () {}
+	public static function getpackagename () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>
@@ -4038,7 +4044,7 @@ class Imagick implements Iterator, Traversable {
 	 * @link http://php.net/manual/en/imagick.getquantumdepth.php
 	 * @return array the Imagick quantum depth as a string.
 	 */
-	public function getquantumdepth () {}
+	public static function getquantumdepth () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>
@@ -4046,7 +4052,7 @@ class Imagick implements Iterator, Traversable {
 	 * @link http://php.net/manual/en/imagick.getquantumrange.php
 	 * @return array the Imagick quantum range as a string.
 	 */
-	public function getquantumrange () {}
+	public static function getquantumrange () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>
@@ -4054,7 +4060,7 @@ class Imagick implements Iterator, Traversable {
 	 * @link http://php.net/manual/en/imagick.getreleasedate.php
 	 * @return string the ImageMagick release date as a string.
 	 */
-	public function getreleasedate () {}
+	public static function getreleasedate () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>
@@ -4102,7 +4108,7 @@ class Imagick implements Iterator, Traversable {
 	 * @link http://php.net/manual/en/imagick.getversion.php
 	 * @return array the ImageMagick API version as a string and as a number.
 	 */
-	public function getversion () {}
+	public static function getversion () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>

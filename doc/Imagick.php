@@ -353,6 +353,7 @@ class Imagick implements Iterator, Traversable {
 	const LAYERMETHOD_OPTIMIZEIMAGE = 7;
 	const LAYERMETHOD_REMOVEDUPS = 10;
 	const LAYERMETHOD_REMOVEZERO = 11;
+    const LAYERMETHOD_TRIMBOUNDS = 12;
 	const ORIENTATION_UNDEFINED = 0;
 	const ORIENTATION_TOPLEFT = 1;
 	const ORIENTATION_TOPRIGHT = 2;
@@ -4253,6 +4254,133 @@ class Imagick implements Iterator, Traversable {
 	 */
 	public function current () {}
 
+
+    /**
+     * Adjusts the levels of a particular image channel by scaling the minimum and maximum values to the full quantum range.
+     *
+     * @param int $channel [optional] <p>
+     * Provide any channel constant that is valid for your channel mode. To apply to more than one channel, combine channel constants using bitwise operators. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
+     * </p>
+     * @return bool <b>TRUE</b> on success.
+     */
+    public function autolevelImage($channel = Imagick::CHANNEL_DEFAULT) {}
+
+
+    /**
+     * Change the brightness and/or contrast of an image. It converts the brightness and contrast parameters into slope and intercept and calls a polynomical function to apply to the image.
+     * @param $brightness <p>
+     * How much to adjust the brightness. Valid range is -100 (completely black image) to 100 (completely white image. 0 is no change in brightness.
+     * </p>
+     * @param $contrast <p>
+     * How much to adjust the contrast. Valid range is -100 (completely grey image) to 100 (all pixels become black or white).
+     * </p>
+     * @param int $channel [optional] <p>
+     * Provide any channel constant that is valid for your channel mode. To apply to more than one channel, combine channel constants using bitwise operators. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
+     * </p>
+     */
+    public function brightnessContrastImage($brightness, $contrast, $channel = Imagick::CHANNEL_DEFAULT) {}
+
+
+    /**
+     * Gets the quantum depth as an integer
+     * @return int The quantum value e.g. 65535 when ImageMagick was compiled with Q16.
+     */
+    public static function getQuantum() { }
+
+    /**
+     * Apply color transformation to an image. The method permits saturation changes, hue rotation, luminance to alpha, and various other effects. Although variable-sized transformation matrices can be used, typically one uses a 5x5 matrix for an RGBA image and a 6x6 for CMYKA (or RGBA with offsets). The matrix is similar to those used by Adobe Flash except offsets are in column 6 rather than 5 (in support of CMYKA images) and offsets are normalized (divide Flash offset by 255).
+     * @param array $colorMatrix The color matrix to apply. This must be either a 5x5 or 6x6 matrix of float values.
+     */
+    public function colorMatrixImage($colorMatrix) {}
+
+
+    /**
+     * Performs a Fourier transform on the image.<p> After this operation there will be two images in
+     * the Imagick object. Access the two images with `
+     *     @$imagick->setimageindex(0);
+     *     $magnitude = $imagick->getimage();
+     *     @$imagick->setimageindex(1);
+     *     $imagickPhase = $imagick->getimage();
+     * </p>
+     *
+     * @param bool $magnitude What type of image generation to use <p>If true, the fourier transform
+     * result two images, one of 'Magnitude' and the other of 'Phase'
+     * If false, the fourier trasform result is a 'Real' and 'Imaginary' pair of images.
+     * Please see http://www.imagemagick.org/Usage/fourier/#fft_ri
+     * </p>
+     * @return bool <b>TRUE</b> on success.
+     */
+    public function forwardFourierTransformImage($magnitude) {}
+
+    /**
+     * @param Imagick $complement
+     * @param bool $magnitude
+     */
+    public function inversefouriertransformimage(Imagick $complement, $magnitude) {}
+
+
+    /**
+     * Searches for a subimage in the current image and returns a similarity image such that an exact
+     * match location is completely white and if none of the pixels match, black, otherwise some gray
+     * level in-between.
+     * You can also pass in the optional parameters bestMatch and similarity. After calling the
+     * function similarity will be set to the 'score' of the similarity between the subimage and
+     * the matching position in the larger image, bestMatch will contain an associative array with
+     * elements x, y, width, height that describe the matching region.
+     *
+     * @param Imagick $subimage The image to search for, should be smaller than current image
+     * @param array $bestMatch [optional]
+     * @param float $similarity [optional]
+     *
+     * @return Imagick A new image that shows the similarity result.
+     */
+    public function subImageMatch(Imagick $subimage, $bestMatch = array(), $similarity = null) { }
+
+
+    /**
+     * Replace every pixel in the image with the result of a statistic function around each pixel.
+     * @param int $type <p>
+     * One of the STATISTIC constants.
+     * </p>
+     * @param float $width <p>
+     * The width that the statistic function should be applied over.
+     * </p>
+     * @param float $height <p>
+     * The height that the statistic function should be aplplied over.
+     * </p>
+     * @param int $channel [optional] <p>
+     * Which channels the function should be applied to. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
+     * </p>
+     */
+    public function statisticImage($type, $width, $height, $channel = Imagick::CHANNEL_DEFAULT) {}
+
+    /**
+     * Set a callback that will be called during the processing of the Imagick image. <p>
+     * The callback function should be of the form
+     *     function ($offset, $span) {}
+     * where $offset is the progress of the current operation, and span is the approximate
+     * duration the operation will take. These values are approximate, and it's common to see
+     * values of 'offset' greater than 'span'.
+     *
+     * It is recommended to only set one progress callback rather than attempting multiple
+     * callbacks.
+     * </p>
+     * @param callable $callback
+     */
+    public function setProgressMonitor(callable $callback) {}
+
+
+    /**
+     * Applies a rotation blur effect to an image.
+     * @param float $angle The angle the image should be rotated by
+     * @param int $channel [optional] <p>
+     * Which channels the function should be applied to. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
+     * </p>
+     */
+    public function rotationalBlurImage($angle, $channel = Imagick::CHANNEL_DEFAULT) {}
+
+
+
 }
 
 /**
@@ -5995,132 +6123,6 @@ class ImagickPixel  {
 	 * @param $colorCount
 	 */
 	public function setcolorcount ($colorCount) {}
-
-    /**
-     * Adjusts the levels of a particular image channel by scaling the minimum and maximum values to the full quantum range.
-     * 
-     * @param int $channel [optional] <p>
-     * Provide any channel constant that is valid for your channel mode. To apply to more than one channel, combine channel constants using bitwise operators. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
-     * </p>
-     * @return bool <b>TRUE</b> on success.
-     */
-    public function autolevelImage($channel = Imagick::CHANNEL_DEFAULT) {}
-
-
-    /**
-     * Change the brightness and/or contrast of an image. It converts the brightness and contrast parameters into slope and intercept and calls a polynomical function to apply to the image.
-     * @param $brightness <p>
-     * How much to adjust the brightness. Valid range is -100 (completely black image) to 100 (completely white image. 0 is no change in brightness.
-     * </p>
-     * @param $contrast <p>
-     * How much to adjust the contrast. Valid range is -100 (completely grey image) to 100 (all pixels become black or white).
-     * </p>
-     * @param int $channel [optional] <p>
-     * Provide any channel constant that is valid for your channel mode. To apply to more than one channel, combine channel constants using bitwise operators. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
-     * </p>
-     */
-    public function brightnessContrastImage($brightness, $contrast, $channel = Imagick::CHANNEL_DEFAULT) {}
-
-
-    /**
-     * Gets the quantum depth as an integer
-     * @return int The quantum value e.g. 65535 when ImageMagick was compiled with Q16.
-     */
-    public static function getQuantum() { }
-
-    /**
-     * Apply color transformation to an image. The method permits saturation changes, hue rotation, luminance to alpha, and various other effects. Although variable-sized transformation matrices can be used, typically one uses a 5x5 matrix for an RGBA image and a 6x6 for CMYKA (or RGBA with offsets). The matrix is similar to those used by Adobe Flash except offsets are in column 6 rather than 5 (in support of CMYKA images) and offsets are normalized (divide Flash offset by 255).
-     * @param $colorMatrix The color matrix to apply. This must be either a 5x5 or 6x6 matrix of float values. 
-     */
-    public function colorMatrixImage($colorMatrix) {}
-
-
-    /**
-     * Performs a Fourier transform on the image.<p> After this operation there will be two images in
-     * the Imagick object. Access the two images with `
-     *     @$imagick->setimageindex(0);
-     *     $magnitude = $imagick->getimage();
-     *     @$imagick->setimageindex(1);
-     *     $imagickPhase = $imagick->getimage(); 
-     * </p>
-     * 
-     * @param $magnitude What type of image generation to use <p>If true, the fourier transform 
-     * result two images, one of 'Magnitude' and the other of 'Phase'
-     * If false, the fourier trasform result is a 'Real' and 'Imaginary' pair of images.
-     * Please see http://www.imagemagick.org/Usage/fourier/#fft_ri
-     * </p>
-     * @return bool <b>TRUE</b> on success.
-     */
-    public function forwardFourierTransformImage($magnitude) {}
-
-    /**
-     * @param Imagick $complement
-     * @param bool $magnitude
-     */
-    public function inversefouriertransformimage(Imagick $complement, $magnitude) {}
-
-
-    /**
-     * Searches for a subimage in the current image and returns a similarity image such that an exact 
-     * match location is completely white and if none of the pixels match, black, otherwise some gray 
-     * level in-between.
-     * You can also pass in the optional parameters bestMatch and similarity. After calling the 
-     * function similarity will be set to the 'score' of the similarity between the subimage and 
-     * the matching position in the larger image, bestMatch will contain an associative array with 
-     * elements x, y, width, height that describe the matching region.
-     * 
-     * @param Imagick $subimage The image to search for, should be smaller than current image
-     * @param array $bestMatch [optional]
-     * @param float $similarity [optional]
-     * 
-     * @return Imagick A new image that shows the similarity result.
-     */
-    public function subImageMatch(Imagick $subimage, $bestMatch = array(), $similarity = null) { }
-
-
-    /**
-     * Replace every pixel in the image with the result of a statistic function around each pixel. 
-     * @param int $type <p>
-     * One of the STATISTIC constants.
-     * </p>
-     * @param float $width <p>
-     * The width that the statistic function should be applied over.
-     * </p>
-     * @param float $height <p>
-     * The height that the statistic function should be aplplied over.
-     * </p>
-     * @param int $channel [optional] <p>
-     * Which channels the function should be applied to. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
-     * </p>
-     */
-    public function statisticImage($type, $width, $height, $channel = Imagick::CHANNEL_DEFAULT) {}
-
-    /**
-     * Set a callback that will be called during the processing of the Imagick image. <p>
-     * The callback function should be of the form 
-     *     function ($offset, $span) {}
-     * where $offset is the progress of the current operation, and span is the approximate 
-     * duration the operation will take. These values are approximate, and it's common to see
-     * values of 'offset' greater than 'span'.
-     * 
-     * It is recommended to only set one progress callback rather than attempting multiple 
-     * callbacks.
-     * </p>
-     * @param callable $callback
-     */
-    public function setProgressMonitor(callable $callback) {}
-
-
-    /**
-     * Applies a rotation blur effect to an image.
-     * @param $angle The angle the image should be rotated by 
-     * @param int $channel [optional] <p>
-     * Which channels the function should be applied to. Defaults to <b>Imagick::CHANNEL_DEFAULT</b>.
-     * </p>
-     */
-    public function rotationalBlurImage($angle, $channel = Imagick::CHANNEL_DEFAULT) {}
-    
-    
     
 }
 // End of imagick v.3.1.0RC1

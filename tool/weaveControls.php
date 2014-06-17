@@ -149,6 +149,12 @@ $controls = [
         'ImagickDemo\ControlElement\Channel',
     ],
 
+    
+    
+    'ImagickDemo\Imagick\Control\mergeImageLayers' => [
+        'ImagickDemo\ControlElement\LayerMethodType',
+    ],
+
         
      'ImagickDemo\Imagick\Control\modulateImage' => [
          'ImagickDemo\ControlElement\Image',

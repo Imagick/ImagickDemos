@@ -1119,9 +1119,9 @@ class Imagick implements Iterator, Traversable {
 	 * @param int $layer_method <p>
 	 * One of the <b>Imagick::LAYERMETHOD_*</b> constants
 	 * </p>
-	 * @return bool <b>TRUE</b> on success.
+	 * @return Imagick The new merged image
 	 */
-	public function mergeimagelayers ($layer_method) {}
+	public function mergeImageLayers ($layer_method) {}
 
 	/**
 	 * (No version information available, might only be in SVN)<br/>
@@ -1132,7 +1132,7 @@ class Imagick implements Iterator, Traversable {
 	 * </p>
 	 * @return bool <b>TRUE</b> on success.
 	 */
-	public function setimagealphachannel ($mode) {}
+	public function setImageAlphaChannel ($mode) {}
 
 	/**
 	 * (No version information available, might only be in SVN)<br/>
@@ -4380,7 +4380,34 @@ class Imagick implements Iterator, Traversable {
     public function rotationalBlurImage($angle, $channel = Imagick::CHANNEL_DEFAULT) {}
 
 
+    /**
+     * Mutes the colors of the image to simulate a scene at nighttime in the moonlight.
+     * @param float $factor [optional]
+     */
+    public function blueShiftImage($factor = 1.5) {}
 
+
+    /**
+     * Takes all images from the current image pointer to the end of the image list and smushs
+    them to each other top-to-bottom if the stack parameter is true, otherwise left-to-right.
+     * @param bool $stack
+     * @param int $offset
+     * @return Imagick A newly smushed image.
+     */
+    public function smushImages($stack, $offset) {}
+
+    /**
+     * Selectively blur an image within a contrast threshold. It is similar to the unsharpen mask that sharpens everything with contrast above a certain threshold.
+     * @param $radius
+     * @param $sigma
+     * @param $threshold
+     * @param int $channel
+     */
+    public function selectiveBlurImage($radius, $sigma, $threshold, $channel = Imagick::CHANNEL_DEFAULT){}
+
+
+
+    
 }
 
 /**

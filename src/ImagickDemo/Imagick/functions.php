@@ -656,6 +656,36 @@ function medianFilterImage($radius, $imagePath) {
     echo $imagick->getImageBlob();
 }
 
+function mergeImageLayers($layerMethodType) {
+
+    $imagick = new \Imagick();
+
+    $nextImage = null;
+    
+    $images = [
+        "../images/Biter_500.jpg",
+        "../images/SydneyPeople_400.jpg",
+    ];
+
+    foreach ($images as $image) {
+        $nextImage = new \Imagick(realpath($image));
+
+        $nextImage->resizeimage(100, 100, \Imagick::FILTER_LANCZOS, 1);
+        $nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+        $imagick->addImage($nextImage);
+        $imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+    }
+    
+    if ($nextImage == null) {
+        return;
+    }
+    
+    $imagick->mergeImageLayers($layerMethodType);
+    header("Content-Type: image/png");
+    echo $nextImage->getImageBlob();
+}
+    
+    
 //Example Imagick::modulateImage
 function modulateImage($imagePath, $hue, $brightness, $saturation) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -977,7 +1007,7 @@ function setImageBias() {
 //Example Imagick::setImageDelay
 function setImageDelay() {
     $imagick = new \Imagick(realpath("../images/coolGif.gif"));
-    $imagick = $imagick->coalesceImages();
+    $imagick2 = $imagick->coalesceImages();
 
     $frameCount = 0;
 
@@ -987,10 +1017,10 @@ function setImageDelay() {
         $frameCount++;
     }
 
-    $imagick = $imagick->deconstructImages();
+    $imagick3 = $imagick2->deconstructImages();
 
     header("Content-Type: image/gif");
-    echo $imagick->getImagesBlob();
+    echo $imagick3->getImagesBlob();
 }
 
 
@@ -998,7 +1028,7 @@ function setImageDelay() {
 function setImageTicksPerSecond() {
 
     $imagick = new \Imagick(realpath("../images/coolGif.gif"));
-    $imagick = $imagick->coalesceImages();
+    $imagick2 = $imagick->coalesceImages();
 
     $totalFrames = $imagick->getNumberImages();
 
@@ -1006,7 +1036,6 @@ function setImageTicksPerSecond() {
 
     foreach ($imagick as $frame) {
         /** @var $frame \Imagick */
-//        $frame->setImageTicksPerSecond(50);
 
         if ($frameCount < ($totalFrames / 2)) {
             //Modify the frame to be displayed for twice as long as it currently is.
@@ -1019,9 +1048,9 @@ function setImageTicksPerSecond() {
         $frameCount++;
     }
 
-    $imagick = $imagick->deconstructImages();
+    $imagick3 = $imagick2->deconstructImages();
     header("Content-Type: image/gif");
-    echo $imagick->getImagesBlob();
+    echo $imagick3->getImagesBlob();
 }
 
 
@@ -1214,9 +1243,7 @@ function subImageMatch($imagePath) {
     $comparison = $imagick->subImageMatch($imagick2, $bestMatch, $similarity);
 
     //Do something with $comparison
-    
-   
-    
+
     echo "Similarity score is: ".$similarity;
     foreach($bestMatch as $key => $value) {
         echo "$key : $value <br/>";

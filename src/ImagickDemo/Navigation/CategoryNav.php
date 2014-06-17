@@ -449,7 +449,7 @@ class CategoryNav implements Nav {
             //'matteFloodfillImage',
             'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ControlCompositeRadiusImage::class],
 
-            //'mergeImageLayers',
+            'mergeImageLayers'  => ['mergeImageLayers', \ImagickDemo\Imagick\Control\mergeImageLayers::class],
             //'minifyImage',
             'modulateImage' => ['modulateImage', \ImagickDemo\Imagick\Control\modulateImage::class],
             //'montageImage',

@@ -51,8 +51,8 @@ class ImagickTaskRunner {
                 continue;
             }
     
-            echo "A task! ".$task->getFunctionName()."\n";
-            
+            echo "A task! "."\n";
+
             try {
                 $startTime = microtime(true);
                 $task->execute($this->injector);

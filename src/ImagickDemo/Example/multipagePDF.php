@@ -8,6 +8,7 @@ $images = [
 ];
 
 foreach ($images as $image) {
+    /** @var $combined \Imagick */
     if ($combined == null) {
         $combined = new Imagick(realpath($image));   
     }

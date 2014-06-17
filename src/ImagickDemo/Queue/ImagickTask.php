@@ -70,6 +70,7 @@ class ImagickTask implements Task {
         global $imageCache;
 
         $namespace = sprintf('ImagickDemo\%s\functions', $this->category);
+        /** @noinspection PhpUndefinedMethodInspection */
         $namespace::load();
 
         $imageCache = true;

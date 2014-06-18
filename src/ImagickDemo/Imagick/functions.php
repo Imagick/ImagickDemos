@@ -851,11 +851,49 @@ function remapImage($imagePath) {
 //Example Imagick::resampleImage
 function resampleImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
+    
+   
+    
     $imagick->resampleImage(200, 200, \Imagick::FILTER_LANCZOS, 1);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
 
+
+    //The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.
+    
+function resizeImage($imagePath, $width, $height, $filterType, $blur, $bestFit, $cropZoom) {
+    $imagick = new \Imagick(realpath($imagePath));
+
+    $imagick->resizeImage($width, $height, $filterType, $blur, $bestFit);
+
+    $cropWidth = $imagick->getImageWidth();
+    $cropHeight = $imagick->getImageHeight();
+
+    if ($cropZoom) {
+        $newWidth = $cropWidth / 2;
+        $newHeight = $cropHeight / 2;
+
+        $imagick->cropimage(
+            $newWidth,
+            $newHeight,
+            ($cropWidth - $newWidth) / 2,
+            ($cropHeight - $newHeight) / 2
+        );
+
+        $imagick->scaleimage(
+            $imagick->getImageWidth() * 4,
+            $imagick->getImageHeight() * 4
+        );
+    }
+
+
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+
+    
+    
 //Example Imagick::rollImage
 function rollImage($imagePath, $rollX, $rollY) {
     $imagick = new \Imagick(realpath($imagePath));

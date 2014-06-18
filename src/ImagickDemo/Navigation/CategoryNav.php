@@ -343,8 +343,6 @@ class CategoryNav implements Nav {
             //'getColorspace',
             //'getCompression',
             //'getCompressionQuality',
-            'getCopyright',
-
             'getCopyright'  => ['getCopyright', \ImagickDemo\Control\NullControl::class],
             //'getFilename',
             //'getFont',
@@ -508,7 +506,14 @@ class CategoryNav implements Nav {
             //'render',
             'resampleImage' => ['resampleImage', \ImagickDemo\Control\ImageControl::class],
             //'resetImagePage',
-            //'resizeImage',
+            'resizeImage' => [
+                'resizeImage',
+                \ImagickDemo\Imagick\Control\resizeImage::class,
+                'defaultParams' => [
+                    'width' => 200,
+                    'height' => 200
+                ]
+            ],
             'rollImage' => ['rollImage', \ImagickDemo\Imagick\Control\rollImage::class],
             'rotateImage' => ['rotateImage', \ImagickDemo\Imagick\Control\rotateImage::class],
             'rotationalBlurImage' => ['rotationalBlurImage', \ImagickDemo\Control\ImageControl::class],

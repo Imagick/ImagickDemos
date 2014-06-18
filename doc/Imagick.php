@@ -65,7 +65,7 @@ class Imagick implements Iterator, Traversable {
 	const COMPOSITE_IN = 32;
 	const COMPOSITE_LIGHTEN = 33;
 	const COMPOSITE_LUMINIZE = 35;
-	const COMPOSITE_MINUS = 36;
+	const COMPOSITE_MINUS = 36; //aka     COMPOSITE_MINUSDST
 	const COMPOSITE_MODULATE = 37;
 	const COMPOSITE_MULTIPLY = 38;
 	const COMPOSITE_OUT = 39;
@@ -84,7 +84,27 @@ class Imagick implements Iterator, Traversable {
 	const COMPOSITE_SUBTRACT = 52;
 	const COMPOSITE_THRESHOLD = 53;
 	const COMPOSITE_XOR = 54;
-	const MONTAGEMODE_FRAME = 1;
+    const COMPOSITE_DIVIDEDST = 55;
+    const COMPOSITE_DISTORT = 56;
+	const COMPOSITE_BLUR = 57;
+	const COMPOSITE_PEGTOPLIGHT = 58;
+	const COMPOSITE_VIVIDLIGHT = 59;
+	const COMPOSITE_PINLIGHT = 60;
+	const COMPOSITE_LINEARDODGE = 61;
+	const COMPOSITE_LINEARBURN = 62;
+	const COMPOSITE_MATHEMATICS = 63;
+    const COMPOSITE_DIVIDESRC = 64;
+    const COMPOSITE_MINUSSRC = 65;
+	const COMPOSITE_DARKENINTENSITY = 66;
+	const COMPOSITE_LIGHTENINTENSITY = 67;
+
+
+
+
+
+
+
+    const MONTAGEMODE_FRAME = 1;
 	const MONTAGEMODE_UNFRAME = 2;
 	const MONTAGEMODE_CONCATENATE = 3;
 	const STYLE_NORMAL = 1;
@@ -104,9 +124,27 @@ class Imagick implements Iterator, Traversable {
 	const FILTER_CUBIC = 10;
 	const FILTER_CATROM = 11;
 	const FILTER_MITCHELL = 12;
-	const FILTER_LANCZOS = 22;
-	const FILTER_BESSEL = 13;
+	const FILTER_BESSEL = 13; //aka JINC
 	const FILTER_SINC = 14;
+    const FILTER_SINCFAST = 15;
+    const FILTER_KAISER = 16;
+    const FILTER_WELSH = 17;
+    const FILTER_PARZEN = 18;
+    const FILTER_BOHMAN = 19;
+    const FILTER_BARTLETT = 20;
+    const FILTER_LAGRANGE = 21;
+    const FILTER_LANCZOS = 22;
+    const FILTER_LANCZOSSHARP = 23;
+    const FILTER_LANCZOS2 = 24;
+    const FILTER_LANCZOS2SHARP = 25;
+    const FILTER_ROBIDOUX = 26;
+    const FILTER_ROBIDOUXSHARP = 27;
+    const FILTER_COSINE = 28;
+    const FILTER_SPLINE = 29;
+    const FILTER_LANCZOSRADIUS = 30;
+    const FILTER_SENTINEL = 31;
+
+    
 	const IMGTYPE_UNDEFINED = 0;
 	const IMGTYPE_BILEVEL = 1;
 	const IMGTYPE_GRAYSCALE = 2;

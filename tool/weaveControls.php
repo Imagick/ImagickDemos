@@ -210,6 +210,18 @@ $controls = [
         'ImagickDemo\ControlElement\ReduceNoise',
     ],
 
+    
+    'ImagickDemo\Imagick\Control\resizeImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\FilterType',
+        'ImagickDemo\ControlElement\Width',
+        'ImagickDemo\ControlElement\Height',
+        'ImagickDemo\ControlElement\Blur',
+        'ImagickDemo\ControlElement\BestFit',
+        'ImagickDemo\ControlElement\CropZoom',
+        
+    ],
+
 
     'ImagickDemo\Imagick\Control\rollImage' => [
         'ImagickDemo\ControlElement\Image',

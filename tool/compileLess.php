@@ -11,7 +11,7 @@ $parser = new Less_Parser();
 
 $cacheDir = '../var/cache/less';
 
-mkdir($cacheDir, 0755, true);
+@mkdir($cacheDir, 0755, true);
 
 $compileItems = [
     "../less/bootstrap/bootstrap.less" => '../imagick/css/bootstrap.css',

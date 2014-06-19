@@ -28,3 +28,30 @@ Compiling Image Magick from source is almost certainly the best way to install i
 
 
 
+## Developer notes
+
+
+### Adding a control
+
+The controls use [Weaver](http://www.github.com/Danack/Weaver) to produce a composite control from the control elements. The steps required to add a control are:
+
+1) In tools/weaveControls.php define what the composite class name will be and what control elements it requires e.g. 
+
+    'ImagickDemo\Imagick\Control\rollImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\RollX',
+        'ImagickDemo\ControlElement\RollY',
+    ],
+
+2) Run weaveControls.php which will produce the class.
+
+3) In src/ImagickDemo/Navigation/CategoryNav.php edit the entry for the example
+
+    'rollImage' => [  //The rollImage example 
+        'rollImage',    //Is displayed by the \ImagickDemo\Imagick\rollImage class
+        \ImagickDemo\Imagick\Control\rollImage::class  //And requires this control.
+    ],
+
+
+4) If you have added a new control element that handles a new parameter you will need to fixup up the DI. In the function `delegateAllTheThings()` in bootstrap.php add the new parameter to the huge list of parameters. The parameter will now automatically be available to the function call for the example.
+

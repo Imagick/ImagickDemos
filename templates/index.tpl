@@ -22,7 +22,7 @@
             <ul class="nav navbar-nav">
                 {inject name='navBar' value='ImagickDemo\NavigationBar'}
                 {$navBar->render() | nofilter}
-                <li class='navbar-right'><a href="https://github.com/Danack/Imagick-demos" target='_blank'>Source code</a></li>
+                </li>
             </ul>
         </nav>
     </div>

@@ -27,13 +27,6 @@ class CategoryNav implements Nav {
     function getCategory() {
         return $this->category;
     }
-    
-//    /**
-//     * @return NavOption[]
-//     */
-//    function getNavOptions() {
-//        return $this->exampleList->getExamples();
-//    }
 
     /**
      * @return mixed

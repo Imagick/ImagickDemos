@@ -563,7 +563,9 @@ class CategoryNav implements Nav {
             //'setImageMatte',
             //'setImageMatteColor',
             //'setImageOpacity',
-            //'setImageOrientation',
+            
+            
+            'setImageOrientation' => ['setImageOrientation', \ImagickDemo\Imagick\Control\setImageOrientation::class],
             //'setImagePage',
             //'setImageProfile',
             //'setImageProperty',

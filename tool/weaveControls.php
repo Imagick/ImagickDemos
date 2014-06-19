@@ -187,6 +187,8 @@ $controls = [
         'ImagickDemo\ControlElement\Radius'
     ],
 
+    
+    
     'ImagickDemo\Imagick\Control\raiseImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Width',
@@ -263,6 +265,12 @@ $controls = [
         'ImagickDemo\ControlElement\Sepia',
     ],
 
+   
+    'ImagickDemo\Imagick\Control\setImageOrientation' => [
+        'ImagickDemo\ControlElement\Image',
+        '\ImagickDemo\ControlElement\OrientationType'
+    ],
+    
     'ImagickDemo\Imagick\Control\setOption' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\ImageOption',

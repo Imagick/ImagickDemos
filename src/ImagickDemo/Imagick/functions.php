@@ -273,8 +273,7 @@ function compositeImage() {
              1
     );
 
-    $opacity = new \Imagick();
-
+    $opacity = new \Imagick();    
     $opacity->newPseudoImage($img1->getImageHeight(), $img1->getImageWidth(), "gradient:gray(10%)-gray(90%)");
     $opacity->rotateimage('black', 90);
 
@@ -1017,6 +1016,18 @@ function setImageArtifact($imagePath) {
 }
 
 
+//Example Imagick::setImageOrientation
+//Doesn't appear to do anything
+function setImageOrientation($imagePath, $orientationType) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->setImageOrientation($orientationType);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+
+
+//Example Imagick::setImageBias
+//Doesn't appear to do anything
 function setImageBias() {
 
     $imagick = new \Imagick(realpath("../images/stack.jpg"));

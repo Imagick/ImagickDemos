@@ -2,8 +2,10 @@
 
 //TODO - Arctan function isn't in my current imagick.
 
-require "../../imagick-demos.conf.php";
-require "../src/bootstrap.php";
+require __DIR__."../../imagick-demos.conf.php";
+//require "../src/bootstrap.php";
+require __DIR__.'/../src/bootstrap.php';
+
 
 \Intahwebz\Functions::load();
 
@@ -25,7 +27,6 @@ function serverCachedFileIfExists($filename) {
             exit(0);
         }
     }
-
 }
 
 
@@ -120,6 +121,8 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
     $injector->defineParam('customImageBaseURL', '/customImage/'.$category.'/'.$example);
     $injector->defineParam('activeCategory', $category);
+    $injector->defineParam('activeExample', $example);
+    
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->share($controlClass);
 
@@ -158,9 +161,9 @@ function setupCatergoryDelegation(\Auryn\Provider $injector, $category) {
     $injector->defineParam('imageBaseURL', '/image/'.$category);
     $injector->defineParam('customImageBaseURL', '/customImage/'.$category);
     $injector->defineParam('activeCategory', $category);
+    $injector->defineParam('activeExample', null);
 
     $injector->share(\ImagickDemo\Control::class);
-    $injector->alias(ImagickDemo\ExampleList::class, "ImagickDemo\\".$category."\\ExampleList");
     $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\IndexExample', $category));
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
     $injector->define(ImagickDemo\Navigation\CategoryNav::class, [
@@ -200,6 +203,7 @@ function setupInfo() {
     $knownServers = [
         'imagick.test',
         'phpimagick.com',
+        'www.phpimagick.com',
         'test.phpimagick.com'
     ];
 
@@ -212,6 +216,11 @@ function setupInfo() {
             $serverName = $allgedServerName;
         }
     }
+
+    if (!$serverName) {
+        return;
+    }
+
 
     $client = new Artax\Client;
     $url ="http://".$serverName."/www-status?full&json";

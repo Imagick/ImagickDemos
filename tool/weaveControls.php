@@ -9,9 +9,6 @@ else {
 }
 
 
-
-use Weaver\CompositeWeaveGenerator;
-
 $controls = [
 
     'ImagickDemo\Imagick\Control\adaptiveBlurImage' => [
@@ -126,7 +123,18 @@ $controls = [
     'ImagickDemo\Imagick\Control\deskewImage' => [
         'ImagickDemo\ControlElement\Threshold',
     ],
-    
+
+    'ImagickDemo\Imagick\Control\floodFillPaintImage' => [
+
+        'ImagickDemo\ControlElement\FillColor', //$fill,
+        'ImagickDemo\ControlElement\Fuzz', //$fuzz, 
+        'ImagickDemo\ControlElement\TargetColor', // $target,
+        'ImagickDemo\ControlElement\PictureX',  // $x,
+        'ImagickDemo\ControlElement\PictureY',  // $y,  
+        'ImagickDemo\ControlElement\Inverse', //       $invert, 
+        'ImagickDemo\ControlElement\Channel', //$channel
+    ],
+
     'ImagickDemo\Imagick\Control\frameimage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Color',

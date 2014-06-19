@@ -4,15 +4,22 @@
 namespace ImagickDemo\ControlElement;
 
 
-
+use Intahwebz\Request;
 
 
 class FillColor extends ColorElement {
 
-    protected function getDefault() {
-        return 'DodgerBlue2';
+    private $defaultColor;
+
+    function __construct(Request $request, $defaultFillColor = 'DodgerBlue2') {
+        $this->defaultColor = $defaultFillColor;
+        parent::__construct($request);
     }
 
+    protected function getDefault() {
+        return $this->defaultColor;
+    }
+    
     protected function getVariableName() {
         return 'fillColor';
     }

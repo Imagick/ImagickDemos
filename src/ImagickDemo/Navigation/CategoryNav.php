@@ -320,12 +320,21 @@ class CategoryNav implements Nav {
             'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
             'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\EvaluateTypeControl::class],
             //'exportImagePixels',
-//'extentImage',
-            //FilterImage - this appears to be a duplicate function
+            //'extentImage',
             //FrameImage
             //'flattenImages',
             'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
-            'floodFillPaintImage' => ['floodFillPaintImage', \ImagickDemo\Control\ImageControl::class],
+            'floodFillPaintImage' => [
+                'floodFillPaintImage',
+                \ImagickDemo\Imagick\Control\floodFillPaintImage::class,
+                'defaultParams' => [ 
+                    'x' => 260,
+                    'y' => 150,
+                    'fuzz' => 0.2,
+                    'fillColor' => 'rgb(0, 0, 0)',
+                    'targetColor' => 'rgb(245, 124, 24)'
+                ]
+            ],
             'flopImage' => ['flopImage', \ImagickDemo\Control\ImageControl::class],
             'forwardFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
             'frameImage' => ['frameImage', \ImagickDemo\Imagick\Control\frameImage::class],

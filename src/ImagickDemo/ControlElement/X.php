@@ -4,11 +4,20 @@
 namespace ImagickDemo\ControlElement;
 
 
+use Intahwebz\Request;
 
 class X extends ValueElement {
 
+    private $defaultX;
+
+    function __construct(Request $request, $defaultX = 10) {
+        $this->defaultX = $defaultX;
+        parent::__construct($request);
+    }
+    
+    
     protected function getDefault() {
-        return 10;
+        return $this->defaultX;
     }
 
     protected function getMin() {

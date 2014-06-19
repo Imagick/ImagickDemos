@@ -443,14 +443,15 @@ function flipImage($imagePath) {
 
 
 //Example Imagick::floodFillPaintImage
-function floodFillPaintImage() {
+function floodFillPaintImage($fillColor, $fuzz, $targetColor, $x, $y, $inverse, $channel) {
     $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
     $imagick->floodFillPaintImage(
-            'white',
-                0.3 * \Imagick::getQuantum(),
-                "#00ff00",
-                20, 20,
-                false
+        $fillColor,
+        $fuzz * \Imagick::getQuantum(),
+        $targetColor,
+        $x, $y,
+        $inverse,
+        $channel
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

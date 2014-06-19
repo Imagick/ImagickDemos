@@ -143,6 +143,7 @@
     addColorSelector("#backgroundColorSelector", "#backgroundColor");
     addColorSelector("#colorSelector", "#color");
     addColorSelector("#strokeColorSelector", "#strokeColor");
+    addColorSelector("#targetColorSelector", "#targetColor");
     addColorSelector("#fillColorSelector", "#fillColor");
     addColorSelector("#fillModifiedColorSelector", "#fillModifiedColor");
     addColorSelector("#textUnderColorSelector", "#textUnderColor");

@@ -17,6 +17,11 @@ git clone https://github.com/Danack/Imagick-demos imagick-demos/
 cd imagick-demos
 /usr/local/bin/php -d allow_url_fopen=1 ./lib/composer install 
 
+
+cp imagick-demos.conf.php ../imagick-demos.conf.php
+//Put some real values in the config
+
+
 #Generate the config files for nginx, etc.
 cd tool
 # /usr/local/bin/php Configurate.php amazonec2

@@ -23,7 +23,7 @@ $amazonec2 = [
     'basereality.root.directory' => '/home/intahwebz/current',
     'basereality.cache.directory' => '/home/intahwebz/current/var/cache',
 
-    'imagick.root.directory' => '/home/imagick-demos/',
+    'imagick.root.directory' => '/home/imagick-demos/imagick-demos/',
 
     'phpfpm.socket' => '/var/run/php-fpm',
     'phpfpm.www.maxmemory' => '16M',

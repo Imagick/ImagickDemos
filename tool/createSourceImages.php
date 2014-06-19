@@ -1,6 +1,8 @@
 <?php
 
 
+//TODO - is this still alive?
+
 $sourceImages = [
     'gradientDown' => 'gradientDown',
     'gradientRight' => 'gradientRight',

@@ -1,13 +1,10 @@
 <?php
 
-use \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor;
-
-
 if (defined('LOW_MEM_CLASS_LOADER') && LOW_MEM_CLASS_LOADER == true) {
-    require_once('../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php');
+    require __DIR__.'/../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php';
 }
 else {
-    require_once('../vendor/autoload.php');
+    require __DIR__.'/../vendor/autoload.php';
 }
 
 

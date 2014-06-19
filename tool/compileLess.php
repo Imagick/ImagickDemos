@@ -1,15 +1,15 @@
 <?php
 
 if (defined('LOW_MEM_CLASS_LOADER') && LOW_MEM_CLASS_LOADER == true) {
-    require_once('../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php');
+    require __DIR__.'/../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php';
 }
 else {
-    require_once('../vendor/autoload.php');
+    require __DIR__.'../vendor/autoload.php';
 }
 
 $parser = new Less_Parser();
 
-$cacheDir = '../var/cache/less';
+$cacheDir = __DIR__.'/../var/cache/less';
 
 @mkdir($cacheDir, 0755, true);
 

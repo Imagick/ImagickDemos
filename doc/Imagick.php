@@ -3285,7 +3285,7 @@ class Imagick implements Iterator, Traversable {
 	 * (PECL imagick 2.0.0)<br/>
 	 * Gets the image histogram
 	 * @link http://php.net/manual/en/imagick.getimagehistogram.php
-	 * @return array the image histogram as an array of ImagickPixel objects.
+	 * @return ImagickPixel[] the image histogram as an array of ImagickPixel objects.
 	 */
 	public function getimagehistogram () {}
 
@@ -6044,7 +6044,7 @@ class ImagickPixel  {
      * The value of the color scaled from 0 to quantumRange.
      * </p>
      */
-    public function getcolorvaluequantum ($colorConstant) {}
+    public function getColorValueQuantum ($colorConstant) {}
 
 	/**
 	 * @param $colorConstant <p>
@@ -6188,12 +6188,12 @@ class ImagickPixel  {
 	 * @return int the color count as an integer on success, throws
 	 * ImagickPixelException on failure.
 	 */
-	public function getcolorcount () {}
+	public function getColorCount () {}
 
 	/**
 	 * @param $colorCount
 	 */
-	public function setcolorcount ($colorCount) {}
+	public function setColorCount ($colorCount) {}
     
 }
 // End of imagick v.3.1.0RC1

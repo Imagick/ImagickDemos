@@ -80,8 +80,6 @@ class ImagickTask implements Task {
 
         delegateAllTheThings($injector, $this->control);
         createAndCacheFile($injector, $functionFullname, $filename);
-        //$image =createAndCacheFile($injector, $functionFullname, $filename); 
-        //$imageSize = strlen($image);
     }
 
     /**

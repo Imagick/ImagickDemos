@@ -96,13 +96,11 @@ class Configurate {
     }
 }
 
-
 $tool = new Configurate();
 
-
 $properties = [];
-$properties['inputDir'] = PATH_TO_ROOT;
-$properties['outputDir'] = PATH_TO_ROOT;
+$properties['inputDir'] = __DIR__.'/../';
+$properties['outputDir'] = __DIR__.'/../';
 
 if ($argc <= 1) {
     echo "Please select a config from: ";

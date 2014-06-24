@@ -27,7 +27,7 @@ class AdaptiveOffset extends ValueElement {
     }
 
     protected function getMax() {
-        return \Imagick::getQuantum();
+        return 1;//\Imagick::getQuantum();
     }
 
     protected function getVariableName() {
@@ -38,6 +38,10 @@ class AdaptiveOffset extends ValueElement {
         return 'Offset';
     }
 
+    protected function getHelpText() {
+        return "";
+    }
+    
     function getAdaptiveOffset() {
         return $this->getValue();
     }

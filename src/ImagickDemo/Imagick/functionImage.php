@@ -14,7 +14,14 @@ class functionImage extends \ImagickDemo\Example {
     function __construct(\ImagickDemo\Control\ImagickFunctionControl $control) {
         $this->functionControl = $control;
     }
-    
+
+
+    function getCustomImageParams() {
+        return $this->functionControl->getParams();
+    }
+
+
+
     function renderDescription() {
         
         $output = <<< END

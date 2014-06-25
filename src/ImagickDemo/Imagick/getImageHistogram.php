@@ -14,6 +14,10 @@ class getImageHistogram extends  \ImagickDemo\Example {
         $this->imageControl = $imageControl;
     }
 
+    function getCustomImageParams() {
+        return $this->imageControl->getParams();
+    }
+
     function getControl() {
         return $this->imageControl;
     }

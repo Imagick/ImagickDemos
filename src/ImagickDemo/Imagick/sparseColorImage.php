@@ -72,6 +72,10 @@ class sparseColorImage extends \ImagickDemo\Example {
         $this->sparseControl = $sparseControl;
     }
 
+    function getCustomImageParams() {
+        return $this->sparseControl->getParams();
+    }
+
     function render() {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();

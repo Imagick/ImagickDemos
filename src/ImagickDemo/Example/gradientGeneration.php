@@ -18,6 +18,13 @@ class gradientGeneration extends \ImagickDemo\Example {
         $this->customImageBaseURL = $customImageBaseURL;
     }
 
+
+
+    function getCustomImageParams() {
+        return $this->control->getParams();
+    }
+
+
 //
 //    EVALUATE_UNDEFINED
 //    EVALUATE_ADD

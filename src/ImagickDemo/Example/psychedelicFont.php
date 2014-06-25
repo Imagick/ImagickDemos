@@ -10,6 +10,4 @@ class psychedelicFont extends \ImagickDemo\Example  {
 
         return $output;
     }
-
-
 }

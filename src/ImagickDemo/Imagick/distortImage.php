@@ -10,6 +10,9 @@ namespace ImagickDemo\Imagick;
  * http://www.php.net/manual/en/imagick.distortimage.php#103403
  */
 
+
+
+
 class distortImage extends \ImagickDemo\Example {
 
     /**
@@ -32,6 +35,10 @@ class distortImage extends \ImagickDemo\Example {
         return $output;
     }
 
+    function getCustomImageParams() {
+        return $this->rsiControl->getParams();
+    }
+    
     function renderCustomImage() {
 
         $methods = [
@@ -62,30 +69,8 @@ class distortImage extends \ImagickDemo\Example {
     }
     
     function renderDescription() {
-
-        //http://stackoverflow.com/questions/12276098/understanding-perspective-projection-distortion-imagemagick
-        
-//        $functionName = $this->getFunctionName();
-//        if ($functionName){
-//            echo "Using function :".$functionName;
-//        }
-//        else {
-//            echo "Function $functionName not implemented yet.";
-//        }
-        
         return "Some distortion.";
     }
-
-//    function renderImage() {
-//        $functionName = $this->getFunctionName();
-//        if ($functionName) {
-//            $this->{$functionName}();
-//        }
-//        else {
-//            echo "Function $functionName not implemented yet.";
-//            exit(0);
-//        }
-//    }
 
     /**
      * 
@@ -299,8 +284,10 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->setimagebackgroundcolor("#fad888");
         $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_HORIZONTALTILE);
         $imagick->distortImage(\Imagick::DISTORTION_POLAR, $points, TRUE);
+
         header("Content-Type: image/jpeg");
-        echo $imagick;   
+        echo $imagick;
+        
     }
 
     //Polar args

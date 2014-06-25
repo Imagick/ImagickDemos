@@ -5,7 +5,7 @@ require __DIR__.'/../src/bootstrap.php';
 
 
 use ImagickDemo\Response\StandardHTTPResponse;
-
+use ImagickDemo\Response\FileResponse;
 
 \Intahwebz\Functions::load();
 
@@ -13,17 +13,47 @@ register_shutdown_function('fatalErrorShutdownHandler');
 set_error_handler('errorHandler');
 set_exception_handler('exceptionHandler');
 
-
 $startTime = microtime(true);
+
+
+function createFileResponseIfFileExists($filename) {
+    $extensions = ["jpg", 'jpeg', "gif", "png", ];
+
+    foreach ($extensions as $extension) {
+        $filenameWithExtension = $filename.".".$extension;
+        if (file_exists($filenameWithExtension) == true) {
+            //TODO - content type should actually be image/jpeg
+            return new FileResponse($filenameWithExtension, "image/".$extension);
+        }
+    }
+
+    return null;
+}
+
+
 
 function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example) {
     $function = setupExampleInjection($injector, $category, $example); 
     $className = sprintf('ImagickDemo\%s\%s', $category, $function);
-    $response = $injector->execute([$className, 'renderCustomImage']);
-    
+    $namespace = 'ImagickDemo\\'.$category.'\functions';
+    $namespace::load();
+    $controller = $injector->make($className);
+    $params = $controller->getCustomImageParams();
+    $filename = getImageCacheFilename($category, $example, $params);
+
+    $response = createFileResponseIfFileExists($filename);
+
+    if ($response) {
+        return $response;
+    }
+
+
+
+
+    $response = createAndCacheFile($injector, [$controller, 'renderCustomImage'], $filename);
+
     return $response;
 }
-
 
 /**
  * @param \Auryn\Provider $injector

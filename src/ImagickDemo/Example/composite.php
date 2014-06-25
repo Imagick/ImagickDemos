@@ -13,6 +13,10 @@ class composite extends \ImagickDemo\Example {
         $this->compositeExampleControl = $compositeExampleControl;
     }
 
+    function getCustomImageParams() {
+        return $this->compositeExampleControl->getParams();
+    }
+    
     function render() {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();
@@ -164,16 +168,11 @@ class composite extends \ImagickDemo\Example {
 
 
     function Plus() {
-
         $redImagick = new \Imagick(realpath("../images/redDiscAlpha.png"));
         $greenImagick = new \Imagick(realpath("../images/greenDiscAlpha.png"));
         $blueImagick = new \Imagick(realpath("../images/blueDiscAlpha.png"));
-
-
         $redImagick->compositeimage($greenImagick, \Imagick::COMPOSITE_PLUS, 0, 0);
-
         $redImagick->compositeimage($blueImagick, \Imagick::COMPOSITE_PLUS, 0, 0);
-
         $redImagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $redImagick->getImageBlob();
@@ -182,14 +181,9 @@ class composite extends \ImagickDemo\Example {
 
 
     function Minus() {
-
-
         $rgbImagick = new \Imagick(realpath("../images/rgbDisc.png"));
         $redImagick = new \Imagick(realpath("../images/redDiscAlpha.png"));
-
-
         $rgbImagick->compositeimage($redImagick, \Imagick::COMPOSITE_MINUS, 0, 0);
-
         $rgbImagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $rgbImagick->getImageBlob();

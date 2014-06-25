@@ -36,8 +36,14 @@ class logoTshirt extends \ImagickDemo\Example {
         $this->control = $control;
         $this->request = $request;
     }
-    
-    
+
+
+    function getCustomImageParams() {
+        $imageType = $this->request->getVariable('type', 'simple');
+        return ['type' => $imageType];
+    }
+
+
     function renderTitle() {
         return "";
     }
@@ -83,7 +89,7 @@ END;
         }
     }
     
-
+    //TODO - this is a little borked
     function renderCustomImageSimple() {
         $tshirt = new \Imagick(realpath("../images/tshirt/tshirt.jpg"));
         $logo = new \Imagick(realpath("../images/tshirt/Logo.png"));
@@ -136,7 +142,6 @@ END;
 
         //Merge the image with a non-deprecated function.
         $tshirt->mergeimagelayers(\Imagick::LAYERMETHOD_COALESCE);
-
 
         header("Content-Type: image/png");
         echo $tshirt->getImageBlob();

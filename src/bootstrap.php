@@ -8,6 +8,10 @@
 
 function exceptionHandler( Exception $ex ) {
 
+    //TODO - need to ob_end_clean as many times as required because 
+    //otherwise partial content gets sent to the client.
+    
+    
     if (headers_sent() == false) {
         header("HTTP/1.0 500 Internal Server Error", true, 500);
     }
@@ -110,8 +114,9 @@ function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filen
     ob_start();
 
     $injector->execute($functionFullname);
-
+    
     if ($imageType == null) {
+        ob_end_clean();
         throw new \Exception("imageType not set, can't cache image correctly.");
     }
 
@@ -120,11 +125,9 @@ function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filen
     //TODO - is this atomic?
     $fullFilename = $filename.".".strtolower($imageType);
     file_put_contents($fullFilename, $image);
-    //ob_end_flush();
     ob_end_clean();
 
     return new \ImagickDemo\Response\FileResponse($fullFilename, "image/".$imageType);
-
 }
 
 function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {

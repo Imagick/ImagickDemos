@@ -9,6 +9,10 @@ class functionImage extends \ImagickDemo\Example {
     function __construct($control) {
         $this->control = $control;
     }
+
+    function getCustomImageParams() {
+        return $this->control->getParams();
+    }
     
     function renderTitle() {
         return "";

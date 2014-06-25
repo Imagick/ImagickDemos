@@ -22,7 +22,11 @@
             <ul class="nav navbar-nav">
                 {inject name='navBar' value='ImagickDemo\NavigationBar'}
                 {$navBar->render() | nofilter}
-                </li>
+        </nav>
+
+        <nav class="navbar-default pull-right" role="navigation">
+            <ul class="nav navbar-nav">
+                {$navBar->renderRight() | nofilter}
             </ul>
         </nav>
     </div>

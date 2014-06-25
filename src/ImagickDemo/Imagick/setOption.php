@@ -14,7 +14,12 @@ class setOption extends \ImagickDemo\Example {
     function __construct(\ImagickDemo\Imagick\Control\setOption $control) {
         $this->setOptionControl = $control;
     }
-    
+
+    function getCustomImageParams() {
+        return $this->setOptionControl->getParams();
+    }
+
+
     function render() {
         return $this->renderCustomImageURL();
     }

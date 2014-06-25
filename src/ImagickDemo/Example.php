@@ -19,7 +19,10 @@ abstract class Example implements renderableExample {
 
     function __construct(\ImagickDemo\Control $control) {
         $this->control = $control;
-        
+    }
+
+    function getOriginalImage() {
+        return false;
     }
 
     function renderTitle() {
@@ -27,7 +30,32 @@ abstract class Example implements renderableExample {
     }
 
     function renderImageURL() {
-        return sprintf("<img src='%s' />", $this->control->getURL());
+
+        $js = '';
+        $originalImage = $this->getOriginalImage();
+
+        $output = '';
+
+        $originalText = "(mouse over to see original)";
+        $modifiedText = "(mouse out to see modified)";
+
+        if ($originalImage == true) {
+            $modifiedImage = $this->control->getURL();
+            $mouseOver = "onmouseover=\"$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')\"";
+
+            $mouseOut = "onmouseout=\"$('#exampleImage').attr('src', '$modifiedImage' ); $('#mouseText').text('$originalText')\"\"";
+
+            $js = $mouseOver.' '.$mouseOut;
+        }
+
+        $output .= sprintf("<img src='%s' id='exampleImage' %s />", $this->control->getURL(), $js);
+
+        if ($originalImage == true) {
+            $output .= "<br/>";
+            $output .= "<span id='mouseText' style='font-size: 12px'>$originalText</span>";
+        }
+        
+        return $output;
     }
 
     function renderCodeLink() {

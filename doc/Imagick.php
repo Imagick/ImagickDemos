@@ -2577,7 +2577,7 @@ class Imagick implements Iterator, Traversable {
 	 * @param string $pattern [optional]
 	 * @return array an array containing the formats supported by Imagick.
 	 */
-	public function queryformats ($pattern = "*") {}
+	static public function queryformats ($pattern = "*") {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>

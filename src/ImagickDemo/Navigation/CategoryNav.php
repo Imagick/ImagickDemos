@@ -486,7 +486,8 @@ class CategoryNav implements Nav {
             //'quantizeImages',
             //'queryFontMetrics',
             //'queryFonts',
-            //'queryFormats',
+            'queryFormats' => ['queryFormats', \ImagickDemo\Control\NullControl::class],
+
             'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ImageControl::class],
             'raiseImage' => [
                 'raiseImage',

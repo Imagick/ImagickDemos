@@ -4,6 +4,10 @@ namespace ImagickDemo\Imagick;
 
 class quantizeImage extends \ImagickDemo\Example {
 
+    function getOriginalImage() {
+        return $this->control->getURL().'&original=true';
+    }
+    
     function renderDescription() {
      
         $output = <<< END

@@ -11,7 +11,12 @@ class ImagickTaskRunner {
      * @var \Auryn\Provider
      */
     private $injector;
-    
+
+    //<namespace>.<instrumented section>.<target (noun)>.<action (past tense verb)>.<measure (noun)>
+
+    //const event_imageGenerated = "phpimagick.imagickTask.image.generated.timeTaken";
+
+
     const event_imageGenerated = "phpimagick.imagickTask.image.generated";
     //const event_imageGenerated = "phpimagick.imagickTask.image.exception";
 

@@ -54,7 +54,8 @@ function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel) {
 //Example Imagick::adaptiveThresholdImage
 function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffset);
+    $adaptiveOffsetQuantum = intval($adaptiveOffset * \Imagick::getQuantum());
+    $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffsetQuantum);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -216,9 +217,9 @@ function colorFloodfillImage($imagePath) {
     $flood = new \ImagickPixel('rgb(128, 32, 128)');
     @$imagick->colorFloodfillImage(
              $flood,
-                 0,
-                 $border,
-                 5, 5
+             0,
+             $border,
+             5, 5
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -267,10 +268,10 @@ function compositeImage() {
     $img2->readImage(realpath("../images/Skyline_400.jpg"));
 
     $img1->resizeimage(
-         $img2->getImageWidth(),
-             $img2->getImageHeight(),
-             \Imagick::FILTER_LANCZOS,
-             1
+        $img2->getImageWidth(),
+        $img2->getImageHeight(),
+        \Imagick::FILTER_LANCZOS,
+        1
     );
 
     $opacity = new \Imagick();    
@@ -753,9 +754,7 @@ function medianFilterImage($radius, $imagePath) {
 function mergeImageLayers($layerMethodType) {
 
     $imagick = new \Imagick();
-
     $nextImage = null;
-    
     $images = [
         "../images/Biter_500.jpg",
         "../images/SydneyPeople_400.jpg",

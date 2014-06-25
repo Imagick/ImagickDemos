@@ -4,7 +4,7 @@ namespace ImagickDemo\Imagick;
 
 class adaptiveBlurImage extends \ImagickDemo\Example {
 
-//
+
 //    private $params = [
 //        'radius' => 'The radius of the Gaussian, in pixels, not counting the center pixel.
 //	 * Provide a value of 0 and the radius will be chosen automagically.',
@@ -13,7 +13,11 @@ class adaptiveBlurImage extends \ImagickDemo\Example {
 //    ];
 //
 //    private $description = "Adds adaptive blur filter to image.";
-    
+
+    function getOriginalImage() {
+        return $this->control->getURL().'&original=true';
+    }
+
     function renderTitle() {
         return "Adaptive blur image";
     }

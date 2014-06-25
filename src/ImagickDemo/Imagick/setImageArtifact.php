@@ -15,6 +15,10 @@ class setImageArtifact extends \ImagickDemo\Example {
         $this->imageControl = $control;
         parent::__construct($control);
     }
+
+    function getOriginalImage() {
+        return $this->control->getURL().'&original=true';
+    }
     
     function render() {
 

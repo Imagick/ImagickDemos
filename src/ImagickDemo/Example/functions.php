@@ -474,6 +474,7 @@ function psychedelicFontGif() {
 }
 
 
+
 function svgExample() {
 
     $svg = '<?xml version="1.0"?>

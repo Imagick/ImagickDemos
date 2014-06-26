@@ -220,12 +220,8 @@ function bootstrapInjector() {
 
     $injector->defineParam('imageBaseURL', null);
     $injector->defineParam('customImageBaseURL', null);
-    $injector->defineParam('pageTitle', "Imagick demos");
-    //TODO - move these elsewhere or delete
-    $injector->defineParam('standardImageWidth', 500);
-    $injector->defineParam('standardImagHeight', 500);
-    $injector->defineParam('smallImageWidth', 350);
-    $injector->defineParam('smallImageHeight', 300);
+    //$injector->defineParam('pageTitle', "Imagick demos");
+
 
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
@@ -251,7 +247,6 @@ function bootstrapInjector() {
         ]
     );
 
-    
     $injector->define(
          'Stats\AsyncStats',
          [ ':statsSourceName' => $statsSourceName]

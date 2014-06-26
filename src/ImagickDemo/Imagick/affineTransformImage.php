@@ -6,6 +6,8 @@ namespace ImagickDemo\Imagick;
 class affineTransformImage extends \ImagickDemo\Example {
 
     function render() {
-        return $this->renderImageURL();
+        $output = "This appears to not be working.<br/>";
+        $output .= $this->renderImageURL();
+        return $output;
     }
 }

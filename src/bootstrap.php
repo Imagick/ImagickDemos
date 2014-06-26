@@ -7,16 +7,13 @@
 
 
 function exceptionHandler( Exception $ex ) {
-
     //TODO - need to ob_end_clean as many times as required because 
     //otherwise partial content gets sent to the client.
-    
     
     if (headers_sent() == false) {
         header("HTTP/1.0 500 Internal Server Error", true, 500);
     }
     else {
-        //echo "sup<br/>";
         //Exception after headers sent
     }
     echo "Exception ".get_class($ex).': '.$ex->getMessage();
@@ -87,9 +84,9 @@ function fatalErrorShutdownHandler() {
         }
 
         default: {
-        header("HTTP/1.0 500 Unknown fatal error", true, 500);
-        var_dump($last_error);
-        break;
+            header("HTTP/1.0 500 Unknown fatal error", true, 500);
+            var_dump($last_error);
+            break;
         }
     }
 
@@ -220,9 +217,6 @@ function bootstrapInjector() {
 
     $injector->defineParam('imageBaseURL', null);
     $injector->defineParam('customImageBaseURL', null);
-    //$injector->defineParam('pageTitle', "Imagick demos");
-
-
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
     $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');

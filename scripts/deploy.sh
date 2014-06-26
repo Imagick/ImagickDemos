@@ -42,6 +42,8 @@ cd ../autogen
 #Link the generated config files so that they can be found by nginx etc.
 sh addImagickConfig.sh
 
+
+
 #restart the services that serve the website.
 /etc/init.d/php-fpm restart
 nginx -s reload

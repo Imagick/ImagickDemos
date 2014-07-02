@@ -14,11 +14,13 @@
     <!-- IE8 shims deleted - use a decent browser -->
 </head>
 
+{inject name='nav' value='ImagickDemo\Navigation\Nav'}
+
 <body>
 
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-    <div class="container">
-        <nav class="navbar-default" role="navigation">
+    <div class="container visible-md visible-lg">
+        <nav class="navbar-default " role="navigation">
             <ul class="nav navbar-nav">
                 {inject name='navBar' value='ImagickDemo\NavigationBar'}
                 {$navBar->render() | nofilter}
@@ -28,11 +30,17 @@
             <ul class="nav navbar-nav">
                 {$navBar->renderRight() | nofilter}
             </ul>
-        </nav>
+        </nav>   
+    </div>
+
+
+    <div class="container visible-xs visible-sm">
+        {$navBar->renderSelect() | nofilter}
+        {$nav->renderSelect() | nofilter}
     </div>
 </header>
 
-{inject name='nav' value='ImagickDemo\Navigation\Nav'}
+
 {inject name='control' value='ImagickDemo\Control'}
 {inject name='example' value='ImagickDemo\Example'}
 {inject name='docHelper' value='ImagickDemo\DocHelper'}
@@ -40,47 +48,48 @@
 <div class='container'>
 
     <div class="row">
-        <div class="col-md-2" style="font-size: 12px">
+        <div class="col-md-2 visible-md visible-lg" style="font-size: 12px">
             {$nav->renderNav()}
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10" >
 
-            <div class="row">
+            <div class="row" style='padding-bottom: 20px'>
                 <div class="col-md-8">
                     <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
+
+                    <span class='visible-md visible-lg' >
+                        {$docHelper->showDescription() | nofilter}
+                    </span>
                 </div>
-                <div class="col-md-4" style='text-align: right'>
+                <div class="col-md-4 visible-md visible-lg" style='text-align: right'>
                     {$nav->renderPreviousLink() | nofilter}
                     {$nav->renderNextLink() | nofilter}
                 </div>
             </div>
             
             <div class="row">
-
                 <div class="col-md-8">
                     {$example->render() | nofilter}
                 </div>
 
                 <div class="col-md-4">
                     {$control->renderForm() | nofilter}
-                    <!-- <br/>
-                    <span style='min-height: 30px'>&nbsp;</span>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            {$nav->renderPreviousButton() | nofilter}
-                        </div>
-                        <div class="col-md-3" style='text-align: right'>
-                            {$nav->renderNextButton() | nofilter}
-                        </div>
-                    </div> -->
-                    
                 </div>
             </div>
-            <div class="row">
+
+            <div class='visible-md visible-lg' style="padding-top: 30px">
+            </div>
                 
+            
+            <div class="row">
                 <div class="col-md-12">
+                    
+                    <span class='visible-xs visible-sm' >
+                        {$docHelper->showDescription() | nofilter}
+                    </span>
+                    
+                    
                     {$docHelper->showDoc() | nofilter}
                 </div>
             </div>
@@ -93,24 +102,31 @@
             </div>
 
             {inject name='banner' value='ImagickDemo\Banners\Banner'}
-            
 
             <div class="row">
                 <div class="col-md-12">
                     {$banner->render() | nofilter}
                 </div>
             </div>
-
         </div>
-
     </div>
+
+    <div class="row visible-xs visible-sm">
+        <div class="col-md-12">
+            {$navBar->renderIssueLink() | nofilter}
+        </div>
+    </div>
+    
+    
+    
     <div>
         <?php
         echo "<br/><br/><br/><span style='font-size: 8px; display: block;'>Peak memory ". number_format(memory_get_peak_usage())." - <a href='/info'>Status</a> </span>";
         ?> 
     </div>
-</div>  
+</div>
 
+</body>
 
 <script src="/js/jquery-1.11.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -158,6 +174,4 @@
 </script>
 
 
-
-</body>
 </html>

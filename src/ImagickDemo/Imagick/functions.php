@@ -674,6 +674,7 @@ function getImageHistogram($imagePath) {
         return $carry;
     };
 
+
     $colorValues = [
         'red' => getColorStatistics($histogramElements, \Imagick::COLOR_RED),
         'lime' => getColorStatistics($histogramElements, \Imagick::COLOR_GREEN),
@@ -699,7 +700,7 @@ function getImageHistogram($imagePath) {
     }
 
     $histogram->drawImage($draw);
-
+    
     header( "Content-Type: image/png" );
     echo $histogram;
 }

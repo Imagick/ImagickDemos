@@ -18,6 +18,9 @@ class NullNav implements Nav {
     function renderNextLink() {
     }
 
+    function renderSelect() {
+
+    }
 
     function renderTitle() {
         return "Hello!";

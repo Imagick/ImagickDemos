@@ -12,6 +12,7 @@ interface Nav {
     function renderTitle();
     function renderNav();
     function getCategory();
+    function renderSelect();
 }
 
  

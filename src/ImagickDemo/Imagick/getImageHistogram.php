@@ -56,7 +56,6 @@ class getImageHistogram extends  \ImagickDemo\Example {
     function render() {
         $output = $this->renderDescription();
 
-
         $output .= "<br/>This is the histogram:<br/>";
         $output .= sprintf("<img src='%s' />", $this->imageControl->getURL());
         $output .= "<br/>For this image:<br/>";
@@ -78,8 +77,5 @@ class getImageHistogram extends  \ImagickDemo\Example {
 
 
     function renderImage() {
-
-       
-
     }
 }

@@ -36,19 +36,28 @@ abstract class Example implements renderableExample {
 
         $output = '';
 
-        $originalText = "(mouse over to see original)";
-        $modifiedText = "(mouse out to see modified)";
+        $originalText = "(touch/mouse over to see original)";
+        $modifiedText = "(touch/mouse out to see modified)";
 
         if ($originalImage == true) {
             $modifiedImage = $this->control->getURL();
-            $mouseOver = "onmouseover=\"$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')\"";
 
-            $mouseOut = "onmouseout=\"$('#exampleImage').attr('src', '$modifiedImage' ); $('#mouseText').text('$originalText')\"\"";
+            $changeToOriginal = "$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')";
+            
+            $changeToModified = "$('#exampleImage').attr('src', '$modifiedImage' ); $('#mouseText').text('$originalText')\"";
+            
+            $mouseOver = "onmouseover=\"$changeToOriginal\"";
+            $touchStart = "ontouchstart=\"$changeToOriginal\"";
 
-            $js = $mouseOver.' '.$mouseOut;
+            $mouseOut = "onmouseout=\"$changeToModified\"";
+            $touchStop =  "ontouchstart=\"$changeToModified\"";
+
+            $js = $mouseOver.' '.$mouseOut.' '.$touchStart.' '.$touchStop;
         }
 
-        $output .= sprintf("<img src='%s' id='exampleImage' %s />", $this->control->getURL(), $js);
+        
+        
+        $output .= sprintf("<img src='%s' id='exampleImage' class='img-responsive' %s />", $this->control->getURL(), $js);
 
         if ($originalImage == true) {
             $output .= "<br/>";

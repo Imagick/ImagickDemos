@@ -95,6 +95,9 @@ class CategoryNav implements Nav {
         return null;
     }
 
+
+    
+    
     /**
      * @internal param $current
      * @return string
@@ -173,6 +176,44 @@ class CategoryNav implements Nav {
         return "";
     }
 
+   
+    /**
+     *
+     */
+    function renderSelect() {
+
+        $output = '';
+
+        $exampleLabel = 'Example';
+
+        if ($this->currentExample) {
+            $exampleLabel = $this->currentExample;
+        }
+
+        $output .= <<< END
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            $exampleLabel <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+END;
+        
+        foreach ($this->exampleList as $exampleName => $exampleDefinition) {
+            //$output .= "<li><a href='$url'>$name</a></li>";
+            $imagickExample = $exampleName;
+            $output .= "<li>";
+            $output .= "<a href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
+            $output .= "</li>";
+        }
+
+        $output .="
+  </ul>
+</div>";
+
+        return $output;
+    }
+    
     
     function renderVertical() {
         echo "<ul class='nav nav-sidebar smallPadding'>";

@@ -13239,6 +13239,17 @@ class DocHelper {
         $this->category = strtolower($category);
         $this->example = strtolower($example);
     }
+    
+    function showDescription() {
+
+        if (isset($this->manualEntries[$this->category][$this->example]) == false) {
+            return "";
+        }
+
+        $manualEntry = $this->manualEntries[$this->category][$this->example];
+        
+        return $manualEntry['description'];
+    }
 
     function showDoc() {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
@@ -13252,7 +13263,7 @@ class DocHelper {
         //$output .= "<tr><td colspan='3'>".$manualEntry['functionName']."</td></tr>";
         //$output .= "<tr><td colspan='3'>".$manualEntry['description']."</td></tr>";
 
-        $output .= $manualEntry['description'];
+//        $output .= $manualEntry['description'];
 
         if (count($manualEntry['parameters'])) {
             $output .= "<h5>Parameters</h5>";
@@ -13292,10 +13303,10 @@ class DocHelper {
             /** @var $example \ImagickDemo\CodeExample */
             
             if (count($examples) > 1) {
-                $output .= "Example $count <br/><pre>";
+                $output .= "<h5>Example $count</h5><pre>";
             }
             else {
-                $output .= "Example <br/><pre>";
+                $output .= "<h5>Example</h5><pre>";
             }
                 $output .=  $example->getLines();
             $output .=  "</pre>";

@@ -10,6 +10,8 @@ chown intahwebz:www-data imagick-demos
 #Become the user the files will be run under
 su intahwebz
 
+cd /home/imagick-demos
+
 #Get the files
 git clone https://github.com/Danack/Imagick-demos imagick-demos/
 
@@ -20,6 +22,7 @@ cd imagick-demos
 
 #cp imagick-demos.conf.php ../imagick-demos.conf.php
 #Put some real values in the config
+
 
 
 #Generate the config files for nginx, etc.
@@ -37,6 +40,7 @@ cd tool
 
 #back to root
 exit 
+cd /home/imagick-demos/imagick-demos
 cd ../autogen
 
 #Link the generated config files so that they can be found by nginx etc.

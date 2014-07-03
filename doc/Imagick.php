@@ -142,7 +142,6 @@ class Imagick implements Iterator, Traversable {
     const FILTER_COSINE = 28;
     const FILTER_SPLINE = 29;
     const FILTER_LANCZOSRADIUS = 30;
-    const FILTER_SENTINEL = 31;
 
     
 	const IMGTYPE_UNDEFINED = 0;

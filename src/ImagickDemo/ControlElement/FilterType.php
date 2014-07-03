@@ -40,7 +40,6 @@ class FilterType extends OptionKeyElement {
             \Imagick::FILTER_WELSH => "Welsh",
             \Imagick::FILTER_PARZEN => "Parzen",
             \Imagick::FILTER_LAGRANGE => "Lagrange",
-            \Imagick::FILTER_SENTINEL => "Sentinel",
             \Imagick::FILTER_BOHMAN => "Bohman",
             \Imagick::FILTER_BARTLETT => "Bartlett",
             \Imagick::FILTER_SINCFAST => "SincFast",

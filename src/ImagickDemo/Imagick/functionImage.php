@@ -119,7 +119,7 @@ END;
 //        header("Content-Type: image/png");
 //        echo $imagick->getImageBlob();
 
-        analyzeImage($imagick, 512, 256);
+        \ImagickDemo\analyzeImage($imagick, 512, 256);
         
     }
 
@@ -149,7 +149,7 @@ END;
 //        header("Content-Type: image/png");
 //        echo $imagick->getImageBlob();
 
-        analyzeImage($imagick, 512, 256);
+        \ImagickDemo\analyzeImage($imagick, 512, 256);
     }
 
     function renderImageArctan() {
@@ -178,7 +178,7 @@ END;
 //        header("Content-Type: image/png");
 //        echo $imagick->getImageBlob();
 
-        analyzeImage($imagick, 512, 256);
+        \ImagickDemo\analyzeImage($imagick, 512, 256);
     }
 
 
@@ -213,7 +213,7 @@ END;
 //        header("Content-Type: image/png");
 //        echo $imagick->getImageBlob();
 
-        analyzeImage($imagick, 512, 256);
+        \ImagickDemo\analyzeImage($imagick, 512, 256);
     }
 
 

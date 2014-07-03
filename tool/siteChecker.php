@@ -14,6 +14,8 @@ class HTMLPrinter {
         $this->baseURL = $baseURL;
     }
 
+
+    
     function output($outputStream) {
 
         fwrite($outputStream, "<html>");
@@ -150,10 +152,23 @@ class SiteChecker {
     private $siteURL;
     
     private $count = 0;
+
+    private $errors = 0;
     
     function __construct($siteURL) {
         $this->siteURL = $siteURL;
     }
+
+    function getURLCount() {
+        return count($this->urlsChecked);
+
+    }
+    
+    function getErrorCount() {
+        return $this->errors;
+    }
+
+
 
     function getURL(URLToCheck $urlToCheck) {
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
@@ -234,7 +249,6 @@ class SiteChecker {
     
     function checkURL($url) {
         $this->urlsToCheck[$url] = new URLToCheck($url, '/');
-        
         $finished = false;
         while ($finished == false) {
             $finished = true;
@@ -251,6 +265,7 @@ class SiteChecker {
     function checkURLInternal(URLToCheck $urlToCheck) {
 
         $this->count++;
+        $ok = false;
         
         $path = $urlToCheck->getUrl();
 
@@ -290,6 +305,11 @@ class SiteChecker {
             //echo "Error getting $path - ".$e->getMessage(). " Exception type is ".get_class($e)." \n";
             $this->urlsChecked[] = new URLResult($path, 500, "Error getting $path - ".$e->getMessage(). " Exception type is ".get_class($e));
         }
+
+        if ($ok != true) {
+            $this->errors++;
+        }
+        
     }
     
     function getResults() {
@@ -309,3 +329,5 @@ $outputStream = fopen("./checkResults.html", "w");
 $printer->output($outputStream);
 
 fclose($outputStream);
+
+echo "Check complete. Found ".$siteChecker->getURLCount()." URIs with ".$siteChecker->getErrorCount()."errors.";

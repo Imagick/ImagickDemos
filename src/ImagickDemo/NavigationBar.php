@@ -51,7 +51,7 @@ class NavigationBar {
 
         $output = '';
 
-        $categoryLabel = 'Category'; 
+        $categoryLabel = 'Choose category'; 
         
         if ($this->activeCategory) {
             $categoryLabel = $this->activeCategory;

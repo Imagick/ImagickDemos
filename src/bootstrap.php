@@ -1,201 +1,134 @@
 <?php
 
+namespace {
 
-
-
-
-
-
-function exceptionHandler( Exception $ex ) {
-    //TODO - need to ob_end_clean as many times as required because 
-    //otherwise partial content gets sent to the client.
+    //color rgb(23, 24, 41) doesn't show popup
     
-    if (headers_sent() == false) {
-        header("HTTP/1.0 500 Internal Server Error", true, 500);
-    }
-    else {
-        //Exception after headers sent
-    }
-    echo "Exception ".get_class($ex).': '.$ex->getMessage();
+    function exceptionHandler(Exception $ex) {
+        //TODO - need to ob_end_clean as many times as required because 
+        //otherwise partial content gets sent to the client.
 
-    foreach ($ex->getTrace() as $tracePart) {
-
-        if (isset($tracePart['file']) && isset($tracePart['line'])) {
-            echo $tracePart['file']." ".$tracePart['line']."<br/>";
-        }
-        else if(isset($tracePart["function"])) {
-            echo $tracePart["function"]."<br/>";
+        if (headers_sent() == false) {
+            header("HTTP/1.0 500 Internal Server Error", true, 500);
         }
         else {
-            var_dump($tracePart);
+            //Exception after headers sent
         }
+        echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
+
+        foreach ($ex->getTrace() as $tracePart) {
+
+            if (isset($tracePart['file']) && isset($tracePart['line'])) {
+                echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
+            }
+            else if (isset($tracePart["function"])) {
+                echo $tracePart["function"] . "<br/>";
+            }
+            else {
+                var_dump($tracePart);
+            }
+        }
+
+        //TODO - format this
+        //var_dump($ex->getTrace());
     }
 
-    //TODO - format this
-    //var_dump($ex->getTrace());
-}
 
+    function errorHandler($errno, $errstr, $errfile, $errline) {
+        if (!(error_reporting() & $errno)) {
+            // This error code is not included in error_reporting
+            return true;
+        }
 
-function errorHandler($errno, $errstr, $errfile, $errline)
-{
-    if (!(error_reporting() & $errno)) {
-        // This error code is not included in error_reporting
+        switch ($errno) {
+            case E_CORE_ERROR:
+            case E_ERROR:
+            {
+                echo "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
+                break;
+            }
+
+            default:
+                {
+                echo "<b>errorHandler</b> [$errno] $errstr<br />\n";
+
+                return false;
+                }
+        }
+
+        /* Don't execute PHP internal error handler */
+
         return true;
     }
 
-    switch ($errno) {
-        case E_CORE_ERROR:
-        case E_ERROR: {
-            echo "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
-            break;
+
+    function fatalErrorShutdownHandler() {
+        $last_error = error_get_last();
+
+        if (!$last_error) {
+            return false;
         }
 
-        default: {
-        echo "<b>errorHandler</b> [$errno] $errstr<br />\n";
+        switch ($last_error['type']) {
+            case (E_ERROR):
+            case (E_PARSE):
+            {
+                // fatal error
+                header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
+                var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
+                exit(0);
+            }
+
+            case(E_CORE_WARNING):
+            {
+                //TODO - report errors properly.
+                errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
+                break;
+            }
+
+            default:
+                {
+                header("HTTP/1.0 500 Unknown fatal error", true, 500);
+                var_dump($last_error);
+                break;
+                }
+        }
+
         return false;
-        }
     }
 
-    /* Don't execute PHP internal error handler */
-    return true;
-}
 
-
-function fatalErrorShutdownHandler() {
-    $last_error = error_get_last();
-
-    if (!$last_error) {
-        return false;
-    }
-
-    switch ($last_error['type']) {
-        case (E_ERROR):
-        case (E_PARSE): {
-            // fatal error
-            header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
-            var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
-            exit(0);
+    function getImageCacheFilename($category, $example, $params) {
+        $filename = "../var/cache/imageCache/" . $category . '/' . $example;
+        if (!empty($params)) {
+            $filename .= '_' . md5(json_encode($params));
         }
 
-        case(E_CORE_WARNING): {
-            //TODO - report errors properly.
-            errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
-            break;
-        }
-
-        default: {
-            header("HTTP/1.0 500 Unknown fatal error", true, 500);
-            var_dump($last_error);
-            break;
-        }
+        return $filename;
     }
 
-    return false;
-}
 
+    function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filename) {
 
+        global $imageType;
+        ob_start();
 
-function getImageCacheFilename($category, $example, $params) {
-    $filename = "../var/cache/imageCache/".$category.'/'.$example;
-    if (!empty($params)) {
-        $filename .= '_'.md5(json_encode($params));
-    }
+        $injector->execute($functionFullname);
 
-    return $filename;
-}
+        if ($imageType == null) {
+            ob_end_clean();
+            throw new \Exception("imageType not set, can't cache image correctly.");
+        }
 
-
-function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filename) {
-
-    global $imageType;
-    ob_start();
-
-    $injector->execute($functionFullname);
-    
-    if ($imageType == null) {
+        $image = ob_get_contents();
+        @mkdir(dirname($filename), 0755, true);
+        //TODO - is this atomic?
+        $fullFilename = $filename . "." . strtolower($imageType);
+        file_put_contents($fullFilename, $image);
         ob_end_clean();
-        throw new \Exception("imageType not set, can't cache image correctly.");
+
+        return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
     }
-
-    $image = ob_get_contents();
-    @mkdir(dirname ($filename), 0755, true);
-    //TODO - is this atomic?
-    $fullFilename = $filename.".".strtolower($imageType);
-    file_put_contents($fullFilename, $image);
-    ob_end_clean();
-
-    return new \ImagickDemo\Response\FileResponse($fullFilename, "image/".$imageType);
-}
-
-function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
-
-    $sampleHeight = 20;
-    $border = 2;
-
-    $imagick->transposeImage();
-    $imagick->scaleImage($graphWidth, $sampleHeight);
-
-    $imageIterator = new \ImagickPixelIterator($imagick);
-
-    $luminosityArray = [];
-
-    foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
-        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
-            /** @var $pixel \ImagickPixel */
-
-            if (false) {
-                $color = $pixel->getColor();
-                $luminosityArray[] = $color['r'];
-            }
-            else {
-                $hsl = $pixel->getHSL() ;
-                $luminosityArray[] = ($hsl['luminosity']);
-            }
-        }
-        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
-        break;
-    }
-
-    $draw = new \ImagickDraw();
-
-    $strokeColor = new \ImagickPixel('red');
-    $fillColor = new \ImagickPixel('red');
-    $draw->setStrokeColor($strokeColor);
-    $draw->setFillColor($fillColor);
-    $draw->setStrokeWidth(0);
-    $draw->setFontSize(72);
-    $draw->setStrokeAntiAlias(true);
-    $previous = false;
-
-    $x = 0;
-
-    foreach ($luminosityArray as $luminosity) {
-        $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1) );
-
-        if ($previous !== false) {
-            //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
-            $draw->line($x - 1, $previous, $x, $pos);
-        }
-        $x += 1;
-        $previous = $pos;
-    }
-
-    $plot = new \Imagick();
-    $plot->newImage($graphWidth, $graphHeight, 'white');
-    $plot->drawImage($draw);
-
-    $outputImage = new \Imagick();
-    $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
-    $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
-
-    $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
-    $outputImage->borderimage('black', $border, $border);
-
-    $outputImage->setImageFormat("png");
-    header("Content-Type: image/png");
-    echo $outputImage;
-}
-
 
 
 /**
@@ -345,4 +278,105 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $function));
 
     return $function;
+}
+
+
+}
+
+namespace ImagickDemo {
+
+
+    /**
+     * Hack the header function to allow us to capture the image type,
+     * while still having clean example code.
+     *
+     * @param $string
+     * @param bool $replace
+     * @param null $http_response_code
+     */
+    function header($string, $replace = true, $http_response_code = null) {
+        global $imageType;
+        global $imageCache;
+
+        if (stripos($string, "Content-Type: image/") === 0) {
+            $imageType = substr($string, strlen("Content-Type: image/"));
+        }
+
+        if ($imageCache == false) {
+            \header($string, $replace, $http_response_code);
+        }
+    }
+    
+
+    function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
+
+        $sampleHeight = 20;
+        $border = 2;
+
+        $imagick->transposeImage();
+        $imagick->scaleImage($graphWidth, $sampleHeight);
+
+        $imageIterator = new \ImagickPixelIterator($imagick);
+
+        $luminosityArray = [];
+
+        foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+            foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+                /** @var $pixel \ImagickPixel */
+
+                if (false) {
+                    $color = $pixel->getColor();
+                    $luminosityArray[] = $color['r'];
+                }
+                else {
+                    $hsl = $pixel->getHSL();
+                    $luminosityArray[] = ($hsl['luminosity']);
+                }
+            }
+            $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+            break;
+        }
+
+        $draw = new \ImagickDraw();
+
+
+        $strokeColor = new \ImagickPixel('red');
+        $fillColor = new \ImagickPixel('red');
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+        $draw->setStrokeWidth(0);
+        $draw->setFontSize(72);
+        $draw->setStrokeAntiAlias(true);
+        $previous = false;
+
+        $x = 0;
+
+        foreach ($luminosityArray as $luminosity) {
+            $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1));
+
+            if ($previous !== false) {
+                //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
+                $draw->line($x - 1, $previous, $x, $pos);
+            }
+            $x += 1;
+            $previous = $pos;
+        }
+
+        $plot = new \Imagick();
+        $plot->newImage($graphWidth, $graphHeight, 'white');
+        $plot->drawImage($draw);
+
+        $outputImage = new \Imagick();
+        $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
+        $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+        $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
+        $outputImage->borderimage('black', $border, $border);
+
+        $outputImage->setImageFormat("png");
+        header("Content-Type: image/png");
+        echo $outputImage;
+    }
+
+
 }

@@ -184,7 +184,7 @@ class CategoryNav implements Nav {
 
         $output = '';
 
-        $exampleLabel = 'Example';
+        $exampleLabel = 'Choose example';
 
         if ($this->currentExample) {
             $exampleLabel = $this->currentExample;
@@ -819,7 +819,7 @@ END;
             'ImagickDraw' => $imagickDrawExamples,
             'ImagickPixel' => $imagickPixelExamples,
             'ImagickPixelIterator' => $imagickPixelIteratorExamples,
-            'Example' => $tutorialExamples,
+            'Tutorial' => $tutorialExamples,
         ];
 
         return $examples;

@@ -45,7 +45,7 @@ namespace ImagickDemo\ImagickPixelIterator {
     }
 }
 
-namespace ImagickDemo\Example {
+namespace ImagickDemo\Tutorial {
 
     function header($string, $replace = true, $http_response_code = null) {
         global $imageType;

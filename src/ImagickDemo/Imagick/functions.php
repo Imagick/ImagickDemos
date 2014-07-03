@@ -23,7 +23,9 @@ function header($string, $replace = true, $http_response_code = null) {
     }
     
     if ($imageCache == false) {
-        \header($string, $replace, $http_response_code);
+        if (php_sapi_name() !== 'cli') {
+            \header($string, $replace, $http_response_code);
+        }
     }
 }
 

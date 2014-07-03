@@ -65,6 +65,8 @@ class H20 implements ControlElement {
                 <td class='standardCell'>
                     <input type='text' name='".self::h20Name."' value='$sWidth'/>
                 </td>
+                <td class='standardCell'>
+                </td>
             </tr>";
 
         return $output;

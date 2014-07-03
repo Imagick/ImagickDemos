@@ -46,6 +46,9 @@ abstract class ColorElement implements ControlElement {
     function renderFormElement() {
         $output = "";
 
+        //171829
+        // data-color='17182b'
+
         $sValue = safeText($this->value);
         $fillPixel = new \ImagickPixel($this->value);
         $fillColor = $fillPixel->getcolor();
@@ -60,8 +63,9 @@ abstract class ColorElement implements ControlElement {
                 </td>
                 <td class='standardCell'>
                     <input type='text' id='".$this->getVariableName()."' name='".$this->getVariableName()."' value='$sValue'  />
-                    
-                    <span id='".$this->getVariableName()."Selector' data-color='$fillStringHex' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
+                </td>
+                <td class='standardCell'>
+                    <span id='".$this->getVariableName()."Selector' data-color='0x$fillStringHex' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
                         <span style='background-color: $fillString; margin: 2px; width: 20px; display: inline-block;'>
                             &nbsp;
                         </span>

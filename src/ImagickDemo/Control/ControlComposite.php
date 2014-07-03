@@ -33,7 +33,7 @@ class ControlComposite implements \ImagickDemo\Control {
         $output = 
 
         "<form method='GET' accept-charset='utf-8'>
-                    <table>";
+             <table>";
 
         $output .= $this->renderFormElement();
 
@@ -41,15 +41,17 @@ class ControlComposite implements \ImagickDemo\Control {
             <tr>
                 <td class='standardCell'>&nbsp;
                 </td>
-                <td class='standardCell'>&nbsp;
+                <td class='standardCell' colspan='2'>&nbsp;
                 </td>
             </tr>
         
             <tr>
                 <td class='standardCell'>
                 </td>
-                <td class='standardCell'>
+                <td class='standardCell' style='text-align: right;'>
                     <button type='submit' class='btn btn-default'>Update</button>
+                </td>
+                <td class='standardCell'>
                 </td>
             </tr>
             

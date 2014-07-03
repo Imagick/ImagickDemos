@@ -64,6 +64,9 @@ abstract class OptionKeyElement implements ControlElement {
 
         $output .= "</select>
                     </td>
+                    
+                <td class='standardCell'>
+                </td>
             </tr>";
 
         return $output;

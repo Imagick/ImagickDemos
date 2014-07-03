@@ -63,6 +63,8 @@ class Noise implements ControlElement {
 
         $output .= "</select>
                     </td>
+                <td class='standardCell'>
+                </td>
             </tr>";
 
         return $output;

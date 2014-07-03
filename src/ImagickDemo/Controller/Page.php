@@ -83,7 +83,7 @@ class Page {
             'ImagickDraw',
             'ImagickPixel',
             'ImagickPixelIterator',
-            'Example',
+            'Tutorial',
         ];
 
         if (in_array($category, $validCatergories) == false) {

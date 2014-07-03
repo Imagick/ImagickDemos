@@ -48,7 +48,7 @@ abstract class OptionValueElement implements ControlElement {
                 <td class='standardCell'>
                 ".$this->getDisplayName()."
                 </td>
-                <td class='standardCell'> ";
+                <td class='standardCell' style='text-align: right;'> ";
 
         $output .= "<select name='".$this->getVariableName()."'>";
 
@@ -62,6 +62,8 @@ abstract class OptionValueElement implements ControlElement {
 
         $output .= "</select>
                     </td>
+                <td class='standardCell'>
+                </td>
             </tr>";
 
         return $output;

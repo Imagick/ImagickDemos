@@ -205,15 +205,26 @@ function bootstrapInjector() {
     $injector->share($injector);
 
 
+//    $params = [
+//        'image' => 'Lorikeet',
+//        'filterType' => '31', 
+//        'width' => '200', 
+//        'height' => '200',
+//        'blur' => '1',
+//        'bestFit' => '1',
+//        'cropZoom' => '1',
+//        'task' => '0',
+//    ];
+
     $injector->define(
-             'Intahwebz\Routing\HTTPRequest',
-                 array(
-                     ':server' => $_SERVER,
-                     ':get' => $_GET,
-                     ':post' => $_POST,
-                     ':files' => $_FILES,
-                     ':cookie' => $_COOKIE
-                 )
+         'Intahwebz\Routing\HTTPRequest',
+         array(
+             ':server' => $_SERVER,
+             ':get' => $_GET,
+             ':post' => $_POST,
+             ':files' => $_FILES,
+             ':cookie' => $_COOKIE
+         )
     );
 
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");

@@ -24,7 +24,7 @@ class layerPSD extends \ImagickDemo\Example {
     function renderCustomImageURL() {
         return sprintf(
             "<img src='%s' />",
-            '/customImage/Example/layerPSD'
+            $this->control->getCustomImageURL()
         );
     }
 
@@ -71,8 +71,6 @@ END;
     }
 //Example end
 }
-
-
 
 
 //	const LAYERMETHOD_UNDEFINED = 0;

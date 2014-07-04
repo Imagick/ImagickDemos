@@ -7,7 +7,7 @@ class compositeImage extends \ImagickDemo\Example {
 
     function render() {
 
-        $tutorialURL = '/Example/composite';
+        $tutorialURL = '/Tutorial/composite';
         
         $output = '';
         $output .= "This is a simple example. Please look at the <a href='$tutorialURL'>full composite tutorial</a> for more examples.<br/>";

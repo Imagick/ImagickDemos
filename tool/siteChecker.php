@@ -292,6 +292,7 @@ class SiteChecker {
                 $dom->find('//img')->each($imgClosure);
             }
 
+            $ok = true;
 //            return new URLResult($path, 200, $urlToCheck->getReferrer());
         }
         catch (Artax\SocketException $se) {

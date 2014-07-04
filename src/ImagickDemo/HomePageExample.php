@@ -21,7 +21,7 @@ class HomePageExample extends \ImagickDemo\Example {
         
         <li><a href='/ImagickPixelIterator'>ImagickPixelOperator</a> - allows accessing and modifying the pixels directly from PHP.</li>
 
-        <li><a href='/Example'>Tutorial</a> - a set of more advanced examples that show how some complex effects can be achieved with Imagick. </li>
+        <li><a href='/Tutorial'>Tutorial</a> - a set of more advanced examples that show how some complex effects can be achieved with Imagick. </li>
     </ul>
      </p>
      

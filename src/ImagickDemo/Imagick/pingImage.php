@@ -8,7 +8,7 @@ class pingImage extends \ImagickDemo\Example {
     /**
      * @var \ImagickDemo\Control\ImageControl
      */
-    private $control;
+    protected $control;
     
     function __construct(\ImagickDemo\Control\ImageControl $control) {
         $this->control = $control;

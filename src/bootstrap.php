@@ -1,6 +1,14 @@
 <?php
 
+
 namespace {
+
+    //yolo - We use a global to allow us to do a hack to make all the code examples
+//appear to use the standard 'header' function, but also capture the content type 
+//of the image
+    $imageType = null;
+    $imageCache = true;
+
 
     //color rgb(23, 24, 41) doesn't show popup
     
@@ -120,10 +128,13 @@ namespace {
             throw new \Exception("imageType not set, can't cache image correctly.");
         }
 
+        
+        
         $image = ob_get_contents();
         @mkdir(dirname($filename), 0755, true);
         //TODO - is this atomic?
         $fullFilename = $filename . "." . strtolower($imageType);
+        
         file_put_contents($fullFilename, $image);
         ob_end_clean();
 

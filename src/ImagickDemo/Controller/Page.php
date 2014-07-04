@@ -164,7 +164,7 @@ class Page {
         }
 
         if ($imageCache) {
-            return $this->getCachedImageResponse($injector, $request, $category, $example);
+            return $this->getCachedImageResponse($injector, $request, $category, $function);
         }
 
         

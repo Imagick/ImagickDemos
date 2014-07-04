@@ -78,7 +78,11 @@ class ImagickTask implements Task {
         $functionFullname = 'ImagickDemo\\'.$this->category.'\\'.$this->functionName;
         $filename = getImageCacheFilename($this->category, $this->functionName, $this->control->getParams());
 
+        echo "executing ".$functionFullname;
+
         delegateAllTheThings($injector, $this->control);
+        
+        
         createAndCacheFile($injector, $functionFullname, $filename);
     }
 

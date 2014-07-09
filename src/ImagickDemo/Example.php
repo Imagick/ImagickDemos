@@ -42,28 +42,60 @@ abstract class Example implements renderableExample {
         if ($originalImage == true) {
             $modifiedImage = $this->control->getURL();
 
-            $changeToOriginal = "$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')";
-            
-            $changeToModified = "$('#exampleImage').attr('src', '$modifiedImage' ); $('#mouseText').text('$originalText')\"";
-            
-            $mouseOver = "onmouseover=\"$changeToOriginal\"";
-            $touchStart = "ontouchstart=\"$changeToOriginal\"";
+            $output .= <<< END
 
-            $mouseOut = "onmouseout=\"$changeToModified\"";
-            $touchStop =  "ontouchstart=\"$changeToModified\"";
+<script type='text/javascript'>
 
-            $js = $mouseOver.' '.$mouseOut.' '.$touchStart.' '.$touchStop;
+function toggleImage(imageSelector, mouseSelector, originalURL, originalText, modifiedURL, modifiedText) {
+
+    var newImageURL; 
+    var newText;
+    
+    if ( typeof toggleImage.originalImage == 'undefined' ) {
+        // First call, perform the initialization
+        toggleImage.originalImage = false;
+    }
+
+    if (toggleImage.originalImage) {
+        newImageURL = modifiedURL;
+        newText = modifiedText;
+        toggleImage.originalImage = false;
+    }
+    else {
+        newImageURL = originalURL;
+        newText = originalText;
+        toggleImage.originalImage = true;
+    }
+
+    $(imageSelector).attr('src', newImageURL);
+    $(mouseSelector).text(newText);
+}
+
+</script>
+
+END;
+
+            $changeToOriginal = ("$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')");
+            
+            $changeToModified = ("$('#exampleImage').attr('src', '$modifiedImage' ); $('#mouseText').text('$originalText')");
+            
+            $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
+            $mouseOut = "onmouseout=\"$changeToModified\" \n";
+            $touch = "toggleImage('#exampleImage', '#mouseText', '$originalImage', '$originalText', '$modifiedImage', '$modifiedText')";
+
+            $touchStart = "ontouchstart=\"$touch\"\n";
+            $touchEnd =  "ontouchend=\"$touch\"\n";
+
+            $js = $mouseOver.' '.$mouseOut.' '.$touchStart;
         }
 
-        
-        
         $output .= sprintf("<img src='%s' id='exampleImage' class='img-responsive' %s />", $this->control->getURL(), $js);
 
         if ($originalImage == true) {
             $output .= "<br/>";
             $output .= "<span id='mouseText' style='font-size: 12px'>$originalText</span>";
         }
-        
+
         return $output;
     }
 

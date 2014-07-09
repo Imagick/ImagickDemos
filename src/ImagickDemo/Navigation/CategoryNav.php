@@ -325,7 +325,9 @@ END;
             //deprecated - new NavOption('colorFloodfillImage', true),
             //ColorDecisionListImage
             'colorizeImage' => ['colorizeImage', \ImagickDemo\Imagick\Control\colorizeImage::class],
-            'colorMatrixImage' => ['colorMatrixImage', \ImagickDemo\Control\ImageControl::class],
+            'colorMatrixImage' => [
+                'colorMatrixImage', \ImagickDemo\Imagick\Control\colorMatrixImage::class
+            ],
             //'combineImages',
             //'commentImage',
             //'compareImageChannels',

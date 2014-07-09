@@ -13259,11 +13259,6 @@ class DocHelper {
         $manualEntry = $this->manualEntries[$this->category][$this->example];
         
         $output = '';
-        //$output = '<table>';
-        //$output .= "<tr><td colspan='3'>".$manualEntry['functionName']."</td></tr>";
-        //$output .= "<tr><td colspan='3'>".$manualEntry['description']."</td></tr>";
-
-//        $output .= $manualEntry['description'];
 
         if (count($manualEntry['parameters'])) {
             $output .= "<h5>Parameters</h5>";
@@ -13306,7 +13301,7 @@ class DocHelper {
                 $output .= "<h5>Example $count</h5><pre>";
             }
             else {
-                $output .= "<h5>Example</h5><pre>";
+                $output .= "<h5>Example</h5><pre class='responsiveFont'>";
             }
                 $output .=  $example->getLines();
             $output .=  "</pre>";

@@ -241,23 +241,45 @@ function colorizeImage($imagePath, $color, $opacity) {
 //TODO - allow a color matrix to be passed in.
 //TODO - understand what a color matrix is...
 //Example Imagick::colorMatrixImage
-function colorMatrixImage($imagePath) {
+function colorMatrixImage($imagePath, $colorMatrix) {
 
     $imagick = new \Imagick(realpath($imagePath));
 
-    $colorMatrix = [
-        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
-        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
-        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
-        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
-        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
-    ];
+
+    $imagick->setImageOpacity(1);
+
+//    $colorMatrix = [
+//        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
+//        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
+//        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
+//        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
+//        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
+//        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
+//    ];
 
 
+
+    $background = new \Imagick();
+    $background->newPseudoImage($imagick->getImageWidth(), $imagick->getImageHeight(),  "pattern:checkerboard");
+
+    $background->setImageFormat('png');
+    
+   
+    
+    //echo $imagick->getImageBlob();
+
+
+    $imagick->setImageFormat('png');
     $imagick->colorMatrixImage($colorMatrix);
-    header("Content-Type: image/jpg");
-    echo $imagick->getImageBlob();
+
+
+    
+    
+    $background->compositeImage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    header("Content-Type: image/png");
+    echo $background->getImageBlob();
+
 }
 
 //Example Imagick::compositeImage

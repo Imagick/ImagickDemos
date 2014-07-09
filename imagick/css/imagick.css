@@ -33,6 +33,8 @@
 }
 
 
-/* .category_table > tbody > tr:first-child > td {
-    vertical-align: top;
-} */
+@media (max-width: 992px) {
+    .responsiveFont {
+        font-size: 10px;
+    }
+}

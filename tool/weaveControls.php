@@ -105,6 +105,14 @@ $controls = [
     ],
 
 
+    
+    
+    'ImagickDemo\Imagick\Control\colorMatrixImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\ColorMatrix',
+    ],
+    
+
     'ImagickDemo\Imagick\Control\contrastImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\ContrastType',
@@ -134,7 +142,7 @@ $controls = [
         'ImagickDemo\ControlElement\Channel', //$channel
     ],
 
-    'ImagickDemo\Imagick\Control\frameimage' => [
+    'ImagickDemo\Imagick\Control\frameImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Color',
         'ImagickDemo\ControlElement\Width5',

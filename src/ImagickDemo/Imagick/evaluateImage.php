@@ -7,7 +7,22 @@ class evaluateImage extends \ImagickDemo\Example {
 
     function render() {
 
-        $output = $this->renderImageURL();
+        $output = '';
+
+//        $output .= <<< END
+//For the quantumScaledTypes the value should be a float between 0 and 1. That value will be scaled to the full quantum range.
+//
+//For the unscaledTypes, when  the value 
+//
+//
+//
+//END;
+
+
+        
+        
+        
+        $output .= $this->renderImageURL();
         
         $output .= ' 
         

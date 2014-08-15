@@ -35,7 +35,7 @@ function getExamples() {
         
         foreach ($fileLines as $fileLine) {
             $match = false;
-            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator)::(\w+)#";
+            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial)::(\w+)#";
             $matchCount = preg_match($pattern, $fileLine, $matches);
     
             if ($matchCount == true) {

@@ -27,8 +27,8 @@ function header($string, $replace = true, $http_response_code = null) {
         \header($string, $replace, $http_response_code);
     }
 }
-    
 
+//Example Tutorial::fxAnalyzeImage
 function fxAnalyzeImage() {
 
     $graphWidth = 256;
@@ -97,13 +97,13 @@ function fxAnalyzeImage() {
     header("Content-Type: image/png");
     echo $outputImage;
 }
+//Example end
 
 
 
 
-    function imagickComposite() {
-
-
+//Example Tutorial::imagickComposite
+function imagickComposite() {
     //Load the images
     $left = new \Imagick(realpath('../images/im/holocaust_tn.gif'));
     $right = new \Imagick(realpath('../images/im/spiral_stairs_tn.gif'));
@@ -138,182 +138,180 @@ function fxAnalyzeImage() {
     header("Content-Type: image/png");
     echo $canvas->getImageBlob();
 }
+//Example end
+
+//Example Tutorial::imagickCompositeGen
+function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
+    $quanta = $imagick->getQuantumRange();
+    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quanta["quantumRangeLong"]);
+
+    return $imagick;
+}
 
 
+function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $midpoint = 0.5, $horizontal = true) {
 
-    function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
-        $imagick = new \Imagick();
-        $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
-        $quanta = $imagick->getQuantumRange();
-        $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quanta["quantumRangeLong"]);
+    $images = array();
+    $newImageWidth = 0;
+    $newImageHeight = 0;
 
-        return $imagick;
+    if ($horizontal == true) {
+        $resizeWidth = 0;
+        $resizeHeight = $outputSize;
+    }
+    else {
+        $resizeWidth = $outputSize;
+        $resizeHeight = 0;
     }
 
+    $blendWidth = 0;
 
-    function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $midpoint = 0.5, $horizontal = true) {
-
-        $images = array();
-        $newImageWidth = 0;
-        $newImageHeight = 0;
+    foreach ($srcImages as $srcImage) {
+        $nextImage = new \Imagick(realpath($srcImage));
+        $nextImage->resizeImage($resizeWidth, $resizeHeight, \Imagick::FILTER_LANCZOS, 0.5);
 
         if ($horizontal == true) {
-            $resizeWidth = 0;
-            $resizeHeight = $outputSize;
+            $newImageWidth += $nextImage->getImageWidth();
+            $blendWidth = $nextImage->getImageHeight();
         }
         else {
-            $resizeWidth = $outputSize;
-            $resizeHeight = 0;
+            //$newImageWidth = $nextImage->getImageWidth();
+            $blendWidth = $nextImage->getImageWidth();
+            $newImageHeight += $nextImage->getImageHeight();
         }
 
-        $blendWidth = 0;
+        $images[] = $nextImage;
+    }
 
-        foreach ($srcImages as $srcImage) {
-            $nextImage = new \Imagick(realpath($srcImage));
-            $nextImage->resizeImage($resizeWidth, $resizeHeight, \Imagick::FILTER_LANCZOS, 0.5);
+    if ($horizontal == true) {
+        $newImageWidth -= $overlap * (count($srcImages) - 1);
+        $newImageHeight = $outputSize;
+    }
+    else {
+        $newImageWidth = $outputSize;
+        $newImageHeight -= $overlap * (count($srcImages) - 1);
+    }
 
-            if ($horizontal == true) {
-                $newImageWidth += $nextImage->getImageWidth();
-                $blendWidth = $nextImage->getImageHeight();
-            }
-            else {
-                //$newImageWidth = $nextImage->getImageWidth();
-                $blendWidth = $nextImage->getImageWidth();
-                $newImageHeight += $nextImage->getImageHeight();
-            }
+    if ($blendWidth == 0) {
+        throw new \Exception("Failed to read source images");
+    }
 
-            $images[] = $nextImage;
+    $fadeLeftSide = generateBlendImage($blendWidth, $overlap, $contrast, $midpoint);
+
+    if ($horizontal == true) {
+        //We are placing the images horizontally.
+        $fadeLeftSide->rotateImage('black', -90);
+    }
+
+    //Fade out the left part - need to negate the mask to
+    //make math correct
+    $fadeRightSide = clone $fadeLeftSide;
+    $fadeRightSide->negateimage(false);
+
+    //Create a new canvas to render everything in to.
+    $canvas = new \Imagick();
+    $canvas->newImage($newImageWidth, $newImageHeight, new \ImagickPixel('black'));
+
+    $count = 0;
+
+    $imagePositionX = 0;
+    $imagePositionY = 0;
+
+    /** @var $image \Imagick */
+    foreach ($images as $image) {
+        $finalBlending = new \Imagick();
+        $finalBlending->newImage($image->getImageWidth(), $image->getImageHeight(), 'white');
+
+        if ($count != 0) {
+            $finalBlending->compositeImage($fadeLeftSide, \Imagick::COMPOSITE_ATOP, 0, 0);
         }
+
+        $offsetX = 0;
+        $offsetY = 0;
 
         if ($horizontal == true) {
-            $newImageWidth -= $overlap * (count($srcImages) - 1);
-            $newImageHeight = $outputSize;
+            $offsetX = $image->getImageWidth() - $overlap;
         }
         else {
-            $newImageWidth = $outputSize;
-            $newImageHeight -= $overlap * (count($srcImages) - 1);
+            $offsetY = $image->getImageHeight() - $overlap;
         }
 
-        if ($blendWidth == 0) {
-            throw new \Exception("Failed to read source images");
+        if ($count != count($images) - 1) {
+            $finalBlending->compositeImage($fadeRightSide, \Imagick::COMPOSITE_ATOP, $offsetX, $offsetY);
         }
 
-        $fadeLeftSide = generateBlendImage($blendWidth, $overlap, $contrast, $midpoint);
+        $image->compositeImage($finalBlending, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+        $canvas->compositeimage($image, \Imagick::COMPOSITE_BLEND, $imagePositionX, $imagePositionY);
 
         if ($horizontal == true) {
-            //We are placing the images horizontally.
-            $fadeLeftSide->rotateImage('black', -90);
+            $imagePositionX = $imagePositionX + $image->getImageWidth() - $overlap;
         }
-
-        //Fade out the left part - need to negate the mask to
-        //make math correct
-        $fadeRightSide = clone $fadeLeftSide;
-        $fadeRightSide->negateimage(false);
-
-        //Create a new canvas to render everything in to.
-        $canvas = new \Imagick();
-        $canvas->newImage($newImageWidth, $newImageHeight, new \ImagickPixel('black'));
-
-        $count = 0;
-
-        $imagePositionX = 0;
-        $imagePositionY = 0;
-
-        /** @var $image \Imagick */
-        foreach ($images as $image) {
-            $finalBlending = new \Imagick();
-            $finalBlending->newImage($image->getImageWidth(), $image->getImageHeight(), 'white');
-
-            if ($count != 0) {
-                $finalBlending->compositeImage($fadeLeftSide, \Imagick::COMPOSITE_ATOP, 0, 0);
-            }
-
-            $offsetX = 0;
-            $offsetY = 0;
-
-            if ($horizontal == true) {
-                $offsetX = $image->getImageWidth() - $overlap;
-            }
-            else {
-                $offsetY = $image->getImageHeight() - $overlap;
-            }
-
-            if ($count != count($images) - 1) {
-                $finalBlending->compositeImage($fadeRightSide, \Imagick::COMPOSITE_ATOP, $offsetX, $offsetY);
-            }
-
-            $image->compositeImage($finalBlending, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
-            $canvas->compositeimage($image, \Imagick::COMPOSITE_BLEND, $imagePositionX, $imagePositionY);
-
-            if ($horizontal == true) {
-                $imagePositionX = $imagePositionX + $image->getImageWidth() - $overlap;
-            }
-            else {
-                $imagePositionY = $imagePositionY + $image->getImageHeight() - $overlap;
-            }
-            $count++;
+        else {
+            $imagePositionY = $imagePositionY + $image->getImageHeight() - $overlap;
         }
-
-        return $canvas;
+        $count++;
     }
 
+    return $canvas;
+}
+
+function imagickCompositeGen() {
+
+    $size = 160;
+
+    //Load the images 
+    $output = mergeImages(
+        [
+            '../images/lories/6E6F9109_480.jpg',
+            '../images/lories/IMG_1599_480.jpg',
+            '../images/lories/IMG_2561_480.jpg',
+            '../images/lories/IMG_2837_480.jpg',
+            //'../images/lories/IMG_4023.jpg',
+        ],
+        $size,
+        0.2 * $size, //overlap
+        1,
+        0.5,
+        true);
+
+    //$output = generateBlendImage(200, 200, 5, 0.5);
+    $output->setImageFormat('png');
+
+    header("Content-Type: image/png");
+    echo $output->getImageBlob();
+}
+//Example end
 
 
-    function imagickCompositeGen() {
+//Example Tutorial::edgeExtend
+function edgeExtend($virtualPixelType, $imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->setImageVirtualPixelMethod($virtualPixelType);
 
-        $size = 160;
+    $imagick->scaleimage(400, 300, true);
 
-        //Load the images 
-        $output = mergeImages(
-            [
-                '../images/lories/6E6F9109_480.jpg',
-                '../images/lories/IMG_1599_480.jpg',
-                '../images/lories/IMG_2561_480.jpg',
-                '../images/lories/IMG_2837_480.jpg',
-                //'../images/lories/IMG_4023.jpg',
-            ],
-            $size,
-            0.2 * $size, //overlap
-            1,
-            0.5,
-            true);
+    $imagick->setbackgroundcolor('pink');
+   
+    $desiredWidth = 600;
+    $originalWidth = $imagick->getImageWidth();
 
-        //$output = generateBlendImage(200, 200, 5, 0.5);
-        $output->setImageFormat('png');
+    //Make the image be the desired width.
+    $imagick->sampleimage($desiredWidth, $imagick->getImageHeight());
 
-        header("Content-Type: image/png");
-        echo $output->getImageBlob();
-    }
+    //Now scale, rotate, translate (aka affine project) it
+    //to be how you want
+    $points = array(//The x scaling factor is 0.5 when the desired width is double
+        //the source width
+        ($originalWidth / $desiredWidth), 0, //Don't scale vertically
+        0, 1, //Offset the image so that it's in the centre
+        ($desiredWidth - $originalWidth) / 2, 0);
 
-    
-    
+    $imagick->distortImage(\Imagick::DISTORTION_AFFINEPROJECTION, $points, false);
 
-    function edgeExtend($virtualPixelType, $imagePath) {
-        $imagick = new \Imagick(realpath($imagePath));
-        $imagick->setImageVirtualPixelMethod($virtualPixelType);
-
-        $imagick->scaleimage(400, 300, true);
-
-        $imagick->setbackgroundcolor('pink');
-       
-        $desiredWidth = 600;
-        $originalWidth = $imagick->getImageWidth();
-
-        //Make the image be the desired width.
-        $imagick->sampleimage($desiredWidth, $imagick->getImageHeight());
-
-        //Now scale, rotate, translate (aka affine project) it
-        //to be how you want
-        $points = array(//The x scaling factor is 0.5 when the desired width is double
-            //the source width
-            ($originalWidth / $desiredWidth), 0, //Don't scale vertically
-            0, 1, //Offset the image so that it's in the centre
-            ($desiredWidth - $originalWidth) / 2, 0);
-
-        $imagick->distortImage(\Imagick::DISTORTION_AFFINEPROJECTION, $points, false);
-
-        header("Content-Type: image/jpg");
-        echo $imagick->getImageBlob();
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
 
 //Fyi it may be easier to think of the affine transform by 
 //how it works for a rotation:
@@ -325,13 +323,14 @@ function fxAnalyzeImage() {
 //    "tx" => 0,
 //    "ty" => 0,
 //);
-    }
+}
+//Example end
 
-
+//Example Tutorial::gradientReflection
 function gradientReflection() {
 
     $im = new \Imagick(realpath('../images/sample.png'));
-
+    
     $reflection = clone $im;
 
     $reflection->flipImage();
@@ -362,10 +361,11 @@ function gradientReflection() {
     $canvas->setImageFormat('png');
     header('Content-Type: image/png');
     echo $canvas;
-
 }
+//Example end
 
 
+//Example Tutorial::psychedelicFontGif
 function psychedelicFont() {
     $draw = new \ImagickDraw();
     $name = 'Danack';
@@ -401,11 +401,11 @@ function psychedelicFont() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 
-
-
+//Example Tutorial::psychedelicFontGif
 function psychedelicFontGif() {
 
     set_time_limit(3000);
@@ -472,9 +472,10 @@ function psychedelicFontGif() {
     //there more than one file, so must be using writeImages()
     //$aniGif->writeImages("../var/cache/imageCache/Danack.gif", true);
 }
+//Example end
 
 
-
+//Example Tutorial::svgExample
 function svgExample() {
 
     $svg = <<< END
@@ -512,15 +513,17 @@ END;
 
 
     
-        $image = new \Imagick();
+    $image = new \Imagick();
 
-        $image->readImageBlob($svg);
-        $image->setImageFormat("jpg");
-        header("Content-Type: image/jpg");
-        echo $image;
-    }
+    $image->readImageBlob($svg);
+    $image->setImageFormat("jpg");
+    header("Content-Type: image/jpg");
+    echo $image;
+}
+//Example end
 
 
+//Example Tutorial::screenEmbed
 function screenEmbed() {
     $overlay = new \Imagick(realpath("../images/dickbutt.jpg"));
     $imagick = new \Imagick(realpath("../images/Screeny.png"));
@@ -546,8 +549,28 @@ function screenEmbed() {
 
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
-
 }
+//Example end
 
+
+//Example Tutorial::levelizeImage
+function levelizeImage($blackPoint, $whitePoint) {
+    $imagick = new \Imagick();
+    $imagick->newPseudoimage(500, 100, 'gradient:black-white');
+    $maxQuantum = $imagick->getQuantum();
+
+    //Adjust the scale from black to white to the new 'distance' between black and white
+    $imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
+
+    //Add move the black point to it's new value
+    $imagick->evaluateimage(\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);
+    $imagick->setFormat("png");
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+    
+    
     
 }

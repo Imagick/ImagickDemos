@@ -56,7 +56,7 @@ server {
         try_files \$uri /index.php?file=\$1;
 
         #access_log off;
-        expires 24h;
+        expires 7d;
         add_header Pragma public;
         add_header Cache-Control "public, must-revalidate, proxy-revalidate";
     }

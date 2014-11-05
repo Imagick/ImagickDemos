@@ -80,8 +80,6 @@ class gradientGeneration extends \ImagickDemo\Example {
         $imagick->newPseudoImage(10, 256, 'gradient:black-white');
 
         //$imagick->newPseudoImage(10, 256, 'xc:white');
-        
-
 //        $arguments = array(4, -90);
 //        $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
 //        $imagick->normalizeImage();
@@ -92,15 +90,6 @@ class gradientGeneration extends \ImagickDemo\Example {
         //$imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLICATIVENOISE, 0.7);
 
         $imagick->evaluateimage(\Imagick::EVALUATE_POW, 0.5);
-
-        //
-
-//        const EVALUATE_POISSONNOISE = 22;
-//        const EVALUATE_UNIFORMNOISE = 23; 
-        
-        //$imagick->normalizeImage();
-        //$imagick->evaluateimage(\Imagick::EVALUATE_MAX, 0.5);
-        
         \ImagickDemo\analyzeImage($imagick);
     }
 
@@ -116,39 +105,6 @@ class gradientGeneration extends \ImagickDemo\Example {
         \ImagickDemo\analyzeImage($imagick);
     }
     
-    function renderCustomImageasd() {
-        $imagick1 = new \Imagick();
-        $imagick1->newPseudoImage(10, 256, 'gradient:black-white');
-        $arguments = array(4, -90);
-        $imagick1->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
-
-        analyzeImage($imagick1);
-    }
-
-    function renderCustomImageasdsd() {
-        $imagick = new \Imagick();
-        $imagick->newPseudoImage(10, 256, 'gradient:black-white');
-        //$imagick->evaluateimage(\Imagick::EVALUATE_SINE, [0.5, -90]);
-
-        $arguments = array(0.5, -90);
-        $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
-        
-        analyzeImage($imagick);
-    }
-
-    function renderCustomImageBlah() {
-        $imagick = new \Imagick();
-        $imagick->newPseudoImage(10, 256, "gradient:white-black");
-        $fx = "(1.0/(1.0+exp(10.0*(0.5-u)))-0.006693)*1.0092503";
-        $fxImage = $imagick->fxImage($fx);
-        //header("Content-Type: image/jpg");
-//        $fxImage->setimageformat('jpg');
-//        echo $fxImage->getImageBlob();
-
-        analyzeImage($fxImage);
-        
-    }
-
     function renderCustomImageURL() {
         
         $vars = '';

@@ -15,7 +15,6 @@ class RedirectResponse implements Response {
         
         $this->URL = $URL;
         $this->delay = $delay;
-     //   $this->setHeader("Location", $URL);
     }
 
     function setHeader($type, $value) {

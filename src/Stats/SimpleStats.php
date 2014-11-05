@@ -29,6 +29,7 @@ class SimpleStats {
 
         foreach ($queuesToCheck as $queueName) {
             $taskQueue = $this->injector->make($queueName);
+            /** @var $taskQueue \ImagickDemo\Queue\TaskQueue */
             $gauge = new Gauge(
                 $taskQueue->getName(),
                 $taskQueue->getQueueCount(),

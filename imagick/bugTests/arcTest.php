@@ -20,7 +20,7 @@ $image->flattenImages();
 //$image->setcolorspace(Imagick::COLORSPACE_GRAY);
 //$image->setimagechanneldepth(Imagick::CHANNEL_GRAY, 1);
 $image->setImageDepth (1);
-$image->gra
+
 $image->setimageformat("RGB");
 $image->resizeimage(100, 100, \Imagick::FILTER_LANCZOS, 1);
 $image->writeImage('./arc.rgb');

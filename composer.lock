@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "958f5c27bb36fc15d4931a7dc7492ac0",
+    "hash": "e3e3c12924effddf5515498c8df85b84",
     "packages": [
         {
             "name": "danack/danack-code",
@@ -219,12 +219,12 @@
         },
         {
             "name": "intahwebz/routing",
-            "version": "0.9.2",
+            "version": "0.9.3",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/intahwebz-routing/Danack_intahwebz-routing_0.9.2.zip",
-                "reference": "Danack_intahwebz-routing_0.9.2.zip",
-                "shasum": "466a7b37ca18ea5ddb775a448b7fb0047afefa3e"
+                "url": "http://satis.basereality.com/packages/Danack/intahwebz-routing/Danack_intahwebz-routing_0.9.3.zip",
+                "reference": "Danack_intahwebz-routing_0.9.3.zip",
+                "shasum": "fa7665e27f91465db316118c9bc3f47c347f465a"
             },
             "require": {
                 "intahwebz/core": ">=0.2.4",
@@ -420,29 +420,37 @@
         },
         {
             "name": "predis/predis",
-            "version": "dev-v0.9/phpdoc-method-tags",
+            "version": "dev-v1.0/phpdocs",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "6741b788cc2c8b37bd62c6ed5d38a671940993c3"
+                "reference": "7d78600506187c17810abc9f662b1f037f76193a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/6741b788cc2c8b37bd62c6ed5d38a671940993c3",
-                "reference": "6741b788cc2c8b37bd62c6ed5d38a671940993c3",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/7d78600506187c17810abc9f662b1f037f76193a",
+                "reference": "7d78600506187c17810abc9f662b1f037f76193a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
             },
             "suggest": {
                 "ext-curl": "Allows access to Webdis when paired with phpiredis",
                 "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Predis": "lib/"
+                "psr-4": {
+                    "Predis\\": "src/"
                 }
             },
             "license": [
@@ -464,9 +472,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nrk/predis/issues",
-                "source": "https://github.com/nrk/predis/tree/v0.9/phpdoc-method-tags"
+                "source": "https://github.com/nrk/predis/tree/v1.0/phpdocs"
             },
-            "time": "2013-12-21 17:28:51"
+            "time": "2014-07-23 14:01:11"
         },
         {
             "name": "psr/log",
@@ -727,9 +735,9 @@
             "package": "rdlowrey/auryn"
         },
         {
-            "alias": "v0.8.4",
-            "alias_normalized": "0.8.4.0",
-            "version": "dev-v0.9/phpdoc-method-tags",
+            "alias": "v1.0.0",
+            "alias_normalized": "1.0.0.0",
+            "version": "dev-v1.0/phpdocs",
             "package": "predis/predis"
         }
     ],

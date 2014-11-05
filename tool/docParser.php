@@ -28,7 +28,8 @@ function getExamples() {
         $currentExample = null;
 
         foreach ($fileLines as $fileLine) {
-            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator)::(\w+)\s?(.*)?#";
+            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial)::(\w+)\s?(.*)?#";
+            
             $matchCount = preg_match($pattern, $fileLine, $matches);
 
             if ($matchCount == true) {
@@ -1190,10 +1191,14 @@ class DocHelper {
 }
 END;
 
-$path = "../var/compile/ImagickDemo/DocHelper.php";
+//$path = "../var/compile/ImagickDemo/DocHelper.php";
+
+$path = "../src/ImagickDemo/DocHelper.php";
 
 $result = file_put_contents($path, $output);
 
 if ($result === false) {
     throw new \Exception("Failed to write file.");
 }
+
+echo "Done - copy the file $path to src.";

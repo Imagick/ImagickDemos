@@ -806,14 +806,12 @@ END;
             'imagickCompositeGen' => ['imagickCompositeGen', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => ['fxAnalyzeImage', \ImagickDemo\Control\NullControl::class],
             'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
+            'levelizeImage' => ['levelizeImage', \ImagickDemo\Control\NullControl::class],
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
             'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],
-
             'logoTshirt' => ['logoTshirt', \ImagickDemo\Control\NullControl::class],
-
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
-
         ];
 
         $examples = [

@@ -4,7 +4,11 @@
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__."/../src/bootstrap.php";
 
-$injector = bootstrapInjector();
+$injector = bootstrapInjector(
+    $libratoKey,
+    $libratorUsername,
+    $statsSourceName
+);
 
 $injector->alias('ImagickDemo\Queue\TaskQueue', 'ImagickDemo\Queue\RedisTaskQueue');
 $injector->share('ImagickDemo\Queue\RedisTaskQueue');

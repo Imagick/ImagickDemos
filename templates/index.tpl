@@ -90,7 +90,7 @@
                     </span>
                     
                     
-                    {$docHelper->showDoc() | nofilter}
+                    {$docHelper->showParameters() | nofilter}
                 </div>
             </div>
     

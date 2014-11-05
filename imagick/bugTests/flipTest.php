@@ -4,8 +4,8 @@ $imagick = new Imagick(realpath("../../images/Biter_500.jpg"));
 
 
 //$imagick = new Imagick($image_path);
-//$imagickGrey = clone $imagick;
-$imagick->setimagetype(\Imagick::IMGTYPE_GRAYSCALE);
+$imagickGrey = clone $imagick;
+$imagickGrey->setimagetype(\Imagick::IMGTYPE_GRAYSCALE);
 //
 $differenceInfo = $imagick->compareimages($imagickGrey, \Imagick::METRIC_MEANABSOLUTEERROR);
 //

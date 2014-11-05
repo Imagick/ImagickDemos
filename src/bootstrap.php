@@ -1,21 +1,13 @@
 <?php
 
 
-namespace {
-
+namespace {    
     //yolo - We use a global to allow us to do a hack to make all the code examples
-//appear to use the standard 'header' function, but also capture the content type 
-//of the image
+    //appear to use the standard 'header' function, but also capture the content type 
+    //of the image
     $imageType = null;
-    $imageCache = true;
+    $imageCache = false;
 
-    function renderImageHTMLElement() {
-
-    }
-    
-
-    //color rgb(23, 24, 41) doesn't show popup
-    
     function exceptionHandler(Exception $ex) {
         //TODO - need to ob_end_clean as many times as required because 
         //otherwise partial content gets sent to the client.
@@ -146,19 +138,24 @@ namespace {
     }
 
 
-/**
- * @return \Auryn\Provider
- */
-function bootstrapInjector() {
+    /**
+     * @param $libratoKey
+     * @param $libratorUsername
+     * @param $statsSourceName
+     * @return \Auryn\Provider
+     */
+function bootstrapInjector($libratoKey,
+                           $libratorUsername,
+                           $statsSourceName) {
 
     require '../../imagick-demos.conf.php';
     
     $injector = new Auryn\Provider();
-    $jigConfig = new Intahwebz\Jig\JigConfig(
+    $jigConfig = new Jig\JigConfig(
         "../templates/",
         "../var/compile/",
         'tpl',
-        \Intahwebz\Jig\JigRender::COMPILE_CHECK_EXISTS
+        Jig\JigRender::COMPILE_CHECK_EXISTS
     );
 
     $injector->share($jigConfig);
@@ -209,27 +206,15 @@ function bootstrapInjector() {
 
     //This next line annoys phpstorm
     $injector->define(
-             'Predis\Client',
-                 array(
-                     ':parameters' => $redisParameters,
-                     ':options' => $redisOptions,
-                 )
+         'Predis\Client',
+         array(
+             ':parameters' => $redisParameters,
+             ':options' => $redisOptions,
+         )
     );
 
     $injector->share('Predis\Client');
     $injector->share($injector);
-
-
-//    $params = [
-//        'image' => 'Lorikeet',
-//        'filterType' => '31', 
-//        'width' => '200', 
-//        'height' => '200',
-//        'blur' => '1',
-//        'bestFit' => '1',
-//        'cropZoom' => '1',
-//        'task' => '0',
-//    ];
 
     $injector->define(
          'Intahwebz\Routing\HTTPRequest',
@@ -275,11 +260,10 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     ]);
 
     $categoryNav = $injector->make(\ImagickDemo\Navigation\CategoryNav::class);
-
     $exampleDefinition = $categoryNav->getExampleDefinition($category, $example);
     $function = $exampleDefinition[0];
     $controlClass = $exampleDefinition[1];
-
+    
     if (array_key_exists('defaultParams', $exampleDefinition) == true) {
         foreach($exampleDefinition['defaultParams'] as $name => $value) {
             $defaultName = 'default'.ucfirst($name);
@@ -312,6 +296,9 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
 namespace ImagickDemo {
 
 
+    use ImagickDemo\Response\StandardHTTPResponse;
+    use ImagickDemo\Response\FileResponse;
+    
     /**
      * Hack the header function to allow us to capture the image type,
      * while still having clean example code.
@@ -359,12 +346,12 @@ namespace ImagickDemo {
                     $luminosityArray[] = ($hsl['luminosity']);
                 }
             }
-            $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+            /* Sync the iterator, this is important to do on each iteration */
+            $imageIterator->syncIterator(); 
             break;
         }
 
         $draw = new \ImagickDraw();
-
 
         $strokeColor = new \ImagickPixel('red');
         $fillColor = new \ImagickPixel('red');
@@ -381,6 +368,7 @@ namespace ImagickDemo {
             $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1));
 
             if ($previous !== false) {
+                /** @var $previous int */
                 //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
                 $draw->line($x - 1, $previous, $x, $pos);
             }
@@ -403,6 +391,118 @@ namespace ImagickDemo {
         header("Content-Type: image/png");
         echo $outputImage;
     }
+
+
+
+
+
+    function createFileResponseIfFileExists($filename) {
+        $extensions = ["jpg", 'jpeg', "gif", "png", ];
+
+        foreach ($extensions as $extension) {
+            $filenameWithExtension = $filename.".".$extension;
+            if (file_exists($filenameWithExtension) == true) {
+                //TODO - content type should actually be image/jpeg
+                return new FileResponse($filenameWithExtension, "image/".$extension);
+            }
+        }
+
+        return null;
+    }
+
+
+
+    function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example) {
+        $function = setupExampleInjection($injector, $category, $example);
+        $className = sprintf('ImagickDemo\%s\%s', $category, $function);
+        $namespace = 'ImagickDemo\\'.$category.'\functions';
+        $namespace::load();
+
+        global $imageCache;
+
+        if ($imageCache == false) {
+            $injector->execute([$className, 'renderCustomImage']);
+            return null;
+        }
+
+        $controller = $injector->make($className);
+        $params = $controller->getCustomImageParams();
+        $filename = getImageCacheFilename($category, $example.".custom", $params);
+
+        $response = createFileResponseIfFileExists($filename);
+
+        if ($response) {
+            return $response;
+        }
+
+        $response = createAndCacheFile($injector, [$controller, 'renderCustomImage'], $filename);
+
+        return $response;
+    }
+
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $handler
+     * @param $vars
+     * @return \ImagickDemo\Response\Response $response;
+     */
+    function process(\Auryn\Provider $injector, $handler, $vars) {
+        $lowried = [];
+        foreach ($vars as $key => $value) {
+            $lowried[':'.$key] = $value;
+            $injector->defineParam($key, $value);
+        }
+        $response = $injector->execute($handler, $lowried);
+
+        return $response;
+    }
+
+
+
+
+
+
+function servePage(\Auryn\Provider $injector, $routesFunction) {
+
+    $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
+
+    $httpMethod = 'GET';
+    $uri = '/';
+
+    if (array_key_exists('REQUEST_URI', $_SERVER)) {
+        $uri = $_SERVER['REQUEST_URI'];
+    }
+
+    $path = $uri;
+    $queryPosition = strpos($path, '?');
+    if ($queryPosition !== false) {
+        $path = substr($path, 0, $queryPosition);
+    }
+
+    $routeInfo = $dispatcher->dispatch($httpMethod, $path);
+
+    switch ($routeInfo[0]) {
+        case \FastRoute\Dispatcher::NOT_FOUND: {
+            return new StandardHTTPResponse(404, $uri, "Not found");
+        }
+
+        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
+            $allowedMethods = $routeInfo[1];
+            // ... 405 Method Not Allowed
+            return new StandardHTTPResponse(405, $uri, "Not allowed");
+        }
+
+        case \FastRoute\Dispatcher::FOUND: {
+            $handler = $routeInfo[1];
+            $vars = $routeInfo[2];
+            //TODO - support head?
+            return process($injector, $handler, $vars);
+        }
+    }
+
+    return null;
+}
+
 
 
 }

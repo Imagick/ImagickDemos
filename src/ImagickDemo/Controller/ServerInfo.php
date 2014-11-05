@@ -32,7 +32,7 @@ class ServerInfo {
             }
 
             if (!$serverName) {
-                return;
+                return null;
             }
 
 

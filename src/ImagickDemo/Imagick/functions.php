@@ -37,7 +37,7 @@ function adaptiveBlurImage($imagePath, $radius, $sigma, $channel) {
     echo $imagick->getImageBlob();
 }
 
-
+//Example Imagick::adaptiveResizeImage
 function adaptiveResizeImage($imagePath, $width, $height, $bestFit) {
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->adaptiveResizeImage($width, $height, $bestFit);
@@ -636,10 +636,10 @@ function getPixelIterator($imagePath) {
 }
 
 
-
 /**
  * @param $histogramElements \ImagickPixel[]
  * @param $colorChannel
+ * @return array
  */
 function getColorStatistics($histogramElements, $colorChannel) {
     $colorStatistics = [];

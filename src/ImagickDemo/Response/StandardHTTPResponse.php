@@ -16,8 +16,7 @@ class StandardHTTPResponse implements \ImagickDemo\Response\Response {
         $this->uri = $uri;
         $this->body = $body;
     }
-
-
+    
     function setBody($body) {
         $this->body = $body;
     }

@@ -21,4 +21,6 @@ interface TaskQueue {
     function pushTask(Task $task);
     
     function getName();
+
+    function getQueueCount();
 }

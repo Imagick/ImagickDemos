@@ -2,6 +2,48 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+
+function compareImage(URLToCheck $urlToCheck, $resposeBody, $contentType) {
+
+    $imageType = substr($contentType, strlen('image/'));
+    
+    
+//    echo " ".$urlToCheck->getUrl();
+
+    $blahblah = str_replace(['?', '&', '/', '='], '_', $urlToCheck->getUrl());
+    
+    if (strlen($blahblah) >= 100) {
+        $md5 = md5($blahblah);
+        $blahblah = substr($blahblah, 0, 100).$md5;
+    }
+    
+    $oututFilename = 'compare/'.$blahblah.'.'.$imageType;
+    
+    if (file_exists($oututFilename) == false) {
+        echo "First compare, creating file of $blahblah\n";
+        file_put_contents($oututFilename, $resposeBody);
+        return;
+    }
+    
+    
+    $imagickNew = new Imagick();
+    $imagickNew->readimageblob($resposeBody);
+    
+    $imagickCompare = new Imagick($oututFilename);
+    
+    $result = $imagickCompare->compareImages($imagickNew, \Imagick::LAYERMETHOD_COMPAREANY);
+
+    list($imagickDifference, $distance) = $result;
+
+    if ($distance > 0.01) {
+        echo "Differrence detected in $blahblah \n";
+        /** @var $imagickDifference Imagick */
+        $imagickDifference->writeimage($blahblah."diff".time().'.'.$imageType);
+    }
+}
+
+
+
 class HTMLPrinter {
 
     /**
@@ -172,7 +214,8 @@ class SiteChecker {
 
     function getURL(URLToCheck $urlToCheck) {
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
-        echo "Getting $fullURL \n";
+        //echo "Getting $fullURL \n";
+        echo ".";
 
         $client = new \Artax\Client;
         
@@ -191,6 +234,9 @@ class SiteChecker {
         if ($status != 200) {
             return null;
         }
+        
+        
+        
 
         $contentTypeHeaders = $response->getHeader('Content-Type');
         
@@ -218,6 +264,9 @@ class SiteChecker {
             case ('image/jpg') :
             case ('image/png') : {
                 //echo "Image with status - $status\n";
+
+                compareImage($urlToCheck, $response->getBody(), $contentType);
+                                     
                 return null;
             }
 

@@ -4,8 +4,8 @@
 $aniGif = new Imagick();
 $aniGif->setFormat("gif");
 
-$imageFrames = 40;
-$imageSize = 200;
+$imageFrames = 5;
+$imageSize = 50;
 
 $distanceBetweenCircles = 30 * $imageSize / 400;
 
@@ -63,12 +63,12 @@ for($count=0 ; $count<3 * $imageFrames ; $count++){
 }
 
 
-$result = $aniGif->deconstructImages();
+//$result = $aniGif->deconstructImages();
 
 
 //there more than one file, so must be using writeImages()
-$aniGif->writeImages("./aTestGif.gif", true);
-$result->writeImages("./aTestGif_deconstructed.gif", true);
+//$aniGif->writeImages("./aTestGif.gif", true);
+//$result->writeImages("./aTestGif_deconstructed.gif", true);
 
 //header('Content-type: image/gif');
 //$aniGif->getimageblob();

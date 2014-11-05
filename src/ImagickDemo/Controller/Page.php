@@ -38,14 +38,6 @@ function createImageTaskAndRedirectResponse(
         //probably ought to time out at some point.
     }
 
-    $url = $control->getURL();
-    
-    if (!$url) {
-        echo "blah";
-    }
-
-    $url .= "&job=".$job;
-        
     return new RedirectResponse($control->getURL()."&job=".$job, 500000);
 }
 
@@ -57,9 +49,9 @@ class Page {
     function generateResponseFromTemplate(\Auryn\Provider $injector) {
         $viewModel = $injector->make(\Intahwebz\ViewModel\BasicViewModel::class);
         $jigRenderer = $injector->make(\Intahwebz\Jig\JigRender::class);
-        $jigRenderer->bindViewModel($viewModel);
+
         $viewModel->setVariable('pageTitle', "Imagick demos");
-        $output = $jigRenderer->renderTemplateFile('index', true);
+        $output = $jigRenderer->renderTemplateFile('index', $viewModel);
 
         return new TextResponse($output);
     }

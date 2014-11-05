@@ -9,5 +9,7 @@ class rollImage extends \ImagickDemo\Example {
         return $this->renderImageURL();
     }
 
-
+    function getOriginalImage() {
+        return true;
+    }
 }

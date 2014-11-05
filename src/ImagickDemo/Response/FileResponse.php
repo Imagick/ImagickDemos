@@ -12,7 +12,8 @@ class FileResponse implements \ImagickDemo\Response\Response {
             throw new \Exception("File $fileNameToServe isn't readable, can't serve it.");
         }
         $this->fileNameToServe = $fileNameToServe;
-        $this->setCachingHeaders(3600);
+        //TODO - inject this through config
+        $this->setCachingHeaders(7 * 24 * 3600);
         
         if ($contentType) {
             $this->setHeader("Content-Type", $contentType);

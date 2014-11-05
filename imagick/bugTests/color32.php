@@ -17,15 +17,11 @@ function createMask() {
     $imagick = new \Imagick();
     $imagick->newImage(512, 512, "blue");
     $imagick->drawImage($draw);
-    
-    //$imagick->autoLevelImage();
-
-    //$imagick->negateImage(true);
 
     if (true) {
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        $imagick->writeimage("./testing.png");
         exit(0);
     }
 

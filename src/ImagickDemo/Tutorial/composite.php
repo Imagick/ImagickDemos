@@ -4,6 +4,31 @@ namespace ImagickDemo\Tutorial;
 
 class composite extends \ImagickDemo\Example {
 
+    private $width = 300;
+    private $height = 300;
+
+//Over,  Dst Over,  Src,  Copy,  Replace,
+//Dst,  In,  Dst In,  Out,  Dst Out,
+//ATop,  Dst ATop,  Clear,  Xor
+//
+//Multiply,  Screen,  Bumpmap,  Divide,
+//Plus,  Minus,  ModulusAdd,  ModulusSubtract,
+//Difference,  Exclusion,  Lighten,  Darken,
+//LightenIntensity,  DarkenIntensity,
+//
+//
+//Overlay,  Hard Light,  Soft Light,   Pegtop Light,
+//Linear Light, Vivid Light, Pin Light,
+//Linear Dodge,  Linear Burn,  Color Dodge,  Color Burn,
+//
+//Copy Opacity,   Copy Red,  Copy Green,  Copy Blue,
+//Copy Cyan,  Copy Magenta,  Copy Yellow,  Copy Black,
+//Hue,  Saturate,  Luminize,  Colorize,
+//
+
+
+
+
     /**
      * @var \ImagickDemo\Control\CompositeExampleControl
      */
@@ -64,14 +89,14 @@ class composite extends \ImagickDemo\Example {
 
     private function gradientDown() {
         $imagick = new \Imagick();
-        $imagick->newpseudoimage(500, 500, 'gradient:black-white');
+        $imagick->newpseudoimage($this->width, $this->height, 'gradient:black-white');
 
         return $imagick;
     }
 
     private function gradientRight() {
         $imagick = new \Imagick();
-        $imagick->newpseudoimage(500, 500, 'gradient:black-white');
+        $imagick->newpseudoimage($this->width, $this->height, 'gradient:black-white');
         $imagick->rotateimage('black', -90);
 
         return $imagick;
@@ -82,6 +107,8 @@ class composite extends \ImagickDemo\Example {
         $imagick1 = $this->gradientDown();
         $imagick2 = $this->gradientRight();
         $imagick1->compositeimage($imagick2, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
+
+        $imagick1->setImageFormat('png');
         header("Content-Type: image/png");
         echo $imagick1->getImageBlob();
     }
@@ -124,6 +151,8 @@ class composite extends \ImagickDemo\Example {
             0
         );
 
+        
+        $imagick->resizeImage($this->width, $this->height, \Imagick::FILTER_LANCZOS, 1, false);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
@@ -138,7 +167,7 @@ class composite extends \ImagickDemo\Example {
     function Dst_Out() {
         $imagick = new \Imagick();
         $imagick->setBackgroundColor('yellow');
-        $imagick->newPseudoImage(500, 500, 'gradient:white-black');
+        $imagick->newPseudoImage($this->width, $this->height, 'gradient:white-black');
 //        $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
 //        $imagick2->setBackgroundColor('yellow');
 //
@@ -218,7 +247,7 @@ class composite extends \ImagickDemo\Example {
 
         //This is vital - the image must have an alpha channel.
         $imagick->setImageFormat('png');
-        $imagick->cropImage(500, 500, 0, 0);
+        $imagick->cropImage($this->width, $this->height, 0, 0);
         $imagick2 = new \Imagick(realpath("../images/whiteDisc.png"));
 
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
@@ -226,10 +255,7 @@ class composite extends \ImagickDemo\Example {
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
-
-//    $imagick->setImageAlphaChannel(\\Imagick::ALPHACHANNEL_ACTIVATE);
-//    $imagick->setImageAlphaChannel(\\Imagick::ALPHACHANNEL_SET);
-//
+    
 
 
 //

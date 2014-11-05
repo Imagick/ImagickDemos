@@ -9,4 +9,4 @@ $draw = new ImagickDraw();
 $draw->circle(300, 300, 200, 200);
 
 $im->drawImage($draw);
-$im->writeImage('output.jpg');
+$im->writeImage('outputCLI.jpg');

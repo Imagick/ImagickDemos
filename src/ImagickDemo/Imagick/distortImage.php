@@ -69,7 +69,7 @@ class distortImage extends \ImagickDemo\Example {
     }
     
     function renderDescription() {
-        return "Some distortion.";
+        return "Various distortion effects.<br/>";
     }
 
     /**

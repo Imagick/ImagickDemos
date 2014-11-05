@@ -18,6 +18,16 @@ class DocHelper {
 }
 ";}',
     ),
+    'adaptiveresizeimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"adaptiveResizeImage";s:5:"lines";s:259:"function adaptiveResizeImage($imagePath, $width, $height, $bestFit) {
+    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick->adaptiveResizeImage($width, $height, $bestFit);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+";}',
+    ),
     'adaptivesharpenimage' => 
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:20:"adaptiveSharpenImage";s:5:"lines";s:261:"function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel) {
@@ -30,9 +40,10 @@ class DocHelper {
     ),
     'adaptivethresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"adaptiveThresholdImage";s:5:"lines";s:279:"function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"adaptiveThresholdImage";s:5:"lines";s:365:"function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset) {
     $imagick = new \\Imagick(realpath($imagePath));
-    $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffset);
+    $adaptiveOffsetQuantum = intval($adaptiveOffset * \\Imagick::getQuantum());
+    $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffsetQuantum);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -210,15 +221,15 @@ class DocHelper {
     ),
     'colorfloodfillimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"colorFloodfillImage";s:5:"lines";s:395:"function colorFloodfillImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"colorFloodfillImage";s:5:"lines";s:383:"function colorFloodfillImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $border = new \\ImagickPixel(\'red\');
     $flood = new \\ImagickPixel(\'rgb(128, 32, 128)\');
     @$imagick->colorFloodfillImage(
              $flood,
-                 0,
-                 $border,
-                 5, 5
+             0,
+             $border,
+             5, 5
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -239,29 +250,51 @@ class DocHelper {
     ),
     'colormatriximage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"colorMatrixImage";s:5:"lines";s:484:"function colorMatrixImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"colorMatrixImage";s:5:"lines";s:921:"function colorMatrixImage($imagePath, $colorMatrix) {
 
     $imagick = new \\Imagick(realpath($imagePath));
 
-    $colorMatrix = [
-        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
-        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
-        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
-        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
-        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
-        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
-    ];
+
+    $imagick->setImageOpacity(1);
+
+//    $colorMatrix = [
+//        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
+//        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
+//        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
+//        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
+//        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
+//        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
+//    ];
 
 
+
+    $background = new \\Imagick();
+    $background->newPseudoImage($imagick->getImageWidth(), $imagick->getImageHeight(),  "pattern:checkerboard");
+
+    $background->setImageFormat(\'png\');
+    
+   
+    
+    //echo $imagick->getImageBlob();
+
+
+    $imagick->setImageFormat(\'png\');
     $imagick->colorMatrixImage($colorMatrix);
-    header("Content-Type: image/jpg");
-    echo $imagick->getImageBlob();
+
+
+    
+    
+    $background->compositeImage($imagick, \\Imagick::COMPOSITE_ATOP, 0, 0);
+
+    header("Content-Type: image/png");
+    echo $background->getImageBlob();
+
 }
 ";}',
     ),
     'compositeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"compositeImage";s:5:"lines";s:764:"function compositeImage() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"compositeImage";s:5:"lines";s:751:"function compositeImage() {
 
     $img1 = new \\Imagick();
     $img1->readImage(realpath("../images/Biter_500.jpg"));
@@ -270,14 +303,13 @@ class DocHelper {
     $img2->readImage(realpath("../images/Skyline_400.jpg"));
 
     $img1->resizeimage(
-         $img2->getImageWidth(),
-             $img2->getImageHeight(),
-             \\Imagick::FILTER_LANCZOS,
-             1
+        $img2->getImageWidth(),
+        $img2->getImageHeight(),
+        \\Imagick::FILTER_LANCZOS,
+        1
     );
 
-    $opacity = new \\Imagick();
-
+    $opacity = new \\Imagick();    
     $opacity->newPseudoImage($img1->getImageHeight(), $img1->getImageWidth(), "gradient:gray(10%)-gray(90%)");
     $opacity->rotateimage(\'black\', 90);
 
@@ -457,14 +489,15 @@ class DocHelper {
     ),
     'floodfillpaintimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"floodFillPaintImage";s:5:"lines";s:358:"function floodFillPaintImage() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"floodFillPaintImage";s:5:"lines";s:410:"function floodFillPaintImage($fillColor, $fuzz, $targetColor, $x, $y, $inverse, $channel) {
     $imagick = new \\Imagick(realpath("../images/BlueScreen.jpg"));
     $imagick->floodFillPaintImage(
-            \'white\',
-                0.3 * \\Imagick::getQuantum(),
-                "#00ff00",
-                20, 20,
-                false
+        $fillColor,
+        $fuzz * \\Imagick::getQuantum(),
+        $targetColor,
+        $x, $y,
+        $inverse,
+        $channel
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -579,6 +612,72 @@ class DocHelper {
 
     header("Content-Type: image/jpg");
     echo $imagick;
+}
+";}',
+    ),
+    'getimagehistogram' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:17:"getImageHistogram";s:5:"lines";s:1931:"function getImageHistogram($imagePath) {
+
+    $backgroundColor = \'black\';
+
+    $draw = new \\ImagickDraw();
+    $draw->setStrokeWidth(0); //Lines have a wi
+
+    $imagick = new \\Imagick();
+    $imagick->newImage(500, 500, $backgroundColor);
+    $imagick->setImageFormat("png");
+    $imagick->drawImage($draw);
+
+    $histogramWidth = 256;
+    $histogramHeight = 100; // the height for each RGB segment
+
+    $imagick = new \\Imagick(realpath($imagePath));
+    //Resize the image to be small, otherwise PHP tends to run out of memory
+    //This might lead to bad results for images that are pathologically \'pixelly\'
+    $imagick->adaptiveResizeImage(200, 200, true);
+    $histogramElements = $imagick->getImageHistogram();
+
+    $histogram = new \\Imagick();
+    $histogram->newpseudoimage($histogramWidth, $histogramHeight * 3, \'xc:black\');
+    $histogram->setImageFormat(\'png\');
+
+    $getMax = function ($carry, $item)  {
+        if ($item > $carry) {
+            return $item;
+        }
+        return $carry;
+    };
+
+
+    $colorValues = [
+        \'red\' => getColorStatistics($histogramElements, \\Imagick::COLOR_RED),
+        \'lime\' => getColorStatistics($histogramElements, \\Imagick::COLOR_GREEN),
+        \'blue\' => getColorStatistics($histogramElements, \\Imagick::COLOR_BLUE),
+    ];
+
+    $max = array_reduce($colorValues[\'red\'] , $getMax, 0);
+    $max = array_reduce($colorValues[\'lime\'] , $getMax, $max);
+    $max = array_reduce($colorValues[\'blue\'] , $getMax, $max);
+
+    $scale =  $histogramHeight / $max;
+
+    $count = 0;
+    foreach ($colorValues as $color => $values) {
+        $draw->setstrokecolor($color);
+
+        $offset = ($count + 1) * $histogramHeight;
+
+        foreach ($values as $index => $value) {
+            $draw->line($index, $offset, $index, $offset - ($value * $scale));
+        }
+        $count++;
+    }
+
+    $histogram->drawImage($draw);
+    
+    header( "Content-Type: image/png" );
+    echo $histogram;
 }
 ";}',
     ),
@@ -818,8 +917,11 @@ class DocHelper {
     ),
     'resampleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"resampleImage";s:5:"lines";s:232:"function resampleImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"resampleImage";s:5:"lines";s:246:"function resampleImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
+    
+   
+    
     $imagick->resampleImage(200, 200, \\Imagick::FILTER_LANCZOS, 1);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -962,11 +1064,50 @@ class DocHelper {
 }
 ";}',
     ),
+    'setimageorientation' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"setImageOrientation";s:5:"lines";s:273:"//Doesn\'t appear to do anything
+function setImageOrientation($imagePath, $orientationType) {
+    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick->setImageOrientation($orientationType);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+";}',
+    ),
+    'setimagebias' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"setImageBias";s:5:"lines";s:652:"//Doesn\'t appear to do anything
+function setImageBias() {
+
+    $imagick = new \\Imagick(realpath("../images/stack.jpg"));
+
+    //@$imagick->medianFilterImage(2);
+    $imagick->transformImageColorSpace(\\Imagick::COLORSPACE_GRAY);
+//    @$imagick->medianFilterImage(2);
+//    
+    $xKernel = array(
+        -0.70, 0, 0.70,
+        -0.70, 0, 0.70,
+        -0.70, 0, 0.70
+    );
+
+//    $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
+
+    //$imagick->setImageBias(0.5);
+    $imagick->convolveImage($xKernel, \\Imagick::CHANNEL_ALL);
+    //$imagick->setImageBias(-0.5);
+
+    header(\'Content-type: image/jpeg\');
+    echo $imagick->getImageBlob();
+}
+";}',
+    ),
     'setimagedelay' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"setImageDelay";s:5:"lines";s:439:"function setImageDelay() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"setImageDelay";s:5:"lines";s:443:"function setImageDelay() {
     $imagick = new \\Imagick(realpath("../images/coolGif.gif"));
-    $imagick = $imagick->coalesceImages();
+    $imagick2 = $imagick->coalesceImages();
 
     $frameCount = 0;
 
@@ -976,19 +1117,19 @@ class DocHelper {
         $frameCount++;
     }
 
-    $imagick = $imagick->deconstructImages();
+    $imagick3 = $imagick2->deconstructImages();
 
     header("Content-Type: image/gif");
-    echo $imagick->getImagesBlob();
+    echo $imagick3->getImagesBlob();
 }
 ";}',
     ),
     'setimagetickspersecond' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"setImageTicksPerSecond";s:5:"lines";s:836:"function setImageTicksPerSecond() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"setImageTicksPerSecond";s:5:"lines";s:794:"function setImageTicksPerSecond() {
 
     $imagick = new \\Imagick(realpath("../images/coolGif.gif"));
-    $imagick = $imagick->coalesceImages();
+    $imagick2 = $imagick->coalesceImages();
 
     $totalFrames = $imagick->getNumberImages();
 
@@ -996,7 +1137,6 @@ class DocHelper {
 
     foreach ($imagick as $frame) {
         /** @var $frame \\Imagick */
-//        $frame->setImageTicksPerSecond(50);
 
         if ($frameCount < ($totalFrames / 2)) {
             //Modify the frame to be displayed for twice as long as it currently is.
@@ -1009,9 +1149,9 @@ class DocHelper {
         $frameCount++;
     }
 
-    $imagick = $imagick->deconstructImages();
+    $imagick3 = $imagick2->deconstructImages();
     header("Content-Type: image/gif");
-    echo $imagick->getImagesBlob();
+    echo $imagick3->getImagesBlob();
 }
 ";}',
     ),
@@ -3436,6 +3576,416 @@ class DocHelper {
 
     header("Content-Type: image/jpg");
     echo $imagick;
+}
+";}',
+    ),
+  ),
+  'tutorial' => 
+  array (
+    'fxanalyzeimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:14:"fxAnalyzeImage";s:5:"lines";s:2062:"function fxAnalyzeImage() {
+
+    $graphWidth = 256;
+    $sampleHeight = 20;
+    $graphHeight = 128;
+    $border = 2;
+
+    $imagick = new \\Imagick();
+    $imagick->newPseudoImage($graphWidth, 1, \'gradient:black-white\');
+    $arguments = array(9, -90);
+    $imagick->functionImage(\\Imagick::FUNCTION_SINUSOID, $arguments);
+
+    $imageIterator = new \\ImagickPixelIterator($imagick);
+
+    $reds = [];
+
+    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
+        foreach ($pixels as $pixel) { /* Loop through the pixels in the row (columns) */
+            /** @var $pixel \\ImagickPixel */
+            $color = $pixel->getColor();
+            $reds[] = $color[\'r\'];
+        }
+        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+    }
+
+    $draw = new \\ImagickDraw();
+
+    $strokeColor = new \\ImagickPixel(\'red\');
+    $fillColor = new \\ImagickPixel(\'red\');
+    $draw->setStrokeColor($strokeColor);
+    $draw->setFillColor($fillColor);
+    $draw->setStrokeWidth(0);
+    $draw->setFontSize(72);
+    $draw->setStrokeAntiAlias(false);
+    $previous = 0;
+    $first = true;
+
+    $x = 0;
+
+    foreach ($reds as $red) {
+        $pos = $graphHeight - ($red * $graphHeight / 256);
+
+        if ($first !== true) {
+            $draw->line($x-1, $previous, $x, $pos);
+        }
+        $x += 1;
+        $previous = $pos;
+        $first = false;
+    }
+
+
+    $plot = new \\Imagick();
+    $plot->newImage($graphWidth, $graphHeight, \'white\');
+    $plot->drawImage($draw);
+
+    $outputImage = new \\Imagick();
+    $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, \'white\');
+    $outputImage->compositeimage($plot, \\Imagick::COMPOSITE_ATOP, 0, 0);
+
+    $imagick->resizeimage($imagick->getImageWidth(), $sampleHeight, \\Imagick::FILTER_LANCZOS, 1);
+
+    $outputImage->compositeimage($imagick, \\Imagick::COMPOSITE_ATOP, 0, $graphHeight);
+    $outputImage->borderimage(\'black\', $border, $border);
+
+    $outputImage->setImageFormat("png");
+    header("Content-Type: image/png");
+    echo $outputImage;
+}
+";}',
+    ),
+    'imagickcomposite' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:16:"imagickComposite";s:5:"lines";s:1327:"function imagickComposite() {
+    //Load the images
+    $left = new \\Imagick(realpath(\'../images/im/holocaust_tn.gif\'));
+    $right = new \\Imagick(realpath(\'../images/im/spiral_stairs_tn.gif\'));
+    $gradient = new \\Imagick(realpath(\'../images/im/overlap_mask.png\'));
+
+    //The right bit will be offset by a certain amount - avoid recalculating.
+    $offsetX = $gradient->getImageWidth() - $right->getImageWidth();
+
+
+    //Fade out the left part - need to negate the mask to
+    //make math correct
+    $gradient2 = clone $gradient;
+    $gradient2->negateimage(false);
+    $left->compositeimage($gradient2, \\Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+
+    //Fade out the right part
+    $right->compositeimage($gradient, \\Imagick::COMPOSITE_COPYOPACITY, -$offsetX, 0);
+
+    //Create a new canvas to render everything in to.
+    $canvas = new \\Imagick();
+    $canvas->newImage($gradient->getImageWidth(), $gradient->getImageHeight(), new \\ImagickPixel(\'black\'));
+
+    //Blend left half into final image
+    $canvas->compositeimage($left, \\Imagick::COMPOSITE_BLEND, 0, 0);
+
+    //Blend Right half into final image
+    $canvas->compositeimage($right, \\Imagick::COMPOSITE_BLEND, $offsetX, 0);
+
+    //Output the final image
+    $canvas->setImageFormat(\'png\');
+
+    header("Content-Type: image/png");
+    echo $canvas->getImageBlob();
+}
+";}',
+    ),
+    'imagickcompositegen' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:19:"imagickCompositeGen";s:5:"lines";s:349:"function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
+    $imagick = new \\Imagick();
+    $imagick->newPseudoImage($height, $overlap, \'gradient:black-white\');
+    $quanta = $imagick->getQuantumRange();
+    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quanta["quantumRangeLong"]);
+
+    return $imagick;
+}
+";}',
+    ),
+    'edgeextend' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:10:"edgeExtend";s:5:"lines";s:1243:"function edgeExtend($virtualPixelType, $imagePath) {
+    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick->setImageVirtualPixelMethod($virtualPixelType);
+
+    $imagick->scaleimage(400, 300, true);
+
+    $imagick->setbackgroundcolor(\'pink\');
+   
+    $desiredWidth = 600;
+    $originalWidth = $imagick->getImageWidth();
+
+    //Make the image be the desired width.
+    $imagick->sampleimage($desiredWidth, $imagick->getImageHeight());
+
+    //Now scale, rotate, translate (aka affine project) it
+    //to be how you want
+    $points = array(//The x scaling factor is 0.5 when the desired width is double
+        //the source width
+        ($originalWidth / $desiredWidth), 0, //Don\'t scale vertically
+        0, 1, //Offset the image so that it\'s in the centre
+        ($desiredWidth - $originalWidth) / 2, 0);
+
+    $imagick->distortImage(\\Imagick::DISTORTION_AFFINEPROJECTION, $points, false);
+
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+
+//Fyi it may be easier to think of the affine transform by 
+//how it works for a rotation:
+//$affineRotate = array(
+//    "sx" => cos($angle),
+//    "sy" => cos($angle),
+//    "rx" => sin($angle),
+//    "ry" => -sin($angle),
+//    "tx" => 0,
+//    "ty" => 0,
+//);
+}
+";}',
+    ),
+    'gradientreflection' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:18:"gradientReflection";s:5:"lines";s:1084:"function gradientReflection() {
+
+    $im = new \\Imagick(realpath(\'../images/sample.png\'));
+    
+    $reflection = clone $im;
+
+    $reflection->flipImage();
+
+    $reflection->cropImage($im->getImageWidth(), $im->getImageHeight() * 0.75, 0, 0);
+
+    $gradient = new \\Imagick();
+    $gradient->newPseudoImage(
+         $reflection->getImageWidth(),
+         $reflection->getImageHeight(),
+         //Putting spaces in the rgba string is bad
+         \'gradient:rgba(255,0,255,0.6)-rgba(255,255,0,0.99)\'
+    );
+
+    $reflection->compositeimage(
+       $gradient,
+       \\Imagick::COMPOSITE_DSTOUT,
+       0, 0
+    );
+
+    $canvas = new \\Imagick();
+    $canvas->newImage($im->getImageWidth(), $im->getImageHeight() * 1.75, new \\ImagickPixel(\'rgba(255, 255, 255, 0)\'));
+    $canvas->compositeImage($im, \\Imagick::COMPOSITE_BLEND, 0, 0);
+    $canvas->setImageFormat(\'png\');
+    $canvas->compositeImage($reflection, \\Imagick::COMPOSITE_BLEND, 0, $im->getImageHeight());
+
+    $canvas->stripImage();
+    $canvas->setImageFormat(\'png\');
+    header(\'Content-Type: image/png\');
+    echo $canvas;
+}
+";}',
+    ),
+    'psychedelicfontgif' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:18:"psychedelicFontGif";s:5:"lines";s:1001:"function psychedelicFont() {
+    $draw = new \\ImagickDraw();
+    $name = \'Danack\';
+
+    if (array_key_exists(\'name\', $_REQUEST) == true) {
+        $name = $_REQUEST[\'name\'];
+    }
+
+    $draw->setStrokeOpacity(1);
+
+    $draw->setFillColor(\'black\');
+    $draw->setFont("../fonts/CANDY.TTF");
+
+    $draw->setfontsize(150);
+
+    for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
+        $hue = intval(170 + $strokeWidth * 360 / 25);
+        $draw->setStrokeColor("hsl($hue, 255, 128)");
+        $draw->setStrokeWidth($strokeWidth * 3);
+        $draw->annotation(60, 165, $name);
+    }
+
+    //Create an image object which the draw commands can be rendered into
+    $imagick = new \\Imagick();
+    $imagick->newImage(650, 230, "#eee");
+    $imagick->setImageFormat("png");
+
+    //Render the draw commands in the ImagickDraw object
+    //into the image.
+    $imagick->drawImage($draw);
+
+    //Send the image to the browser
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+";}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:18:"psychedelicFontGif";s:5:"lines";s:1877:"function psychedelicFontGif() {
+
+    set_time_limit(3000);
+
+    $aniGif = new \\Imagick();
+    $aniGif->setFormat("gif");
+
+    $maxFrames = 11;
+    $scale = 0.25;
+
+    for ($frame = 0; $frame < $maxFrames; $frame++) {
+
+        $draw = new \\ImagickDraw();
+
+        $name = \'Danack\';
+
+        if (array_key_exists(\'name\', $_REQUEST) == true) {
+            $name = $_REQUEST[\'name\'];
+        }
+
+        $draw->setStrokeOpacity(1);
+
+
+        $draw->setFont("../fonts/CANDY.TTF");
+
+        $draw->setfontsize(150 * $scale);
+
+        for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
+            $hue = intval(fmod(($frame * 360 / $maxFrames) + 170 + $strokeWidth * 360 / 25, 360));
+            $color = "hsl($hue, 255, 128)";
+            $draw->setStrokeColor($color);
+            $draw->setFillColor($color);
+            $draw->setStrokeWidth($strokeWidth * 3 * $scale);
+            $draw->annotation(60 * $scale, 165 * $scale, $name);
+        }
+
+        $draw->setStrokeColor(\'none\');
+        $draw->setFillColor(\'black\');
+        $draw->setStrokeWidth(0);
+        $draw->annotation(60 * $scale, 165 * $scale, $name);
+
+
+
+        //Create an image object which the draw commands can be rendered into
+        $imagick = new \\Imagick();
+        $imagick->newImage(650 * $scale, 230 * $scale, "#eee");
+        $imagick->setImageFormat("png");
+
+        //Render the draw commands in the ImagickDraw object
+        //into the image.
+        $imagick->drawImage($draw);
+
+        $imagick->setImageDelay(5);
+        $aniGif->addImage($imagick);
+
+        $imagick->destroy();
+    }
+
+    $aniGif->setImageIterations(0); //loop forever
+    $aniGif->deconstructImages();
+
+    header("Content-Type: image/gif");
+    echo $aniGif->getimagesblob();
+    //there more than one file, so must be using writeImages()
+    //$aniGif->writeImages("../var/cache/imageCache/Danack.gif", true);
+}
+";}',
+    ),
+    'svgexample' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:10:"svgExample";s:5:"lines";s:1161:"function svgExample() {
+
+    $svg = <<< END
+<?xml version="1.0"?>
+<svg version=\'1.0\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' width=\'746\' height=\'742\' viewBox=\'-362 -388 746 742\' encoding=\'UTF-8\' standalone=\'no\'>
+    <defs>
+        <ellipse id=\'ellipse\' cx=\'36\' cy=\'-56\' rx=\'160\' ry=\'320\' />
+        <g id=\'ellipses\'>
+            <use xlink:href=\'#ellipse\' fill=\'#0000ff\' />
+            <use xlink:href=\'#ellipse\' fill=\'#0099ff\' transform=\'rotate(72)\' />
+        </g>
+    </defs>
+</svg>
+END;
+
+    
+    
+    $svg = \'<?xml version="1.0"?>
+    <svg width="120" height="120"
+         viewPort="0 0 120 120" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+            <clipPath id="myClip">
+                <circle cx="30" cy="30" r="20"/>
+                <circle cx="70" cy="70" r="20"/>
+            </clipPath>
+        </defs>
+
+        <rect x="10" y="10" width="100" height="100"
+              clip-path="url(#myClip)"/>
+
+    </svg>\';
+
+
+
+    
+    $image = new \\Imagick();
+
+    $image->readImageBlob($svg);
+    $image->setImageFormat("jpg");
+    header("Content-Type: image/jpg");
+    echo $image;
+}
+";}',
+    ),
+    'screenembed' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:11:"screenEmbed";s:5:"lines";s:831:"function screenEmbed() {
+    $overlay = new \\Imagick(realpath("../images/dickbutt.jpg"));
+    $imagick = new \\Imagick(realpath("../images/Screeny.png"));
+
+    $overlay->setImageVirtualPixelMethod(\\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+
+    $width = $overlay->getImageWidth();
+    $height = $overlay->getImageHeight();
+
+        $offset = 332.9;
+
+    $points = array(    
+        0, 0, 364 - $offset, 51, 
+        $width, 0, 473.4 - $offset, 23, 
+        0, $height, 433.5 - $offset, 182, 
+        $width, $height, 523 - $offset, 119.4
+    );
+
+    $overlay->modulateImage(97, 100, 0);
+    $overlay->distortImage(\\Imagick::DISTORTION_PERSPECTIVE, $points, true);
+
+    $imagick->compositeImage($overlay, \\Imagick::COMPOSITE_OVER, 364.5 - $offset, 23.5);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+";}',
+    ),
+    'levelizeimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:13:"levelizeImage";s:5:"lines";s:619:"function levelizeImage($blackPoint, $whitePoint) {
+    $imagick = new \\Imagick();
+    $imagick->newPseudoimage(500, 100, \'gradient:black-white\');
+    $maxQuantum = $imagick->getQuantum();
+
+    //Adjust the scale from black to white to the new \'distance\' between black and white
+    $imagick->evaluateimage(\\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
+
+    //Add move the black point to it\'s new value
+    $imagick->evaluateimage(\\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);
+    $imagick->setFormat("png");
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
 }
 ";}',
     ),
@@ -13239,17 +13789,6 @@ class DocHelper {
         $this->category = strtolower($category);
         $this->example = strtolower($example);
     }
-    
-    function showDescription() {
-
-        if (isset($this->manualEntries[$this->category][$this->example]) == false) {
-            return "";
-        }
-
-        $manualEntry = $this->manualEntries[$this->category][$this->example];
-        
-        return $manualEntry['description'];
-    }
 
     function showDoc() {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
@@ -13259,6 +13798,11 @@ class DocHelper {
         $manualEntry = $this->manualEntries[$this->category][$this->example];
         
         $output = '';
+        //$output = '<table>';
+        //$output .= "<tr><td colspan='3'>".$manualEntry['functionName']."</td></tr>";
+        //$output .= "<tr><td colspan='3'>".$manualEntry['description']."</td></tr>";
+
+        $output .= $manualEntry['description'];
 
         if (count($manualEntry['parameters'])) {
             $output .= "<h5>Parameters</h5>";
@@ -13298,10 +13842,10 @@ class DocHelper {
             /** @var $example \ImagickDemo\CodeExample */
             
             if (count($examples) > 1) {
-                $output .= "<h5>Example $count</h5><pre>";
+                $output .= "Example $count <br/><pre>";
             }
             else {
-                $output .= "<h5>Example</h5><pre class='responsiveFont'>";
+                $output .= "Example <br/><pre>";
             }
                 $output .=  $example->getLines();
             $output .=  "</pre>";

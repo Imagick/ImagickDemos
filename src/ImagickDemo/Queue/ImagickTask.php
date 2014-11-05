@@ -81,8 +81,7 @@ class ImagickTask implements Task {
         echo "executing ".$functionFullname;
 
         delegateAllTheThings($injector, $this->control);
-        
-        
+
         createAndCacheFile($injector, $functionFullname, $filename);
     }
 

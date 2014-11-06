@@ -1,22 +1,247 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "e3e3c12924effddf5515498c8df85b84",
+    "hash": "161f170d00055dcf69482e1e0b69e3ef",
     "packages": [
         {
-            "name": "danack/danack-code",
-            "version": "2.4.1",
+            "name": "amphp/amp",
+            "version": "v0.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/amp.git",
+                "reference": "5c46db0c41bcf6a7b5ad74f2150610acb1e286fc"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/DanackCode/Danack_DanackCode_2.4.1.zip",
-                "reference": "Danack_DanackCode_2.4.1.zip",
-                "shasum": "2b345b3ab2135cb51377b52381453aa3c1515472"
+                "url": "https://api.github.com/repos/amphp/amp/zipball/5c46db0c41bcf6a7b5ad74f2150610acb1e286fc",
+                "reference": "5c46db0c41bcf6a7b5ad74f2150610acb1e286fc",
+                "shasum": ""
             },
             "require": {
-                "php": ">=5.3.23",
-                "zendframework/zend-eventmanager": "~2.3"
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amp\\": "lib/"
+                },
+                "files": [
+                    "lib/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@php.net",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "A non-blocking concurrency framework for PHP applications",
+            "homepage": "https://github.com/amphp/amp",
+            "keywords": [
+                "async",
+                "concurrency",
+                "future",
+                "libevent",
+                "libuv",
+                "non-blocking",
+                "promise"
+            ],
+            "time": "2014-11-05 16:57:59"
+        },
+        {
+            "name": "amphp/artax",
+            "version": "v1.0.0-rc5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/artax.git",
+                "reference": "84dff80fea3cda3ca34a9e732c56952324ae68f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/artax/zipball/84dff80fea3cda3ca34a9e732c56952324ae68f6",
+                "reference": "84dff80fea3cda3ca34a9e732c56952324ae68f6",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/amp": "~0.12",
+                "php": ">=5.4.0",
+                "rdlowrey/nbsock": "~0.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Artax\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "Asynchronous parallel HTTP/1.1 client built on the Amp concurrency framework",
+            "homepage": "https://github.com/amphp/artax",
+            "keywords": [
+                "async",
+                "client",
+                "http",
+                "non-blocking",
+                "parallel",
+                "rest"
+            ],
+            "time": "2014-10-28 15:33:30"
+        },
+        {
+            "name": "amphp/dns",
+            "version": "v0.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amphp/dns.git",
+                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/e58d46d3c565db24c17428bf42a75d55fedd7bc6",
+                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/amp": "~0.12",
+                "daverandom/libdns": "~0.2",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.9.1",
+                "phpunit/phpunit": "~4.1.0",
+                "predis/predis": "~0.8.6",
+                "rdlowrey/auryn": ">=0.13.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amp\\Dns\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Wright",
+                    "email": "addr@daverandom.com",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "Asynchronous DNS resolution built on the Amp concurrency framework",
+            "homepage": "https://github.com/amphp/dns",
+            "keywords": [
+                "amp",
+                "async",
+                "client",
+                "dns",
+                "resolve"
+            ],
+            "time": "2014-11-04 04:49:19"
+        },
+        {
+            "name": "danack/auryn",
+            "version": "0.14.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Auryn.git",
+                "reference": "2471c19ecf3f9d4e2a2dfc949430fc290d67270b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Auryn/zipball/2471c19ecf3f9d4e2a2dfc949430fc290d67270b",
+                "reference": "2471c19ecf3f9d4e2a2dfc949430fc290d67270b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "replace": {
+                "rdlowrey/auryn": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Auryn\\": "lib/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "role": "Creator / Main Developer"
+                },
+                {
+                    "name": "Levi Morrison",
+                    "email": "levim@php.net",
+                    "homepage": "http://morrisonlevi.github.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
+            "homepage": "https://github.com/rdlowrey/Auryn",
+            "keywords": [
+                "dependency injection",
+                "dic",
+                "ioc"
+            ],
+            "support": {
+                "source": "https://github.com/Danack/Auryn/tree/0.14.2",
+                "issues": "https://github.com/Danack/Auryn/issues"
+            },
+            "time": "2014-10-11 00:30:55"
+        },
+        {
+            "name": "danack/danack-code",
+            "version": "2.4.5",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/DanackCode/Danack_DanackCode_2.4.5.zip",
+                "reference": null,
+                "shasum": "8b55bb4cc95f966989b2a799c468e762d7ae60e9"
+            },
+            "require": {
+                "php": ">=5.3.23"
             },
             "type": "library",
             "autoload": {
@@ -32,6 +257,76 @@
                 "code",
                 "zf2"
             ]
+        },
+        {
+            "name": "danack/jig",
+            "version": "0.9.2",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/Danack/Jig/Danack_Jig_0.9.2.zip",
+                "reference": null,
+                "shasum": "2b7624da3e8e5be7c9abee9c010ca4d71219956b"
+            },
+            "require": {
+                "nikic/php-parser": "v0.9.3",
+                "rdlowrey/auryn": "~0.14.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.1",
+                "nikic/fast-route": "~0.2.0",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jig": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "Lightweight, fast, flexible PHP templating system. Just like all the others.",
+            "keywords": [
+                "core",
+                "intahwebz",
+                "library"
+            ]
+        },
+        {
+            "name": "daverandom/libdns",
+            "version": "0.2.1",
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.basereality.com/packages/DaveRandom/LibDNS/DaveRandom_LibDNS_v0.2.1.zip",
+                "reference": null,
+                "shasum": "0b1a9075f29c11ce7f00169e598d4a1cc944a137"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LibDNS": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "DNS protocol implementation written in pure PHP",
+            "keywords": [
+                "dns"
+            ],
+            "support": {
+                "issues": "https://github.com/DaveRandom/LibDNS/issues"
+            }
         },
         {
             "name": "fluentdom/fluentdom",
@@ -103,12 +398,17 @@
         },
         {
             "name": "intahwebz/core",
-            "version": "0.2.5",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/intahwebz-core.git",
+                "reference": "89734bfeb1eb48a057e154d54da0e3214b7c8243"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/intahwebz-core/Danack_intahwebz-core_0.2.5.zip",
-                "reference": "Danack_intahwebz-core_0.2.5.zip",
-                "shasum": "148a50be51f4c9a5f9634901a5c50f7fdfc1e263"
+                "url": "https://api.github.com/repos/Danack/intahwebz-core/zipball/89734bfeb1eb48a057e154d54da0e3214b7c8243",
+                "reference": "89734bfeb1eb48a057e154d54da0e3214b7c8243",
+                "shasum": ""
             },
             "require": {
                 "psr/log": "~1.0"
@@ -119,6 +419,7 @@
                     "Intahwebz": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -126,7 +427,8 @@
                 {
                     "name": "Dan Ackroyd",
                     "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com"
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Core library that defines common interfaces used by the rest of the intahwebz..",
@@ -134,61 +436,22 @@
                 "core",
                 "intahwebz",
                 "library"
-            ]
-        },
-        {
-            "name": "intahwebz/jig",
-            "version": "0.9.0",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/Jig/Danack_Jig_0.9.0.zip",
-                "reference": "Danack_Jig_0.9.0.zip",
-                "shasum": "cca7f451c7d00dfe21c31a281aa27f8e10368d8d"
-            },
-            "require": {
-                "intahwebz/core": "*",
-                "intahwebz/mb_extra": "1.0.0",
-                "nikic/php-parser": "v0.9.3",
-                "psr/log": "~1.0",
-                "rdlowrey/auryn": "dev-PluginExperiment2"
-            },
-            "require-dev": {
-                "intahwebz/form": "0.5.1",
-                "intahwebz/routing": "~0.9",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Intahwebz": "src/",
-                    "Intahwebz\\PHPCompiledTemplate": "src/Intahwebz/Jig/Tests/generatedTemplates/"
-                }
-            },
-            "license": [
-                "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com"
-                }
-            ],
-            "description": "Lightweight, fast, flexible PHP templating system. Just like all the others.",
-            "keywords": [
-                "core",
-                "intahwebz",
-                "library"
-            ]
+            "time": "2014-06-08 21:02:03"
         },
         {
             "name": "intahwebz/mb_extra",
-            "version": "1.0.0",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/mb_extra.git",
+                "reference": "4a8d7792c8cc1f9bbfd4d90b717f6352e50fbf28"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/mb_extra/Danack_mb_extra_1.0.0.zip",
-                "reference": "Danack_mb_extra_1.0.0.zip",
-                "shasum": "898507cb876aee73a9b39d76df0e55979cb35510"
+                "url": "https://api.github.com/repos/Danack/mb_extra/zipball/4a8d7792c8cc1f9bbfd4d90b717f6352e50fbf28",
+                "reference": "4a8d7792c8cc1f9bbfd4d90b717f6352e50fbf28",
+                "shasum": ""
             },
             "require-dev": {
                 "phpunit/phpunit": "~3.7"
@@ -199,6 +462,7 @@
                     "Intahwebz": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -206,25 +470,32 @@
                 {
                     "name": "Dan Ackroyd",
                     "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com"
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
                 }
             ],
             "description": "A collection of PHP multi-byte string functions that are not present in the mb_string extension.",
             "keywords": [
-                "UTF-8",
                 "mb_string",
                 "php",
+                "utf-8",
                 "utf8"
-            ]
+            ],
+            "time": "2013-10-11 20:18:32"
         },
         {
             "name": "intahwebz/routing",
-            "version": "0.9.3",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/intahwebz-routing.git",
+                "reference": "046d3a3853bf6f59c1c13099069af6f799fe88f1"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/intahwebz-routing/Danack_intahwebz-routing_0.9.3.zip",
-                "reference": "Danack_intahwebz-routing_0.9.3.zip",
-                "shasum": "fa7665e27f91465db316118c9bc3f47c347f465a"
+                "url": "https://api.github.com/repos/Danack/intahwebz-routing/zipball/046d3a3853bf6f59c1c13099069af6f799fe88f1",
+                "reference": "046d3a3853bf6f59c1c13099069af6f799fe88f1",
+                "shasum": ""
             },
             "require": {
                 "intahwebz/core": ">=0.2.4",
@@ -241,26 +512,35 @@
                 "psr-0": {
                     "Intahwebz": "src/"
                 }
-            }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2014-07-01 16:31:52"
         },
         {
             "name": "intahwebz/weaver",
-            "version": "0.3.1",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Weaver.git",
+                "reference": "188744c3dcbd26d2d87b3f2bc6e672bbb67ba094"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/Danack/Weaver/Danack_Weaver_0.3.1.zip",
-                "reference": "Danack_Weaver_0.3.1.zip",
-                "shasum": "275441fe43ef7f5970d489eb59bc68c679b6ccb6"
+                "url": "https://api.github.com/repos/Danack/Weaver/zipball/188744c3dcbd26d2d87b3f2bc6e672bbb67ba094",
+                "reference": "188744c3dcbd26d2d87b3f2bc6e672bbb67ba094",
+                "shasum": ""
             },
             "require": {
-                "danack/danack-code": "2.4.1",
-                "intahwebz/core": ">=0.2.2",
+                "danack/danack-code": "~2.4.2",
+                "intahwebz/core": ">=0.2.4",
                 "php": ">=5.4.0"
             },
             "require-dev": {
+                "danack/auryn": "~0.14",
+                "mikey179/vfsstream": "v1.2.0",
+                "mockery/mockery": "0.9.1",
                 "monolog/monolog": "1.4.0",
-                "phpunit/phpunit": "3.7.*",
-                "rdlowrey/auryn": "dev-DanackMaster",
+                "phpunit/phpunit": "4.1.3",
                 "whatthejeff/nyancat-phpunit-resultprinter": "~1.2"
             },
             "type": "library",
@@ -269,6 +549,7 @@
                     "Weaver": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -282,11 +563,13 @@
             "description": "An experiment in compositional programming.",
             "homepage": "https://github.com/danack/Weaver",
             "keywords": [
-                "AOP",
-                "idonteven",
-                "weaving",
-                "wtf"
-            ]
+                "aop",
+                "code generation",
+                "composition",
+                "lazyloader",
+                "weaving"
+            ],
+            "time": "2014-10-26 02:43:22"
         },
         {
             "name": "nikic/fast-route",
@@ -294,12 +577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637"
+                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/7dc9a43cb856debc22fe158a1144018e16f7a637",
-                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/88ac2888aa29d888cf3f447899753a4a1e599759",
+                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +615,7 @@
                 "source": "https://github.com/nikic/FastRoute/tree/master",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2014-05-17 11:33:04"
+            "time": "2014-09-30 16:53:49"
         },
         {
             "name": "nikic/php-parser",
@@ -420,17 +703,12 @@
         },
         {
             "name": "predis/predis",
-            "version": "dev-v1.0/phpdocs",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nrk/predis.git",
-                "reference": "7d78600506187c17810abc9f662b1f037f76193a"
-            },
+            "version": "1.0.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/7d78600506187c17810abc9f662b1f037f76193a",
-                "reference": "7d78600506187c17810abc9f662b1f037f76193a",
-                "shasum": ""
+                "url": "http://satis.basereality.com/packages/nrk/predis/nrk_predis_v1.0.0.zip",
+                "reference": null,
+                "shasum": "d1b266f5cb8f8a8d120e2e958d8784d803756fa8"
             },
             "require": {
                 "php": ">=5.3.2"
@@ -471,26 +749,35 @@
                 "redis"
             ],
             "support": {
-                "issues": "https://github.com/nrk/predis/issues",
-                "source": "https://github.com/nrk/predis/tree/v1.0/phpdocs"
-            },
-            "time": "2014-07-23 14:01:11"
+                "issues": "https://github.com/nrk/predis/issues"
+            }
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "a78d6504ff5d4367497785ab2ade91db3a9fbe11"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/php-fig/log/php-fig_log_1.0.0.zip",
-                "reference": "php-fig_log_1.0.0.zip",
-                "shasum": "e006b9f97750ce8a7e2111b3f7a57547c1fd1c8c"
+                "url": "https://api.github.com/repos/php-fig/log/zipball/a78d6504ff5d4367497785ab2ade91db3a9fbe11",
+                "reference": "a78d6504ff5d4367497785ab2ade91db3a9fbe11",
+                "shasum": ""
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Psr\\Log\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -505,110 +792,38 @@
                 "log",
                 "psr",
                 "psr-3"
-            ]
+            ],
+            "time": "2014-01-18 15:33:09"
         },
         {
-            "name": "rdlowrey/alert",
-            "version": "v0.1.2",
+            "name": "rdlowrey/nbsock",
+            "version": "v0.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rdlowrey/nbsock.git",
+                "reference": "96e46fdf34b5b180bb9387d89cb69cb6910f24e5"
+            },
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/rdlowrey/Alert/rdlowrey_Alert_v0.1.2.zip",
-                "reference": "rdlowrey_Alert_v0.1.2.zip",
-                "shasum": "66c314496be58626331f5bd6cfe9b9feeb4125e9"
+                "url": "https://api.github.com/repos/rdlowrey/nbsock/zipball/96e46fdf34b5b180bb9387d89cb69cb6910f24e5",
+                "reference": "96e46fdf34b5b180bb9387d89cb69cb6910f24e5",
+                "shasum": ""
             },
             "require": {
+                "amphp/amp": "~0.12",
+                "amphp/dns": "~0.3",
                 "php": ">=5.4.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Alert": "src"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Lowrey",
-                    "email": "rdlowrey@gmail.com",
-                    "role": "Creator / Lead Developer"
-                }
-            ],
-            "description": "Event loops for event-driven/async PHP",
-            "homepage": "https://github.com/rdlowrey/alert",
-            "keywords": [
-                "async",
-                "events",
-                "libevent",
-                "non-blocking"
-            ]
-        },
-        {
-            "name": "rdlowrey/artax",
-            "version": "v0.7.0",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/rdlowrey/Artax/rdlowrey_Artax_v0.7.0.zip",
-                "reference": "rdlowrey_Artax_v0.7.0.zip",
-                "shasum": "35a1211171e7587196eca4a7067ef1d03a89460f"
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "rdlowrey/alert": "~0.1.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Lowrey",
-                    "email": "rdlowrey@gmail.com",
-                    "role": "Creator / Lead Developer"
-                }
-            ],
-            "description": "An object-oriented HTTP/1.1 client with no cURL dependency",
-            "homepage": "https://github.com/rdlowrey/Artax",
-            "keywords": [
-                "async",
-                "client",
-                "http",
-                "parallel",
-                "rest"
-            ]
-        },
-        {
-            "name": "rdlowrey/auryn",
-            "version": "dev-v1.0.0-pluginWithParamDelegation",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/Auryn.git",
-                "reference": "97359fefaba4a8e5d26e14ced840bc6b0a25c798"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Auryn/zipball/97359fefaba4a8e5d26e14ced840bc6b0a25c798",
-                "reference": "97359fefaba4a8e5d26e14ced840bc6b0a25c798",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "autoload": {
                 "psr-4": {
-                    "Auryn\\": "lib/"
-                }
+                    "Nbsock\\": "lib/"
+                },
+                "files": [
+                    "lib/functions.php"
+                ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -616,137 +831,34 @@
                 {
                     "name": "Daniel Lowrey",
                     "email": "rdlowrey@gmail.com",
-                    "role": "Creator / Main Developer"
-                },
-                {
-                    "name": "Levi Morrison",
-                    "email": "levim@php.net",
-                    "homepage": "http://morrisonlevi.github.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
+                    "role": "Creator / Lead Developer"
                 }
             ],
-            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
-            "homepage": "https://github.com/rdlowrey/Auryn",
+            "description": "Non-blocking socket connection/encryption using the Amp concurrency framework",
+            "homepage": "https://github.com/rdlowrey/nbsock",
             "keywords": [
-                "dependency injection",
-                "dic",
-                "ioc"
+                "amp",
+                "async",
+                "encryption",
+                "non-blocking",
+                "sockets",
+                "tcp",
+                "tls"
             ],
-            "support": {
-                "source": "https://github.com/Danack/Auryn/tree/v1.0.0-pluginWithParamDelegation",
-                "issues": "https://github.com/Danack/Auryn/issues"
-            },
-            "time": "2014-05-30 17:03:13"
-        },
-        {
-            "name": "zendframework/zend-eventmanager",
-            "version": "2.3.0",
-            "target-dir": "Zend/EventManager",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendEventManager/zendframework_Component_ZendEventManager_2.3.0.zip",
-                "reference": "zendframework_Component_ZendEventManager_2.3.0.zip",
-                "shasum": "19683eab8f6622d013f7d97ea8e308b97f663847"
-            },
-            "require": {
-                "php": ">=5.3.23",
-                "zendframework/zend-stdlib": "self.version"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev",
-                    "dev-develop": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Zend\\EventManager\\": ""
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": " ",
-            "keywords": [
-                "eventmanager",
-                "zf2"
-            ]
-        },
-        {
-            "name": "zendframework/zend-stdlib",
-            "version": "2.3.0",
-            "target-dir": "Zend/Stdlib",
-            "dist": {
-                "type": "zip",
-                "url": "http://satis.basereality.com/packages/zendframework/Component_ZendStdlib/zendframework_Component_ZendStdlib_2.3.0.zip",
-                "reference": "zendframework_Component_ZendStdlib_2.3.0.zip",
-                "shasum": "c61a659a0fa2afcbf915e1e6ea22017c2ee9b81d"
-            },
-            "require": {
-                "php": ">=5.3.23"
-            },
-            "require-dev": {
-                "zendframework/zend-eventmanager": "self.version",
-                "zendframework/zend-serializer": "self.version",
-                "zendframework/zend-servicemanager": "self.version"
-            },
-            "suggest": {
-                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
-                "zendframework/zend-serializer": "Zend\\Serializer component",
-                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev",
-                    "dev-develop": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Zend\\Stdlib\\": ""
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": " ",
-            "keywords": [
-                "stdlib",
-                "zf2"
-            ]
+            "time": "2014-11-03 05:09:34"
         }
     ],
     "packages-dev": [
 
     ],
     "aliases": [
-        {
-            "alias": "dev-PluginExperiment2",
-            "alias_normalized": "dev-PluginExperiment2",
-            "version": "dev-v1.0.0-pluginWithParamDelegation",
-            "package": "rdlowrey/auryn"
-        },
-        {
-            "alias": "v1.0.0",
-            "alias_normalized": "1.0.0.0",
-            "version": "dev-v1.0/phpdocs",
-            "package": "predis/predis"
-        }
+
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "nikic/fast-route": 20,
-        "rdlowrey/auryn": 20,
-        "predis/predis": 20
+        "nikic/fast-route": 20
     },
+    "prefer-stable": false,
     "platform": [
 
     ],

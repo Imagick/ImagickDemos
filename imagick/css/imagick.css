@@ -38,3 +38,8 @@
         font-size: 10px;
     }
 }
+
+pre {
+    display: inline-block;
+    padding-right: 60px;
+}

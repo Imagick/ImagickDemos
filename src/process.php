@@ -2,8 +2,7 @@
 
 $startTime = microtime(true);
 
-require __DIR__.'/../vendor/autoload.php';
-require __DIR__ . "../../imagick-demos.conf.php";
+
 require __DIR__ . '/../src/bootstrap.php';
 
 
@@ -54,6 +53,7 @@ $injector = bootstrapInjector(
     $libratorUsername,
     $statsSourceName
 );
+
 $response = servePage($injector, $routesFunction);
 
 

@@ -55,19 +55,22 @@
         <div class="col-md-10" >
 
             <div class="row" style='padding-bottom: 20px'>
+            
                 <div class="col-md-8">
                     <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
 
+                    
                     <span class='visible-md visible-lg' >
-                        {$docHelper->showDescription() | nofilter}
+                        <i>{$docHelper->showDescription() | nofilter}</i>
                     </span>
                 </div>
                 <div class="col-md-4 visible-md visible-lg" style='text-align: right'>
                     {$nav->renderPreviousLink() | nofilter}
                     {$nav->renderNextLink() | nofilter}
+                    {*$control->renderForm() | nofilter *}
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-8">
                     {$example->render() | nofilter}
@@ -84,13 +87,9 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    
                     <span class='visible-xs visible-sm' >
-                        {$docHelper->showDescription() | nofilter}
+                        {$docHelper->showDoc() | nofilter}
                     </span>
-                    
-                    
-                    {$docHelper->showParameters() | nofilter}
                 </div>
             </div>
     

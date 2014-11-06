@@ -219,12 +219,12 @@ class ManualEntry {
     function toArray() {
 
         $return = [
-            'functionName' => $this->functionName,
-            'description' => $this->description,
-            'methodDescription' => $this->methodDescription,
-            'returnType' => $this->returnType,
-            'classname' => $this->classname,
-            'method' => $this->method,
+            'functionName' => $this->normalize($this->functionName),
+            'description' => $this->normalize($this->description),
+            'methodDescription' => $this->normalize($this->methodDescription),
+            'returnType' => $this->normalize($this->returnType),
+            'classname' => $this->normalize($this->classname),
+            'method' => $this->normalize($this->method),
             'parameters' => []
         ];
         
@@ -286,6 +286,16 @@ class ManualEntry {
         }
     }
     
+    
+    function normalize($string) {
+
+        $replacements = [
+            '0x657;' => ''
+        ];
+
+        return str_replace(array_keys($replacements), array_values($replacements), $string);
+    }
+    
     function toString() {
         $output =  "";
         
@@ -318,7 +328,7 @@ class ManualEntry {
             $output .= "Return type not set\n";
         }
 
-        return $output;
+        return $this->normalize($output);
     }
 }
 
@@ -335,26 +345,18 @@ class DocParser {
     function writeDoc() {
         foreach ($this->manualEntries as $manualEntry) {
             echo "".$manualEntry->getClassname()." - ".$manualEntry->getMethod()."\n";
-            echo $manualEntry->toString();
+
+            $manualString = $manualEntry->toString();
+
+            $replacements = [
+                '0x657;' => ''
+            ];
+
+            $manualString = str_replace(array_keys($replacements), array_values($replacements), $manualString);
+            echo $manualString;
             echo "\n\n";
         }
     }
-    
-//    function writeFile($filename) {
-//     
-//        $output = <<< END
-//
-//        class Doc
-//
-//END;
-//
-//        
-//        
-//        
-//        file_put_contents($filename, $output);        
-//        
-//    }
-    
 
 function getDoc($fullURL, $classname, $method) {
 
@@ -1073,11 +1075,30 @@ foreach ($urlList as $subdir => $entries) {
     }
 }
 
+function normalizeString($string) {
+
+    if (is_array($string)) {
+        return normalizeArray($string);
+    }
+
+    $string = preg_replace(
+        '#available.0x(\d)(\d)(\d);#iu',
+        "Available since $1.$2.$3",
+        $string
+    );
 
 
+    $replacements = [
+        //'0x657;' => ''
+    ];
+
+    return str_replace(array_keys($replacements), array_values($replacements), $string);
+}
 
 
-
+function normalizeArray($strings) {
+    return array_map('normalizeString', $strings);
+}
 
 $manualEntries = [];
 
@@ -1090,7 +1111,7 @@ foreach ($urlList as $subdir => $entries) {
             $contents = "return ".$contents.";";
             $result = eval($contents);
             $entry = str_replace('.xml', '', $entry);
-            $manualEntries[$subdir][$entry] = $result;
+            $manualEntries[$subdir][$entry] = normalizeArray($result);
         }
     }
     
@@ -1123,6 +1144,20 @@ class DocHelper {
         \$this->example = strtolower(\$example);
     }
 
+
+    function showDescription() {
+
+        if (isset(\$this->manualEntries[\$this->category][\$this->example]) == false) {
+            return "";
+        }
+
+        \$manualEntry = \$this->manualEntries[\$this->category][\$this->example];
+        
+        return \$manualEntry['description'];
+    }
+
+
+
     function showDoc() {
         if (isset(\$this->manualEntries[\$this->category][\$this->example]) == false) {
             return "";
@@ -1135,7 +1170,7 @@ class DocHelper {
         //\$output .= "<tr><td colspan='3'>".\$manualEntry['functionName']."</td></tr>";
         //\$output .= "<tr><td colspan='3'>".\$manualEntry['description']."</td></tr>";
 
-        \$output .= \$manualEntry['description'];
+        //\$output .= \$manualEntry['description'];
 
         if (count(\$manualEntry['parameters'])) {
             \$output .= "<h5>Parameters</h5>";
@@ -1201,4 +1236,4 @@ if ($result === false) {
     throw new \Exception("Failed to write file.");
 }
 
-echo "Done - copy the file $path to src.";
+//echo "Done - copy the file $path to src.";

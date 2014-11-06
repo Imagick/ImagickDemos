@@ -556,13 +556,9 @@ class DocHelper {
     ),
     'fximage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:7:"fxImage";s:5:"lines";s:427:"function fxImage() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:7:"fxImage";s:5:"lines";s:327:"function fxImage() {
     $imagick = new \\Imagick();
     $imagick->newPseudoImage(200, 200, "xc:white");
-
-    //convert -size 100x100 xc:  -channel G \\
-    //-fx  \\
-    //-separate  fx_radial_gradient.png
 
     $fx = \'xx=i-w/2; yy=j-h/2; rr=hypot(xx,yy); (.5-rr/140)*1.2+.5\';
     $fxImage = $imagick->fxImage($fx);
@@ -4064,10 +4060,10 @@ END;
     ),
     'getcolorasstring' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickpixel',
       'method' => 'getcolorasstring.xml',
       'parameters' => 
@@ -4294,7 +4290,7 @@ END;
         array (
           'type' => 'Imagick',
           'name' => 'wand',
-          'description' => NULL,
+          'description' => '',
         ),
       ),
     ),
@@ -4375,7 +4371,7 @@ END;
         array (
           'type' => 'Imagick',
           'name' => 'wand',
-          'description' => NULL,
+          'description' => '',
         ),
       ),
     ),
@@ -4495,10 +4491,10 @@ END;
   array (
     'affine' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'affine.xml',
       'parameters' => 
@@ -4507,10 +4503,10 @@ END;
     ),
     'annotation' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'annotation.xml',
       'parameters' => 
@@ -4519,10 +4515,10 @@ END;
     ),
     'arc' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'arc.xml',
       'parameters' => 
@@ -4531,10 +4527,10 @@ END;
     ),
     'bezier' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'bezier.xml',
       'parameters' => 
@@ -4543,10 +4539,10 @@ END;
     ),
     'circle' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'circle.xml',
       'parameters' => 
@@ -4555,10 +4551,10 @@ END;
     ),
     'clear' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'clear.xml',
       'parameters' => 
@@ -4567,10 +4563,10 @@ END;
     ),
     'clone' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'clone.xml',
       'parameters' => 
@@ -4579,10 +4575,10 @@ END;
     ),
     'color' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'color.xml',
       'parameters' => 
@@ -4591,10 +4587,10 @@ END;
     ),
     'comment' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'comment.xml',
       'parameters' => 
@@ -4603,10 +4599,10 @@ END;
     ),
     'composite' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'composite.xml',
       'parameters' => 
@@ -4615,10 +4611,10 @@ END;
     ),
     'construct' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'construct.xml',
       'parameters' => 
@@ -4627,10 +4623,10 @@ END;
     ),
     'destroy' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagickdraw',
       'method' => 'destroy.xml',
       'parameters' => 
@@ -6874,7 +6870,7 @@ END;
    blurring across sharp color changes. Most useful when used to shrink
    images slightly to a slightly smaller "web size"; may not look good
    when a full-sized image is adaptively resized to a thumbnail.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Adaptively resize image with data dependent triangulation',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -6905,7 +6901,7 @@ END;
     array (
       'functionName' => 'adaptiveSharpenImage',
       'description' => 'Adaptively sharpen the image by sharpening more intensely
-   near image edges and less intensely far from edges. available.0x629;',
+   near image edges and less intensely far from edges. Available since 6.2.9',
       'methodDescription' => 'Adaptively sharpen the image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7032,7 +7028,7 @@ END;
       'functionName' => 'animateImages',
       'description' => 'This method animates the image onto a local or remote X server. This method
    is not available on Windows.
-   available.0x636;',
+   Available since 6.3.6',
       'methodDescription' => 'Animates an image or images',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7330,7 +7326,7 @@ END;
     array (
       'functionName' => 'clutImage',
       'description' => 'Replaces colors in the image from a color lookup table. Optional second
-   parameter to replace colors in a specific channel. available.0x636;',
+   parameter to replace colors in a specific channel. Available since 6.3.6',
       'methodDescription' => 'Replaces colors in the image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7521,7 +7517,7 @@ END;
       'functionName' => 'compareImageLayers',
       'description' => 'Compares each image with the next in a sequence and returns the
    maximum bounding region of any pixel differences it discovers.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Returns the maximum bounding region between images',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7581,7 +7577,7 @@ END;
         array (
           'type' => 'int',
           'name' => 'composite',
-          'description' => NULL,
+          'description' => '',
         ),
         2 => 
         array (
@@ -7619,7 +7615,7 @@ END;
         array (
           'type' => 'mixed',
           'name' => 'files',
-          'description' => NULL,
+          'description' => '',
         ),
       ),
     ),
@@ -7648,7 +7644,7 @@ END;
     array (
       'functionName' => 'contrastStretchImage',
       'description' => 'Enhances the contrast of a color image by adjusting the pixels
-   color to span the entire range of colors available. available.0x629;',
+   color to span the entire range of colors available. Available since 6.2.9',
       'methodDescription' => 'Enhances the contrast of a color image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7803,7 +7799,7 @@ END;
       'functionName' => 'decipherImage',
       'description' => 'Deciphers image that has been enciphered before. The image must be enciphered
    using Imagick::encipherImage.
-   available.0x639;',
+   Available since 6.3.9',
       'methodDescription' => 'Deciphers an image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7836,7 +7832,7 @@ END;
       'functionName' => 'deleteImageArtifact',
       'description' => 'Deletes an artifact associated with the image.  The difference between image properties and 
    image artifacts is that properties are public and artifacts are private.
-   available.0x657;',
+   Available since 6.5.7',
       'methodDescription' => 'Delete image artifact',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -7855,7 +7851,7 @@ END;
     array (
       'functionName' => 'deskewImage',
       'description' => 'This method can be used to remove skew from for example scanned images where the paper
-   was not properly placed on the scanning surface. available.0x645;',
+   was not properly placed on the scanning surface. Available since 6.4.5',
       'methodDescription' => 'Removes skew from the image',
       'returnType' => '',
       'classname' => 'imagick',
@@ -7934,7 +7930,7 @@ END;
     'distortimage' => 
     array (
       'functionName' => 'distortImage',
-      'description' => 'available.0x636;',
+      'description' => 'Available since 6.3.6',
       'methodDescription' => 'Distorts an image using various distortion methods',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -8030,7 +8026,7 @@ END;
       'functionName' => 'encipherImage',
       'description' => 'Converts plain pixels to enciphered pixels. The image is not readable
    until it has been deciphered using Imagick::decipherImage
-   available.0x639;',
+   Available since 6.3.9',
       'methodDescription' => 'Enciphers an image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -8106,10 +8102,10 @@ END;
     ),
     'exportimagepixels' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'exportimagepixels.xml',
       'parameters' => 
@@ -8121,7 +8117,7 @@ END;
       'functionName' => 'extentImage',
       'description' => 'Comfortability method for setting image size. The method sets the image size and allows
    setting x,y coordinates where the new area begins.
-   available.0x631;',
+   Available since 6.3.1',
       'methodDescription' => 'Set image size',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -8180,10 +8176,10 @@ END;
     ),
     'floodfillpaintimage' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'floodfillpaintimage.xml',
       'parameters' => 
@@ -8250,10 +8246,10 @@ END;
     ),
     'functionimage' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'functionimage.xml',
       'parameters' => 
@@ -8262,10 +8258,10 @@ END;
     ),
     'fximage' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'fximage.xml',
       'parameters' => 
@@ -8343,7 +8339,7 @@ END;
     array (
       'functionName' => 'getColorspace',
       'description' => 'Gets the global colorspace value.
-   available.0x657;',
+   Available since 6.5.7',
       'methodDescription' => 'Gets the colorspace',
       'returnType' => 'Returns an integer which can be compared against COLORSPACE constants.',
       'classname' => 'imagick',
@@ -8405,7 +8401,7 @@ END;
     array (
       'functionName' => 'getFont',
       'description' => 'Returns the objects font property.
-   available.0x637;',
+   Available since 6.3.7',
       'methodDescription' => 'Gets font',
       'returnType' => 'Returns the string containing the font name or False; if not font is set.',
       'classname' => 'imagick',
@@ -8430,7 +8426,7 @@ END;
     array (
       'functionName' => 'getGravity',
       'description' => 'Gets the global gravity property for the Imagick object.
-   available.0x640;',
+   Available since 6.4.0',
       'methodDescription' => 'Gets the gravity',
       'returnType' => 'Returns the gravity property. Refer to the list of 
    gravity constants.',
@@ -8469,7 +8465,7 @@ END;
       'functionName' => 'getImageAlphaChannel',
       'description' => 'Gets the image alpha channel value. The returned value is one of the 
    alpha channel constants.
-   available.0x640;',
+   Available since 6.4.0',
       'methodDescription' => 'Gets the image alpha channel',
       'returnType' => 'Returns a constant defining the current alpha channel value. Refer to this
    list of alpha channel constants.',
@@ -8484,7 +8480,7 @@ END;
       'functionName' => 'getImageArtifact',
       'description' => 'Gets an artifact associated with the image.  The difference between image properties and 
    image artifacts is that properties are public and artifacts are private.
-   available.0x657;',
+   Available since 6.5.7',
       'methodDescription' => 'Get image artifact',
       'returnType' => 'Returns the artifact value on success.',
       'classname' => 'imagick',
@@ -8606,7 +8602,7 @@ END;
     array (
       'functionName' => 'getImageChannelDistortions',
       'description' => 'Compares one or more image channels of an image to a reconstructed image and returns the specified distortion metrics
-   available.0x644;',
+   Available since 6.4.4',
       'methodDescription' => 'Gets channel distortions',
       'returnType' => 'Returns a double describing the channel distortion.',
       'classname' => 'imagick',
@@ -8658,7 +8654,7 @@ END;
     'getimagechannelkurtosis' => 
     array (
       'functionName' => 'getImageChannelKurtosis',
-      'description' => 'Get the kurtosis and skewness of a specific channel. available.0x649;',
+      'description' => 'Get the kurtosis and skewness of a specific channel. Available since 6.4.9',
       'methodDescription' => 'The getImageChannelKurtosis purpose',
       'returnType' => 'Returns an array with kurtosis and skewness
    members.',
@@ -8701,7 +8697,7 @@ END;
     array (
       'functionName' => 'getImageChannelRange',
       'description' => 'Gets the range for one or more image channels.
-   available.0x640;',
+   Available since 6.4.0',
       'methodDescription' => 'Gets channel range',
       'returnType' => 'Returns an array containing minima and maxima values of the channel(s).',
       'classname' => 'imagick',
@@ -8734,7 +8730,7 @@ END;
     array (
       'functionName' => 'getImageClipMask',
       'description' => 'Returns the image clip mask. The clip mask is an Imagick object containing the clip mask.
-   available.0x636;',
+   Available since 6.3.6',
       'methodDescription' => 'Gets image clip mask',
       'returnType' => 'Returns an Imagick object containing the clip mask.',
       'classname' => 'imagick',
@@ -8949,7 +8945,7 @@ END;
       'description' => 'Gets the current gravity value of the
    image. Unlike Imagick::getGravity, this method
    returns the gravity defined for the current image sequence.
-   available.0x644;',
+   Available since 6.4.4',
       'methodDescription' => 'Gets the image gravity',
       'returnType' => 'Returns the images gravity property. Refer to the list of 
    gravity constants.',
@@ -9012,10 +9008,10 @@ END;
     ),
     'getimageinterlacescheme' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'getimageinterlacescheme.xml',
       'parameters' => 
@@ -9073,10 +9069,10 @@ END;
     ),
     'getimagematte' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'getimagematte.xml',
       'parameters' => 
@@ -9167,7 +9163,7 @@ END;
     array (
       'functionName' => 'getImageProfiles',
       'description' => 'Returns all associated profiles that match the pattern. If True; is passed as second parameter
-   only the profile names are returned. available.0x636;',
+   only the profile names are returned. Available since 6.3.6',
       'methodDescription' => 'Returns the image profiles',
       'returnType' => 'Returns an array containing the image profiles or profile names.',
       'classname' => 'imagick',
@@ -9192,7 +9188,7 @@ END;
     array (
       'functionName' => 'getImageProperties',
       'description' => 'Returns all associated properties that match the pattern. If True; is passed as second parameter
-   only the property names are returned. available.0x636;',
+   only the property names are returned. Available since 6.3.6',
       'methodDescription' => 'Returns the image properties',
       'returnType' => 'Returns an array containing the image properties or property names.',
       'classname' => 'imagick',
@@ -9216,7 +9212,7 @@ END;
     'getimageproperty' => 
     array (
       'functionName' => 'getImageProperty',
-      'description' => 'Returns the named image property. available.0x632;',
+      'description' => 'Returns the named image property. Available since 6.3.2',
       'methodDescription' => 'Returns the named image property',
       'returnType' => 'Returns a string containing the image property, false if a 
    property with the given name does not exist.',
@@ -9234,10 +9230,10 @@ END;
     ),
     'getimageredprimary' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'getimageredprimary.xml',
       'parameters' => 
@@ -9371,10 +9367,10 @@ END;
     ),
     'getimagetotalinkdensity' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'getimagetotalinkdensity.xml',
       'parameters' => 
@@ -9513,7 +9509,7 @@ END;
     array (
       'functionName' => 'getIteratorIndex',
       'description' => 'Returns the index of the current active image within the Imagick object.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Gets the index of the current active image',
       'returnType' => 'Returns an integer containing the index of the image in the stack.',
       'classname' => 'imagick',
@@ -9629,10 +9625,10 @@ END;
     ),
     'getpointsize' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'getpointsize.xml',
       'parameters' => 
@@ -9744,7 +9740,7 @@ END;
     array (
       'functionName' => 'getSizeOffset',
       'description' => 'Returns the size offset associated with the Imagick object.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Returns the size offset',
       'returnType' => 'Returns the size offset associated with the Imagick object.',
       'classname' => 'imagick',
@@ -9861,7 +9857,7 @@ END;
       'description' => 'Imports pixels from an array into an image. The map is usually
    \'RGB\'. This method imposes the following constraints for the parameters: amount of pixels
    in the array must match width x height x length of the map.
-   available.0x645;',
+   Available since 6.4.5',
       'methodDescription' => 'Imports image pixels',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10010,7 +10006,7 @@ END;
       'description' => 'This method scales the images using liquid rescaling method. This method
    is an implementation of a technique called seam carving. In order for this
    method to work as expected ImageMagick must be compiled with liblqr support.
-   available.0x639;',
+   Available since 6.3.9',
       'methodDescription' => 'Animates an image or images',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10060,7 +10056,7 @@ END;
     'mapimage' => 
     array (
       'functionName' => 'mapImage',
-      'description' => NULL,
+      'description' => '',
       'methodDescription' => 'Replaces the colors of an image with the closest color from a reference image.',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10155,7 +10151,7 @@ END;
       'description' => 'Merges image layers into one. This method is useful when working with image
    formats that use multiple layers such as PSD. The merging is controlled using
    the layer_method which defines how the layers are merged.
-   available.0x637;',
+   Available since 6.3.7',
       'methodDescription' => 'Merges image layers',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10495,7 +10491,7 @@ END;
     array (
       'functionName' => 'opaquePaintImage',
       'description' => 'Changes any pixel that matches color with the color defined by fill.
-   available.0x638;',
+   Available since 6.3.8',
       'methodDescription' => 'Changes the color value of any pixel that matches target',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10541,7 +10537,7 @@ END;
    in the sequence.  From this it attempts to select the smallest
    cropped image to replace each frame, while preserving the results
    of the animation. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Removes repeated portions of images to optimize',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10555,7 +10551,7 @@ END;
       'functionName' => 'orderedPosterizeImage',
       'description' => 'Performs an ordered dither based on a number of pre-defined dithering threshold maps, 
     but over multiple intensity levels, which can be different for different channels, 
-    according to the input arguments. available.0x631;',
+    according to the input arguments. Available since 6.3.1',
       'methodDescription' => 'Performs an ordered dither',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10728,7 +10724,7 @@ END;
       'functionName' => 'pingImageBlob',
       'description' => 'This method can be used to query image width, height, size, and
    format without reading the whole image to memory. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Quickly fetch attributes',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10748,7 +10744,7 @@ END;
       'functionName' => 'pingImageFile',
       'description' => 'This method can be used to query image width, height, size, and
    format without reading the whole image to memory. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Get basic image attributes in a lightweight manner',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10772,7 +10768,7 @@ END;
     'polaroidimage' => 
     array (
       'functionName' => 'polaroidImage',
-      'description' => 'Simulates a Polaroid picture. available.0x632;',
+      'description' => 'Simulates a Polaroid picture. Available since 6.3.2',
       'methodDescription' => 'Simulates a Polaroid picture',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10879,7 +10875,7 @@ END;
     'quantizeimage' => 
     array (
       'functionName' => 'quantizeImage',
-      'description' => NULL,
+      'description' => '',
       'methodDescription' => 'Analyzes the colors within a reference image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -10921,7 +10917,7 @@ END;
     'quantizeimages' => 
     array (
       'functionName' => 'quantizeImages',
-      'description' => NULL,
+      'description' => '',
       'methodDescription' => 'Analyzes the colors within a sequence of images',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11100,7 +11096,7 @@ END;
       'functionName' => 'randomThresholdImage',
       'description' => 'Changes the value of individual pixels based on the
    intensity of each pixel compared to threshold. The
-   result is a high-contrast, two color image. available.0x629;',
+   result is a high-contrast, two color image. Available since 6.2.9',
       'methodDescription' => 'Creates a high-contrast, two-color image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11168,7 +11164,7 @@ END;
         array (
           'type' => 'string',
           'name' => 'filename',
-          'description' => NULL,
+          'description' => '',
         ),
       ),
     ),
@@ -11201,7 +11197,7 @@ END;
       'functionName' => 'recolorImage',
       'description' => 'Translate, scale, shear, or rotate image colors. This method supports variable sized matrices but normally
    5x5 matrix is used for RGBA and 6x6 is used for CMYK. The last row should contain the normalized values.
-   available.0x636;',
+   Available since 6.3.6',
       'methodDescription' => 'Recolors image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11242,7 +11238,7 @@ END;
     array (
       'functionName' => 'remapImage',
       'description' => 'Replaces colors an image with those defined by replacement. The colors
-   are replaced with the closest possible color. available.0x645;',
+   are replaced with the closest possible color. Available since 6.4.5',
       'methodDescription' => 'Remaps image colors',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11345,7 +11341,7 @@ END;
     array (
       'functionName' => 'resetImagePage',
       'description' => 'The page definition as a string. The string is in format WxH+x+y.
-   available.0x636;',
+   Available since 6.3.6',
       'methodDescription' => 'Reset image page',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11459,7 +11455,7 @@ END;
       'functionName' => 'roundCorners',
       'description' => 'Rounds image corners. The first two parameters control the amount 
    of rounding and the three last parameters can be used to fine-tune 
-   the rounding process. available.0x629;',
+   the rounding process. Available since 6.2.9',
       'methodDescription' => 'Rounds image corners',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11558,7 +11554,7 @@ END;
     'segmentimage' => 
     array (
       'functionName' => 'segmentImage',
-      'description' => 'Analyses the image and identifies units that are similar. available.0x645;',
+      'description' => 'Analyses the image and identifies units that are similar. Available since 6.4.5',
       'methodDescription' => 'Segments an image',
       'returnType' => '',
       'classname' => 'imagick',
@@ -11654,7 +11650,7 @@ END;
     array (
       'functionName' => 'setColorspace',
       'description' => 'Sets the global colorspace value for the object.
-   available.0x657;',
+   Available since 6.5.7',
       'methodDescription' => 'Set colorspace',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11743,7 +11739,7 @@ END;
    or a file by the name of font must exist. This method should
    not be confused with ImagickDraw::setFont which sets the font
    for a specific ImagickDraw object.
-   available.0x637;',
+   Available since 6.3.7',
       'methodDescription' => 'Sets font',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11778,10 +11774,10 @@ END;
     ),
     'setgravity' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'setgravity.xml',
       'parameters' => 
@@ -11811,7 +11807,7 @@ END;
       'functionName' => 'setImageAlphaChannel',
       'description' => 'Activate or deactivate image alpha channel. The mode 
    is one of the Imagick::ALPHACHANNEL_* constants.
-   available.0x638;',
+   Available since 6.3.8',
       'methodDescription' => 'Sets image alpha channel',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11831,7 +11827,7 @@ END;
       'functionName' => 'setImageArtifact',
       'description' => 'Associates an artifact with the image. The difference between image properties and 
    image artifacts is that properties are public and artifacts are private.
-   available.0x657;',
+   Available since 6.5.7',
       'methodDescription' => 'Set image artifact',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -11958,7 +11954,7 @@ END;
     array (
       'functionName' => 'setImageClipMask',
       'description' => 'Sets image clip mask from another Imagick object.
-   available.0x636;',
+   Available since 6.3.6',
       'methodDescription' => 'Sets image clip mask',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -12208,10 +12204,10 @@ END;
     ),
     'setimagegravity' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'setimagegravity.xml',
       'parameters' => 
@@ -12320,7 +12316,7 @@ END;
     array (
       'functionName' => 'setImageMatte',
       'description' => 'Sets the image matte channel. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Sets the image matte channel',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -12356,7 +12352,7 @@ END;
     'setimageopacity' => 
     array (
       'functionName' => 'setImageOpacity',
-      'description' => 'Sets the image to the specified opacity level. available.0x631;
+      'description' => 'Sets the image to the specified opacity level. Available since 6.3.1
    This method operates on all channels, which means that for example opacity value
    of 0.5 will set all transparent areas to partially opaque. To add transparency to
    areas that are not already transparent use Imagick::evaluateImage()',
@@ -12459,7 +12455,7 @@ END;
     'setimageproperty' => 
     array (
       'functionName' => 'setImageProperty',
-      'description' => 'Sets a named property to the image. available.0x632;',
+      'description' => 'Sets a named property to the image. Available since 6.3.2',
       'methodDescription' => 'Sets an image property',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -12683,7 +12679,7 @@ END;
     array (
       'functionName' => 'setIteratorIndex',
       'description' => 'Set the iterator to the position in the image list specified with the index parameter.
-  available.0x629;',
+  Available since 6.2.9',
       'methodDescription' => 'Set the iterator position',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -12775,7 +12771,7 @@ END;
       'functionName' => 'setPointSize',
       'description' => 'Sets object\'s point size property. This method can be used for example to set font size for 
    caption: pseudo-format.
-   available.0x637;',
+   Available since 6.3.7',
       'methodDescription' => 'Sets point size',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -12792,10 +12788,10 @@ END;
     ),
     'setresolution' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'setresolution.xml',
       'parameters' => 
@@ -12875,7 +12871,7 @@ END;
       'functionName' => 'setSizeOffset',
       'description' => 'Sets the size and offset of the Imagick object. Set it before you read a
    raw image format such as RGB, GRAY, or CMYK.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Sets the size and offset of the Imagick object',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -12927,7 +12923,7 @@ END;
    You control the positioning of the light with azimuth and elevation;
    azimuth is measured in degrees off the x axis and elevation is measured
    in pixels above the Z axis.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Creates a 3D effect',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13130,7 +13126,7 @@ END;
    results, radius should be larger than sigma.  Use a radius of 0 and
    Imagick::sketchImage() selects a suitable radius for you. Angle gives the
    angle of the blurring motion. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Simulates a pencil sketch',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13183,7 +13179,7 @@ END;
       'functionName' => 'sparseColorImage',
       'description' => 'Given the arguments array containing numeric values this method interpolates
    the colors found at those coordinates across the whole image using sparse_method.
-   available.0x645;',
+   Available since 6.4.5',
       'methodDescription' => 'Interpolates colors',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13207,7 +13203,7 @@ END;
         array (
           'type' => 'int',
           'name' => 'channel',
-          'description' => NULL,
+          'description' => '',
         ),
       ),
     ),
@@ -13424,7 +13420,7 @@ END;
         array (
           'type' => 'bool',
           'name' => 'fill',
-          'description' => NULL,
+          'description' => '',
         ),
       ),
     ),
@@ -13458,7 +13454,7 @@ END;
     array (
       'functionName' => 'transformImage',
       'description' => 'A convenience method for setting crop size and the image geometry from strings.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Convenience method for setting crop size and the image geometry',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13481,10 +13477,10 @@ END;
     ),
     'transparentpaintimage' => 
     array (
-      'functionName' => NULL,
-      'description' => NULL,
-      'methodDescription' => NULL,
-      'returnType' => NULL,
+      'functionName' => '',
+      'description' => '',
+      'methodDescription' => '',
+      'returnType' => '',
       'classname' => 'imagick',
       'method' => 'transparentpaintimage.xml',
       'parameters' => 
@@ -13496,7 +13492,7 @@ END;
       'functionName' => 'transposeImage',
       'description' => 'Creates a vertical mirror image by reflecting the pixels 
    around the central x-axis while rotating them 90-degrees.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Creates a vertical mirror image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13510,7 +13506,7 @@ END;
       'functionName' => 'transverseImage',
       'description' => 'Creates a horizontal mirror image by reflecting the pixels around the
    central y-axis while rotating them 270-degrees.
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Creates a horizontal mirror image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13523,7 +13519,7 @@ END;
     array (
       'functionName' => 'trimImage',
       'description' => 'Remove edges that are the background color from the image. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Remove edges from the image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13546,7 +13542,7 @@ END;
     array (
       'functionName' => 'uniqueImageColors',
       'description' => 'Discards all but one of any pixel color. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Discards all but one of any pixel color',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13616,7 +13612,7 @@ END;
     array (
       'functionName' => 'vignetteImage',
       'description' => 'Softens the edges of the image in vignette style. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Adds vignette filter to the image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13653,7 +13649,7 @@ END;
     array (
       'functionName' => 'waveImage',
       'description' => 'Applies a wave filter to the image. 
-   available.0x629;',
+   Available since 6.2.9',
       'methodDescription' => 'Applies wave filter to the image',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13720,7 +13716,7 @@ END;
     array (
       'functionName' => 'writeImageFile',
       'description' => 'Writes the image sequence to an open filehandle. The handle must be opened with
-   for example fopen. available.0x636;',
+   for example fopen. Available since 6.3.6',
       'methodDescription' => 'Writes an image to a filehandle',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13764,7 +13760,7 @@ END;
       'functionName' => 'writeImagesFile',
       'description' => 'Writes all image frames into an open filehandle. This method can be used to write
    animated gifs or other multiframe images into open filehandle.
-   available.0x636;',
+   Available since 6.3.6',
       'methodDescription' => 'Writes frames to a filehandle',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
@@ -13790,6 +13786,20 @@ END;
         $this->example = strtolower($example);
     }
 
+
+    function showDescription() {
+
+        if (isset($this->manualEntries[$this->category][$this->example]) == false) {
+            return "";
+        }
+
+        $manualEntry = $this->manualEntries[$this->category][$this->example];
+        
+        return $manualEntry['description'];
+    }
+
+
+
     function showDoc() {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
@@ -13802,7 +13812,7 @@ END;
         //$output .= "<tr><td colspan='3'>".$manualEntry['functionName']."</td></tr>";
         //$output .= "<tr><td colspan='3'>".$manualEntry['description']."</td></tr>";
 
-        $output .= $manualEntry['description'];
+        //$output .= $manualEntry['description'];
 
         if (count($manualEntry['parameters'])) {
             $output .= "<h5>Parameters</h5>";

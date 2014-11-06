@@ -8,6 +8,8 @@ use ImagickDemo\Response\FileResponse;
 use ImagickDemo\Response\RedirectResponse;
 use ImagickDemo\Response\TextResponse;
 
+use Jig\JigRender;
+use Jig\ViewModel\BasicViewModel;
 
 function createImageTaskAndRedirectResponse(
     Request $request,
@@ -47,8 +49,8 @@ function createImageTaskAndRedirectResponse(
 class Page {
 
     function generateResponseFromTemplate(\Auryn\Provider $injector) {
-        $viewModel = $injector->make(\Intahwebz\ViewModel\BasicViewModel::class);
-        $jigRenderer = $injector->make(\Intahwebz\Jig\JigRender::class);
+        $viewModel = $injector->make(BasicViewModel::class);
+        $jigRenderer = $injector->make(JigRender::class);
 
         $viewModel->setVariable('pageTitle', "Imagick demos");
         $output = $jigRenderer->renderTemplateFile('index', $viewModel);

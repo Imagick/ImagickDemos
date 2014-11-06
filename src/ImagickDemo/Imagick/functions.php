@@ -587,10 +587,6 @@ function fxImage() {
     $imagick = new \Imagick();
     $imagick->newPseudoImage(200, 200, "xc:white");
 
-    //convert -size 100x100 xc:  -channel G \
-    //-fx  \
-    //-separate  fx_radial_gradient.png
-
     $fx = 'xx=i-w/2; yy=j-h/2; rr=hypot(xx,yy); (.5-rr/140)*1.2+.5';
     $fxImage = $imagick->fxImage($fx);
 

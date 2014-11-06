@@ -1,7 +1,13 @@
 <?php
 
+namespace {
 
-namespace {    
+    use ImagickDemo\Response\StandardHTTPResponse;
+    use ImagickDemo\Response\FileResponse;
+
+    require __DIR__.'/../vendor/autoload.php';
+    require __DIR__ . "../../imagick-demos.conf.php";
+    
     //yolo - We use a global to allow us to do a hack to make all the code examples
     //appear to use the standard 'header' function, but also capture the content type 
     //of the image
@@ -291,108 +297,49 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
 }
 
 
-}
-
-namespace ImagickDemo {
 
 
-    use ImagickDemo\Response\StandardHTTPResponse;
-    use ImagickDemo\Response\FileResponse;
-    
-    /**
-     * Hack the header function to allow us to capture the image type,
-     * while still having clean example code.
-     *
-     * @param $string
-     * @param bool $replace
-     * @param null $http_response_code
-     */
-    function header($string, $replace = true, $http_response_code = null) {
-        global $imageType;
-        global $imageCache;
 
-        if (stripos($string, "Content-Type: image/") === 0) {
-            $imageType = substr($string, strlen("Content-Type: image/"));
+    function servePage(\Auryn\Provider $injector, $routesFunction) {
+
+        $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
+
+        $httpMethod = 'GET';
+        $uri = '/';
+
+        if (array_key_exists('REQUEST_URI', $_SERVER)) {
+            $uri = $_SERVER['REQUEST_URI'];
         }
 
-        if ($imageCache == false) {
-            \header($string, $replace, $http_response_code);
+        $path = $uri;
+        $queryPosition = strpos($path, '?');
+        if ($queryPosition !== false) {
+            $path = substr($path, 0, $queryPosition);
         }
-    }
-    
 
-    function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
+        $routeInfo = $dispatcher->dispatch($httpMethod, $path);
 
-        $sampleHeight = 20;
-        $border = 2;
-
-        $imagick->transposeImage();
-        $imagick->scaleImage($graphWidth, $sampleHeight);
-
-        $imageIterator = new \ImagickPixelIterator($imagick);
-
-        $luminosityArray = [];
-
-        foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
-            foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
-                /** @var $pixel \ImagickPixel */
-
-                if (false) {
-                    $color = $pixel->getColor();
-                    $luminosityArray[] = $color['r'];
-                }
-                else {
-                    $hsl = $pixel->getHSL();
-                    $luminosityArray[] = ($hsl['luminosity']);
-                }
+        switch ($routeInfo[0]) {
+            case \FastRoute\Dispatcher::NOT_FOUND: {
+                return new StandardHTTPResponse(404, $uri, "Not found");
             }
-            /* Sync the iterator, this is important to do on each iteration */
-            $imageIterator->syncIterator(); 
-            break;
-        }
 
-        $draw = new \ImagickDraw();
-
-        $strokeColor = new \ImagickPixel('red');
-        $fillColor = new \ImagickPixel('red');
-        $draw->setStrokeColor($strokeColor);
-        $draw->setFillColor($fillColor);
-        $draw->setStrokeWidth(0);
-        $draw->setFontSize(72);
-        $draw->setStrokeAntiAlias(true);
-        $previous = false;
-
-        $x = 0;
-
-        foreach ($luminosityArray as $luminosity) {
-            $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1));
-
-            if ($previous !== false) {
-                /** @var $previous int */
-                //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
-                $draw->line($x - 1, $previous, $x, $pos);
+            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
+                $allowedMethods = $routeInfo[1];
+                // ... 405 Method Not Allowed
+                return new StandardHTTPResponse(405, $uri, "Not allowed");
             }
-            $x += 1;
-            $previous = $pos;
+
+            case \FastRoute\Dispatcher::FOUND: {
+                $handler = $routeInfo[1];
+                $vars = $routeInfo[2];
+                //TODO - support head?
+                return process($injector, $handler, $vars);
+            }
         }
 
-        $plot = new \Imagick();
-        $plot->newImage($graphWidth, $graphHeight, 'white');
-        $plot->drawImage($draw);
-
-        $outputImage = new \Imagick();
-        $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
-        $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
-
-        $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
-        $outputImage->borderimage('black', $border, $border);
-
-        $outputImage->setImageFormat("png");
-        header("Content-Type: image/png");
-        echo $outputImage;
+        return null;
     }
-
-
 
 
 
@@ -459,50 +406,98 @@ namespace ImagickDemo {
 
 
 
+    function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
 
+        $sampleHeight = 20;
+        $border = 2;
 
+        $imagick->transposeImage();
+        $imagick->scaleImage($graphWidth, $sampleHeight);
 
-function servePage(\Auryn\Provider $injector, $routesFunction) {
+        $imageIterator = new \ImagickPixelIterator($imagick);
 
-    $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
+        $luminosityArray = [];
 
-    $httpMethod = 'GET';
-    $uri = '/';
+        foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+            foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+                /** @var $pixel \ImagickPixel */
 
-    if (array_key_exists('REQUEST_URI', $_SERVER)) {
-        $uri = $_SERVER['REQUEST_URI'];
-    }
-
-    $path = $uri;
-    $queryPosition = strpos($path, '?');
-    if ($queryPosition !== false) {
-        $path = substr($path, 0, $queryPosition);
-    }
-
-    $routeInfo = $dispatcher->dispatch($httpMethod, $path);
-
-    switch ($routeInfo[0]) {
-        case \FastRoute\Dispatcher::NOT_FOUND: {
-            return new StandardHTTPResponse(404, $uri, "Not found");
+                if (false) {
+                    $color = $pixel->getColor();
+                    $luminosityArray[] = $color['r'];
+                }
+                else {
+                    $hsl = $pixel->getHSL();
+                    $luminosityArray[] = ($hsl['luminosity']);
+                }
+            }
+            /* Sync the iterator, this is important to do on each iteration */
+            $imageIterator->syncIterator();
+            break;
         }
 
-        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
-            $allowedMethods = $routeInfo[1];
-            // ... 405 Method Not Allowed
-            return new StandardHTTPResponse(405, $uri, "Not allowed");
+        $draw = new \ImagickDraw();
+
+        $strokeColor = new \ImagickPixel('red');
+        $fillColor = new \ImagickPixel('red');
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+        $draw->setStrokeWidth(0);
+        $draw->setFontSize(72);
+        $draw->setStrokeAntiAlias(true);
+        $previous = false;
+
+        $x = 0;
+
+        foreach ($luminosityArray as $luminosity) {
+            $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1));
+
+            if ($previous !== false) {
+                /** @var $previous int */
+                //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
+                $draw->line($x - 1, $previous, $x, $pos);
+            }
+            $x += 1;
+            $previous = $pos;
         }
 
-        case \FastRoute\Dispatcher::FOUND: {
-            $handler = $routeInfo[1];
-            $vars = $routeInfo[2];
-            //TODO - support head?
-            return process($injector, $handler, $vars);
-        }
+        $plot = new \Imagick();
+        $plot->newImage($graphWidth, $graphHeight, 'white');
+        $plot->drawImage($draw);
+
+        $outputImage = new \Imagick();
+        $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
+        $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+        $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
+        $outputImage->borderimage('black', $border, $border);
+
+        $outputImage->setImageFormat("png");
+        header("Content-Type: image/png");
+        echo $outputImage;
     }
-
-    return null;
 }
 
+namespace ImagickDemo {
+    
+    /**
+     * Hack the header function to allow us to capture the image type,
+     * while still having clean example code.
+     *
+     * @param $string
+     * @param bool $replace
+     * @param null $http_response_code
+     */
+    function header($string, $replace = true, $http_response_code = null) {
+        global $imageType;
+        global $imageCache;
 
+        if (stripos($string, "Content-Type: image/") === 0) {
+            $imageType = substr($string, strlen("Content-Type: image/"));
+        }
 
+        if ($imageCache == false) {
+            \header($string, $replace, $http_response_code);
+        }
+    }
 }

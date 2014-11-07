@@ -554,13 +554,18 @@ function screenEmbed() {
 
 
 //Example Tutorial::levelizeImage
-function levelizeImage($blackPoint, $whitePoint) {
+function levelizeImage($blackPoint, $gamma,  $whitePoint) {
     $imagick = new \Imagick();
-    $imagick->newPseudoimage(500, 100, 'gradient:black-white');
+    $imagick->newPseudoimage(500, 500, 'gradient:black-white');
     $maxQuantum = $imagick->getQuantum();
 
+    $imagick->evaluateimage(\Imagick::EVALUATE_POW, 1 / $gamma);
+    
     //Adjust the scale from black to white to the new 'distance' between black and white
     $imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
+
+    
+    
 
     //Add move the black point to it's new value
     $imagick->evaluateimage(\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);

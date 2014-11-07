@@ -3,12 +3,21 @@
 
 namespace ImagickDemo\ControlElement;
 
+use Intahwebz\Request;
 
 
 class WhitePoint extends ValueElement {
 
+    private $defaultWhitePoint;
+
+    function __construct(Request $request, $defaultWhitePoint = 10) {
+        $this->defaultWhitePoint = $defaultWhitePoint;
+        parent::__construct($request);
+    }
+    
+    
     protected function getDefault() {
-        return 200;
+        return $this->defaultWhitePoint;
     }
 
     protected function getMin() {

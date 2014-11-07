@@ -141,8 +141,7 @@ END;
         return $foo;
     }
 
-
-
+    //Example Imagick::sparseColorImage
     function renderImageBarycentric2() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(400, 400, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
@@ -150,13 +149,15 @@ END;
         echo $imagick->getImageBlob();
     }
 
+    //Example Imagick::sparseColorImage
     function renderImageBilinear() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_BILINEAR);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
-    
+
+    //Example Imagick::sparseColorImage
     function renderImagePolynomial() {
         //TODO - this doesn't appear to work correctly.
         $points = [1, 2, 1, 2, 1, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 400, 500, 3, 4, 5,];
@@ -168,9 +169,7 @@ END;
         echo $imagick->getImageBlob();
     }
 
-
-    
-
+    //Example Imagick::sparseColorImage
     function renderImageShepards() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(600, 600, $points, \Imagick::SPARSECOLORMETHOD_SPEPARDS);
@@ -194,7 +193,7 @@ END;
 
 
 
-
+//Example Imagick::sparseColorImage
     function renderImageVoronoi() {
         $points = [[0.30, 0.10, 'red'], [0.10, 0.80, 'blue'], [0.70, 0.60, 'lime'], [0.80, 0.20, 'yellow'],];
         $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_VORONOI);
@@ -202,7 +201,7 @@ END;
         echo $imagick->getImageBlob();
     }
 
-
+//Example Imagick::sparseColorImage
     function renderImageBarycentric() {
         $points = [[0, 0, 'skyblue'], [-1, 1, 'skyblue'], [1, 1, 'black'],];
         $imagick = createGradientImage(600, 200, $points, \Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
@@ -211,7 +210,6 @@ END;
     }
     
     function renderImageInverse() {
-
         //TODO - add inverse to Imagick
 //        convert -size 100x100 xc: -sparse-color  Inverse \
 //        '30,10 red  10,80 blue  70,60 lime  80,20 yellow' \
@@ -219,8 +217,6 @@ END;
 //        -draw 'circle 30,10 30,12  circle 10,80 10,82' \
 //        -draw 'circle 70,60 70,62  circle 80,20 80,22' \
 //        sparse_inverse.png
-        
-        
     }
     
     

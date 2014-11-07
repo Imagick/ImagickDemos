@@ -206,7 +206,10 @@ function clipImage($imagePath) {
 function clutImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     //$imagick->quantizeImage(16, \Imagick::COLORSPACE_YIQ, 8, true, false);
-    $clutImagick = new \Imagick(realpath("../images/webSafe.png"));
+    
+
+    
+    $clutImagick = new \Imagick(realpath("images/webSafe.png"));
     $imagick->clutImage($clutImagick);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -286,10 +289,10 @@ function colorMatrixImage($imagePath, $colorMatrix) {
 function compositeImage() {
 
     $img1 = new \Imagick();
-    $img1->readImage(realpath("../images/Biter_500.jpg"));
+    $img1->readImage(realpath("../imagick/images/Biter_500.jpg"));
 
     $img2 = new \Imagick();
-    $img2->readImage(realpath("../images/Skyline_400.jpg"));
+    $img2->readImage(realpath("../imagick/images/Skyline_400.jpg"));
 
     $img1->resizeimage(
         $img2->getImageWidth(),
@@ -756,6 +759,20 @@ function haldClutImage($imagePath) {
     echo $imagick->getImageBlob();
 }
 
+//Example Imagick::levelImage
+function levelImage($blackPoint, $gamma, $whitePoint) {
+    $imagick = new \Imagick();
+    $imagick->newPseudoimage(500, 500, 'gradient:black-white');
+
+    $imagick->setFormat('png');
+    $quantum = $imagick->getQuantum();
+    $imagick->levelImage($blackPoint / 100 , $gamma, $quantum * $whitePoint / 100);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+    
+
 //Example Imagick::magnifyImage
 function magnifyImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -777,8 +794,8 @@ function mergeImageLayers($layerMethodType) {
     $imagick = new \Imagick();
     $nextImage = null;
     $images = [
-        "../images/Biter_500.jpg",
-        "../images/SydneyPeople_400.jpg",
+        "../imagick/images/Biter_500.jpg",
+        "../imagick/images/SydneyPeople_400.jpg",
     ];
 
     foreach ($images as $image) {
@@ -815,8 +832,8 @@ function mosaicImages() {
     $imagick->newimage(500, 500, 'white');
 
     $images = [
-        "../images/Biter_500.jpg",
-        "../images/SydneyPeople_400.jpg",
+        "../imagick/images/Biter_500.jpg",
+        "../imagick/images/SydneyPeople_400.jpg",
     ];
 
     foreach ($images as $image) {

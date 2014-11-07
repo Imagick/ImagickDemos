@@ -22,9 +22,9 @@ class Image extends \ImagickDemo\ControlElement\OptionValueElement {
 
     function getOptions() {
         $images = [
-            "../images/Skyline_400.jpg" => 'Skyline',
-            "../images/Biter_500.jpg" => 'Lorikeet',
-            "../images/SydneyPeople_400.jpg" => 'People',
+            "../imagick/images/Skyline_400.jpg" => 'Skyline',
+            "../imagick/images/Biter_500.jpg" => 'Lorikeet',
+            "../imagick/images/SydneyPeople_400.jpg" => 'People',
         ];
         
         return $images;

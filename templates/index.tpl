@@ -59,7 +59,6 @@
                 <div class="col-md-8">
                     <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
 
-                    
                     <span class='visible-md visible-lg' >
                         <i>{$docHelper->showDescription() | nofilter}</i>
                     </span>
@@ -78,6 +77,8 @@
 
                 <div class="col-md-4">
                     {$control->renderForm() | nofilter}
+
+                    
                 </div>
             </div>
 
@@ -87,15 +88,19 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <span class='visible-xs visible-sm' >
-                        {$docHelper->showDoc() | nofilter}
-                    </span>
+                    
                 </div>
             </div>
     
 
             <div class="row">
                 <div class="col-md-12">
+                    <span class='visible-xs visible-sm' >
+                        <i>{$docHelper->showDescription() | nofilter}</i>
+                    </span>
+                    <span class='visible-md visible-lg' >
+                         {$docHelper->showParameters() | nofilter}
+                    </span>
                     {$docHelper->showExamples() | nofilter}
                 </div>
             </div>

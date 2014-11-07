@@ -39,10 +39,6 @@ function getExamples() {
                 $currentExample = '';
                 $category = $matches[1];
                 $function = $matches[2];
-
-                if ($category == '') {
-                    echo "wut";
-                }
                 
                 //TODO - back to classes, set $matches[3] as example description.
             }
@@ -1158,7 +1154,7 @@ class DocHelper {
 
 
 
-    function showDoc() {
+    function showParameters() {
         if (isset(\$this->manualEntries[\$this->category][\$this->example]) == false) {
             return "";
         }

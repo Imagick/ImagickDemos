@@ -20,18 +20,13 @@ class functionImage extends \ImagickDemo\Example {
         return $this->functionControl->getParams();
     }
 
-
-
     function renderDescription() {
         
         $output = <<< END
-        
-        
+
 FUNCTION_POLYNOMIAL 
 
 Each value will be used as a coefficient from the highest order to the lowest, to produce a polynomial with the number of terms given.
-
-
  
 f1.x + f2
 
@@ -68,12 +63,15 @@ f4 - Constant vertical offset, default 0.5
 
 
 END;
-
+        $output = nl2br($output);
         $output .= "<br/>";
         
         return $output;
     }
 
+    /**
+     * @return string
+     */
     function render() {
         $output = $this->renderDescription();
         $output .= sprintf("<img src='%s' />", $this->functionControl->getCustomImageURL());
@@ -81,7 +79,9 @@ END;
         return $output;
     }
 
-
+    /**
+     * 
+     */
     function renderCustomImage() {
         $function = $this->functionControl->getFunctionType();
 
@@ -92,7 +92,10 @@ END;
 
         $this->renderImagePolynomial();
     }
-    
+
+    /**
+     * 
+     */
     function renderImagePolynomial() {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
@@ -112,17 +115,16 @@ END;
                 }
             }
         }
-        
-        
+
         $imagick->functionImage(\Imagick::FUNCTION_POLYNOMIAL, $arguments);
         $imagick->setimageformat('png');
-//        header("Content-Type: image/png");
-//        echo $imagick->getImageBlob();
 
-        \ImagickDemo\analyzeImage($imagick, 512, 256);
-        
+        analyzeImage($imagick, 512, 256);
     }
 
+    /**
+     * 
+     */
     function renderImageSinusoid() {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
@@ -149,7 +151,7 @@ END;
 //        header("Content-Type: image/png");
 //        echo $imagick->getImageBlob();
 
-        \ImagickDemo\analyzeImage($imagick, 512, 256);
+        analyzeImage($imagick, 512, 256);
     }
 
     function renderImageArctan() {
@@ -178,7 +180,7 @@ END;
 //        header("Content-Type: image/png");
 //        echo $imagick->getImageBlob();
 
-        \ImagickDemo\analyzeImage($imagick, 512, 256);
+        analyzeImage($imagick, 512, 256);
     }
 
 
@@ -206,14 +208,10 @@ END;
             }
         }
 
-
-
         $imagick->functionImage(\Imagick::FUNCTION_ARCSIN, $arguments);
         $imagick->setimageformat('png');
-//        header("Content-Type: image/png");
-//        echo $imagick->getImageBlob();
 
-        \ImagickDemo\analyzeImage($imagick, 512, 256);
+        analyzeImage($imagick, 512, 256);
     }
 
 

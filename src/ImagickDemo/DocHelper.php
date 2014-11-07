@@ -711,6 +711,21 @@ class DocHelper {
 }
 ";}',
     ),
+    'levelimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"levelImage";s:5:"lines";s:384:"function levelImage($blackPoint, $gamma, $whitePoint) {
+    $imagick = new \\Imagick();
+    $imagick->newPseudoimage(500, 500, \'gradient:black-white\');
+
+    $imagick->setFormat(\'png\');
+    $quantum = $imagick->getQuantum();
+    $imagick->levelImage($blackPoint / 100 , $gamma, $quantum * $whitePoint / 100);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+";}',
+    ),
     'magnifyimage' => 
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"magnifyImage";s:5:"lines";s:193:"function magnifyImage($imagePath) {
@@ -3968,13 +3983,16 @@ END;
     ),
     'levelizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:13:"levelizeImage";s:5:"lines";s:619:"function levelizeImage($blackPoint, $whitePoint) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:13:"levelizeImage";s:5:"lines";s:940:"function levelizeImage($blackPoint, $gamma,  $whitePoint) {
     $imagick = new \\Imagick();
-    $imagick->newPseudoimage(500, 100, \'gradient:black-white\');
+    $imagick->newPseudoimage(500, 500, \'gradient:black-white\');
     $maxQuantum = $imagick->getQuantum();
 
     //Adjust the scale from black to white to the new \'distance\' between black and white
     $imagick->evaluateimage(\\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
+
+    //This function actually equivelent to the Evaluate POW function but with the argument inverted. As such a "-evaluate POW 2.2" will actually do a "-gamma 0.45455" (0.45455 is equal it 1/2.2) operation, which is the reverse of a "-gamma 2.2".
+    $imagick->evaluateimage(\\Imagick::EVALUATE_POW, 1 / $gamma);
 
     //Add move the black point to it\'s new value
     $imagick->evaluateimage(\\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);
@@ -13788,7 +13806,6 @@ END;
 
 
     function showDescription() {
-
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
         }
@@ -13798,9 +13815,7 @@ END;
         return $manualEntry['description'];
     }
 
-
-
-    function showDoc() {
+    function showParameters() {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
         }
@@ -13808,11 +13823,6 @@ END;
         $manualEntry = $this->manualEntries[$this->category][$this->example];
         
         $output = '';
-        //$output = '<table>';
-        //$output .= "<tr><td colspan='3'>".$manualEntry['functionName']."</td></tr>";
-        //$output .= "<tr><td colspan='3'>".$manualEntry['description']."</td></tr>";
-
-        //$output .= $manualEntry['description'];
 
         if (count($manualEntry['parameters'])) {
             $output .= "<h5>Parameters</h5>";

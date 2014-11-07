@@ -13,5 +13,4 @@ class modulateImage extends \ImagickDemo\Example {
         return $this->renderImageURL();
     }
 
-
 }

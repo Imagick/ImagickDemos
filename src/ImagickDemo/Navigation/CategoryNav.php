@@ -486,7 +486,15 @@ END;
             //'implodeImage',
             //'importImagePixels',
             //'labelImage',
-            //'levelImage',
+            'levelImage' => [
+                'levelImage',
+                \ImagickDemo\Control\blackAndWhitePoint::class,
+                'defaultParams' => [
+                    'blackPoint' => 50,
+                    'whitePoint' => 100
+                ]
+            ],
+            
             //'linearStretchImage',
             //'liquidRescaleImage',
             'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ImageControl::class],
@@ -806,7 +814,14 @@ END;
             'imagickCompositeGen' => ['imagickCompositeGen', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => ['fxAnalyzeImage', \ImagickDemo\Control\NullControl::class],
             'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
-            'levelizeImage' => ['levelizeImage', \ImagickDemo\Control\NullControl::class],
+            'levelizeImage' => [
+                'levelizeImage',
+                \ImagickDemo\Control\blackAndWhitePoint::class,
+                'defaultParams' => [
+                    'blackPoint' => 50,
+                    'whitePoint' => 100
+                ]
+            ],
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
             'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],

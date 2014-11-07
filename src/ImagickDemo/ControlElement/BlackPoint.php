@@ -3,15 +3,19 @@
 
 namespace ImagickDemo\ControlElement;
 
-
-
-
-
+use Intahwebz\Request;
 
 class BlackPoint extends ValueElement {
 
+    private $defaultBlackPoint;
+
+    function __construct(Request $request, $defaultBlackPoint = 10) {
+        $this->defaultBlackPoint = $defaultBlackPoint;
+        parent::__construct($request);
+    }
+    
     protected function getDefault() {
-        return 10;
+        return $this->defaultBlackPoint;
     }
 
     protected function getMin() {

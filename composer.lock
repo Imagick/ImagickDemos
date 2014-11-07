@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "161f170d00055dcf69482e1e0b69e3ef",
+    "hash": "1e4c622f9c10c057d733bfa90a4da4dc",
     "packages": [
         {
             "name": "amphp/amp",
@@ -518,16 +518,16 @@
         },
         {
             "name": "intahwebz/weaver",
-            "version": "dev-master",
+            "version": "0.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Weaver.git",
-                "reference": "188744c3dcbd26d2d87b3f2bc6e672bbb67ba094"
+                "reference": "414894cd397daff22d2c71e4988784a1f71b702e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Weaver/zipball/188744c3dcbd26d2d87b3f2bc6e672bbb67ba094",
-                "reference": "188744c3dcbd26d2d87b3f2bc6e672bbb67ba094",
+                "url": "https://api.github.com/repos/Danack/Weaver/zipball/414894cd397daff22d2c71e4988784a1f71b702e",
+                "reference": "414894cd397daff22d2c71e4988784a1f71b702e",
                 "shasum": ""
             },
             "require": {
@@ -569,7 +569,7 @@
                 "lazyloader",
                 "weaving"
             ],
-            "time": "2014-10-26 02:43:22"
+            "time": "2014-11-06 17:55:11"
         },
         {
             "name": "nikic/fast-route",

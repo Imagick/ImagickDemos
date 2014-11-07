@@ -15,8 +15,6 @@ class gradientGeneration extends \ImagickDemo\Example {
         $this->customImageBaseURL = $customImageBaseURL;
     }
 
-
-
     function getCustomImageParams() {
         return [];//$this->control->getParams();
     }
@@ -74,35 +72,28 @@ class gradientGeneration extends \ImagickDemo\Example {
         return $output;
     }
 
+    /**
+     * 
+     */
     function renderCustomImage() {
         $imagick = new \Imagick();
         $imagick->setcolorspace(\Imagick::COLORSPACE_GRAY);
         $imagick->newPseudoImage(10, 256, 'gradient:black-white');
-
-        //$imagick->newPseudoImage(10, 256, 'xc:white');
-//        $arguments = array(4, -90);
-//        $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
-//        $imagick->normalizeImage();
-        //$imagick->evaluateimage(\Imagick::EVALUATE_SINE, 0.5);
-        //$imagick->evaluateimage(\Imagick::EVALUATE_GAUSSIANNOISE, 0.7);
-        //$imagick->evaluateimage(\Imagick::EVALUATE_IMPULSENOISE, 0.4);
-        //const EVALUATE_LAPLACIANNOISE = 20;
-        //$imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLICATIVENOISE, 0.7);
-
         $imagick->evaluateimage(\Imagick::EVALUATE_POW, 0.5);
-        \ImagickDemo\analyzeImage($imagick);
+        analyzeImage($imagick);
     }
 
 
-
+    /**
+     * 
+     */
     function renderCustomImage123() {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(10, 256, 'gradient:black-white');
         $imagick->evaluateimage(\Imagick::EVALUATE_SINE, 0.5);
         $imagick->normalizeImage();
         $imagick->evaluateimage(\Imagick::EVALUATE_COSINE, 8);
-
-        \ImagickDemo\analyzeImage($imagick);
+        analyzeImage($imagick);
     }
     
     function renderCustomImageURL() {

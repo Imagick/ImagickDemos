@@ -589,17 +589,19 @@ $controls = [
     ],
 
 
-    'ImagickDemo\ImagickDraw\Control\matte' => [   
+    'ImagickDemo\ImagickDraw\Control\matte' => [
         'ImagickDemo\ControlElement\PaintType',
         'ImagickDemo\ControlElement\BackgroundColor',
         'ImagickDemo\ControlElement\StrokeColor',
         'ImagickDemo\ControlElement\FillColor',
     ],
-   
-    
-    
 
 
+    'ImagickDemo\Control\blackAndWhitePoint' => [
+        '\ImagickDemo\ControlElement\BlackPoint',
+        '\ImagickDemo\ControlElement\WhitePoint',
+        'ImagickDemo\ControlElement\Gamma'
+    ],
 ];
 
 \Intahwebz\Functions::load();
@@ -607,11 +609,11 @@ $controls = [
 foreach ($controls as $outputClassname => $components) {
     $compositeWeaveInfo = new \Weaver\CompositeWeaveInfo(
         'ImagickDemo\Control\ControlComposite',
-        
         [
             'renderFormElement' => 'string',
             'getParams' => 'array',
-        ]
+        ],
+        ['get.*']
     );
 
     $weave = \Weaver\Weaver::weave($components, $compositeWeaveInfo);

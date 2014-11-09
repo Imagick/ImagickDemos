@@ -47,7 +47,7 @@ class compositeText extends \ImagickDemo\Example {
         $draw->annotation(50, 180, "Lorem Ipsum!");
 
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath("images/TestImage.jpg"));
 
 //        $compositeModes = [
 //

@@ -26,7 +26,6 @@ class compressImages extends \ImagickDemo\Example {
 //        Blurred size = 
 //    <img src='/subimage/Example/compressImages/jpg' />
 //    <img src='/subimage/Example/compressImages/jpgWithBlur' />
-
         
         $url = "/subimage/Example/compressImages/jpgWithBlur";
         
@@ -75,7 +74,7 @@ END;
     
     
     function getJpg() {
-        $imagick = new \Imagick(realpath("../images/Biter.jpg"));
+        $imagick = new \Imagick(realpath("images/Biter.jpg"));
         $imagick->setimagecompressionquality(90);
         
         return $imagick;
@@ -95,7 +94,7 @@ END;
     }
 
     function renderDescription2() {
-        $imagick = new \Imagick(realpath("../images/bugs/asdsd.jpg"));
+        $imagick = new \Imagick(realpath("images/bugs/asdsd.jpg"));
         $imagick->setImageFormat('jpg');
 
         $imagick->setimagecompressionquality(30);

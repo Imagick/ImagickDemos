@@ -166,6 +166,8 @@ function bootstrapInjector($libratoKey,
 
     $injector->share($jigConfig);
 
+    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay'); 
+
     $injector->defineParam('imageBaseURL', null);
     $injector->defineParam('customImageBaseURL', null);
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');

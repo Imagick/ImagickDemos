@@ -77,6 +77,8 @@ function construct() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickPixel::setColor
 function setColor() {
@@ -100,6 +102,8 @@ function setColor() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickPixel::setColorValue
 function setColorValue() {
@@ -157,6 +161,8 @@ function setColorValue() {
      </refsect1>
 */
 }
+//Example end
+
 
 //Example ImagickPixel::setColorValueQuantum
 function setColorValueQuantum() {
@@ -181,6 +187,7 @@ function setColorValueQuantum() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
 
 }
 

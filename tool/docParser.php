@@ -2,81 +2,119 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-function getExamples() {
 
+class ExampleFinder {
 
-    $directory = new RecursiveDirectoryIterator('../src');
-    $iterator = new RecursiveIteratorIterator($directory);
-    $files = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::MATCH);
+    private $files;
+    private $examples = [];
+    
+    /** @var \ImagickDemo\CodeExample */
+    private $currentExample = null;
 
-    $examples = [];
-
-    $category = null;
-    $function = null;
-
-    foreach ($files as $file) {
-        /** @var $file SplFileInfo */
-        $filename = $file->getPath()."/".$file->getFilename();
-
-        // open the file 
-        $fileLines = file($filename);
-
-        if (!$fileLines) {
-            throw new \Exception("Failed to open $filename");
-        }
-
-        $currentExample = null;
-
-        foreach ($fileLines as $fileLine) {
-            $pattern = "#^//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial)::(\w+)\s?(.*)?#";
-            
-            $matchCount = preg_match($pattern, $fileLine, $matches);
-
-            if ($matchCount == true) {
-                if ($currentExample !== null) {
-                    $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
-                }
-                $currentExample = '';
-                $category = $matches[1];
-                $function = $matches[2];
-                
-                //TODO - back to classes, set $matches[3] as example description.
-            }
-            else if ($currentExample !== null) {
-
-                if(substr_compare($fileLine, "//Example end", 0, strlen("//Example end")) === 0) {
-                    if ($currentExample !== null) {
-                        $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
-                    }
-
-                    $currentExample = null;
-                    $category = null;
-                    $function = null;
-                    continue;
-                }
-
-                $currentExample .= $fileLine;
-
-                if (substr_compare($fileLine, "}", 0, 1) === 0 ) {
-                    if ($currentExample !== null) {
-                        $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
-                    }
-
-                    $currentExample = null;
-                    $category = null;
-                    $function = null;
-                }
-            }
-        }
-
-        if ($currentExample !== null) {
-            $examples[strtolower($category)][strtolower($function)][] = serialize(new \ImagickDemo\CodeExample($category, $function, $currentExample));
-        }
-        $currentExample = null;
+    function __construct() {
+        $directory = new RecursiveDirectoryIterator('../src');
+        $iterator = new RecursiveIteratorIterator($directory);
+        $this->files = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::MATCH);
     }
 
-    return $examples;
+    /**
+     * @param $category
+     * @param $function
+     * @param $description
+     * @param $file
+     * @param $startLine
+     */
+    function startExample($category, $function, $description, $file, $startLine) {
+        $this->currentExample = new \ImagickDemo\CodeExample(
+            $category,
+            $function,
+            '',
+            $description,
+            $startLine
+        );
+    }
+
+
+    /**
+     * 
+     */
+    function   endExample($lineCount) {
+        if ($this->currentExample !== null) {
+            $this->currentExample->setEndLine($lineCount);
+            $category = strtolower($this->currentExample->getCategory());
+            $function = strtolower($this->currentExample->getFunctionName());
+            $this->examples[$category][$function][] = serialize($this->currentExample); 
+        }
+
+        $this->currentExample = null;
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    function getExamples() {
+        $category = null;
+        $function = null;
+
+        foreach ($this->files as $file) {
+            /** @var $file SplFileInfo */
+            $filename = $file->getPath()."/".$file->getFilename();
+
+            // open the file 
+            $fileLines = file($filename);
+
+            if (!$fileLines) {
+                throw new \Exception("Failed to open $filename");
+            }
+
+            $pattern = "#\w*//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial)::(\w+)\s?(.*)?#";
+
+            $endPattern = "#\w*//Example end.*#";
+
+            $lineCount = 0;
+            foreach ($fileLines as $fileLine) {
+                $lineCount++;
+
+                $matchCount = preg_match($pattern, $fileLine, $matches);
+
+                if ($matchCount == true) {
+                    if ($this->currentExample) {
+                        throw new \Exception(
+                            "Example ".$this->currentExample->getFunctionName()." in file ".
+                            $filename." line ".$lineCount." is still open."
+                        );
+                    }
+                    $this->endExample($lineCount); //End any previous example
+                    $pathedFilename = $matches[1].'/'.$file->getBasename();                    
+                    $this->startExample($matches[1], $matches[2], $matches[3], $pathedFilename, $lineCount);
+                }
+                else if ($this->currentExample !== null) {
+
+                    $matchCount = preg_match($endPattern, $fileLine, $matches);
+                    
+                    //if(substr_compare($fileLine, "//Example end", 0, strlen("//Example end")) === 0) {
+                    if ($matchCount) {
+                        $this->endExample($lineCount);
+                        continue;
+                    }
+                    $this->currentExample->appendLine($fileLine);
+                    //TODO - need to only end on new example
+//                    if (substr_compare($fileLine, "}", 0, 1) === 0 ) {
+//                        $this->endExample($lineCount);
+//                    }
+                }
+            }
+
+            //finished file - example has ended
+            $this->endExample($lineCount);
+        }
+
+        return $this->examples;
+    }
 }
+
+
 
 
 $entityBlock = <<< END
@@ -1113,7 +1151,8 @@ foreach ($urlList as $subdir => $entries) {
     
 }
 
-$examples = getExamples();
+$exampleFinder = new ExampleFinder();
+$examples = $exampleFinder->getExamples();
 
 
 $exampleEntries = var_export($examples, true);
@@ -1126,103 +1165,18 @@ $output = <<< END
 namespace ImagickDemo;
 
 class DocHelper {
-
-
-    private \$exampleEntries = $exampleEntries;
-
-    private \$manualEntries = $manualEntries;
-
-    private \$category;
-    private \$example;
+    protected \$exampleEntries = $exampleEntries;
+    protected \$manualEntries = $manualEntries;
+    protected \$category;
+    protected \$example;
 
     function __construct(\$category, \$example) {
         \$this->category = strtolower(\$category);
         \$this->example = strtolower(\$example);
     }
-
-
-    function showDescription() {
-
-        if (isset(\$this->manualEntries[\$this->category][\$this->example]) == false) {
-            return "";
-        }
-
-        \$manualEntry = \$this->manualEntries[\$this->category][\$this->example];
-        
-        return \$manualEntry['description'];
-    }
-
-
-
-    function showParameters() {
-        if (isset(\$this->manualEntries[\$this->category][\$this->example]) == false) {
-            return "";
-        }
-
-        \$manualEntry = \$this->manualEntries[\$this->category][\$this->example];
-        
-        \$output = '';
-        //\$output = '<table>';
-        //\$output .= "<tr><td colspan='3'>".\$manualEntry['functionName']."</td></tr>";
-        //\$output .= "<tr><td colspan='3'>".\$manualEntry['description']."</td></tr>";
-
-        //\$output .= \$manualEntry['description'];
-
-        if (count(\$manualEntry['parameters'])) {
-            \$output .= "<h5>Parameters</h5>";
-
-            \$output .= "<table class='smallPadding'><tbody>";
-
-            foreach (\$manualEntry['parameters'] as \$parameter) {
-                \$output .= "<tr>";
-                    \$output .= "<td class='smallPadding' valign='top'>".\$parameter['name']."</td>";
-                    \$output .= "<td class='smallPadding' valign='top'>".\$parameter['type']."</td>";
-                    \$output .= "<td class='smallPadding' valign='top'>".\$parameter['description']."</td>";
-                \$output .= "</tr>";
-            }
-
-            \$output .= "</tbody></table>";
-        }
-
-
-        return \$output; 
-    }
-
-
-    function showExamples() {
-
-        \$output = "";
-
-        if (isset(\$this->exampleEntries[\$this->category][\$this->example]) == false) {
-            return "";
-            //return "No example for ".\$this->category. " ".\$this->example ;
-        }
-        
-        \$examples = \$this->exampleEntries[\$this->category][\$this->example];
-        
-        \$count = 1;
-        foreach (\$examples as \$example) {
-            \$example = unserialize(\$example);
-            /** @var \$example \ImagickDemo\CodeExample */
-            
-            if (count(\$examples) > 1) {
-                \$output .= "Example \$count <br/><pre>";
-            }
-            else {
-                \$output .= "Example <br/><pre>";
-            }
-                \$output .=  \$example->getLines();
-            \$output .=  "</pre>";
-            \$count++;
-        }
-        
-        return \$output;
-    }
-
 }
 END;
 
-//$path = "../var/compile/ImagickDemo/DocHelper.php";
 
 $path = "../src/ImagickDemo/DocHelper.php";
 
@@ -1231,5 +1185,3 @@ $result = file_put_contents($path, $output);
 if ($result === false) {
     throw new \Exception("Failed to write file.");
 }
-
-//echo "Done - copy the file $path to src.";

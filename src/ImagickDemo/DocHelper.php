@@ -3,65 +3,63 @@
 namespace ImagickDemo;
 
 class DocHelper {
-
-
-    private $exampleEntries = array (
+    protected $exampleEntries = array (
   'imagick' => 
   array (
     'adaptiveblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:17:"adaptiveBlurImage";s:5:"lines";s:255:"function adaptiveBlurImage($imagePath, $radius, $sigma, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"adaptiveBlurImage";s:5:"lines";s:255:"function adaptiveBlurImage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->adaptiveBlurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:32;s:7:"endLine";i:39;}',
     ),
     'adaptiveresizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"adaptiveResizeImage";s:5:"lines";s:259:"function adaptiveResizeImage($imagePath, $width, $height, $bestFit) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"adaptiveResizeImage";s:5:"lines";s:259:"function adaptiveResizeImage($imagePath, $width, $height, $bestFit) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->adaptiveResizeImage($width, $height, $bestFit);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:41;s:7:"endLine";i:48;}',
     ),
     'adaptivesharpenimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:20:"adaptiveSharpenImage";s:5:"lines";s:261:"function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"adaptiveSharpenImage";s:5:"lines";s:261:"function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->adaptiveSharpenImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:50;s:7:"endLine";i:57;}',
     ),
     'adaptivethresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"adaptiveThresholdImage";s:5:"lines";s:365:"function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"adaptiveThresholdImage";s:5:"lines";s:365:"function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset) {
     $imagick = new \\Imagick(realpath($imagePath));
     $adaptiveOffsetQuantum = intval($adaptiveOffset * \\Imagick::getQuantum());
     $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffsetQuantum);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:59;s:7:"endLine";i:67;}',
     ),
     'addnoiseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"addNoiseImage";s:5:"lines";s:237:"function addNoiseImage($noiseType, $imagePath, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"addNoiseImage";s:5:"lines";s:237:"function addNoiseImage($noiseType, $imagePath, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->addNoiseImage($noiseType, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:69;s:7:"endLine";i:76;}',
     ),
     'affinetransformimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:20:"affineTransformImage";s:5:"lines";s:465:"function affineTransformImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"affineTransformImage";s:5:"lines";s:465:"function affineTransformImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $draw = new \\ImagickDraw();
 
@@ -79,11 +77,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:79;s:7:"endLine";i:98;}',
     ),
     'annotateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"annotateImage";s:5:"lines";s:467:"function annotateImage($imagePath, $strokeColor, $fillColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"annotateImage";s:5:"lines";s:467:"function annotateImage($imagePath, $strokeColor, $fillColor) {
     $imagick = new \\Imagick(realpath($imagePath));
 
     $draw = new \\ImagickDraw();
@@ -99,21 +97,21 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:102;s:7:"endLine";i:119;}',
     ),
     'autolevelimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"autoLevelImage";s:5:"lines";s:197:"function autoLevelImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"autoLevelImage";s:5:"lines";s:197:"function autoLevelImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->autoLevelImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:121;s:7:"endLine";i:128;}',
     ),
     'averageimages' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"averageImages";s:5:"lines";s:446:"function averageImages($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"averageImages";s:5:"lines";s:446:"function averageImages($imagePath) {
 
     $imagick = new \\Imagick(realpath($imagePath));
     //$imagick2 = new \\Imagick(realpath("../images/TestImage2.jpg"));
@@ -125,103 +123,104 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $averageImage->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:130;s:7:"endLine";i:143;}',
     ),
     'blackthresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"blackThresholdImage";s:5:"lines";s:239:"function blackThresholdImage($imagePath, $thresholdColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"blackThresholdImage";s:5:"lines";s:239:"function blackThresholdImage($imagePath, $thresholdColor) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->blackthresholdimage($thresholdColor);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:145;s:7:"endLine";i:152;}',
     ),
     'blueshiftimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"blueShiftImage";s:5:"lines";s:219:"function blueShiftImage($imagePath, $blueShift) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"blueShiftImage";s:5:"lines";s:219:"function blueShiftImage($imagePath, $blueShift) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->blueShiftImage($blueShift);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:154;s:7:"endLine";i:161;}',
     ),
     'blurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"blurImage";s:5:"lines";s:239:"function blurImage($imagePath, $radius, $sigma, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"blurImage";s:5:"lines";s:239:"function blurImage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->blurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:163;s:7:"endLine";i:170;}',
     ),
     'borderimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"borderImage";s:5:"lines";s:239:"function borderImage($imagePath, $color, $width, $height) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"borderImage";s:5:"lines";s:239:"function borderImage($imagePath, $color, $width, $height) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->borderImage($color, $width, $height);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:172;s:7:"endLine";i:179;}',
     ),
     'brightnesscontrastimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:23:"brightnessContrastImage";s:5:"lines";s:281:"function brightnessContrastImage($imagePath, $brightness, $contrast, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:23:"brightnessContrastImage";s:5:"lines";s:281:"function brightnessContrastImage($imagePath, $brightness, $contrast, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->brightnessContrastImage($brightness, $contrast, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:182;s:7:"endLine";i:189;}',
     ),
     'charcoalimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"charcoalImage";s:5:"lines";s:227:"function charcoalImage($imagePath, $radius, $sigma) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"charcoalImage";s:5:"lines";s:227:"function charcoalImage($imagePath, $radius, $sigma) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->charcoalImage($radius, $sigma);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:191;s:7:"endLine";i:198;}',
     ),
     'chopimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"chopImage";s:5:"lines";s:255:"function chopImage($imagePath, $startX, $startY, $width, $height) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"chopImage";s:5:"lines";s:255:"function chopImage($imagePath, $startX, $startY, $width, $height) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->chopImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:200;s:7:"endLine";i:207;}',
     ),
     'clipimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"clipImage";s:5:"lines";s:187:"function clipImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"clipImage";s:5:"lines";s:187:"function clipImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->clipImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:209;s:7:"endLine";i:216;}',
     ),
     'clutimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"clutImage";s:5:"lines";s:344:"function clutImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"clutImage";s:5:"lines";s:346:"function clutImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     //$imagick->quantizeImage(16, \\Imagick::COLORSPACE_YIQ, 8, true, false);
-    $clutImagick = new \\Imagick(realpath("../images/webSafe.png"));
+    
+    $clutImagick = new \\Imagick(realpath("images/webSafe.png"));
     $imagick->clutImage($clutImagick);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:39:"This function appears to make no sense ";s:9:"startLine";i:219;s:7:"endLine";i:229;}',
     ),
     'colorfloodfillimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"colorFloodfillImage";s:5:"lines";s:383:"function colorFloodfillImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"colorFloodfillImage";s:5:"lines";s:383:"function colorFloodfillImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $border = new \\ImagickPixel(\'red\');
     $flood = new \\ImagickPixel(\'rgb(128, 32, 128)\');
@@ -234,11 +233,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:232;s:7:"endLine";i:246;}',
     ),
     'colorizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"colorizeImage";s:5:"lines";s:333:"function colorizeImage($imagePath, $color, $opacity) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"colorizeImage";s:5:"lines";s:333:"function colorizeImage($imagePath, $color, $opacity) {
     $imagick = new \\Imagick(realpath($imagePath));
     $opacity = $opacity / 255.0;
     $opacityColor = new \\ImagickPixel("rgba(0, 0, 0, $opacity)");
@@ -246,61 +245,48 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:248;s:7:"endLine";i:257;}',
     ),
     'colormatriximage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"colorMatrixImage";s:5:"lines";s:921:"function colorMatrixImage($imagePath, $colorMatrix) {
-
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"colorMatrixImage";s:5:"lines";s:927:"function colorMatrixImage($imagePath, $colorMatrix) {
     $imagick = new \\Imagick(realpath($imagePath));
-
-
     $imagick->setImageOpacity(1);
 
-//    $colorMatrix = [
-//        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
-//        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
-//        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
-//        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
-//        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
-//        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
-//    ];
-
-
+    //A color matrix should look like:
+    //    $colorMatrix = [
+    //        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
+    //        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
+    //        0.0, 0.0, 1.5, 0.0, 0.0, -0.157,
+    //        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
+    //        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
+    //        0.0, 0.0, 0.0, 0.0, 0.0,  1.0
+    //    ];
 
     $background = new \\Imagick();
     $background->newPseudoImage($imagick->getImageWidth(), $imagick->getImageHeight(),  "pattern:checkerboard");
 
     $background->setImageFormat(\'png\');
-    
-   
-    
-    //echo $imagick->getImageBlob();
-
 
     $imagick->setImageFormat(\'png\');
     $imagick->colorMatrixImage($colorMatrix);
-
-
-    
     
     $background->compositeImage($imagick, \\Imagick::COMPOSITE_ATOP, 0, 0);
 
     header("Content-Type: image/png");
     echo $background->getImageBlob();
-
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:261;s:7:"endLine";i:289;}',
     ),
     'compositeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"compositeImage";s:5:"lines";s:751:"function compositeImage() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"compositeImage";s:5:"lines";s:767:"function compositeImage() {
 
     $img1 = new \\Imagick();
-    $img1->readImage(realpath("../images/Biter_500.jpg"));
+    $img1->readImage(realpath("../imagick/images/Biter_500.jpg"));
 
     $img2 = new \\Imagick();
-    $img2->readImage(realpath("../images/Skyline_400.jpg"));
+    $img2->readImage(realpath("../imagick/images/Skyline_400.jpg"));
 
     $img1->resizeimage(
         $img2->getImageWidth(),
@@ -319,11 +305,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $img1->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:291;s:7:"endLine";i:317;}',
     ),
     'contrastimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"contrastImage";s:5:"lines";s:264:"function contrastImage($imagePath, $contrastType) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"contrastImage";s:5:"lines";s:264:"function contrastImage($imagePath, $contrastType) {
     $imagick = new \\Imagick(realpath($imagePath));
     if ($contrastType != 2) {
         $imagick->contrastImage($contrastType);
@@ -332,11 +318,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:319;s:7:"endLine";i:329;}',
     ),
     'convolveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"convolveImage";s:5:"lines";s:372:"function convolveImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"convolveImage";s:5:"lines";s:372:"function convolveImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
 
@@ -347,24 +333,22 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:333;s:7:"endLine";i:345;}',
     ),
     'cropimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"cropImage";s:5:"lines";s:255:"function cropImage($imagePath, $startX, $startY, $width, $height) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"cropImage";s:5:"lines";s:255:"function cropImage($imagePath, $startX, $startY, $width, $height) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->cropImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:348;s:7:"endLine";i:355;}',
     ),
     'deskewimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"deskewImage";s:5:"lines";s:1288:"function deskewImage($threshold) {
-
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"deskewImage";s:5:"lines";s:1286:"function deskewImage($threshold) {
     $imagick = new \\Imagick(realpath("../images/NYTimes-Page1-11-11-1918.jpg"));
-
     $deskewImagick = clone $imagick;
     
     //This is the only thing required for deskewing.
@@ -386,41 +370,41 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $newCanvas->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:358;s:7:"endLine";i:382;}',
     ),
     'despeckleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"despeckleImage";s:5:"lines";s:197:"function despeckleImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"despeckleImage";s:5:"lines";s:197:"function despeckleImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->despeckleImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:384;s:7:"endLine";i:391;}',
     ),
     'enhanceimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"enhanceImage";s:5:"lines";s:193:"function enhanceImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"enhanceImage";s:5:"lines";s:193:"function enhanceImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->enhanceImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:393;s:7:"endLine";i:400;}',
     ),
     'equalizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"equalizeImage";s:5:"lines";s:195:"function equalizeImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"equalizeImage";s:5:"lines";s:195:"function equalizeImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->equalizeImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:403;s:7:"endLine";i:410;}',
     ),
     'evaluateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"evaluateImage";s:5:"lines";s:1802:"function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradientEndColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"evaluateImage";s:5:"lines";s:1802:"function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradientEndColor) {
     $imagick = new \\Imagick();
     $size = 400;
     $imagick->newPseudoImage(
@@ -475,21 +459,21 @@ class DocHelper {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:413;s:7:"endLine";i:469;}',
     ),
     'flipimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"flipImage";s:5:"lines";s:187:"function flipImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"flipImage";s:5:"lines";s:187:"function flipImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->flipImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:472;s:7:"endLine";i:479;}',
     ),
     'floodfillpaintimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"floodFillPaintImage";s:5:"lines";s:410:"function floodFillPaintImage($fillColor, $fuzz, $targetColor, $x, $y, $inverse, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"floodFillPaintImage";s:5:"lines";s:410:"function floodFillPaintImage($fillColor, $fuzz, $targetColor, $x, $y, $inverse, $channel) {
     $imagick = new \\Imagick(realpath("../images/BlueScreen.jpg"));
     $imagick->floodFillPaintImage(
         $fillColor,
@@ -502,21 +486,53 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:482;s:7:"endLine";i:496;}',
     ),
     'flopimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"flopImage";s:5:"lines";s:187:"function flopImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"flopImage";s:5:"lines";s:187:"function flopImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->flopImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:499;s:7:"endLine";i:506;}',
     ),
     'forwardfouriertransformimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:28:"forwardFourierTransformImage";s:5:"lines";s:993:"function forwardFourierTransformImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:28:"forwardFourierTransformImage";s:5:"lines";s:1789:"//Utility function for forwardTransformImage
+function createMask() {
+    $draw = new \\ImagickDraw();
+
+    $draw->setStrokeOpacity(0);
+    $draw->setStrokeColor(\'rgb(255, 255, 255)\');
+    $draw->setFillColor(\'rgb(255, 255, 255)\');
+
+    //Draw a circle on the y-axis, with it\'s centre
+    //at x, y that touches the origin
+    $draw->circle(250, 250, 220, 250);
+    //$draw->point(256, 256);
+
+    $imagick = new \\Imagick();
+    $imagick->newImage(512, 512, "black");
+    $imagick->drawImage($draw);
+    $imagick->gaussianBlurImage(20, 20);
+    $imagick->autoLevelImage();
+
+    //$imagick->negateImage(true);
+
+    if (false) {
+        $imagick->setImageFormat(\'png\');
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+        exit(0);
+    }
+
+    return $imagick;
+}
+
+
+function forwardFourierTransformImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->resizeimage(512, 512, \\Imagick::FILTER_LANCZOS, 1);
 
@@ -552,11 +568,31 @@ class DocHelper {
     header("Content-Type: image/png");
     echo $magnitude->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:508;s:7:"endLine";i:577;}',
+    ),
+    'frameimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"frameImage";s:5:"lines";s:437:"function frameImage($imagePath, $color, $width, $height, $innerBevel, $outerBevel) {
+    $imagick = new \\Imagick(realpath($imagePath));
+
+    $width = $width + $innerBevel + $outerBevel;
+    $height = $height + $innerBevel + $outerBevel;
+
+    $imagick->frameimage(
+        $color,
+        $width,
+        $height,
+        $innerBevel,
+        $outerBevel
+    );
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:580;s:7:"endLine";i:597;}',
     ),
     'fximage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:7:"fxImage";s:5:"lines";s:327:"function fxImage() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:7:"fxImage";s:5:"lines";s:327:"function fxImage() {
     $imagick = new \\Imagick();
     $imagick->newPseudoImage(200, 200, "xc:white");
 
@@ -567,31 +603,31 @@ class DocHelper {
     $fxImage->setimageformat(\'png\');
     echo $fxImage->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:601;s:7:"endLine";i:613;}',
     ),
     'gammaimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"gammaImage";s:5:"lines";s:223:"function gammaImage($imagePath, $gamma, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"gammaImage";s:5:"lines";s:223:"function gammaImage($imagePath, $gamma, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->gammaImage($gamma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:616;s:7:"endLine";i:623;}',
     ),
     'gaussianblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:17:"gaussianBlurImage";s:5:"lines";s:255:"function gaussianBlurImage($imagePath, $radius, $sigma, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"gaussianBlurImage";s:5:"lines";s:255:"function gaussianBlurImage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->gaussianBlurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:626;s:7:"endLine";i:633;}',
     ),
     'getpixeliterator' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"getPixelIterator";s:5:"lines";s:744:"function getPixelIterator($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"getPixelIterator";s:5:"lines";s:744:"function getPixelIterator($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imageIterator = $imagick->getPixelIterator();
 
@@ -609,11 +645,36 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:636;s:7:"endLine";i:655;}',
     ),
     'getimagehistogram' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:17:"getImageHistogram";s:5:"lines";s:1931:"function getImageHistogram($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"getImageHistogram";s:5:"lines";s:2646:"function getColorStatistics($histogramElements, $colorChannel) {
+    $colorStatistics = [];
+
+    foreach ($histogramElements as $histogramElement) {
+        //So broken. Wow. Much surprise. Sad. Bad. Sad, bad, sad.
+        //$color = $histogramElement->getColorValueQuantum($colorChannel);
+        $color = $histogramElement->getColorValue($colorChannel);
+        $color = intval($color * 255);
+        $count = $histogramElement->getColorCount();
+
+        if (array_key_exists($color, $colorStatistics)) {
+            $colorStatistics[$color] += $count;
+        }
+        else {
+            $colorStatistics[$color] = $count;
+        }
+    }
+
+    ksort($colorStatistics);
+    
+    return $colorStatistics;
+}
+    
+
+
+function getImageHistogram($imagePath) {
 
     $backgroundColor = \'black\';
 
@@ -645,7 +706,6 @@ class DocHelper {
         return $carry;
     };
 
-
     $colorValues = [
         \'red\' => getColorStatistics($histogramElements, \\Imagick::COLOR_RED),
         \'lime\' => getColorStatistics($histogramElements, \\Imagick::COLOR_GREEN),
@@ -675,11 +735,11 @@ class DocHelper {
     header( "Content-Type: image/png" );
     echo $histogram;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:659;s:7:"endLine";i:746;}',
     ),
     'getpixelregioniterator' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"getPixelRegionIterator";s:5:"lines";s:774:"function getPixelRegionIterator($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"getPixelRegionIterator";s:5:"lines";s:774:"function getPixelRegionIterator($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);
 
@@ -697,11 +757,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:749;s:7:"endLine";i:768;}',
     ),
     'haldclutimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"haldClutImage";s:5:"lines";s:326:"function haldClutImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"haldClutImage";s:5:"lines";s:326:"function haldClutImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagickPalette = new \\Imagick(realpath("../images/hald/hald_8.png"));
     $imagickPalette->sepiatoneImage(55);
@@ -709,11 +769,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:770;s:7:"endLine";i:779;}',
     ),
     'levelimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"levelImage";s:5:"lines";s:384:"function levelImage($blackPoint, $gamma, $whitePoint) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"levelImage";s:5:"lines";s:384:"function levelImage($blackPoint, $gamma, $whitePoint) {
     $imagick = new \\Imagick();
     $imagick->newPseudoimage(500, 500, \'gradient:black-white\');
 
@@ -724,47 +784,77 @@ class DocHelper {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:782;s:7:"endLine";i:794;}',
     ),
     'magnifyimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"magnifyImage";s:5:"lines";s:193:"function magnifyImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"magnifyImage";s:5:"lines";s:193:"function magnifyImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->magnifyImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:797;s:7:"endLine";i:804;}',
     ),
     'medianfilterimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:17:"medianFilterImage";s:5:"lines";s:220:"function medianFilterImage($radius, $imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"medianFilterImage";s:5:"lines";s:220:"function medianFilterImage($radius, $imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     @$imagick->medianFilterImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:807;s:7:"endLine";i:814;}',
+    ),
+    'mergeimagelayers' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"mergeImageLayers";s:5:"lines";s:758:"function mergeImageLayers($layerMethodType) {
+
+    $imagick = new \\Imagick();
+    $nextImage = null;
+    $images = [
+        "../imagick/images/Biter_500.jpg",
+        "../imagick/images/SydneyPeople_400.jpg",
+    ];
+
+    foreach ($images as $image) {
+        $nextImage = new \\Imagick(realpath($image));
+
+        $nextImage->resizeimage(100, 100, \\Imagick::FILTER_LANCZOS, 1);
+        $nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+        $imagick->addImage($nextImage);
+        $imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+    }
+    
+    if ($nextImage == null) {
+        return;
+    }
+    
+    $imagick->mergeImageLayers($layerMethodType);
+    header("Content-Type: image/png");
+    echo $nextImage->getImageBlob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:816;s:7:"endLine";i:843;}',
     ),
     'modulateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"modulateImage";s:5:"lines";s:257:"function modulateImage($imagePath, $hue, $brightness, $saturation) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"modulateImage";s:5:"lines";s:257:"function modulateImage($imagePath, $hue, $brightness, $saturation) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->modulateImage($brightness, $saturation, $hue);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:846;s:7:"endLine";i:853;}',
     ),
     'mosaicimages' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"mosaicImages";s:5:"lines";s:495:"function mosaicImages() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"mosaicImages";s:5:"lines";s:511:"function mosaicImages() {
     $imagick = new \\Imagick();
     $imagick->newimage(500, 500, \'white\');
 
     $images = [
-        "../images/Biter_500.jpg",
-        "../images/SydneyPeople_400.jpg",
+        "../imagick/images/Biter_500.jpg",
+        "../imagick/images/SydneyPeople_400.jpg",
     ];
 
     foreach ($images as $image) {
@@ -778,42 +868,42 @@ class DocHelper {
     $imagick->setimageformat(\'png\');
     header("Content-Type: image/png");
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:856;s:7:"endLine";i:877;}',
     ),
     'motionblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:15:"motionBlurImage";s:5:"lines";s:267:"function motionBlurImage($imagePath, $radius, $sigma, $angle, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"motionBlurImage";s:5:"lines";s:267:"function motionBlurImage($imagePath, $radius, $sigma, $angle, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->motionBlurImage($radius, $sigma, $angle, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:880;s:7:"endLine";i:887;}',
     ),
     'negateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"negateImage";s:5:"lines";s:231:"function negateImage($imagePath, $grayOnly, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"negateImage";s:5:"lines";s:231:"function negateImage($imagePath, $grayOnly, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->negateImage($grayOnly, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:889;s:7:"endLine";i:896;}',
     ),
     'newpseudoimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"newPseudoImage";s:5:"lines";s:236:"function newPseudoImage($canvasType) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"newPseudoImage";s:5:"lines";s:236:"function newPseudoImage($canvasType) {
     $imagick = new \\Imagick();
     $imagick->newPseudoImage(300, 300, $canvasType);
     $imagick->setImageFormat("png");
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:899;s:7:"endLine";i:907;}',
     ),
     'normalizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"normalizeImage";s:5:"lines";s:416:"function normalizeImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"normalizeImage";s:5:"lines";s:416:"function normalizeImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $original = clone $imagick;
     $original->cropimage($original->getImageWidth() / 2, $original->getImageHeight(), 0, 0);
@@ -822,32 +912,32 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:910;s:7:"endLine";i:920;}',
     ),
     'oilpaintimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"oilPaintImage";s:5:"lines";s:211:"function oilPaintImage($imagePath, $radius) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"oilPaintImage";s:5:"lines";s:211:"function oilPaintImage($imagePath, $radius) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->oilPaintImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:922;s:7:"endLine";i:929;}',
     ),
     'quantizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"quantizeImage";s:5:"lines";s:335:"function quantizeImage($imagePath, $numberColors, $colorSpace, $treeDepth, $dither) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"quantizeImage";s:5:"lines";s:335:"function quantizeImage($imagePath, $numberColors, $colorSpace, $treeDepth, $dither) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->quantizeImage($numberColors, $colorSpace, $treeDepth, $dither, false);
     $imagick->setImageFormat(\'png\');
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:931;s:7:"endLine";i:939;}',
     ),
     'radialblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:15:"radialBlurImage";s:5:"lines";s:268:"function radialBlurImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"radialBlurImage";s:5:"lines";s:268:"function radialBlurImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->radialBlurImage(3);
     $imagick->radialBlurImage(5);
@@ -855,11 +945,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:942;s:7:"endLine";i:951;}',
     ),
     'raiseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"raiseImage";s:5:"lines";s:280:"function raiseImage($imagePath, $width, $height, $x, $y, $raise) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"raiseImage";s:5:"lines";s:280:"function raiseImage($imagePath, $width, $height, $x, $y, $raise) {
     $imagick = new \\Imagick(realpath($imagePath));
 
     //x and y do nothing?
@@ -867,11 +957,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:954;s:7:"endLine";i:963;}',
     ),
     'randomthresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:20:"randomThresholdimage";s:5:"lines";s:370:"function randomThresholdimage($imagePath, $lowThreshold, $highThreshold, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"randomThresholdimage";s:5:"lines";s:370:"function randomThresholdimage($imagePath, $lowThreshold, $highThreshold, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
 
     $imagick->randomThresholdimage(
@@ -882,11 +972,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:966;s:7:"endLine";i:978;}',
     ),
     'recolorimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"recolorImage";s:5:"lines";s:427:"function recolorImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"recolorImage";s:5:"lines";s:427:"function recolorImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $remapColor = [ 1, 0, 0,
         0, 0, 1,
@@ -903,65 +993,97 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:981;s:7:"endLine";i:999;}',
     ),
     'reducenoiseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"reduceNoiseImage";s:5:"lines";s:228:"function reduceNoiseImage($imagePath, $reduceNoise) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"reduceNoiseImage";s:5:"lines";s:228:"function reduceNoiseImage($imagePath, $reduceNoise) {
     $imagick = new \\Imagick(realpath($imagePath));
     @$imagick->reduceNoiseImage($reduceNoise);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1001;s:7:"endLine";i:1008;}',
     ),
     'remapimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"remapImage";s:5:"lines";s:272:"function remapImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"remapImage";s:5:"lines";s:272:"function remapImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick2 = new \\Imagick(realpath("../images/TestImage2.jpg"));
     $imagick->remapImage($imagick2, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1010;s:7:"endLine";i:1018;}',
     ),
     'resampleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"resampleImage";s:5:"lines";s:246:"function resampleImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"resampleImage";s:5:"lines";s:233:"function resampleImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
-    
-   
-    
+
     $imagick->resampleImage(200, 200, \\Imagick::FILTER_LANCZOS, 1);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1020;s:7:"endLine";i:1028;}',
+    ),
+    'resizeimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"resizeImage";s:5:"lines";s:854:"function resizeImage($imagePath, $width, $height, $filterType, $blur, $bestFit, $cropZoom) {
+    //The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.
+    $imagick = new \\Imagick(realpath($imagePath));
+
+    $imagick->resizeImage($width, $height, $filterType, $blur, $bestFit);
+
+    $cropWidth = $imagick->getImageWidth();
+    $cropHeight = $imagick->getImageHeight();
+
+    if ($cropZoom) {
+        $newWidth = $cropWidth / 2;
+        $newHeight = $cropHeight / 2;
+
+        $imagick->cropimage(
+            $newWidth,
+            $newHeight,
+            ($cropWidth - $newWidth) / 2,
+            ($cropHeight - $newHeight) / 2
+        );
+
+        $imagick->scaleimage(
+            $imagick->getImageWidth() * 4,
+            $imagick->getImageHeight() * 4
+        );
+    }
+
+
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:1032;s:7:"endLine";i:1063;}',
     ),
     'rollimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"rollImage";s:5:"lines";s:217:"function rollImage($imagePath, $rollX, $rollY) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"rollImage";s:5:"lines";s:217:"function rollImage($imagePath, $rollX, $rollY) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->rollimage($rollX, $rollY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1066;s:7:"endLine";i:1073;}',
     ),
     'rotateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"rotateImage";s:5:"lines";s:221:"function rotateImage($imagePath, $angle, $color) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"rotateImage";s:5:"lines";s:221:"function rotateImage($imagePath, $angle, $color) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->rotateimage($color, $angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1075;s:7:"endLine";i:1082;}',
     ),
     'rotationalblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"rotationalBlurImage";s:5:"lines";s:284:"function rotationalBlurImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"rotationalBlurImage";s:5:"lines";s:284:"function rotationalBlurImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->rotationalBlurImage(3);
     $imagick->rotationalBlurImage(5);
@@ -969,11 +1091,11 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1084;s:7:"endLine";i:1093;}',
     ),
     'roundcorners' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"roundCorners";s:5:"lines";s:547:"function roundCorners($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"roundCorners";s:5:"lines";s:547:"function roundCorners($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->setBackgroundColor(\'red\');
 
@@ -996,61 +1118,61 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1095;s:7:"endLine";i:1119;}',
     ),
     'scaleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"scaleImage";s:5:"lines";s:203:"function scaleImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"scaleImage";s:5:"lines";s:203:"function scaleImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->scaleImage(150, 150, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1121;s:7:"endLine";i:1128;}',
     ),
     'segmentimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"segmentImage";s:5:"lines";s:291:"function segmentImage($imagePath, $colorSpace, $clusterThreshold, $smoothThreshold) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"segmentImage";s:5:"lines";s:291:"function segmentImage($imagePath, $colorSpace, $clusterThreshold, $smoothThreshold) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->segmentImage($colorSpace, $clusterThreshold, $smoothThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1131;s:7:"endLine";i:1138;}',
     ),
     'selectiveblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:18:"selectiveBlurImage";s:5:"lines";s:281:"function selectiveBlurImage($imagePath, $radius, $sigma, $threshold, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"selectiveBlurImage";s:5:"lines";s:281:"function selectiveBlurImage($imagePath, $radius, $sigma, $threshold, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->selectiveBlurImage($radius, $sigma, $threshold, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1141;s:7:"endLine";i:1148;}',
     ),
     'separateimagechannel' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:20:"separateImageChannel";s:5:"lines";s:227:"function separateImageChannel($imagePath, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"separateImageChannel";s:5:"lines";s:227:"function separateImageChannel($imagePath, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->separateimagechannel($channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1151;s:7:"endLine";i:1158;}',
     ),
     'sepiatoneimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"sepiaToneImage";s:5:"lines";s:211:"function sepiaToneImage($imagePath, $sepia) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"sepiaToneImage";s:5:"lines";s:211:"function sepiaToneImage($imagePath, $sepia) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->sepiaToneImage($sepia);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1162;s:7:"endLine";i:1169;}',
     ),
     'setimageartifact' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"setImageArtifact";s:5:"lines";s:820:"function setImageArtifact($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setImageArtifact";s:5:"lines";s:820:"function setImageArtifact($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     
     //$imagick->setImageArtifact(\'jpeg:extent\', \'10kb\');
@@ -1073,22 +1195,22 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImagesBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1172;s:7:"endLine";i:1196;}',
     ),
     'setimageorientation' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"setImageOrientation";s:5:"lines";s:273:"//Doesn\'t appear to do anything
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"setImageOrientation";s:5:"lines";s:273:"//Doesn\'t appear to do anything
 function setImageOrientation($imagePath, $orientationType) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->setImageOrientation($orientationType);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1198;s:7:"endLine";i:1206;}',
     ),
     'setimagebias' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"setImageBias";s:5:"lines";s:652:"//Doesn\'t appear to do anything
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"setImageBias";s:5:"lines";s:652:"//Doesn\'t appear to do anything
 function setImageBias() {
 
     $imagick = new \\Imagick(realpath("../images/stack.jpg"));
@@ -1112,11 +1234,11 @@ function setImageBias() {
     header(\'Content-type: image/jpeg\');
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1209;s:7:"endLine";i:1234;}',
     ),
     'setimagedelay' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"setImageDelay";s:5:"lines";s:443:"function setImageDelay() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"setImageDelay";s:5:"lines";s:443:"function setImageDelay() {
     $imagick = new \\Imagick(realpath("../images/coolGif.gif"));
     $imagick2 = $imagick->coalesceImages();
 
@@ -1133,11 +1255,11 @@ function setImageBias() {
     header("Content-Type: image/gif");
     echo $imagick3->getImagesBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1237;s:7:"endLine";i:1255;}',
     ),
     'setimagetickspersecond' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"setImageTicksPerSecond";s:5:"lines";s:794:"function setImageTicksPerSecond() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"setImageTicksPerSecond";s:5:"lines";s:794:"function setImageTicksPerSecond() {
 
     $imagick = new \\Imagick(realpath("../images/coolGif.gif"));
     $imagick2 = $imagick->coalesceImages();
@@ -1164,11 +1286,11 @@ function setImageBias() {
     header("Content-Type: image/gif");
     echo $imagick3->getImagesBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1258;s:7:"endLine";i:1286;}',
     ),
     'setiteratorindex' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"setIteratorIndex";s:5:"lines";s:442:"function setIteratorIndex() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setIteratorIndex";s:5:"lines";s:442:"function setIteratorIndex() {
 
     $imagick = new \\Imagick(realpath("../images/LayerTest.psd"));
 
@@ -1184,11 +1306,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $merged->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1290;s:7:"endLine";i:1307;}',
     ),
     'setoption' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"setOption";s:5:"lines";s:401:"function setOption($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:396:"function setOption($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->setImageFormat(\'jpg\');
     $imagick->setOption(\'jpeg:extent\', \'20kb\');
@@ -1199,12 +1321,11 @@ function setImageBias() {
     //"quantum:polarity","min-is-white"
     //"jpeg:size","120x120"
     
-    
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
-      1 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"setOption";s:5:"lines";s:333:"    function renderJPG($extent) {
+";s:11:"description";s:0:"";s:9:"startLine";i:1310;s:7:"endLine";i:1325;}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:333:"    function renderJPG($extent) {
         $imagePath = $this->setOptionControl->getImagePath();
         $imagick = new \\Imagick(realpath($imagePath));
         $imagick->setImageFormat(\'jpg\');
@@ -1212,8 +1333,8 @@ function setImageBias() {
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
     }
-";}',
-      2 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"setOption";s:5:"lines";s:332:"    function renderPNG($format) {
+";s:11:"description";s:0:"";s:9:"startLine";i:62;s:7:"endLine";i:71;}',
+      2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:332:"    function renderPNG($format) {
         $imagePath = $this->setOptionControl->getImagePath();
         $imagick = new \\Imagick(realpath($imagePath));
         $imagick->setImageFormat(\'png\');
@@ -1221,8 +1342,8 @@ function setImageBias() {
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
-";}',
-      3 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"setOption";s:5:"lines";s:646:"    function renderCustomBitDepthPNG() {
+";s:11:"description";s:0:"";s:9:"startLine";i:73;s:7:"endLine";i:82;}',
+      3 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:646:"    function renderCustomBitDepthPNG() {
         $imagePath = $this->setOptionControl->getImagePath();
         $imagick = new \\Imagick(realpath($imagePath));
         $imagick->setImageFormat(\'png\');
@@ -1240,61 +1361,61 @@ function setImageBias() {
             echo file_get_contents($tempFilename);
         }
     }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:90;s:7:"endLine";i:109;}',
     ),
     'shadeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"shadeImage";s:5:"lines";s:201:"function shadeImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shadeImage";s:5:"lines";s:201:"function shadeImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->shadeImage(true, 45, 20);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1328;s:7:"endLine";i:1335;}',
     ),
     'shadowimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"shadowImage";s:5:"lines";s:205:"function shadowImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"shadowImage";s:5:"lines";s:205:"function shadowImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->shadowImage(0.4, 10, 50, 5);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1337;s:7:"endLine";i:1344;}',
     ),
     'sharpenimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"sharpenImage";s:5:"lines";s:245:"function sharpenImage($imagePath, $radius, $sigma, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"sharpenImage";s:5:"lines";s:245:"function sharpenImage($imagePath, $radius, $sigma, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->sharpenimage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1347;s:7:"endLine";i:1354;}',
     ),
     'shaveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"shaveImage";s:5:"lines";s:196:"function shaveImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shaveImage";s:5:"lines";s:196:"function shaveImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->shaveImage(100, 50);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1357;s:7:"endLine";i:1364;}',
     ),
     'shearimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"shearimage";s:5:"lines";s:239:"function shearImage($imagePath, $color, $shearX, $shearY) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shearimage";s:5:"lines";s:239:"function shearImage($imagePath, $color, $shearX, $shearY) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->shearimage($color, $shearX, $shearY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1367;s:7:"endLine";i:1374;}',
     ),
     'sigmoidalcontrastimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:22:"sigmoidalContrastImage";s:5:"lines";s:408:"function sigmoidalContrastImage($imagePath, $sharpening, $midpoint, $sigmoidalContrast) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"sigmoidalContrastImage";s:5:"lines";s:408:"function sigmoidalContrastImage($imagePath, $sharpening, $midpoint, $sigmoidalContrast) {
     $imagick = new \\Imagick(realpath($imagePath));
     //Need some stereo image to work with.
     $imagick->sigmoidalcontrastimage(
@@ -1305,21 +1426,21 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1377;s:7:"endLine";i:1389;}',
     ),
     'sketchimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"sketchimage";s:5:"lines";s:239:"function sketchImage($imagePath, $radius, $sigma, $angle) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"sketchimage";s:5:"lines";s:239:"function sketchImage($imagePath, $radius, $sigma, $angle) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->sketchimage($radius, $sigma, $angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1392;s:7:"endLine";i:1399;}',
     ),
     'smushimages' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"smushImages";s:5:"lines";s:350:"function smushImages($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"smushImages";s:5:"lines";s:350:"function smushImages($imagePath) {
 
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick2 = new \\Imagick(realpath("../images/coolGif.gif"));
@@ -1330,44 +1451,44 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $smushed->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1401;s:7:"endLine";i:1413;}',
     ),
     'solarizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"solarizeImage";s:5:"lines";s:258:"function solarizeImage($imagePath, $solarizeThreshold) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"solarizeImage";s:5:"lines";s:258:"function solarizeImage($imagePath, $solarizeThreshold) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->solarizeImage($solarizeThreshold * \\Imagick::getQuantum());
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1416;s:7:"endLine";i:1423;}',
     ),
     'spliceimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"spliceImage";s:5:"lines";s:259:"function spliceImage($imagePath, $startX, $startY, $width, $height) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"spliceImage";s:5:"lines";s:259:"function spliceImage($imagePath, $startX, $startY, $width, $height) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->spliceImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1426;s:7:"endLine";i:1433;}',
     ),
     'spreadimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"spreadImage";s:5:"lines";s:207:"function spreadImage($imagePath, $radius) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"spreadImage";s:5:"lines";s:207:"function spreadImage($imagePath, $radius) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->spreadImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1435;s:7:"endLine";i:1442;}',
     ),
     'statisticimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"statisticImage";s:5:"lines";s:316:"function statisticImage($imagePath, $statisticType, $w20, $h20, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"statisticImage";s:5:"lines";s:312:"function statisticImage($imagePath, $statisticType, $w20, $h20, $channel) {
 
     $imagick = new \\Imagick(realpath($imagePath));
-    
+
     $imagick->statisticImage(
         $statisticType,
         $w20,
@@ -1378,22 +1499,22 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1445;s:7:"endLine";i:1460;}',
     ),
     'stereoimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:11:"stereoImage";s:5:"lines";s:253:"function stereoImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"stereoImage";s:5:"lines";s:253:"function stereoImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     //TODO - Need some stereo image to work with.
     $imagick->stereoImage(true, 45, 20);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1463;s:7:"endLine";i:1471;}',
     ),
     'subimagematch' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"subImageMatch";s:5:"lines";s:785:"function subImageMatch($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"subImageMatch";s:5:"lines";s:785:"function subImageMatch($imagePath) {
 
     //Similarity score is: 0
     //array(4) { ["x"]=> int(250) ["y"]=> int(110) ["width"]=> int(40) ["height"]=> int(40)
@@ -1420,21 +1541,21 @@ function setImageBias() {
     
     return $comparison;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1474;s:7:"endLine";i:1502;}',
     ),
     'swirlimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:10:"swirlImage";s:5:"lines";s:203:"function swirlImage($imagePath, $swirl) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"swirlImage";s:5:"lines";s:203:"function swirlImage($imagePath, $swirl) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->swirlImage($swirl);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1506;s:7:"endLine";i:1513;}',
     ),
     'textureimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:12:"textureImage";s:5:"lines";s:398:"function textureImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"textureImage";s:5:"lines";s:398:"function textureImage($imagePath) {
     $image = new \\Imagick();
     $image->newImage(640, 480, new \\ImagickPixel(\'pink\'));
     $image->setImageFormat("jpg");
@@ -1444,32 +1565,32 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $image;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1515;s:7:"endLine";i:1526;}',
     ),
     'thresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"thresholdimage";s:5:"lines";s:264:"function thresholdimage($imagePath, $threshold, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"thresholdimage";s:5:"lines";s:264:"function thresholdimage($imagePath, $threshold, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->thresholdimage($threshold * \\Imagick::getQuantum(), $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1529;s:7:"endLine";i:1536;}',
     ),
     'thumbnailimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"thumbnailImage";s:5:"lines";s:270:"function thumbnailImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"thumbnailImage";s:5:"lines";s:270:"function thumbnailImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->setbackgroundcolor(\'rgb(64, 64, 64)\');
     $imagick->thumbnailImage(100, 100, true, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1539;s:7:"endLine";i:1547;}',
     ),
     'tintimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"tintImage";s:5:"lines";s:418:"function tintImage($r, $g, $b, $a) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"tintImage";s:5:"lines";s:418:"function tintImage($r, $g, $b, $a) {
     $a = $a / 100;
 
     $imagick = new \\Imagick();
@@ -1482,32 +1603,32 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1550;s:7:"endLine";i:1564;}',
     ),
     'transformimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"transformimage";s:5:"lines";s:230:"function transformimage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"transformimage";s:5:"lines";s:230:"function transformimage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $newImage = $imagick->transformimage("400x600", "200x300");
     header("Content-Type: image/jpg");
     echo $newImage->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1567;s:7:"endLine";i:1574;}',
     ),
     'transformimagecolorspace' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:24:"transformImageColorspace";s:5:"lines";s:297:"function transformImageColorspace($imagePath, $colorSpace, $channel) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:24:"transformImageColorspace";s:5:"lines";s:297:"function transformImageColorspace($imagePath, $colorSpace, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->transformimagecolorspace($colorSpace);
     $imagick->separateImageChannel($channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1577;s:7:"endLine";i:1585;}',
     ),
     'transparentpaintimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:21:"transparentPaintImage";s:5:"lines";s:489:"function transparentPaintImage($color, $alpha, $fuzz) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:21:"transparentPaintImage";s:5:"lines";s:489:"function transparentPaintImage($color, $alpha, $fuzz) {
     $imagick = new \\Imagick(realpath("../images/BlueScreen.jpg"));
 
     //Need to be in a format that supports transparency
@@ -1523,31 +1644,31 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1588;s:7:"endLine";i:1605;}',
     ),
     'transposeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:14:"transposeImage";s:5:"lines";s:197:"function transposeImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"transposeImage";s:5:"lines";s:197:"function transposeImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->transposeImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1608;s:7:"endLine";i:1615;}',
     ),
     'transverseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:15:"transverseImage";s:5:"lines";s:199:"function transverseImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"transverseImage";s:5:"lines";s:199:"function transverseImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->transverseImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1618;s:7:"endLine";i:1625;}',
     ),
     'trimimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"trimImage";s:5:"lines";s:280:"function trimImage($color, $fuzz) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"trimImage";s:5:"lines";s:280:"function trimImage($color, $fuzz) {
     $imagick = new \\Imagick(realpath("../images/BlueScreen.jpg"));
     $imagick->borderImage($color, 10, 10);
     $imagick->trimImage($fuzz * \\Imagick::getQuantum());
@@ -1555,11 +1676,11 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1628;s:7:"endLine";i:1637;}',
     ),
     'uniqueimagecolors' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:17:"uniqueImageColors";s:5:"lines";s:412:"function uniqueImageColors($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"uniqueImageColors";s:5:"lines";s:412:"function uniqueImageColors($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     //Reduce the image to 256 colours nicely.
     $imagick->quantizeImage(256, \\Imagick::COLORSPACE_YIQ, 0, false, false);
@@ -1568,55 +1689,165 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1640;s:7:"endLine";i:1650;}',
     ),
     'unsharpmaskimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:16:"unsharpMaskImage";s:5:"lines";s:289:"function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThreshold) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"unsharpMaskImage";s:5:"lines";s:289:"function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThreshold) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->unsharpMaskImage($radius, $sigma, $amount, $unsharpThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1653;s:7:"endLine";i:1660;}',
     ),
     'vignetteimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:13:"vignetteImage";s:5:"lines";s:261:"function vignetteImage($imagePath, $blackPoint, $whitePoint, $x, $y) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"vignetteImage";s:5:"lines";s:261:"function vignetteImage($imagePath, $blackPoint, $whitePoint, $x, $y) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->vignetteImage($blackPoint, $whitePoint, $x, $y);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1663;s:7:"endLine";i:1670;}',
     ),
     'waveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:9:"waveImage";s:5:"lines";s:227:"function waveImage($imagePath, $amplitude, $length) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"waveImage";s:5:"lines";s:227:"function waveImage($imagePath, $amplitude, $length) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->waveImage($amplitude, $length);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1673;s:7:"endLine";i:1680;}',
     ),
     'whitethresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:7:"Imagick";s:11:"exampleName";s:19:"whiteThresholdImage";s:5:"lines";s:248:"function whiteThresholdImage($imagePath, $color) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"whiteThresholdImage";s:5:"lines";s:248:"function whiteThresholdImage($imagePath, $color) {
     $imagick = new \\Imagick(realpath($imagePath));
     //TODO needs a control
     $imagick->whiteThresholdImage($color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1683;s:7:"endLine";i:1691;}',
+    ),
+    'sparsecolorimage' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:443:"    function renderImageBarycentric2() {
+        $points = [
+            [0.30, 0.10, \'red\'],
+            [0.10, 0.80, \'blue\'],
+            [0.70, 0.60, \'lime\'],
+            [0.80, 0.20, \'yellow\'],
+        ];
+        $imagick = createGradientImage(
+            400, 400,
+            $points,
+            \\Imagick::SPARSECOLORMETHOD_BARYCENTRIC
+        );
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+";s:11:"description";s:29:"SPARSECOLORMETHOD_BARYCENTRIC";s:9:"startLine";i:100;s:7:"endLine";i:116;}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:332:"    function renderImageBilinear() {
+        $points = [[0.30, 0.10, \'red\'], [0.10, 0.80, \'blue\'], [0.70, 0.60, \'lime\'], [0.80, 0.20, \'yellow\'],];
+        $imagick = createGradientImage(500, 500, $points, \\Imagick::SPARSECOLORMETHOD_BILINEAR);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+";s:11:"description";s:26:"SPARSECOLORMETHOD_BILINEAR";s:9:"startLine";i:118;s:7:"endLine";i:125;}',
+      2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:476:"    function renderImagePolynomial() {
+        //TODO - this doesn\'t appear to work correctly.
+        $points = [1, 2, 1, 2, 1, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 400, 500, 3, 4, 5,];
+        $imagick = new \\Imagick();
+        $imagick->newImage(500, 500, "white");
+        $imagick->setImageFormat("png");
+        $imagick->sparseColorImage(\\Imagick::SPARSECOLORMETHOD_POLYNOMIAL, $points);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+";s:11:"description";s:28:"SPARSECOLORMETHOD_POLYNOMIAL";s:9:"startLine";i:127;s:7:"endLine";i:138;}',
+      3 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:332:"    function renderImageShepards() {
+        $points = [[0.30, 0.10, \'red\'], [0.10, 0.80, \'blue\'], [0.70, 0.60, \'lime\'], [0.80, 0.20, \'yellow\'],];
+        $imagick = createGradientImage(600, 600, $points, \\Imagick::SPARSECOLORMETHOD_SPEPARDS);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+";s:11:"description";s:26:"SPARSECOLORMETHOD_SPEPARDS";s:9:"startLine";i:140;s:7:"endLine";i:147;}',
+      4 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:330:"    function renderImageVoronoi() {
+        $points = [[0.30, 0.10, \'red\'], [0.10, 0.80, \'blue\'], [0.70, 0.60, \'lime\'], [0.80, 0.20, \'yellow\'],];
+        $imagick = createGradientImage(500, 500, $points, \\Imagick::SPARSECOLORMETHOD_VORONOI);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+";s:11:"description";s:25:"SPARSECOLORMETHOD_VORONOI";s:9:"startLine";i:165;s:7:"endLine";i:172;}',
+      5 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:305:"    function renderImageBarycentric() {
+        $points = [[0, 0, \'skyblue\'], [-1, 1, \'skyblue\'], [1, 1, \'black\'],];
+        $imagick = createGradientImage(600, 200, $points, \\Imagick::SPARSECOLORMETHOD_BARYCENTRIC);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
+";s:11:"description";s:29:"SPARSECOLORMETHOD_BARYCENTRIC";s:9:"startLine";i:174;s:7:"endLine";i:181;}',
+      6 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"sparseColorImage";s:5:"lines";s:1643:"function createGradientImage($width, $height, $colorPoints, $sparseMethod, $absolute = false) {
+
+    $imagick = new \\Imagick();
+    $imagick->newImage($width, $height, "white");
+    $imagick->setImageFormat("png");
+
+    $barycentricPoints = array();
+
+    foreach ($colorPoints as $colorPoint) {
+
+        if ($absolute == true) {
+            $barycentricPoints[] = $colorPoint[0];
+            $barycentricPoints[] = $colorPoint[1];
+        }
+        else {
+            $barycentricPoints[] = $colorPoint[0] * $width;
+            $barycentricPoints[] = $colorPoint[1] * $height;
+        }
+
+        if (is_string($colorPoint[2])) {
+            $imagickPixel = new \\ImagickPixel($colorPoint[2]);
+        }
+        else if ($colorPoint[2] instanceof \\ImagickPixel) {
+            $imagickPixel = $colorPoint[2];
+        }
+        else{
+            $errorMessage = sprintf(
+                "Value %s is neither a string nor an ImagickPixel class. Cannot use as a color.",
+                $colorPoint[2]
+            );
+
+            throw new \\InvalidArgumentException(
+                $errorMessage
+            );
+        }
+
+        $red = $imagickPixel->getColorValue(\\Imagick::COLOR_RED);
+        $green = $imagickPixel->getColorValue(\\Imagick::COLOR_GREEN);
+        $blue = $imagickPixel->getColorValue(\\Imagick::COLOR_BLUE);
+        $alpha = $imagickPixel->getColorValue(\\Imagick::COLOR_ALPHA);
+
+        $barycentricPoints[] = $red;
+        $barycentricPoints[] = $green;
+        $barycentricPoints[] = $blue;
+        $barycentricPoints[] = $alpha;
+    }
+
+    $imagick->sparseColorImage($sparseMethod, $barycentricPoints);
+
+    return $imagick;
+}
+";s:11:"description";s:37:"Helper method used by other examples.";s:9:"startLine";i:287;s:7:"endLine";i:339;}',
     ),
   ),
   'imagickdraw' => 
   array (
     'affine' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:6:"affine";s:5:"lines";s:1941:"function affine($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"affine";s:5:"lines";s:1941:"function affine($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1673,11 +1904,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:31;s:7:"endLine";i:89;}',
     ),
     'arc' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:3:"arc";s:5:"lines";s:818:"function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $startAngle, $endAngle) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:3:"arc";s:5:"lines";s:818:"function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $startAngle, $endAngle) {
 
     //Create a ImagickDraw object to draw into.
     $draw = new \\ImagickDraw();
@@ -1701,11 +1932,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:99;s:7:"endLine";i:124;}',
     ),
     'bezier' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:6:"bezier";s:5:"lines";s:1563:"function bezier($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"bezier";s:5:"lines";s:1563:"function bezier($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1745,11 +1976,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:126;s:7:"endLine";i:167;}',
     ),
     'circle' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:6:"circle";s:5:"lines";s:732:"function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"circle";s:5:"lines";s:732:"function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
 
     //Create a ImagickDraw object to draw into.
     $draw = new \\ImagickDraw();
@@ -1774,11 +2005,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:170;s:7:"endLine";i:196;}',
     ),
     'composite' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:9:"composite";s:5:"lines";s:1312:"function composite($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:9:"composite";s:5:"lines";s:1312:"function composite($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1816,11 +2047,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:199;s:7:"endLine";i:238;}',
     ),
     'ellipse' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:7:"ellipse";s:5:"lines";s:829:"function ellipse($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:7:"ellipse";s:5:"lines";s:829:"function ellipse($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -1853,11 +2084,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:241;s:7:"endLine";i:275;}',
     ),
     'line' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:4:"line";s:5:"lines";s:534:"function line($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:4:"line";s:5:"lines";s:534:"function line($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1878,11 +2109,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:278;s:7:"endLine";i:300;}',
     ),
     'matte' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:5:"matte";s:5:"lines";s:566:"function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:5:"matte";s:5:"lines";s:566:"function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
     $draw = new \\ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1904,11 +2135,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:303;s:7:"endLine";i:326;}',
     ),
     'pathstart' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:9:"pathStart";s:5:"lines";s:1186:"function pathStart($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:9:"pathStart";s:5:"lines";s:1186:"function pathStart($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1950,11 +2181,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:329;s:7:"endLine";i:372;}',
     ),
     'point' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:5:"point";s:5:"lines";s:442:"function point($fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:5:"point";s:5:"lines";s:442:"function point($fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1972,11 +2203,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:375;s:7:"endLine";i:394;}',
     ),
     'polygon' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:7:"polygon";s:5:"lines";s:634:"function polygon($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:7:"polygon";s:5:"lines";s:634:"function polygon($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -1998,11 +2229,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:397;s:7:"endLine";i:420;}',
     ),
     'polyline' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:8:"polyline";s:5:"lines";s:672:"function polyline($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:8:"polyline";s:5:"lines";s:672:"function polyline($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -2028,11 +2259,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:423;s:7:"endLine";i:450;}',
     ),
     'popdefs' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:7:"popDefs";s:5:"lines";s:659:"function popDefs($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:7:"popDefs";s:5:"lines";s:659:"function popDefs($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2057,11 +2288,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:452;s:7:"endLine";i:478;}',
     ),
     'push' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:4:"push";s:5:"lines";s:676:"function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:4:"push";s:5:"lines";s:676:"function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -2084,11 +2315,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:481;s:7:"endLine";i:505;}',
     ),
     'pushpattern' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:11:"pushPattern";s:5:"lines";s:1171:"function pushPattern($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:11:"pushPattern";s:5:"lines";s:1171:"function pushPattern($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -2130,11 +2361,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:508;s:7:"endLine";i:551;}',
     ),
     'rectangle' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:9:"rectangle";s:5:"lines";s:611:"function rectangle($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:9:"rectangle";s:5:"lines";s:611:"function rectangle($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
     $strokeColor = new \\ImagickPixel($strokeColor);
     $fillColor = new \\ImagickPixel($fillColor);
@@ -2154,11 +2385,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:554;s:7:"endLine";i:575;}',
     ),
     'render' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:6:"render";s:5:"lines";s:653:"function render($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"render";s:5:"lines";s:653:"function render($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
 
     $strokeColor = new \\ImagickPixel($strokeColor);
@@ -2181,11 +2412,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:578;s:7:"endLine";i:602;}',
     ),
     'rotate' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:6:"rotate";s:5:"lines";s:596:"function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"rotate";s:5:"lines";s:596:"function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setStrokeOpacity(1);
@@ -2203,11 +2434,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:604;s:7:"endLine";i:623;}',
     ),
     'roundrectangle' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:14:"roundRectangle";s:5:"lines";s:603:"function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $roundX, $roundY) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:14:"roundRectangle";s:5:"lines";s:603:"function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $roundX, $roundY) {
 
     $draw = new \\ImagickDraw();
 
@@ -2227,11 +2458,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:625;s:7:"endLine";i:646;}',
     ),
     'scale' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:5:"scale";s:5:"lines";s:599:"function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:5:"scale";s:5:"lines";s:599:"function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -2250,11 +2481,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:648;s:7:"endLine";i:668;}',
     ),
     'setclippath' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:11:"setClipPath";s:5:"lines";s:694:"function setClipPath($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:11:"setClipPath";s:5:"lines";s:694:"function setClipPath($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -2279,11 +2510,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:670;s:7:"endLine";i:696;}',
     ),
     'setcliprule' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:11:"setClipRule";s:5:"lines";s:852:"function setClipRule($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:11:"setClipRule";s:5:"lines";s:852:"function setClipRule($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2312,11 +2543,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:699;s:7:"endLine";i:729;}',
     ),
     'setclipunits' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:12:"setClipUnits";s:5:"lines";s:824:"function setClipUnits($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:12:"setClipUnits";s:5:"lines";s:824:"function setClipUnits($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2344,11 +2575,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:731;s:7:"endLine";i:760;}',
     ),
     'setfillalpha' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:12:"setFillAlpha";s:5:"lines";s:587:"function setFillAlpha($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:12:"setFillAlpha";s:5:"lines";s:587:"function setFillAlpha($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2368,11 +2599,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:762;s:7:"endLine";i:783;}',
     ),
     'setfillcolor' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:12:"setFillColor";s:5:"lines";s:592:"function setFillColor($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:12:"setFillColor";s:5:"lines";s:592:"function setFillColor($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2394,11 +2625,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:786;s:7:"endLine";i:809;}',
     ),
     'setfillopacity' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:14:"setFillOpacity";s:5:"lines";s:592:"function setFillOpacity($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:14:"setFillOpacity";s:5:"lines";s:592:"function setFillOpacity($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2420,11 +2651,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:812;s:7:"endLine";i:835;}',
     ),
     'setfillrule' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:11:"setFillRule";s:5:"lines";s:1365:"function setFillRule($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:11:"setFillRule";s:5:"lines";s:1365:"function setFillRule($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2476,11 +2707,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:838;s:7:"endLine";i:891;}',
     ),
     'setfont' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:7:"setFont";s:5:"lines";s:946:"function setFont($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:7:"setFont";s:5:"lines";s:946:"function setFont($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2513,11 +2744,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:893;s:7:"endLine";i:927;}',
     ),
     'setfontfamily' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:13:"setFontFamily";s:5:"lines";s:966:"function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:13:"setFontFamily";s:5:"lines";s:966:"function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2552,11 +2783,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:930;s:7:"endLine";i:966;}',
     ),
     'setfontsize' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:11:"setFontSize";s:5:"lines";s:692:"function setFontSize($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:11:"setFontSize";s:5:"lines";s:692:"function setFontSize($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2581,11 +2812,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:969;s:7:"endLine";i:995;}',
     ),
     'setfontstretch' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:14:"setFontStretch";s:5:"lines";s:945:"function setFontStretch($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:14:"setFontStretch";s:5:"lines";s:945:"function setFontStretch($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2611,11 +2842,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:998;s:7:"endLine";i:1025;}',
     ),
     'setfontstyle' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:12:"setFontStyle";s:5:"lines";s:760:"function setFontStyle($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:12:"setFontStyle";s:5:"lines";s:759:"function setFontStyle($fillColor, $strokeColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -2637,13 +2868,12 @@ function setImageBias() {
 
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
-
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1028;s:7:"endLine";i:1052;}',
     ),
     'setfontweight' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:13:"setFontWeight";s:5:"lines";s:790:"function setFontWeight($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:13:"setFontWeight";s:5:"lines";s:790:"function setFontWeight($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2674,11 +2904,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1055;s:7:"endLine";i:1087;}',
     ),
     'setgravity' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:10:"setGravity";s:5:"lines";s:1053:"function setGravity($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:10:"setGravity";s:5:"lines";s:1053:"function setGravity($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -2703,11 +2933,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1090;s:7:"endLine";i:1116;}',
     ),
     'setstrokealpha' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:14:"setStrokeAlpha";s:5:"lines";s:625:"function setStrokeAlpha($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:14:"setStrokeAlpha";s:5:"lines";s:625:"function setStrokeAlpha($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2729,11 +2959,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1119;s:7:"endLine";i:1142;}',
     ),
     'setstrokeantialias' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:18:"setStrokeAntialias";s:5:"lines";s:662:"function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:18:"setStrokeAntialias";s:5:"lines";s:662:"function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2758,11 +2988,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1145;s:7:"endLine";i:1171;}',
     ),
     'setstrokecolor' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:14:"setStrokeColor";s:5:"lines";s:629:"function setStrokeColor($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:14:"setStrokeColor";s:5:"lines";s:628:"function setStrokeColor($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2786,13 +3016,12 @@ function setImageBias() {
 
     header("Content-Type: image/png");
     echo $image->getImageBlob();
-
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1174;s:7:"endLine";i:1200;}',
     ),
     'setstrokedasharray' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:18:"setStrokeDashArray";s:5:"lines";s:948:"function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:18:"setStrokeDashArray";s:5:"lines";s:948:"function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2821,11 +3050,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1203;s:7:"endLine";i:1233;}',
     ),
     'setstrokedashoffset' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:19:"setStrokeDashOffset";s:5:"lines";s:899:"function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:19:"setStrokeDashOffset";s:5:"lines";s:899:"function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2854,11 +3083,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1236;s:7:"endLine";i:1266;}',
     ),
     'setstrokelinecap' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:16:"setStrokeLineCap";s:5:"lines";s:730:"function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:16:"setStrokeLineCap";s:5:"lines";s:730:"function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -2883,11 +3112,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1268;s:7:"endLine";i:1294;}',
     ),
     'setstrokelinejoin' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:17:"setStrokeLineJoin";s:5:"lines";s:948:"function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:17:"setStrokeLineJoin";s:5:"lines";s:948:"function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeWidth(1);
@@ -2916,11 +3145,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1297;s:7:"endLine";i:1327;}',
     ),
     'setstrokemiterlimit' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:19:"setStrokeMiterLimit";s:5:"lines";s:1018:"function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:19:"setStrokeMiterLimit";s:5:"lines";s:1018:"function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2955,11 +3184,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1330;s:7:"endLine";i:1366;}',
     ),
     'setstrokeopacity' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:16:"setStrokeOpacity";s:5:"lines";s:799:"function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:16:"setStrokeOpacity";s:5:"lines";s:799:"function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
 
     $draw->setStrokeWidth(1);
@@ -2984,11 +3213,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1369;s:7:"endLine";i:1395;}',
     ),
     'setstrokewidth' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:14:"setStrokeWidth";s:5:"lines";s:620:"function setStrokeWidth($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:14:"setStrokeWidth";s:5:"lines";s:620:"function setStrokeWidth($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -3009,11 +3238,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1398;s:7:"endLine";i:1420;}',
     ),
     'settextalignment' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:16:"setTextAlignment";s:5:"lines";s:808:"function setTextAlignment($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:16:"setTextAlignment";s:5:"lines";s:808:"function setTextAlignment($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -3036,11 +3265,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1423;s:7:"endLine";i:1447;}',
     ),
     'settextantialias' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:16:"setTextAntialias";s:5:"lines";s:757:"function setTextAntialias($fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:16:"setTextAntialias";s:5:"lines";s:757:"function setTextAntialias($fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor(\'none\');
@@ -3064,11 +3293,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1450;s:7:"endLine";i:1475;}',
     ),
     'settextdecoration' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:17:"setTextDecoration";s:5:"lines";s:584:"function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDecoration) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:17:"setTextDecoration";s:5:"lines";s:584:"function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDecoration) {
 
     $draw = new \\ImagickDraw();
 
@@ -3087,11 +3316,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1478;s:7:"endLine";i:1498;}',
     ),
     'settextundercolor' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:17:"setTextUnderColor";s:5:"lines";s:632:"function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnderColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:17:"setTextUnderColor";s:5:"lines";s:632:"function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnderColor) {
     $draw = new \\ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -3111,49 +3340,70 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1501;s:7:"endLine";i:1522;}',
     ),
     'setvectorgraphics' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:17:"setVectorGraphics";s:5:"lines";s:715:"function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:17:"setVectorGraphics";s:5:"lines";s:1753:"function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
 
     
     if (false) {
-    $draw = new \\ImagickDraw();
-
-    $draw->setStrokeColor($strokeColor);
-    $draw->setFillColor($fillColor);
-
-    $draw->setStrokeWidth(2);
-    $draw->setFontSize(72);
-
-    $draw->ellipse(125, 70, 100, 50, 0, 360);
-
-    $draw->ellipse(350, 70, 100, 50, 0, 315);
-
-    $draw->push();
-    $draw->translate(125, 250);
-    $draw->rotate(30);
-    $draw->ellipse(0, 0, 100, 50, 0, 360);
-    $draw->pop();
-
-    $draw->push();
-    $draw->translate(350, 250);
-    $draw->rotate(30);
-    $draw->ellipse(0, 0, 100, 50, 0, 315);
-    $draw->pop();
-
-    $svg = $draw->getVectorGraphics();
-
-    var_dump($svg);
-//    exit(0);
+        //old example
+        $draw = new \\ImagickDraw();
     
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+    
+        $draw->setStrokeWidth(2);
+        $draw->setFontSize(72);
+    
+        $draw->ellipse(125, 70, 100, 50, 0, 360);
+    
+        $draw->ellipse(350, 70, 100, 50, 0, 315);
+    
+        $draw->push();
+        $draw->translate(125, 250);
+        $draw->rotate(30);
+        $draw->ellipse(0, 0, 100, 50, 0, 360);
+        $draw->pop();
+    
+        $draw->push();
+        $draw->translate(350, 250);
+        $draw->rotate(30);
+        $draw->ellipse(0, 0, 100, 50, 0, 315);
+        $draw->pop();
+    
+        $svg = $draw->getVectorGraphics();
+    
+        var_dump($svg);
+    //    exit(0);
+        
+    }
+
+    $SVG = \'<?xml version="1.0" encoding="utf-8"?>\';
+    $SVG .= \'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\';
+    $SVG .= \'<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="158px" height="92px" viewBox="0 0 158 92" enable-background="new 0 0 158 92" xml:space="preserve">\';
+    $SVG .= \'<text transform="matrix(1 0 0 1 32 58)" font-family="Lobster" font-style="normal" font-size="20px" font-weight="400">Lobster</text>\';
+    $SVG .= \'</svg>\';
+    
+    
+    $draw2 = new \\ImagickDraw();
+    $draw2->setvectorgraphics($SVG);
+
+    $imagick = new \\Imagick();
+    $imagick->newImage(500, 500, $backgroundColor);
+    $imagick->setImageFormat("png");
+
+    $imagick->drawImage($draw2);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1529;s:7:"endLine";i:1585;}',
     ),
     'setviewbox' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:10:"setViewBox";s:5:"lines";s:984:"function setViewBox($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:10:"setViewBox";s:5:"lines";s:984:"function setViewBox($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -3184,11 +3434,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1588;s:7:"endLine";i:1620;}',
     ),
     'skewx' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:5:"skewX";s:5:"lines";s:677:"function skewX($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:5:"skewX";s:5:"lines";s:677:"function skewX($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
                $startX, $startY, $endX, $endY, $skew) {
 
     $draw = new \\ImagickDraw();
@@ -3210,11 +3460,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1623;s:7:"endLine";i:1646;}',
     ),
     'skewy' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:5:"skewY";s:5:"lines";s:676:"function skewY($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:5:"skewY";s:5:"lines";s:676:"function skewY($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
                $startX, $startY, $endX, $endY, $skew) {
 
     $draw = new \\ImagickDraw();
@@ -3235,11 +3485,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1649;s:7:"endLine";i:1671;}',
     ),
     'translate' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:11:"ImagickDraw";s:11:"exampleName";s:9:"translate";s:5:"lines";s:698:"function translate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:9:"translate";s:5:"lines";s:698:"function translate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
                    $startX, $startY, $endX, $endY, $translateX, $translateY) {
 
     $draw = new \\ImagickDraw();
@@ -3261,14 +3511,14 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1674;s:7:"endLine";i:1697;}',
     ),
   ),
   'imagickpixel' => 
   array (
     'construct' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:12:"ImagickPixel";s:11:"exampleName";s:9:"construct";s:5:"lines";s:1675:"function construct() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:9:"construct";s:5:"lines";s:1675:"function construct() {
 
     $columns = 4;
     
@@ -3314,11 +3564,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:33;s:7:"endLine";i:80;}',
     ),
     'setcolor' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:12:"ImagickPixel";s:11:"exampleName";s:8:"setColor";s:5:"lines";s:564:"function setColor() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:8:"setColor";s:5:"lines";s:564:"function setColor() {
     $draw = new \\ImagickDraw();
 
     $strokeColor = new \\ImagickPixel(\'green\');
@@ -3339,11 +3589,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:83;s:7:"endLine";i:105;}',
     ),
     'setcolorvalue' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:12:"ImagickPixel";s:11:"exampleName";s:13:"setColorValue";s:5:"lines";s:1214:"function setColorValue() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:13:"setColorValue";s:5:"lines";s:1214:"function setColorValue() {
     $image = new \\Imagick();
     $draw = new \\ImagickDraw();
 
@@ -3398,11 +3648,11 @@ function setImageBias() {
      </refsect1>
 */
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:108;s:7:"endLine";i:164;}',
     ),
     'setcolorvaluequantum' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:12:"ImagickPixel";s:11:"exampleName";s:20:"setColorValueQuantum";s:5:"lines";s:617:"function setColorValueQuantum() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:20:"setColorValueQuantum";s:5:"lines";s:617:"function setColorValueQuantum() {
     $image = new \\Imagick();
 
     $quantumRange = $image->getQuantumRange();
@@ -3424,14 +3674,14 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:167;s:7:"endLine";i:190;}',
     ),
   ),
   'imagickpixeliterator' => 
   array (
     'clear' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:20:"ImagickPixelIterator";s:11:"exampleName";s:5:"clear";s:5:"lines";s:718:"function clear($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:5:"clear";s:5:"lines";s:718:"function clear($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
 
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 250, 200);
@@ -3451,11 +3701,11 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:31;s:7:"endLine";i:52;}',
     ),
     'construct' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:20:"ImagickPixelIterator";s:11:"exampleName";s:9:"construct";s:5:"lines";s:678:"function construct($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:9:"construct";s:5:"lines";s:678:"function construct($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imageIterator = new \\ImagickPixelIterator($imagick);
 
@@ -3472,11 +3722,11 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:55;s:7:"endLine";i:73;}',
     ),
     'getnextiteratorrow' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:20:"ImagickPixelIterator";s:11:"exampleName";s:18:"getNextIteratorRow";s:5:"lines";s:779:"function getNextIteratorRow($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:18:"getNextIteratorRow";s:5:"lines";s:779:"function getNextIteratorRow($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imageIterator = $imagick->getPixelIterator();
 
@@ -3498,11 +3748,11 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:76;s:7:"endLine";i:99;}',
     ),
     'resetiterator' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:20:"ImagickPixelIterator";s:11:"exampleName";s:13:"resetIterator";s:5:"lines";s:1441:"function resetIterator($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:13:"resetIterator";s:5:"lines";s:1441:"function resetIterator($imagePath) {
 
     $imagick = new \\Imagick(realpath($imagePath));
 
@@ -3537,11 +3787,11 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:102;s:7:"endLine";i:138;}',
     ),
     'setiteratorrow' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:20:"ImagickPixelIterator";s:11:"exampleName";s:14:"setIteratorRow";s:5:"lines";s:717:"function setIteratorRow($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:14:"setIteratorRow";s:5:"lines";s:717:"function setIteratorRow($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imageIterator = $imagick->getPixelRegionIterator(200, 200, 200, 200);
 
@@ -3559,20 +3809,85 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:141;s:7:"endLine";i:160;}',
     ),
     'synciteratorimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:20:"ImagickPixelIterator";s:11:"exampleName";s:17:"syncIteratorImage";s:5:"lines";s:1002:"function syncIteratorImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:17:"syncIteratorImage";s:5:"lines";s:2154:"class Pixel {
+
+    public $r;
+    public $g;
+    public $b;
+
+    function __construct($r, $g, $b) {
+        $this->r = $r;
+        $this->g = $g;
+        $this->b = $b;
+    }
+}
+
+class PixelStack {
+
+    /**
+     * @var Pixel[]
+     */
+    private $pixels = array();
+
+    function getAverageRed() {
+        $total = 0;
+        $count = 0;
+
+        foreach ($this->pixels as $pixel) {
+            $total += $pixel->r;
+            $count++;
+        }
+
+        return $total / $count;
+    }
+
+    function getAverageGreen() {
+        $total = 0;
+        $count = 0;
+
+        foreach ($this->pixels as $pixel) {
+            $total += $pixel->g;
+            $count++;
+        }
+
+        return $total / $count;
+    }
+
+    function getAverageBlue() {
+        $total = 0;
+        $count = 0;
+
+        foreach ($this->pixels as $pixel) {
+            $total += $pixel->b;
+            $count++;
+        }
+
+        return $total / $count;
+    }
+
+    function pushPixel($r, $g, $b) {
+        $pixel = new Pixel($r, $g, $b);
+        array_push($this->pixels, $pixel);
+
+        if (count($this->pixels) > 20) {
+            array_shift($this->pixels);
+        }
+    }
+}
+
+
+function syncIteratorImage($imagePath) {
 
     $imagick = new \\Imagick(realpath($imagePath));
 
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
 
     foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
-
         $pixelStatck = new PixelStack();
-
         foreach ($pixels as $pixel) { /* Loop through the pixels in the row (columns) */
             /** @var $pixel \\ImagickPixel */
             $pixelStatck->pushPixel($pixel->getColorValue(\\Imagick::COLOR_RED), $pixel->getColorValue(\\Imagick::COLOR_GREEN), $pixel->getColorValue(\\Imagick::COLOR_BLUE));
@@ -3588,14 +3903,14 @@ function setImageBias() {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:163;s:7:"endLine";i:254;}',
     ),
   ),
   'tutorial' => 
   array (
     'fxanalyzeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:14:"fxAnalyzeImage";s:5:"lines";s:2062:"function fxAnalyzeImage() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:14:"fxAnalyzeImage";s:5:"lines";s:2062:"function fxAnalyzeImage() {
 
     $graphWidth = 256;
     $sampleHeight = 20;
@@ -3663,15 +3978,15 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $outputImage;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:31;s:7:"endLine";i:100;}',
     ),
     'imagickcomposite' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:16:"imagickComposite";s:5:"lines";s:1327:"function imagickComposite() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:16:"imagickComposite";s:5:"lines";s:1318:"function imagickComposite() {
     //Load the images
-    $left = new \\Imagick(realpath(\'../images/im/holocaust_tn.gif\'));
-    $right = new \\Imagick(realpath(\'../images/im/spiral_stairs_tn.gif\'));
-    $gradient = new \\Imagick(realpath(\'../images/im/overlap_mask.png\'));
+    $left = new \\Imagick(realpath(\'images/im/holocaust_tn.gif\'));
+    $right = new \\Imagick(realpath(\'images/im/spiral_stairs_tn.gif\'));
+    $gradient = new \\Imagick(realpath(\'images/im/overlap_mask.png\'));
 
     //The right bit will be offset by a certain amount - avoid recalculating.
     $offsetX = $gradient->getImageWidth() - $right->getImageWidth();
@@ -3702,11 +4017,11 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $canvas->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:103;s:7:"endLine";i:139;}',
     ),
     'imagickcompositegen' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:19:"imagickCompositeGen";s:5:"lines";s:349:"function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:19:"imagickCompositeGen";s:5:"lines";s:4123:"function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
     $imagick = new \\Imagick();
     $imagick->newPseudoImage($height, $overlap, \'gradient:black-white\');
     $quanta = $imagick->getQuantumRange();
@@ -3714,11 +4029,144 @@ function setImageBias() {
 
     return $imagick;
 }
-";}',
+
+
+function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $midpoint = 0.5, $horizontal = true) {
+
+    $images = array();
+    $newImageWidth = 0;
+    $newImageHeight = 0;
+
+    if ($horizontal == true) {
+        $resizeWidth = 0;
+        $resizeHeight = $outputSize;
+    }
+    else {
+        $resizeWidth = $outputSize;
+        $resizeHeight = 0;
+    }
+
+    $blendWidth = 0;
+
+    foreach ($srcImages as $srcImage) {
+        $nextImage = new \\Imagick(realpath($srcImage));
+        $nextImage->resizeImage($resizeWidth, $resizeHeight, \\Imagick::FILTER_LANCZOS, 0.5);
+
+        if ($horizontal == true) {
+            $newImageWidth += $nextImage->getImageWidth();
+            $blendWidth = $nextImage->getImageHeight();
+        }
+        else {
+            //$newImageWidth = $nextImage->getImageWidth();
+            $blendWidth = $nextImage->getImageWidth();
+            $newImageHeight += $nextImage->getImageHeight();
+        }
+
+        $images[] = $nextImage;
+    }
+
+    if ($horizontal == true) {
+        $newImageWidth -= $overlap * (count($srcImages) - 1);
+        $newImageHeight = $outputSize;
+    }
+    else {
+        $newImageWidth = $outputSize;
+        $newImageHeight -= $overlap * (count($srcImages) - 1);
+    }
+
+    if ($blendWidth == 0) {
+        throw new \\Exception("Failed to read source images");
+    }
+
+    $fadeLeftSide = generateBlendImage($blendWidth, $overlap, $contrast, $midpoint);
+
+    if ($horizontal == true) {
+        //We are placing the images horizontally.
+        $fadeLeftSide->rotateImage(\'black\', -90);
+    }
+
+    //Fade out the left part - need to negate the mask to
+    //make math correct
+    $fadeRightSide = clone $fadeLeftSide;
+    $fadeRightSide->negateimage(false);
+
+    //Create a new canvas to render everything in to.
+    $canvas = new \\Imagick();
+    $canvas->newImage($newImageWidth, $newImageHeight, new \\ImagickPixel(\'black\'));
+
+    $count = 0;
+
+    $imagePositionX = 0;
+    $imagePositionY = 0;
+
+    /** @var $image \\Imagick */
+    foreach ($images as $image) {
+        $finalBlending = new \\Imagick();
+        $finalBlending->newImage($image->getImageWidth(), $image->getImageHeight(), \'white\');
+
+        if ($count != 0) {
+            $finalBlending->compositeImage($fadeLeftSide, \\Imagick::COMPOSITE_ATOP, 0, 0);
+        }
+
+        $offsetX = 0;
+        $offsetY = 0;
+
+        if ($horizontal == true) {
+            $offsetX = $image->getImageWidth() - $overlap;
+        }
+        else {
+            $offsetY = $image->getImageHeight() - $overlap;
+        }
+
+        if ($count != count($images) - 1) {
+            $finalBlending->compositeImage($fadeRightSide, \\Imagick::COMPOSITE_ATOP, $offsetX, $offsetY);
+        }
+
+        $image->compositeImage($finalBlending, \\Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+        $canvas->compositeimage($image, \\Imagick::COMPOSITE_BLEND, $imagePositionX, $imagePositionY);
+
+        if ($horizontal == true) {
+            $imagePositionX = $imagePositionX + $image->getImageWidth() - $overlap;
+        }
+        else {
+            $imagePositionY = $imagePositionY + $image->getImageHeight() - $overlap;
+        }
+        $count++;
+    }
+
+    return $canvas;
+}
+
+function imagickCompositeGen() {
+
+    $size = 160;
+
+    //Load the images 
+    $output = mergeImages(
+        [
+            \'images/lories/6E6F9109_480.jpg\',
+            \'images/lories/IMG_1599_480.jpg\',
+            \'images/lories/IMG_2561_480.jpg\',
+            \'images/lories/IMG_2837_480.jpg\',
+            //\'images/lories/IMG_4023.jpg\',
+        ],
+        $size,
+        0.2 * $size, //overlap
+        1,
+        0.5,
+        true);
+
+    //$output = generateBlendImage(200, 200, 5, 0.5);
+    $output->setImageFormat(\'png\');
+
+    header("Content-Type: image/png");
+    echo $output->getImageBlob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:142;s:7:"endLine";i:284;}',
     ),
     'edgeextend' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:10:"edgeExtend";s:5:"lines";s:1243:"function edgeExtend($virtualPixelType, $imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:10:"edgeExtend";s:5:"lines";s:1243:"function edgeExtend($virtualPixelType, $imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick->setImageVirtualPixelMethod($virtualPixelType);
 
@@ -3756,13 +4204,13 @@ function setImageBias() {
 //    "ty" => 0,
 //);
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:287;s:7:"endLine";i:326;}',
     ),
     'gradientreflection' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:18:"gradientReflection";s:5:"lines";s:1084:"function gradientReflection() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:18:"gradientReflection";s:5:"lines";s:1081:"function gradientReflection() {
 
-    $im = new \\Imagick(realpath(\'../images/sample.png\'));
+    $im = new \\Imagick(realpath(\'images/sample.png\'));
     
     $reflection = clone $im;
 
@@ -3795,11 +4243,11 @@ function setImageBias() {
     header(\'Content-Type: image/png\');
     echo $canvas;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:329;s:7:"endLine";i:365;}',
     ),
     'psychedelicfontgif' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:18:"psychedelicFontGif";s:5:"lines";s:1001:"function psychedelicFont() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:18:"psychedelicFontGif";s:5:"lines";s:1001:"function psychedelicFont() {
     $draw = new \\ImagickDraw();
     $name = \'Danack\';
 
@@ -3834,8 +4282,8 @@ function setImageBias() {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
-      1 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:18:"psychedelicFontGif";s:5:"lines";s:1877:"function psychedelicFontGif() {
+";s:11:"description";s:0:"";s:9:"startLine";i:368;s:7:"endLine";i:404;}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:18:"psychedelicFontGif";s:5:"lines";s:1872:"function psychedelicFontGif() {
 
     set_time_limit(3000);
 
@@ -3856,10 +4304,7 @@ function setImageBias() {
         }
 
         $draw->setStrokeOpacity(1);
-
-
         $draw->setFont("../fonts/CANDY.TTF");
-
         $draw->setfontsize(150 * $scale);
 
         for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
@@ -3875,8 +4320,6 @@ function setImageBias() {
         $draw->setFillColor(\'black\');
         $draw->setStrokeWidth(0);
         $draw->annotation(60 * $scale, 165 * $scale, $name);
-
-
 
         //Create an image object which the draw commands can be rendered into
         $imagick = new \\Imagick();
@@ -3901,11 +4344,11 @@ function setImageBias() {
     //there more than one file, so must be using writeImages()
     //$aniGif->writeImages("../var/cache/imageCache/Danack.gif", true);
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:407;s:7:"endLine";i:469;}',
     ),
     'svgexample' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:10:"svgExample";s:5:"lines";s:1161:"function svgExample() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:10:"svgExample";s:5:"lines";s:1161:"function svgExample() {
 
     $svg = <<< END
 <?xml version="1.0"?>
@@ -3949,13 +4392,13 @@ END;
     header("Content-Type: image/jpg");
     echo $image;
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:472;s:7:"endLine";i:517;}',
     ),
     'screenembed' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:11:"screenEmbed";s:5:"lines";s:831:"function screenEmbed() {
-    $overlay = new \\Imagick(realpath("../images/dickbutt.jpg"));
-    $imagick = new \\Imagick(realpath("../images/Screeny.png"));
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:11:"screenEmbed";s:5:"lines";s:825:"function screenEmbed() {
+    $overlay = new \\Imagick(realpath("images/dickbutt.jpg"));
+    $imagick = new \\Imagick(realpath("images/Screeny.png"));
 
     $overlay->setImageVirtualPixelMethod(\\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
 
@@ -3979,20 +4422,18 @@ END;
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:520;s:7:"endLine";i:547;}',
     ),
     'levelizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":3:{s:8:"category";s:8:"Tutorial";s:11:"exampleName";s:13:"levelizeImage";s:5:"lines";s:940:"function levelizeImage($blackPoint, $gamma,  $whitePoint) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:13:"levelizeImage";s:5:"lines";s:697:"function levelizeImage($blackPoint, $gamma,  $whitePoint) {
     $imagick = new \\Imagick();
     $imagick->newPseudoimage(500, 500, \'gradient:black-white\');
     $maxQuantum = $imagick->getQuantum();
-
+    $imagick->evaluateimage(\\Imagick::EVALUATE_POW, 1 / $gamma);
+    
     //Adjust the scale from black to white to the new \'distance\' between black and white
     $imagick->evaluateimage(\\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
-
-    //This function actually equivelent to the Evaluate POW function but with the argument inverted. As such a "-evaluate POW 2.2" will actually do a "-gamma 0.45455" (0.45455 is equal it 1/2.2) operation, which is the reverse of a "-gamma 2.2".
-    $imagick->evaluateimage(\\Imagick::EVALUATE_POW, 1 / $gamma);
 
     //Add move the black point to it\'s new value
     $imagick->evaluateimage(\\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);
@@ -4001,12 +4442,11 @@ END;
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";}',
+";s:11:"description";s:0:"";s:9:"startLine";i:550;s:7:"endLine";i:567;}',
     ),
   ),
 );
-
-    private $manualEntries = array (
+    protected $manualEntries = array (
   'imagickpixel' => 
   array (
     'clear' => 
@@ -13795,84 +14235,11 @@ END;
     ),
   ),
 );
-
-    private $category;
-    private $example;
+    protected $category;
+    protected $example;
 
     function __construct($category, $example) {
         $this->category = strtolower($category);
         $this->example = strtolower($example);
     }
-
-
-    function showDescription() {
-        if (isset($this->manualEntries[$this->category][$this->example]) == false) {
-            return "";
-        }
-
-        $manualEntry = $this->manualEntries[$this->category][$this->example];
-        
-        return $manualEntry['description'];
-    }
-
-    function showParameters() {
-        if (isset($this->manualEntries[$this->category][$this->example]) == false) {
-            return "";
-        }
-
-        $manualEntry = $this->manualEntries[$this->category][$this->example];
-        
-        $output = '';
-
-        if (count($manualEntry['parameters'])) {
-            $output .= "<h5>Parameters</h5>";
-
-            $output .= "<table class='smallPadding'><tbody>";
-
-            foreach ($manualEntry['parameters'] as $parameter) {
-                $output .= "<tr>";
-                    $output .= "<td class='smallPadding' valign='top'>".$parameter['name']."</td>";
-                    $output .= "<td class='smallPadding' valign='top'>".$parameter['type']."</td>";
-                    $output .= "<td class='smallPadding' valign='top'>".$parameter['description']."</td>";
-                $output .= "</tr>";
-            }
-
-            $output .= "</tbody></table>";
-        }
-
-
-        return $output; 
-    }
-
-
-    function showExamples() {
-
-        $output = "";
-
-        if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
-            return "";
-            //return "No example for ".$this->category. " ".$this->example ;
-        }
-        
-        $examples = $this->exampleEntries[$this->category][$this->example];
-        
-        $count = 1;
-        foreach ($examples as $example) {
-            $example = unserialize($example);
-            /** @var $example \ImagickDemo\CodeExample */
-            
-            if (count($examples) > 1) {
-                $output .= "Example $count <br/><pre>";
-            }
-            else {
-                $output .= "Example <br/><pre>";
-            }
-                $output .=  $example->getLines();
-            $output .=  "</pre>";
-            $count++;
-        }
-        
-        return $output;
-    }
-
 }

@@ -57,7 +57,7 @@ class textImage extends \ImagickDemo\Example {
         }
 
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath("images/TestImage.jpg"));
 
         $draw = new \ImagickDraw();
 

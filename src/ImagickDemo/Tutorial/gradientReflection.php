@@ -15,7 +15,7 @@ class gradientReflection extends \ImagickDemo\Example {
 
 //    function renderImageCorrect() {
 //        
-//        $im = new \Imagick(realpath('../images/sample.png'));
+//        $im = new \Imagick(realpath('images/sample.png'));
 //        
 //        $gradient = new \Imagick();
 //        $gradient->newPseudoImage($im->getImageWidth(), $im->getImageHeight(), 'gradient:rgba(255, 255, 255, 0.8)-rgba(255, 255, 255, 0.5)');

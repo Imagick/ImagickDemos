@@ -3,6 +3,8 @@
 
 namespace ImagickDemo\Tutorial;
 
+//http://www.imagemagick.org/script/color.php
+
 class listColors extends \ImagickDemo\Example {
 
     function render() {

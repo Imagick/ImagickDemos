@@ -36,8 +36,8 @@ class layerPSD extends \ImagickDemo\Example {
 
 <pre>
 \$files = [
-    realpath("../images/LayerTest.psd")."[1]",
-    realpath("../images/LayerTest.psd")."[2]",
+    realpath("images/LayerTest.psd")."[1]",
+    realpath("images/LayerTest.psd")."[2]",
 ];
 </pre>
 
@@ -59,8 +59,8 @@ END;
 
     function renderCustomImage() {
         $files = [
-            realpath("../images/LayerTest.psd")."[1]",
-            realpath("../images/LayerTest.psd")."[2]",
+            realpath("images/LayerTest.psd")."[1]",
+            realpath("images/LayerTest.psd")."[2]",
         ];
 
         $imagick = new \Imagick($files);

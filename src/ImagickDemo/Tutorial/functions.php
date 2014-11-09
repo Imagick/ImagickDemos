@@ -100,14 +100,12 @@ function fxAnalyzeImage() {
 //Example end
 
 
-
-
 //Example Tutorial::imagickComposite
 function imagickComposite() {
     //Load the images
-    $left = new \Imagick(realpath('../images/im/holocaust_tn.gif'));
-    $right = new \Imagick(realpath('../images/im/spiral_stairs_tn.gif'));
-    $gradient = new \Imagick(realpath('../images/im/overlap_mask.png'));
+    $left = new \Imagick(realpath('images/im/holocaust_tn.gif'));
+    $right = new \Imagick(realpath('images/im/spiral_stairs_tn.gif'));
+    $gradient = new \Imagick(realpath('images/im/overlap_mask.png'));
 
     //The right bit will be offset by a certain amount - avoid recalculating.
     $offsetX = $gradient->getImageWidth() - $right->getImageWidth();
@@ -139,6 +137,7 @@ function imagickComposite() {
     echo $canvas->getImageBlob();
 }
 //Example end
+
 
 //Example Tutorial::imagickCompositeGen
 function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
@@ -264,11 +263,11 @@ function imagickCompositeGen() {
     //Load the images 
     $output = mergeImages(
         [
-            '../images/lories/6E6F9109_480.jpg',
-            '../images/lories/IMG_1599_480.jpg',
-            '../images/lories/IMG_2561_480.jpg',
-            '../images/lories/IMG_2837_480.jpg',
-            //'../images/lories/IMG_4023.jpg',
+            'images/lories/6E6F9109_480.jpg',
+            'images/lories/IMG_1599_480.jpg',
+            'images/lories/IMG_2561_480.jpg',
+            'images/lories/IMG_2837_480.jpg',
+            //'images/lories/IMG_4023.jpg',
         ],
         $size,
         0.2 * $size, //overlap
@@ -326,10 +325,11 @@ function edgeExtend($virtualPixelType, $imagePath) {
 }
 //Example end
 
+
 //Example Tutorial::gradientReflection
 function gradientReflection() {
 
-    $im = new \Imagick(realpath('../images/sample.png'));
+    $im = new \Imagick(realpath('images/sample.png'));
     
     $reflection = clone $im;
 
@@ -404,7 +404,6 @@ function psychedelicFont() {
 //Example end
 
 
-
 //Example Tutorial::psychedelicFontGif
 function psychedelicFontGif() {
 
@@ -427,10 +426,7 @@ function psychedelicFontGif() {
         }
 
         $draw->setStrokeOpacity(1);
-
-
         $draw->setFont("../fonts/CANDY.TTF");
-
         $draw->setfontsize(150 * $scale);
 
         for ($strokeWidth = 25; $strokeWidth > 0; $strokeWidth--) {
@@ -446,8 +442,6 @@ function psychedelicFontGif() {
         $draw->setFillColor('black');
         $draw->setStrokeWidth(0);
         $draw->annotation(60 * $scale, 165 * $scale, $name);
-
-
 
         //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
@@ -525,8 +519,8 @@ END;
 
 //Example Tutorial::screenEmbed
 function screenEmbed() {
-    $overlay = new \Imagick(realpath("../images/dickbutt.jpg"));
-    $imagick = new \Imagick(realpath("../images/Screeny.png"));
+    $overlay = new \Imagick(realpath("images/dickbutt.jpg"));
+    $imagick = new \Imagick(realpath("images/Screeny.png"));
 
     $overlay->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
 
@@ -558,14 +552,10 @@ function levelizeImage($blackPoint, $gamma,  $whitePoint) {
     $imagick = new \Imagick();
     $imagick->newPseudoimage(500, 500, 'gradient:black-white');
     $maxQuantum = $imagick->getQuantum();
-
     $imagick->evaluateimage(\Imagick::EVALUATE_POW, 1 / $gamma);
     
     //Adjust the scale from black to white to the new 'distance' between black and white
     $imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
-
-    
-    
 
     //Add move the black point to it's new value
     $imagick->evaluateimage(\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);

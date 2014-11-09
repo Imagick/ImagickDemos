@@ -49,6 +49,8 @@ function clear($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
+//Example end
+
 
 //Example ImagickPixelIterator::construct
 function construct($imagePath) {
@@ -68,6 +70,8 @@ function construct($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
+//Example end
+
 
 //Example ImagickPixelIterator::getNextIteratorRow
 function getNextIteratorRow($imagePath) {
@@ -92,6 +96,8 @@ function getNextIteratorRow($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
+//Example end
+
 
 //Example ImagickPixelIterator::resetIterator
 function resetIterator($imagePath) {
@@ -129,6 +135,8 @@ function resetIterator($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
+//Example end
+
 
 //Example ImagickPixelIterator::setIteratorRow
 function setIteratorRow($imagePath) {
@@ -149,9 +157,10 @@ function setIteratorRow($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
+//Example end
 
 
-
+//Example ImagickPixelIterator::syncIteratorImage
 class Pixel {
 
     public $r;
@@ -218,7 +227,7 @@ class PixelStack {
     }
 }
 
-//Example ImagickPixelIterator::syncIteratorImage
+
 function syncIteratorImage($imagePath) {
 
     $imagick = new \Imagick(realpath($imagePath));
@@ -226,9 +235,7 @@ function syncIteratorImage($imagePath) {
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
 
     foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
-
         $pixelStatck = new PixelStack();
-
         foreach ($pixels as $pixel) { /* Loop through the pixels in the row (columns) */
             /** @var $pixel \ImagickPixel */
             $pixelStatck->pushPixel($pixel->getColorValue(\Imagick::COLOR_RED), $pixel->getColorValue(\Imagick::COLOR_GREEN), $pixel->getColorValue(\Imagick::COLOR_BLUE));
@@ -244,6 +251,8 @@ function syncIteratorImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
+//Example end
+
 
 
     

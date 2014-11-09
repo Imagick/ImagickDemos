@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1e4c622f9c10c057d733bfa90a4da4dc",
+    "hash": "c30be5676c5b26cf9ea70a430d81b34b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -298,6 +298,30 @@
                 "intahwebz",
                 "library"
             ]
+        },
+        {
+            "name": "danack/syntaxhighlighter",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/syntaxhighlighter.git",
+                "reference": "d63e1cc45c33c1a59269c6aed925419f7c343826"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/syntaxhighlighter/zipball/d63e1cc45c33c1a59269c6aed925419f7c343826",
+                "reference": "d63e1cc45c33c1a59269c6aed925419f7c343826",
+                "shasum": ""
+            },
+            "require-dev": {
+                "leafo/lessphp": "0.4.0",
+                "leafo/scssphp": "0.1.1",
+                "phpunit/phpunit": "4.1.3"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "The syntaxhighlighter made less crazy..",
+            "time": "2014-11-09 14:09:46"
         },
         {
             "name": "daverandom/libdns",

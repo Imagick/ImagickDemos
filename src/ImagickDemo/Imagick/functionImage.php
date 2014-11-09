@@ -15,7 +15,6 @@ class functionImage extends \ImagickDemo\Example {
         $this->functionControl = $control;
     }
 
-
     function getCustomImageParams() {
         return $this->functionControl->getParams();
     }
@@ -145,11 +144,8 @@ END;
             }
         }
 
-
         $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
         $imagick->setimageformat('png');
-//        header("Content-Type: image/png");
-//        echo $imagick->getImageBlob();
 
         analyzeImage($imagick, 512, 256);
     }

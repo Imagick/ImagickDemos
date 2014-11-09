@@ -91,8 +91,8 @@ END;
     
     //TODO - this is a little borked
     function renderCustomImageSimple() {
-        $tshirt = new \Imagick(realpath("../images/tshirt/tshirt.jpg"));
-        $logo = new \Imagick(realpath("../images/tshirt/Logo.png"));
+        $tshirt = new \Imagick(realpath("images/tshirt/tshirt.jpg"));
+        $logo = new \Imagick(realpath("images/tshirt/Logo.png"));
         $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, TRUE);
 
         $tshirt->setImageFormat('png');
@@ -151,8 +151,8 @@ END;
     
     
     function renderCustomImageCreases() {
-        $tshirt = new \Imagick(realpath("../images/tshirt/tshirt.jpg"));
-        $logo = new \Imagick(realpath("../images/tshirt/Logo.png"));
+        $tshirt = new \Imagick(realpath("images/tshirt/tshirt.jpg"));
+        $logo = new \Imagick(realpath("images/tshirt/Logo.png"));
         $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, TRUE);
 
         $tshirt->setImageFormat('png');

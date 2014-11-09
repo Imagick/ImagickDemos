@@ -12,6 +12,8 @@
     <link href="/css/imagick.css" rel="stylesheet">
     <link href="/css/colpick.css" rel="stylesheet">
     <!-- IE8 shims deleted - use a decent browser -->
+    <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shCoreDefault.css">
+    <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shThemePHPStormLight.css">
 </head>
 
 {inject name='nav' value='ImagickDemo\Navigation\Nav'}
@@ -135,6 +137,10 @@
 <script src="/js/jquery-1.11.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/colpick.js"></script>
+<script type="text/javascript" src="/js/syntaxhighlighter/xregexp.js"></script>
+<script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="/js/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="/js/syntaxhighlighter/shBrushJScript.js"></script>
 
 
 <script type="text/javascript">
@@ -173,9 +179,26 @@
     addColorSelector("#textUnderColorSelector", "#textUnderColor");
     addColorSelector("#gradientStartColorSelector", "#gradientStartColor");
     addColorSelector("#gradientEndColorSelector", "#gradientEndColor");
-    addColorSelector("#thresholdColorSelector", "#thresholdColor");
+    addColorSelector("#thresholdColorSelector", "#thresholdColor"); 
 
+    {literal}
+    
+   
+    var params = {
+        links: {
+            raw: 'Raw text',
+            github: 'View on github'
+        }
+    };
+
+    SyntaxHighlighter.all(params);
+
+    {/literal}
 </script>
+
+
+
+
 
 
 </html>

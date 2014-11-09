@@ -86,6 +86,7 @@ function affine($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
 
 
 //  Starting x ordinate of bounding rectangle
@@ -120,6 +121,7 @@ function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
 
 //Example ImagickDraw::bezier
 function bezier($strokeColor, $fillColor, $backgroundColor) {
@@ -162,6 +164,7 @@ function bezier($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::circle
@@ -190,6 +193,8 @@ function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, 
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::composite
 function composite($strokeColor, $fillColor, $backgroundColor) {
@@ -230,6 +235,8 @@ function composite($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::ellipse
 function ellipse($strokeColor, $fillColor, $backgroundColor) {
@@ -265,6 +272,8 @@ function ellipse($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::line
 function line($strokeColor, $fillColor, $backgroundColor) {
@@ -288,6 +297,8 @@ function line($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::matte
 function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
@@ -312,6 +323,8 @@ function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::pathStart
 function pathStart($strokeColor, $fillColor, $backgroundColor) {
@@ -356,6 +369,8 @@ function pathStart($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::point
 function point($fillColor, $backgroundColor) {
@@ -376,6 +391,8 @@ function point($fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::polygon
 function polygon($strokeColor, $fillColor, $backgroundColor) {
@@ -400,6 +417,8 @@ function polygon($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::polyline
 function polyline($strokeColor, $fillColor, $backgroundColor) {
@@ -428,7 +447,8 @@ function polyline($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-
+//Example end
+    
 //Example ImagickDraw::popDefs
 function popDefs($strokeColor, $fillColor, $backgroundColor) {
 
@@ -455,6 +475,8 @@ function popDefs($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::push
 function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
@@ -480,6 +502,8 @@ function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+    
 
 //Example ImagickDraw::pushPattern
 function pushPattern($strokeColor, $fillColor, $backgroundColor) {
@@ -524,6 +548,7 @@ function pushPattern($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::rectangle
@@ -547,6 +572,7 @@ function rectangle($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::render
@@ -573,7 +599,8 @@ function render($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-
+//Example end
+    
 //Example ImagickDraw::rotate
 function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
     $draw = new \ImagickDraw();
@@ -593,7 +620,8 @@ function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) 
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-
+//Example end
+    
 //Example ImagickDraw::roundRectangle
 function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $roundX, $roundY) {
 
@@ -615,7 +643,8 @@ function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $st
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-
+//Example end
+    
 //Example ImagickDraw::scale
 function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
 
@@ -636,7 +665,8 @@ function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-
+//Example end
+    
 //Example ImagickDraw::setClipPath
 function setClipPath($strokeColor, $fillColor, $backgroundColor) {
 
@@ -663,6 +693,8 @@ function setClipPath($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setClipRule
 function setClipRule($strokeColor, $fillColor, $backgroundColor) {
@@ -694,6 +726,7 @@ function setClipRule($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 //Example ImagickDraw::setClipUnits
 function setClipUnits($strokeColor, $fillColor, $backgroundColor) {
@@ -724,6 +757,7 @@ function setClipUnits($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 //Example ImagickDraw::setFillAlpha
 function setFillAlpha($strokeColor, $fillColor, $backgroundColor) {
@@ -746,6 +780,8 @@ function setFillAlpha($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setFillColor
 function setFillColor($strokeColor, $fillColor, $backgroundColor) {
@@ -770,6 +806,8 @@ function setFillColor($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+ 
 
 //Example ImagickDraw::setFillOpacity
 function setFillOpacity($strokeColor, $fillColor, $backgroundColor) {
@@ -794,6 +832,8 @@ function setFillOpacity($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setFillRule
 function setFillRule($fillColor, $strokeColor, $backgroundColor) {
@@ -848,6 +888,7 @@ function setFillRule($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
 
 //Example ImagickDraw::setFont
 function setFont($fillColor, $strokeColor, $backgroundColor) {
@@ -883,6 +924,8 @@ function setFont($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setFontFamily
 function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
@@ -920,6 +963,8 @@ function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setFontSize
 function setFontSize($fillColor, $strokeColor, $backgroundColor) {
@@ -947,6 +992,8 @@ function setFontSize($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setFontStretch
 function setFontStretch($fillColor, $strokeColor, $backgroundColor) {
@@ -975,6 +1022,8 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setFontStyle
 function setFontStyle($fillColor, $strokeColor, $backgroundColor) {
@@ -999,8 +1048,9 @@ function setFontStyle($fillColor, $strokeColor, $backgroundColor) {
 
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
-
 }
+//Example end
+
 
 //Example ImagickDraw::setFontWeight
 function setFontWeight($fillColor, $strokeColor, $backgroundColor) {
@@ -1034,7 +1084,9 @@ function setFontWeight($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
+    
 //Example ImagickDraw::setGravity
 function setGravity($fillColor, $strokeColor, $backgroundColor) {
 
@@ -1061,6 +1113,7 @@ function setGravity($fillColor, $strokeColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::setStrokeAlpha
@@ -1086,6 +1139,8 @@ function setStrokeAlpha($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setStrokeAntialias
 function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor) {
@@ -1113,6 +1168,8 @@ function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setStrokeColor
 function setStrokeColor($strokeColor, $fillColor, $backgroundColor) {
@@ -1139,8 +1196,9 @@ function setStrokeColor($strokeColor, $fillColor, $backgroundColor) {
 
     header("Content-Type: image/png");
     echo $image->getImageBlob();
-
 }
+//Example end
+
 
 //Example ImagickDraw::setStrokeDashArray
 function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor) {
@@ -1172,6 +1230,8 @@ function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setStrokeDashOffset
 function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor) {
@@ -1203,7 +1263,8 @@ function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-
+//Example end
+    
 //Example ImagickDraw::setStrokeLineCap
 function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor) {
 
@@ -1230,6 +1291,8 @@ function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setStrokeLineJoin
 function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor) {
@@ -1261,6 +1324,8 @@ function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+ 
 
 //Example ImagickDraw::setStrokeMiterLimit
 function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
@@ -1298,6 +1363,8 @@ function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+ 
 
 //Example ImagickDraw::setStrokeOpacity
 function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor) {
@@ -1325,6 +1392,8 @@ function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setStrokeWidth
 function setStrokeWidth($strokeColor, $fillColor, $backgroundColor) {
@@ -1348,7 +1417,9 @@ function setStrokeWidth($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
 
+    
 //Example ImagickDraw::setTextAlignment
 function setTextAlignment($strokeColor, $fillColor, $backgroundColor) {
     $draw = new \ImagickDraw();
@@ -1373,6 +1444,7 @@ function setTextAlignment($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::setTextAntialias
@@ -1400,6 +1472,8 @@ function setTextAntialias($fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setTextDecoration
 function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDecoration) {
@@ -1421,6 +1495,8 @@ function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDeco
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::setTextUnderColor
 function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnderColor) {
@@ -1443,6 +1519,7 @@ function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnde
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 
@@ -1454,36 +1531,37 @@ function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
 
     
     if (false) {
-    $draw = new \ImagickDraw();
-
-    $draw->setStrokeColor($strokeColor);
-    $draw->setFillColor($fillColor);
-
-    $draw->setStrokeWidth(2);
-    $draw->setFontSize(72);
-
-    $draw->ellipse(125, 70, 100, 50, 0, 360);
-
-    $draw->ellipse(350, 70, 100, 50, 0, 315);
-
-    $draw->push();
-    $draw->translate(125, 250);
-    $draw->rotate(30);
-    $draw->ellipse(0, 0, 100, 50, 0, 360);
-    $draw->pop();
-
-    $draw->push();
-    $draw->translate(350, 250);
-    $draw->rotate(30);
-    $draw->ellipse(0, 0, 100, 50, 0, 315);
-    $draw->pop();
-
-    $svg = $draw->getVectorGraphics();
-
-    var_dump($svg);
-//    exit(0);
+        //old example
+        $draw = new \ImagickDraw();
     
-}
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+    
+        $draw->setStrokeWidth(2);
+        $draw->setFontSize(72);
+    
+        $draw->ellipse(125, 70, 100, 50, 0, 360);
+    
+        $draw->ellipse(350, 70, 100, 50, 0, 315);
+    
+        $draw->push();
+        $draw->translate(125, 250);
+        $draw->rotate(30);
+        $draw->ellipse(0, 0, 100, 50, 0, 360);
+        $draw->pop();
+    
+        $draw->push();
+        $draw->translate(350, 250);
+        $draw->rotate(30);
+        $draw->ellipse(0, 0, 100, 50, 0, 315);
+        $draw->pop();
+    
+        $svg = $draw->getVectorGraphics();
+    
+        var_dump($svg);
+    //    exit(0);
+        
+    }
 
     $SVG = '<?xml version="1.0" encoding="utf-8"?>';
     $SVG .= '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
@@ -1504,6 +1582,7 @@ function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::setViewBox
@@ -1538,6 +1617,7 @@ function setViewBox($strokeColor, $fillColor, $backgroundColor) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
+//Example end
 
 
 //Example ImagickDraw::skewX
@@ -1563,6 +1643,8 @@ function skewX($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::skewY
 function skewY($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
@@ -1586,6 +1668,8 @@ function skewY($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
+//Example end
+
 
 //Example ImagickDraw::translate
 function translate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
@@ -1610,7 +1694,7 @@ function translate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColo
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-
+//Example end
 
 }
 

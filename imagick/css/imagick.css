@@ -43,3 +43,23 @@ pre {
     display: inline-block;
     padding-right: 60px;
 }
+
+
+@media (min-width: 900px) {
+    .shContainer {
+        max-width: 1200px;
+        font-size: 14px;
+    }
+}
+@media (min-width: 640px) and (max-width: 900px) {
+    .shContainer {
+        width: 600px;
+        font-size: 10px;
+    }
+}
+@media (max-width: 640px) {
+    .shContainer {
+        width: auto;
+        font-size: 8px;
+    }
+}

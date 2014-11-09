@@ -125,7 +125,7 @@ class composite extends \ImagickDemo\Example {
 
 
     function divide() {
-        $imagick = new \Imagick(realpath("../images/text_scan.png"));
+        $imagick = new \Imagick(realpath("images/text_scan.png"));
         $imagickCopy = clone $imagick;
         $imagickCopy->blurImage(0x20, 1);
         $imagick->compositeimage($imagickCopy, \Imagick::COMPOSITE_COLORDODGE, 0, 0);
@@ -140,8 +140,8 @@ class composite extends \ImagickDemo\Example {
      * @internal param $height
      */
     function Dst_In() {
-        $imagick = new \Imagick(realpath("../images/gradientDown.png"));
-        $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
+        $imagick = new \Imagick(realpath("images/gradientDown.png"));
+        $imagick2 = new \Imagick(realpath("images/whiteDiscAlpha.png"));
         $imagick->setBackgroundColor('yellow');
         $imagick2->setBackgroundColor('yellow');
         $imagick->compositeimage(
@@ -168,7 +168,7 @@ class composite extends \ImagickDemo\Example {
         $imagick = new \Imagick();
         $imagick->setBackgroundColor('yellow');
         $imagick->newPseudoImage($this->width, $this->height, 'gradient:white-black');
-//        $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
+//        $imagick2 = new \Imagick(realpath("images/whiteDiscAlpha.png"));
 //        $imagick2->setBackgroundColor('yellow');
 //
 //        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_DSTOUT, //\\Imagick::COMPOSITE_DSTATOP,
@@ -182,8 +182,8 @@ class composite extends \ImagickDemo\Example {
 
     function ATop() {
 
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
-        $imagick2 = new \Imagick(realpath("../images/whiteDiscAlpha.png"));
+        $imagick = new \Imagick(realpath("images/TestImage.jpg"));
+        $imagick2 = new \Imagick(realpath("images/whiteDiscAlpha.png"));
 
         $imagick2->setBackgroundColor('yellow');
 
@@ -197,9 +197,9 @@ class composite extends \ImagickDemo\Example {
 
 
     function Plus() {
-        $redImagick = new \Imagick(realpath("../images/redDiscAlpha.png"));
-        $greenImagick = new \Imagick(realpath("../images/greenDiscAlpha.png"));
-        $blueImagick = new \Imagick(realpath("../images/blueDiscAlpha.png"));
+        $redImagick = new \Imagick(realpath("images/redDiscAlpha.png"));
+        $greenImagick = new \Imagick(realpath("images/greenDiscAlpha.png"));
+        $blueImagick = new \Imagick(realpath("images/blueDiscAlpha.png"));
         $redImagick->compositeimage($greenImagick, \Imagick::COMPOSITE_PLUS, 0, 0);
         $redImagick->compositeimage($blueImagick, \Imagick::COMPOSITE_PLUS, 0, 0);
         $redImagick->setImageFormat('png');
@@ -210,8 +210,8 @@ class composite extends \ImagickDemo\Example {
 
 
     function Minus() {
-        $rgbImagick = new \Imagick(realpath("../images/rgbDisc.png"));
-        $redImagick = new \Imagick(realpath("../images/redDiscAlpha.png"));
+        $rgbImagick = new \Imagick(realpath("images/rgbDisc.png"));
+        $redImagick = new \Imagick(realpath("images/redDiscAlpha.png"));
         $rgbImagick->compositeimage($redImagick, \Imagick::COMPOSITE_MINUS, 0, 0);
         $rgbImagick->setImageFormat('png');
         header("Content-Type: image/png");
@@ -225,8 +225,8 @@ class composite extends \ImagickDemo\Example {
      * @internal param $height
      */
     function CopyOpacity() {
-        $imagick = new \Imagick(realpath("../images/gradientDown.png"));
-        $imagick2 = new \Imagick(realpath("../images/whiteDisc.png"));
+        $imagick = new \Imagick(realpath("images/gradientDown.png"));
+        $imagick2 = new \Imagick(realpath("images/whiteDisc.png"));
 
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
 
@@ -243,12 +243,12 @@ class composite extends \ImagickDemo\Example {
      * @internal param $height
      */
     function CopyOpacity2() {
-        $imagick = new \Imagick(realpath("../images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath("images/TestImage.jpg"));
 
         //This is vital - the image must have an alpha channel.
         $imagick->setImageFormat('png');
         $imagick->cropImage($this->width, $this->height, 0, 0);
-        $imagick2 = new \Imagick(realpath("../images/whiteDisc.png"));
+        $imagick2 = new \Imagick(realpath("images/whiteDisc.png"));
 
         $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
 

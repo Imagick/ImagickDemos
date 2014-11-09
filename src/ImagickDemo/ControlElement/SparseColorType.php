@@ -27,7 +27,7 @@ class SparseColorType extends OptionKeyElement {
             'renderImageVoronoi' => 'Voronoi',
             'renderImageBarycentric' => 'Barycentric',
             'renderImageBarycentric2' => 'Barycentric alt',
-            'renderImagePolynomial' => 'Polynomial',
+            //'renderImagePolynomial' => 'Polynomial',
             'renderImageShepards' => 'Shepards',
         ];
     }

@@ -5,12 +5,54 @@ namespace ImagickDemo;
 
 
 class CodeExample {
-    function __construct($category, $exampleName, $lines) {
+
+
+    public $category;
+    public $functionName;
+    public $lines;
+    public $description;
+    public $startLine;
+    public $endLine = null;
+    
+    
+    function __construct($category, $function, $lines, $description, $startLine) {
         $this->category = $category;
-        $this->exampleName =  $exampleName;
+        $this->functionName =  $function;
         $this->lines = $lines;
+        $this->description = $description;
+        $this->startLine = $startLine;
     }
 
+    /**
+     * @param $endLine
+     */
+    public function setEndLine($endLine) {
+        $this->endLine = $endLine;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartLine() {
+        return $this->startLine;
+    }
+
+    /**
+     * @return null
+     */
+    public function getEndLine() {
+        return $this->endLine;
+    }
+    
+    
+    
     /**
      * @return mixed
      */
@@ -21,8 +63,8 @@ class CodeExample {
     /**
      * @return mixed
      */
-    public function getExampleName() {
-        return $this->exampleName;
+    public function getFunctionName() {
+        return $this->functionName;
     }
 
     /**
@@ -30,5 +72,9 @@ class CodeExample {
      */
     public function getLines() {
         return $this->lines;
+    }
+    
+    public function appendLine($line) {
+        $this->lines .= $line;
     }
 }

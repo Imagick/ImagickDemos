@@ -25,6 +25,7 @@ class Image extends \ImagickDemo\ControlElement\OptionValueElement {
             "../imagick/images/Skyline_400.jpg" => 'Skyline',
             "../imagick/images/Biter_500.jpg" => 'Lorikeet',
             "../imagick/images/SydneyPeople_400.jpg" => 'People',
+            "../imagick/images/LowContrast.jpg" => 'Low contrast',
         ];
         
         return $images;

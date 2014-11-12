@@ -69,10 +69,9 @@ class distortImage extends \ImagickDemo\Example {
         return "Various distortion effects.<br/>";
     }
 
-    /**
-     * 
-     */
+
     function renderImageAffine() {
+//Example Imagick::distortImage Affine
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array(
             0,    0, 
@@ -85,14 +84,14 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
         $imagick->distortImage(  \Imagick::DISTORTION_AFFINE, $points, TRUE );
         header( "Content-Type: image/jpeg" );
-        echo $imagick;   
+        echo $imagick;
+//Example end
     }
 
-    /**
-     * 
-     */
-    function renderImageAffineProjection() {
 
+
+    function renderImageAffineProjection() {
+//Example Imagick::distortImage Projection
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array( 
             0.9,0.3,
@@ -104,20 +103,18 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage( \Imagick::DISTORTION_AFFINEPROJECTION, $points, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
+//Example end
     }
 
-    /**
-     * 
-     */
-    function renderImageArc() {
 
+    function renderImageArc() {
+//Example Imagick::distortImage Arc
         //Make some text arc around the center of it's image
 //        convert logo: -resize x150 -gravity NorthEast -crop 100x100+10+0! \
 //        \( -background none label:'IM Examples' \
 //        -virtual-pixel Background +distort Arc '270 50 20' \
 //        -repage +75+21\! \)  -flatten  arc_overlay.jpg
-        
-        
+
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $degrees = array( 180 );
         $imagick->setimagebackgroundcolor("#fad888");
@@ -125,12 +122,12 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage( \Imagick::DISTORTION_ARC, $degrees, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
+//Example end
     }
 
-    /**
-     * 
-     */
+
     function renderImageRotatedArc() {
+//Example Imagick::distortImage Rotated Arc
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $degrees = array( 180, 45, 100, 20 );
         $imagick->setimagebackgroundcolor("#fad888");
@@ -138,13 +135,11 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage( \Imagick::DISTORTION_ARC, $degrees, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
+//Example end
     }
 
-    /**
-     * 
-     */
     function renderImageBilinear() {
-
+//Example Imagick::distortImage Bilinear
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array(
             0,0, 25,25, # top left  
@@ -157,10 +152,12 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage( \Imagick::DISTORTION_BILINEAR, $points, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
+//Example end
     }
+
     
     function renderImageScaleRotateTransform() {
-
+//Example Imagick::distortImage Scale Rotate Transform
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array(
             1.5, # scale 150%
@@ -171,10 +168,12 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage( \Imagick::DISTORTION_SCALEROTATETRANSLATE, $points, TRUE );
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
+
     
     function renderImagePerspective() {
-    
+//Example Imagick::distortImage Perspective
         //$imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $imagick = new \Imagick();
 
@@ -186,8 +185,7 @@ class distortImage extends \ImagickDemo\Example {
 
         /* Fill new visible areas with transparent */
         $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-        
-        
+
         /* Activate matte */
         $imagick->setImageMatte(true);
 
@@ -208,13 +206,13 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage(\Imagick::DISTORTION_PERSPECTIVE, $controlPoints, true);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
+//Example end
     }
 
 
-    /**
-     * 
-     */
+
     function renderImagePerspectiveProjection() {
+//Example Imagick::distortImage PerspectiveProjection
         //X-of-destination = (sx*xs + ry+ys +tx) / (px*xs + py*ys +1)
         //Y-of-destination = (rx*xs + sy+ys +ty) / (px*xs + py*ys +1)
 
@@ -233,17 +231,21 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage(\Imagick::DISTORTION_PERSPECTIVEPROJECTION, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
 
+    
 
     function renderImagePerspectivePolynomial() {
+//Example Imagick::distortImage Polynomial
 
-        //http://www.imagemagick.org/Usage/distorts/#polynomial
-
-//        Order     X1,Y1 I1,J1     X2,Y2 I2,J2     X3,Y3 I3,J3     X4,Y4 I4,J4 . . . .
-//The 'Order' argument is usually an integer from '1' onward, though a special value of '1.5' can also be used. This defines the 'order' or complexity of the 2-dimensional mathematical equation (using both 'x' and 'y') , that will be applied.
-//For example an order '1' polynomial will fit a equation of the form...
-//Xd = 	 C2x*Xs + C1x*Ys + C0x	  ,      	Yd = 	 C2y*Xs + C1y*Ys + C0y	
+// Order     X1,Y1 I1,J1     X2,Y2 I2,J2     X3,Y3 I3,J3     X4,Y4 I4,J4 . . . .
+// The 'Order' argument is usually an integer from '1' onward, though a special value
+// of '1.5' can also be used. This defines the 'order' or complexity of the 2-dimensional
+// mathematical equation (using both 'x' and 'y') , that will be applied.
+// For example an order '1' polynomial will fit a equation of the form...
+// Xd = 	 C2x*Xs + C1x*Ys + C0x	  ,      	Yd = 	 C2y*Xs + C1y*Ys + C0y 
+// See also http://www.imagemagick.org/Usage/distorts/#polynomial
 
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array(
@@ -258,6 +260,7 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage(\Imagick::DISTORTION_POLYNOMIAL, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
 
     
@@ -265,6 +268,7 @@ class distortImage extends \ImagickDemo\Example {
     //Radius_Max   Radius_Min   Center_X,Center_Y   Start_Angle,End_Angle
 
     function renderImagePerspectivePolar() {
+//Example Imagick::distortImage Polar
         //v6.4.2-6
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array(
@@ -284,35 +288,42 @@ class distortImage extends \ImagickDemo\Example {
 
         header("Content-Type: image/jpeg");
         echo $imagick;
-        
+//Example end
     }
+
 
     //Polar args
     //Radius_Max   Radius_Min   Center_X,Center_Y   Start_Angle,End_Angle
 
     function renderImagePerspectiveDepolar() {
+//Example Imagick::distortImage Polar
         //v6.4.2-6
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $points = array(
             0
-        );
-
-     
+        );     
 
         $imagick->setimagebackgroundcolor("#fad888");
         $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
-        $imagick->distortImage(\Imagick::DISTORTION_POLAR, $points, TRUE);
+        $imagick->distortImage(\Imagick::DISTORTION_DEPOLAR, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
+
     
  
     function renderImageBarrel() {
-//
-//    The arguments needed for the 'Barrel' distort method. Generally you supply 3 or 4 values only...
-//A   B   C   [ D   [ X , Y ] ]
-//The optional X,Y arguments provide an optional 'center' for the radial distortion, otherwise it defaults to the exact center of the image given (regardless of its virtual offset).
-//The coefficients are designed so that if all four A to D values, add up to '1.0', the minimal width/height of the image will not change. For this reason if D (which controls the overall scaling of the image) is not supplied it will be set so all four values do add up to '1.0'.
+//Example Imagick::distortImage Barrel
+
+// The arguments needed for the 'Barrel' distort method. Generally you supply
+// 3 or 4 values only...
+// A   B   C   [ D   [ X , Y ] ]
+// The optional X,Y arguments provide an optional 'center' for the radial distortion,
+// otherwise it defaults to the exact center of the image given (regardless of its virtual offset).
+// The coefficients are designed so that if all four A to D values, add up to '1.0', the minimal
+// width/height of the image will not change. For this reason if D (which controls the overall
+// scaling of the image) is not supplied it will be set so all four values do add up to '1.0'.
     
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
      
@@ -326,12 +337,15 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage(\Imagick::DISTORTION_BARREL, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
 
-
+    
     function renderImageBarrelInverse() {
-//        Rsrc = r / ( A*r3 + B*r2 + C*r + D )
-//	 This equation does NOT produce the 'reverse' the 'Barrel' distortion. You can NOT use it to 'undo' the previous distortion.
+//Example Imagick::distortImage Barrel Inverse
+//  Rsrc = r / ( A*r3 + B*r2 + C*r + D )
+// This equation does NOT produce the 'reverse' the 'Barrel' distortion.
+// You can NOT use it to 'undo' the previous distortion.
 
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
 
@@ -345,11 +359,12 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage(\Imagick::DISTORTION_BARRELINVERSE, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
 
 
     function renderImageShepards() {
-
+//Example Imagick::distortImage Shepards
         //The control points move points in the image in a taffy like motion
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
 
@@ -367,9 +382,6 @@ class distortImage extends \ImagickDemo\Example {
 
             5 * $imagick->getImageWidth() / 100, 5 * $imagick->getImageHeight() / 100,
             95 * $imagick->getImageWidth() / 100, 95 * $imagick->getImageHeight() / 100,
-            
-            
-            
 //            //Move the centre of the image down and to the right
 //            50 * $imagick->getImageWidth() / 100, 50 * $imagick->getImageHeight() / 100,
 //            60 * $imagick->getImageWidth() / 100, 60 * $imagick->getImageHeight() / 100,
@@ -379,21 +391,19 @@ class distortImage extends \ImagickDemo\Example {
 //            80 * $imagick->getImageWidth(), 15 * $imagick->getImageHeight(),  
         );
 
-        
-        
-        
         $imagick->setimagebackgroundcolor("#fad888");
         $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_EDGE);
         $imagick->distortImage(\Imagick::DISTORTION_SHEPARDS, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
 
-
-
     function renderImageBarrelSentinel() {
-//        Rsrc = r / ( A*r3 + B*r2 + C*r + D )
-//	 This equation does NOT produce the 'reverse' the 'Barrel' distortion. You can NOT use it to 'undo' the previous distortion.
+//Example Imagick::distortImage Sentinel
+// Rsrc = r / ( A*r3 + B*r2 + C*r + D )
+// This equation does NOT produce the 'reverse' the 'Barrel' distortion.
+// You can NOT use it to 'undo' the previous distortion.
 
         $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
 
@@ -407,7 +417,7 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->distortImage(\Imagick::DISTORTION_SENTINEL, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
+//Example end
     }
-    
-    
+
 }

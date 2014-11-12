@@ -49,7 +49,7 @@ class Noise implements ControlElement {
         $output = "<tr>
                 <td class='standardCell'>Noise type
                 </td>
-                <td class='standardCell'> ";
+                <td class='standardCell valueCell'> ";
 
         $output .= "<select name='".self::noiseVar."'>";
 

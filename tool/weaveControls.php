@@ -616,6 +616,13 @@ $controls = [
         'ImagickDemo\ControlElement\BlendMidpoint',
     ],
 
+
+    'ImagickDemo\Control\linearStretchControl' =>  [
+        'ImagickDemo\ControlElement\Image',
+        '\ImagickDemo\ControlElement\BlackThreshold',
+        '\ImagickDemo\ControlElement\WhiteThreshold',
+    ]
+    
     
 ];
 

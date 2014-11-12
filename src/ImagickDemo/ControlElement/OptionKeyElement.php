@@ -50,7 +50,7 @@ abstract class OptionKeyElement implements ControlElement {
                 <td class='standardCell'>
                 ".$this->getDisplayName()."
                 </td>
-                <td class='standardCell'> ";
+                <td class='standardCell valueCell'> ";
 
         $output .= "<select name='".$this->getVariableName()."'>";
 

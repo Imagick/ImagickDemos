@@ -635,6 +635,14 @@ function gaussianBlurImage($imagePath, $radius, $sigma, $channel) {
 //Example end
 
 
+//Example Imagick::getImageGeometry
+function getImageGeometry($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 //Example Imagick::getPixelIterator
 function getPixelIterator($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -795,6 +803,18 @@ function levelImage($blackPoint, $gamma, $whitePoint) {
 }
 //Example end
 
+
+//Example Imagick::linearStretchImage
+function linearStretchImage($imagePath, $blackThreshold, $whiteThreshold) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $pixels = $imagick->getImageWidth() * $imagick->getImageHeight();
+    $imagick->linearStretchImage($blackThreshold * $pixels, $whiteThreshold * $pixels);
+
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+    
 
 //Example Imagick::magnifyImage
 function magnifyImage($imagePath) {
@@ -1256,6 +1276,17 @@ function setImageDelay() {
 //Example end
 
 
+//Example Imagick::setImageResolution
+function setImageResolution($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->setImageResolution(50, 50);
+    
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::setImageTicksPerSecond
 function setImageTicksPerSecond() {
 
@@ -1442,7 +1473,6 @@ function spreadImage($imagePath, $radius) {
 
 //Example Imagick::statisticImage
 function statisticImage($imagePath, $statisticType, $w20, $h20, $channel) {
-
     $imagick = new \Imagick(realpath($imagePath));
 
     $imagick->statisticImage(
@@ -1687,8 +1717,6 @@ function whiteThresholdImage($imagePath, $color) {
     echo $imagick->getImageBlob();
 }
 //Example end
-
-
 
 }
 

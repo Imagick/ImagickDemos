@@ -62,13 +62,10 @@ abstract class ValueElement implements ControlElement {
                 <td class='standardCell'>
                     ".$this->getDisplayName()."
                 </td>
-                <td class='standardCell'>
-                    <input type='text' name='".$this->getVariableName()."' value='$sValue'/>
+                <td class='standardCell valueCell'>
+                    <input type='text' class='inputValue' name='".$this->getVariableName()."' value='$sValue'/>
                 </td>
-                <td class='standardCell'>
-                </td>
-                
-                <td class='standardCell'>
+                <td class='standardCell '>
                 </td>
             </tr>";
 

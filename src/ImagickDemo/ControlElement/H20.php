@@ -62,7 +62,7 @@ class H20 implements ControlElement {
                 <td class='standardCell'>
                     Height
                 </td>
-                <td class='standardCell'>
+                <td class='standardCell valueCell'>
                     <input type='text' name='".self::h20Name."' value='$sWidth'/>
                 </td>
                 <td class='standardCell'>

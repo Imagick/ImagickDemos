@@ -424,7 +424,7 @@ END;
             //'getImageFilename',
             //'getImageFormat',
             //'getImageGamma',
-            //'getImageGeometry',
+            'getImageGeometry' => ['getImageGeometry', \ImagickDemo\Control\ImageControl::class],
             //'getImageGravity',
             //'getImageGreenPrimary',
             //'getImageHeight',
@@ -495,7 +495,10 @@ END;
                 ]
             ],
             
-            //'linearStretchImage',
+            'linearStretchImage' => [
+                'linearStretchImage',
+                \ImagickDemo\Control\linearStretchControl::class
+            ],
             //'liquidRescaleImage',
             'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ImageControl::class],
             //'mapImage',
@@ -625,7 +628,7 @@ END;
             //'setImageProperty',
             //'setImageRedPrimary',
             //'setImageRenderingIntent',
-            //'setImageResolution',
+            'setImageResolution' => ['setImageResolution', \ImagickDemo\Control\ImageControl::class ],
             //'setImageScene',
             'setImageTicksPerSecond' => ['setImageTicksPerSecond', \ImagickDemo\Control\ImageControl::class ],
             //'setImageType',

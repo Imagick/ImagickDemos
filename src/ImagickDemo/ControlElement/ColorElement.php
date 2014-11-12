@@ -61,7 +61,7 @@ abstract class ColorElement implements ControlElement {
                 <td class='standardCell'>
                     ".$this->getDisplayName()."
                 </td>
-                <td class='standardCell'>
+                <td class='standardCell valueCell'>
                     <input type='text' id='".$this->getVariableName()."' name='".$this->getVariableName()."' value='$sValue'  />
                 </td>
                 <td class='standardCell'>

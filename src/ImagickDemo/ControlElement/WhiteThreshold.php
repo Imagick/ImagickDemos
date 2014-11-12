@@ -3,26 +3,34 @@
 
 namespace ImagickDemo\ControlElement;
 
+use Intahwebz\Request;
 
 class WhiteThreshold extends ValueElement {
 
-    function getDefault() {
-        return 0.9;
-    }
+    private $default;
     
-    function getMin() {
+    function __construct(Request $request, $defaultWhiteThreshold = 0.2) {
+        $this->default = $defaultWhiteThreshold;
+        parent::__construct($request);
+    }
+
+    protected function getDefault() {
+        return $this->default;
+    }
+
+    protected function getMin() {
         return 0;
     }
-    
-    function getMax() {
-        return 1;
+
+    protected function getMax() {
+        return 100;
     }
-    
-    function getVariableName() {
+
+    protected function getVariableName() {
         return 'whiteThreshold';
     }
-    
-    function getDisplayName() {
+
+    protected function getDisplayName() {
         return 'White threshold';
     }
 

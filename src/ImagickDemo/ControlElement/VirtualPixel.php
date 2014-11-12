@@ -53,7 +53,7 @@ class VirtualPixel implements ControlElement {
         $output = "<tr>
                 <td class='standardCell'>Virtual pixel type
                 </td>
-                <td class='standardCell'> ";
+                <td class='standardCell valueCell'> ";
 
         $output .= "<select name='".self::virtualPixelVar."'>";
 

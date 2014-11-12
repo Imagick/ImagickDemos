@@ -32,6 +32,11 @@
     padding-bottom: 4px;
 }
 
+/* .inputValue,*/
+.valueCell {
+    text-align: right;
+}
+
 
 @media (max-width: 992px) {
     .responsiveFont {

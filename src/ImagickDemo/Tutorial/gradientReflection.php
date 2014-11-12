@@ -5,37 +5,17 @@ namespace ImagickDemo\Tutorial;
 
 class gradientReflection extends \ImagickDemo\Example {
 
-    function render() {
-        $output = "<br/>";
-        $output .= $this->renderImageURL();
+    function renderDescription() {
 
-        return $output;
+        $output = <<< END
+Reflecting an an image vertically with a gradient on the transparency of the reflected version produces a nice effect for logos:
+END;
+
+        return nl2br($output);
     }
     
-
-//    function renderImageCorrect() {
-//        
-//        $im = new \Imagick(realpath('images/sample.png'));
-//        
-//        $gradient = new \Imagick();
-//        $gradient->newPseudoImage($im->getImageWidth(), $im->getImageHeight(), 'gradient:rgba(255, 255, 255, 0.8)-rgba(255, 255, 255, 0.5)');
-//
-//        //$im->compositeImage($gradient, \Imagick::COMPOSITE_BLEND, 0, 0);
-//
-//        $im->compositeimage(
-//           $gradient,
-//           //\Imagick::COMPOSITE_COPYOPACITY,
-//           \Imagick::COMPOSITE_DSTOUT,
-//           0,
-//           0
-//        );
-//        
-//
-//        //TODO - this line produces an dark line across the image.
-//        //$im->setImageOpacity(0.45);
-//        header('Content-Type: image/jpg');
-//        echo $im;
-//    }
-
-
+    
+    function render() {
+        return $this->renderImageURL();
+    }
 }

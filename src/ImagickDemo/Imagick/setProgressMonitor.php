@@ -15,9 +15,22 @@ class setProgressMonitor extends \ImagickDemo\Example {
         $this->control = $control;
     }
 
+    function renderDescription() {
+        $output = <<< END
+The progress monitor allows you to be notified of progress during image processing. It also allows you to abort the image processing, for example if it's taking too long, or it is detected the image is no longer needed.
+
+In the example below, the progress is monitored and then the image operation is cancelled when the progress passed 20%.
+
+Please note the offset and span values are approximate and do not reflect an accurate measure of the image progress.
+END;
+
+        return nl2br($output);
+    }
 
     function render() {
 
+        echo "<pre>";
+//Example Imagick::setProgressMonitor
         $abortReason = null;
         
         try {
@@ -56,5 +69,7 @@ class setProgressMonitor extends \ImagickDemo\Example {
                 echo "ImagickException caught: ".$e->getMessage()." Exception type is ".get_class($e);
             }
         }
+//Example end
+        echo "</pre>";
     }
 }

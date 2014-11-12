@@ -104,7 +104,7 @@ END;
 
     function renderImage() {
         
-        $imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
+        $imagick = new \Imagick(realpath("imagick/images/Biter_500.jpg"));
         //$imagick->setOption('jpeg:extent', '20kb');
         //$imagick->setcompressionquality(30);
         $imagick->setimagecompressionquality(30);

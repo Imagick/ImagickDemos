@@ -5,7 +5,7 @@ namespace ImagickDemo\Imagick;
 
 class fxImage extends \ImagickDemo\Example {
 
-    function render() {
+    function renderDescription() {
         $text = <<< END
 
 The fxImage function allows you to define almost any possible image manipulation by defining the operation to perform as a string composed of a large selection of variables.
@@ -15,8 +15,10 @@ For the list of possible variables please see the <a href='http://www.imagemagic
 And yes, it is very, very slow. You should only use it if you need an image generating that can't be generated any other way, or if you wish to generate a 
 END;
 
-        echo nl2br($text);
-        
+        return nl2br($text);
+    }
+    
+    function render() {        
         return $this->renderImageURL();
     }
 
@@ -34,32 +36,37 @@ END;
 
 
 
-    //canvas:
-//-fx "Xi=i-w/2; Yj=j-h/2; 1.2*(0.5-hypot(Xi,Yj)/70.0)+0.5"
+    //This is actually an example for FX image
+    function example2() {
+        $graph = new \Imagick();
+        $graph->newPseudoImage(256, 256, "xc:pink");
 
-//convert -size 80x80 xc: -channel G -fx  'sin((i-w/2)*(j-h/2)/w)/2+.5'\
-//-separate fx_2d_gradient.gif
+        $imagick = new \Imagick();
+        $imagick->newPseudoImage(256, 256, 'gradient:black-white');
+        $arguments = array(9, -90);
+        $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
+
+        $graph->addImage($imagick);
+        $fx = 'colorInt=int(256 * v.p{0,j}.lightness); pos=int(i); (int(pos) >= colorInt && int(pos) <= colorInt)';
+        $fxImage = $graph->fxImage($fx);
+
+//        fxAnalyzeImage($imagick);
+
+        header("Content-Type: image/png");
+        $fxImage->setimageformat('png');
+        echo $fxImage->getImageBlob();
+
+    }
 
 
-//convert -size 100x100 xc:  -channel G \
-//-fx 'xx=i-w/2; yy=j-h/2; rr=hypot(xx,yy); (.5-rr/70)*1.2+.5' \
-//-separate  fx_radial_gradient.png
+
 
     function renderImage3() {
-
-        //$canvas = new \Imagick();
-        //$canvas->newImage(1, 256, "white", "jpg");
-        
         $gradient = new \Imagick();
         $gradient->newPseudoImage(1, 256, "gradient:white-black");
-        //$canvas->compositeImage( $gradient, \Imagick::COMPOSITE_OVER, 0, 0 );
-        //$canvas->rotateImage(new \ImagickPixel('white'), 90);
         $newImage = $gradient->fxImage("floor(u*10+0.5)/10");
-
         $newImage->setimageformat('jpg');
         header( "Content-Type: image/jpg" );
         echo $newImage;
-                
     }
-    
 }

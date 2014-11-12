@@ -156,13 +156,18 @@ class Page {
         if ($original) {
             return $this->getOriginalImageResponse($injector);
         }
-
+        
         if ($imageCache) {
             return $this->getCachedImageResponse($injector, $request, $category, $function);
         }
 
+        $ontrol = $injector->make('ImagickDemo\Control');
+        
+
         
         $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
+
+        
         $injector->execute($functionFullname);
         //TODO - capture ob_buffer and make a response.
         return null;

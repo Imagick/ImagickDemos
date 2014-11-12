@@ -409,6 +409,12 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\VirtualPixel'
     ],
+
+    'ImagickDemo\Control\FXAnalyzeControl' => [
+        'ImagickDemo\ControlElement\FXAnalyzeExample'
+    ],
+    
+    
     [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Swirl'
@@ -602,6 +608,15 @@ $controls = [
         '\ImagickDemo\ControlElement\WhitePoint',
         'ImagickDemo\ControlElement\Gamma'
     ],
+
+    
+    
+    'ImagickDemo\Control\blendComposite' => [
+        'ImagickDemo\ControlElement\Contrast',
+        'ImagickDemo\ControlElement\BlendMidpoint',
+    ],
+
+    
 ];
 
 \Intahwebz\Functions::load();

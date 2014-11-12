@@ -13,7 +13,7 @@ class getImageChannelStatistics extends \ImagickDemo\Example {
     
     
     function renderImage() {
-        $imagick = new \Imagick(realpath("../images/fnord.png"));
+        $imagick = new \Imagick(realpath("images/fnord.png"));
         header("Content-Type: image/png");
         echo $imagick->getimageblob();
     }
@@ -32,7 +32,6 @@ class getImageChannelStatistics extends \ImagickDemo\Example {
                 \Imagick::CHANNEL_BLACK => 'Black/index',
             ];
 
-            
             $identifyInfo = $imagick->getImageChannelStatistics();
 
             $output = '<table>';

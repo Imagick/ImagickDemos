@@ -23,9 +23,7 @@ class adaptiveBlurImage extends \ImagickDemo\Example {
     }
 
     function render() {
-        $output = "";
-        $output .= $this->renderImageURL();
-        return $output;
+        return $this->renderImageURL();
     }
 
     function renderDoc() {

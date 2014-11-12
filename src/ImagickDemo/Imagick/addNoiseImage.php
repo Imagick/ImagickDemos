@@ -9,8 +9,8 @@ class addNoiseImage extends \ImagickDemo\Example {
     function getOriginalImage() {
         return $this->control->getURL().'&original=true';
     }
-    
-    function render() {
+
+    function renderDescription() {
         $output = "NOISE_UNIFORM = 1;
         NOISE_GAUSSIAN = 2;
         NOISE_MULTIPLICATIVEGAUSSIAN = 3;
@@ -18,11 +18,13 @@ class addNoiseImage extends \ImagickDemo\Example {
         NOISE_LAPLACIAN = 5;
         NOISE_POISSON = 6;
         NOISE_RANDOM = 7;  <br/>";
-
-        $output .= $this->renderImageURL();
         
         return $output;
     }
 
 
+
+    function render() {
+        return $this->renderImageURL();
+    }
 }

@@ -8,6 +8,4 @@ class magnifyImage extends \ImagickDemo\Example {
     function render() {
         return $this->renderImageURL();
     }
-
-
 }

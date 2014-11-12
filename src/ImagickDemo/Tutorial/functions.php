@@ -29,17 +29,14 @@ function header($string, $replace = true, $http_response_code = null) {
 }
 
 //Example Tutorial::fxAnalyzeImage
-function fxAnalyzeImage() {
-
-    $graphWidth = 256;
+// Analyzes a one pixel wide image to make it easy to see what the
+// gradient is doing
+function fxAnalyzeImage(\Imagick $imagick) {
+    
+    $graphWidth = $imagick->getImageWidth();
     $sampleHeight = 20;
     $graphHeight = 128;
     $border = 2;
-
-    $imagick = new \Imagick();
-    $imagick->newPseudoImage($graphWidth, 1, 'gradient:black-white');
-    $arguments = array(9, -90);
-    $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
 
     $imageIterator = new \ImagickPixelIterator($imagick);
 
@@ -57,28 +54,23 @@ function fxAnalyzeImage() {
     $draw = new \ImagickDraw();
 
     $strokeColor = new \ImagickPixel('red');
-    $fillColor = new \ImagickPixel('red');
+    $fillColor = new \ImagickPixel('none');
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
-    $draw->setStrokeWidth(0);
+    $draw->setStrokeWidth(1);
     $draw->setFontSize(72);
-    $draw->setStrokeAntiAlias(false);
-    $previous = 0;
-    $first = true;
+    $draw->setStrokeAntiAlias(true);
 
     $x = 0;
-
+    $points = [];
+    
     foreach ($reds as $red) {
         $pos = $graphHeight - ($red * $graphHeight / 256);
-
-        if ($first !== true) {
-            $draw->line($x-1, $previous, $x, $pos);
-        }
+        $points[] = ['x' => $x, 'y' => $pos];
         $x += 1;
-        $previous = $pos;
-        $first = false;
     }
 
+    $draw->polyline($points);
 
     $plot = new \Imagick();
     $plot->newImage($graphWidth, $graphHeight, 'white');
@@ -143,14 +135,14 @@ function imagickComposite() {
 function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
     $imagick = new \Imagick();
     $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
-    $quanta = $imagick->getQuantumRange();
-    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quanta["quantumRangeLong"]);
+    $quantum = $imagick->getQuantum();
+    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quantum);
 
     return $imagick;
 }
 
 
-function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $midpoint = 0.5, $horizontal = true) {
+function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $blendMidpoint = 0.5, $horizontal = true) {
 
     $images = array();
     $newImageWidth = 0;
@@ -197,7 +189,7 @@ function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $m
         throw new \Exception("Failed to read source images");
     }
 
-    $fadeLeftSide = generateBlendImage($blendWidth, $overlap, $contrast, $midpoint);
+    $fadeLeftSide = generateBlendImage($blendWidth, $overlap, $contrast, $blendMidpoint);
 
     if ($horizontal == true) {
         //We are placing the images horizontally.
@@ -256,7 +248,7 @@ function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $m
     return $canvas;
 }
 
-function imagickCompositeGen() {
+function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
 
     $size = 160;
 
@@ -271,8 +263,8 @@ function imagickCompositeGen() {
         ],
         $size,
         0.2 * $size, //overlap
-        1,
-        0.5,
+        $contrast,
+        $blendMidpoint,
         true);
 
     //$output = generateBlendImage(200, 200, 5, 0.5);
@@ -365,17 +357,12 @@ function gradientReflection() {
 //Example end
 
 
-//Example Tutorial::psychedelicFontGif
+//Example Tutorial::psychedelicFont
 function psychedelicFont() {
     $draw = new \ImagickDraw();
     $name = 'Danack';
 
-    if (array_key_exists('name', $_REQUEST) == true) {
-        $name = $_REQUEST['name'];
-    }
-
     $draw->setStrokeOpacity(1);
-
     $draw->setFillColor('black');
     $draw->setFont("../fonts/CANDY.TTF");
 

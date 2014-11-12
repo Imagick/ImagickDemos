@@ -8,6 +8,4 @@ class sepiaToneImage extends \ImagickDemo\Example {
     function render() {
         return $this->renderImageURL();
     }
-
- 
 }

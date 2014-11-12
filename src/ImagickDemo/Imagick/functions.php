@@ -292,10 +292,10 @@ function colorMatrixImage($imagePath, $colorMatrix) {
 function compositeImage() {
 
     $img1 = new \Imagick();
-    $img1->readImage(realpath("../imagick/images/Biter_500.jpg"));
+    $img1->readImage(realpath("imagick/images/Biter_500.jpg"));
 
     $img2 = new \Imagick();
-    $img2->readImage(realpath("../imagick/images/Skyline_400.jpg"));
+    $img2->readImage(realpath("imagick/images/Skyline_400.jpg"));
 
     $img1->resizeimage(
         $img2->getImageWidth(),
@@ -357,7 +357,7 @@ function cropImage($imagePath, $startX, $startY, $width, $height) {
 
 //Example Imagick::deskewImage
 function deskewImage($threshold) {
-    $imagick = new \Imagick(realpath("../images/NYTimes-Page1-11-11-1918.jpg"));
+    $imagick = new \Imagick(realpath("images/NYTimes-Page1-11-11-1918.jpg"));
     $deskewImagick = clone $imagick;
     
     //This is the only thing required for deskewing.
@@ -481,7 +481,9 @@ function flipImage($imagePath) {
 
 //Example Imagick::floodFillPaintImage
 function floodFillPaintImage($fillColor, $fuzz, $targetColor, $x, $y, $inverse, $channel) {
-    $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
+
+   
+    $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
     $imagick->floodFillPaintImage(
         $fillColor,
         $fuzz * \Imagick::getQuantum(),
@@ -770,7 +772,7 @@ function getPixelRegionIterator($imagePath) {
 //Example Imagick::haldClutImage
 function haldClutImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagickPalette = new \Imagick(realpath("../images/hald/hald_8.png"));
+    $imagickPalette = new \Imagick(realpath("images/hald/hald_8.png"));
     $imagickPalette->sepiatoneImage(55);
     $imagick->haldClutImage($imagickPalette);
     header("Content-Type: image/jpg");
@@ -1010,7 +1012,7 @@ function reduceNoiseImage($imagePath, $reduceNoise) {
 //Example Imagick::remapImage
 function remapImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick2 = new \Imagick(realpath("../images/TestImage2.jpg"));
+    $imagick2 = new \Imagick(realpath("images/TestImage2.jpg"));
     $imagick->remapImage($imagick2, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1210,7 +1212,7 @@ function setImageOrientation($imagePath, $orientationType) {
 //Doesn't appear to do anything
 function setImageBias() {
 
-    $imagick = new \Imagick(realpath("../images/stack.jpg"));
+    $imagick = new \Imagick(realpath("images/stack.jpg"));
 
     //@$imagick->medianFilterImage(2);
     $imagick->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
@@ -1236,8 +1238,7 @@ function setImageBias() {
 
 //Example Imagick::setImageDelay
 function setImageDelay() {
-    $imagick = new \Imagick(realpath("../images/coolGif.gif"));
-    $imagick2 = $imagick->coalesceImages();
+    $imagick = new \Imagick(realpath("images/coolGif.gif"));
 
     $frameCount = 0;
 
@@ -1247,10 +1248,10 @@ function setImageDelay() {
         $frameCount++;
     }
 
-    $imagick3 = $imagick2->deconstructImages();
+    $imagick2 = $imagick->deconstructImages();
 
     header("Content-Type: image/gif");
-    echo $imagick3->getImagesBlob();
+    echo $imagick2->getImagesBlob();
 }
 //Example end
 
@@ -1258,11 +1259,8 @@ function setImageDelay() {
 //Example Imagick::setImageTicksPerSecond
 function setImageTicksPerSecond() {
 
-    $imagick = new \Imagick(realpath("../images/coolGif.gif"));
-    $imagick2 = $imagick->coalesceImages();
-
+    $imagick = new \Imagick(realpath("images/coolGif.gif"));
     $totalFrames = $imagick->getNumberImages();
-
     $frameCount = 0;
 
     foreach ($imagick as $frame) {
@@ -1279,9 +1277,9 @@ function setImageTicksPerSecond() {
         $frameCount++;
     }
 
-    $imagick3 = $imagick2->deconstructImages();
+    $imagick2 = $imagick->deconstructImages();
     header("Content-Type: image/gif");
-    echo $imagick3->getImagesBlob();
+    echo $imagick2->getImagesBlob();
 }
 //Example end
 
@@ -1290,7 +1288,7 @@ function setImageTicksPerSecond() {
 //Example Imagick::setIteratorIndex
 function setIteratorIndex() {
 
-    $imagick = new \Imagick(realpath("../images/LayerTest.psd"));
+    $imagick = new \Imagick(realpath("images/LayerTest.psd"));
 
     $output = new \Imagick();
     $imagick->setIteratorIndex(1);
@@ -1402,7 +1400,7 @@ function sketchImage($imagePath, $radius, $sigma, $angle) {
 function smushImages($imagePath) {
 
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick2 = new \Imagick(realpath("../images/coolGif.gif"));
+    $imagick2 = new \Imagick(realpath("images/coolGif.gif"));
 
     $imagick->addimage($imagick2);
     $smushed = $imagick->smushImages(false, 50);
@@ -1587,7 +1585,7 @@ function transformImageColorspace($imagePath, $colorSpace, $channel) {
 
 //Example Imagick::transparentPaintImage
 function transparentPaintImage($color, $alpha, $fuzz) {
-    $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
+    $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
 
     //Need to be in a format that supports transparency
     $imagick->setimageformat('png');
@@ -1627,7 +1625,7 @@ function transverseImage($imagePath) {
 
 //Example Imagick::trimImage
 function trimImage($color, $fuzz) {
-    $imagick = new \Imagick(realpath("../images/BlueScreen.jpg"));
+    $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
     $imagick->borderImage($color, 10, 10);
     $imagick->trimImage($fuzz * \Imagick::getQuantum());
 

@@ -21,7 +21,7 @@ class setImageArtifact extends \ImagickDemo\Example {
     }
     
     function render() {
-        $output = "blah blah blah";
+        $output = "";
         $output .= $this->renderImageURL();
         
         return $output;

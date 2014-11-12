@@ -5,15 +5,17 @@ namespace ImagickDemo\Imagick;
 
 class compositeImage extends \ImagickDemo\Example {
 
-    function render() {
-
+    function renderDescription() {
         $tutorialURL = '/Tutorial/composite';
-        
+
         $output = '';
         $output .= "This is a simple example. Please look at the <a href='$tutorialURL'>full composite tutorial</a> for more examples.<br/>";
-        
-        $output .= $this->renderImageURL();
-        
+
         return $output;
+    }
+
+
+    function render() {
+        return $this->renderImageURL();
     }
 }

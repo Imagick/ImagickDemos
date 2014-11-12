@@ -3,11 +3,20 @@
 
 namespace ImagickDemo\ControlElement;
 
+use Intahwebz\Request;
 
 class Contrast extends ValueElement {
 
+
+    private $default;
+
+    function __construct(Request $request, $defaultContrast = -20) {
+        $this->default = $defaultContrast;
+        parent::__construct($request);
+    }
+    
     protected function getDefault() {
-        return -20;
+        return $this->default;
     }
 
     protected function getMin() {

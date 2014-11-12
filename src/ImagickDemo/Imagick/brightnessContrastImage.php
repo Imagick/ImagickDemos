@@ -8,10 +8,7 @@ class brightnessContrastImage extends \ImagickDemo\Example {
         return $this->control->getURL().'&original=true';
     }
 
-
     function render() {
         return $this->renderImageURL();
     }
-
-
 }

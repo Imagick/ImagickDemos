@@ -8,5 +8,4 @@ class randomThresholdImage extends \ImagickDemo\Example {
     function render() {
         return $this->renderImageURL();
     }
-
 }

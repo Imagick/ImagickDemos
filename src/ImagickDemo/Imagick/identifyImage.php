@@ -6,7 +6,7 @@ namespace ImagickDemo\Imagick;
 class identifyImage extends \ImagickDemo\Example {
 
     function render() {
-        $imagick = new \Imagick(realpath("../images/fnord.png"));
+        $imagick = new \Imagick(realpath("images/fnord.png"));
         $identifyInfo = $imagick->identifyimage(true);
 
         foreach ($identifyInfo as $key => $value) {

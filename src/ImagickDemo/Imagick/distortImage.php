@@ -29,10 +29,7 @@ class distortImage extends \ImagickDemo\Example {
     }
 
     function render() {
-        $output = $this->renderDescription();
-        $output .= sprintf("<img src='%s' />", $this->rsiControl->getCustomImageURL());
-
-        return $output;
+        return sprintf("<img src='%s' />", $this->rsiControl->getCustomImageURL());
     }
 
     function getCustomImageParams() {

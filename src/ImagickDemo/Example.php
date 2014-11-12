@@ -29,6 +29,9 @@ abstract class Example implements renderableExample {
         return getClassName(get_class($this));
     }
 
+    function renderDescription() {
+    }
+
     function renderImageURL() {
 
         $js = '';
@@ -42,7 +45,7 @@ abstract class Example implements renderableExample {
         if ($originalImage == true) {
             $modifiedImage = $this->control->getURL();
 
-            $output .= <<< END
+            $output .= <<< JAVASCRIPT
 
 <script type='text/javascript'>
 
@@ -73,7 +76,7 @@ function toggleImage(imageSelector, mouseSelector, originalURL, originalText, mo
 
 </script>
 
-END;
+JAVASCRIPT;
 
             $changeToOriginal = ("$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')");
             

@@ -7,6 +7,4 @@ class resizeImage extends \ImagickDemo\Example {
     function render() {
         return $this->renderImageURL();
     }
-
-
 }

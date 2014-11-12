@@ -11,7 +11,6 @@
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/imagick.css" rel="stylesheet">
     <link href="/css/colpick.css" rel="stylesheet">
-    <!-- IE8 shims deleted - use a decent browser -->
     <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shCoreDefault.css">
     <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shThemePHPStormLight.css">
 </head>
@@ -19,7 +18,6 @@
 {inject name='nav' value='ImagickDemo\Navigation\Nav'}
 
 <body>
-
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container visible-md visible-lg">
         <nav class="navbar-default " role="navigation">
@@ -55,14 +53,18 @@
         </div>
 
         <div class="col-md-10" >
-
             <div class="row" style='padding-bottom: 20px'>
-            
                 <div class="col-md-8">
                     <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
 
                     <span class='visible-md visible-lg' >
+                        <p>
                         <i>{$docHelper->showDescription() | nofilter}</i>
+                            
+                        </p>
+                        <p>
+                            {$example->renderDescription() | nofilter}
+                        </p>
                     </span>
                 </div>
                 <div class="col-md-4 visible-md visible-lg" style='text-align: right'>
@@ -79,8 +81,6 @@
 
                 <div class="col-md-4">
                     {$control->renderForm() | nofilter}
-
-                    
                 </div>
             </div>
 
@@ -93,7 +93,6 @@
                     
                 </div>
             </div>
-    
 
             <div class="row">
                 <div class="col-md-12">
@@ -188,7 +187,7 @@
         links: {
             raw: 'Raw text',
             github: 'View on github'
-        }
+        },
     };
 
     SyntaxHighlighter.all(params);

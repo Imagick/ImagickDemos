@@ -807,12 +807,21 @@ END;
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
             'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
             'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
+            'fxAnalyzeImage' => [
+                'fxAnalyzeImage', 
+                \ImagickDemo\Control\FXAnalyze::class
+            ],
+            'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
             'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
-            'psychedelicFont' => ['psychedelicFont', \ImagickDemo\Control\NullControl::class],
-            'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
             'imagickComposite' => ['imagickComposite', \ImagickDemo\Control\NullControl::class],
-            'imagickCompositeGen' => ['imagickCompositeGen', \ImagickDemo\Control\NullControl::class],
-            'fxAnalyzeImage' => ['fxAnalyzeImage', \ImagickDemo\Control\NullControl::class],
+            'imagickCompositeGen' => [
+                'imagickCompositeGen',
+                \ImagickDemo\Control\blendComposite::class,
+
+                'defaultParams' => [
+                    'contrast' => 10
+                ]
+            ],
             'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
             'levelizeImage' => [
                 'levelizeImage',
@@ -822,11 +831,13 @@ END;
                     'whitePoint' => 100
                 ]
             ],
-            'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
-            'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
             'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],
             'logoTshirt' => ['logoTshirt', \ImagickDemo\Control\NullControl::class],
-            'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
+            'psychedelicFont' => ['psychedelicFont', \ImagickDemo\Control\NullControl::class],
+            'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
+            'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
+            'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
+            
         ];
 
         $examples = [

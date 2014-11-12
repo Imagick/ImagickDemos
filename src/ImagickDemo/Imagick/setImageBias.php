@@ -8,5 +8,4 @@ class setImageBias extends \ImagickDemo\Example {
     function render() {
         return $this->renderImageURL();
     }
-
 }

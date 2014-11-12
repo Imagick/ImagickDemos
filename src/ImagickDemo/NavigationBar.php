@@ -20,18 +20,22 @@ class NavigationBar {
         "/ImagickPixelIterator" => "Imagick Pixel Interator",
         "/Tutorial" => "Tutorial",
     ];
-    
+
+    /**
+     * @param null $activeCategory
+     * @param null $activeExample
+     */
     function __construct($activeCategory = null, $activeExample = null) {
         $this->activeCategory = $activeCategory;
         $this->activeExample = $activeExample;
     }
 
+    /**
+     * @return string
+     */
     function renderIssueLink() {
-
         $output = '';
-        
         $issueURL = "https://github.com/Danack/Imagick-demos/issues/new?title=&body=";
-
         if ($this->activeExample && $this->activeCategory) {
             $bodyString = sprintf("Reported from %s::%s", $this->activeCategory, $this->activeExample);
 
@@ -94,7 +98,10 @@ $output .="
 
         return $output;
     }
-    
+
+    /**
+     * @return string
+     */
     function renderRight() {
 
         $output = "";
@@ -103,7 +110,6 @@ $output .="
 <li>
     <a href='https://github.com/Danack/Imagick-demos' target='_blank'>Source code</a>
 </li>";
-
 
         $issueURL = "https://github.com/Danack/Imagick-demos/issues/new?title=&body=";
 

@@ -9,17 +9,13 @@ class queryFormats extends \ImagickDemo\Example {
     }
     
     function renderDescription() {
-
         $output = "";
-
         $input = \Imagick::queryformats();
-
         $columns = 6;
 
         echo "<table border='2' >";
 
-        for ($i=0; $i < count($input); $i += $columns)
-        {
+        for ($i=0; $i < count($input); $i += $columns) {
             echo "<tr>";
             for ($c=0; $c<$columns; $c++) {
                 echo "<td>";
@@ -33,19 +29,11 @@ class queryFormats extends \ImagickDemo\Example {
 
         echo "</table>";
 
-
-
         return $output;
     }
     
     
     function render() {
-        $output = $this->renderDescription();
-        
-//        $output .= $this->renderImageURL(); 
-        
-        return $output;
+        return "";
     }
-
-
 }

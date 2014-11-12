@@ -28,7 +28,7 @@ class setIteratorIndex extends \ImagickDemo\Example {
     }
 
     function renderCustomImage() {
-        $imagick = new \Imagick(realpath("../images/LayerTest.psd"));
+        $imagick = new \Imagick(realpath("images/LayerTest.psd"));
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();

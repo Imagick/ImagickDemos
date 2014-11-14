@@ -75,7 +75,7 @@ function addNoiseImage($noiseType, $imagePath, $channel) {
 }
 //Example end
 
-//TODO - separate sx, sy etc controls.
+
 //Example Imagick::affineTransformImage
 function affineTransformImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -86,7 +86,8 @@ function affineTransformImage($imagePath) {
     $affineRotate = array(
         "sx" => cos($angle), "sy" => cos($angle), 
         "rx" => sin($angle), "ry" => -sin($angle), 
-        "tx" => 0, "ty" => 0,);
+        "tx" => 0, "ty" => 0,
+    );
 
     $draw->affine($affineRotate);
 
@@ -292,10 +293,10 @@ function colorMatrixImage($imagePath, $colorMatrix) {
 function compositeImage() {
 
     $img1 = new \Imagick();
-    $img1->readImage(realpath("imagick/images/Biter_500.jpg"));
+    $img1->readImage(realpath("images/Biter_500.jpg"));
 
     $img2 = new \Imagick();
-    $img2->readImage(realpath("imagick/images/Skyline_400.jpg"));
+    $img2->readImage(realpath("images/Skyline_400.jpg"));
 
     $img1->resizeimage(
         $img2->getImageWidth(),

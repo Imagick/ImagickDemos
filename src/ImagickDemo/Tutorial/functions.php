@@ -28,6 +28,9 @@ function header($string, $replace = true, $http_response_code = null) {
     }
 }
 
+
+    
+    
 //Example Tutorial::fxAnalyzeImage
 // Analyzes a one pixel wide image to make it easy to see what the
 // gradient is doing

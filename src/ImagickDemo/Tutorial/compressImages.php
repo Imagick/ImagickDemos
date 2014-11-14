@@ -10,7 +10,7 @@ class compressImages extends \ImagickDemo\Example {
         return "Compression examples go here.";
     }
     
-    function renderDead() {
+    function renderDescription() {
 
         $imagick = $this->getJpg();
 
@@ -23,6 +23,8 @@ class compressImages extends \ImagickDemo\Example {
         $qualityReduction->setimagecompressionquality(50);
         $reducedQualitySize = strlen($qualityReduction->getimageblob());
 
+        echo "<img src='".$this->control->getCustomImageURL(['type' => 'original'])."'/>";
+        
 //        Blurred size = 
 //    <img src='/subimage/Example/compressImages/jpg' />
 //    <img src='/subimage/Example/compressImages/jpgWithBlur' />
@@ -51,12 +53,15 @@ class compressImages extends \ImagickDemo\Example {
         
         
 END;
-        
-        //new Markdown()
-        
+
         return $markdown;
     }
 
+
+    function renderCustomImage() {
+        $this->compressJpg();
+    }
+    
 
     function renderSubImage($subImageType) {
 
@@ -74,7 +79,9 @@ END;
     
     
     function getJpg() {
-        $imagick = new \Imagick(realpath("images/Biter.jpg"));
+
+        //imagick-demos/imagick/images/lories/IMG_2561_480.jpg
+        $imagick = new \Imagick(realpath("images/lories/IMG_2561_480.jpg"));
         $imagick->setimagecompressionquality(90);
         
         return $imagick;

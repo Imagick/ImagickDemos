@@ -809,11 +809,18 @@ END;
         $tutorialExamples = [
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
             'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
-            'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
+            //'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => [
                 'fxAnalyzeImage', 
                 \ImagickDemo\Control\FXAnalyze::class
             ],
+
+            'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],
+            'deconstructGif' => ['deconstructGif', \ImagickDemo\Control\NullControl::class],
+            
+            
+            'gifGeneration' => ['gifGeneration', \ImagickDemo\Control\NullControl::class],
+            
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
             'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
             'imagickComposite' => ['imagickComposite', \ImagickDemo\Control\NullControl::class],

@@ -2,13 +2,12 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+use Amp\Artax\Client as ArtaxClient;
+use Amp\Artax\SocketException;
 
 function compareImage(URLToCheck $urlToCheck, $resposeBody, $contentType) {
 
     $imageType = substr($contentType, strlen('image/'));
-    
-    
-//    echo " ".$urlToCheck->getUrl();
 
     $blahblah = str_replace(['?', '&', '/', '='], '_', $urlToCheck->getUrl());
     
@@ -214,13 +213,20 @@ class SiteChecker {
 
     function getURL(URLToCheck $urlToCheck) {
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
-        //echo "Getting $fullURL \n";
+        echo "Getting $fullURL \n";
         echo ".";
-
-        $client = new \Artax\Client;
         
-        $client->setOption('transfertimeout', 25);
-        $response = $client->request($fullURL);
+        
+
+        $client = new ArtaxClient;
+        
+        //$client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 25);
+        
+        
+        $promise = $client->request($fullURL);
+
+        $response = $promise->wait();
+        /** @var  $response \Amp\Artax\Response */
         $status = $response->getStatus();
 
         $this->urlsChecked[] = new URLResult(
@@ -234,9 +240,6 @@ class SiteChecker {
         if ($status != 200) {
             return null;
         }
-        
-        
-        
 
         $contentTypeHeaders = $response->getHeader('Content-Type');
         
@@ -324,6 +327,7 @@ class SiteChecker {
         //}
 
         try {
+            
             $body = $this->getURL($urlToCheck);
 
             if ($body) {
@@ -344,7 +348,7 @@ class SiteChecker {
             $ok = true;
 //            return new URLResult($path, 200, $urlToCheck->getReferrer());
         }
-        catch (Artax\SocketException $se) {
+        catch (SocketException $se) {
             $this->urlsChecked[] = new URLResult($path, 500, "Artax\\SocketException on $path - ".$se->getMessage(). " Exception type is ".get_class($se));
         }
         catch(InvalidArgumentException $iae) {

@@ -306,7 +306,11 @@ function compositeImage() {
     );
 
     $opacity = new \Imagick();    
-    $opacity->newPseudoImage($img1->getImageHeight(), $img1->getImageWidth(), "gradient:gray(10%)-gray(90%)");
+    $opacity->newPseudoImage(
+        $img1->getImageHeight(),
+        $img1->getImageWidth(),
+        "gradient:gray(10%)-gray(90%)"
+    );
     $opacity->rotateimage('black', 90);
 
     $img2->compositeImage($opacity, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);

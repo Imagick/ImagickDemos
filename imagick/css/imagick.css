@@ -43,11 +43,31 @@ body {
     min-width: 190px;
 }
 
-.leftShift {
-    margin-left: -70px;
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .leftShift {
+        margin-left: -32px;
+    }
+    .leftShiftPush {
+        margin-right: 17px;
+    }
 }
-.leftShiftPush {
-    margin-right: 55px;
+
+@media (min-width: 1200px) {
+    .leftShift {
+        margin-left: -77px;
+    }
+    .leftShiftPush {
+        margin-right: 62px;
+    }
+}
+
+
+
+@media (max-width: 992px) {
+    .navbar {
+        margin-bottom: 0px;
+    }
 }
 
 .smallPadding > tbody > tr > td{
@@ -163,7 +183,6 @@ pre {
     margin-bottom: 1px;
     margin-right: 1px;*/
 }
-
 
 
 

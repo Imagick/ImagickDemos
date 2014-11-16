@@ -16,25 +16,18 @@ class DocHelperDisplay extends DocHelper {
         return $manualEntry['description'];
     }
 
-    function showDescriptionPanel() {
+    function showDescriptionPanel($smaller = false) {
         $description = trim($this->showDescription());
         if (!$description) {
             return null;
         }
 
-//        $output  = "<div class='row'>";
-//        $output .= "<div class='col-md-12 visible-md visible-lg textPanelSpacing'>";
-//        
-        $output = getPanelStart('textPanelSpacing');
+        $output = getPanelStart($smaller, 'textPanelSpacing');
         $output .= "<i>";
         $output .= htmlentities($description);
         $output .= "</i>";
         $output .= getPanelEnd();
         
-        
-//                "</div>
-//            </div>";
-
         return $output;
     }
 
@@ -104,7 +97,11 @@ class DocHelperDisplay extends DocHelper {
             $example = unserialize($example);
             /** @var $example \ImagickDemo\CodeExample */
 
-            $output .= getPanelStart();            
+            //$output .= getPanelStart(false);
+
+            $output .= "<div class='row'>
+                <div class='col-md-12 contentPanel'>";
+            
             $output .= "<h4 class='exampleHeader'>";
             
             if (count($examples) > 1) {

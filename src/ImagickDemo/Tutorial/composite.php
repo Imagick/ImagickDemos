@@ -140,8 +140,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
             'ATop' => ['getTestImage', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_ATOP],
             'Plus' => ['getRedDiscAlpha', 'getBlueDiscAlpha', \Imagick::COMPOSITE_PLUS],
             'Minus' => ['getRGBDisc', 'getRedDiscAlpha', \Imagick::COMPOSITE_MINUS],
-            'CopyOpacity' => ['gradientDown', 'getWhiteDisc', \Imagick::COMPOSITE_COPYOPACITY],
-            'CopyOpacity2' => ['getBiter', 'getWhiteDisc', \Imagick::COMPOSITE_COPYOPACITY],
+            'CopyOpacity' => ['gradientDown', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_COPYOPACITY],
+            'CopyOpacity2' => ['getBiter', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_COPYOPACITY],
         ];
 
         $type = $this->request->getVariable('type');

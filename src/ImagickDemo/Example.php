@@ -41,7 +41,7 @@ abstract class Example implements renderableExample {
         return 3;
     }
 
-    function renderDescriptionPanel() {
+    function renderDescriptionPanel($smaller = false) {
 
         $description = $this->renderDescription();
         
@@ -49,15 +49,22 @@ abstract class Example implements renderableExample {
             return null;
         }
 
-        $output = '<div class="row">
-                <div class="col-md-12 visible-md visible-lg">';
+//        if ($smaller == true) {
+//            $output = '<div class="row">
+//                <div class="col-md-12 visible-xs visible-sm">';
+//        }
+//        else {
+//            $output = '<div class="row">
+//                <div class="col-md-12 visible-md visible-lg">';
+//            
+//        }
         
-        $output .= getPanelStart('textPanelSpacing');
+        $output = getPanelStart($smaller, 'textPanelSpacing');
         $output .= $description;
         $output .= getPanelEnd();
         
-        $output .= "</div>
-            </div>";
+//        $output .= "</div>
+//            </div>";
         
         return $output;
     }

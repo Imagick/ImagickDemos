@@ -345,7 +345,7 @@ END;
             //'cropThumbnailImage',
             //'current',
             //'cycleColormapImage',
-            'constituteImage' => [ 'constituteImage', \ImagickDemo\Control\NullControl::class],
+            //'constituteImage' => [ 'constituteImage', \ImagickDemo\Control\NullControl::class],
             // DestroyImage
             //'decipherImage',
             //'deconstructImages',
@@ -826,7 +826,7 @@ END;
                 \ImagickDemo\Control\FXAnalyze::class
             ],
 
-            'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],
+            //'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],
             'deconstructGif' => ['deconstructGif', \ImagickDemo\Control\NullControl::class],
 
             //'gifGeneration' => ['gifGeneration', \ImagickDemo\Control\NullControl::class],

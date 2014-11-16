@@ -1,4 +1,6 @@
+/* @panel-border-color:    #a5a5a5; */
 /* @navbar-default-link-hover-bg:             transparent; */
+/* @navbar-default-link-hover-bg:             #cfcfcf; */
 /* @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%); */
 .btn-default,
 .btn-primary,
@@ -162,20 +164,20 @@
   background-color: #357ebd;
 }
 .navbar-default {
-  background-image: -webkit-linear-gradient(top, #bfbfbf 0%, #a5a5a5 100%);
-  background-image: linear-gradient(to bottom, #bfbfbf 0%, #a5a5a5 100%);
+  background-image: -webkit-linear-gradient(top, #e4e4e4 0%, #cbcbcb 100%);
+  background-image: linear-gradient(to bottom, #e4e4e4 0%, #cbcbcb 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffbfbfbf', endColorstr='#ffa5a5a5', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe4e4e4', endColorstr='#ffcbcbcb', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
 }
 .navbar-default .navbar-nav > .active > a {
-  background-image: -webkit-linear-gradient(top, #989898 0%, #a0a0a0 100%);
-  background-image: linear-gradient(to bottom, #989898 0%, #a0a0a0 100%);
+  background-image: -webkit-linear-gradient(top, #bebebe 0%, #c6c6c6 100%);
+  background-image: linear-gradient(to bottom, #bebebe 0%, #c6c6c6 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff989898', endColorstr='#ffa0a0a0', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffbebebe', endColorstr='#ffc6c6c6', GradientType=0);
   -webkit-box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.075);
 }

@@ -225,14 +225,22 @@ class SiteChecker {
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
         
         echo ".";
-        echo "Getting $fullURL \n";
+//        echo "Getting $fullURL \n";
 
         $promise = $this->artaxClient->request($fullURL);
 
         $analyzeResult = function(\Exception $e = null, Response $response = null) use ($urlToCheck, $fullURL) {
 
+            echo "Result for $fullURL \n";
+            
             if ($e) {
                 echo "Something went wrong for $fullURL : ".$e->getMessage();
+
+                //$url = $urlToCheck->getUrl();
+                
+//                $this->urlsChecked[$url] = new URLResult($url, 500, "Error getting $url - ".$e->getMessage(). " Exception type is ".get_class($e));
+//                
+                $this->errors++;
                 return null;
             }
 
@@ -245,6 +253,7 @@ class SiteChecker {
             );
 
             if ($status != 200) {
+                $this->errors++;
                 return null;
             }
 
@@ -302,7 +311,7 @@ class SiteChecker {
      */
     function parseImgResult(DOMElement $element, $referrer)  {
         $href = $element->getAttribute('src');
-        //$this->addLinkToProcess($href, $referrer);
+        $this->addLinkToProcess($href, $referrer);
     }
     
     
@@ -353,7 +362,6 @@ class SiteChecker {
             $dom->find('//img')->each($imgClosure);
 
             $ok = true;
-//            return new URLResult($path, 200, $urlToCheck->getReferrer());
         }
         catch (SocketException $se) {
             $this->urlsChecked[] = new URLResult($path, 500, "Artax\\SocketException on $path - ".$se->getMessage(). " Exception type is ".get_class($se));

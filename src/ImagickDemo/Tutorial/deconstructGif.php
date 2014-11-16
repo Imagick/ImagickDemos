@@ -74,6 +74,7 @@ It does this by analyzing the frames, detected which parts are not changing, and
 This optimization only works for images where there is a large amount of absolutely static image. It does not work for Gifs created from a video.
 
 For the image below the normal vs the deconstructed file sizes are:
+
 END;
 
         $output = nl2br($output);

@@ -162,7 +162,8 @@ function bootstrapInjector($libratoKey,
         "../var/compile/",
         'tpl',
         //Jig\JigRender::COMPILE_CHECK_EXISTS
-        Jig\JigRender::COMPILE_CHECK_MTIME
+        //Jig\JigRender::COMPILE_CHECK_MTIME
+        Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
@@ -480,9 +481,24 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         echo $outputImage;
     }
 
-    function getPanelStart($extraClass = '', $style = '') {
-        return "<div class='row'>
-            <div class='col-md-12 contentPanel $extraClass' style='$style'>";
+    function getPanelStart($smaller, $extraClass = '', $style = '') {
+
+
+        if ($smaller == true) {
+            $output = "<div class='row'>
+                <div class='col-md-12 visible-xs visible-sm contentPanel $extraClass'  style='$style'>";
+        }
+        else {
+            $output = "<div class='row'>
+                <div class='col-md-12 visible-md visible-lg contentPanel $extraClass'  style='$style'>";
+        }
+
+        return $output;
+//
+//        return "<div class='row'>
+//            <div class='col-md-12 contentPanel $extraClass' style='$style'>";
+//        
+        
     }
 
     function getPanelEnd() {

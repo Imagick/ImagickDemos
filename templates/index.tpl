@@ -34,7 +34,6 @@
         </nav>   
     </div>
 
-
     <div class="container visible-xs visible-sm">
         {$navBar->renderSelect() | nofilter}
         {$nav->renderSelect() | nofilter}
@@ -51,19 +50,33 @@
     {$offset = $example->getColumnOffset();}
     {$remaining = 12 - $offset;}
     
-    <div class="row">
-        <div class="col-md-5 col-md-offset-{$offset}">
+    <div class="row hidden-sm hidden-xs">
+        <div class="col-sm-5 col-md-offset-{$offset}">
             <h3 class='noMarginTop leftShift'>
                 {$example->renderTitle() | nofilter}
             </h3>
         </div>
-        <div class="col-md-4" style='text-align: right'>
+        <div class="col-sm-4 " style='text-align: right'>
+            <span class="leftShiftPush">
+                {$nav->renderPreviousLink() | nofilter}
+                {$nav->renderNextLink() | nofilter}
+            </span>
+        </div>
+    </div>
+
+    <div class="row hidden-xs hidden-md hidden-lg">
+        <div class="col-xs-6">
+            <h3 class='noMarginTop'>
+                {$example->renderTitle() | nofilter}
+            </h3>
+        </div>
+        <div class="col-xs-6 " style='text-align: right'>
             {$nav->renderPreviousLink() | nofilter}
             {$nav->renderNextLink() | nofilter}
         </div>
     </div>
-
- 
+    
+    
     
     <div class="row">
         
@@ -92,7 +105,10 @@
                     </table>
                 </div>
             </div>
+            
+            {$docHelper->showDescriptionPanel(true) | nofilter}
 
+            {$example->renderDescriptionPanel(true) | nofilter}
 
             {$docHelper->showParametersPanel() | nofilter}
 
@@ -105,7 +121,13 @@
                     {$banner->render() | nofilter}
                 </div>
             </div>
-            
+        </div>
+
+
+        <div class="row visible-xs visible-sm">
+            <div class="col-md-12">
+                {$navBar->renderIssueLink() | nofilter}
+            </div>
         </div>
     </div>
     
@@ -166,11 +188,7 @@
         </div>
     </div>
 
-    <div class="row visible-xs visible-sm">
-        <div class="col-md-12">
-            {$navBar->renderIssueLink() | nofilter}
-        </div>
-    </div> 
+    
     
     -->
     

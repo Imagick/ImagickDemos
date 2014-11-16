@@ -1,4 +1,6 @@
+/* @panel-border-color:    #a5a5a5; */
 /* @navbar-default-link-hover-bg:             transparent; */
+/* @navbar-default-link-hover-bg:             #cfcfcf; */
 /* @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%); */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
@@ -3930,8 +3932,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #a5a5a5;
-  border-color: #949494;
+  background-color: #cbcbcb;
+  border-color: #bababa;
 }
 .navbar-default .navbar-brand {
   color: #444444;
@@ -3946,7 +3948,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav {
   padding-left: 1px;
-  background-color: #a5a5a5;
+  background-color: #cbcbcb;
 }
 .navbar-default .navbar-nav > li {
   background-color: #ffffff;
@@ -3960,7 +3962,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #111111;
-  background-color: #cfcfcf;
+  background-color: #9bd1ff;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -3986,7 +3988,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #949494;
+  border-color: #bababa;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -4001,7 +4003,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #111111;
-    background-color: #cfcfcf;
+    background-color: #9bd1ff;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,

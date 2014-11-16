@@ -6,8 +6,6 @@ namespace ImagickDemo;
 
 class DocHelperDisplay extends DocHelper {
 
-
-
     function showDescription() {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
@@ -18,6 +16,44 @@ class DocHelperDisplay extends DocHelper {
         return $manualEntry['description'];
     }
 
+    function showDescriptionPanel() {
+        $description = trim($this->showDescription());
+        if (!$description) {
+            return null;
+        }
+
+        $output  = "<div class='row'>";
+        $output .= "<div class='col-md-12 visible-md visible-lg'>";
+        $output .= "<i>";
+        $output .= getPanelStart();
+        $output .= htmlentities($description);
+        $output .= getPanelEnd();
+        
+        $output .= "</i>
+                </div>
+            </div>";
+
+        return $output;
+    }
+
+    function showParametersPanel() {
+        $params = $this->showParameters();
+        
+        if (!$params) {
+            return null;
+        }
+        
+        $output  = "<div class='row'> ";
+        $output .= "<div class='col-md-12 visible-md visible-lg contentPanel'>";
+        $output .= $params;
+        $output .= "
+                </div>
+            </div>";
+
+        return $output;
+    }
+    
+    
     function showParameters() {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
@@ -66,6 +102,9 @@ class DocHelperDisplay extends DocHelper {
             $example = unserialize($example);
             /** @var $example \ImagickDemo\CodeExample */
 
+            $output .= getPanelStart();            
+            $output .= "<h4 class='exampleHeader'>";
+            
             if (count($examples) > 1) {
                 $output .= "Example $count";
             }
@@ -76,6 +115,8 @@ class DocHelperDisplay extends DocHelper {
             if (strlen(trim($description))) {
                 $output .= ' - '.$description;
             }
+
+            $output .= "</h4>";
 
             $uri = sprintf(
                 "https://github.com/Danack/Imagick-demos/tree/master/src/ImagickDemo/%s/functions.php",
@@ -101,6 +142,8 @@ class DocHelperDisplay extends DocHelper {
             $output .=  $example->getLines();
             $output .=  "</pre></div>";
             $count++;
+
+            $output .= getPanelEnd();
         }
 
         return $output;

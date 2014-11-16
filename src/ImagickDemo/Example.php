@@ -30,6 +30,28 @@ abstract class Example implements renderableExample {
     }
 
     function renderDescription() {
+        return null;
+    }
+
+    function renderDescriptionPanel() {
+
+        $description = $this->renderDescription();
+        
+        if (!$description) {
+            return null;
+        }
+
+        $output = '<div class="row">
+                <div class="col-md-12 visible-md visible-lg">';
+        
+        $output .= getPanelStart('padding-top: 5px');
+        $output .= $description;
+        $output .= getPanelEnd();
+        
+        $output .= "</div>
+            </div>";
+        
+        return $output;
     }
 
     function renderImageURL() {

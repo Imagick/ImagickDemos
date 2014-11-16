@@ -27,7 +27,7 @@
         </nav>
 
         <nav class="navbar-default pull-right" role="navigation">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav ">
                 {$navBar->renderRight() | nofilter}
             </ul>
         </nav>   
@@ -48,9 +48,72 @@
 <div class='container'>
 
     <div class="row">
-        <div class="col-md-2 visible-md visible-lg" style="font-size: 12px">
+        <div class="col-md-5 col-md-offset-3">
+            <h4 class='noMarginTop leftShift'>
+                {$example->renderTitle() | nofilter}
+            </h4>
+        </div>
+        <div class="col-md-4" style='text-align: right'>
+            {$nav->renderPreviousLink() | nofilter}
+            {$nav->renderNextLink() | nofilter}
+        </div>
+    </div>
+
+ 
+    
+    <div class="row">
+        
+        <div class="col-md-3 visible-md visible-lg navPanel" >
             {$nav->renderNav()}
         </div>
+
+        <div class="col-md-9 leftShift">
+            {$docHelper->showDescriptionPanel() | nofilter}
+            {$example->renderDescriptionPanel() | nofilter}
+
+            <div class="row">
+                <div class="col-md-12 contentPanel" style="padding-top: 10px; padding-bottom: 10px">
+                    <table>
+                        <tr>
+                            <td valign="top" class=''>
+                                {$example->render() | nofilter}
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td valign="top" class="formContainer">
+                                {$control->renderForm() | nofilter}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            
+            {$docHelper->showParametersPanel() | nofilter}
+            
+            
+            {$docHelper->showExamples() | nofilter}
+            
+            {inject name='banner' value='ImagickDemo\Banners\Banner'}
+
+            <div class="row">
+                <div class="col-md-12">
+                    {$banner->render() | nofilter}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    <!-- 
+    
+    
+    <div class="row">
 
         <div class="col-md-10" >
             <div class="row" style='padding-bottom: 20px'>
@@ -58,30 +121,20 @@
                     <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
 
                     <span class='visible-md visible-lg' >
-                        <p>
-                        <i>{$docHelper->showDescription() | nofilter}</i>
-                            
-                        </p>
+
                         <p>
                             {$example->renderDescription() | nofilter}
                         </p>
                     </span>
                 </div>
                 <div class="col-md-4 visible-md visible-lg" style='text-align: right'>
-                    {$nav->renderPreviousLink() | nofilter}
-                    {$nav->renderNextLink() | nofilter}
+                    
                     {*$control->renderForm() | nofilter *}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-8">
-                    {$example->render() | nofilter}
-                </div>
-
-                <div class="col-md-4">
-                    {$control->renderForm() | nofilter}
-                </div>
+                
             </div>
 
             <div class='visible-md visible-lg' style="padding-top: 30px">
@@ -106,13 +159,7 @@
                 </div>
             </div>
 
-            {inject name='banner' value='ImagickDemo\Banners\Banner'}
-
-            <div class="row">
-                <div class="col-md-12">
-                    {$banner->render() | nofilter}
-                </div>
-            </div>
+          
         </div>
     </div>
 
@@ -120,9 +167,9 @@
         <div class="col-md-12">
             {$navBar->renderIssueLink() | nofilter}
         </div>
-    </div>
+    </div> 
     
-    
+    -->
     
     <div>
         <?php

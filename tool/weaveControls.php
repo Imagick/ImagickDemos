@@ -621,8 +621,22 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         '\ImagickDemo\ControlElement\BlackThreshold',
         '\ImagickDemo\ControlElement\WhiteThreshold',
-    ]
+    ],
     
+    
+    'ImagickDemo\Imagick\Control\orderedPosterizeControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\OrderedPosterizeType',
+    ],
+
+    
+    
+    'ImagickDemo\Imagick\Control\posterizeControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\PosterizeType',
+        'ImagickDemo\ControlElement\NumberLevels'
+    ],
+        
     
 ];
 

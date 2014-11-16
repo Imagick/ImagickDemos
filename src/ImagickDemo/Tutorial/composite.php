@@ -2,40 +2,53 @@
 
 namespace ImagickDemo\Tutorial;
 
+use Intahwebz\Request;
+use \ImagickDemo\Control\CompositeExampleControl;
+
 class composite extends \ImagickDemo\Example {
 
-    private $width = 300;
-    private $height = 300;
+    private $width = 200;
+    private $height = 200;
 
-//Over,  Dst Over,  Src,  Copy,  Replace,
-//Dst,  In,  Dst In,  Out,  Dst Out,
-//ATop,  Dst ATop,  Clear,  Xor
-//
-//Multiply,  Screen,  Bumpmap,  Divide,
-//Plus,  Minus,  ModulusAdd,  ModulusSubtract,
-//Difference,  Exclusion,  Lighten,  Darken,
-//LightenIntensity,  DarkenIntensity,
-//
-//
-//Overlay,  Hard Light,  Soft Light,   Pegtop Light,
-//Linear Light, Vivid Light, Pin Light,
-//Linear Dodge,  Linear Burn,  Color Dodge,  Color Burn,
-//
-//Copy Opacity,   Copy Red,  Copy Green,  Copy Blue,
-//Copy Cyan,  Copy Magenta,  Copy Yellow,  Copy Black,
-//Hue,  Saturate,  Luminize,  Colorize,
-//
-
-
-
-
+    const SOURCE_1 = 'source1';
+    const SOURCE_2 = 'source2';
+    const OUTPUT = 'output';
+    
     /**
      * @var \ImagickDemo\Control\CompositeExampleControl
      */
     private $compositeExampleControl;
 
-    function __construct(\ImagickDemo\Control\CompositeExampleControl $compositeExampleControl) {
+    /**
+     * @var Request
+     */
+    private $request;
+    
+
+    function __construct(CompositeExampleControl $compositeExampleControl, Request $request) {
         $this->compositeExampleControl = $compositeExampleControl;
+        $this->request = $request;
+    }
+
+    public static function getExamples() {
+        $listOfExamples = [
+            'multiplyGradients' => 'MULTIPLY',
+            'difference'        => 'DIFFERENCE',
+            'screenGradients'   => 'SCREEN',
+            'modulate'          => 'MODULATE',
+            'modulusAdd'        => 'MODULUS ADD',
+            'modulusSubstract'  => 'MODULUS SUBSTRACT',
+            'Dst_In'            => 'DSTIN',
+            'Dst_Out'           => 'DSTOUT',
+            'ATop'              => 'ATOP',
+            'Plus'              => 'PLUS',
+            'Minus'             => 'MINUS',
+            'divide'            => 'COLORDODGE enhance text',
+            'CopyOpacity'       => 'COPYOPACITY', //(Set transparency from gray-scale mask)
+            'CopyOpacity2'      => 'COPYOPACITY version 2', //(Set transparency from gray-scale mask)
+        ];
+
+        return $listOfExamples;
     }
 
     function getCustomImageParams() {
@@ -43,48 +56,166 @@ class composite extends \ImagickDemo\Example {
     }
     
     function render() {
-        $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL();
+        
+        $output = "<table class='compositeTable'>";
 
+        $output .= "<tr><td align='center' class='compositeTableTD'>Input 1</td>
+        <td align='center' class='compositeTableTD'>Input 2</td></tr>";
+        $output .= "<tr><td class='compositeTableTD'>";
+        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_1]);
+        $output .= "</td><td class='compositeTableTD'>";
+        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_2]);
+        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
+        $output .= 'Output';
+        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
+        $output .= $this->renderCustomImageURL(['type' => self::OUTPUT]);
+
+        $output .= '</tr>';
+        $output .= '</table>';
+        
         return $output;
     }
 
 
-    function renderCustomImageURL() {
+    function renderCustomImageURL($extraParams = []) {
         return sprintf(
             "<img src='%s' />",
-            $this->compositeExampleControl->getCustomImageURL()
+            $this->compositeExampleControl->getCustomImageURL($extraParams)
         );
     }
+
+    function getExampleDescription() {
+
+        $descriptions = [
+            'multiplyGradients' => 'multiplies the values of the pixels in each image together.',
+            'screenGradients' => "This is almost exactly like 'Multiply' except both input images are negated before the compose, and the final result is also then negated again to return the image to normal. In technical terms the two methods are 'Duals' of each other.
+That makes its formula:   1-(1-Src)*(1-Dest)",
+            'divide' => "",
+            'Dst_In' => "
+            The 'Dst_In' method is like using the source image as a 'Copy_Opacity' mask for the background image. It will remove the overlay image's shape from the background image like a cookie cutter which cuts out a cookie's shape from cookie dough.
+            
+            Unlike the 'Copy_Opacity' method you can NOT use a greyscale image as the mask as only the overlay image's alpha channel is used in this operation. Any color in the overlay is completely ignored.",
+
+            'Dst_Out' => "
+            Using the 'cookie dough' metaphor of 'Dst_In' the result of the 'Dst_Out' method is the dough that was left behind once a cookie has been cut out.
+It can be used to cut holes, or take bites out of the background image, using the shape of the overlay. Any color in the overlay is again completely ignored.
+            ",
+
+            'ATop' => "Like 'Over' but limit the result to the original shape of the background image. In other words, the alpha channel on the destination is unchanged but the image colors are overlaid by any non-transparent parts of the source image.
+If the background image is fully opaque (no transparency), this operation will act exactly like the normal 'Over' composition. It only differs when the background contains transparency which also clips the overlay.
+What makes this useful is for overlaying lighting and shading effects that are limited to the object (shape) of the destination.",
+//            'Plus' => '',
+//            'Minus' => '',
+            'CopyOpacity' => '', 
+            'CopyOpacity2' => '',
+        ];
+        
+        $customImage  = $this->compositeExampleControl->getCompositeExampleType();
+
+        if (array_key_exists($customImage, $descriptions) == false) {
+            return null;
+        }
+
+        return "<br/>".nl2br($descriptions[$customImage]);
+    }
+
+
+    
     
     function renderCustomImage() {
-        $methods = [ 
-            'multiplyGradients' => 'multiplyGradients',
-            'screenGradients' => 'screenGradients',
-            'divide' => 'divide',
-            'Dst_In' => 'Dst_In',
-            'Dst_Out' => 'Dst_Out',
-            'ATop' => 'ATop',
-            'Plus' => 'Plus',
-            'Minus' => 'Minus',
-            'CopyOpacity' => 'CopyOpacity', 
-            'CopyOpacity2' => 'CopyOpacity2',
+        $methods = [
+            'multiplyGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MULTIPLY],
+
+            'difference' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_DIFFERENCE],
+            'modulate' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MODULATE],
+            'modulusAdd' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MODULUSADD],
+            'modulusSubstract' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MODULUSSUBTRACT],
+            
+            
+            
+            'screenGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_SCREEN],
+            'divide' => [ 'getTextScan', 'getTextScanBlurred', \Imagick::COMPOSITE_COLORDODGE],
+            'Dst_In' => ['gradientDown', 'getWhiteDiscAlpha',  \Imagick::COMPOSITE_DSTIN],
+            'Dst_Out' => ['gradientDown', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_DSTOUT],
+            'ATop' => ['getTestImage', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_ATOP],
+            'Plus' => ['getRedDiscAlpha', 'getBlueDiscAlpha', \Imagick::COMPOSITE_PLUS],
+            'Minus' => ['getRGBDisc', 'getRedDiscAlpha', \Imagick::COMPOSITE_MINUS],
+            'CopyOpacity' => ['gradientDown', 'getWhiteDisc', \Imagick::COMPOSITE_COPYOPACITY],
+            'CopyOpacity2' => ['getBiter', 'getWhiteDisc', \Imagick::COMPOSITE_COPYOPACITY],
         ];
 
+        $type = $this->request->getVariable('type');
+        
         $customImage  = $this->compositeExampleControl->getCompositeExampleType();
 
         if (array_key_exists($customImage, $methods) == false) {
             throw new \Exception("Unknown composite method $customImage");  
         }
 
-        $method = $methods[$customImage];
-        $this->{$method}();
+        $methodInfo = $methods[$customImage];
+        
+        $firstImage = $this->{$methodInfo[0]}();
+        $secondImage = $this->{$methodInfo[1]}();
 
+        switch ($type) {
+            case (self::SOURCE_1): {
+                $this->showImage($firstImage);
+                //$this->outputImage($firstImage);
+                break;
+            }
+
+            case (self::SOURCE_2): {
+                $this->showImage($secondImage);
+                break;
+            }
+
+            default:
+            case (self::OUTPUT): {
+                break;
+            }
+        }
+
+        $this->genericComposite($firstImage, $secondImage, $methodInfo[2]);
+        exit(0);
+    }
+    
+    
+    private function outputImage(\Imagick $imagick) {
+        $imagick->setImageFormat('png');
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+        exit(0);
+    }
+
+    function genericComposite(\Imagick $imagick1, \Imagick $imagick2, $type) {
+        $imagick1->compositeimage($imagick2, $type, 0, 0);
+        $imagick1->setImageFormat('png');
+
+        $this->showImage($imagick1);
+    }
+
+    function showImage(\Imagick $imagick1) {
+        $backGround = new \Imagick();
+        $backGround->newPseudoImage(
+            $imagick1->getImageWidth(),
+            $imagick1->getImageHeight(),
+            'pattern:checkerboard'
+        );
+
+        $backGround->compositeimage($imagick1, \Imagick::COMPOSITE_ATOP, 0, 0);
+        $backGround->setImageFormat('png');
+
+        header("Content-Type: image/png");
+        echo $backGround->getImageBlob();
         exit(0);
     }
 
     function renderDescription() {
-        return "Select a demo:<br/>";
+        $output = "The Imagick::compositeImage function allows you to blend images together in many different ways.";
+
+        $output .= " Please see http://www.imagemagick.org/Usage/compose/ for details ";
+        
+        return $output;
     }
 
     private function gradientDown() {
@@ -101,161 +232,154 @@ class composite extends \ImagickDemo\Example {
 
         return $imagick;
     }
-    
 
-    function multiplyGradients() {
-        $imagick1 = $this->gradientDown();
-        $imagick2 = $this->gradientRight();
-        $imagick1->compositeimage($imagick2, \Imagick::COMPOSITE_MULTIPLY, 0, 0);
-
-        $imagick1->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $imagick1->getImageBlob();
-    }
-
-
-    function screenGradients() {
-        $imagick1 = $this->gradientDown();
-        $imagick2 = $this->gradientRight();
-        $imagick1->compositeimage($imagick2, \Imagick::COMPOSITE_SCREEN, 0, 0);
-        $imagick1->setImageFormat("png");
-        header("Content-Type: image/png");
-        echo $imagick1->getImageBlob();
-    }
-
-
-    function divide() {
+    function getTextScan() {
         $imagick = new \Imagick(realpath("images/text_scan.png"));
-        $imagickCopy = clone $imagick;
-        $imagickCopy->blurImage(0x20, 1);
-        $imagick->compositeimage($imagickCopy, \Imagick::COMPOSITE_COLORDODGE, 0, 0);
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
-    }
-
-
-    /**
-     * This is meant to be a simple alpha mask
-     * @internal param $width
-     * @internal param $height
-     */
-    function Dst_In() {
-        $imagick = new \Imagick(realpath("images/gradientDown.png"));
-        $imagick2 = new \Imagick(realpath("images/whiteDiscAlpha.png"));
-        $imagick->setBackgroundColor('yellow');
-        $imagick2->setBackgroundColor('yellow');
-        $imagick->compositeimage(
-            $imagick2,
-            \Imagick::COMPOSITE_DSTIN,
-            0,
-            0
+        $imagick->resizeImage(
+            2 * $imagick->getImageWidth() / 3,
+            2 * $imagick->getImageHeight() / 3,
+            \Imagick::FILTER_LANCZOS,
+            1
         );
-
-        
-        $imagick->resizeImage($this->width, $this->height, \Imagick::FILTER_LANCZOS, 1, false);
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        return $imagick;
     }
 
+    function getTextScanBlurred() {
+        $imagick = $this->getTextScan();
+        $imagick->blurImage(0x20, 1);
 
+        return $imagick;
+    }
 
-    /**
-     * This is meant to be an inversed alpha mask
-     * @internal param $width
-     * @internal param $height
-     */
-    function Dst_Out() {
+    function getWhiteDiscAlpha() {
+        $width = $this->width;
+        $height = $this->height;
         $imagick = new \Imagick();
-        $imagick->setBackgroundColor('yellow');
-        $imagick->newPseudoImage($this->width, $this->height, 'gradient:white-black');
-//        $imagick2 = new \Imagick(realpath("images/whiteDiscAlpha.png"));
-//        $imagick2->setBackgroundColor('yellow');
-//
-//        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_DSTOUT, //\\Imagick::COMPOSITE_DSTATOP,
-//            0, 0);
+        $imagick->newImage($width, $height, 'none');
 
-        $imagick->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        $draw = new \ImagickDraw();
+
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('white');
+        $draw->circle($width / 2, $height / 2, $width / 4, $height / 2);
+
+        $imagick->drawImage($draw);
+
+        return $imagick;
     }
-
-
-    function ATop() {
-
+    
+    
+    function getTestImage() {
         $imagick = new \Imagick(realpath("images/TestImage.jpg"));
-        $imagick2 = new \Imagick(realpath("images/whiteDiscAlpha.png"));
+        return $imagick;
+    }
 
-        $imagick2->setBackgroundColor('yellow');
+    function getRedDiscAlpha() {
+        $width = $this->width;
+        $height = $this->height;
+        
+        $imagick = new \Imagick();
+        $imagick->newImage($width, $height, 'none');
 
-        $imagick->compositeimage($imagick2, //\\Imagick::COMPOSITE_DSTOUT,
-            \Imagick::COMPOSITE_ATOP, 0, 0);
+        $draw = new \ImagickDraw();
 
-        $imagick->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('red');
+        $draw->circle($width / 2, $height / 3, $width / 2, ($height / 3 - $height / 4));
+
+        $imagick->drawImage($draw);
+
+        return $imagick;
     }
 
 
-    function Plus() {
-        $redImagick = new \Imagick(realpath("images/redDiscAlpha.png"));
-        $greenImagick = new \Imagick(realpath("images/greenDiscAlpha.png"));
-        $blueImagick = new \Imagick(realpath("images/blueDiscAlpha.png"));
-        $redImagick->compositeimage($greenImagick, \Imagick::COMPOSITE_PLUS, 0, 0);
-        $redImagick->compositeimage($blueImagick, \Imagick::COMPOSITE_PLUS, 0, 0);
-        $redImagick->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $redImagick->getImageBlob();
+    function getGreenDiscAlpha() {
+        $width = $this->width;
+        $height = $this->height;
+        $imagick = new \Imagick();
+        $imagick->newImage($width, $height, 'none');
+
+        $draw = new \ImagickDraw();
+
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('lime');
+        $draw->circle($width / 3, 2 * $height / 3, ($width / 3 - $width / 4), 2 * $height / 3);
+
+        $imagick->drawImage($draw);
+
+        return $imagick;
     }
 
+    function getBlueDiscAlpha() {
+        $width = $this->width;
+        $height = $this->height;
+        
+        $imagick = new \Imagick();
+        $imagick->newImage($width, $height, 'none');
 
+        $draw = new \ImagickDraw();
 
-    function Minus() {
-        $rgbImagick = new \Imagick(realpath("images/rgbDisc.png"));
-        $redImagick = new \Imagick(realpath("images/redDiscAlpha.png"));
-        $rgbImagick->compositeimage($redImagick, \Imagick::COMPOSITE_MINUS, 0, 0);
-        $rgbImagick->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $rgbImagick->getImageBlob();
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('blue');
+        $draw->circle(2 * $width / 3, 2 * $height / 3, $width - ($width / 3 - $width / 4), 2 * $height / 3);
+
+        $imagick->drawImage($draw);
+
+        return $imagick;
     }
 
+    function getRGBDisc() {
+        $width = $this->width;
+        $height = $this->height;
 
-    /**
-     * This is meant to be a simple alpha mask
-     * @internal param $width
-     * @internal param $height
-     */
-    function CopyOpacity() {
-        $imagick = new \Imagick(realpath("images/gradientDown.png"));
-        $imagick2 = new \Imagick(realpath("images/whiteDisc.png"));
+        $imagick = new \Imagick();
+        $imagick->newImage($width, $height, 'none');
 
-        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+        $draw = new \ImagickDraw();
 
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('red');
+        //$draw->setFillOpacity(0.5);
+        $draw->circle($width / 2, $height / 3, $width / 2, ($height / 3 - $height / 4));
+        
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('blue');
+        //$draw->setFillOpacity(0.5);
+        $draw->circle(2 * $width / 3, 2 * $height / 3, $width - ($width / 3 - $width / 4), 2 * $height / 3);
+
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('lime');
+        //$draw->setFillOpacity(0.5);
+        $draw->circle($width / 3, 2 * $height / 3, ($width / 3 - $width / 4), 2 * $height / 3);
+
+        $imagick->drawImage($draw);
+
+        return $imagick;
     }
 
-
-
-
-    /**
-     * This is meant to be a simple alpha mask
-     * @internal param $width
-     * @internal param $height
-     */
-    function CopyOpacity2() {
-        $imagick = new \Imagick(realpath("images/TestImage.jpg"));
+    function getBiter() {
+        $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
 
         //This is vital - the image must have an alpha channel.
         $imagick->setImageFormat('png');
-        $imagick->cropImage($this->width, $this->height, 0, 0);
-        $imagick2 = new \Imagick(realpath("images/whiteDisc.png"));
+        $imagick->resizeImage($this->width, $this->height, \Imagick::FILTER_LANCZOS, 1);
 
-        $imagick->compositeimage($imagick2, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
-
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        return $imagick;
     }
-    
+
+    function getWhiteDisc() {
+        $width = $this->width;
+        $height = $this->height;
+        $imagick = new \Imagick();
+        $imagick->newImage($width, $height, 'black');
+        $draw = new \ImagickDraw();
+        $draw->setStrokeOpacity(0);
+        $draw->setFillColor('white');
+        $draw->circle($width / 2, $height / 2, $width / 4, $height / 2);
+        $imagick->drawImage($draw);
+
+        return $imagick;
+    }
 
 
 //
@@ -315,5 +439,25 @@ class composite extends \ImagickDemo\Example {
 //\Imagick::COMPOSITE_SUBTRACT,
 //\Imagick::COMPOSITE_THRESHOLD,
 //\Imagick::COMPOSITE_XOR,
+
+//Over,  Dst Over,  Src,  Copy,  Replace,
+//Dst,  In,  Dst In,  Out,  Dst Out,
+//ATop,  Dst ATop,  Clear,  Xor
+//
+//Multiply,  Screen,  Bumpmap,  Divide,
+//Plus,  Minus,  ModulusAdd,  ModulusSubtract,
+//Difference,  Exclusion,  Lighten,  Darken,
+//LightenIntensity,  DarkenIntensity,
+//
+//
+//Overlay,  Hard Light,  Soft Light,   Pegtop Light,
+//Linear Light, Vivid Light, Pin Light,
+//Linear Dodge,  Linear Burn,  Color Dodge,  Color Burn,
+//
+//Copy Opacity,   Copy Red,  Copy Green,  Copy Blue,
+//Copy Cyan,  Copy Magenta,  Copy Yellow,  Copy Black,
+//Hue,  Saturate,  Luminize,  Colorize,
+//
+
 
 }

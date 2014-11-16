@@ -40,23 +40,14 @@ class HomePageExample extends \ImagickDemo\Example {
 
     <p>
         If you find anyissues with this site as an issue, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
-     </p>
-     
-     
-     
-    
-     
-     
+     </p>     
 END;
  
-
-
         return $output;
     }
 
     function renderTitle() {
-        
-        return "<h1>PHP Imagick by example</h1>";
+        return "<h1 class='leftShift'>PHP Imagick by example</h1>";
     }
 
     function renderImage() {

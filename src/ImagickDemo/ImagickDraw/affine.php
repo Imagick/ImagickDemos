@@ -5,7 +5,7 @@ namespace ImagickDemo\ImagickDraw;
 
 class affine extends \ImagickDemo\Example {
 
-    function getDescription() {
+    function renderDescription() {
         $output = nl2br("Adjusts the current affine transformation matrix with the specified affine transformation matrix.
         
             sx - The amount to scale the drawing in the x direction.
@@ -20,8 +20,8 @@ class affine extends \ImagickDemo\Example {
     }
 
     function render() {
-        $output = $this->getDescription();
-        $output .= $this->renderImageURL();
+        //$output = $this->getDescription();
+        $output = $this->renderImageURL();
 
         return $output;
     }

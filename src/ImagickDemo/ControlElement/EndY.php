@@ -7,7 +7,7 @@ namespace ImagickDemo\ControlElement;
 class EndY extends ValueElement {
 
     protected function getDefault() {
-        return 400;
+        return 250;
     }
 
     protected function getMin() {
@@ -15,7 +15,7 @@ class EndY extends ValueElement {
     }
 
     protected function getMax() {
-        return 500;
+        return 300;
     }
 
     protected function getVariableName() {

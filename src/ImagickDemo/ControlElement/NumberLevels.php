@@ -4,10 +4,12 @@
 namespace ImagickDemo\ControlElement;
 
 
-class StartX extends ValueElement {
+
+
+class NumberLevels extends ValueElement {
 
     protected function getDefault() {
-        return 50;
+        return 8;
     }
 
     protected function getMin() {
@@ -15,18 +17,26 @@ class StartX extends ValueElement {
     }
 
     protected function getMax() {
-        return 250;
+        return 256;
+    }
+
+    protected function filterValue($value) {
+        return intval($value);
     }
 
     protected function getVariableName() {
-        return 'startX';
+        return 'numberLevels';
     }
 
     protected function getDisplayName() {
-        return 'Start X';
+        return 'Number Levels';
     }
 
-    function getStartX() {
+    function getNumberLevels() {
         return $this->getValue();
     }
 }
+
+
+
+ 

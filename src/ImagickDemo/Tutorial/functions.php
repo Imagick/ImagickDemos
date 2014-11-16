@@ -517,7 +517,7 @@ function screenEmbed() {
     $width = $overlay->getImageWidth();
     $height = $overlay->getImageHeight();
 
-        $offset = 332.9;
+    $offset = 332.9;
 
     $points = array(    
         0, 0, 364 - $offset, 51, 
@@ -540,7 +540,7 @@ function screenEmbed() {
 //Example Tutorial::levelizeImage
 function levelizeImage($blackPoint, $gamma,  $whitePoint) {
     $imagick = new \Imagick();
-    $imagick->newPseudoimage(500, 500, 'gradient:black-white');
+    $imagick->newPseudoimage(300, 300, 'gradient:black-white');
     $maxQuantum = $imagick->getQuantum();
     $imagick->evaluateimage(\Imagick::EVALUATE_POW, 1 / $gamma);
     

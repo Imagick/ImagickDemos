@@ -13,12 +13,8 @@ class layerPSD extends \ImagickDemo\Example {
         return $this->control->getParams();
     }
 
-
     function render() {
-        $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL();
-
-        return $output;
+        return $this->renderCustomImageURL();
     }
 
     function renderCustomImageURL() {

@@ -216,18 +216,20 @@ END;
     
     
     function renderVertical() {
-        echo "<ul class='nav nav-sidebar smallPadding'>";
+        echo "<ul class='nav nav-sidebar smallPadding contentPanel'>";
 
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
             $imagickExample = $exampleName;//$imagickExampleOption->getName();
             $active = '';
+            $activeLink = '';
             
             if ($this->currentExample === $imagickExample) {
                 $active = 'navActive';
+                $activeLink = 'navActiveLink';
             }
 
-            echo "<li>";
-            echo "<a class='smallPadding $active' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
+            echo "<li class='navSpacer $active'>";
+            echo "<a class='smallPadding $activeLink' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
             echo "</li>";
         }
 
@@ -343,7 +345,7 @@ END;
             //'cropThumbnailImage',
             //'current',
             //'cycleColormapImage',
-            // ConstituteImage
+            'constituteImage' => [ 'constituteImage', \ImagickDemo\Control\NullControl::class],
             // DestroyImage
             //'decipherImage',
             //'deconstructImages',
@@ -506,7 +508,7 @@ END;
             'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ControlCompositeRadiusImage::class],
 
             'mergeImageLayers'  => ['mergeImageLayers', \ImagickDemo\Imagick\Control\mergeImageLayers::class],
-            //'minifyImage',
+            //'minifyImage', //MagickMinifyImage() is a convenience method that scales an image proportionally to one-half its original size
             'modulateImage' => ['modulateImage', \ImagickDemo\Imagick\Control\modulateImage::class],
             //'montageImage',
             //'morphImages',
@@ -522,7 +524,10 @@ END;
             //'opaquePaintImage',
             //'optimizeImageLayers',
             // OptimizeImageTransparency
-            //'orderedPosterizeImage',
+            'orderedPosterizeImage' => [
+                'orderedPosterizeImage',
+                \ImagickDemo\Imagick\Control\orderedPosterizeControl::class
+            ],
             //'paintOpaqueImage',
             //'paintTransparentImage',
 
@@ -532,7 +537,10 @@ END;
             //'pingImageBlob',
             //'pingImageFile',
             //'polaroidImage',
-            //'posterizeImage',
+            'posterizeImage' => [
+                'posterizeImage',
+                \ImagickDemo\Imagick\Control\posterizeControl::class
+            ],
             //'previewImages',
             //'previousImage',
             //'profileImage',
@@ -558,6 +566,9 @@ END;
             'recolorImage' => ['recolorImage', \ImagickDemo\Control\ImageControl::class],
             'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Imagick\Control\reduceNoiseImage::class],
 //new NavOption('remapImage', true),
+
+            //'remapImage' => ['remapImage', \ImagickDemo\Control\ImageControl::class],
+        
             //'removeImage',
             //'removeImageProfile',
             //'render',
@@ -656,7 +667,7 @@ END;
             'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class ],
 
 
-            //new NavOption('similarityImage', true),
+            //similarityImage'
             'sketchImage' => [
                 'sketchImage',
                 \ImagickDemo\Imagick\Control\sketchImage::class,
@@ -817,9 +828,8 @@ END;
 
             'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],
             'deconstructGif' => ['deconstructGif', \ImagickDemo\Control\NullControl::class],
-            
-            
-            'gifGeneration' => ['gifGeneration', \ImagickDemo\Control\NullControl::class],
+
+            //'gifGeneration' => ['gifGeneration', \ImagickDemo\Control\NullControl::class],
             
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
             'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
@@ -847,7 +857,6 @@ END;
             'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
-            
         ];
 
         $examples = [

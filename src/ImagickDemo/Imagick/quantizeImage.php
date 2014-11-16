@@ -22,11 +22,7 @@ END;
     
     
     function render() {
-        $output = $this->renderDescription();
-        
-        $output .= $this->renderImageURL(); 
-        
-        return $output;
+        return $this->renderImageURL(); 
     }
 
 

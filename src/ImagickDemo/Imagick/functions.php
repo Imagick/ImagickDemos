@@ -316,6 +316,30 @@ function compositeImage() {
     echo $img1->getImageBlob();
 }
 //Example end
+
+
+
+//Example Imagick::constituteImage
+function constituteImage($imagePath) {
+    $imagick = new \Imagick();
+
+    /*
+    CharPixel
+    DoublePixel
+    FloatPixel
+    IntegerPixel
+    LongPixel
+    QuantumPixel
+    ShortPixel 
+    */
+//    R = red, G = green, B = blue, A = alpha (0 is transparent), O = opacity (0 is opaque), C = cyan, Y = yellow, M = magenta, K = black, I = intensity (for grayscale), P = pad.
+    
+    //$imagick->constituteImage(100, 100, "RGB", CharPixel, $pixels);
+
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
     
 //Example Imagick::contrastImage
 function contrastImage($imagePath, $contrastType) {
@@ -951,6 +975,36 @@ function oilPaintImage($imagePath, $radius) {
 }
 //Example end
 
+    
+
+    
+    
+//Example Imagick::orderedPosterizeImage
+function orderedPosterizeImage($imagePath, $orderedPosterizeType) {
+    $imagick = new \Imagick(realpath($imagePath));
+    
+  
+    $imagick->orderedPosterizeImage($orderedPosterizeType);
+    $imagick->setImageFormat('png');
+    
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+
+//Example Imagick::posterizeImage
+function posterizeImage($imagePath, $posterizeType, $numberLevels) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->posterizeImage($numberLevels, $posterizeType);
+    $imagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::quantizeImage
 function quantizeImage($imagePath, $numberColors, $colorSpace, $treeDepth, $dither) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -1033,7 +1087,7 @@ function reduceNoiseImage($imagePath, $reduceNoise) {
 //Example Imagick::remapImage
 function remapImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick2 = new \Imagick(realpath("images/TestImage2.jpg"));
+    $imagick2 = new \Imagick(realpath("images/Biter_500.jpg"));
     $imagick->remapImage($imagick2, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

@@ -2,6 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw {
 
+    define('IMAGE_WIDTH', 500);
+    define('IMAGE_HEIGHT', 500);
+    
+    
     class functions {
         static function load() {
         }
@@ -110,7 +114,7 @@ function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX
 
     //Create an image object which the draw commands can be rendered into
     $image = new \Imagick();
-    $image->newImage(500, 500, $backgroundColor);
+    $image->newImage(IMAGE_WIDTH, IMAGE_HEIGHT, $backgroundColor);
     $image->setImageFormat("png");
 
     //Render the draw commands in the ImagickDraw object 

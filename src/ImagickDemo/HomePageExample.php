@@ -4,6 +4,15 @@ namespace ImagickDemo;
 
 class HomePageExample extends \ImagickDemo\Example {
 
+    /**
+     * Get number of bootstrap columns the content should be offset by
+     * @return int
+     */
+    function getColumnOffset() {
+        return 2;
+    }
+    
+    
     function render() {
         $output = <<< END
    

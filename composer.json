@@ -28,7 +28,6 @@
             "type": "vcs",
             "url": "https://github.com/rdlowrey/auryn"
         }
-        
     ],
 
     "require-dev": {
@@ -51,6 +50,7 @@
     "autoload": {
         "psr-0": {
             "ImagickDemo": ["./src/", "./var/compile" ],
+            "Jig": ["./var/compile" ],
             "Stats": ["./src/", "./var/compile" ]
         }
     },

@@ -1,11 +1,11 @@
 <?php
 
-if (defined('LOW_MEM_CLASS_LOADER') && LOW_MEM_CLASS_LOADER == true) {
-    require __DIR__.'/../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php';
-}
-else {
+//if (defined('LOW_MEM_CLASS_LOADER') && LOW_MEM_CLASS_LOADER == true) {
+//    require __DIR__.'/../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php';
+//}
+//else {
     require __DIR__.'/../vendor/autoload.php';
-}
+//}
 
 $parser = new Less_Parser();
 

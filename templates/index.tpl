@@ -21,13 +21,14 @@
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container visible-md visible-lg">
         <nav class="navbar-default " role="navigation">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav menuBackground">
                 {inject name='navBar' value='ImagickDemo\NavigationBar'}
                 {$navBar->render() | nofilter}
+            </ul>
         </nav>
 
-        <nav class="navbar-default pull-right" role="navigation">
-            <ul class="nav navbar-nav ">
+        <nav class="navbar-default pull-right leftShiftPush" role="navigation">
+            <ul class="nav navbar-nav menuBackground">
                 {$navBar->renderRight() | nofilter}
             </ul>
         </nav>   
@@ -47,11 +48,14 @@
 
 <div class='container'>
 
+    {$offset = $example->getColumnOffset();}
+    {$remaining = 12 - $offset;}
+    
     <div class="row">
-        <div class="col-md-5 col-md-offset-3">
-            <h4 class='noMarginTop leftShift'>
+        <div class="col-md-5 col-md-offset-{$offset}">
+            <h3 class='noMarginTop leftShift'>
                 {$example->renderTitle() | nofilter}
-            </h4>
+            </h3>
         </div>
         <div class="col-md-4" style='text-align: right'>
             {$nav->renderPreviousLink() | nofilter}
@@ -63,11 +67,11 @@
     
     <div class="row">
         
-        <div class="col-md-3 visible-md visible-lg navPanel" >
+        <div class="col-md-{$offset} visible-md visible-lg navPanel" >
             {$nav->renderNav()}
         </div>
 
-        <div class="col-md-9 leftShift">
+        <div class="col-md-{$remaining} leftShift">
             {$docHelper->showDescriptionPanel() | nofilter}
             {$example->renderDescriptionPanel() | nofilter}
 
@@ -89,10 +93,9 @@
                 </div>
             </div>
 
-            
+
             {$docHelper->showParametersPanel() | nofilter}
-            
-            
+
             {$docHelper->showExamples() | nofilter}
             
             {inject name='banner' value='ImagickDemo\Banners\Banner'}

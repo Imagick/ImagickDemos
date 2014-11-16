@@ -22,16 +22,18 @@ class DocHelperDisplay extends DocHelper {
             return null;
         }
 
-        $output  = "<div class='row'>";
-        $output .= "<div class='col-md-12 visible-md visible-lg'>";
+//        $output  = "<div class='row'>";
+//        $output .= "<div class='col-md-12 visible-md visible-lg textPanelSpacing'>";
+//        
+        $output = getPanelStart('textPanelSpacing');
         $output .= "<i>";
-        $output .= getPanelStart();
         $output .= htmlentities($description);
+        $output .= "</i>";
         $output .= getPanelEnd();
         
-        $output .= "</i>
-                </div>
-            </div>";
+        
+//                "</div>
+//            </div>";
 
         return $output;
     }

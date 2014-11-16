@@ -91,7 +91,7 @@ $output .="
             if (strcmp($url, '/'.$this->activeCategory) === 0) {
                 $activeClass = 'active';
             }
-            $output .= "<li class='$activeClass'>";
+            $output .= "<li class='menuItem $activeClass'>";
             $output .= "<a href='$url'>$name</a>";
             $output .= "</li>";
         }
@@ -103,11 +103,11 @@ $output .="
      * @return string
      */
     function renderRight() {
-
+        
         $output = "";
         
         $output .= "
-<li>
+<li class='menuItem'>
     <a href='https://github.com/Danack/Imagick-demos' target='_blank'>Source code</a>
 </li>";
 
@@ -119,7 +119,7 @@ $output .="
             $issueURL .= urlencode($bodyString);
         }
 
-        $output .= "<li>";
+        $output .= "<li class='menuItem'>";
         $output .= "<a href='$issueURL' target='_blank'>Report an issue</a>";
         $output .= "</li>";
 

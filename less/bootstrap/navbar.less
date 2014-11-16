@@ -392,10 +392,21 @@
   .navbar-text {
     color: @navbar-default-color;
   }
-
+  
   .navbar-nav {
+    
+    padding-left: 1px;
+    background-color: @panel-border-color;
+    
+    
+    > li {
+      background-color: #ffffff;
+      margin-right: 1px;
+      margin-bottom: 1px;
+    }
     > li > a {
       color: @navbar-default-link-color;
+      /* background-color: @panel-border-color; */
 
       &:hover,
       &:focus {

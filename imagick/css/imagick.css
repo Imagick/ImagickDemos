@@ -14,16 +14,20 @@ body {
 
 .contentPanel {
     background-color: #fbfbfb; 
-    border: 1px solid #f5f5f5;
+    /* border: 1px solid #f5f5f5; */
+    border: 3px double #CBCBCB;
     color: #3f3f3f;
     margin-bottom: 10px;
     padding-bottom: 5px;
 }
 
+.textPanelSpacing {
+    padding-top: 5px;
+}
+
 .navPanel {
     font-size: 12px;
     /*text-align: right */
-    
 }
 
 .exampleHeader {
@@ -41,6 +45,9 @@ body {
 
 .leftShift {
     margin-left: -70px;
+}
+.leftShiftPush {
+    margin-right: 55px;
 }
 
 .smallPadding > tbody > tr > td{
@@ -144,6 +151,21 @@ pre {
     display: inline-block;
     padding-right: 60px;
 }
+
+
+.menuBackground {
+    /* background-color: #a5a5a5;
+    padding-left: 1px; */
+}
+
+.menuItem {
+    /*background-color: #ffffff;
+    margin-bottom: 1px;
+    margin-right: 1px;*/
+}
+
+
+
 
 
 @media (min-width: 900px) {

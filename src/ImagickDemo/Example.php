@@ -33,6 +33,14 @@ abstract class Example implements renderableExample {
         return null;
     }
 
+    /**
+     * Get number of bootstrap columns the content should be offset by 
+     * @return int
+     */
+    function getColumnOffset() {
+        return 3;
+    }
+
     function renderDescriptionPanel() {
 
         $description = $this->renderDescription();
@@ -44,7 +52,7 @@ abstract class Example implements renderableExample {
         $output = '<div class="row">
                 <div class="col-md-12 visible-md visible-lg">';
         
-        $output .= getPanelStart('padding-top: 5px');
+        $output .= getPanelStart('textPanelSpacing');
         $output .= $description;
         $output .= getPanelEnd();
         

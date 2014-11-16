@@ -4,6 +4,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Amp\Artax\Client as ArtaxClient;
 use Amp\Artax\SocketException;
+use Amp\Artax\Response;
 
 function compareImage(URLToCheck $urlToCheck, $resposeBody, $contentType) {
 
@@ -55,8 +56,6 @@ class HTMLPrinter {
         $this->baseURL = $baseURL;
     }
 
-
-    
     function output($outputStream) {
 
         fwrite($outputStream, "<html>");
@@ -180,6 +179,8 @@ class URLResult {
 }
 
 
+
+
 class SiteChecker {
 
     /**
@@ -195,9 +196,15 @@ class SiteChecker {
     private $count = 0;
 
     private $errors = 0;
+
+    /**
+     * @var ArtaxClient
+     */
+    private $artaxClient;
     
-    function __construct($siteURL) {
+    function __construct($siteURL, ArtaxClient $artaxClient) {
         $this->siteURL = $siteURL;
+        $this->artaxClient = $artaxClient;
     }
 
     function getURLCount() {
@@ -210,140 +217,140 @@ class SiteChecker {
     }
 
 
-
-    function getURL(URLToCheck $urlToCheck) {
+    /**
+     * @param URLToCheck $urlToCheck
+     */
+    function fetchURL(URLToCheck $urlToCheck) {
+        $this->count++;
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
-        echo "Getting $fullURL \n";
+        
         echo ".";
-        
-        
+        echo "Getting $fullURL \n";
 
-        $client = new ArtaxClient;
-        
-        //$client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 25);
-        
-        
-        $promise = $client->request($fullURL);
+        $promise = $this->artaxClient->request($fullURL);
 
-        $response = $promise->wait();
-        /** @var  $response \Amp\Artax\Response */
-        $status = $response->getStatus();
+        $analyzeResult = function(\Exception $e = null, Response $response = null) use ($urlToCheck, $fullURL) {
 
-        $this->urlsChecked[] = new URLResult(
-            $urlToCheck->getUrl(),
-            $status,
-            $urlToCheck->getReferrer(),
-            substr($response->getBody(), 0, 200)
-        );
-        
-
-        if ($status != 200) {
-            return null;
-        }
-
-        $contentTypeHeaders = $response->getHeader('Content-Type');
-        
-        if (array_key_exists(0, $contentTypeHeaders) == false) {
-            throw new Exception("Content-type header not set.");
-            //return new URLResult($path, 500, "Content-type header not set.");
-        }
-
-        $contentType = $contentTypeHeaders[0];
-        $colonPosition = strpos($contentType, ';');
-        
-        if ($colonPosition !== false) {
-            $contentType = substr($contentType, 0, $colonPosition);
-        }
-        
-        switch($contentType) {
-
-            case ('text/html'): {
-                return $response->getBody();
-                break;
-            }
-
-            case ('image/gif') :
-            case ('image/jpeg') :
-            case ('image/jpg') :
-            case ('image/png') : {
-                //echo "Image with status - $status\n";
-
-                compareImage($urlToCheck, $response->getBody(), $contentType);
-                                     
+            if ($e) {
+                echo "Something went wrong for $fullURL : ".$e->getMessage();
                 return null;
             }
 
-            default: {
-                throw new \Exception("Unrecognised content-type $contentType");
+            $status = $response->getStatus();
+            $this->urlsChecked[] = new URLResult(
+                $urlToCheck->getUrl(),
+                $status,
+                $urlToCheck->getReferrer(),
+                substr($response->getBody(), 0, 200)
+            );
+
+            if ($status != 200) {
+                return null;
             }
-        }
-    }
 
-    function parseLinkResult(DOMElement $element, $referrer)  {
-        $href = $element->getAttribute('href');
+            $contentTypeHeaders = $response->getHeader('Content-Type');
 
-        if (strpos($href, '/') === 0) {
-            if (array_key_exists($href, $this->urlsToCheck) == false) {
-                $this->urlsToCheck[$href] = new URLToCheck($href, $referrer);;
+            if (array_key_exists(0, $contentTypeHeaders) == false) {
+                throw new Exception("Content-type header not set.");
             }
-        }
-    }
 
-    function parseImgResult(DOMElement $element, $referrer)  {
-        $href = $element->getAttribute('src');
+            $contentType = $contentTypeHeaders[0];
+            $colonPosition = strpos($contentType, ';');
 
-        if (strpos($href, '/') === 0) {
-            if (array_key_exists($href, $this->urlsChecked) == false) {
-                $this->urlsToCheck[$href] = new URLToCheck($href, $referrer);
+            if ($colonPosition !== false) {
+                $contentType = substr($contentType, 0, $colonPosition);
             }
-        }
-    }
-    
-    function checkURL($url) {
-        $this->urlsToCheck[$url] = new URLToCheck($url, '/');
-        $finished = false;
-        while ($finished == false) {
-            $finished = true;
-            foreach ($this->urlsToCheck as $url => $urlToCheck) {
-                if ($urlToCheck != null) {
-                    $this->checkURLInternal($urlToCheck);
-                    $this->urlsToCheck[$url] = null;
-                    $finished = false;
+
+            switch ($contentType) {
+
+                case ('text/html'): {
+                    $body = $response->getBody();
+                    $this->analyzeBody($urlToCheck, $body);
+                    break;
+                }
+
+                case ('image/gif') :
+                case ('image/jpeg') :
+                case ('image/jpg') :
+                case ('image/png') : {
+                    //echo "Image with status - $status\n";
+                    //compareImage($urlToCheck, $response->getBody(), $contentType);
+                    return null;
+                }
+
+                default: {
+                    throw new \Exception("Unrecognised content-type $contentType");
                 }
             }
-        }
+        };
+
+        $promise->when($analyzeResult);
+    }
+
+    /**
+     * @param DOMElement $element
+     * @param $referrer
+     */
+    function parseLinkResult(DOMElement $element, $referrer)  {
+        $href = $element->getAttribute('href');
+        $this->addLinkToProcess($href, $referrer);
+    }
+
+    /**
+     * @param DOMElement $element
+     * @param $referrer
+     */
+    function parseImgResult(DOMElement $element, $referrer)  {
+        $href = $element->getAttribute('src');
+        //$this->addLinkToProcess($href, $referrer);
     }
     
-    function checkURLInternal(URLToCheck $urlToCheck) {
+    
+    function addLinkToProcess($href, $referrer) {
+        $this->checkURL(new URLToCheck($href, $referrer));
+    }
 
-        $this->count++;
+
+    /**
+     * @param URLToCheck $urlToCheck
+     */
+    function checkURL(URLToCheck $urlToCheck) {
+        $url = $urlToCheck->getUrl();
+        if (array_key_exists($url, $this->urlsToCheck)) {
+            return;
+        }
+
+        if (strpos($urlToCheck->getUrl(), '/') !== 0) {
+            $this->urlsToCheck[$url] = new URLResult($url, 200, $urlToCheck->getReferrer());
+            return;
+        }
+
+        $this->urlsToCheck[$url] = null;
+        $this->fetchURL($urlToCheck);
+    }
+
+    /**
+     * @param URLToCheck $urlToCheck
+     * @param $body
+     */
+    function analyzeBody(URLToCheck $urlToCheck, $body) {
         $ok = false;
-        
         $path = $urlToCheck->getUrl();
-
-        //if ($this->count > 300) {
-            //echo "Aborting - too many\n";
-            //return;
-        //}
-
+        
         try {
-            
-            $body = $this->getURL($urlToCheck);
-
-            if ($body) {
-                $fluentDOM = new FluentDOM();
-                $dom = $fluentDOM->load($body, 'text/html');
-                
-                $linkClosure = function (DOMElement $element) use ($urlToCheck) {
-                    $this->parseLinkResult($element, $urlToCheck->getUrl());
-                };
-                $imgClosure = function (DOMElement $element) use ($urlToCheck) {
-                    $this->parseImgResult($element, $urlToCheck->getUrl());
-                };
-
-                $dom->find('//a')->each($linkClosure);
-                $dom->find('//img')->each($imgClosure);
-            }
+        
+            $fluentDOM = new FluentDOM();
+            $dom = $fluentDOM->load($body, 'text/html');
+    
+            $linkClosure = function (DOMElement $element) use ($urlToCheck) {
+                $this->parseLinkResult($element, $urlToCheck->getUrl());
+            };
+            $imgClosure = function (DOMElement $element) use ($urlToCheck) {
+                $this->parseImgResult($element, $urlToCheck->getUrl());
+            };
+    
+            $dom->find('//a')->each($linkClosure);
+            $dom->find('//img')->each($imgClosure);
 
             $ok = true;
 //            return new URLResult($path, 200, $urlToCheck->getReferrer());
@@ -363,9 +370,11 @@ class SiteChecker {
         if ($ok != true) {
             $this->errors++;
         }
-        
     }
-    
+
+    /**
+     * @return URLResult[]
+     */
     function getResults() {
         return $this->urlsChecked;
     }
@@ -374,9 +383,24 @@ class SiteChecker {
 $site = "http://imagick.test";
 //$site = "http://test.phpimagick.com"
 
-$siteChecker = new SiteChecker($site);
-$siteChecker->checkURL('/');
-//$siteChecker->checkURL('/image/Imagick/edgeExtend?image=Lorikeet');
+$reactor = Amp\reactor();
+
+$client = new ArtaxClient($reactor);
+
+$client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 25);
+$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 3);
+
+
+$siteChecker = new SiteChecker($site, $client);
+
+$start = new URLToCheck('/', '/');
+$siteChecker->checkURL($start);
+
+
+$reactor->run();
+echo "fin";
+
+
 
 $printer = new HTMLPrinter($siteChecker->getResults(), $site);
 $outputStream = fopen("./checkResults.html", "w");

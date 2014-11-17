@@ -51,6 +51,10 @@ body {
     .leftShiftPush {
         margin-right: 17px;
     }
+    .columnAdjust {
+        padding-left: 65px;
+        padding-right: 30px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -59,6 +63,11 @@ body {
     }
     .leftShiftPush {
         margin-right: 62px;
+    }
+
+    .columnAdjust {
+        padding-left: 35px;
+        padding-right: 30px;
     }
 }
 
@@ -148,6 +157,11 @@ body {
 .noMarginTop {
     margin-top: 0px;
 }
+
+.titleMargin {
+    margin-top: 12px;
+}
+
 
 .standardCell {
     /* padding-left: 3px; */

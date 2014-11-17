@@ -38,7 +38,11 @@ abstract class Example implements renderableExample {
      * @return int
      */
     function getColumnOffset() {
-        return 3;
+        return 2;
+    }
+
+    function getColumnRightOffset() {
+        return 0;
     }
 
     function renderDescriptionPanel($smaller = false) {

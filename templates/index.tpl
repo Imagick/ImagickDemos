@@ -27,7 +27,7 @@
             </ul>
         </nav>
 
-        <nav class="navbar-default pull-right leftShiftPush" role="navigation">
+        <nav class="navbar-default pull-right" role="navigation">
             <ul class="nav navbar-nav menuBackground">
                 {$navBar->renderRight() | nofilter}
             </ul>
@@ -47,24 +47,10 @@
 
 <div class='container'>
 
-    {$offset = $example->getColumnOffset();}
-    {$remaining = 12 - $offset;}
-    
-    <div class="row hidden-sm hidden-xs">
-        <div class="col-sm-5 col-md-offset-{$offset}">
-            <h3 class='noMarginTop leftShift'>
-                {$example->renderTitle() | nofilter}
-            </h3>
-        </div>
-        <div class="col-sm-4 " style='text-align: right'>
-            <span class="leftShiftPush">
-                {$nav->renderPreviousLink() | nofilter}
-                {$nav->renderNextLink() | nofilter}
-            </span>
-        </div>
-    </div>
-
     <div class="row hidden-xs hidden-md hidden-lg">
+
+        {block name='title'}
+        
         <div class="col-xs-6">
             <h3 class='noMarginTop'>
                 {$example->renderTitle() | nofilter}
@@ -74,19 +60,44 @@
             {$nav->renderPreviousLink() | nofilter}
             {$nav->renderNextLink() | nofilter}
         </div>
-    </div>
+        {/block}
+    </div> 
     
     
     
     <div class="row">
         
-        <div class="col-md-{$offset} visible-md visible-lg navPanel" >
+        <div class="col-md-2 visible-md visible-lg navPanel" >
             {$nav->renderNav()}
         </div>
 
-        <div class="col-md-{$remaining} leftShift">
-            {$docHelper->showDescriptionPanel() | nofilter}
-            {$example->renderDescriptionPanel() | nofilter}
+        <div class="col-md-10 columnAdjust">
+            <div class='row'>
+                <div class='col-md-12 visible-md visible-lg contentPanel'>
+
+                    {block name='mediumTitle'}
+                    <div class="row hidden-sm hidden-xs">
+                        <div class="col-sm-6">
+                            <h3 class='titleMargin'>
+                                {$example->renderTitle() | nofilter}
+                            </h3>
+                        </div>
+
+                        <div class="col-sm-6" style='text-align: right'>
+                            <span class="titleMargin" style="display: block; padding-top: 3px">
+                                {$nav->renderPreviousLink() | nofilter}
+                                <span style="width: 40px; display: inline-block">&nbsp;</span>
+                                {$nav->renderNextLink() | nofilter}
+                            </span>
+                        </div>
+                    </div>
+                    {/block}
+                    
+                    {$docHelper->showDescription() | nofilter}
+                    {$example->renderDescription() | nofilter}
+                </div>
+            </div>
+            
 
             <div class="row">
                 <div class="col-md-12 contentPanel" style="padding-top: 10px; padding-bottom: 10px">

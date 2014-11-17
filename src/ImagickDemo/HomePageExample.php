@@ -11,6 +11,10 @@ class HomePageExample extends \ImagickDemo\Example {
     function getColumnOffset() {
         return 2;
     }
+
+    function getColumnRightOffset() {
+        return 2;
+    }
     
     
     function render() {
@@ -56,7 +60,7 @@ END;
     }
 
     function renderTitle() {
-        return "<h1 class='leftShift'>PHP Imagick by example</h1>";
+        return "PHP Imagick by example";
     }
 
     function renderImage() {

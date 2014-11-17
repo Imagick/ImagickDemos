@@ -48,12 +48,12 @@ function createImageTaskAndRedirectResponse(
 
 class Page {
 
-    function generateResponseFromTemplate(\Auryn\Provider $injector) {
+    function generateResponseFromTemplate(\Auryn\Provider $injector, $templateName = 'index') {
         $viewModel = $injector->make(BasicViewModel::class);
         $jigRenderer = $injector->make(JigRender::class);
 
         $viewModel->setVariable('pageTitle', "Imagick demos");
-        $output = $jigRenderer->renderTemplateFile('index', $viewModel);
+        $output = $jigRenderer->renderTemplateFile($templateName, $viewModel);
 
         return new TextResponse($output);
     }
@@ -62,7 +62,7 @@ class Page {
     function setupRootIndex(\Auryn\Provider $injector) {
         $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
 
-        return $this->generateResponseFromTemplate($injector);
+        return $this->generateResponseFromTemplate($injector, 'title');
     }
 
     function setupExampleDelegation(\Auryn\Provider $injector, $category, $example) {

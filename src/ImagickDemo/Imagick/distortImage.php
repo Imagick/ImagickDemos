@@ -29,7 +29,7 @@ class distortImage extends \ImagickDemo\Example {
     }
 
     function render() {
-        return sprintf("<img src='%s' />", $this->rsiControl->getCustomImageURL());
+        return sprintf("<img src='%s' class='img-responsive' />", $this->rsiControl->getCustomImageURL());
     }
 
     function getCustomImageParams() {

@@ -141,17 +141,20 @@ function resetIterator($imagePath) {
 //Example ImagickPixelIterator::setIteratorRow
 function setIteratorRow($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imageIterator = $imagick->getPixelRegionIterator(200, 200, 200, 200);
+    $imageIterator = $imagick->getPixelRegionIterator(200, 100, 200, 200);
 
-    for ($x = 0; $x < 20; $x++) {
-        $imageIterator->setIteratorRow(rand(0, 100));
+    for ($x = 0; $x < 20; $x++) {        
+        $imageIterator->setIteratorRow($x * 5);
         $pixels = $imageIterator->getCurrentIteratorRow();
-        foreach ($pixels as $pixel) { /* Loop through the pixels in the row (columns) */
+        /* Loop through the pixels in the row (columns) */
+        foreach ($pixels as $pixel) {
             /** @var $pixel \ImagickPixel */
-            $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
+            /* Paint every second pixel black*/
+            $pixel->setColor("rgba(0, 0, 0, 0)"); 
         }
 
-        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        /* Sync the iterator, this is important to do on each iteration */
+        $imageIterator->syncIterator();
     }
 
     header("Content-Type: image/jpg");

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "50a23d3ee5246ac086b33eb7e9e313d9",
+    "hash": "884575e0b9dca35159fee636f3610cf1",
     "packages": [
         {
             "name": "amphp/amp",
@@ -354,12 +354,12 @@
         },
         {
             "name": "fluentdom/fluentdom",
-            "version": "v4.1.1",
+            "version": "4.1.3",
             "dist": {
                 "type": "zip",
-                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_v4.1.1.zip",
-                "reference": "FluentDOM_FluentDOM_v4.1.1.zip",
-                "shasum": "7028c8a4ebc26fe46c9eeac3931001b3740e3da3"
+                "url": "http://satis.basereality.com/packages/FluentDOM/FluentDOM/FluentDOM_FluentDOM_4.1.3.zip",
+                "reference": null,
+                "shasum": "f6ce7a91fabc32a8da1074642ce18bfc007325c3"
             },
             "require": {
                 "php": ">=5.2.0"
@@ -393,8 +393,8 @@
             "dist": {
                 "type": "zip",
                 "url": "http://satis.basereality.com/packages/Danack/Configurator/Danack_Configurator_0.1.1.zip",
-                "reference": "Danack_Configurator_0.1.1.zip",
-                "shasum": "5ffc6adf6ff3356af79677320a2e153a4a9f2b37"
+                "reference": null,
+                "shasum": "91f3684e68d704e5003c89e752bb67a36371410c"
             },
             "type": "library",
             "autoload": {
@@ -643,12 +643,12 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v0.9.3",
+            "version": "0.9.3",
             "dist": {
                 "type": "zip",
                 "url": "http://satis.basereality.com/packages/nikic/php-parser/nikic_php-parser_v0.9.3.zip",
-                "reference": "nikic_php-parser_v0.9.3.zip",
-                "shasum": "2f0a2c838b87f484fd9f6800cdd8ff80a36937a7"
+                "reference": null,
+                "shasum": "806754b24bc955b8815bfb964cb72835639974c1"
             },
             "require": {
                 "php": ">=5.2"
@@ -675,12 +675,12 @@
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.1",
+            "version": "1.7.0.1",
             "dist": {
                 "type": "zip",
                 "url": "http://satis.basereality.com/packages/oyejorge/less.php/oyejorge_less.php_v1.7.0.1.zip",
-                "reference": "oyejorge_less.php_v1.7.0.1.zip",
-                "shasum": "4396c110c0bd37b197a54ec8031b93b4f5a9cacc"
+                "reference": null,
+                "shasum": "73d18461892341116eebff59b8501a07c37efea5"
             },
             "require": {
                 "php": ">=5.2"
@@ -821,16 +821,16 @@
         },
         {
             "name": "rdlowrey/nbsock",
-            "version": "v0.4.4",
+            "version": "v0.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/nbsock.git",
-                "reference": "96e46fdf34b5b180bb9387d89cb69cb6910f24e5"
+                "reference": "ce69675b0d47d15f82b871af208df93380f303d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/nbsock/zipball/96e46fdf34b5b180bb9387d89cb69cb6910f24e5",
-                "reference": "96e46fdf34b5b180bb9387d89cb69cb6910f24e5",
+                "url": "https://api.github.com/repos/rdlowrey/nbsock/zipball/ce69675b0d47d15f82b871af208df93380f303d5",
+                "reference": "ce69675b0d47d15f82b871af208df93380f303d5",
                 "shasum": ""
             },
             "require": {
@@ -869,7 +869,7 @@
                 "tcp",
                 "tls"
             ],
-            "time": "2014-11-03 05:09:34"
+            "time": "2014-11-10 15:05:32"
         }
     ],
     "packages-dev": [

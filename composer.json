@@ -8,10 +8,6 @@
             "type": "vcs",
             "url": "https://github.com/Danack/Auryn"
         },
-        { 
-            "type": "composer",
-            "url": "http://satis.basereality.com" 
-        },
         {
             "type": "vcs",
             "url": "https://github.com/nikic/FastRoute"

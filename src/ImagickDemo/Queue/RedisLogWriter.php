@@ -3,12 +3,6 @@
 
 
 
-
-
-
-
-/*
-
 class RedisLogWriter extends CliTool {
 
     use \Intahwebz\Cache\KeyName;
@@ -71,5 +65,3 @@ class RedisLogWriter extends CliTool {
         echo "Fin.\n";
     }
 }
-
-*/

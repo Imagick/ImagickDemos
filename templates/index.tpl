@@ -45,6 +45,11 @@
 {inject name='example' value='ImagickDemo\Example'}
 {inject name='docHelper' value='ImagickDemo\DocHelper'}
 
+
+{$remaining = 12 - $example->getColumnRightOffset();}
+
+
+
 <div class='container'>
 
     <div class="row hidden-xs hidden-md hidden-lg">
@@ -73,9 +78,8 @@
 
         <div class="col-md-10 columnAdjust">
             <div class='row'>
+                {block name='mediumTitle'}
                 <div class='col-md-12 visible-md visible-lg contentPanel'>
-
-                    {block name='mediumTitle'}
                     <div class="row hidden-sm hidden-xs">
                         <div class="col-sm-6">
                             <h3 class='titleMargin'>
@@ -91,16 +95,19 @@
                             </span>
                         </div>
                     </div>
-                    {/block}
-                    
+
                     {$docHelper->showDescription() | nofilter}
+
                     {$example->renderDescription() | nofilter}
+
                 </div>
+                {/block}
             </div>
             
+            {$remaining = 12 -$example->getColumnRightOffset()}
 
             <div class="row">
-                <div class="col-md-12 contentPanel" style="padding-top: 10px; padding-bottom: 10px">
+                <div class="col-md-{$remaining} contentPanel" style="padding-top: 10px; padding-bottom: 10px">
                     <table>
                         <tr>
                             <td valign="top" class=''>
@@ -116,13 +123,16 @@
                     </table>
                 </div>
             </div>
-            
-            {$docHelper->showDescriptionPanel(true) | nofilter}
 
+            
+            
+            {$docHelper->showDescriptionPanel(true) | nofilter} 
+            
             {$example->renderDescriptionPanel(true) | nofilter}
 
             {$docHelper->showParametersPanel() | nofilter}
 
+            
             {$docHelper->showExamples() | nofilter}
             
             {inject name='banner' value='ImagickDemo\Banners\Banner'}

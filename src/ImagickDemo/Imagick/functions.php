@@ -16,13 +16,13 @@ namespace ImagickDemo\Imagick {
  */
 function header($string, $replace = true, $http_response_code = null) {
     global $imageType;
-    global $imageCache;
+    global $cacheImages;
 
     if (stripos($string, "Content-Type: image/") === 0) {
         $imageType = substr($string, strlen("Content-Type: image/"));
     }
     
-    if ($imageCache == false) {
+    if ($cacheImages == false) {
         if (php_sapi_name() !== 'cli') {
             \header($string, $replace, $http_response_code);
         }

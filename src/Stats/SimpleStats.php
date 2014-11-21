@@ -2,6 +2,7 @@
 
 namespace Stats;
 
+use ImagickDemo\Config\Librato as LibratoConfig;
 
 class SimpleStats {
 
@@ -13,13 +14,21 @@ class SimpleStats {
     private $flushInterval;
     
     private $sourceName;
-    
-    function __construct(\Auryn\Provider $injector, $statsSourceName) {
+
+    /**
+     * @param \Auryn\Provider $injector
+     * @param LibratoConfig $libratoConfig
+     */
+    function __construct(\Auryn\Provider $injector, LibratoConfig $libratoConfig) {
         $this->injector = $injector;
         $this->flushInterval = 10;
-        $this->sourceName = $statsSourceName;
+        $this->sourceName = $libratoConfig->getStatsSourceName();
     }
 
+    /**
+     * Measure the queues - this should probably be in a different class.
+     * @return array
+     */
     function getQueueGauges() {
         $gauges = [];
         
@@ -41,10 +50,11 @@ class SimpleStats {
 
         return $gauges;
     }
-    
-    
-    function execute() {
 
+    /**
+     * 
+     */
+    function execute() {
         $gauges = [];
         $counters = [];
 
@@ -66,7 +76,9 @@ class SimpleStats {
         }
     }
 
-
+    /**
+     * 
+     */
     function run() {
         $maxRunTime = 1000;
         $endTime = time() + $maxRunTime;
@@ -76,11 +88,5 @@ class SimpleStats {
             sleep(10);
         }
     }
-    
-    
-    
-    
-    
-    
 }
 

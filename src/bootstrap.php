@@ -6,13 +6,13 @@ namespace {
     use ImagickDemo\Response\FileResponse;
 
     require __DIR__.'/../vendor/autoload.php';
-    require __DIR__ . "../../imagick-demos.conf.php";
     
     //yolo - We use a global to allow us to do a hack to make all the code examples
     //appear to use the standard 'header' function, but also capture the content type 
     //of the image
     $imageType = null;
-    $imageCache = false;
+    /** @var  $appConfig \ImagickDemo\Config\Application */
+    $cacheImages = false;//$appConfig->getCacheImages();
 
     function exceptionHandler(Exception $ex) {
         //TODO - need to ob_end_clean as many times as required because 
@@ -117,9 +117,14 @@ namespace {
         return $filename;
     }
 
-
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $functionFullname
+     * @param $filename
+     * @return FileResponse
+     * @throws \Exception
+     */
     function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filename) {
-
         global $imageType;
         ob_start();
 
@@ -130,8 +135,6 @@ namespace {
             throw new \Exception("imageType not set, can't cache image correctly.");
         }
 
-        
-        
         $image = ob_get_contents();
         @mkdir(dirname($filename), 0755, true);
         //TODO - is this atomic?
@@ -143,6 +146,26 @@ namespace {
         return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
     }
 
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $functionFullname
+     * @return \ImagickDemo\Response\ImageResponse
+     * @throws \Exception
+     */
+    function createImage(\Auryn\Provider $injector, $functionFullname) {
+        global $imageType;
+        ob_start();
+        $injector->execute($functionFullname);
+        if ($imageType == null) {
+            ob_end_clean();
+            throw new \Exception("imageType not set, can't cache image correctly.");
+        }
+        $imageData = ob_get_contents();
+        ob_end_clean();
+
+        return new \ImagickDemo\Response\ImageResponse("image/".$imageType, $imageData);
+    }
+
 
     /**
      * @param $libratoKey
@@ -150,20 +173,16 @@ namespace {
      * @param $statsSourceName
      * @return \Auryn\Provider
      */
-function bootstrapInjector($libratoKey,
-                           $libratorUsername,
-                           $statsSourceName) {
+function bootstrapInjector() {
 
-    require '../../imagick-demos.conf.php';
-    
     $injector = new Auryn\Provider();
     $jigConfig = new Jig\JigConfig(
         "../templates/",
         "../var/compile/",
         'tpl',
-        //Jig\JigRender::COMPILE_CHECK_EXISTS
+        Jig\JigRender::COMPILE_CHECK_EXISTS
         //Jig\JigRender::COMPILE_CHECK_MTIME
-        Jig\JigRender::COMPILE_ALWAYS
+        //Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
@@ -182,29 +201,19 @@ function bootstrapInjector($libratoKey,
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
 
+    $injector->alias('ImagickDemo\Queue\TaskQueue', 'ImagickDemo\Queue\RedisTaskQueue');
+    $injector->share('ImagickDemo\Queue\RedisTaskQueue');
+
     $injector->define('ImagickDemo\DocHelper', [
         ':category' => null,
         ':example' => null
     ]);
 
-    
-    $injector->define(
-        'Stats\Librato',
-        [
-            ':libratoKey' => $libratoKey,
-            ':libratoUsername' => $libratorUsername
-        ]
-    );
-
-    $injector->define(
-         'Stats\AsyncStats',
-         [ ':statsSourceName' => $statsSourceName]
-    );
-
-    
+    $injector->share(\ImagickDemo\Config\Application::class);
+    $injector->share(\ImagickDemo\Config\Librato::class);
     $injector->define(
          '\Stats\SimpleStats',
-         [ ':statsSourceName' => $statsSourceName]
+         [ ':statsSourceName' => "foo"]
     );
 
     $redisParameters = array(
@@ -240,6 +249,12 @@ function bootstrapInjector($libratoKey,
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
     $injector->share($injector); //yolo - use injector as service locator
 
+    $appConfig = $injector->make('ImagickDemo\Config\Application');
+    /** @var  $appConfig \ImagickDemo\Config\Application */
+    
+    global $cacheImages;
+    $cacheImages = $appConfig->getCacheImages();
+
     return $injector;
 }
 
@@ -260,7 +275,7 @@ function delegateAllTheThings(\Auryn\Provider $injector, $controlClass) {
 
 
 
-//TODO - yuck
+//TODO - yuck?
 function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
 
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
@@ -369,9 +384,9 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         $namespace = 'ImagickDemo\\'.$category.'\functions';
         $namespace::load();
 
-        global $imageCache;
+        global $cacheImages;
 
-        if ($imageCache == false) {
+        if ($cacheImages == false) {
             $injector->execute([$className, 'renderCustomImage']);
             return null;
         }
@@ -482,8 +497,6 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     }
 
     function getPanelStart($smaller, $extraClass = '', $style = '') {
-
-
         if ($smaller == true) {
             $output = "<div class='row'>
                 <div class='col-md-12 visible-xs visible-sm contentPanel $extraClass'  style='$style'>";
@@ -494,11 +507,6 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         }
 
         return $output;
-//
-//        return "<div class='row'>
-//            <div class='col-md-12 contentPanel $extraClass' style='$style'>";
-//        
-        
     }
 
     function getPanelEnd() {
@@ -518,13 +526,13 @@ namespace ImagickDemo {
      */
     function header($string, $replace = true, $http_response_code = null) {
         global $imageType;
-        global $imageCache;
+        global $cacheImages;
 
         if (stripos($string, "Content-Type: image/") === 0) {
             $imageType = substr($string, strlen("Content-Type: image/"));
         }
 
-        if ($imageCache == false) {
+        if ($cacheImages == false) {
             \header($string, $replace, $http_response_code);
         }
     }

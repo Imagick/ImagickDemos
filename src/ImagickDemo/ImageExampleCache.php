@@ -68,7 +68,7 @@ namespace ImagickDemo {
 //    /** @var  \ImagickDemo\Example */
 //    private $example;
 //    
-//    private $imageCachePath;
+//    private $cacheImagesPath;
 //    
 //    function __construct(\ImagickDemo\Example $example, $imageCachePath) {
 //        $this->example = $example;

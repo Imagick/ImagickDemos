@@ -5,6 +5,7 @@ namespace Stats;
 
 
 use Predis\Client as RedisClient;
+use ImagickDemo\Config\Librato as LibratoConfig;
 
 class AsyncStats {
 
@@ -20,10 +21,10 @@ class AsyncStats {
      */
     private $redisKey;
 
-    function __construct(RedisClient $redisClient, $statsSourceName) {
+    function __construct(RedisClient $redisClient, LibratoConfig $libratoConfig) {
         $this->redisClient = $redisClient;
         $this->redisKey = self::getClassKey();
-        $this->sourceName = $statsSourceName;
+        $this->sourceName = $libratoConfig->getStatsSourceName();
     }
     
     function getCounterKey() {
@@ -98,8 +99,7 @@ class AsyncStats {
         foreach ($requiredTimers as $requiredTimerName) {
             $summaryCounters[$requiredTimerName] = new SummaryTimer($requiredTimerName, $this->sourceName);
         }
-        
-        
+
         foreach ($timers as $timer) {
             $name = $timer->getName();
             if (array_key_exists($name, $summaryCounters) === false) {

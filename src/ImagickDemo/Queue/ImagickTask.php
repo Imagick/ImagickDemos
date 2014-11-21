@@ -67,13 +67,13 @@ class ImagickTask implements Task {
 
     function execute(\Auryn\Provider $injector) {
 
-        global $imageCache;
+        global $cacheImages;
 
         $namespace = sprintf('ImagickDemo\%s\functions', $this->category);
         /** @noinspection PhpUndefinedMethodInspection */
         $namespace::load();
 
-        $imageCache = true;
+        $cacheImages = true;
 
         $functionFullname = 'ImagickDemo\\'.$this->category.'\\'.$this->functionName;
         $filename = getImageCacheFilename($this->category, $this->functionName, $this->control->getParams());

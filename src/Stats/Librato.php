@@ -3,15 +3,22 @@
 
 namespace Stats;
 
+use ImagickDemo\Config\Librato as LibratoConfig;
 
+use Amp\Artax\Client as ArtaxClient;
+use Amp\Artax\Request;
+use Amp\Artax\Response;
+use Amp\Artax\SocketException;
 
 class Librato {
 
-    private $libratoKey;
+    /**
+     * @var LibratoConfig
+     */
+    private $libratoConfig;
     
-    function __construct($libratoKey, $libratoUsername) {
-        $this->libratoKey = $libratoKey;
-        $this->libratoUsername = $libratoUsername;
+    function __construct(LibratoConfig $libratoConfig) {
+        $this->libratoConfig = $libratoConfig;
     }
 
     /**
@@ -20,20 +27,20 @@ class Librato {
      */
     function send($gauges, $counters) {
 
-        $client = new \Artax\Client;
+        $client = new ArtaxClient;
 
         $client->setAllOptions([
-            'connectTimeout'        => 15,      // Timeout connect attempts after N seconds
-            'transferTimeout'       => 30,      // Timeout transfers after N seconds
+            ArtaxClient::OP_MS_CONNECT_TIMEOUT        => 2000,
+            ArtaxClient::OP_MS_TRANSFER_TIMEOUT       => 3000,
         ]);
 
-        $request = new \Artax\Request();
+        $request = new Request();
         $request->setUri("https://metrics-api.librato.com/v1/metrics");
         $request->setProtocol('1.1');
         $request->setMethod('POST');
         $request->setHeader("Content-Type", "application/json");
 
-        $auth = base64_encode($this->libratoUsername.':'.$this->libratoKey);
+        $auth = base64_encode($this->libratoConfig->getLibratoUsername().':'.$this->libratoConfig->getLibratoKey());
         $request->setHeader("Authorization", "Basic $auth");
 
         $data = [];
@@ -71,11 +78,13 @@ class Librato {
         var_dump($body);
 
         try {
-            $response = $client->request($request);
+            $promise = $client->request($request);
+            /** @var $response \Amp\Artax\Response */
+            $response = $promise->wait();
             echo "Status ".$response->getStatus()."\n";
             echo $response->getBody();
         }
-        catch(\Artax\SocketException $se) {
+        catch(SocketException $se) {
             echo "Artax\\SocketExeption".$se->getMessage();
         }
     }

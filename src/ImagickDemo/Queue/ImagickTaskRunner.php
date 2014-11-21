@@ -71,5 +71,6 @@ class ImagickTaskRunner {
                 var_dump($bae);
             }
         }
+        echo "\nImagickTaskRunner exiting\n";
     }
 }

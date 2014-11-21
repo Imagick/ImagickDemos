@@ -21,13 +21,13 @@ namespace ImagickDemo\ImagickDraw {
  */
 function header($string, $replace = true, $http_response_code = null) {
     global $imageType;
-    global $imageCache;
+    global $cacheImages;
 
     if (stripos($string, "Content-Type: image/") === 0) {
         $imageType = substr($string, strlen("Content-Type: image/"));
     }
 
-    if ($imageCache == false) {
+    if ($cacheImages == false) {
         \header($string, $replace, $http_response_code);
     }
 }

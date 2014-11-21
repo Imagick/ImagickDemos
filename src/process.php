@@ -35,7 +35,7 @@ $routesFunction = function(\FastRoute\RouteCollector $r) {
     $r->addRoute(
         'GET',
         "/image/$categories/{example:[a-zA-Z]+}",
-        [\ImagickDemo\Controller\Page::class, 'getImageResponse']
+        [\ImagickDemo\Controller\Image::class, 'getImageResponse']
     );
 
     $r->addRoute(
@@ -48,19 +48,12 @@ $routesFunction = function(\FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'setupRootIndex']);
 };
 
-$injector = bootstrapInjector(
-    $libratoKey, 
-    $libratorUsername,
-    $statsSourceName
-);
 
+$injector = bootstrapInjector();
 $response = servePage($injector, $routesFunction);
-
-
 if ($response != null) {
     $response->send();
 }
-
 
 if (php_sapi_name() === 'fpm-fcgi') {
     fastcgi_finish_request();

@@ -4,28 +4,12 @@
 # You want the -s strsize option, which specifies the maximum length of a string to display (the default is 32).
 
 
-# running siege 
-# siege -d10 -c50 http://basereality.test
 
-
-#Before reboot
-#[root@vagrant /]# wrk -t12 -c20 -d30s http://basereality.test/
-#Running 30s test @ http://basereality.test/
-#  12 threads and 20 connections
-#  Thread Stats   Avg      Stdev     Max   +/- Stdev
-#    Latency   264.55ms   60.96ms 574.54ms   79.09%
-#    Req/Sec     3.43      0.97     6.00     80.23%
-#  1398 requests in 30.02s, 8.29MB read
-#Requests/sec:     46.57
-#Transfer/sec:    282.85KB
-
-
-# By contrast, -etrace=!open means to trace every system call except open. In addition, the special values all and none have the obvious meanings.
+# -etrace=!open means to trace every system call except open. In addition, the special values all and none have the obvious meanings.
 #-etrace=!open
 #-e trace=!write.
 
 # -s strsize
-
 # Specify the maximum string size to print (the default is 32). Note that 
 # filenames are not considered strings and are always printed in full.
 
@@ -50,11 +34,11 @@ MASTER_PID=$(ps auwx | grep php-fpm | grep -v grep | grep 'master process'  | cu
 # and generates output like this:
 # -rw-rw-rw-      tmpmsg
 
-#shows total of calls
-summarise=""
-summarise="-c"
-#Jimbo you probably want to start with summarise enabled.
 
+summarise=""
+
+#comment in to show total of calls
+#summarise="-c"
 
 
 nohup strace -r $summarise -p $MASTER_PID -ff -o ./trc/master.follow.trc >"trc/master.$MASTER_PID.trc" 2>&1 &

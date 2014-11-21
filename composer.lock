@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a0f06426192d5bcd029f5852af607666",
+    "hash": "d017c1621814831c216b773c0eb78a00",
     "packages": [
         {
             "name": "amphp/amp",
-            "version": "v0.13.0",
+            "version": "v0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/amp.git",
-                "reference": "5c46db0c41bcf6a7b5ad74f2150610acb1e286fc"
+                "reference": "df9a41d456e22c076ddd8beace4f2f0d2f0e2ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/amp/zipball/5c46db0c41bcf6a7b5ad74f2150610acb1e286fc",
-                "reference": "5c46db0c41bcf6a7b5ad74f2150610acb1e286fc",
+                "url": "https://api.github.com/repos/amphp/amp/zipball/df9a41d456e22c076ddd8beace4f2f0d2f0e2ac0",
+                "reference": "df9a41d456e22c076ddd8beace4f2f0d2f0e2ac0",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "non-blocking",
                 "promise"
             ],
-            "time": "2014-11-05 16:57:59"
+            "time": "2014-11-18 15:08:00"
         },
         {
             "name": "amphp/artax",
@@ -116,16 +116,16 @@
         },
         {
             "name": "amphp/dns",
-            "version": "v0.3.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/dns.git",
-                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6"
+                "reference": "ea5610963b984d7fa103cd978fec3782b25ac374"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/dns/zipball/e58d46d3c565db24c17428bf42a75d55fedd7bc6",
-                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/ea5610963b984d7fa103cd978fec3782b25ac374",
+                "reference": "ea5610963b984d7fa103cd978fec3782b25ac374",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,39 @@
                 "dns",
                 "resolve"
             ],
-            "time": "2014-11-04 04:49:19"
+            "time": "2014-11-21 16:06:36"
+        },
+        {
+            "name": "danack/artaxservicebuilder",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/ArtaxServiceBuilder.git",
+                "reference": "829e2d31b639966e60a42834cfd6aa76f708a565"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/ArtaxServiceBuilder/zipball/829e2d31b639966e60a42834cfd6aa76f708a565",
+                "reference": "829e2d31b639966e60a42834cfd6aa76f708a565",
+                "shasum": ""
+            },
+            "require": {
+                "danack/danack-code": ">=2.4.4"
+            },
+            "require-dev": {
+                "danack/auryn": "~0.9.5",
+                "fzaninotto/faker": "*",
+                "mockery/mockery": "0.9.1",
+                "phpunit/phpunit": "4.1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ArtaxServiceBuilder": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2014-11-13 11:10:18"
         },
         {
             "name": "danack/auryn",
@@ -232,6 +264,66 @@
             "time": "2014-10-11 00:30:55"
         },
         {
+            "name": "danack/console",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Console.git",
+                "reference": "c69267bda73a2c896436605e18a9d4ff808d5ef3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Console/zipball/c69267bda73a2c896436605e18a9d4ff808d5ef3",
+                "reference": "c69267bda73a2c896436605e18a9d4ff808d5ef3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "danack/auryn": "0.14.1",
+                "phpunit/phpunit": "4.2.6",
+                "psr/log": "~1.0",
+                "symfony/process": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Danack\\Console\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Danack",
+                    "email": "Danack@basereality.com"
+                }
+            ],
+            "description": "Refactored Symfony Console Component",
+            "homepage": "http://console.basereality.com/",
+            "keywords": [
+                "cli",
+                "console"
+            ],
+            "time": "2014-09-22 17:51:49"
+        },
+        {
             "name": "danack/danack-code",
             "version": "2.4.5",
             "source": {
@@ -264,6 +356,83 @@
                 "zf2"
             ],
             "time": "2014-09-15 22:26:39"
+        },
+        {
+            "name": "danack/danackhttp2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/HTTP2.git",
+                "reference": "616eadd3acc058eb56e7a1076a94d74d2484024e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/HTTP2/zipball/616eadd3acc058eb56e7a1076a94d74d2484024e",
+                "reference": "616eadd3acc058eb56e7a1076a94d74d2484024e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTTP2": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "./"
+            ],
+            "license": [
+                "New BSD License"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fork of HTTP for PHP5 and autoloading",
+            "time": "2014-07-13 21:04:06"
+        },
+        {
+            "name": "danack/githubartaxservice",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/GithubArtaxService.git",
+                "reference": "4c940962c21908abd404b12c332f3d1d62fd1df9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/GithubArtaxService/zipball/4c940962c21908abd404b12c332f3d1d62fd1df9",
+                "reference": "4c940962c21908abd404b12c332f3d1d62fd1df9",
+                "shasum": ""
+            },
+            "require": {
+                "amphp/artax": "v1.0.0-rc5",
+                "danack/artaxservicebuilder": "~0.3.1",
+                "danack/danack-code": ">=2.4.5",
+                "danack/danackhttp2": ">=1.2.0"
+            },
+            "require-dev": {
+                "danack/auryn": "~0.14.0",
+                "phpunit/phpunit": "4.1.3"
+            },
+            "bin": [
+                "bin/generateGithubArtaxService.php"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "GithubService": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2014-11-13 11:19:07"
         },
         {
             "name": "danack/jig",
@@ -933,11 +1102,18 @@
 
     ],
     "aliases": [
-
+        {
+            "alias": "0.3.3",
+            "alias_normalized": "0.3.3.0",
+            "version": "9999999-dev",
+            "package": "amphp/dns"
+        }
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "nikic/fast-route": 20
+        "danack/githubartaxservice": 20,
+        "nikic/fast-route": 20,
+        "amphp/dns": 20
     },
     "prefer-stable": false,
     "platform": [

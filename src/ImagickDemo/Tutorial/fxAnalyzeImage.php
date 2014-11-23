@@ -52,8 +52,6 @@ END;
 
         $method = $methods[$customImage];
         $this->{$method}();
-
-        exit(0);
     }
 
 //Example Tutorial::fxAnalyzeImage

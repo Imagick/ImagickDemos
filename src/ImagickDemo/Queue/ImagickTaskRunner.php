@@ -63,7 +63,7 @@ class ImagickTaskRunner {
                 $task->execute($this->injector);
                 $time = microtime(true) - $startTime;
                 $this->asyncStats->recordTime(self::event_imageGenerated, $time);
-                echo "Task complete";
+                echo "Task complete\n";
             }
             catch(\Auryn\BadArgumentException $bae) {
                 //Log failed job

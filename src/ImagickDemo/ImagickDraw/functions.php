@@ -1533,40 +1533,6 @@ function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnde
 //Example ImagickDraw::setVectorGraphics
 function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
 
-    
-    if (false) {
-        //old example
-        $draw = new \ImagickDraw();
-    
-        $draw->setStrokeColor($strokeColor);
-        $draw->setFillColor($fillColor);
-    
-        $draw->setStrokeWidth(2);
-        $draw->setFontSize(72);
-    
-        $draw->ellipse(125, 70, 100, 50, 0, 360);
-    
-        $draw->ellipse(350, 70, 100, 50, 0, 315);
-    
-        $draw->push();
-        $draw->translate(125, 250);
-        $draw->rotate(30);
-        $draw->ellipse(0, 0, 100, 50, 0, 360);
-        $draw->pop();
-    
-        $draw->push();
-        $draw->translate(350, 250);
-        $draw->rotate(30);
-        $draw->ellipse(0, 0, 100, 50, 0, 315);
-        $draw->pop();
-    
-        $svg = $draw->getVectorGraphics();
-    
-        var_dump($svg);
-    //    exit(0);
-        
-    }
-
     $SVG = '<?xml version="1.0" encoding="utf-8"?>';
     $SVG .= '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
     $SVG .= '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="158px" height="92px" viewBox="0 0 158 92" enable-background="new 0 0 158 92" xml:space="preserve">';

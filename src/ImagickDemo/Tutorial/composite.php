@@ -51,10 +51,20 @@ class composite extends \ImagickDemo\Example {
         return $listOfExamples;
     }
 
+    /**
+     * @return array
+     */
     function getCustomImageParams() {
-        return $this->compositeExampleControl->getParams();
+        $params = $this->compositeExampleControl->getParams(); 
+        $type = $this->request->getVariable('type');
+        $params = array_merge($params, ['type' => $type]);
+
+        return $params;
     }
-    
+
+    /**
+     * @return string
+     */
     function render() {
         
         $output = "<table class='compositeTable'>";
@@ -125,14 +135,10 @@ What makes this useful is for overlaying lighting and shading effects that are l
     function renderCustomImage() {
         $methods = [
             'multiplyGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MULTIPLY],
-
             'difference' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_DIFFERENCE],
             'modulate' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MODULATE],
             'modulusAdd' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MODULUSADD],
             'modulusSubstract' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MODULUSSUBTRACT],
-            
-            
-            
             'screenGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_SCREEN],
             'divide' => [ 'getTextScan', 'getTextScanBlurred', \Imagick::COMPOSITE_COLORDODGE],
             'Dst_In' => ['gradientDown', 'getWhiteDiscAlpha',  \Imagick::COMPOSITE_DSTIN],
@@ -176,7 +182,6 @@ What makes this useful is for overlaying lighting and shading effects that are l
         }
 
         $this->genericComposite($firstImage, $secondImage, $methodInfo[2]);
-        exit(0);
     }
     
     
@@ -184,7 +189,6 @@ What makes this useful is for overlaying lighting and shading effects that are l
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
-        exit(0);
     }
 
     function genericComposite(\Imagick $imagick1, \Imagick $imagick2, $type) {
@@ -207,7 +211,6 @@ What makes this useful is for overlaying lighting and shading effects that are l
 
         header("Content-Type: image/png");
         echo $backGround->getImageBlob();
-        exit(0);
     }
 
     function renderDescription() {
@@ -270,7 +273,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
     
     
     function getTestImage() {
-        $imagick = new \Imagick(realpath("images/TestImage.jpg"));
+        $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
         return $imagick;
     }
 

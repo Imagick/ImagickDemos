@@ -33,6 +33,10 @@ abstract class Example implements renderableExample {
         return null;
     }
 
+    function getCustomImageParams() {
+        return [];
+    }
+
     /**
      * Get number of bootstrap columns the content should be offset by 
      * @return int

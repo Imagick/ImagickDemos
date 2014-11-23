@@ -81,19 +81,6 @@ class Image {
         }
 
         return null;
-
-//        $task = $request->getVariable('task', true);
-//        $function = setupExampleInjection($injector, $category, $example);
-//
-//        if ($task) {
-//            $response = createImageTaskAndRedirectResponse($request, $injector, $category, $function, $control);
-//        }
-//        else {
-//            $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
-//            $response = createAndCacheFile($injector, $functionFullname, $filename);
-//        }
-//
-//        return $response;
     }
 
     /**
@@ -116,7 +103,13 @@ class Image {
         $namespace = sprintf('ImagickDemo\%s\functions', $category);
         $namespace::load();
         $original = $request->getVariable('original', false);
-        $task = $request->getVariable('task', true);
+
+        $task = $appConfig->getQueueImages();
+        
+        if ($task) {
+            //Only allow it to be turned off not on.
+            $task = $request->getVariable('task', true);
+        }
 
         //Yay - global state.
         $function = setupExampleInjection($injector, $category, $example);
@@ -139,7 +132,7 @@ class Image {
             $control = $injector->make(\ImagickDemo\Control::class);
             $filename = getImageCacheFilename($category, $example, $control->getParams());
             $response = createAndCacheFile($injector, $functionFullname, $filename);
-
+            
             return $response;
         };
 
@@ -150,7 +143,7 @@ class Image {
         };
 
         $executables = [];
-        
+
         if ($cacheImages) {
             $executables[] = $getCachedImageResponse;
         }
@@ -175,36 +168,3 @@ class Image {
         return null;
     }
 }
-
-
-
-/*
- 
-if ($cacheImages) {
-    $cachedResponse = $this->getCachedImageResponse($injector, $request, $category, $function);
-
-    if ($cachedResponse) {
-        return $cachedResponse;
-    }
-
-    $task = $request->getVariable('task', true);
-    $function = setupExampleInjection($injector, $category, $example);
-    $control = $injector->make(\ImagickDemo\Control::class);
-
-    if ($task) {
-        $response = createImageTaskAndRedirectResponse($request, $injector, $category, $function, $control);
-    }
-    else {
-        $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
-        $filename = getImageCacheFilename($category, $example, $control->getParams());
-        $response = createAndCacheFile($injector, $functionFullname, $filename);
-    }
-
-    return $response;
-}
-
-*/
-
-//        $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
-
-//      $injector->execute($functionFullname);

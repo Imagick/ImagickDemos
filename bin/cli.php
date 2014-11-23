@@ -11,6 +11,8 @@ use Danack\Console\Command\Command;
 
 require __DIR__.'/../src/bootstrap.php';
 
+chdir(realpath(__DIR__).'/../imagick');
+
 $injector = bootstrapInjector();
 
 $application = createApplication();
@@ -36,7 +38,7 @@ try {
     );
 }
 catch(\Exception $e) {
-    echo "Unexpected exception of type ".get_class($e)." running Bastion: ".$e->getMessage().PHP_EOL;
+    echo "Unexpected exception of type ".get_class($e)." running imagick-demos: ".$e->getMessage().PHP_EOL;
     echo $e->getTraceAsString();
     exit(-2);
 }

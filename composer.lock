@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d017c1621814831c216b773c0eb78a00",
+    "hash": "43bb24d6f7408e712bbbabe2f948b7db",
     "packages": [
         {
             "name": "amphp/amp",
@@ -116,16 +116,16 @@
         },
         {
             "name": "amphp/dns",
-            "version": "dev-master",
+            "version": "v0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/dns.git",
-                "reference": "ea5610963b984d7fa103cd978fec3782b25ac374"
+                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/dns/zipball/ea5610963b984d7fa103cd978fec3782b25ac374",
-                "reference": "ea5610963b984d7fa103cd978fec3782b25ac374",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/e58d46d3c565db24c17428bf42a75d55fedd7bc6",
+                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6",
                 "shasum": ""
             },
             "require": {
@@ -165,39 +165,7 @@
                 "dns",
                 "resolve"
             ],
-            "time": "2014-11-21 16:06:36"
-        },
-        {
-            "name": "danack/artaxservicebuilder",
-            "version": "0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/ArtaxServiceBuilder.git",
-                "reference": "829e2d31b639966e60a42834cfd6aa76f708a565"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/ArtaxServiceBuilder/zipball/829e2d31b639966e60a42834cfd6aa76f708a565",
-                "reference": "829e2d31b639966e60a42834cfd6aa76f708a565",
-                "shasum": ""
-            },
-            "require": {
-                "danack/danack-code": ">=2.4.4"
-            },
-            "require-dev": {
-                "danack/auryn": "~0.9.5",
-                "fzaninotto/faker": "*",
-                "mockery/mockery": "0.9.1",
-                "phpunit/phpunit": "4.1.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "ArtaxServiceBuilder": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "time": "2014-11-13 11:10:18"
+            "time": "2014-11-04 04:49:19"
         },
         {
             "name": "danack/auryn",
@@ -264,66 +232,6 @@
             "time": "2014-10-11 00:30:55"
         },
         {
-            "name": "danack/console",
-            "version": "v2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/Console.git",
-                "reference": "c69267bda73a2c896436605e18a9d4ff808d5ef3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Console/zipball/c69267bda73a2c896436605e18a9d4ff808d5ef3",
-                "reference": "c69267bda73a2c896436605e18a9d4ff808d5ef3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "danack/auryn": "0.14.1",
-                "phpunit/phpunit": "4.2.6",
-                "psr/log": "~1.0",
-                "symfony/process": "~2.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Danack\\Console\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Danack",
-                    "email": "Danack@basereality.com"
-                }
-            ],
-            "description": "Refactored Symfony Console Component",
-            "homepage": "http://console.basereality.com/",
-            "keywords": [
-                "cli",
-                "console"
-            ],
-            "time": "2014-09-22 17:51:49"
-        },
-        {
             "name": "danack/danack-code",
             "version": "2.4.5",
             "source": {
@@ -356,83 +264,6 @@
                 "zf2"
             ],
             "time": "2014-09-15 22:26:39"
-        },
-        {
-            "name": "danack/danackhttp2",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/HTTP2.git",
-                "reference": "616eadd3acc058eb56e7a1076a94d74d2484024e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/HTTP2/zipball/616eadd3acc058eb56e7a1076a94d74d2484024e",
-                "reference": "616eadd3acc058eb56e7a1076a94d74d2484024e",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "HTTP2": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "./"
-            ],
-            "license": [
-                "New BSD License"
-            ],
-            "authors": [
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A fork of HTTP for PHP5 and autoloading",
-            "time": "2014-07-13 21:04:06"
-        },
-        {
-            "name": "danack/githubartaxservice",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/GithubArtaxService.git",
-                "reference": "4c940962c21908abd404b12c332f3d1d62fd1df9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/GithubArtaxService/zipball/4c940962c21908abd404b12c332f3d1d62fd1df9",
-                "reference": "4c940962c21908abd404b12c332f3d1d62fd1df9",
-                "shasum": ""
-            },
-            "require": {
-                "amphp/artax": "v1.0.0-rc5",
-                "danack/artaxservicebuilder": "~0.3.1",
-                "danack/danack-code": ">=2.4.5",
-                "danack/danackhttp2": ">=1.2.0"
-            },
-            "require-dev": {
-                "danack/auryn": "~0.14.0",
-                "phpunit/phpunit": "4.1.3"
-            },
-            "bin": [
-                "bin/generateGithubArtaxService.php"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "GithubService": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "time": "2014-11-13 11:19:07"
         },
         {
             "name": "danack/jig",
@@ -801,6 +632,102 @@
             "time": "2014-11-06 17:55:11"
         },
         {
+            "name": "leafo/lessphp",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafo/lessphp.git",
+                "reference": "51f3f06f0fe78a722dabfd14578444bdd078d9de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafo/lessphp/zipball/51f3f06f0fe78a722dabfd14578444bdd078d9de",
+                "reference": "51f3f06f0fe78a722dabfd14578444bdd078d9de",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "lessc.inc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "lessphp is a compiler for LESS written in PHP.",
+            "homepage": "http://leafo.net/lessphp/",
+            "time": "2013-08-09 17:09:19"
+        },
+        {
+            "name": "leafo/scssphp",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafo/scssphp.git",
+                "reference": "8c08da585537e97efd528c7d278463d2b9396371"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/8c08da585537e97efd528c7d278463d2b9396371",
+                "reference": "8c08da585537e97efd528c7d278463d2b9396371",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classmap.php"
+                ],
+                "psr-4": {
+                    "Leafo\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://leafo.net/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "time": "2014-08-12 22:41:53"
+        },
+        {
             "name": "nikic/fast-route",
             "version": "dev-master",
             "source": {
@@ -1102,18 +1029,11 @@
 
     ],
     "aliases": [
-        {
-            "alias": "0.3.3",
-            "alias_normalized": "0.3.3.0",
-            "version": "9999999-dev",
-            "package": "amphp/dns"
-        }
+
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "danack/githubartaxservice": 20,
-        "nikic/fast-route": 20,
-        "amphp/dns": 20
+        "nikic/fast-route": 20
     },
     "prefer-stable": false,
     "platform": [

@@ -102,20 +102,35 @@ class DocHelperDisplay extends DocHelper {
             $output .= "<div class='row'>
                 <div class='col-md-12 contentPanel'>";
             
-            $output .= "<h4 class='exampleHeader'>";
+            
+            //$output .= "<h4 class='exampleHeader'>";
+
+            $header = false;
             
             if (count($examples) > 1) {
-                $output .= "Example $count";
+                //$output .= "Example $count";
+                $header = "Example $count";
             }
             else {
-                $output .= "Example";
+                //$output .= "Example";
+                //$header = "Example";
             }
             $description = $example->getDescription();
             if (strlen(trim($description))) {
-                $output .= ' - '.$description;
+
+                if ($header) {
+
+                    //              $output .= ' - '.$description;
+                    $header .= ' - ' . $description;
+                }
+                else {
+                    $header = $description;
+                }
             }
 
-            $output .= "</h4>";
+//            $output .= "</h4>";
+            
+            
 
             $uri = sprintf(
                 "https://github.com/Danack/Imagick-demos/tree/master/src/ImagickDemo/%s/functions.php",
@@ -135,9 +150,41 @@ class DocHelperDisplay extends DocHelper {
                     $example->startLine
                 );
             }
+            
+            
+            
+            $string = $example->getLines();
+
+            $offset = 0;
+            
+            $lines = explode("\n", $string);
+            
+            foreach ($lines as $line) {                
+                if (!strlen(trim($line))){
+                    continue;
+                }
+
+                $matched = preg_match('#[^\s]#', $line, $matches, PREG_OFFSET_CAPTURE);
+
+                if ($matched) {
+                    $offset = $matches[0][1];
+                    break;
+                }
+            }
+            
 
             $output .= "<div class='shContainer'>";
             $output .= "<pre class='brush: php;' data-github='$uri'>";
+
+            if ($header) {
+                for ($x = 0; $x < $offset; $x++) {
+                    $output .= ' ';
+                }
+
+                $output .= '//' . $header . "\n\n";
+            }
+            
+            
             $output .=  $example->getLines();
             $output .=  "</pre></div>";
             $count++;

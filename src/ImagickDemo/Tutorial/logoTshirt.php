@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Tutorial;
 
-function sendImage(\Imagick $compare) {
-    $compare->setImageFormat('png');
-    header("Content-Type: image/png");
-    echo $compare->getImageBlob();
-    exit(0);
-}
+//function sendImage(\Imagick $compare) {
+//    $compare->setImageFormat('png');
+//    header("Content-Type: image/png");
+//    echo $compare->getImageBlob();
+//    exit(0);
+//}
 
 function getAverageColorString(\Imagick $imagick) {
 
@@ -72,19 +72,18 @@ END;
     }
 
     function renderCustomImage() {
-        
         $imageType = $this->request->getVariable('type', 'simple');
         
         switch($imageType) {
             
             case('simple'): {
                 $this->renderCustomImageSimple();
-                exit(0);
+                return;
             }
 
             case('creases'): {
                 $this->renderCustomImageCreases();
-                break;
+                return;
             }
         }
     }

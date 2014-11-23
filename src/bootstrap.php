@@ -126,6 +126,7 @@ namespace {
      */
     function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filename) {
         global $imageType;
+
         ob_start();
 
         $injector->execute($functionFullname);
@@ -316,9 +317,11 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
 }
 
 
-
-
-
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $routesFunction
+     * @return \ImagickDemo\Response\Response|StandardHTTPResponse|null
+     */
     function servePage(\Auryn\Provider $injector, $routesFunction) {
 
         $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
@@ -361,7 +364,10 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     }
 
 
-
+    /**
+     * @param $filename
+     * @return FileResponse|null
+     */
     function createFileResponseIfFileExists($filename) {
         $extensions = ["jpg", 'jpeg', "gif", "png", ];
 
@@ -377,7 +383,13 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     }
 
 
-
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $category
+     * @param $example
+     * @return FileResponse|null
+     * @throws \Exception
+     */
     function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example) {
         $function = setupExampleInjection($injector, $category, $example);
         $className = sprintf('ImagickDemo\%s\%s', $category, $function);
@@ -391,17 +403,16 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
             return null;
         }
 
-        $controller = $injector->make($className);
-        $params = $controller->getCustomImageParams();
+        $pageController = $injector->make($className);
+        $params = $pageController->getCustomImageParams();
         $filename = getImageCacheFilename($category, $example.".custom", $params);
-
         $response = createFileResponseIfFileExists($filename);
 
         if ($response) {
             return $response;
         }
 
-        $response = createAndCacheFile($injector, [$controller, 'renderCustomImage'], $filename);
+        $response = createAndCacheFile($injector, [$pageController, 'renderCustomImage'], $filename);
 
         return $response;
     }
@@ -491,9 +502,13 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
         $outputImage->borderimage('black', $border, $border);
 
+        
         $outputImage->setImageFormat("png");
-        header("Content-Type: image/png");
+
+        \ImagickDemo\header("Content-Type: image/png");
         echo $outputImage;
+
+        //exit(0);
     }
 
     function getPanelStart($smaller, $extraClass = '', $style = '') {

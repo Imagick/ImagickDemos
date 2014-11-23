@@ -65,8 +65,6 @@ class Channel  extends OptionKeyElement  {
             //\Imagick::CHANNEL_DEFAULT   => 'Default',
         ];
 
-//        var_dump($options);
-//        exit(0);
         return $options;
     }
 

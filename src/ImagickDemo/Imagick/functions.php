@@ -548,22 +548,12 @@ function createMask() {
     //Draw a circle on the y-axis, with it's centre
     //at x, y that touches the origin
     $draw->circle(250, 250, 220, 250);
-    //$draw->point(256, 256);
 
     $imagick = new \Imagick();
     $imagick->newImage(512, 512, "black");
     $imagick->drawImage($draw);
     $imagick->gaussianBlurImage(20, 20);
     $imagick->autoLevelImage();
-
-    //$imagick->negateImage(true);
-
-    if (false) {
-        $imagick->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
-        exit(0);
-    }
 
     return $imagick;
 }
@@ -572,12 +562,6 @@ function createMask() {
 function forwardFourierTransformImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->resizeimage(512, 512, \Imagick::FILTER_LANCZOS, 1);
-
-    if (false) {
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
-        exit(0);
-    }
 
     $mask = createMask();
     $imagick->forwardFourierTransformImage(true);

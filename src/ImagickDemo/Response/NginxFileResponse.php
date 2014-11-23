@@ -88,7 +88,6 @@ class NginxFileResponse implements \ImagickDemo\Response\Response {
         
         //sendProxyHeaders($mimeType, $seconds_to_cache);
         //header("X-Accel-Redirect: " . $filenameToProxy);
-        exit(0);
     }
 }
 

@@ -44,30 +44,41 @@ abstract class OptionValueElement implements ControlElement {
      * @return string
      */
     function renderFormElement() {
-        $output = "<tr>
-                <td class='standardCell'>
-                ".$this->getDisplayName()."
-                </td>
-                <td class='standardCell valueCell'> ";
 
-
-        $output .= "<select name='".$this->getVariableName()."'>";
+        $select = '';
 
         foreach ($this->getOptions() as $key => $value) {
             $selected = '';
             if ($value == $this->value) { //Unsafe compare?
                 $selected = "selected='selected'";
             }
-            $output .= "<option value='".$value."' $selected>$value</option>";
+            $select .= "<option value='".$value."' $selected>$value</option>";
         }
+        
+        
+        $text = <<< END
+<div class='row'>
+    <div class='col-sm-%d %s'>
+        %s
+    </div>    
+    <div class='col-sm-%d %s'>
+        <select name='%s'>
+            %s
+        </select>
+    </div>
+</div>
+END;
 
-        $output .= "</select>
-                    </td>
-                <td class='standardCell'>
-                </td>
-            </tr>";
-
-        return $output;
+        return sprintf(
+            $text,
+            self::FIRST_ELEMENT_SIZE,
+            self::FIRST_ELEMENT_CLASS,
+            $this->getDisplayName(),
+            self::MIDDLE_ELEMENT_SIZE,
+            self::MIDDLE_ELEMENT_CLASS,
+            $this->getVariableName(),
+            $select
+        );
     }
 }
 

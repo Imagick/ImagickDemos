@@ -28,6 +28,12 @@ function header($string, $replace = true, $http_response_code = null) {
         }
     }
 }
+    
+function renderFile($filename) {
+    header("Content-Type: image/jpg");
+    readfile($filename);
+}
+    
 
 //Example Imagick::adaptiveBlurImage
 function adaptiveBlurImage($imagePath, $radius, $sigma, $channel) {
@@ -1397,6 +1403,34 @@ function setOption($imagePath) {
 //Example end
 
 
+    
+    
+//Example Imagick::setOption
+function setSamplingFactors($imagePath) {
+
+    $imagePath = "../imagick/images/FineDetail.png";
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->setImageFormat('jpg');
+    $imagick->setSamplingFactors(array('2x2', '1x1', '1x1'));
+
+    $compressed = $imagick->getImageBlob();
+
+    
+    $reopen = new \Imagick();
+    $reopen->readImageBlob($compressed);
+
+    $reopen->resizeImage(
+        $reopen->getImageWidth() * 4,
+        $reopen->getImageHeight() * 4,
+        \Imagick::FILTER_POINT,
+        1
+    );
+    
+    header("Content-Type: image/jpg");
+    echo $reopen->getImageBlob();
+}
+//Example end
+    
 //Example Imagick::shadeImage
 function shadeImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));

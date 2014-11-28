@@ -59,46 +59,29 @@ class ColorMatrix implements ControlElement {
      */
     function renderFormElement() {
 
-        $output = '';
-        
-        $output .= "<tr>
-        <td class='standardCell' colspan='3'>
-        ";
-
-        $output .= "<table style='font-size: 10px'>";
+        $output = "
+        <div class='row'>
+        <div class='col-xs-12' style='font-size: 12px'>";
         
         foreach ($this->colorMatrix as $key => $value) {
-
             if (($key % $this->matrixDimension) == 0) {
-                $output .= "<tr>";
+                $output .= "<div class='row'>";
             }
 
-            $output .= "<td>";
-
+            $output .= "<div class='col-xs-2'>";
             $name = 'colorMatrix_'.$key;
-            
             $output .= "<input type='text' length='4' name='$name' value='$value' style='width: 40px'/>";
-            $output .= "</td>";
+            $output .= "</div>";
 
             if (($key % $this->matrixDimension) == ($this->matrixDimension - 1)) {
-                $output .= "</tr>";
+                $output .= "<div class='col-xs-2'></div>";
+                $output .= "</div>";
             }
+
+            
         }
 
-        $output .= "</table>";
-        
-        
-        
-//        $output .= <<< END
-//        
-//  <script type='text/javascript'>
-//
-//        <div style='display: inline-block; border: 1px solid #000000; margin: 4px' onclick='resetToIdentiy('#colorMatrix', $this->matrixDimension)'>Reset to identity</div>
-//END;
-//  
-//        
-//        
-        $output .= "</td></tr>";
+        $output .= " </div></div>";
 
         return $output;
     }

@@ -6,29 +6,6 @@ namespace ImagickDemo\ControlElement;
 use Intahwebz\Request;
 
 
-//class H20 extends ValueElement {
-//
-//    function getDefault() {
-//        return 5;
-//    }
-//    function getMin() {
-//        return 0;
-//    }
-//    
-//    function getMax() {
-//        return 20;
-//    }
-//    function getVariableName() {
-//        return 'h20';
-//    }
-//    
-//    function getDisplayName() {
-//        return 'Height';
-//    }
-//
-//    function getH20() {
-//        return $this->getValue();
-//    }
 
 class H20 implements ControlElement {
     
@@ -45,7 +22,6 @@ class H20 implements ControlElement {
         if ($this->h20 > 20) {
             $this->h20 = 20;
         }
-        //zendcode eats braces
     }
 
     function getParams() {
@@ -57,19 +33,21 @@ class H20 implements ControlElement {
     function renderFormElement() {
         $sWidth = safeText($this->h20);
    
-        $output = "
-            <tr>
-                <td class='standardCell'>
-                    Height
-                </td>
-                <td class='standardCell valueCell'>
-                    <input type='text' name='".self::h20Name."' value='$sWidth'/>
-                </td>
-                <td class='standardCell'>
-                </td>
-            </tr>";
+        $text = "<div class='row'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE."'>
+        %s
+    </div>    
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE."'>
+        <input type='text' name='%s' value='%s'/>
+    </div>
+</div>";
 
-        return $output;
+        return sprintf(
+            $text,
+            "Height",
+            self::h20Name,
+            $sWidth
+        );
     }
 
     /**

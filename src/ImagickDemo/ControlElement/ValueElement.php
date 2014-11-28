@@ -57,19 +57,21 @@ abstract class ValueElement implements ControlElement {
     function renderFormElement() {
         $sValue = safeText($this->value);
 
-        $output = "
-            <tr>
-                <td class='standardCell'>
-                    ".$this->getDisplayName()."
-                </td>
-                <td class='standardCell valueCell'>
-                    <input type='text' class='inputValue' name='".$this->getVariableName()."' value='$sValue'/>
-                </td>
-                <td class='standardCell '>
-                </td>
-            </tr>";
+        $text = "<div class='row'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE."'>
+        %s
+    </div>    
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE."'>
+        <input type='text' class='inputValue' name='%s' value='%s'/>
+    </div>
+</div>";
 
-        return $output;
+        return sprintf(
+            $text,
+            $this->getDisplayName(),
+            $this->getVariableName(),
+            $sValue
+        );
     }
 }
 

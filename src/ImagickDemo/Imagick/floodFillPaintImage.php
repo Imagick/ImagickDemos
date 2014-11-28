@@ -5,9 +5,7 @@ namespace ImagickDemo\Imagick;
 
 class floodFillPaintImage extends \ImagickDemo\Example {
 
-    function getOriginalImage() {
-        return '/images/BlueScreen.jpg';
-    }
+    use OriginalImageFile;
     
     function render() {
         return $this->renderImageURL();

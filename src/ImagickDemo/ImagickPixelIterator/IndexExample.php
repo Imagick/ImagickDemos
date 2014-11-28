@@ -4,6 +4,10 @@ namespace ImagickDemo\ImagickPixelIterator;
 
 class IndexExample extends \ImagickDemo\Example {
 
+    function getColumnRightOffset() {
+        return 2;
+    }
+
 
     function renderTitle() {
         return "ImagickPixelIterator";

@@ -3,16 +3,22 @@
 
 namespace ImagickDemo\Control;
 
-
+use Intahwebz\Request;
 
 class ControlComposite implements \ImagickDemo\Control {
     
     private $imageBaseURL;
     private $customImageBaseURL;
+
+    /**
+     * @var Request
+     */
+    private $request;
     
-    function __construct($imageBaseURL, $customImageBaseURL) {
+    function __construct($imageBaseURL, $customImageBaseURL, Request $request) {
         $this->imageBaseURL = $imageBaseURL;
         $this->customImageBaseURL = $customImageBaseURL;
+        $this->request = $request;
     }
 
     /**
@@ -21,6 +27,17 @@ class ControlComposite implements \ImagickDemo\Control {
     function getParams() {
         //This should get replaced by the Weaver
         return [];
+    }
+
+    /**
+     * @return array
+     */
+    function getFullParams(array $extraParams = []) {
+        $params = $this->getParams();
+        $params += $extraParams;
+        $params += ['original' => $this->request->getVariable('original', false)];
+
+        return $params;
     }
     
     function renderFormElement() {
@@ -33,31 +50,19 @@ class ControlComposite implements \ImagickDemo\Control {
         $output = 
 
         "<form method='GET' accept-charset='utf-8'>
-             <table>";
+             <div class='col-xs-12 contentPanel'>";
 
         $output .= $this->renderFormElement();
 
         $output .= "
-            <tr>
-                <td class='standardCell'>&nbsp;
-                </td>
-                <td class='standardCell' colspan='2'>&nbsp;
-                </td>
-            </tr>
-        
-            <tr>
-                <td class='standardCell'>
-                </td>
-                <td class='standardCell' style='text-align: right;'>
+            <div class='row' style='margin-top: 20px'>
+                <div class='col-xs-7 col-sm-offset-5'>
                     <button type='submit' class='btn btn-default'>Update</button>
-                </td>
-                <td class='standardCell'>
-                </td>
-            </tr>
-            
-        </table>
-        </form>
-";
+                </div>
+            </div>
+        </div>
+        </form>";
+
         return $output;
     }
 
@@ -69,7 +74,9 @@ class ControlComposite implements \ImagickDemo\Control {
             $paramString .= $separator.$key."=".$value;
             $separator = '&';
         }
-        //return sprintf("<img src='%s%s' />", $this->imageBaseURL, $paramString);
+        
+        
+        
         return $this->imageBaseURL.$paramString;
     }
 
@@ -87,7 +94,6 @@ class ControlComposite implements \ImagickDemo\Control {
             $paramString .= $separator.$key."=".$value;
             $separator = '&';
         }
-        
 
         return $this->customImageBaseURL.$paramString;
     }

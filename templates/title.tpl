@@ -22,3 +22,11 @@
     </div>
 {/block}
 
+
+{block name='mainContent'}
+    <div class="row">
+        <div class="col-sm-12 contentPanel">
+            {$example->render() | nofilter}
+        </div>
+    </div>
+{/block}

@@ -3,7 +3,11 @@
 namespace ImagickDemo\Tutorial;
 
 class IndexExample extends \ImagickDemo\Example {
-    
+
+    function getColumnRightOffset() {
+        return 2;
+    }
+
     function renderTitle() {
         return "Tutorial";
     }
@@ -18,8 +22,6 @@ class IndexExample extends \ImagickDemo\Example {
 
 END;
 
-        
-        
         return $output;
     }
 }

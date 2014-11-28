@@ -21,14 +21,14 @@ $routesFunction = function(\FastRoute\RouteCollector $r) {
     $r->addRoute(
         'GET',
         "/$categories",
-        [\ImagickDemo\Controller\Page::class, 'setupCatergoryDelegation']
+        [\ImagickDemo\Controller\Page::class, 'renderCategoryIndex']
     );
 
     //Category + example
     $r->addRoute(
         'GET',
         "/$categories/{example:[a-zA-Z]+}",
-        [\ImagickDemo\Controller\Page::class, 'setupExampleDelegation']
+        [\ImagickDemo\Controller\Page::class, 'renderExamplePage']
     );
 
     //Images
@@ -38,14 +38,15 @@ $routesFunction = function(\FastRoute\RouteCollector $r) {
         [\ImagickDemo\Controller\Image::class, 'getImageResponse']
     );
 
+    //Custom images
     $r->addRoute(
         'GET',
         "/customImage/$categories/{example:[a-zA-Z]*}",
-        'setupCustomImageDelegation'
+        [\ImagickDemo\Controller\Image::class, 'getCustomImageResponse']
     );
     
     $r->addRoute('GET', '/info', [\ImagickDemo\Controller\ServerInfo::class, 'createResponse']);
-    $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'setupRootIndex']);
+    $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'renderTitlePage']);
 };
 
 

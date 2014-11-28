@@ -12,7 +12,6 @@ class ImageResponse implements \ImagickDemo\Response\Response {
     function __construct($mimeType, $data) {
         $this->mimeType = $mimeType;
         $this->data = $data;
-
     }
     
     function send() {

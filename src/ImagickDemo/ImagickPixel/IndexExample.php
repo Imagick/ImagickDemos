@@ -4,6 +4,11 @@ namespace ImagickDemo\ImagickPixel;
 
 class IndexExample extends \ImagickDemo\Example {
 
+    function getColumnRightOffset() {
+        return 2;
+    }
+
+
     function renderTitle() {
         return "ImagickPixel";
     }

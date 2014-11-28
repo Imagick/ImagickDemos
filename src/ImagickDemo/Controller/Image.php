@@ -7,7 +7,35 @@ use ImagickDemo\Response\FileResponse;
 use ImagickDemo\Response\RedirectResponse;
 use ImagickDemo\Config\Application as ApplicationConfig;
 
+/**
+ * @param \Auryn\Provider $injector
+ * @param $functionFullname
+ * @return \ImagickDemo\Response\ImageResponse
+ * @throws \Exception
+ */
+function createImage(callable $imageCallable) {
+    global $imageType;
 
+    ob_start();
+    $imageCallable();
+    if ($imageType == null) {
+        ob_end_clean();
+        throw new \Exception("imageType not set, can't cache image correctly.");
+    }
+    $imageData = ob_get_contents();
+    ob_end_clean();
+
+    return new \ImagickDemo\Response\ImageResponse("image/".$imageType, $imageData);
+}
+
+/**
+ * @param Request $request
+ * @param \Auryn\Provider $injector
+ * @param $category
+ * @param $function
+ * @param \ImagickDemo\Control $control
+ * @return RedirectResponse
+ */
 function createImageTaskAndRedirectResponse(
     Request $request,
     \Auryn\Provider $injector,
@@ -17,12 +45,10 @@ function createImageTaskAndRedirectResponse(
 ) {
     $job = $request->getVariable('job');
     if ($job === false) {
-        $task = $injector->make(
-            'ImagickDemo\Queue\ImagickTask',
-            [
-                ':category' => $category,
-                ':functionName' => $function
-            ]
+        $task = new \ImagickDemo\Queue\ImagickTask(
+            $category,
+            $function,
+            $control
         );
 
         $queue = $injector->make('ImagickDemo\Queue\RedisTaskQueue');
@@ -52,28 +78,13 @@ class Image {
 
     /**
      * @param \Auryn\Provider $injector
-     * @return FileResponse
-     */
-    function getOriginalImageResponse(\Auryn\Provider $injector) {
-        $control = $injector->make(\ImagickDemo\Control::class);
-        //TODO - this is dangerous. It assumes that image path exists on the control
-        //Which isn't always true.
-        $imagePath = $control->getImagePath();
-        return new FileResponse($imagePath, "Content-Type: image/jpeg");
-    }
-
-
-    /**
-     * @param \Auryn\Provider $injector
      * @param Request $request
      * @param $category
      * @param $example
      * @return FileResponse|RedirectResponse|null
      * @throws \Exception
      */
-    function getCachedImageResponse(\Auryn\Provider $injector, Request $request, $category, $example) {
-        $control = $injector->make(\ImagickDemo\Control::class);
-        $filename = getImageCacheFilename($category, $example, $control->getParams());
+    function getCachedImageResponse($filename) {
         $response = createFileResponseIfFileExists($filename);
 
         if ($response) {
@@ -81,6 +92,38 @@ class Image {
         }
 
         return null;
+    }
+
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $category
+     * @param $example
+     * @return FileResponse|null
+     * @throws \Exception
+     */
+    function getCustomImageResponse(
+        \Auryn\Provider $injector,
+        Request $request,
+        ApplicationConfig $appConfig,
+        $category,
+        $example,
+        \ImagickDemo\Control $control,
+        \ImagickDemo\Example $pageController) {
+
+        $imageCallable = [$pageController, 'renderCustomImage'];
+
+        $customImageParams = $pageController->getCustomImageParams();
+        
+        return $this->getImageResponse(
+            $injector,
+            $request,
+            $appConfig,
+            $category,
+            $example,
+            $control,
+            $imageCallable,
+            $customImageParams
+        );
     }
 
     /**
@@ -95,51 +138,42 @@ class Image {
         Request $request,
         ApplicationConfig $appConfig,
         $category,
-        $example
+        $example,
+        \ImagickDemo\Control $control,
+        $imageCallable,
+        $customImageParams = []
     ) {
 
         $cacheImages = $appConfig->getCacheImages();
-        
-        $namespace = sprintf('ImagickDemo\%s\functions', $category);
-        $namespace::load();
-        $original = $request->getVariable('original', false);
-
         $task = $appConfig->getQueueImages();
+
+        $cacheImages = true;
         
         if ($task) {
             //Only allow it to be turned off not on.
             $task = $request->getVariable('task', true);
         }
 
-        //Yay - global state.
-        $function = setupExampleInjection($injector, $category, $example);
+        $getCachedImageResponse = function() use ($category, $example, $control, $customImageParams) {
+            $filename = getImageCacheFilename($category, $example, $control->getFullParams($customImageParams));
 
-        if ($original) {
-            return $this->getOriginalImageResponse($injector);
-        }
-
-        $getCachedImageResponse = function() use ($category, $function, $injector, $example, $request)  {
-            return $this->getCachedImageResponse($injector, $request, $category, $function);
+            return $this->getCachedImageResponse($filename);
         };
 
-        $createImageTaskAndRedirectResponse = function() use ($category, $function, $injector, $example, $request) {
-            $control = $injector->make(\ImagickDemo\Control::class);
-            return createImageTaskAndRedirectResponse($request, $injector, $category, $function, $control);
+        $createImageTaskAndRedirectResponse = function() use ($category, $injector, $example, $request, $control) {
+            return createImageTaskAndRedirectResponse($request, $injector, $category, $example, $control);
         };
 
-        $createAndCacheFile = function () use ($category, $function, $injector, $example) {
-            $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
-            $control = $injector->make(\ImagickDemo\Control::class);
-            $filename = getImageCacheFilename($category, $example, $control->getParams());
-            $response = createAndCacheFile($injector, $functionFullname, $filename);
-            
+        $createAndCacheFile = function () use ($category, $imageCallable, $example, $control, $customImageParams) {
+            $filename = getImageCacheFilename($category, $example, $control->getFullParams($customImageParams));
+            $response = renderImageAsFileResponse($imageCallable, $filename);
+
             return $response;
         };
+        
 
-        $directImage = function () use ($category, $function, $injector) {
-            $functionFullname = 'ImagickDemo\\'.$category.'\\'.$function;
-
-            return createImage($injector, $functionFullname);
+        $directImage = function () use ($category,  $injector, $imageCallable) {
+            return createImage($imageCallable);
         };
 
         $executables = [];
@@ -147,7 +181,7 @@ class Image {
         if ($cacheImages) {
             $executables[] = $getCachedImageResponse;
         }
-        
+
         if ($task) {
             $executables[] = $createImageTaskAndRedirectResponse;
         }

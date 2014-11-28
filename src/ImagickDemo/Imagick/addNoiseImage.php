@@ -5,10 +5,7 @@ namespace ImagickDemo\Imagick;
 
 class addNoiseImage extends \ImagickDemo\Example {
 
-
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
-    }
+    use OriginalImageFile;
 
     function renderDescription() {
         $output = "NOISE_UNIFORM = 1;
@@ -21,8 +18,6 @@ class addNoiseImage extends \ImagickDemo\Example {
         
         return $output;
     }
-
-
 
     function render() {
         return $this->renderImageURL();

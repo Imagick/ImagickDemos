@@ -655,7 +655,10 @@ END;
             //'setPointSize',
             //'setResolution',
             //'setResourceLimit',
-            //'setSamplingFactors',
+            'setSamplingFactors' => [
+                'setSamplingFactors',
+                \ImagickDemo\Imagick\Control\samplingFactors::class
+            ],
             //'setSize',
             //'setSizeOffset',
             //'setType',

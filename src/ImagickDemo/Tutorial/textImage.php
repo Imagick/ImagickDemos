@@ -73,8 +73,6 @@ class textImage extends \ImagickDemo\Example {
         $draw->setFont("../fonts/Arial.ttf");
         $draw->annotation(50, 50, "Lorem Ipsum!");
 
-//$imagick->blurImage(5, 5);
-
         $msg = "Danack";
 
         $xpos = 0;

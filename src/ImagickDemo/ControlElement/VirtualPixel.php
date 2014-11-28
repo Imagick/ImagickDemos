@@ -36,7 +36,6 @@ class VirtualPixel implements ControlElement {
                 $this->virtualPixelType = $noiseType;
             }
         }
-        //Zendcode eats braces
     }
 
     /**
@@ -50,28 +49,34 @@ class VirtualPixel implements ControlElement {
      * @return string
      */
     function renderFormElement() {
-        $output = "<tr>
-                <td class='standardCell'>Virtual pixel type
-                </td>
-                <td class='standardCell valueCell'> ";
 
-        $output .= "<select name='".self::virtualPixelVar."'>";
-
+        $select = '';
+        
         foreach ($this->virtualPixelTypes as $noiseType => $noiseName) {
             $selected = '';
             if (strcmp($noiseName, $this->virtualPixelName) === 0) {
                 $selected = "selected='selected'";
             }
-            $output .= "<option value='".$noiseName."' $selected>$noiseName</option>";
+            $select .= "<option value='".$noiseName."' $selected>$noiseName</option>";
         }
 
-        $output .= "</select>
-                    </td>
-                <td class='standardCell'>
-                </td>
-            </tr>";
+        $text = "<div class='row'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE."'>
+        %s
+    </div>    
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE."'>
+        <select name='%s'>
+             %s
+        </select>
+    </div>
+</div>";
 
-        return $output;
+        return sprintf(
+            $text,
+            "Virtual pixel type",
+            self::virtualPixelVar,
+            $select
+        );
     }
 
     function getVirtualPixelType() {

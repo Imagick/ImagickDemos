@@ -46,30 +46,39 @@ abstract class OptionKeyElement implements ControlElement {
      * @return string
      */
     function renderFormElement() {
-        $output = "<tr>
-                <td class='standardCell'>
-                ".$this->getDisplayName()."
-                </td>
-                <td class='standardCell valueCell'> ";
 
-        $output .= "<select name='".$this->getVariableName()."'>";
-
+        $select = '';
+        
         foreach ($this->getOptions() as $key => $value) {
             $selected = '';
-            if ($key == $this->key) { //Unsafe compare?
+            if ($key == $this->key) {
                 $selected = "selected='selected'";
             }
-            $output .= "<option value='".$key."' $selected>$value</option>";
+            $select .= "<option value='".$key."' $selected>$value</option>";
         }
+        
+        
+        $text = <<< END
+<div class='row'>
+    <div class='col-sm-%d'>
+        %s
+    </div>    
+    <div class='col-sm-%d'>
+        <select name='%s'>
+            %s
+        </select>
+    </div>
+</div>
+END;
 
-        $output .= "</select>
-                    </td>
-                    
-                <td class='standardCell'>
-                </td>
-            </tr>";
-
-        return $output;
+        return sprintf(
+            $text,
+            self::FIRST_ELEMENT_SIZE,
+            $this->getDisplayName(),
+            self::MIDDLE_ELEMENT_SIZE,
+            $this->getVariableName(),
+            $select
+        );
     }
 }
 

@@ -4,9 +4,7 @@ namespace ImagickDemo\Imagick;
 
 class colorMatrixImage extends \ImagickDemo\Example {
 
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
-    }
+    use OriginalImageFile;
 
     function renderDescription() {
         //http://www.imagemagick.org/Usage/color_mods/#color-matrix

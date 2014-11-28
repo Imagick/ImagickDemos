@@ -119,17 +119,16 @@ namespace {
 
     /**
      * @param \Auryn\Provider $injector
-     * @param $functionFullname
+     * @param $imageCallable
      * @param $filename
      * @return FileResponse
      * @throws \Exception
      */
-    function createAndCacheFile(\Auryn\Provider $injector, $functionFullname, $filename) {
+    function renderImageAsFileResponse($imageCallable, $filename) {
         global $imageType;
 
         ob_start();
-
-        $injector->execute($functionFullname);
+        $imageCallable();
 
         if ($imageType == null) {
             ob_end_clean();
@@ -138,35 +137,13 @@ namespace {
 
         $image = ob_get_contents();
         @mkdir(dirname($filename), 0755, true);
-        //TODO - is this atomic?
-        $fullFilename = $filename . "." . strtolower($imageType);
-        
+        $fullFilename = $filename . "." . strtolower($imageType);        
         file_put_contents($fullFilename, $image);
         ob_end_clean();
 
         return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
     }
-
-    /**
-     * @param \Auryn\Provider $injector
-     * @param $functionFullname
-     * @return \ImagickDemo\Response\ImageResponse
-     * @throws \Exception
-     */
-    function createImage(\Auryn\Provider $injector, $functionFullname) {
-        global $imageType;
-        ob_start();
-        $injector->execute($functionFullname);
-        if ($imageType == null) {
-            ob_end_clean();
-            throw new \Exception("imageType not set, can't cache image correctly.");
-        }
-        $imageData = ob_get_contents();
-        ob_end_clean();
-
-        return new \ImagickDemo\Response\ImageResponse("image/".$imageType, $imageData);
-    }
-
+ 
 
     /**
      * @param $libratoKey
@@ -181,8 +158,8 @@ function bootstrapInjector() {
         "../templates/",
         "../var/compile/",
         'tpl',
-        Jig\JigRender::COMPILE_CHECK_EXISTS
-        //Jig\JigRender::COMPILE_CHECK_MTIME
+        //Jig\JigRender::COMPILE_CHECK_EXISTS
+        Jig\JigRender::COMPILE_CHECK_MTIME
         //Jig\JigRender::COMPILE_ALWAYS
     );
 
@@ -286,19 +263,25 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     ]);
 
     $categoryNav = $injector->make(\ImagickDemo\Navigation\CategoryNav::class);
+    
+    if (!$example) {
+        $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\IndexExample', $category));
+        return null;
+    }
+
     $exampleDefinition = $categoryNav->getExampleDefinition($category, $example);
     $function = $exampleDefinition[0];
     $controlClass = $exampleDefinition[1];
-    
+
     if (array_key_exists('defaultParams', $exampleDefinition) == true) {
-        foreach($exampleDefinition['defaultParams'] as $name => $value) {
-            $defaultName = 'default'.ucfirst($name);
+        foreach ($exampleDefinition['defaultParams'] as $name => $value) {
+            $defaultName = 'default' . ucfirst($name);
             $injector->defineParam($defaultName, $value);
         }
     }
 
-    $injector->defineParam('imageBaseURL', '/image/'.$category.'/'.$example);
-    $injector->defineParam('customImageBaseURL', '/customImage/'.$category.'/'.$example);
+    $injector->defineParam('imageBaseURL', '/image/' . $category . '/' . $example);
+    $injector->defineParam('customImageBaseURL', '/customImage/' . $category . '/' . $example);
     $injector->defineParam('activeCategory', $category);
     $injector->defineParam('activeExample', $example);
 
@@ -314,6 +297,7 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $function));
 
     return $function;
+
 }
 
 
@@ -383,39 +367,7 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     }
 
 
-    /**
-     * @param \Auryn\Provider $injector
-     * @param $category
-     * @param $example
-     * @return FileResponse|null
-     * @throws \Exception
-     */
-    function setupCustomImageDelegation(\Auryn\Provider $injector, $category, $example) {
-        $function = setupExampleInjection($injector, $category, $example);
-        $className = sprintf('ImagickDemo\%s\%s', $category, $function);
-        $namespace = 'ImagickDemo\\'.$category.'\functions';
-        $namespace::load();
 
-        global $cacheImages;
-
-        if ($cacheImages == false) {
-            $injector->execute([$className, 'renderCustomImage']);
-            return null;
-        }
-
-        $pageController = $injector->make($className);
-        $params = $pageController->getCustomImageParams();
-        $filename = getImageCacheFilename($category, $example.".custom", $params);
-        $response = createFileResponseIfFileExists($filename);
-
-        if ($response) {
-            return $response;
-        }
-
-        $response = createAndCacheFile($injector, [$pageController, 'renderCustomImage'], $filename);
-
-        return $response;
-    }
 
     /**
      * @param \Auryn\Provider $injector
@@ -424,18 +376,72 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
      * @return \ImagickDemo\Response\Response $response;
      */
     function process(\Auryn\Provider $injector, $handler, $vars) {
+
+        $category = null;
+        $example = null;
+        
+        if (isset($vars['category'])) {
+            $category = $vars['category'];
+        }
+
+        if (isset($vars['example'])) {
+            $example = $vars['example'];
+        }
+
+        $imageCallable = null;
+        
+        if ($category) {
+            $function = setupExampleInjection($injector, $category, $example);
+            
+            if ($function) {
+                $exampleClassName = sprintf('ImagickDemo\%s\%s', $category, $function);
+                $injector->alias(\ImagickDemo\Example::class, $exampleClassName);
+                $imageCallable = 'ImagickDemo\\'.$category.'\\'.$function;
+            }
+            else {
+                $exampleClassName = sprintf('ImagickDemo\%s\IndexExample', $category);
+                $injector->alias(\ImagickDemo\Example::class, $exampleClassName);
+            }
+
+            $namespace = sprintf('ImagickDemo\%s\functions', $category);
+            $namespace::load();
+        }
+        else {
+            $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
+        }
+
+        $request = $injector->make(\Intahwebz\Request::class);
+
+        $original = $request->getVariable('original', false);
+        if ($original) {
+            $imageCallable = [
+                \ImagickDemo\Example::class,
+                'renderOriginalImage'
+            ];
+        }
+
         $lowried = [];
         foreach ($vars as $key => $value) {
             $lowried[':'.$key] = $value;
             $injector->defineParam($key, $value);
         }
+
+        $imageCallable = function () use ($injector, $imageCallable, $lowried) {
+            $injector->execute($imageCallable, $lowried);
+        };
+
+        $lowried[':imageCallable'] = $imageCallable;
         $response = $injector->execute($handler, $lowried);
 
         return $response;
     }
 
 
-
+    /**
+     * @param \Imagick $imagick
+     * @param int $graphWidth
+     * @param int $graphHeight
+     */
     function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
 
         $sampleHeight = 20;

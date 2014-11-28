@@ -44,10 +44,7 @@ abstract class ColorElement implements ControlElement {
     }
 
     function renderFormElement() {
-        $output = "";
 
-        //171829
-        // data-color='17182b'
 
         $sValue = safeText($this->value);
         $fillPixel = new \ImagickPixel($this->value);
@@ -55,26 +52,34 @@ abstract class ColorElement implements ControlElement {
         $fillString = sprintf("rgb(%d, %d, %d)", $fillColor['r'], $fillColor['g'], $fillColor['b']);
         $fillStringHex = sprintf("%02x%02x%02x", $fillColor['r'], $fillColor['g'], $fillColor['b']);
 
-        $output .= "
+        $input = "<input type='text' class='inputValue' id='".$this->getVariableName()."' name='".$this->getVariableName()."' value='$sValue'  />";
 
-            <tr>
-                <td class='standardCell'>
-                    ".$this->getDisplayName()."
-                </td>
-                <td class='standardCell valueCell'>
-                    <input type='text' id='".$this->getVariableName()."' name='".$this->getVariableName()."' value='$sValue'  />
-                </td>
-                <td class='standardCell'>
-                    <span id='".$this->getVariableName()."Selector' data-color='0x$fillStringHex' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
+        $color = "<span id='".$this->getVariableName()."Selector' data-color='0x$fillStringHex' style='display: inline-block; border: 1px solid #000; padding: 0px;'>
                         <span style='background-color: $fillString; margin: 2px; width: 20px; display: inline-block;'>
                             &nbsp;
                         </span>
-                    </span>
-                </td>
-            </tr>
-";
+                    </span>";
 
-        return $output;
+
+        $text = "<div class='row'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." ".self::FIRST_ELEMENT_CLASS."'>
+        %s
+    </div>
+    <div class='col-sm-2'>
+        %s
+    </div>
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." ".self::MIDDLE_ELEMENT_CLASS."'>
+            %s
+    </div>
+    
+</div>";
+
+        return sprintf(
+            $text,
+            $this->getDisplayName(),
+            $color,
+            $input
+        );
     }
     
 }

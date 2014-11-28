@@ -17,9 +17,6 @@ END;
     }
 
     function render() {
-        $output = "<br/>";
-        $output .= $this->renderImageURL();
-
-        return $output;
+        return $this->renderImageURL();
     }
 }

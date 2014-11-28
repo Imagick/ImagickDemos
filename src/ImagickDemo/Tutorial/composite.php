@@ -67,22 +67,69 @@ class composite extends \ImagickDemo\Example {
      */
     function render() {
         
-        $output = "<table class='compositeTable'>";
+//        $output = "<table class='compositeTable'>";
+//
+//        $output .= "<tr><td align='center' class='compositeTableTD'>Input 1</td>
+//        <td align='center' class='compositeTableTD'>Input 2</td></tr>";
+//        $output .= "<tr><td class='compositeTableTD'>";
+//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_1]);
+//        $output .= "</td><td class='compositeTableTD'>";
+//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_2]);
+//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
+//        $output .= 'Output';
+//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
+//        $output .= $this->renderCustomImageURL(['type' => self::OUTPUT]);
+//
+//        $output .= '</tr>';
+//        $output .= '</table>';
 
-        $output .= "<tr><td align='center' class='compositeTableTD'>Input 1</td>
-        <td align='center' class='compositeTableTD'>Input 2</td></tr>";
-        $output .= "<tr><td class='compositeTableTD'>";
-        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_1]);
-        $output .= "</td><td class='compositeTableTD'>";
-        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_2]);
-        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
-        $output .= 'Output';
-        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
-        $output .= $this->renderCustomImageURL(['type' => self::OUTPUT]);
+//        $output .= "<div class='row'>";
 
-        $output .= '</tr>';
-        $output .= '</table>';
-        
+//        $output .= "<tr><td align='center' class='compositeTableTD'>Input 1</td>
+//        <td align='center' class='compositeTableTD'>Input 2</td></tr>";
+//        $output .= "<tr><td class='compositeTableTD'>";
+//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_1]);
+//        $output .= "</td><td class='compositeTableTD'>";
+//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_2]);
+//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
+//        $output .= 'Output';
+//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
+//
+//
+//        $output .= "<div class='row'>";
+//        $output .= "<div class='col-md-6 col-md-offset-3'>";
+//        $output .= $this->renderCustomImageURL(['type' => self::OUTPUT]);
+//        $output .= "</div>";
+//        $output .= "</div>";
+
+$layout = <<< END
+
+<div class='row'>
+    <div class='col-md-6'>
+        Input 1<br/>
+        %s
+    </div>
+    <div class='col-md-6'>
+    Input 2<br/>
+        %s
+    </div>
+</div>
+
+<div class='row'>
+<div class='col-md-6 col-md-offset-3'>
+    Output<br/>
+    %s
+    </div>
+</div>
+END;
+
+        $output = sprintf(
+            $layout,
+            $this->renderCustomImageURL(['type' => self::SOURCE_1]),
+            $this->renderCustomImageURL(['type' => self::SOURCE_2]),
+            $this->renderCustomImageURL(['type' => self::OUTPUT])
+        );
+
         return $output;
     }
 

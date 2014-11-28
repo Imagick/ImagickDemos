@@ -5,15 +5,10 @@ namespace ImagickDemo\Imagick;
 
 class remapImage extends \ImagickDemo\Example {
 
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
-    }
-
+    use OriginalImageFile;
 
     function renderDescription() {
-
     }
-
 
     function render() {
         return $this->renderImageURL();

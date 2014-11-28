@@ -636,7 +636,10 @@ $controls = [
         'ImagickDemo\ControlElement\PosterizeType',
         'ImagickDemo\ControlElement\NumberLevels'
     ],
-        
+
+    'ImagickDemo\Imagick\Control\samplingFactors' => [
+        'ImagickDemo\ControlElement\Image',
+    ],
     
 ];
 

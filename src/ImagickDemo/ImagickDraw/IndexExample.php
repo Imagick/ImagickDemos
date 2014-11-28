@@ -3,7 +3,12 @@
 namespace ImagickDemo\ImagickDraw;
 
 class IndexExample extends \ImagickDemo\Example {
-    
+
+    function getColumnRightOffset() {
+        return 2;
+    }
+
+
     function render() {
 
         $output = <<< END

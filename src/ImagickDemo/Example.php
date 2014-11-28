@@ -25,6 +25,10 @@ abstract class Example implements renderableExample {
         return false;
     }
 
+    function renderOriginalImage() {
+        throw new \Exception("This shouldn't be reached - example missing renderOriginalImage method.");
+    }
+    
     function renderTitle() {
         return getClassName(get_class($this));
     }
@@ -49,36 +53,27 @@ abstract class Example implements renderableExample {
         return 0;
     }
 
+    /**
+     * @param bool $smaller
+     * @return null|string
+     */
     function renderDescriptionPanel($smaller = false) {
-
         $description = $this->renderDescription();
-        
         if (!$description) {
             return null;
         }
 
-//        if ($smaller == true) {
-//            $output = '<div class="row">
-//                <div class="col-md-12 visible-xs visible-sm">';
-//        }
-//        else {
-//            $output = '<div class="row">
-//                <div class="col-md-12 visible-md visible-lg">';
-//            
-//        }
-        
         $output = getPanelStart($smaller, 'textPanelSpacing');
         $output .= $description;
         $output .= getPanelEnd();
         
-//        $output .= "</div>
-//            </div>";
-        
         return $output;
     }
 
+    /**
+     * @return string
+     */
     function renderImageURL() {
-
         $js = '';
         $originalImage = $this->getOriginalImage();
 
@@ -132,7 +127,7 @@ JAVASCRIPT;
             $touch = "toggleImage('#exampleImage', '#mouseText', '$originalImage', '$originalText', '$modifiedImage', '$modifiedText')";
 
             $touchStart = "ontouchstart=\"$touch\"\n";
-            $touchEnd =  "ontouchend=\"$touch\"\n";
+            //$touchEnd =  "ontouchend=\"$touch\"\n";
 
             $js = $mouseOver.' '.$mouseOut.' '.$touchStart;
         }
@@ -140,13 +135,18 @@ JAVASCRIPT;
         $output .= sprintf("<img src='%s' id='exampleImage' class='img-responsive' %s />", $this->control->getURL(), $js);
 
         if ($originalImage == true) {
-            $output .= "<br/>";
-            $output .= "<span id='mouseText' style='font-size: 12px'>$originalText</span>";
+            $output .= "<div class='row'>";
+            $output .= "<div class='col-xs-12 text-center' id='mouseText' style='font-size: 12px'>";
+            $output .= $originalText;
+            $output .= "</div></div>";
         }
 
         return $output;
     }
 
+    /**
+     * @return string
+     */
     function renderCodeLink() {
         //TODO - this is the wrong link.
         $classname = get_class($this);

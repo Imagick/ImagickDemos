@@ -104,26 +104,23 @@
                 {/block}
             </div>
             
-            {$remaining = 12 -$example->getColumnRightOffset()}
+            {$remaining = 12 - $example->getColumnRightOffset()}
 
             <div class="row">
-                <div class="col-md-{$remaining} contentPanel" style="padding-top: 10px; padding-bottom: 10px">
-                    <table>
-                        <tr>
-                            <td valign="top" class=''>
-                                {$example->render() | nofilter}
-                            </td>
-                            <td>
-                                &nbsp;
-                            </td>
-                            <td valign="top" class="formContainer">
-                                {$control->renderForm() | nofilter}
-                            </td>
-                        </tr>
-                    </table>
+                <div class="col-md-{$remaining} " style="padding-top: 10px; padding-bottom: 10px">
+                    
+                    {block name='mainContent'}
+                    <div class="row">
+                        <div class="col-md-7 col-xs-12 contentPanel">
+                            {$example->render() | nofilter}
+                        </div>
+                        <div class="col-sm-5 formHolder">
+                            {$control->renderForm() | nofilter}
+                        </div>
+                    </div>
+                    {/block}
                 </div>
             </div>
-
             
             
             {$docHelper->showDescriptionPanel(true) | nofilter} 

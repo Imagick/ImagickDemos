@@ -4,9 +4,6 @@ namespace ImagickDemo\Imagick;
 
 class queryFormats extends \ImagickDemo\Example {
 
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
-    }
     
     function renderDescription() {
         $output = "";

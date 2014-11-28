@@ -6,6 +6,8 @@ namespace ImagickDemo\Imagick;
 
 class setImageArtifact extends \ImagickDemo\Example {
 
+    use OriginalImageFile;
+    
     /**
      * @var \ImagickDemo\Control\ImageControl
      */
@@ -16,10 +18,6 @@ class setImageArtifact extends \ImagickDemo\Example {
         parent::__construct($control);
     }
 
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
-    }
-    
     function render() {
         $output = "";
         $output .= $this->renderImageURL();

@@ -5,11 +5,8 @@ namespace ImagickDemo\Imagick;
 
 class orderedPosterizeImage extends \ImagickDemo\Example {
 
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
-    }
-    
-    
+    use OriginalImageFile;
+
     function renderDescription() {
 
         $output = <<< END

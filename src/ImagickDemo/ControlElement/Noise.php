@@ -46,28 +46,37 @@ class Noise implements ControlElement {
      * @return string
      */
     function renderFormElement() {
-        $output = "<tr>
-                <td class='standardCell'>Noise type
-                </td>
-                <td class='standardCell valueCell'> ";
 
-        $output .= "<select name='".self::noiseVar."'>";
+        $select = '';
 
         foreach ($this->noiseTypes as $noiseType => $noiseName) {
             $selected = '';
             if (strcmp($noiseName, $this->noiseName) === 0) {
                 $selected = "selected='selected'";
             }
-            $output .= "<option value='".$noiseName."' $selected>$noiseName</option>";
+            $select .= "<option value='".$noiseName."' $selected>$noiseName</option>";
         }
 
-        $output .= "</select>
-                    </td>
-                <td class='standardCell'>
-                </td>
-            </tr>";
+        $text = <<< END
+<div class='row'>
+    <div class='col-sm-%d'>
+        Noise type
+    </div>
+    <div class='col-sm-%d'>
+        <select name='%s'>
+            %s
+        </select>
+    </div>
+</div>
+END;
 
-        return $output;
+        return sprintf(
+            $text,
+            self::FIRST_ELEMENT_SIZE,
+            self::MIDDLE_ELEMENT_SIZE,
+            self::noiseVar,
+            $select
+        );
     }
 
     function getNoiseType() {

@@ -34,14 +34,18 @@ function clear($imagePath) {
 
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 250, 200);
 
-    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
+    /* Loop trough pixel rows */
+    foreach ($imageIterator as $pixels) { 
         /** @var $pixel \ImagickPixel */
-        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+        /* Loop through the pixels in the row (columns) */
+        foreach ($pixels as $column => $pixel) { 
             if ($column % 2) {
-                $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
+                /* Paint every second pixel black*/
+                $pixel->setColor("rgba(0, 0, 0, 0)"); 
             }
         }
-        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        /* Sync the iterator, this is important to do on each iteration */
+        $imageIterator->syncIterator();
     }
 
     $imageIterator->clear();
@@ -57,14 +61,18 @@ function construct($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     $imageIterator = new \ImagickPixelIterator($imagick);
 
-    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
-        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+    /* Loop through pixel rows */
+    foreach ($imageIterator as $pixels) { 
+        /* Loop through the pixels in the row (columns) */
+        foreach ($pixels as $column => $pixel) { 
             /** @var $pixel \ImagickPixel */
             if ($column % 2) {
-                $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
+                /* Paint every second pixel black*/
+                $pixel->setColor("rgba(0, 0, 0, 0)");
             }
         }
-        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        /* Sync the iterator, this is important to do on each iteration */
+        $imageIterator->syncIterator();
     }
 
     header("Content-Type: image/jpg");
@@ -81,13 +89,16 @@ function getNextIteratorRow($imagePath) {
     $count = 0;
     while ($pixels = $imageIterator->getNextIteratorRow()) {
         if (($count % 3) == 0) {
-            foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+            /* Loop through the pixels in the row (columns) */
+            foreach ($pixels as $column => $pixel) { 
                 /** @var $pixel \ImagickPixel */
                 if ($column % 2) {
-                    $pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
+                    /* Paint every second pixel black*/
+                    $pixel->setColor("rgba(0, 0, 0, 0)");
                 }
             }
-            $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+            /* Sync the iterator, this is important to do on each iteration */
+            $imageIterator->syncIterator(); 
         }
 
         $count += 1;
@@ -106,21 +117,27 @@ function resetIterator($imagePath) {
 
     $imageIterator = $imagick->getPixelIterator();
 
-    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
-        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+    /* Loop trough pixel rows */
+    foreach ($imageIterator as $pixels) {
+        /* Loop through the pixels in the row (columns) */
+        foreach ($pixels as $column => $pixel) {
             /** @var $pixel \ImagickPixel */
             if ($column % 2) {
-                //$pixel->setColor("rgba(0, 0, 0, 0)"); /* Paint every second pixel black*/
-                $pixel->setColorValue(\Imagick::COLOR_RED, 64); /* Make every second pixel a little blue*/
+
+                /* Make every second pixel 25% red*/
+                $pixel->setColorValue(\Imagick::COLOR_RED, 64); 
             }
         }
-        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        /* Sync the iterator, this is important to do on each iteration */
+        $imageIterator->syncIterator();
     }
 
     $imageIterator->resetiterator();
 
-    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
-        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+    /* Loop trough pixel rows */
+    foreach ($imageIterator as $pixels) {
+        /* Loop through the pixels in the row (columns) */
+        foreach ($pixels as $column => $pixel) {
             /** @var $pixel \ImagickPixel */
             if ($column % 3) {
                 $pixel->setColorValue(\Imagick::COLOR_BLUE, 64); /* Make every second pixel a little blue*/
@@ -237,9 +254,11 @@ function syncIteratorImage($imagePath) {
 
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
 
-    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
+    /* Loop trough pixel rows */
+    foreach ($imageIterator as $pixels) { 
         $pixelStatck = new PixelStack();
-        foreach ($pixels as $pixel) { /* Loop through the pixels in the row (columns) */
+        /* Loop through the pixels in the row (columns) */
+        foreach ($pixels as $pixel) { 
             /** @var $pixel \ImagickPixel */
             $pixelStatck->pushPixel($pixel->getColorValue(\Imagick::COLOR_RED), $pixel->getColorValue(\Imagick::COLOR_GREEN), $pixel->getColorValue(\Imagick::COLOR_BLUE));
 
@@ -248,15 +267,13 @@ function syncIteratorImage($imagePath) {
             $pixel->setColor($color);
         }
 
-        $imageIterator->syncIterator(); /* Sync the iterator, this is important to do on each iteration */
+        /* Sync the iterator, this is important to do on each iteration */
+        $imageIterator->syncIterator();
     }
 
     header("Content-Type: image/jpg");
     echo $imagick;
 }
 //Example end
-
-
-
     
 }

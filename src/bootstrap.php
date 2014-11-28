@@ -285,6 +285,10 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     $injector->defineParam('activeCategory', $category);
     $injector->defineParam('activeExample', $example);
 
+    $injector->defineParam('exampleShown', $function);
+    
+    
+
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->share($controlClass);
 

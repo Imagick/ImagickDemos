@@ -1,0 +1,24 @@
+$code_plain:				#839496;
+$code_comments:				#586E75;
+$code_string:				#2AA198;
+$code_keyword:				#859900; /*  #000080; */
+$code_preprocessor:			#000000; /* PHP doesn't use preprocessor */
+$code_variable:				#268BD2; /* PHPStorm claims this is #660000 but this looks better*/
+$code_value:				#2AA198;
+$code_functions:			#DC322F; /* predefined symbols */
+$code_constants:			#2AA198;
+$code_script:				#000000; /* unused? */
+$code_script_background:	#ffffff;
+$code_color1:				#000000; /* operators? Unused by PHP currently */
+$code_color2:				#000000; /*Symbols? Unused by PHP currently */
+$code_color3:				#000000; /* Differs per brush Unused by PHP currently */
+
+$gutter_border_color: 		#5070ff !default;
+
+$toolbar_color: 			#b9b9b9 !default;
+$toolbar_a:					#b9b9b9 !default;
+$toolbar_background:		#2F438C !default;
+$toolbar_a_hover:			#ffffff !default;
+
+
+@import "_theme_template.scss";

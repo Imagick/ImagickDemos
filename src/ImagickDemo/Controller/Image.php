@@ -147,7 +147,7 @@ class Image {
         $cacheImages = $appConfig->getCacheImages();
         $task = $appConfig->getQueueImages();
 
-        $cacheImages = true;
+        //$cacheImages = true;
         
         if ($task) {
             //Only allow it to be turned off not on.

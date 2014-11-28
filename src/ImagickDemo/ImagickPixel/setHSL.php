@@ -8,8 +8,13 @@ class setHSL extends \ImagickDemo\Example {
 
     function render() {
 
+//Example ImagickPixel::setHSL
+
+        $output = "This example creates a red color, rotates the hue by 180 degrees and sets the new color.<br/>";
+        
         //Create an almost pure red color
         $color = new \ImagickPixel('rgb(90%, 10%, 10%)');
+        $originalColor = clone $color;
 
         //Get it's HSL values
         $colorInfo = $color->getHSL();
@@ -23,59 +28,22 @@ class setHSL extends \ImagickDemo\Example {
         //Set the ImagickPixel to the new color
         $color->setHSL($newHue, $colorInfo['saturation'], $colorInfo['luminosity']);
 
+
+        $output .= "<h3>Original color</h3>";
+        $colorInfo = $originalColor->getcolor();
+        foreach ($colorInfo as $key => $value) {
+            $output .= "$key : $value <br/>";
+        }
+
+
+        $output .= "<h3>Rotated color</h3>";        
         //Check that the new color is blue/green
         $colorInfo = $color->getcolor();
-        print_r($colorInfo);
+        foreach ($colorInfo as $key => $value) {
+            $output .= "$key : $value <br/>";
+        }
 
-        /*
-        
-        <refsect1 role="examples">
-          &reftitle.examples;
-          <para>
-          
-        <example>
-            <title>Use <function>ImagickPixel::setHSL</function> to modify a color</title>
-            <programlisting role="php">
-                <![CDATA[
-                <?php
-                //Create an almost pure red color
-                $color = new \ImagickPixel('rgb(90%, 10%, 10%)');
-        
-                //Get it's HSL values
-                $colorInfo = $color->getHSL();
-        
-                //Rotate the hue by 180 degrees
-                $newHue = $colorInfo['hue'] + 0.5;
-                if ($newHue > 1) {
-                    $newHue = $newHue - 1;
-                }
-        
-                //Set the ImagickPixel to the new color
-                $colorInfo = $color->setHSL($newHue, $colorInfo['saturation'], $colorInfo['luminosity']);
-        
-                //Check that the new color is 
-                $colorInfo = $color->getcolor();
-                print_r($colorInfo);
-                ?>
-                ]]>
-            </programlisting>
-            &example.outputs;
-            <screen>
-        <![CDATA[
-        Array 
-        ( 
-            [r] => 26 
-            [g] => 230 
-            [b] => 230 
-            [a] => 255 
-        )
-        ]]>
-            </screen>
-        </example>
-        </para>
-        </refsect1>
-        
-        */
-
+        return $output;
+//Example end
     }
 }

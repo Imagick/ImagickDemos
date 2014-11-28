@@ -14,8 +14,6 @@ class IndexExample extends \ImagickDemo\Example {
     }
     
     function render() {
-
-
         $output = <<< END
 <p>
         ImagickPixel is the class that represents 'colors' in the underlying ImageMagick library, or more precisely reprensent a pixel in the color space that the image is in.</p>
@@ -24,11 +22,6 @@ class IndexExample extends \ImagickDemo\Example {
 
 END;
 
-        
-       
-        
-        
-        
         return $output;
     }
 }

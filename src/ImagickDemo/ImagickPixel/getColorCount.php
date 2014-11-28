@@ -3,27 +3,21 @@
 namespace ImagickDemo\ImagickPixel;
 
 
+
+
+
 class getColorCount extends \ImagickDemo\Example {
 
     function render() {
+//Example ImagickPixel::getColorCount
+        $output = "I have pretty much no idea what this function is meant ".
+         "to do...if you know I'd love to hear.<br/>";
 
-        //Create an ImagickPixel with the predefined color 'brown'
         $color = new \ImagickPixel('red');
-
-////Set the color to have an alpha of 25% 
-//$color->setColorValue(\Imagick::COLOR_ALPHA, 64 / 256.0);
-
         $colorInfo = $color->getColorCount();
+        $output .= var_export($colorInfo, true);
 
-
-        var_dump($colorInfo);
-//Outputs
-
+        return $output;
+//Example end
     }
-
-    function renderImage() {
-
-
-    }
-
 }

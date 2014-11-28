@@ -124,42 +124,6 @@ function setColorValue() {
 
     header("Content-Type: image/png");
     echo $image->getImageBlob();
-
-    /*
-    
-    <refsect1 role="examples">
-      &reftitle.examples;
-      <para>
-       <example>
-        <title>Basic <function>substr</function> usage</title>
-        <programlisting role="php">
-    <![CDATA[
-    <?php
-    
-    $color  = new \ImagickPixel('firebrick');
-    
-    $color->setColorValue(\Imagick::COLOR_ALPHA, 0.5);
-    
-    print_r($color->getcolor(true));
-    ?>
-    ]]>
-        </programlisting>
-        &example.outputs;
-        <screen>
-    <![CDATA[
-    Array
-    (
-        [r] => 0.69803921568627
-        [g] => 0.13333333333333
-        [b] => 0.13333333333333
-        [a] => 0.50000762951095
-    )
-    ]]>
-        </screen>
-       </example>
-      </para>
-     </refsect1>
-*/
 }
 //Example end
 

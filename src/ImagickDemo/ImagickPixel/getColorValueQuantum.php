@@ -6,14 +6,20 @@ namespace ImagickDemo\ImagickPixel;
 class getColorValueQuantum extends \ImagickDemo\Example {
 
     function render() {
-        $color = new \ImagickPixel('rgb(165, 42, 42)');
+//Example ImagickPixel::getColorValueQuantum
+        $color = new \ImagickPixel('rgb(128, 5, 255)');
         $colorRed = $color->getColorValueQuantum(\Imagick::COLOR_RED);
         $colorGreen = $color->getColorValueQuantum(\Imagick::COLOR_GREEN);
         $colorBlue = $color->getColorValueQuantum(\Imagick::COLOR_BLUE);
+        $colorAlpha = $color->getColorValueQuantum(\Imagick::COLOR_ALPHA);
 
-        echo "red: $colorRed Green: $colorGreen blue $colorBlue";
-
-        $colorInfo = $color->getColor();
-        var_dump($colorInfo);
+        printf(
+            "Red: %s Green: %s  Blue %s Alpha: %s",
+            $colorRed,
+            $colorGreen,
+            $colorBlue,
+            $colorAlpha
+        );
+//Example end
     }
 }

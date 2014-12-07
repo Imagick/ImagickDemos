@@ -27,10 +27,39 @@ END;
 
     
     function render() {
-        echo "<img src='/images/im/holocaust_tn.gif' /> + ";
-        echo "<img src='/images/im/overlap_mask.png' /> + ";
-        echo "<img src='/images/im/spiral_stairs_tn.gif' /> => ";
 
-        return $this->renderImageURL();
+        $imageURL = $this->renderImageURL();
+        
+        $output = <<< END
+<div class='row'>
+    <div class='col-md-12'>
+        <h4>Input images</h4>
+    </div>
+</div>        
+<div class='row'>
+    <div class='col-md-4'>
+        <img src='/images/im/holocaust_tn.gif' />
+    </div>
+    <div class='col-md-4'>
+        <img src='/images/im/overlap_mask.png' />
+    </div>
+    <div class='col-md-4'>
+        <img src='/images/im/spiral_stairs_tn.gif' />
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-md-12'>
+    <h4>Output image</h4>
+    </div>
+</div>        
+    
+<div class='row'>
+    <div class='col-md-12'>$imageURL</div>
+</div>    
+        
+END;
+
+        return $output;
     }
 }

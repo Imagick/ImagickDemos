@@ -647,9 +647,9 @@ $controls = [
         
     ],
 
-    'ImagickDemo\Imagick\Control\ArtifactExample' => [
-        'ImagickDemo\ControlElement\ArtifactExample',
-    ],
+//    'ImagickDemo\Imagick\Control\ArtifactExample' => [
+//        'ImagickDemo\ControlElement\ArtifactExample',
+//    ],
 
 
 

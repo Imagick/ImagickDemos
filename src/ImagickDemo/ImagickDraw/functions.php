@@ -405,11 +405,11 @@ function pathCurveToQuadraticBezierAbsolute($strokeColor, $fillColor, $backgroun
         450,250
     );
 
-    // Again this specifies a quadratic bezier curve with the current position as the start
+    // This specifies a quadratic bezier curve with the current position as the start
     // point, the control point is mirrored from the previous curves control point
-    // and the end point is defined by the x, y values.
-    $draw->pathCurveToQuadraticBezierSmoothAbsolute(
-        650,150
+    // and the end point is defined relative from the current position by the x, y values.
+    $draw->pathCurveToQuadraticBezierSmoothRelative(
+        200,-100
     );
 
     $draw->pathFinish();

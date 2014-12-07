@@ -326,7 +326,6 @@ END;
                 'defaultParams' => [ 'width' => 100 ]
             ],
             //'clear',
-            //new NavOption('clipImage', true),
             //'clipPathImage',
             'clutImage' => ['clutImage', \ImagickDemo\Control\ImageControl::class],
             //'coalesceImages',
@@ -613,8 +612,8 @@ END;
             //'setImage',
             //'setImageAlphaChannel',
             'setImageArtifact' => [
-                'setImageArtifact', 
-                \ImagickDemo\Imagick\Control\ArtifactExample::class
+                'setImageArtifact',
+                \ImagickDemo\Control\NullControl::class
             ],
             //'setImageBackgroundColor',
             'setImageBias' => ['setImageBias', \ImagickDemo\Control\NullControl::class],

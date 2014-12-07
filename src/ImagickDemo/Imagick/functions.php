@@ -2,9 +2,11 @@
 
 namespace ImagickDemo\Imagick {
  
-    class functions {
-        static function load() {}
-    }
+use Imagick;
+    
+class functions {
+    static function load() {}
+}
 
 /**
  * Hack the header function to allow us to capture the image type, 
@@ -1273,28 +1275,18 @@ function setCompressionQuality($imagePath, $quality) {
     
 
 //Example Imagick::setImageArtifact
-function setImageArtifact($imagePath) {
-    $imagick = new \Imagick(realpath($imagePath));
+function setImageArtifact() {
+
+    $src1 = new \Imagick(realpath("./images/artifact/source1.png"));
+    $src2 = new \Imagick(realpath("./images/artifact/source2.png"));
+
+    $src2->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+    $src2->setImageArtifact('compose:args', "1,0,-0.5,0.5");
+    $src1->compositeImage($src2, Imagick::COMPOSITE_MATHEMATICS, 0, 0);
     
-    //$imagick->setImageArtifact('jpeg:extent', '10kb');
-    /* Don't write any ancillary chunks except for gAMA */
-    //"png:include-chunk","none,gama"
-    //SetImageArtifact(image,"png:include-chunk","none,trns,gama");
-
-//        /* Only write PNG32 formatted PNG (32-bit RGBA), 8 bits per channel */
-//        "png:format","png32"
-
-
-//    Wand artifacts are like properties
-//    except they are not exported.  They are needed for some method such
-//    as setting compose:args for the composite DisplaceCompositeOp compose
-//    operator.
-    
-    //SetImageArtifact(blend_image,"compose:args","20x80");
-
-    $imagick->setImageFormat('jpg');
-    header("Content-Type: image/jpg");
-    echo $imagick->getImagesBlob();
+    $src1->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $src1->getImagesBlob();
 }
 //Example end
 
@@ -1428,27 +1420,27 @@ function setIteratorIndex() {
 //Example end
 
 
-//Example Imagick::setOption
-function setOption($imagePath) {
-    $imagick = new \Imagick(realpath($imagePath));
-    $imagick->setImageFormat('jpg');
-    $imagick->setOption('jpeg:extent', '20kb');
-    
-    //"jpeg:perserve","yes"
-    
-    //"quantum:format","floating-point"
-    //"quantum:polarity","min-is-white"
-    //"jpeg:size","120x120"
-    
-    header("Content-Type: image/jpg");
-    echo $imagick->getImageBlob();
-}
-//Example end
+////
+//function setOption($imagePath) {
+//    $imagick = new \Imagick(realpath($imagePath));
+//    $imagick->setImageFormat('jpg');
+//    $imagick->setOption('jpeg:extent', '20kb');
+//    
+//    //"jpeg:perserve","yes"
+//    
+//    //"quantum:format","floating-point"
+//    //"quantum:polarity","min-is-white"
+//    //"jpeg:size","120x120"
+//    
+//    header("Content-Type: image/jpg");
+//    echo $imagick->getImageBlob();
+//}
+////Example end
+//
 
-
     
     
-//Example Imagick::setOption
+//Example Imagick::setSamplingFactors
 function setSamplingFactors($imagePath) {
 
     $imagePath = "../imagick/images/FineDetail.png";

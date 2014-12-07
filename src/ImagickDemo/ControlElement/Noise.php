@@ -58,11 +58,11 @@ class Noise implements ControlElement {
         }
 
         $text = <<< END
-<div class='row'>
-    <div class='col-sm-%d'>
+<div class='row controlRow'>
+    <div class='col-sm-%d controlCell'>
         Noise type
     </div>
-    <div class='col-sm-%d'>
+    <div class='col-sm-%d controlCell'>
         <select name='%s'>
             %s
         </select>

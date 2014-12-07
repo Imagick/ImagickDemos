@@ -114,11 +114,13 @@ function annotateImage($imagePath, $strokeColor, $fillColor) {
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
 
-    $draw->setStrokeWidth(2);
+    $draw->setStrokeWidth(1);
     $draw->setFontSize(36);
+    
+    $text = "Imagick is a native php \nextension to create and \nmodify images using the\nImageMagick API.";
 
     $draw->setFont("../fonts/Arial.ttf");
-    $imagick->annotateimage($draw, 40, 40, 0, "Lorem Ipsum!");
+    $imagick->annotateimage($draw, 40, 40, 0, $text);
 
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1240,6 +1242,36 @@ function sepiaToneImage($imagePath, $sepia) {
 //Example end
 
 
+//Example Imagick::setCompressionQuality
+function setCompressionQuality($imagePath, $quality) {
+    
+    $backgroundImagick = new \Imagick($imagePath);
+    
+    $imagick = new \Imagick();
+    $imagick->setCompressionQuality($quality);
+    $imagick->newPseudoImage(
+        $backgroundImagick->getImageWidth(),
+        $backgroundImagick->getImageHeight(),
+        'canvas:white'
+    );
+
+
+    $imagick->compositeImage(
+        $backgroundImagick,
+        \Imagick::COMPOSITE_ATOP,
+        0,
+        0
+    );
+    //$imagick->addNoiseImage(\Imagick::NOISE_RANDOM, \Imagick::CHANNEL_ALL);
+    
+    $imagick->setFormat("jpg");    
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+    
+
 //Example Imagick::setImageArtifact
 function setImageArtifact($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -1265,6 +1297,17 @@ function setImageArtifact($imagePath) {
     echo $imagick->getImagesBlob();
 }
 //Example end
+
+
+//Example Imagick::setImageCompressionQuality
+function setImageCompressionQuality($imagePath, $quality) {
+    $imagick = new \Imagick(realpath($imagePath));
+    //$imagick->setImageCompressionQuality($quality);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+    
 
 //Example Imagick::setImageOrientation
 //Doesn't appear to do anything

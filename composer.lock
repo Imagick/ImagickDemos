@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43bb24d6f7408e712bbbabe2f948b7db",
+    "hash": "e9cd24efd8d6ad4dc7da219e023b6bc9",
     "packages": [
         {
             "name": "amphp/amp",
@@ -230,6 +230,66 @@
                 "issues": "https://github.com/Danack/Auryn/issues"
             },
             "time": "2014-10-11 00:30:55"
+        },
+        {
+            "name": "danack/console",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Console.git",
+                "reference": "c69267bda73a2c896436605e18a9d4ff808d5ef3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Console/zipball/c69267bda73a2c896436605e18a9d4ff808d5ef3",
+                "reference": "c69267bda73a2c896436605e18a9d4ff808d5ef3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "danack/auryn": "0.14.1",
+                "phpunit/phpunit": "4.2.6",
+                "psr/log": "~1.0",
+                "symfony/process": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Danack\\Console\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Danack",
+                    "email": "Danack@basereality.com"
+                }
+            ],
+            "description": "Refactored Symfony Console Component",
+            "homepage": "http://console.basereality.com/",
+            "keywords": [
+                "cli",
+                "console"
+            ],
+            "time": "2014-09-22 17:51:49"
         },
         {
             "name": "danack/danack-code",
@@ -733,12 +793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759"
+                "reference": "55972aa699f7720a14e64c397146dd8d62efcafb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/88ac2888aa29d888cf3f447899753a4a1e599759",
-                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/55972aa699f7720a14e64c397146dd8d62efcafb",
+                "reference": "55972aa699f7720a14e64c397146dd8d62efcafb",
                 "shasum": ""
             },
             "require": {
@@ -771,7 +831,7 @@
                 "source": "https://github.com/nikic/FastRoute/tree/master",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2014-09-30 16:53:49"
+            "time": "2014-11-27 10:05:05"
         },
         {
             "name": "nikic/php-parser",

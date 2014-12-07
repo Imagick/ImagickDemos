@@ -228,8 +228,14 @@ END;
                 $activeLink = 'navActiveLink';
             }
 
+            $name = $imagickExample;
+
+            if (isset($exampleDefinition['name'])) {
+                $name = $exampleDefinition['name'];
+            }
+
             echo "<li class='navSpacer $active'>";
-            echo "<a class='smallPadding $activeLink' href='/".$this->category."/$imagickExample'>".$imagickExample."</a>";
+            echo "<a class='smallPadding $activeLink' href='/".$this->category."/$imagickExample'>".$name."</a>";
             echo "</li>";
         }
 
@@ -595,7 +601,10 @@ END;
             //'setBackgroundColor',
             //'setColorspace',
             //'setCompression',
-            //'setCompressionQuality',
+            'setCompressionQuality' => [
+                'setCompressionQuality',
+                \ImagickDemo\Imagick\Control\imageQuality::class
+            ],
             //'setFilename',
             //'setFirstIterator',
             //'setFont',
@@ -603,7 +612,10 @@ END;
             //'setGravity',
             //'setImage',
             //'setImageAlphaChannel',
-            'setImageArtifact' => ['setImageArtifact', \ImagickDemo\Control\ImageControl::class],
+            'setImageArtifact' => [
+                'setImageArtifact', 
+                \ImagickDemo\Imagick\Control\ArtifactExample::class
+            ],
             //'setImageBackgroundColor',
             'setImageBias' => ['setImageBias', \ImagickDemo\Control\NullControl::class],
             //'setImageBluePrimary',
@@ -614,7 +626,10 @@ END;
             //'setImageColorspace',
             //'setImageCompose',
             //'setImageCompression',
-            //'setImageCompressionQuality',
+            'setImageCompressionQuality' => [
+                'setImageCompressionQuality',
+                \ImagickDemo\Imagick\Control\imageQuality::class
+            ],
             //'setImageDepth',
             'setImageDelay' => ['setImageDelay', \ImagickDemo\Control\ImageControl::class],
             //'setImageDispose',
@@ -736,6 +751,19 @@ END;
             'line' => ['line', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'matte' => ['matte', \ImagickDemo\ImagickDraw\Control\matte::class],
             'pathStart' => ['pathStart', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'pathCurveToQuadraticBezierAbsolute' => [
+                'pathCurveToQuadraticBezierAbsolute',
+                \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class,
+                
+                'name' => "pathCurveToQuadratic BezierAbsolute",
+            ],
+
+            'pathCurveToQuadraticBezierSmoothAbsolute' => [
+                'pathCurveToQuadraticBezierAbsolute',
+                \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class,
+                'name' => 'pathCurveToQuadratic BezierSmoothAbsolute',
+            ],
+
             'point' => ['point', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'polygon' => ['polygon', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'polyline' => ['polyline', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],

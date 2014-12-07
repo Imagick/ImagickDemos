@@ -57,11 +57,11 @@ abstract class ValueElement implements ControlElement {
     function renderFormElement() {
         $sValue = safeText($this->value);
 
-        $text = "<div class='row'>
-    <div class='col-sm-".self::FIRST_ELEMENT_SIZE."'>
+        $text = "<div class='row controlRow'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." controlCell'>
         %s
     </div>    
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE."'>
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." controlCell'>
         <input type='text' class='inputValue' name='%s' value='%s'/>
     </div>
 </div>";

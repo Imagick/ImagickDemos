@@ -10,22 +10,33 @@ class RedisTaskQueue implements TaskQueue {
 
     private $redisClient;
 
+    /**
+     * @param RedisClient $redisClient
+     */
     function __construct(RedisClient $redisClient) {
         $this->redisClient = $redisClient;
-        $this->redisKey = "ImagickTaskQueue";//$key;   
+        $this->redisKey = "ImagickTaskQueue";
     }
 
+    /**
+     * @return int
+     */
     function getQueueCount() {
         $count = $this->redisClient->LLEN($this->redisKey);
 
         return $count;
     }
 
+    /**
+     * @return string
+     */
     function getName() {
         return "Queue."."ImagickTaskQueue";
     }
-    
-    
+
+    /**
+     * @return mixed|null
+     */
     function getTask() {
         //A nil multi-bulk when no element could be popped and the timeout expired.
         //A two-element multi-bulk with the first element being the name of the key where an element was popped and the second element being the value of the popped element.
@@ -44,6 +55,9 @@ class RedisTaskQueue implements TaskQueue {
         return null;
     }
 
+    /**
+     * @param Task $task
+     */
     function pushTask(Task $task) {
         $serialized = serialize($task);
         $this->redisClient->rpush($this->redisKey, [$serialized]);

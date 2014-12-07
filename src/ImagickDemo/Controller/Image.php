@@ -6,14 +6,14 @@ use Intahwebz\Request;
 use ImagickDemo\Response\FileResponse;
 use ImagickDemo\Response\RedirectResponse;
 use ImagickDemo\Config\Application as ApplicationConfig;
+use ImagickDemo\Queue\TaskQueue;
 
 /**
- * @param \Auryn\Provider $injector
- * @param $functionFullname
+ * @param callable $imageCallable
  * @return \ImagickDemo\Response\ImageResponse
  * @throws \Exception
  */
-function createImage(callable $imageCallable) {
+function createImageResponse(callable $imageCallable) {
     global $imageType;
 
     ob_start();
@@ -38,7 +38,7 @@ function createImage(callable $imageCallable) {
  */
 function createImageTaskAndRedirectResponse(
     Request $request,
-    \Auryn\Provider $injector,
+    TaskQueue $taskQueue,
     $category,
     $function,
     \ImagickDemo\Control $control
@@ -49,10 +49,10 @@ function createImageTaskAndRedirectResponse(
             $category,
             $function,
             $control
+            //$control->getFullParams($customImageParams)
         );
 
-        $queue = $injector->make('ImagickDemo\Queue\RedisTaskQueue');
-        $queue->pushTask($task);
+        $taskQueue->pushTask($task);
         $job = 0;
     }
     else {
@@ -74,6 +74,10 @@ function createImageTaskAndRedirectResponse(
     return new RedirectResponse($newURL, 500000);
 }
 
+/**
+ * Class Image
+ * @package ImagickDemo\Controller
+ */
 class Image {
 
     /**
@@ -160,8 +164,16 @@ class Image {
             return $this->getCachedImageResponse($filename);
         };
 
-        $createImageTaskAndRedirectResponse = function() use ($category, $injector, $example, $request, $control) {
-            return createImageTaskAndRedirectResponse($request, $injector, $category, $example, $control);
+        $createImageTaskAndRedirectResponse = function() use 
+            ($category, $injector, $example, $request, $control, $customImageParams) {
+
+            return createImageTaskAndRedirectResponse(
+                $request,
+                $injector,
+                $category,
+                $example,
+                $control->getFullParams($customImageParams)
+            );
         };
 
         $createAndCacheFile = function () use ($category, $imageCallable, $example, $control, $customImageParams) {
@@ -173,7 +185,7 @@ class Image {
         
 
         $directImage = function () use ($category,  $injector, $imageCallable) {
-            return createImage($imageCallable);
+            return createImageResponse($imageCallable);
         };
 
         $executables = [];

@@ -60,12 +60,12 @@ class VirtualPixel implements ControlElement {
             $select .= "<option value='".$noiseName."' $selected>$noiseName</option>";
         }
 
-        $text = "<div class='row'>
-    <div class='col-sm-".self::FIRST_ELEMENT_SIZE."'>
+        $text = "<div class='row controlRow'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." controlCell'>
         %s
     </div>    
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE."'>
-        <select name='%s'>
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." controlCell'>
+        <select name='%s' class='inputSelect'>
              %s
         </select>
     </div>

@@ -60,15 +60,15 @@ class ColorMatrix implements ControlElement {
     function renderFormElement() {
 
         $output = "
-        <div class='row'>
-        <div class='col-xs-12' style='font-size: 12px'>";
+        <div class='row controlRow'>
+        <div class='col-xs-12 controlCell' style='font-size: 12px'>";
         
         foreach ($this->colorMatrix as $key => $value) {
             if (($key % $this->matrixDimension) == 0) {
                 $output .= "<div class='row'>";
             }
 
-            $output .= "<div class='col-xs-2'>";
+            $output .= "<div class='col-xs-2 '>";
             $name = 'colorMatrix_'.$key;
             $output .= "<input type='text' length='4' name='$name' value='$value' style='width: 40px'/>";
             $output .= "</div>";
@@ -77,8 +77,6 @@ class ColorMatrix implements ControlElement {
                 $output .= "<div class='col-xs-2'></div>";
                 $output .= "</div>";
             }
-
-            
         }
 
         $output .= " </div></div>";

@@ -57,12 +57,12 @@ abstract class OptionValueElement implements ControlElement {
         
         
         $text = <<< END
-<div class='row'>
-    <div class='col-sm-%d %s'>
+<div class='row controlRow'>
+    <div class='col-sm-%d %s controlCell'>
         %s
     </div>    
-    <div class='col-sm-%d %s'>
-        <select name='%s'>
+    <div class='col-sm-%d %s controlCell'>
+        <select name='%s' class='inputSelect'>
             %s
         </select>
     </div>

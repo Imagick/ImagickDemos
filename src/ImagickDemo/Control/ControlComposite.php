@@ -44,19 +44,23 @@ class ControlComposite implements \ImagickDemo\Control {
         //This should get replaced by the Weaver
         return "";
     }
-    
+
+
+    /**
+     * @return string
+     */
     function renderForm() {
 
         $output = 
 
         "<form method='GET' accept-charset='utf-8'>
-             <div class='col-xs-12 contentPanel'>";
+             <div class='col-xs-12 contentPanel controlForm'>";
 
         $output .= $this->renderFormElement();
 
         $output .= "
-            <div class='row' style='margin-top: 20px'>
-                <div class='col-xs-7 col-sm-offset-5'>
+            <div class='row inputSubmitRow'>
+                <div class='col-sm-5 col-sm-offset-7'>
                     <button type='submit' class='btn btn-default'>Update</button>
                 </div>
             </div>
@@ -66,6 +70,9 @@ class ControlComposite implements \ImagickDemo\Control {
         return $output;
     }
 
+    /**
+     * @return string
+     */
     function getURL() {
         $paramString = '';
         $params = $this->getParams();
@@ -74,8 +81,6 @@ class ControlComposite implements \ImagickDemo\Control {
             $paramString .= $separator.$key."=".$value;
             $separator = '&';
         }
-        
-        
         
         return $this->imageBaseURL.$paramString;
     }

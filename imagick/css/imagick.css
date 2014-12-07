@@ -11,7 +11,6 @@ body {
     background-color: #ffffff;
 }
 
-
 .contentPanel {
     background-color: #fbfbfb; 
     border: 3px double #CBCBCB;
@@ -38,11 +37,6 @@ body {
     padding-top: 8px;
     padding-bottom: 4px;
     min-width: 190px;
-}
-
-.inputValue {
-    /* width: 100%; */
-    font-size: 12px;
 }
 
 
@@ -128,21 +122,10 @@ body {
     display: none;
 }
 
-/*
-.hrSpacer:after {
-    content: " ";
-    display: block;
-    height: 0;
-    clear: both;
-}
-*/
-
 .compositeTableTD {
     padding-left: 4px;
     padding-right: 4px;
 }
-
-
 
 .navActive {
     color: #ffffff;
@@ -196,6 +179,9 @@ pre {
     padding-right: 60px;
 }
 
+.shContainer {
+    margin-left: -5px;
+}
 
 @media (min-width: 900px) {
     .shContainer {
@@ -214,4 +200,49 @@ pre {
         width: auto;
         font-size: 8px;
     }
+}
+
+.controlTable {
+    border-top: #3f3f3f solid 1px; 
+}
+
+.controlCell {
+    /* border-bottom: #3f3f3f dotted 1px;*/
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.controlRow {
+    border-bottom: #3f3f3f dotted 1px;
+    display: table;
+}
+
+
+.inputValue, .inputSelect {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+
+.inputSubmitRow {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    /*background-color: transparent;
+    display: table; */
+}
+
+
+
+.controlForm {
+    /* margin-top: -4px; */
+    padding-top: 0px;
+}
+
+.controlForm > div:nth-child(even) {
+    background-color: #EFEFEF;
+}
+
+.controlForm > div {
+  min-height: 15px;
 }

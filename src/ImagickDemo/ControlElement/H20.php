@@ -33,11 +33,11 @@ class H20 implements ControlElement {
     function renderFormElement() {
         $sWidth = safeText($this->h20);
    
-        $text = "<div class='row'>
-    <div class='col-sm-".self::FIRST_ELEMENT_SIZE."'>
+        $text = "<div class='row controlRow'>
+    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." controlCell'>
         %s
     </div>    
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE."'>
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." controlCell'>
         <input type='text' name='%s' value='%s'/>
     </div>
 </div>";

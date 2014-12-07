@@ -640,6 +640,23 @@ $controls = [
     'ImagickDemo\Imagick\Control\samplingFactors' => [
         'ImagickDemo\ControlElement\Image',
     ],
+
+    'ImagickDemo\Imagick\Control\imageQuality' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Quality',
+        
+    ],
+
+    'ImagickDemo\Imagick\Control\ArtifactExample' => [
+        'ImagickDemo\ControlElement\ArtifactExample',
+    ],
+
+
+
+    
+    
+    
+    
     
 ];
 

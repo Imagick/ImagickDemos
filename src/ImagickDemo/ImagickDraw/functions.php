@@ -376,6 +376,57 @@ function pathStart($strokeColor, $fillColor, $backgroundColor) {
 //Example end
 
 
+//Example ImagickDraw::pathCurveToQuadraticBezierAbsolute
+function pathCurveToQuadraticBezierAbsolute($strokeColor, $fillColor, $backgroundColor) {
+
+    $draw = new \ImagickDraw();
+
+    $draw->setStrokeOpacity(1);
+    $draw->setStrokeColor($strokeColor);
+    $draw->setFillColor($fillColor);
+
+    $draw->setStrokeWidth(2);
+    $draw->setFontSize(72);
+
+    $draw->pathStart();
+    $draw->pathMoveToAbsolute(50,250);
+
+    // This specifies a quadratic bezier curve with the current position as the start
+    // point, the control point is the first two params, and the end point is the last two params.
+    $draw->pathCurveToQuadraticBezierAbsolute(
+        150,50, 
+        250,250
+    );
+
+    // This specifies a quadratic bezier curve with the current position as the start
+    // point, the control point is mirrored from the previous curves control point
+    // and the end point is defined by the x, y values.
+    $draw->pathCurveToQuadraticBezierSmoothAbsolute(
+        450,250
+    );
+
+    // Again this specifies a quadratic bezier curve with the current position as the start
+    // point, the control point is mirrored from the previous curves control point
+    // and the end point is defined by the x, y values.
+    $draw->pathCurveToQuadraticBezierSmoothAbsolute(
+        650,150
+    );
+
+    $draw->pathFinish();
+
+    $imagick = new \Imagick();
+    $imagick->newImage(700, 500, $backgroundColor);
+    $imagick->setImageFormat("png");
+
+    $imagick->drawImage($draw);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+
+}
+//Example end
+    
+
 //Example ImagickDraw::point
 function point($fillColor, $backgroundColor) {
 
@@ -911,17 +962,14 @@ function setFont($fillColor, $strokeColor, $backgroundColor) {
     $draw->setFont("../fonts/Consolas.ttf");
     $draw->annotation(50, 100, "Lorem Ipsum!");
 
-//    $draw->setFont("../fonts/Roboto-ThinItalic.ttf");
-//    $draw->annotation(50, 150, "Lorem Ipsum!");
-
     $draw->setFont("../fonts/CANDY.TTF");
-    $draw->annotation(50, 200, "Lorem Ipsum!");
+    $draw->annotation(50, 150, "Lorem Ipsum!");
 
     $draw->setFont("../fonts/Inconsolata-dz.otf");
-    $draw->annotation(50, 250, "Lorem Ipsum!");
+    $draw->annotation(50, 200, "Lorem Ipsum!");
 
     $imagick = new \Imagick();
-    $imagick->newImage(500, 500, $backgroundColor);
+    $imagick->newImage(500, 300, $backgroundColor);
     $imagick->setImageFormat("png");
     $imagick->drawImage($draw);
 

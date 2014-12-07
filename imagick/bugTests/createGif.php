@@ -4,7 +4,7 @@
 $aniGif = new Imagick();
 $aniGif->setFormat("gif");
 
-$imageFrames = 5;
+$imageFrames = 2;
 $imageSize = 50;
 
 $distanceBetweenCircles = 30 * $imageSize / 400;
@@ -18,7 +18,7 @@ $palette->newpseudoimage(256, 256, 'gradient:black-white');
 $palette->quantizeImage(253, \Imagick::COLORSPACE_GRAY, 8, false, false);
 
     
-for($count=0 ; $count<3 * $imageFrames ; $count++){
+for($count=0 ; $count<1 * $imageFrames ; $count++){
 
     echo "$count \n";
     
@@ -63,12 +63,12 @@ for($count=0 ; $count<3 * $imageFrames ; $count++){
 }
 
 
-//$result = $aniGif->deconstructImages();
+$result = $aniGif->deconstructImages();
 
 
 //there more than one file, so must be using writeImages()
 //$aniGif->writeImages("./aTestGif.gif", true);
-//$result->writeImages("./aTestGif_deconstructed.gif", true);
+$result->writeImages("./testTLS.gif", true);
 
 //header('Content-type: image/gif');
 //$aniGif->getimageblob();

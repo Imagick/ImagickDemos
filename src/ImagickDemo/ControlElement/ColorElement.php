@@ -61,15 +61,15 @@ abstract class ColorElement implements ControlElement {
                     </span>";
 
 
-        $text = "<div class='row'>
-    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." ".self::FIRST_ELEMENT_CLASS."'>
+        $text = "<div class='row controlRow'>
+    <div class='col-sm-".(self::FIRST_ELEMENT_SIZE - 1)." ".self::FIRST_ELEMENT_CLASS." controlCell'>
         %s
     </div>
-    <div class='col-sm-2'>
+    <div class='col-sm-1 controlCell'>
         %s
     </div>
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." ".self::MIDDLE_ELEMENT_CLASS."'>
-            %s
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." ".self::MIDDLE_ELEMENT_CLASS." controlCell'>
+        %s
     </div>
     
 </div>";

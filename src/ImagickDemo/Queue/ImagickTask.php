@@ -27,7 +27,6 @@ class ImagickTask implements Task {
     function __construct($category, $functionName, \ImagickDemo\Control $control) {
         $this->category = $category;
         $this->functionName = $functionName;
-        //$this->params = $params;
         $this->control = $control;
     }
 
@@ -68,6 +67,9 @@ class ImagickTask implements Task {
     function execute(\Auryn\Provider $injector) {
 
         global $cacheImages;
+        
+        echo "amagad....";
+        exit(0);
 
         $namespace = sprintf('ImagickDemo\%s\functions', $this->category);
         /** @noinspection PhpUndefinedMethodInspection */
@@ -98,8 +100,4 @@ class ImagickTask implements Task {
     public function getControl() {
         return $this->control;
     }
-    
-    
-    
-    
 }

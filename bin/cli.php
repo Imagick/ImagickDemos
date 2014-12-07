@@ -69,12 +69,11 @@ function createApplication() {
 ////$uploadCommand->addOption('dir', null, InputArgument::OPTIONAL, 'Which directory to upload from', './');
 //    $rpmCommand->setDescription("Build an RPM from an directory that contains all the files of a project. Allows for faster testing than having to re-tag, and download zip files repeatedly.");
 
-    
-    $statsCommand = new Command('libratoStats', 'Stats\SimpleStats::run');
+    $statsCommand = new Command('statsRunner', 'Stats\SimpleStats::run');
     $statsCommand->setDescription("Run the stats collector and send the results to Librato.");
 
-    $taskCommand = new Command('taskRunner', 'ImagickDemo\Queue\ImagickTaskRunner::run');
-    $taskCommand->setDescription("Run the stats collector and send the results to Librato.");
+    $taskCommand = new Command('imageRunner', 'ImagickDemo\Queue\ImagickTaskRunner::run');
+    $taskCommand->setDescription("Pull image request jobs off the queue and generated the images.");
 
     $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
     $clearCacheCommand->setDescription("Clear the apc cache.");
@@ -83,7 +82,6 @@ function createApplication() {
     $console->add($statsCommand);
     $console->add($taskCommand);
     $console->add($clearCacheCommand);
-
 
     return $console;
 }

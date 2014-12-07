@@ -4,33 +4,29 @@ namespace ImagickDemo\Imagick;
 
 class queryFormats extends \ImagickDemo\Example {
 
-    
-    function renderDescription() {
+//Example Imagick::queryformats
+    function render() {
         $output = "";
         $input = \Imagick::queryformats();
         $columns = 6;
 
-        echo "<table border='2' >";
+        $output .= "<table border='2'>";
 
         for ($i=0; $i < count($input); $i += $columns) {
-            echo "<tr>";
+            $output .= "<tr>";
             for ($c=0; $c<$columns; $c++) {
-                echo "<td>";
+                $output .= "<td>";
                 if (($i + $c) <  count($input)) {
-                    echo $input[$i + $c];
+                    $output .= $input[$i + $c];
                 }
-                echo "</td>";
+                $output .= "</td>";
             }
-            echo "</tr>";
+            $output .= "</tr>";
         }
 
-        echo "</table>";
+        $output .= "</table>";
 
         return $output;
     }
-    
-    
-    function render() {
-        return "";
-    }
+//Example end
 }

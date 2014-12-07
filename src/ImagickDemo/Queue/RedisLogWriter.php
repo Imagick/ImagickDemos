@@ -11,11 +11,18 @@ class RedisLogWriter extends CliTool {
     
     private $logPath;
 
+    /**
+     * @param RedisClient $redisClient
+     * @param LogPath $logPath
+     */
     function __construct(RedisClient $redisClient, LogPath $logPath) {
         $this->redisClient = $redisClient;
         $this->logPath = $logPath;
     }
 
+    /**
+     * 
+     */
     function main() {
         $key = self::getClassKey();
 

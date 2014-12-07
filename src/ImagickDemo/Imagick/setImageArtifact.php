@@ -9,22 +9,49 @@ class setImageArtifact extends \ImagickDemo\Example {
     use OriginalImageFile;
     
     /**
-     * @var \ImagickDemo\Control\ImageControl
+     * @var \ImagickDemo\Control\ArtifactExample
      */
     private $imageControl;
+
+    static private $listOfExamples = [
+        'multiplyGradients' => 'MULTIPLY',
+        'difference'        => 'DIFFERENCE',
+    ];
     
-    function __construct(\ImagickDemo\Control\ImageControl $control) {
+    
+    function __construct(\ImagickDemo\Imagick\Control\ArtifactExample $control) {
         $this->imageControl = $control;
         parent::__construct($control);
     }
 
+    public static function getExamples() {
+        
+
+        return self::$listOfExamples;
+    }
+    
+
     function render() {
         $output = "";
-        $output .= $this->renderImageURL();
+        //$output .= $this->renderImageURL();
+
+        $this->renderCustomImageURL([]);
         
         return $output;
     }
 
+    function renderCustomImageURL($extraParams = []) {
+        return sprintf(
+            "<img src='%s' />",
+            $this->imageControl->getCustomImageURL($extraParams)
+        );
+    }
+
+    function renderCustomImage() {
+
+    }
+    
+    
     function makeImage() {
         $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
         $imagick->setImageFormat('jpg');

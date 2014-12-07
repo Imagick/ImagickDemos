@@ -4,10 +4,10 @@
 namespace ImagickDemo\ControlElement;
 
 
-class CompositeExample extends OptionKeyElement {
+class ArtifactExample extends OptionKeyElement {
 
     function getVariableName() {
-        return 'compositeExample';
+        return 'artifactExample';
     }
 
     function getDefault() {
@@ -15,14 +15,14 @@ class CompositeExample extends OptionKeyElement {
     }
 
     function getDisplayName() {
-        return "Composite example";
+        return "Artifact example";
     }
 
     function getOptions() {
-        return \ImagickDemo\Tutorial\composite::getExamples();
+        return \ImagickDemo\Imagick\setImageArtifact::getExamples();
     }
 
-    function getCompositeExampleType() {
+    function getArtifactExample() {
         return $this->getKey();
     }
 }

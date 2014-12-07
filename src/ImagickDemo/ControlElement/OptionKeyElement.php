@@ -59,12 +59,12 @@ abstract class OptionKeyElement implements ControlElement {
         
         
         $text = <<< END
-<div class='row'>
-    <div class='col-sm-%d'>
+<div class='row controlRow'>
+    <div class='col-sm-%d controlCell'>
         %s
     </div>    
-    <div class='col-sm-%d'>
-        <select name='%s'>
+    <div class='col-sm-%d controlCell'>
+        <select name='%s' class='inputSelect'>
             %s
         </select>
     </div>

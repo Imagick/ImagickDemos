@@ -489,6 +489,8 @@ END;
             //'hasNextImage',
             //'hasPreviousImage',
             'identifyImage' => ['identifyImage', \ImagickDemo\Control\ImageControl::class],
+            'identifyImageProperties' => ['identifyImageProperties', \ImagickDemo\Control\NullControl::class],
+            
             'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
             //'implodeImage',
             //'importImagePixels',

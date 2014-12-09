@@ -2072,6 +2072,12 @@ function setImageBias() {
 }
 ";s:11:"description";s:0:"";s:9:"startLine";i:1823;s:7:"endLine";i:1831;}',
     ),
+    'identifyimageproperties' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:23:"identifyImageProperties";s:5:"lines";s:173:"        $imagick = new \\Imagick(realpath("images/artifact/mask.png"));
+        $output = \'\';//$imagick->identifyImageProperties("Trim box: %@ number of unique colors: %k");
+";s:11:"description";s:0:"";s:9:"startLine";i:18;s:7:"endLine";i:21;}',
+    ),
     'quantum' => 
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:7:"Quantum";s:5:"lines";s:189:"        $quantumRange = $imagick->getQuantumRange();

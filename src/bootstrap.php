@@ -144,7 +144,19 @@ namespace {
 
         return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
     }
- 
+
+    function renderImgTag($url, $id = '', $extra = '') {
+
+        $output = sprintf(
+            "<img src='%s' id='%s' class='img-responsive' %s />",
+            $url,
+            $id,
+            $extra
+        );
+
+        return $output;
+
+    }
 
     /**
      * @param $libratoKey

@@ -266,3 +266,7 @@ pre {
 .controlForm > div {
   min-height: 15px;
 }
+
+body{
+    overflow-y:scroll;
+}

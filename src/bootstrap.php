@@ -172,8 +172,8 @@ function bootstrapInjector() {
         "../var/compile/",
         'tpl',
         //Jig\JigRender::COMPILE_CHECK_EXISTS
-        Jig\JigRender::COMPILE_CHECK_MTIME
-        //Jig\JigRender::COMPILE_ALWAYS
+        //Jig\JigRender::COMPILE_CHECK_MTIME
+        Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);

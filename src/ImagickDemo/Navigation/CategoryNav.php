@@ -134,6 +134,9 @@ class CategoryNav implements Nav {
         return "";
     }
 
+    /**
+     * @return string
+     */
     function renderPreviousLink() {
         $previousNavName = $this->getPreviousName();
 
@@ -164,6 +167,9 @@ class CategoryNav implements Nav {
         return "";
     }
 
+    /**
+     * @return string
+     */
     function renderNextLink() {
         $nextName = $this->getNextName();
 
@@ -213,15 +219,20 @@ END;
 
         return $output;
     }
-    
+
+    /**
+     * @return string
+     */
     function renderSearchBox() {
 
         $output = <<< END
-
-<div class='smallPadding navSpacer searchContainer' role='search'  >
-    <input type="text" class='searchBox' placeholder="Search..." id="query" name="query" value="" />
+<div class='smallPadding navSpacer searchContainer' role='search'   >
+    <input type="text" class='searchBox' id='searchInput' placeholder="Search..." name="query" value="" />
 </div>
 
+<div class='smallPadding navSpacer' id='searchResultNone' style='display: none; padding-top: 15px'>
+    No matches found
+</div>
 END;
 
         return $output;
@@ -230,7 +241,7 @@ END;
     
     function renderVertical() {
         
-        $output = "<ul class='nav nav-sidebar smallPadding'>";
+        $output = "<ul class='nav nav-sidebar smallPadding' id='searchList'>";
 
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
             $imagickExample = $exampleName;//$imagickExampleOption->getName();
@@ -785,7 +796,6 @@ END;
             'pathCurveToQuadraticBezierAbsolute' => [
                 'pathCurveToQuadraticBezierAbsolute',
                 \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class,
-                
                 'name' => "pathCurveToQuadratic BezierAbsolute",
             ],
 
@@ -932,9 +942,6 @@ END;
 
         return $examples;
     }
-
-
-
 }
 
  

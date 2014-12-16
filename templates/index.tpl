@@ -231,6 +231,7 @@
 <script src="/js/jquery-1.11.0.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/colpick.js"></script>
+<script src="/js/jquery.fastLiveFilter.js"></script>
 <script type="text/javascript" src="/js/syntaxhighlighter/xregexp.js"></script>
 <script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
 <script type="text/javascript" src="/js/syntaxhighlighter/shBrushPhp.js"></script>
@@ -287,6 +288,40 @@
 
     SyntaxHighlighter.all(params);
 
+
+    $(function() {
+
+        var callback = function(total) {
+            if (total == 0) {
+                $('#searchResultNone').css('display', 'inline-block');
+            }
+            else {
+                $('#searchResultNone').css('display', 'none');
+            }
+        };
+        
+        var options = {
+        //    timeout: 200,
+            callback: callback
+        };
+        
+        $('#searchInput').fastLiveFilter(
+            '#searchList',
+            options
+        );
+    });
+
+
+
+    
+
+//    var list = $('#searchList');
+//    var lis = list.children();
+//    var len = lis.length;
+//    
+//    alert("length here is " + len);
+
+    
     {/literal}
 </script>
 

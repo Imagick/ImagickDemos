@@ -644,20 +644,36 @@ $controls = [
     'ImagickDemo\Imagick\Control\imageQuality' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Quality',
-        
     ],
 
 //    'ImagickDemo\Imagick\Control\ArtifactExample' => [
 //        'ImagickDemo\ControlElement\ArtifactExample',
 //    ],
 
+    'ImagickDemo\Imagick\Control\setImageBias' => [
+        '\ImagickDemo\ControlElement\Bias',
+    ],
 
+    
+    
+    'ImagickDemo\Imagick\Control\convolveImage' => [
+        'ImagickDemo\ControlElement\Image',
+        '\ImagickDemo\ControlElement\Bias',
+        '\ImagickDemo\ControlElement\KernelMatrix',
+    ],
+
+    'ImagickDemo\Imagick\Control\edgeImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+    ],
 
     
     
-    
-    
-    
+    'ImagickDemo\Imagick\Control\embossImage' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\Radius',
+        'ImagickDemo\ControlElement\Sigma',
+    ],
 ];
 
 \Intahwebz\Functions::load();

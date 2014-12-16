@@ -96,13 +96,17 @@
                         </div>
                     </div>
 
-                    {$docHelper->showDescription() | nofilter}
-                    
-                    {$description = $example->renderDescription()} 
+                    {$docDescription = $docHelper->showDescription()}
 
+                    {if ($docDescription)}
+                        {$docDescription | nofilter}
+                        <br/>
+                    {/if}
+
+                    {$description = $example->renderDescription()} 
                     {if ($description)}
-                        <br/>&nbsp;<br/>
                         {$description | nofilter}
+                        <br/>
                     {/if}
 
                 </div>

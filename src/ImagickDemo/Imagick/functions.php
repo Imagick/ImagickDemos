@@ -370,14 +370,13 @@ function contrastImage($imagePath, $contrastType) {
 
 //Todo - allow a convolve control :-P
 //Example Imagick::convolveImage
-function convolveImage($imagePath) {
+function convolveImage($imagePath, $bias, $kernelMatrix) {
     $imagick = new \Imagick(realpath($imagePath));
-    $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
-
-    //TODO - this does nothing.
-    $imagick->setImageBias(0.5 * \Imagick::getQuantum());
     
-    $imagick->convolveImage($edgeFindingKernel);
+    //$edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
+    
+    $imagick->setImageBias($bias * \Imagick::getQuantum());
+    $imagick->convolveImage($kernelMatrix);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -429,6 +428,15 @@ function despeckleImage($imagePath) {
 }
 //Example end
 
+//Example Imagick::edgeImage
+function edgeImage($imagePath, $radius) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->edgeImage($radius);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 //Example Imagick::enhanceImage
 function enhanceImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -439,6 +447,15 @@ function enhanceImage($imagePath) {
 //Example end
 
 
+//Example Imagick::embossImage
+function embossImage($imagePath, $radius, $sigma) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->embossImage($radius, $sigma);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+    
 //Example Imagick::equalizeImage
 function equalizeImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -812,6 +829,19 @@ function haldClutImage($imagePath) {
 //Example end
 
 
+//Example Imagick::labelImage
+function labelImage($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->labelImage("This is some text");
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+
+    $imagick->writeImage("./wtfLabel.jpg");
+    
+}
+//Example end
+
+
 //Example Imagick::levelImage
 function levelImage($blackPoint, $gamma, $whitePoint) {
     $imagick = new \Imagick();
@@ -991,6 +1021,17 @@ function orderedPosterizeImage($imagePath, $orderedPosterizeType) {
 //Example end
 
 
+//Example Imagick::labelImage
+function polaroidImage($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagickDraw = new \ImagickDraw();    
+    $imagick->polaroidImage($imagickDraw, 15);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+    
+
 
 //Example Imagick::posterizeImage
 function posterizeImage($imagePath, $posterizeType, $numberLevels) {
@@ -1052,6 +1093,31 @@ function randomThresholdimage($imagePath, $lowThreshold, $highThreshold, $channe
 }
 //Example end
 
+//Example Imagick::readImageBlob
+function readImageBlob() {
+
+    // Image blob borrowed from:
+    // http://www.techerator.com/2011/12/how-to-embed-images-directly-into-your-html/
+    $base64 = "iVBORw0KGgoAAAANSUhEUgAAAM0AAAD
+ NCAMAAAAsYgRbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5c
+ cllPAAAABJQTFRF3NSmzMewPxIG//ncJEJsldTou1jHgAAAARBJREFUeNrs2EEK
+ gCAQBVDLuv+V20dENbMY831wKz4Y/VHb/5RGQ0NDQ0NDQ0NDQ0NDQ0NDQ
+ 0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0PzMWtyaGhoaGhoaGhoaGhoaGhoxtb0QGho
+ aGhoaGhoaGhoaGhoaMbRLEvv50VTQ9OTQ5OpyZ01GpM2g0bfmDQaL7S+ofFC6x
+ v3ZpxJiywakzbvd9r3RWPS9I2+MWk0+kbf0Hih9Y17U0nTHibrDDQ0NDQ0NDQ0
+ NDQ0NDQ0NTXbRSL/AK72o6GhoaGhoRlL8951vwsNDQ0NDQ1NDc0WyHtDTEhD
+ Q0NDQ0NTS5MdGhoaGhoaGhoaGhoaGhoaGhoaGhoaGposzSHAAErMwwQ2HwRQ
+ AAAAAElFTkSuQmCC";
+
+    $imageBlob = base64_decode($base64);
+
+    $imagick = new Imagick();
+    $imagick->readImageBlob($imageBlob);
+
+    header("Content-Type: image/png");
+    echo $imageBlob;
+}
+//Example end
 
 //Example Imagick::recolorImage
 function recolorImage($imagePath) {
@@ -1313,28 +1379,22 @@ function setImageOrientation($imagePath, $orientationType) {
 
 
 //Example Imagick::setImageBias
-//Doesn't appear to do anything
-function setImageBias() {
-
+//requires ImageMagick version 6.9.0-1 to have an effect on convolveImage
+function setImageBias($bias) {
     $imagick = new \Imagick(realpath("images/stack.jpg"));
 
-    //@$imagick->medianFilterImage(2);
-    $imagick->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
-//    @$imagick->medianFilterImage(2);
-//    
     $xKernel = array(
         -0.70, 0, 0.70,
         -0.70, 0, 0.70,
         -0.70, 0, 0.70
     );
 
-//    $edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
-
-    //$imagick->setImageBias(0.5);
+    $imagick->setImageBias($bias * \Imagick::getQuantum());
     $imagick->convolveImage($xKernel, \Imagick::CHANNEL_ALL);
-    //$imagick->setImageBias(-0.5);
 
-    header('Content-type: image/jpeg');
+    $imagick->setImageFormat('png');
+    
+    header('Content-type: image/png');
     echo $imagick->getImageBlob();
 }
 //Example end

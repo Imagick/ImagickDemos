@@ -214,9 +214,23 @@ END;
         return $output;
     }
     
+    function renderSearchBox() {
+
+        $output = <<< END
+
+<div class='smallPadding navSpacer searchContainer' role='search'  >
+    <input type="text" class='searchBox' placeholder="Search..." id="query" name="query" value="" />
+</div>
+
+END;
+
+        return $output;
+    }
+    
     
     function renderVertical() {
-        echo "<ul class='nav nav-sidebar smallPadding contentPanel'>";
+        
+        $output = "<ul class='nav nav-sidebar smallPadding'>";
 
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
             $imagickExample = $exampleName;//$imagickExampleOption->getName();
@@ -234,12 +248,14 @@ END;
                 $name = $exampleDefinition['name'];
             }
 
-            echo "<li class='navSpacer $active'>";
-            echo "<a class='smallPadding $activeLink' href='/".$this->category."/$imagickExample'>".$name."</a>";
-            echo "</li>";
+            $output .= "<li class='navSpacer $active'>";
+            $output .= "<a class='smallPadding $activeLink' href='/".$this->category."/$imagickExample'>".$name."</a>";
+            $output .= "</li>";
         }
 
-        echo "</ul>";
+        $output .= "</ul>";
+        
+        return $output;
     }
 
     function renderHorizontal() {
@@ -261,17 +277,15 @@ END;
     }
 
 
+
     /**
      * @param bool $horizontal
      */
     function renderNav($horizontal = false) {
-//        if ($horizontal == true) {
-//            $this->renderHorizontal();
-//        }
-//        else {
-            //$this->renderHorizontal();
-            $this->renderVertical();
-        //}
+        echo "<div class='contentPanel navContainer' >";
+            echo $this->renderSearchBox();
+            echo $this->renderVertical();
+        echo "</div>";
     }
 
     function getExampleDefinition($category, $example) {
@@ -302,7 +316,10 @@ END;
 
             'adaptiveResizeImage' => ['adaptiveResizeImage', \ImagickDemo\Imagick\Control\adaptiveResizeImage::class],
             'adaptiveSharpenImage' => ['adaptiveSharpenImage', \ImagickDemo\Imagick\Control\adaptiveSharpenImage::class ],
-            'adaptiveThresholdImage' => ['adaptiveThresholdImage', \ImagickDemo\Imagick\Control\adaptiveThresholdImage::class ],
+            'adaptiveThresholdImage' => [
+                'adaptiveThresholdImage',
+                \ImagickDemo\Imagick\Control\adaptiveThresholdImage::class
+            ],
             //'addImage',
             'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Imagick\Control\addNoiseImage::class],
             'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ImageControl::class], //Doesn't work?
@@ -311,7 +328,6 @@ END;
 
             //'appendImages',
             'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
-            //new NavOption('averageImages',  true),
             'blackThresholdImage' => ['blackThresholdImage', \ImagickDemo\Imagick\Control\blackThresholdImage::class],
             'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Imagick\Control\BlueShiftControl::class],
             'blurImage' => ['blurImage', \ImagickDemo\Imagick\Control\BlurControl::class],
@@ -345,7 +361,10 @@ END;
             //__construct',
             'contrastImage' => ['contrastImage', \ImagickDemo\Imagick\Control\contrastImage::class],
             //'contrastStretchImage',
-            'convolveImage' => ['convolveImage', \ImagickDemo\Control\ImageControl::class],
+            'convolveImage' => [
+                'convolveImage', 
+                \ImagickDemo\Imagick\Control\convolveImage::class
+            ],
             'cropImage' => ['cropImage', \ImagickDemo\Imagick\Control\cropImage::class],
             //'cropThumbnailImage',
             //'current',
@@ -362,8 +381,15 @@ END;
             //'displayImages',
             'distortImage' => ['distortImage', \ImagickDemo\Control\ControlCompositeImageDistortionType::class],
             //'drawImage',
-            //'edgeImage',
-            //'embossImage',
+            'edgeImage' => [
+                'edgeImage',
+                \ImagickDemo\Imagick\Control\edgeImage::class
+            ],
+            'embossImage' => [
+                'embossImage',
+                \ImagickDemo\Imagick\Control\embossImage::class
+            ],
+            
             //'encipherImage',
 
             'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
@@ -494,7 +520,8 @@ END;
             'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
             //'implodeImage',
             //'importImagePixels',
-            //'labelImage',
+            //'labelImage' => basically does setImageProperty("label", $text) 
+            
             'levelImage' => [
                 'levelImage',
                 \ImagickDemo\Control\blackAndWhitePoint::class,
@@ -543,7 +570,7 @@ END;
             'Quantum'  => ['Quantum', \ImagickDemo\Control\NullControl::class],
             //'pingImageBlob',
             //'pingImageFile',
-            //'polaroidImage',
+            'polaroidImage'  => ['polaroidImage', \ImagickDemo\Control\ImageControl::class],
             'posterizeImage' => [
                 'posterizeImage',
                 \ImagickDemo\Imagick\Control\posterizeControl::class
@@ -568,11 +595,11 @@ END;
             ],
             'randomThresholdImage' => ['randomThresholdImage', \ImagickDemo\Imagick\Control\randomThresholdimage::class],
             //'readImage',
-            //'readImageBlob',
+            'readImageBlob'  => ['readImageBlob', \ImagickDemo\Control\NullControl::class],
             //'readImageFile',
             'recolorImage' => ['recolorImage', \ImagickDemo\Control\ImageControl::class],
             'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Imagick\Control\reduceNoiseImage::class],
-//new NavOption('remapImage', true),
+
 
             //'remapImage' => ['remapImage', \ImagickDemo\Control\ImageControl::class],
         
@@ -618,7 +645,12 @@ END;
                 \ImagickDemo\Control\NullControl::class
             ],
             //'setImageBackgroundColor',
-            'setImageBias' => ['setImageBias', \ImagickDemo\Control\NullControl::class],
+            'setImageBias' => [
+                'setImageBias',
+                \ImagickDemo\Imagick\Control\setImageBias::class
+            ],
+
+
             //'setImageBluePrimary',
             //'setImageBorderColor',
             //'setImageChannelDepth',
@@ -685,8 +717,6 @@ END;
             'shearImage' => ['shearImage', \ImagickDemo\Imagick\Control\shearImage::class],
             'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class ],
 
-
-            //similarityImage'
             'sketchImage' => [
                 'sketchImage',
                 \ImagickDemo\Imagick\Control\sketchImage::class,

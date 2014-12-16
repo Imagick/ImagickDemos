@@ -7,16 +7,6 @@ use Intahwebz\Request;
 
 
 class ColorMatrix implements ControlElement {
-    
-    
-//    private $colorMatrix = [
-//        1.5, 0.0, 0.0, 0.0, 0.0, -0.157,
-//        0.0, 1.0, 0.5, 0.0, 0.0, -0.157,
-//        0.0, 0.0, 0.5, 0.0, 0.0, 0.5,
-//        0.0, 0.0, 0.0, 1.0, 0.0,  0.0,
-//        0.0, 0.0, 0.0, 0.0, 1.0,  0.0,
-//        0.0, 0.0, 0.0, 0.0, 0.0,  1.0,
-//    ];
 
     private $colorMatrix = [
         1.5, 0.0, 0.0, 0.0, -0.157,
@@ -39,8 +29,7 @@ class ColorMatrix implements ControlElement {
             $this->colorMatrix[$i] = $newValue;
         }
     }
-    
-    
+
     /**
      * @return array
      */

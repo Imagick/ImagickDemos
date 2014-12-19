@@ -24,12 +24,25 @@ class H20 implements ControlElement {
         }
     }
 
+    /**
+     * @return array
+     */
     function getParams() {
         return [
             self::h20Name => $this->h20,
         ];
     }
 
+    /**
+     * @return array
+     */
+    function getInjectionParams() {
+        return $this->getParams();
+    }
+
+    /**
+     * @return string
+     */
     function renderFormElement() {
         $sWidth = safeText($this->h20);
    
@@ -37,7 +50,7 @@ class H20 implements ControlElement {
     <div class='col-sm-".self::FIRST_ELEMENT_SIZE." controlCell'>
         %s
     </div>    
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." controlCell'>
+    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." inputValue controlCell'>
         <input type='text' name='%s' value='%s'/>
     </div>
 </div>";

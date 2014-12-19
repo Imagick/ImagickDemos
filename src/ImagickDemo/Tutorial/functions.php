@@ -395,7 +395,7 @@ function psychedelicFont() {
 
 
 //Example Tutorial::psychedelicFontGif
-function psychedelicFontGif() {
+function psychedelicFontGif($name = 'Danack') {
 
     set_time_limit(3000);
 
@@ -408,12 +408,6 @@ function psychedelicFontGif() {
     for ($frame = 0; $frame < $maxFrames; $frame++) {
 
         $draw = new \ImagickDraw();
-
-        $name = 'Danack';
-
-        if (array_key_exists('name', $_REQUEST) == true) {
-            $name = $_REQUEST['name'];
-        }
 
         $draw->setStrokeOpacity(1);
         $draw->setFont("../fonts/CANDY.TTF");

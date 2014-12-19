@@ -5,11 +5,6 @@ namespace ImagickDemo\Imagick;
 class setIteratorIndex extends \ImagickDemo\Example {
 
 
-    function getCustomImageParams() {
-        return $this->control->getParams();
-    }
-
-
     function render() {
         $output = '';
         $output .= "Selecting first two layers:<br/>";

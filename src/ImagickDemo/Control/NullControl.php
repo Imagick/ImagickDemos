@@ -6,12 +6,14 @@ namespace ImagickDemo\Control;
 
 class NullControl implements \ImagickDemo\Control {
 
-    private $imageBaseURL;
-    private $customImageBaseURL;
+
+    private $activeCategory;
+    private $activeExample;
     
-    function __construct(\Intahwebz\Request $request, $imageBaseURL, $customImageBaseURL) {
-        $this->imageBaseURL = $imageBaseURL;
-        $this->customImageBaseURL = $customImageBaseURL;
+    
+    function __construct(\Intahwebz\Request $request, $activeCategory, $activeExample) {
+        $this->activeCategory = $activeCategory;
+        $this->activeExample = $activeExample;
     }
     
     function renderForm() { }
@@ -23,12 +25,17 @@ class NullControl implements \ImagickDemo\Control {
         return [];
     }
 
+    function getInjectionParams() {
+        return [];
+    }
+    
+
     function getFullParams(array $extraParams = []) {
         return $extraParams;
     }
 
     function getURL() {
-        return $this->imageBaseURL;
+        return getImageURL($this->activeCategory, $this->activeExample);
     }
 
     function getCustomImageURL(array $extraParams = array()) {
@@ -40,7 +47,11 @@ class NullControl implements \ImagickDemo\Control {
             $separator = '&';
         }
 
-        return $this->customImageBaseURL.$paramString;
+        return getCustomImageURL($this->activeCategory, $this->activeExample).$paramString;
+    }
+
+    function getImageStatusURL() {
+        return getImageStatusURL($this->activeCategory, $this->activeExample);
     }
 }
 

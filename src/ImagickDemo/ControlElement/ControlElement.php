@@ -17,6 +17,11 @@ interface ControlElement {
      * @return array
      */
     function getParams();
+
+    /**
+     * @return array
+     */
+    function getInjectionParams();
     
     /**
      * @return string

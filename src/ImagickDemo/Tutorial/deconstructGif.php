@@ -54,17 +54,17 @@ function makeSimpleGif() {
 
 class deconstructGif extends \ImagickDemo\Example {
 
-
-    /**
-     * @var \Intahwebz\Request
-     */
-    private $request;
-
-    function __construct(\ImagickDemo\Control $control, \Intahwebz\Request $request) {
+    function __construct(\ImagickDemo\Control $control) {
         $this->control = $control;
-        $this->request = $request;
     }
 
+//    function getCustomParameters() {
+//        return ['deconstruct' => true];
+//    }
+
+    /**
+     * @return string
+     */
     function renderDescription() {
          $output = <<< END
 ImageMagick has the ability to dramatically the file size of gifs that contain a large amount of area that is static.
@@ -78,7 +78,7 @@ For the image below the normal vs the deconstructed file sizes are:
 END;
 
         $output = nl2br($output);
-        
+
         $output .= "<pre>Normal image:  2,133,864 bytes
 Deconstructed:   108,772 bytes</pre>";
         
@@ -87,7 +87,6 @@ Deconstructed:   108,772 bytes</pre>";
 
     function render() {
         $output = '';
-        //return $this->renderImageURL();
         $output .= 'Normal image:<br/>';
         $output .= sprintf("<img src='%s' />", $this->control->getCustomImageURL());
 
@@ -98,16 +97,8 @@ Deconstructed:   108,772 bytes</pre>";
         return $output;
     }
 
-
-    function renderCustomImage() {
-        $deconstruct = $this->request->getVariable('deconstruct');
-        $this->processGif($deconstruct);
-    }
-
-
 //Example Tutorial::deconstructGif
-    function processGif($deconstruct) {
-        
+    function renderCustomImage($deconstruct) {
         $aniGif = makeSimpleGif();
         
         if ($deconstruct == true) {

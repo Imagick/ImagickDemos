@@ -9,9 +9,9 @@ class layerPSD extends \ImagickDemo\Example {
     }
 
 
-    function getCustomImageParams() {
-        return $this->control->getParams();
-    }
+//    function getCustomImageParams() {
+//        return $this->control->getParams();
+//    }
 
     function render() {
         return $this->renderCustomImageURL();

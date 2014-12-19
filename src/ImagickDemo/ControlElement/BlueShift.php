@@ -19,7 +19,7 @@ class BlueShift extends ValueElement {
     }
     
     function getVariableName() {
-        return 'blueshift';
+        return 'blueShift';
     }
     
     function getDisplayName() {

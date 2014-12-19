@@ -44,6 +44,14 @@ class ColorMatrix implements ControlElement {
     }
 
     /**
+     * @return array
+     */
+    function getInjectionParams() {
+        return ['colorMatrix' => $this->colorMatrix];
+    }
+    
+
+    /**
      * @return string
      */
     function renderFormElement() {

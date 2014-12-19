@@ -526,10 +526,10 @@ END;
             //'hasNextImage',
             //'hasPreviousImage',
             'identifyImage' => ['identifyImage', \ImagickDemo\Control\ImageControl::class],
-            'identifyImageProperties' => ['identifyImageProperties', \ImagickDemo\Control\NullControl::class],
+            'identifyFormat' => ['identifyFormat', \ImagickDemo\Control\NullControl::class],
             
             'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
-            //'implodeImage',
+            'implodeImage'  => ['implodeImage', \ImagickDemo\Control\ImageControl::class],
             //'importImagePixels',
             //'labelImage' => basically does setImageProperty("label", $text) 
             
@@ -896,7 +896,7 @@ END;
             //'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => [
                 'fxAnalyzeImage', 
-                \ImagickDemo\Control\FXAnalyze::class
+                \ImagickDemo\Control\FXAnalyzeControl::class
             ],
 
             //'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],

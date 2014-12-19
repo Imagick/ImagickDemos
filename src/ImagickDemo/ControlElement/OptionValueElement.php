@@ -40,6 +40,12 @@ abstract class OptionValueElement implements ControlElement {
         ];
     }
 
+    function getInjectionParams() {
+        return [
+            $this->getVariableName() => $this->key,
+        ];
+    }
+
     /**
      * @return string
      */
@@ -54,8 +60,7 @@ abstract class OptionValueElement implements ControlElement {
             }
             $select .= "<option value='".$value."' $selected>$value</option>";
         }
-        
-        
+
         $text = <<< END
 <div class='row controlRow'>
     <div class='col-sm-%d %s controlCell'>

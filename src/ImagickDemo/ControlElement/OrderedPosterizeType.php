@@ -10,11 +10,11 @@ class OrderedPosterizeType extends OptionKeyElement {
     }
 
     protected function getVariableName() {
-        return 'distortion';
+        return 'orderedPosterizeType';
     }
 
     protected function getDisplayName() {
-        return "Distortion type";
+        return "Posterize type";
     }
 
     protected function getOptions() {

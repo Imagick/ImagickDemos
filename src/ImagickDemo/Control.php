@@ -10,11 +10,15 @@ interface Control {
 
     function getParams();
 
+    function getInjectionParams();
+
     function getFullParams(array $extraParams = []);
 
     function getURL();
 
     function getCustomImageURL(array $extraParams = []);
+
+    function getImageStatusURL();
 }
 
  

@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-class identifyImageProperties extends \ImagickDemo\Example {
+class identifyFormat extends \ImagickDemo\Example {
 
     /**
      * @return string
@@ -15,10 +15,10 @@ class identifyImageProperties extends \ImagickDemo\Example {
      * @return string
      */
     function render() {
-//Example Imagick::identifyImageProperties
+//Example Imagick::identifyFormat
         $output = "Output of 'Trim box: %@ number of unique colors: %k' is: <br/>";
         $imagick = new \Imagick(realpath("images/artifact/mask.png"));
-        $output .= $imagick->identifyImageProperties("Trim box: %@ number of unique colors: %k");
+        $output .= $imagick->identifyFormat("Trim box: %@ number of unique colors: %k");
 //Example end
 
         $output .= "<br/>";

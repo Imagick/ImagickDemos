@@ -11,7 +11,7 @@ trait OriginalImageFile {
     }
 
     function renderOriginalImage() {
-        \ImagickDemo\Imagick\renderFile($this->control->getImagePath());
+        return \ImagickDemo\Imagick\renderFile($this->control->getImagePath());
     }
 }
 

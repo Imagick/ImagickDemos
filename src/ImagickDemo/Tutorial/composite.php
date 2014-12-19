@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Tutorial;
 
-use Intahwebz\Request;
 use \ImagickDemo\Control\CompositeExampleControl;
 
 class composite extends \ImagickDemo\Example {
@@ -19,15 +18,8 @@ class composite extends \ImagickDemo\Example {
      */
     private $compositeExampleControl;
 
-    /**
-     * @var Request
-     */
-    private $request;
-    
-
-    function __construct(CompositeExampleControl $compositeExampleControl, Request $request) {
+    function __construct(CompositeExampleControl $compositeExampleControl) {
         $this->compositeExampleControl = $compositeExampleControl;
-        $this->request = $request;
     }
 
     public static function getExamples() {
@@ -51,56 +43,14 @@ class composite extends \ImagickDemo\Example {
         return $listOfExamples;
     }
 
-    /**
-     * @return array
-     */
-    function getCustomImageParams() {
-        $params = $this->compositeExampleControl->getParams(); 
-        $type = $this->request->getVariable('type');
-        $params = array_merge($params, ['type' => $type]);
-
-        return $params;
-    }
+//    function getCustomParameters() {
+//        return ['type' => self::SOURCE_1];
+//    }
 
     /**
      * @return string
      */
     function render() {
-        
-//        $output = "<table class='compositeTable'>";
-//
-//        $output .= "<tr><td align='center' class='compositeTableTD'>Input 1</td>
-//        <td align='center' class='compositeTableTD'>Input 2</td></tr>";
-//        $output .= "<tr><td class='compositeTableTD'>";
-//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_1]);
-//        $output .= "</td><td class='compositeTableTD'>";
-//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_2]);
-//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
-//        $output .= 'Output';
-//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
-//        $output .= $this->renderCustomImageURL(['type' => self::OUTPUT]);
-//
-//        $output .= '</tr>';
-//        $output .= '</table>';
-
-//        $output .= "<div class='row'>";
-
-//        $output .= "<tr><td align='center' class='compositeTableTD'>Input 1</td>
-//        <td align='center' class='compositeTableTD'>Input 2</td></tr>";
-//        $output .= "<tr><td class='compositeTableTD'>";
-//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_1]);
-//        $output .= "</td><td class='compositeTableTD'>";
-//        $output .= $this->renderCustomImageURL(['type' => self::SOURCE_2]);
-//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
-//        $output .= 'Output';
-//        $output .= "</td></tr><tr><td colspan='2' align='center' class='compositeTableTD'>";
-//
-//
-//        $output .= "<div class='row'>";
-//        $output .= "<div class='col-md-6 col-md-offset-3'>";
-//        $output .= $this->renderCustomImageURL(['type' => self::OUTPUT]);
-//        $output .= "</div>";
-//        $output .= "</div>";
 
 $layout = <<< END
 
@@ -179,7 +129,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
 
     
     
-    function renderCustomImage() {
+    function renderCustomImage($type) {
         $methods = [
             'multiplyGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MULTIPLY],
             'difference' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_DIFFERENCE],
@@ -197,8 +147,6 @@ What makes this useful is for overlaying lighting and shading effects that are l
             'CopyOpacity2' => ['getBiter', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_COPYOPACITY],
         ];
 
-        $type = $this->request->getVariable('type');
-        
         $customImage  = $this->compositeExampleControl->getCompositeExampleType();
 
         if (array_key_exists($customImage, $methods) == false) {

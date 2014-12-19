@@ -13,7 +13,7 @@ class Image extends \ImagickDemo\ControlElement\OptionValueElement {
     }
 
     protected function getVariableName() {
-        return 'image';
+        return 'imagePath';
     }
 
     protected function getDisplayName() {
@@ -32,6 +32,7 @@ class Image extends \ImagickDemo\ControlElement\OptionValueElement {
     }
 
     function getImagePath() {
+        $this->getParams();
         return $this->getOptionKey();
     }
 }

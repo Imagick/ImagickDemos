@@ -10,24 +10,17 @@ class ImagickTask implements Task {
 
     use \Intahwebz\Cache\KeyName;
 
-    /**
-     * @var
-     */
-    private $category;
-    /**
-     * @var
-     */
-    private $functionName;
+ 
+    private $imageFunction;
 
-    /**
-     * @var \ImagickDemo\Control
-     */
-    private $control;
+    private $params;
 
-    function __construct($category, $functionName, \ImagickDemo\Control $control) {
-        $this->category = $category;
-        $this->functionName = $functionName;
-        $this->control = $control;
+    private $filename;
+
+    function __construct($imageFunction, $params, $filename) {
+        $this->imageFunction = $imageFunction;
+        $this->params = $params;
+        $this->filename = $filename;
     }
 
     function getQueueName() {
@@ -43,61 +36,98 @@ class ImagickTask implements Task {
     }
 
     function serialize() {
-        $foo = [
-            'category' => $this->category,
-            'functionName' => $this->functionName,
-            'control' => $this->control
+        $data = [
+//            'category' => $this->category,
+//            'functionName' => $this->functionName,
+//            'type' => $this->type,
+//            'control' => $this->control
+            'imageFunction' => $this->imageFunction,
+            'params' => $this->params,
+            'filename' => $this->filename
         ];
 
-        return $foo;
+        return $data;
     }
 
     static function unserialize($serialization) {
         return new ImagickTask(
-            $serialization['category'],
-            $serialization['functionName'],
-            $serialization['control']
+            $serialization['imageFunction'],
+            $serialization['params'],
+            $serialization['filename']
         );
     }
 
-    function getFunctionName() {
-        return $this->functionName;
-    }
-
-    function execute(\Auryn\Provider $injector) {
-
-        global $cacheImages;
-        
-        echo "amagad....";
-        exit(0);
-
-        $namespace = sprintf('ImagickDemo\%s\functions', $this->category);
-        /** @noinspection PhpUndefinedMethodInspection */
-        $namespace::load();
-
-        $cacheImages = true;
-
-        $functionFullname = 'ImagickDemo\\'.$this->category.'\\'.$this->functionName;
-        $filename = getImageCacheFilename($this->category, $this->functionName, $this->control->getParams());
-
-        echo "executing ".$functionFullname;
-
-        delegateAllTheThings($injector, $this->control);
-
-        renderImageAsFileResponse($injector, $functionFullname, $filename);
+    /**
+     * @return string
+     */
+    public function getImageFunction() {
+        return $this->imageFunction;
     }
 
     /**
      * @return mixed
      */
-    public function getCategory() {
-        return $this->category;
+    public function getParams() {
+        return $this->params;
     }
+    
+    public function getFilename() {
+        return $this->filename;
+    }
+    
 
-    /**
-     * @return \ImagickDemo\Control
-     */
-    public function getControl() {
-        return $this->control;
-    }
+//    function getFunctionName() {
+//        return $this->functionName;
+//    }
+
+    /*
+    function execute(\Auryn\Provider $injector) {
+
+        global $cacheImages;
+
+        $namespace = sprintf('ImagickDemo\%s\functions', $this->category);
+        /* * @noinspection PhpUndefinedMethodInspection * /
+        $namespace::load();
+
+        $cacheImages = true;
+
+        $filename = getImageCacheFilename($this->category, $this->functionName, $this->control->getFullParams([]));
+
+        delegateAllTheThings($injector, $this->control);
+
+        $imageCallable = 'ImagickDemo\\'.$this->category.'\\'.$this->functionName;
+
+        $lowried = [];
+
+        $imageCallable = function () use ($injector, $imageCallable, $lowried) {
+            $injector->execute($imageCallable, $lowried);
+        };
+
+        renderImageAsFileResponse($imageCallable, $filename);
+    } */
+
+//    /**
+//     * @return mixed
+//     */
+//    public function getCategory() {
+//        return $this->category;
+//    }
+//
+//    /**
+//     * @return \ImagickDemo\Control
+//     */
+//    public function getControl() {
+//        return $this->control;
+//    }
+//
+//    /**
+//     * @return string
+//     */
+//    public function getType() {
+//        return $this->type;
+//    }
+
+    
+
+
 }

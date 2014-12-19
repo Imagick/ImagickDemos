@@ -10,14 +10,10 @@ class sparseColorImage extends \ImagickDemo\Example {
     /**
      * @var \ImagickDemo\Control\SparseColorControl
      */
-    private $sparseControl;
+    private $control;
     
     function __construct(\ImagickDemo\Control\SparseColorControl $sparseControl) {
-        $this->sparseControl = $sparseControl;
-    }
-
-    function getCustomImageParams() {
-        return $this->sparseControl->getParams();
+        $this->control = $sparseControl;
     }
 
     function render() {
@@ -27,12 +23,12 @@ class sparseColorImage extends \ImagickDemo\Example {
         return $output;
     }
 
-    function renderCustomImageURL() {
-        return sprintf(
-            "<img src='%s' />", 
-            $this->sparseControl->getCustomImageURL()
-        );
-    }
+//    function renderCustomImageURL() {
+//        return sprintf(
+//            "<img src='%s' />", 
+//            $this->control->getCustomImageURL()
+//        );
+//    }
 
     function renderCustomImage() {
         $methods = [
@@ -45,7 +41,7 @@ class sparseColorImage extends \ImagickDemo\Example {
             'renderImageBarycentric' => 'renderImageBarycentric',
         ];
 
-        $sparseType = $this->sparseControl->getSparseColorType();
+        $sparseType = $this->control->getSparseColorType();
         
         if (array_key_exists($sparseType, $methods) == false) {
             throw new \Exception("Unknown composite method $sparseType");

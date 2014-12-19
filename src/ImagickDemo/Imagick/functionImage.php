@@ -44,14 +44,10 @@ f4 - Constant vertical offset, default 0.5";
     /**
      * @var \ImagickDemo\Control\ImagickFunctionControl
      */
-    private $functionControl;
+    private $control;
 
     function __construct(\ImagickDemo\Control\ImagickFunctionControl $control) {
-        $this->functionControl = $control;
-    }
-
-    function getCustomImageParams() {
-        return $this->functionControl->getParams();
+        $this->control = $control;
     }
 
 
@@ -67,7 +63,7 @@ f4 - Constant vertical offset, default 0.5";
         $output = "FunctionImage applies one of the following functions to an image: Polynomial, Sinusoid, Arctan, Arcsin to generate a gradient image with varying intensity. The image below shows the generated gradient, and an analysis of the image generated (the red line) to make it easier to see the gradient <br/>";
 
 
-        $functionType = $this->functionControl->getFunctionType();
+        $functionType = $this->control->getFunctionType();
         
         if (array_key_exists($functionType, $descriptions)) {
             $output .= nl2br($descriptions[$functionType]);
@@ -85,7 +81,7 @@ f4 - Constant vertical offset, default 0.5";
      * @return string
      */
     function render() {
-        $output = sprintf("<img src='%s' />", $this->functionControl->getCustomImageURL());
+        $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
 
         return $output;
     }
@@ -94,7 +90,7 @@ f4 - Constant vertical offset, default 0.5";
      * 
      */
     function renderCustomImage() {
-        $function = $this->functionControl->getFunctionType();
+        $function = $this->control->getFunctionType();
         
         if (method_exists($this, $function)) {
             call_user_func([$this, $function]);
@@ -111,12 +107,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->functionControl->getFirstTerm(),
+            $this->control->getFirstTerm(),
         );
 
-        $secondTerm = $this->functionControl->getSecondTerm();
-        $thirdTerm = $this->functionControl->getThirdTerm();
-        $fourthTerm = $this->functionControl->getFourthTerm();
+        $secondTerm = $this->control->getSecondTerm();
+        $thirdTerm = $this->control->getThirdTerm();
+        $fourthTerm = $this->control->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -140,12 +136,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->functionControl->getFirstTerm(),
+            $this->control->getFirstTerm(),
         );
 
-        $secondTerm = $this->functionControl->getSecondTerm();
-        $thirdTerm = $this->functionControl->getThirdTerm();
-        $fourthTerm = $this->functionControl->getFourthTerm();
+        $secondTerm = $this->control->getSecondTerm();
+        $thirdTerm = $this->control->getThirdTerm();
+        $fourthTerm = $this->control->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -166,12 +162,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->functionControl->getFirstTerm(),
+            $this->control->getFirstTerm(),
         );
 
-        $secondTerm = $this->functionControl->getSecondTerm();
-        $thirdTerm = $this->functionControl->getThirdTerm();
-        $fourthTerm = $this->functionControl->getFourthTerm();
+        $secondTerm = $this->control->getSecondTerm();
+        $thirdTerm = $this->control->getThirdTerm();
+        $fourthTerm = $this->control->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -194,12 +190,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->functionControl->getFirstTerm(),
+            $this->control->getFirstTerm(),
         );
 
-        $secondTerm = $this->functionControl->getSecondTerm();
-        $thirdTerm = $this->functionControl->getThirdTerm();
-        $fourthTerm = $this->functionControl->getFourthTerm();
+        $secondTerm = $this->control->getSecondTerm();
+        $thirdTerm = $this->control->getThirdTerm();
+        $fourthTerm = $this->control->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {

@@ -5,14 +5,6 @@ namespace ImagickDemo\Tutorial;
 
 class fxAnalyzeImage extends \ImagickDemo\Example {
 
-    /**
-     * @var \ImagickDemo\Control\CompositeExampleControl
-     */
-    private $fxAnalyzeControl;
-
-    function __construct(\ImagickDemo\Control\FXAnalyze $fxAnalyzeControl) {
-        $this->fxAnalyzeControl = $fxAnalyzeControl;
-    }
 
     function renderDescription() {
 
@@ -25,18 +17,14 @@ The code below takes a gradient and produces an easy to visualise graph from the
 
 END;
 
-        
         return nl2br($output);
     }
     
-    function render() {
-        return sprintf(
-            "<img src='%s' />",
-            $this->fxAnalyzeControl->getCustomImageURL()
-        );
+    function render() {        
+        return $this->renderCustomImageURL();
     }
 
-    function renderCustomImage() {
+    function renderCustomImage($fxAnalyzeExample) {
         $methods = [
             'example1' => 'example1',
             'example2' => 'example2',
@@ -44,13 +32,11 @@ END;
             'example4' => 'example4',
         ];
 
-        $customImage  = $this->fxAnalyzeControl->getCompositeExampleType();
-
-        if (array_key_exists($customImage, $methods) == false) {
-            throw new \Exception("Unknown fxanalyze example $customImage");
+        if (array_key_exists($fxAnalyzeExample, $methods) == false) {
+            throw new \Exception("Unknown fxanalyze example $fxAnalyzeExample");
         }
 
-        $method = $methods[$customImage];
+        $method = $methods[$fxAnalyzeExample];
         $this->{$method}();
     }
 

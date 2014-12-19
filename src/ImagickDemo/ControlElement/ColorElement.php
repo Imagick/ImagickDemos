@@ -43,6 +43,10 @@ abstract class ColorElement implements ControlElement {
         ];
     }
 
+    function getInjectionParams() {
+        return $this->getParams();
+    }
+
     function renderFormElement() {
 
 

@@ -12,7 +12,7 @@ class Sharpening extends OptionKeyElement {
     }
 
     protected function getVariableName() {
-        return 'sigmoidalMode';
+        return 'sharpening';
     }
 
     protected function getDisplayName() {

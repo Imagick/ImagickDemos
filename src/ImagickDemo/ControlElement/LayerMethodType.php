@@ -13,7 +13,7 @@ class LayerMethodType extends OptionKeyElement {
     }
 
     protected function getVariableName() {
-        return 'methodType';
+        return 'layerMethodType';
     }
 
     protected function getDisplayName() {

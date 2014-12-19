@@ -9,15 +9,12 @@ class setOption extends \ImagickDemo\Example {
     /**
      * @var Control\setOption
      */
-    private $setOptionControl;
+    private $control;
     
     function __construct(\ImagickDemo\Imagick\Control\setOption $control) {
-        $this->setOptionControl = $control;
+        $this->control = $control;
     }
 
-    function getCustomImageParams() {
-        return $this->setOptionControl->getParams();
-    }
 
 
     function render() {
@@ -25,16 +22,16 @@ class setOption extends \ImagickDemo\Example {
     }
 
 
-    function renderCustomImageURL() {
-        return sprintf(
-            "<img src='%s' />",
-            $this->setOptionControl->getCustomImageURL()
-        );
-    }
-    
+//    function renderCustomImageURL() {
+//        return sprintf(
+//            "<img src='%s' />",
+//            $this->control->getCustomImageURL()
+//        );
+//    }
+//    
     function renderCustomImage() {
         
-        switch($this->setOptionControl->getImageOption()) {
+        switch($this->control->getImageOption()) {
 
             case (0): {
                 $this->renderJPG('10kb');
@@ -61,7 +58,7 @@ class setOption extends \ImagickDemo\Example {
 
 //Example Imagick::setOption
     function renderJPG($extent) {
-        $imagePath = $this->setOptionControl->getImagePath();
+        $imagePath = $this->control->getImagePath();
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->setImageFormat('jpg');
         $imagick->setOption('jpeg:extent', $extent);
@@ -72,7 +69,7 @@ class setOption extends \ImagickDemo\Example {
 
 //Example Imagick::setOption
     function renderPNG($format) {
-        $imagePath = $this->setOptionControl->getImagePath();
+        $imagePath = $this->control->getImagePath();
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->setImageFormat('png');
         $imagick->setOption('png:format', $format);
@@ -89,7 +86,7 @@ class setOption extends \ImagickDemo\Example {
     #define PNG_COLOR_TYPE_RGB_ALPHA    6
 //Example Imagick::setOption
     function renderCustomBitDepthPNG() {
-        $imagePath = $this->setOptionControl->getImagePath();
+        $imagePath = $this->control->getImagePath();
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->setImageFormat('png');
         

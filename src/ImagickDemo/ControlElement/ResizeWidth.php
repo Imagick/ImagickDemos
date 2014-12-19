@@ -28,7 +28,7 @@ class ResizeWidth extends ValueElement {
     }
 
     protected function getVariableName() {
-        return 'resizeWidth';
+        return 'width';
     }
 
     protected function getDisplayName() {

@@ -23,4 +23,14 @@ interface TaskQueue {
     function getName();
 
     function getQueueCount();
+
+
+    /**
+     * Returns true if the queue processor has run in the last 
+     * 30 seconds.
+     * @return mixed
+     */
+    function isActive();
+    
+    function setActive();
 }

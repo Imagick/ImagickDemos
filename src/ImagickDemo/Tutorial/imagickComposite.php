@@ -4,18 +4,13 @@ namespace ImagickDemo\Tutorial;
 
 class imagickComposite extends \ImagickDemo\Example {
 
-
-    /**
-     * @var \Intahwebz\Request
-     */
-    private $request;
-
-    function __construct(\ImagickDemo\Control $control, \Intahwebz\Request $request) {
+    function __construct(\ImagickDemo\Control $control) {
         $this->control = $control;
-        $this->request = $request;
     }
 
-
+    /**
+     * @return string
+     */
     function renderDescription() {
 
         $output = <<< END
@@ -25,9 +20,10 @@ END;
         return nl2br($output);
     }
 
-    
+    /**
+     * @return string
+     */
     function render() {
-
         $imageURL = $this->renderImageURL();
         
         $output = <<< END

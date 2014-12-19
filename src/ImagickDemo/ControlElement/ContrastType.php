@@ -12,11 +12,11 @@ class ContrastType extends OptionKeyElement {
     }
 
     protected function getVariableName() {
-        return 'bestFit';
+        return 'contrastType';
     }
 
     protected function getDisplayName() {
-        return 'Best fit';
+        return 'Contrast type';
     }
 
     protected function getOptions() {

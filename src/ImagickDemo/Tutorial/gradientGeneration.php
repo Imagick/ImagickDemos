@@ -9,15 +9,15 @@ use Imagick;
 
 class gradientGeneration extends \ImagickDemo\Example {
 
-    private $customImageBaseURL;
-    
-    function __construct($customImageBaseURL) {
-        $this->customImageBaseURL = $customImageBaseURL;
-    }
+//    private $customImageBaseURL;
+//    
+//    function __construct($customImageBaseURL) {
+//        $this->customImageBaseURL = $customImageBaseURL;
+//    }
 
-    function getCustomImageParams() {
-        return [];//$this->control->getParams();
-    }
+//    function getCustomImageParams() {
+//        return [];//$this->control->getParams();
+//    }
 
 
 //
@@ -67,7 +67,7 @@ class gradientGeneration extends \ImagickDemo\Example {
 
     function render() {
         $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL();
+        $output .= $this->renderCustomImageURL([]);
 
         return $output;
     }
@@ -96,16 +96,18 @@ class gradientGeneration extends \ImagickDemo\Example {
         analyzeImage($imagick);
     }
     
-    function renderCustomImageURL() {
-        
-        $vars = '';
-        
-        return sprintf(
-            "<img src='%s?%s' />",
-            $this->customImageBaseURL,
-            $vars
-        );
-    }
+//    function renderCustomImageURL() {
+//
+//        $vars = '';
+//
+//        $this->renderCustomImageURL()
+//
+//        return sprintf(
+//            "<img src='%s?%s' />",
+//            $this->customImageBaseURL,
+//            $vars
+//        );
+//    }
 }
 
  

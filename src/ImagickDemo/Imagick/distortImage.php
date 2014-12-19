@@ -18,23 +18,16 @@ class distortImage extends \ImagickDemo\Example {
     /**
      * @var \ImagickDemo\Control\ControlCompositeImageDistortionType
      */
-    private $rsiControl;
+    private $control;
 
     function __construct(\ImagickDemo\Control\ControlCompositeImageDistortionType $rsiControl) {
-        $this->rsiControl = $rsiControl;
-    }
-
-    function getControl() {
-        return $this->rsiControl;
+        $this->control = $rsiControl;
     }
 
     function render() {
-        return sprintf("<img src='%s' class='img-responsive' />", $this->rsiControl->getCustomImageURL());
+        return sprintf("<img src='%s' class='img-responsive' />", $this->control->getCustomImageURL());
     }
 
-    function getCustomImageParams() {
-        return $this->rsiControl->getParams();
-    }
     
     function renderCustomImage() {
 
@@ -55,7 +48,7 @@ class distortImage extends \ImagickDemo\Example {
             \Imagick::DISTORTION_SENTINEL => 'renderImageBarrelSentinel',
         ];
 
-        $customImage = $this->rsiControl->getDistortionType();
+        $customImage = $this->control->getDistortionType();
         
         if (array_key_exists($customImage, $methods) == false) {
             throw new \Exception("Unknown composite method $customImage");
@@ -72,7 +65,7 @@ class distortImage extends \ImagickDemo\Example {
 
     function renderImageAffine() {
 //Example Imagick::distortImage Affine
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             0,    0, 
             25,  25,
@@ -92,7 +85,7 @@ class distortImage extends \ImagickDemo\Example {
 
     function renderImageAffineProjection() {
 //Example Imagick::distortImage Projection
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array( 
             0.9,0.3,
             -0.2,0.7,
@@ -115,7 +108,7 @@ class distortImage extends \ImagickDemo\Example {
 //        -virtual-pixel Background +distort Arc '270 50 20' \
 //        -repage +75+21\! \)  -flatten  arc_overlay.jpg
 
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $degrees = array( 180 );
         $imagick->setimagebackgroundcolor("#fad888");
         $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
@@ -128,7 +121,7 @@ class distortImage extends \ImagickDemo\Example {
 
     function renderImageRotatedArc() {
 //Example Imagick::distortImage Rotated Arc
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $degrees = array( 180, 45, 100, 20 );
         $imagick->setimagebackgroundcolor("#fad888");
         $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
@@ -140,7 +133,7 @@ class distortImage extends \ImagickDemo\Example {
 
     function renderImageBilinear() {
 //Example Imagick::distortImage Bilinear
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             0,0, 25,25, # top left  
             176,0, 126,0, # top right
@@ -158,7 +151,7 @@ class distortImage extends \ImagickDemo\Example {
     
     function renderImageScaleRotateTransform() {
 //Example Imagick::distortImage Scale Rotate Transform
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             1.5, # scale 150%
             150 # rotate
@@ -220,7 +213,7 @@ class distortImage extends \ImagickDemo\Example {
         // rx   sy   ty
         // px   py
         
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             1.945622, 0.071451, 
             -12.187838, 0.799032, 
@@ -247,7 +240,7 @@ class distortImage extends \ImagickDemo\Example {
 // Xd = 	 C2x*Xs + C1x*Ys + C0x	  ,      	Yd = 	 C2y*Xs + C1y*Ys + C0y 
 // See also http://www.imagemagick.org/Usage/distorts/#polynomial
 
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             1.5,   //Order 1.5 = special
             0, 0, 26, 0,   
@@ -270,7 +263,7 @@ class distortImage extends \ImagickDemo\Example {
     function renderImagePerspectivePolar() {
 //Example Imagick::distortImage Polar
         //v6.4.2-6
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             0
         );
@@ -298,7 +291,7 @@ class distortImage extends \ImagickDemo\Example {
     function renderImagePerspectiveDepolar() {
 //Example Imagick::distortImage Polar
         //v6.4.2-6
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             0
         );     
@@ -325,7 +318,7 @@ class distortImage extends \ImagickDemo\Example {
 // width/height of the image will not change. For this reason if D (which controls the overall
 // scaling of the image) is not supplied it will be set so all four values do add up to '1.0'.
     
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
      
         $points = array(
             //0.2, 0.0, 0.0, 1.0
@@ -347,7 +340,7 @@ class distortImage extends \ImagickDemo\Example {
 // This equation does NOT produce the 'reverse' the 'Barrel' distortion.
 // You can NOT use it to 'undo' the previous distortion.
 
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
 
         $points = array(
             //0.2, 0.0, 0.0, 1.0
@@ -366,7 +359,7 @@ class distortImage extends \ImagickDemo\Example {
     function renderImageShepards() {
 //Example Imagick::distortImage Shepards
         //The control points move points in the image in a taffy like motion
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
 
         $points = array(
 
@@ -405,7 +398,7 @@ class distortImage extends \ImagickDemo\Example {
 // This equation does NOT produce the 'reverse' the 'Barrel' distortion.
 // You can NOT use it to 'undo' the previous distortion.
 
-        $imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
 
         $points = array(
             //0.2, 0.0, 0.0, 1.0

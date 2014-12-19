@@ -9,16 +9,19 @@ class ControlComposite implements \ImagickDemo\Control {
     
     private $imageBaseURL;
     private $customImageBaseURL;
+    private $imageStatusBaseURL;
 
     /**
      * @var Request
      */
     private $request;
-    
-    function __construct($imageBaseURL, $customImageBaseURL, Request $request) {
-        $this->imageBaseURL = $imageBaseURL;
-        $this->customImageBaseURL = $customImageBaseURL;
-        $this->request = $request;
+
+    function __construct($activeCategory, $activeExample /*, Request $request*/) {
+        $this->imageBaseURL = getImageURL($activeCategory, $activeExample);
+        $this->customImageBaseURL = getCustomImageURL($activeCategory, $activeExample);
+        $this->imageStatusBaseURL = getImageStatusURL($activeCategory, $activeExample);
+
+        //$this->request = $request;
     }
 
     /**
@@ -29,17 +32,24 @@ class ControlComposite implements \ImagickDemo\Control {
         return [];
     }
 
+    function getInjectionParams() {
+        //This should get replaced by the Weaver
+        return [];
+    }
+    
+    
     /**
      * @return array
      */
     function getFullParams(array $extraParams = []) {
-        $params = $this->getParams();
+        $params = $this->getInjectionParams();
         $params += $extraParams;
-        $params += ['original' => $this->request->getVariable('original', false)];
-
         return $params;
     }
-    
+
+    /**
+     * @return string
+     */
     function renderFormElement() {
         //This should get replaced by the Weaver
         return "";
@@ -51,7 +61,7 @@ class ControlComposite implements \ImagickDemo\Control {
      */
     function renderForm() {
 
-        $output = 
+        $output =
 
         "<form method='GET' accept-charset='utf-8'>
              <div class='col-xs-12 contentPanel controlForm'>";
@@ -74,6 +84,14 @@ class ControlComposite implements \ImagickDemo\Control {
      * @return string
      */
     function getURL() {
+        return $this->getBlahURL($this->imageBaseURL);
+    }
+
+    /**
+     * @param $baseURL
+     * @return string
+     */
+    function getBlahURL($baseURL) {
         $paramString = '';
         $params = $this->getParams();
         $separator = '?';
@@ -82,10 +100,20 @@ class ControlComposite implements \ImagickDemo\Control {
             $separator = '&';
         }
         
-        return $this->imageBaseURL.$paramString;
+        return $baseURL.$paramString;
     }
 
+    /**
+     * @return string
+     */
+    function getImageStatusURL() {
+        return $this->getBlahURL($this->imageStatusBaseURL);
+    }
 
+    /**
+     * @param array $extraParams
+     * @return string
+     */
     function getCustomImageURL(array $extraParams = []) {
         $paramString = '';
         $params = $this->getParams();
@@ -102,5 +130,4 @@ class ControlComposite implements \ImagickDemo\Control {
 
         return $this->customImageBaseURL.$paramString;
     }
-    
 }

@@ -41,6 +41,14 @@ abstract class Example implements renderableExample {
         return [];
     }
 
+    function renderCustomImageURL($extraParams = []) {
+        return sprintf(
+            "<img src='%s' />",
+            $this->control->getCustomImageURL($extraParams)
+        );
+    }
+    
+    
     /**
      * Get number of bootstrap columns the content should be offset by 
      * @return int
@@ -75,12 +83,21 @@ abstract class Example implements renderableExample {
      */
     function renderImageURL() {
         $js = '';
+        $imgURL = $this->control->getURL();
         $originalImage = $this->getOriginalImage();
 
         $output = '';
 
-        $originalText = "(touch/mouse over to see original)";
-        $modifiedText = "(touch/mouse out to see modified)";
+        $output .= $this->control->getImageStatusURL();
+        
+        $newWindow = sprintf(
+            "<a href='%s' target='_blank'>View modified in new window.</a>",
+            $imgURL
+        );
+        
+        
+        $originalText = "Touch/mouse over to see original ";
+        $modifiedText = "Touch/mouse out to see modified ";
 
         if ($originalImage == true) {
             $modifiedImage = $this->control->getURL();
@@ -118,13 +135,27 @@ function toggleImage(imageSelector, mouseSelector, originalURL, originalText, mo
 
 JAVASCRIPT;
 
-            $changeToOriginal = ("$('#exampleImage').attr('src', '$originalImage' ); $('#mouseText').text('$modifiedText')");
+            $changeToOriginal = sprintf(
+                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+                addslashes($originalImage),
+                addslashes($modifiedText)
+            );
             
-            $changeToModified = ("$('#exampleImage').attr('src', '$modifiedImage' ); $('#mouseText').text('$originalText')");
+            $changeToModified = sprintf(
+                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+                addslashes($modifiedImage),
+                addslashes($originalText)
+            );
             
             $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
             $mouseOut = "onmouseout=\"$changeToModified\" \n";
-            $touch = "toggleImage('#exampleImage', '#mouseText', '$originalImage', '$originalText', '$modifiedImage', '$modifiedText')";
+            $touch = sprintf(
+                "toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')",
+                $originalImage,
+                $originalText,
+                $modifiedImage,
+                $modifiedText
+            );
 
             $touchStart = "ontouchstart=\"$touch\"\n";
             //$touchEnd =  "ontouchend=\"$touch\"\n";
@@ -132,13 +163,24 @@ JAVASCRIPT;
             $js = $mouseOver.' '.$mouseOut.' '.$touchStart;
         }
 
-        $output .= sprintf("<img src='%s' id='exampleImage' class='img-responsive' %s />", $this->control->getURL(), $js);
+        $output .= sprintf(
+            "<img src='%s' id='exampleImage' class='img-responsive' %s />",
+            $imgURL,
+            $js
+        );
 
         if ($originalImage == true) {
             $output .= "<div class='row'>";
-            $output .= "<div class='col-xs-12 text-center' id='mouseText' style='font-size: 12px'>";
+            $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
+            
+            $output .= "<span id='mouseText'>";
             $output .= $originalText;
-            $output .= "</div></div>";
+            $output .= "</span>";
+            $output .= $newWindow;
+            $output .= "</div>";
+            
+            
+            $output .= "</div>";
         }
 
         return $output;

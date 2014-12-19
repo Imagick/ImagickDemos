@@ -3,7 +3,8 @@
 namespace ImagickDemo\Imagick {
  
 use Imagick;
-    
+use ImagickDemo\Response\FileResponse;
+
 class functions {
     static function load() {}
 }
@@ -32,8 +33,7 @@ function header($string, $replace = true, $http_response_code = null) {
 }
     
 function renderFile($filename) {
-    header("Content-Type: image/jpg");
-    readfile($filename);
+    return new FileResponse($filename, "Content-Type: image/jpg");
 }
     
 
@@ -829,16 +829,23 @@ function haldClutImage($imagePath) {
 //Example end
 
 
+//Example Imagick::implodeImage
+function implodeImage($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->implodeImage(0.0001);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+
+}
+//Example end
+
 //Example Imagick::labelImage
 function labelImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->labelImage("This is some text");
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
-
-    $imagick->writeImage("./wtfLabel.jpg");
-    
-}
+    }
 //Example end
 
 
@@ -1312,9 +1319,8 @@ function sepiaToneImage($imagePath, $sepia) {
 
 //Example Imagick::setCompressionQuality
 function setCompressionQuality($imagePath, $quality) {
-    
-    $backgroundImagick = new \Imagick($imagePath);
-    
+
+    $backgroundImagick = new \Imagick(realpath($imagePath));
     $imagick = new \Imagick();
     $imagick->setCompressionQuality($quality);
     $imagick->newPseudoImage(
@@ -1323,14 +1329,12 @@ function setCompressionQuality($imagePath, $quality) {
         'canvas:white'
     );
 
-
     $imagick->compositeImage(
         $backgroundImagick,
         \Imagick::COMPOSITE_ATOP,
         0,
         0
     );
-    //$imagick->addNoiseImage(\Imagick::NOISE_RANDOM, \Imagick::CHANNEL_ALL);
     
     $imagick->setFormat("jpg");    
     header("Content-Type: image/jpg");

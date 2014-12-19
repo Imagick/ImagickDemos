@@ -416,4 +416,4 @@ $printer->output($outputStream);
 
 fclose($outputStream);
 
-echo "Check complete. Found ".$siteChecker->getURLCount()." URIs with ".$siteChecker->getErrorCount()."errors.";
+echo "Check complete. Found ".$siteChecker->getURLCount()." URIs with ".$siteChecker->getErrorCount()." errors.";

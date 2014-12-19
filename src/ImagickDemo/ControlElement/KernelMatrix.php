@@ -42,6 +42,15 @@ class KernelMatrix implements ControlElement {
     }
 
     /**
+     * @return array
+     */
+    function getInjectionParams() {
+        //return $this->getParams();
+
+        return ['kernelMatrix' => $this->kernelMatrix];
+    }
+
+    /**
      * @return string
      */
     function renderFormElement() {

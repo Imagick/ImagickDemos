@@ -2,15 +2,10 @@
 
 namespace ImagickDemo\Tutorial;
 
-//function sendImage(\Imagick $compare) {
-//    $compare->setImageFormat('png');
-//    header("Content-Type: image/png");
-//    echo $compare->getImageBlob();
-//    exit(0);
-//}
+
+use Intahwebz\Request;
 
 function getAverageColorString(\Imagick $imagick) {
-
     $tshirtCrop = clone $imagick;
     $tshirtCrop->cropimage(100, 100, 90, 50);
     $stats = $tshirtCrop->getImageChannelStatistics();
@@ -27,38 +22,33 @@ function getAverageColorString(\Imagick $imagick) {
 
 class logoTshirt extends \ImagickDemo\Example {
 
-    /**
-     * @var \Intahwebz\Request
-     */
-    private $request;
-
-    function __construct(\ImagickDemo\Control $control, \Intahwebz\Request $request) {
+    
+    private $type = 'simple';
+    
+    function __construct(\ImagickDemo\Control $control, Request $request) {
         $this->control = $control;
-        $this->request = $request;
+        $this->type = $request->getVariable('type', 'simple');
     }
 
+//    function getCustomParameters() {
+//        return ['type' => 'simple'];
+//    }
 
     function getCustomImageParams() {
-        $imageType = $this->request->getVariable('type', 'simple');
-        return ['type' => $imageType];
+        return ['type' => $this->type];
     }
 
-
+    /**
+     * @return string
+     */
     function render() {
         $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL('simple');
-
-        $output .= $this->renderCustomImageURL('creases');
+        $output .= $this->renderCustomImageURL(['type' => 'simple']);
+        $output .= $this->renderCustomImageURL(['type' => 'creases']);
 
         return $output;
     }
 
-    function renderCustomImageURL($type) {
-        return sprintf(
-            "<img src='%s' />",
-            $this->control->getCustomImageURL([ 'type' => $type] )
-        );
-    }
 
     function renderDescription() {
         $output = <<< END
@@ -67,10 +57,8 @@ END;
         return $output;
     }
 
-    function renderCustomImage() {
-        $imageType = $this->request->getVariable('type', 'simple');
-        
-        switch($imageType) {
+    function renderCustomImage($type) {
+        switch($type) {
             
             case('simple'): {
                 $this->renderCustomImageSimple();
@@ -114,16 +102,10 @@ END;
 
         
         $shading->statisticImage(
-                \Imagick::STATISTIC_GRADIENT,
-                5,
-                2    
+            \Imagick::STATISTIC_GRADIENT,
+            5,
+            2    
         );
-
-  //      $shading->negateimage(false);
-
-
-//        $shading->brightnessContrastImage(40, 10);
-            //$shading->sigmoidalcontrastimage()
 
         $shading->setImageFormat('png');
 
@@ -141,10 +123,11 @@ END;
         header("Content-Type: image/png");
         echo $tshirt->getImageBlob();
     }
-    
 
-    
-    
+
+    /**
+     * 
+     */
     function renderCustomImageCreases() {
         $tshirt = new \Imagick(realpath("images/tshirt/tshirt.jpg"));
         $logo = new \Imagick(realpath("images/tshirt/Logo.png"));

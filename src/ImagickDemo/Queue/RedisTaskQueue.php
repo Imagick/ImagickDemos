@@ -62,4 +62,31 @@ class RedisTaskQueue implements TaskQueue {
         $serialized = serialize($task);
         $this->redisClient->rpush($this->redisKey, [$serialized]);
     }
+
+    /**
+     * @return string
+     */
+    private function getActiveKey() {
+        return "Queue."."ImagickTaskQueue"."Active";
+    }
+
+
+    /**
+     * @return string
+     */
+    function isActive() {
+        return $this->redisClient->get($this->getActiveKey());
+    }
+
+    /**
+     * 
+     */
+    function setActive() {
+        $this->redisClient->set(
+            $this->getActiveKey(),
+            true,
+            'EX',
+            30
+        );
+    }
 }

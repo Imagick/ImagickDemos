@@ -54,6 +54,10 @@ abstract class ValueElement implements ControlElement {
         ];
     }
 
+    function getInjectionParams() {
+        return $this->getParams();
+    }
+    
     function renderFormElement() {
         $sValue = safeText($this->value);
 

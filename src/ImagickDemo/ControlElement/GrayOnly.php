@@ -12,7 +12,7 @@ class GrayOnly extends OptionKeyElement {
     }
 
     protected function getVariableName() {
-        return 'bestFit';
+        return 'grayOnly';
     }
 
     protected function getDisplayName() {

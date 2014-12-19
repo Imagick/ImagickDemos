@@ -2,161 +2,140 @@
 
 namespace {
 
-    use ImagickDemo\Response\StandardHTTPResponse;
-    use ImagickDemo\Response\FileResponse;
+use ImagickDemo\Response\Response;
+use ImagickDemo\Response\StandardHTTPResponse;
+use ImagickDemo\Response\FileResponse;
+use ImagickDemo\Config\Application as ApplicationConfig;
+use Intahwebz\Request;
+use ImagickDemo\Queue\TaskQueueFactory;
+use ImagickDemo\Response\RedirectResponse;
 
-    require __DIR__.'/../vendor/autoload.php';
-    
-    //yolo - We use a global to allow us to do a hack to make all the code examples
-    //appear to use the standard 'header' function, but also capture the content type 
-    //of the image
-    $imageType = null;
-    /** @var  $appConfig \ImagickDemo\Config\Application */
-    $cacheImages = false;//$appConfig->getCacheImages();
+require __DIR__.'/../vendor/autoload.php';
 
-    function exceptionHandler(Exception $ex) {
-        //TODO - need to ob_end_clean as many times as required because 
-        //otherwise partial content gets sent to the client.
+//yolo - We use a global to allow us to do a hack to make all the code examples
+//appear to use the standard 'header' function, but also capture the content type 
+//of the image
+$imageType = null;
+/** @var  $appConfig \ImagickDemo\Config\Application */
+$cacheImages = false;//$appConfig->getCacheImages();
 
-        if (headers_sent() == false) {
-            header("HTTP/1.0 500 Internal Server Error", true, 500);
+function exceptionHandler(Exception $ex) {
+    //TODO - need to ob_end_clean as many times as required because 
+    //otherwise partial content gets sent to the client.
+
+    if (headers_sent() == false) {
+        header("HTTP/1.0 500 Internal Server Error", true, 500);
+    }
+    else {
+        //Exception after headers sent
+    }
+    echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
+
+    foreach ($ex->getTrace() as $tracePart) {
+
+        if (isset($tracePart['file']) && isset($tracePart['line'])) {
+            echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
+        }
+        else if (isset($tracePart["function"])) {
+            echo $tracePart["function"] . "<br/>";
         }
         else {
-            //Exception after headers sent
+            var_dump($tracePart);
         }
-        echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
-
-        foreach ($ex->getTrace() as $tracePart) {
-
-            if (isset($tracePart['file']) && isset($tracePart['line'])) {
-                echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
-            }
-            else if (isset($tracePart["function"])) {
-                echo $tracePart["function"] . "<br/>";
-            }
-            else {
-                var_dump($tracePart);
-            }
-        }
-
-        //TODO - format this
-        //var_dump($ex->getTrace());
     }
 
+    //TODO - format this
+    //var_dump($ex->getTrace());
+}
 
-    function errorHandler($errno, $errstr, $errfile, $errline) {
-        if (!(error_reporting() & $errno)) {
-            // This error code is not included in error_reporting
-            return true;
-        }
 
-        switch ($errno) {
-            case E_CORE_ERROR:
-            case E_ERROR:
-            {
-                echo "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
-                break;
-            }
-
-            default:
-                {
-                echo "<b>errorHandler</b> [$errno] $errstr<br />\n";
-
-                return false;
-                }
-        }
-
-        /* Don't execute PHP internal error handler */
-
+function errorHandler($errno, $errstr, $errfile, $errline) {
+    if (!(error_reporting() & $errno)) {
+        // This error code is not included in error_reporting
         return true;
     }
 
+    switch ($errno) {
+        case E_CORE_ERROR:
+        case E_ERROR:
+        {
+            echo "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
+            break;
+        }
 
-    function fatalErrorShutdownHandler() {
-        $last_error = error_get_last();
+        default:
+            {
+            echo "<b>errorHandler</b> [$errno] $errstr<br />\n";
 
-        if (!$last_error) {
             return false;
-        }
-
-        switch ($last_error['type']) {
-            case (E_ERROR):
-            case (E_PARSE):
-            {
-                // fatal error
-                header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
-                var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
-                exit(0);
             }
+    }
 
-            case(E_CORE_WARNING):
-            {
-                //TODO - report errors properly.
-                errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
-                break;
-            }
+    /* Don't execute PHP internal error handler */
 
-            default:
-                {
-                header("HTTP/1.0 500 Unknown fatal error", true, 500);
-                var_dump($last_error);
-                break;
-                }
-        }
+    return true;
+}
 
+
+function fatalErrorShutdownHandler() {
+    $last_error = error_get_last();
+
+    if (!$last_error) {
         return false;
     }
 
-
-    function getImageCacheFilename($category, $example, $params) {
-        $filename = "../var/cache/imageCache/" . $category . '/' . $example;
-        if (!empty($params)) {
-            $filename .= '_' . md5(json_encode($params));
+    switch ($last_error['type']) {
+        case (E_ERROR):
+        case (E_PARSE):
+        {
+            // fatal error
+            header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
+            var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
+            exit(0);
         }
 
-        return $filename;
-    }
-
-    /**
-     * @param \Auryn\Provider $injector
-     * @param $imageCallable
-     * @param $filename
-     * @return FileResponse
-     * @throws \Exception
-     */
-    function renderImageAsFileResponse($imageCallable, $filename) {
-        global $imageType;
-
-        ob_start();
-
-        $imageCallable();
-
-        if ($imageType == null) {
-            ob_end_clean();
-            throw new \Exception("imageType not set, can't cache image correctly.");
+        case(E_CORE_WARNING):
+        {
+            //TODO - report errors properly.
+            errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
+            break;
         }
 
-        $image = ob_get_contents();
-        @mkdir(dirname($filename), 0755, true);
-        $fullFilename = $filename . "." . strtolower($imageType);        
-        file_put_contents($fullFilename, $image);
-        ob_end_clean();
-
-        return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
+        default:
+            {
+            header("HTTP/1.0 500 Unknown fatal error", true, 500);
+            var_dump($last_error);
+            break;
+            }
     }
 
-    function renderImgTag($url, $id = '', $extra = '') {
+    return false;
+}
 
-        $output = sprintf(
-            "<img src='%s' id='%s' class='img-responsive' %s />",
-            $url,
-            $id,
-            $extra
-        );
 
-        return $output;
-
+function getImageCacheFilename($category, $example, $params) {
+    $filename = "../var/cache/imageCache/" . $category . '/' . $example;
+    if (!empty($params)) {
+        $filename .= '_' . md5(json_encode($params));
     }
+
+    return $filename;
+}
+
+
+
+function renderImgTag($url, $id = '', $extra = '') {
+
+    $output = sprintf(
+        "<img src='%s' id='%s' class='img-responsive' %s />",
+        $url,
+        $id,
+        $extra
+    );
+
+    return $output;
+
+}
 
     /**
      * @param $libratoKey
@@ -172,16 +151,13 @@ function bootstrapInjector() {
         "../var/compile/",
         'tpl',
         //Jig\JigRender::COMPILE_CHECK_EXISTS
-        //Jig\JigRender::COMPILE_CHECK_MTIME
-        Jig\JigRender::COMPILE_ALWAYS
+        Jig\JigRender::COMPILE_CHECK_MTIME
+        //Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
 
     $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay'); 
-
-    $injector->defineParam('imageBaseURL', null);
-    $injector->defineParam('customImageBaseURL', null);
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
     $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
@@ -195,6 +171,10 @@ function bootstrapInjector() {
     $injector->alias('ImagickDemo\Queue\TaskQueue', 'ImagickDemo\Queue\RedisTaskQueue');
     $injector->share('ImagickDemo\Queue\RedisTaskQueue');
 
+    $injector->defineParam('activeCategory', null);
+    $injector->defineParam('activeExample', null);
+    
+    
     $injector->define('ImagickDemo\DocHelper', [
         ':category' => null,
         ':example' => null
@@ -214,7 +194,6 @@ function bootstrapInjector() {
 
     $redisOptions = [];
 
-    //This next line annoys phpstorm
     $injector->define(
          'Predis\Client',
          array(
@@ -250,24 +229,15 @@ function bootstrapInjector() {
 }
 
 
-
-function delegateAllTheThings(\Auryn\Provider $injector, $controlClass) {
-    $params = ['a', 'adaptiveOffset', 'alpha', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'bestFit', 'bias', 'blackPoint', 'blackThreshold', 'blendMidpoint', 'blueShift', 'blur', 'brightness', 'canvasType', 'channel', 'clusterThreshold', 'color', 'colorElement', 'colorMatrix', 'colorSpace',  'contrast',  'contrastType', 'cropZoom', 'distortionExample', 'dither', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'filterType', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'fuzz', 'g', 'gamma', 'gradientStartColor', 'gradientEndColor', 'grayOnly', 'height', 'highThreshold', 'hue', 'image', 'imagePath', 'innerBevel', 'inverse', 'kernelMatrix', 'layerMethodType', 'length', 'lowThreshold',  'meanOffset', 'noiseType', 'numberColors', 'numberLevels', 'opacity', 'orderedPosterizeType', 'orientationType', 'originX', 'originY', 'outerBevel', 'paintType', 'posterizeType', 'quality', 'r', 'raise', 'radius', 'reduceNoise', 'rollX', 'rollY', 'roundX', 'roundY', 'saturation', 'secondTerm', 'sepia', 'shearX', 'shearY', 'sigma', 'skew', 'smoothThreshold', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'targetColor', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'thresholdAngle', 'thresholdColor', 'translateX', 'translateY', 'treeDepth', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'whiteThreshold', 'x', 'y', 'w20', 'width', 'h20', 'sharpening', 'midpoint', 'sigmoidalContrast',];
-
-
-    foreach ($params as $param) {
-        $paramGet = 'get'.ucfirst($param);
-        $injector->delegateParam(
-             $param,
-             [$controlClass, $paramGet]
-        );
-    }
-}
-
-
-
-//TODO - yuck?
 function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
+
+    if (!$category) {
+        $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
+        return;
+    }
+
+    $namespace = sprintf('ImagickDemo\%s\functions', $category);
+    $namespace::load();
 
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
     $injector->define(\ImagickDemo\Navigation\CategoryNav::class, [
@@ -293,15 +263,8 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         }
     }
 
-    $injector->defineParam('imageBaseURL', '/image/' . $category . '/' . $example);
-    $injector->defineParam('customImageBaseURL', '/customImage/' . $category . '/' . $example);
     $injector->defineParam('activeCategory', $category);
     $injector->defineParam('activeExample', $example);
-
-    $injector->defineParam('exampleShown', $function);
-    
-    
-
     $injector->alias(\ImagickDemo\Control::class, $controlClass);
     $injector->share($controlClass);
 
@@ -310,246 +273,480 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
         ':example' => $example
     ]);
 
-    delegateAllTheThings($injector, $controlClass);
-    $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\%s', $category, $function));
+    $controller = $injector->make(\ImagickDemo\Control::class);
 
-    return $function;
+    foreach ($controller->getInjectionParams() as $key => $value) {
+        $injector->defineParam($key, $value);
+    }
 
+    //delegateAllTheThings($injector, $controlClass);
+
+    if ($function) {
+        $exampleClassName = sprintf('ImagickDemo\%s\%s', $category, $function);
+        $injector->defineParam(
+            'imageFunction', sprintf('ImagickDemo\%s\%s', $category, $function)
+        );
+        $injector->defineParam(
+            'customImageFunction', [$exampleClassName, 'renderCustomImage']
+        );
+    }
+    else {
+        $exampleClassName = sprintf('ImagickDemo\%s\IndexExample', $category);
+    }
+
+    $injector->alias(\ImagickDemo\Example::class, $exampleClassName);
 }
 
 
-    /**
-     * @param \Auryn\Provider $injector
-     * @param $routesFunction
-     * @return \ImagickDemo\Response\Response|StandardHTTPResponse|null
-     */
-    function servePage(\Auryn\Provider $injector, $routesFunction) {
+/**
+ * @param \Auryn\Provider $injector
+ * @param $routesFunction
+ * @return \ImagickDemo\Response\Response|StandardHTTPResponse|null
+ */
+function servePage(\Auryn\Provider $injector, $routesFunction) {
 
-        $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
+    $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
 
-        $httpMethod = 'GET';
-        $uri = '/';
+    $httpMethod = 'GET';
+    $uri = '/';
 
-        if (array_key_exists('REQUEST_URI', $_SERVER)) {
-            $uri = $_SERVER['REQUEST_URI'];
-        }
-
-        $path = $uri;
-        $queryPosition = strpos($path, '?');
-        if ($queryPosition !== false) {
-            $path = substr($path, 0, $queryPosition);
-        }
-
-        $routeInfo = $dispatcher->dispatch($httpMethod, $path);
-
-        switch ($routeInfo[0]) {
-            case \FastRoute\Dispatcher::NOT_FOUND: {
-                return new StandardHTTPResponse(404, $uri, "Not found");
-            }
-
-            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
-                $allowedMethods = $routeInfo[1];
-                // ... 405 Method Not Allowed
-                return new StandardHTTPResponse(405, $uri, "Not allowed");
-            }
-
-            case \FastRoute\Dispatcher::FOUND: {
-                $handler = $routeInfo[1];
-                $vars = $routeInfo[2];
-                //TODO - support head?
-                return process($injector, $handler, $vars);
-            }
-        }
-
-        return null;
+    if (array_key_exists('REQUEST_URI', $_SERVER)) {
+        $uri = $_SERVER['REQUEST_URI'];
     }
 
+    $path = $uri;
+    $queryPosition = strpos($path, '?');
+    if ($queryPosition !== false) {
+        $path = substr($path, 0, $queryPosition);
+    }
 
-    /**
-     * @param $filename
-     * @return FileResponse|null
-     */
-    function createFileResponseIfFileExists($filename) {
-        $extensions = ["jpg", 'jpeg', "gif", "png", ];
+    $routeInfo = $dispatcher->dispatch($httpMethod, $path);
 
-        foreach ($extensions as $extension) {
-            $filenameWithExtension = $filename.".".$extension;
-            if (file_exists($filenameWithExtension) == true) {
-                //TODO - content type should actually be image/jpeg
-                return new FileResponse($filenameWithExtension, "image/".$extension);
+    switch ($routeInfo[0]) {
+        case \FastRoute\Dispatcher::NOT_FOUND: {
+            return new StandardHTTPResponse(404, $uri, "Not found");
+        }
+
+        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
+            $allowedMethods = $routeInfo[1];
+            // ... 405 Method Not Allowed
+            return new StandardHTTPResponse(405, $uri, "Not allowed");
+        }
+
+        case \FastRoute\Dispatcher::FOUND: {
+            $handler = $routeInfo[1];
+            $vars = $routeInfo[2];
+            //TODO - support head?
+            return process($injector, $handler, $vars);
+        }
+    }
+
+    return null;
+}
+
+
+/**
+ * @param $filename
+ * @return FileResponse|null
+ */
+function createFileResponseIfFileExists($filename) {
+    $extensions = ["jpg", 'jpeg', "gif", "png", ];
+
+    foreach ($extensions as $extension) {
+        $filenameWithExtension = $filename.".".$extension;
+        if (file_exists($filenameWithExtension) == true) {
+            //TODO - content type should actually be image/jpeg
+            return new FileResponse($filenameWithExtension, "image/".$extension);
+        }
+    }
+
+    return null;
+}
+
+/**
+ * @param \Auryn\Provider $injector
+ * @param $handler
+ * @param $vars
+ * @return \ImagickDemo\Response\Response $response;
+ */
+function process(\Auryn\Provider $injector, $handler, $vars) {
+
+    $category = null;
+    $example = null;
+    $lowried = [];
+
+    $lowried[':category'] = null;
+    $lowried[':example'] = null;
+    
+    foreach ($vars as $key => $value) {
+        $lowried[':'.$key] = $value;
+        $injector->defineParam($key, $value);
+    }
+
+    $injector->execute('setupExampleInjection', $lowried);
+
+    $finished = false;
+    $response = null;
+
+    $count = 0;
+    
+    while ($finished == false) {
+        $finished = true;
+        $response = $injector->execute($handler, $lowried);
+        if ($response instanceof Response) {
+            return $response;
+        }
+        if (is_callable($response)) {
+            $finished = false;
+            $handler = $response;
+        }
+        
+        if (is_array($response)) {
+            foreach($response as $callable) {
+                $response = $injector->execute($callable, $lowried);
+                if ($response) {
+                    return $response;
+                }
             }
         }
 
-        return null;
+        $count++;
+
+        if ($count > 4) {
+            $finished = true;
+        }
+
     }
 
+    return null;
+}
 
 
+/**
+ * @param \Imagick $imagick
+ * @param int $graphWidth
+ * @param int $graphHeight
+ */
+function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
 
-    /**
-     * @param \Auryn\Provider $injector
-     * @param $handler
-     * @param $vars
-     * @return \ImagickDemo\Response\Response $response;
-     */
-    function process(\Auryn\Provider $injector, $handler, $vars) {
+    $sampleHeight = 20;
+    $border = 2;
 
-        $category = null;
-        $example = null;
-        
-        if (isset($vars['category'])) {
-            $category = $vars['category'];
-        }
+    $imagick->transposeImage();
+    $imagick->scaleImage($graphWidth, $sampleHeight);
 
-        if (isset($vars['example'])) {
-            $example = $vars['example'];
-        }
+    $imageIterator = new \ImagickPixelIterator($imagick);
 
-        $imageCallable = null;
-        
-        if ($category) {
-            $function = setupExampleInjection($injector, $category, $example);
-            
-            if ($function) {
-                $exampleClassName = sprintf('ImagickDemo\%s\%s', $category, $function);
-                $injector->alias(\ImagickDemo\Example::class, $exampleClassName);
-                $imageCallable = 'ImagickDemo\\'.$category.'\\'.$function;
+    $luminosityArray = [];
+
+    foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+        foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
+            /** @var $pixel \ImagickPixel */
+
+            if (false) {
+                $color = $pixel->getColor();
+                $luminosityArray[] = $color['r'];
             }
             else {
-                $exampleClassName = sprintf('ImagickDemo\%s\IndexExample', $category);
-                $injector->alias(\ImagickDemo\Example::class, $exampleClassName);
+                $hsl = $pixel->getHSL();
+                $luminosityArray[] = ($hsl['luminosity']);
             }
-
-            $namespace = sprintf('ImagickDemo\%s\functions', $category);
-            $namespace::load();
         }
-        else {
-            $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
+        /* Sync the iterator, this is important to do on each iteration */
+        $imageIterator->syncIterator();
+        break;
+    }
+
+    $draw = new \ImagickDraw();
+
+    $strokeColor = new \ImagickPixel('red');
+    $fillColor = new \ImagickPixel('red');
+    $draw->setStrokeColor($strokeColor);
+    $draw->setFillColor($fillColor);
+    $draw->setStrokeWidth(0);
+    $draw->setFontSize(72);
+    $draw->setStrokeAntiAlias(true);
+    $previous = false;
+
+    $x = 0;
+
+    foreach ($luminosityArray as $luminosity) {
+        $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1));
+
+        if ($previous !== false) {
+            /** @var $previous int */
+            //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
+            $draw->line($x - 1, $previous, $x, $pos);
+        }
+        $x += 1;
+        $previous = $pos;
+    }
+
+    $plot = new \Imagick();
+    $plot->newImage($graphWidth, $graphHeight, 'white');
+    $plot->drawImage($draw);
+
+    $outputImage = new \Imagick();
+    $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
+    $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
+    $outputImage->borderimage('black', $border, $border);
+
+    
+    $outputImage->setImageFormat("png");
+
+    \ImagickDemo\header("Content-Type: image/png");
+    echo $outputImage;
+}
+
+function getPanelStart($smaller, $extraClass = '', $style = '') {
+    if ($smaller == true) {
+        $output = "<div class='row'>
+            <div class='col-md-12 visible-xs visible-sm contentPanel $extraClass'  style='$style'>";
+    }
+    else {
+        $output = "<div class='row'>
+            <div class='col-md-12 visible-md visible-lg contentPanel $extraClass'  style='$style'>";
+    }
+
+    return $output;
+}
+
+function getPanelEnd() {
+    return "</div></div>";
+}
+
+function getImageURL($activeCategory, $activeExample) {
+    return '/image/'.$activeCategory.'/'.$activeExample;
+}
+
+function getCustomImageURL($activeCategory, $activeExample) {
+    return '/customImage/'.$activeCategory.'/'.$activeExample;
+}
+
+function getImageStatusURL($activeCategory, $activeExample) {
+    return '/imageStatus/'.$activeCategory.'/'.$activeExample;
+}
+
+function getKnownExtensions() {
+    return ['gif', 'jpg', 'png', 'webp'];
+}
+
+
+    
+function getRoutes(ApplicationConfig $appConfig) {
+
+    $routesFunction = function (\FastRoute\RouteCollector $r) use ($appConfig) {
+
+        $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial}';
+
+        //Category indices
+        $r->addRoute(
+            'GET',
+            "/$categories",
+            [\ImagickDemo\Controller\Page::class, 'renderCategoryIndex']
+        );
+
+        //Category + example
+        $r->addRoute(
+            'GET',
+            "/$categories/{example:[a-zA-Z]+}",
+            [\ImagickDemo\Controller\Page::class, 'renderExamplePage']
+        );
+
+        //Images
+        $r->addRoute(
+            'GET',
+            "/imageStatus/$categories/{example:[a-zA-Z]+}",
+            [\ImagickDemo\Controller\Image::class, 'getImageJobStatus']
+        );
+
+        $imageController = [\ImagickDemo\Controller\Image::class, 'getImageResponse'];
+        $customImageConroller = [\ImagickDemo\Controller\Image::class, 'getCustomImageResponse'];
+
+        $queueImages = false;//$appConfig->getQueueImages();
+        if ($queueImages) {
+            $imageController = [\ImagickDemo\Controller\ImageTask::class, 'getImageResponse'];
+            $customImageConroller = [\ImagickDemo\Controller\ImageTask::class, 'getImageResponse'];
         }
 
-        $request = $injector->make(\Intahwebz\Request::class);
+        //Images
+        $r->addRoute(
+            'GET',
+            "/image/$categories/{example:[a-zA-Z]+}",
+            $imageController
+        );
 
-        $original = $request->getVariable('original', false);
-        if ($original) {
-            $imageCallable = [
-                \ImagickDemo\Example::class,
-                'renderOriginalImage'
-            ];
-        }
 
-        $lowried = [];
-        foreach ($vars as $key => $value) {
-            $lowried[':'.$key] = $value;
-            $injector->defineParam($key, $value);
-        }
+        //Custom images
+        $r->addRoute(
+            'GET',
+            "/customImage/$categories/{example:[a-zA-Z]*}",
+            $customImageConroller
+        );
 
-        $imageCallable = function () use ($injector, $imageCallable, $lowried) {
-            $injector->execute($imageCallable, $lowried);
+        $r->addRoute('GET', '/info', [\ImagickDemo\Controller\ServerInfo::class, 'createResponse']);
+        $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'renderTitlePage']);
+    };
+
+    return $routesFunction;
+}
+
+
+/**
+ * @param callable $imageCallable
+ * @return \ImagickDemo\Response\ImageResponse
+ * @throws \Exception
+ */
+function createImageResponse(callable $imageCallable) {
+    global $imageType;
+
+    ob_start();
+    $imageCallable();
+    if ($imageType == null) {
+        ob_end_clean();
+        throw new \Exception("imageType not set, can't cache image correctly.");
+    }
+    $imageData = ob_get_contents();
+    ob_end_clean();
+
+    return new \ImagickDemo\Response\ImageResponse("image/".$imageType, $imageData);
+}
+
+/**
+ * @param $category
+ * @param $example
+ * @param \ImagickDemo\Control $control
+ * @return mixed
+ */
+function getCachedImageResponse($category, $example, $params) {
+    $filename = getImageCacheFilename($category, $example, $params);
+
+    return createFileResponseIfFileExists($filename);
+};
+
+
+/**
+ * @param \Intahwebz\Request $request
+ * @return callable|null
+ */
+function checkGetOriginalImage(\Intahwebz\Request $request) {
+    $original = $request->getVariable('original', false);
+    if ($original) {
+        $callable = function(\Auryn\Provider $injector) {
+            return $injector->execute([\ImagickDemo\Example::class, 'renderOriginalImage']);
         };
 
-        $lowried[':imageCallable'] = $imageCallable;
-        $response = $injector->execute($handler, $lowried);
-
-        return $response;
+        return $callable;
     }
 
+    return null;
+}
 
-    /**
-     * @param \Imagick $imagick
-     * @param int $graphWidth
-     * @param int $graphHeight
-     */
-    function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
 
-        $sampleHeight = 20;
-        $border = 2;
+/**
+ * @param \Auryn\Provider $injector
+ * @param $imageCallable
+ * @param $filename
+ * @return FileResponse
+ * @throws \Exception
+ */
+function renderImageAsFileResponse(
+    $imageFunction,
+    $filename,
+    \Auryn\Provider $injector,
+    $params) {
 
-        $imagick->transposeImage();
-        $imagick->scaleImage($graphWidth, $sampleHeight);
+    global $imageType;
 
-        $imageIterator = new \ImagickPixelIterator($imagick);
+    $imageCallable = function() use ($imageFunction, $injector, $params){
+        return $injector->execute($imageFunction, $params);
+    };
 
-        $luminosityArray = [];
-
-        foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
-            foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
-                /** @var $pixel \ImagickPixel */
-
-                if (false) {
-                    $color = $pixel->getColor();
-                    $luminosityArray[] = $color['r'];
-                }
-                else {
-                    $hsl = $pixel->getHSL();
-                    $luminosityArray[] = ($hsl['luminosity']);
-                }
-            }
-            /* Sync the iterator, this is important to do on each iteration */
-            $imageIterator->syncIterator();
-            break;
-        }
-
-        $draw = new \ImagickDraw();
-
-        $strokeColor = new \ImagickPixel('red');
-        $fillColor = new \ImagickPixel('red');
-        $draw->setStrokeColor($strokeColor);
-        $draw->setFillColor($fillColor);
-        $draw->setStrokeWidth(0);
-        $draw->setFontSize(72);
-        $draw->setStrokeAntiAlias(true);
-        $previous = false;
-
-        $x = 0;
-
-        foreach ($luminosityArray as $luminosity) {
-            $pos = ($graphHeight - 1) - ($luminosity * ($graphHeight - 1));
-
-            if ($previous !== false) {
-                /** @var $previous int */
-                //printf ( "%d, %d, %d, %d <br/>\n" , $x - 1, $previous, $x, $pos);
-                $draw->line($x - 1, $previous, $x, $pos);
-            }
-            $x += 1;
-            $previous = $pos;
-        }
-
-        $plot = new \Imagick();
-        $plot->newImage($graphWidth, $graphHeight, 'white');
-        $plot->drawImage($draw);
-
-        $outputImage = new \Imagick();
-        $outputImage->newImage($graphWidth, $graphHeight + $sampleHeight, 'white');
-        $outputImage->compositeimage($plot, \Imagick::COMPOSITE_ATOP, 0, 0);
-
-        $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
-        $outputImage->borderimage('black', $border, $border);
-
-        
-        $outputImage->setImageFormat("png");
-
-        \ImagickDemo\header("Content-Type: image/png");
-        echo $outputImage;
-
-        //exit(0);
+    ob_start();
+    $imageCallable();
+    
+    if ($imageType == null) {
+        ob_end_clean();
+        throw new \Exception("imageType not set, can't cache image correctly.");
     }
 
-    function getPanelStart($smaller, $extraClass = '', $style = '') {
-        if ($smaller == true) {
-            $output = "<div class='row'>
-                <div class='col-md-12 visible-xs visible-sm contentPanel $extraClass'  style='$style'>";
-        }
-        else {
-            $output = "<div class='row'>
-                <div class='col-md-12 visible-md visible-lg contentPanel $extraClass'  style='$style'>";
-        }
+    $image = ob_get_contents();
+    ob_end_clean();
+    @mkdir(dirname($filename), 0755, true);
+    $fullFilename = $filename . "." . strtolower($imageType);
+    
+    if (!strlen($image)) {
+        throw new \Exception("Image generated was empty for $imageFunction.");
+    }
+    
+    file_put_contents($fullFilename, $image);
+    
+    return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
+}
 
-        return $output;
+
+function redirectWaitingTask(Request $request, $job) {
+    $job = intval($job) + 1;
+
+    if ($job > 20) {
+        //probably ought to time out at some point.
     }
 
-    function getPanelEnd() {
-        return "</div></div>";
+    $request->getPath();
+    $params = $request->getRequestParams();
+    $params['job'] = $job;
+
+    $newURL = 'http://'.$request->getHostName().$request->getPath()."?".http_build_query($params);
+    $response = new RedirectResponse($newURL, 500000);
+
+    return $response;
+}
+
+    
+function processImageTask(
+    Request $request,
+    $imageFunction,
+    $params,
+    TaskQueueFactory $taskQueueFactory,
+    $category, $example) {
+
+    $job = $request->getVariable('job', false);
+    if ($job === false) {
+        $taskQueue = $taskQueueFactory->createTaskQueue();
+
+        if ($taskQueue->isActive() == false) {
+            //Queue isn't active - don't bother queueing a task
+            return null;
+        }
+
+        $filename = getImageCacheFilename($category, $example, $params);
+
+        $task = new \ImagickDemo\Queue\ImagickTask(
+            $imageFunction, $params, $filename
+        );        
+        $taskQueue->pushTask($task);
+        $job = 0;
     }
+
+    return redirectWaitingTask($request, intval($job));
+}
+    
+    
+/**
+ * @param $imageFunction
+ * @param \Auryn\Provider $injector
+ * @return \ImagickDemo\Response\ImageResponse
+ * @throws \Exception
+ */
+function directImageFunction($imageFunction, \Auryn\Provider $injector) {
+    $imageCallable = function() use ($imageFunction, $injector) {
+            return $injector->execute($imageFunction);
+        };
+    
+        return createImageResponse($imageCallable);
+    };
 }
 
 namespace ImagickDemo {

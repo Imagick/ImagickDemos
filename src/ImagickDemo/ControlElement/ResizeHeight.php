@@ -19,7 +19,7 @@ class ResizeHeight extends ValueElement {
     }
     
     function getVariableName() {
-        return 'resizeHeight';
+        return 'height';
     }
     
     function getDisplayName() {

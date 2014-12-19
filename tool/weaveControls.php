@@ -684,6 +684,7 @@ foreach ($controls as $outputClassname => $components) {
         [
             'renderFormElement' => 'string',
             'getParams' => 'array',
+            'getInjectionParams' => 'array',
         ],
         ['get.*']
     );

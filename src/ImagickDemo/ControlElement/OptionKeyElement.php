@@ -42,6 +42,11 @@ abstract class OptionKeyElement implements ControlElement {
         ];
     }
 
+    function getInjectionParams() {
+        return $this->getParams();
+    }
+    
+    
     /**
      * @return string
      */

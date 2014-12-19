@@ -12,7 +12,6 @@ class RedirectResponse implements Response {
     private $headers = [];
 
     function __construct($URL, $delay = 0) {
-        
         $this->URL = $URL;
         $this->delay = $delay;
     }

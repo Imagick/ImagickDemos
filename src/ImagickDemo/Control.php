@@ -19,6 +19,9 @@ interface Control {
     function getCustomImageURL(array $extraParams = []);
 
     function getImageStatusURL();
+    
+    function renderImageURL($originalImageURL = null);
+        
 }
 
  

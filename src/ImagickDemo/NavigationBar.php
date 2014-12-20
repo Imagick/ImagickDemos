@@ -25,9 +25,9 @@ class NavigationBar {
      * @param null $activeCategory
      * @param null $activeExample
      */
-    function __construct($activeCategory = null, $activeExample = null) {
-        $this->activeCategory = $activeCategory;
-        $this->activeExample = $activeExample;
+    function __construct($category = null, $example = null) {
+        $this->activeCategory = $category;
+        $this->activeExample = $example;
     }
 
     /**

@@ -35,6 +35,8 @@ class Image {
         
         $data = ['finished' => false];
 
+        //$data['filename'] = $filename;
+
         foreach (getKnownExtensions() as $extension) {
             if (file_exists($filename.'.'.$extension) == true) {
                 $data['finished'] = true;
@@ -46,7 +48,12 @@ class Image {
     }
 
 
-    
+    /**
+     * @param \Auryn\Provider $injector
+     * @param $params
+     * @return mixed
+     * @throws \Exception
+     */
     private function getImageResponseInternal(\Auryn\Provider $injector, $params) {
 
         //TODO disable caching here.
@@ -75,7 +82,7 @@ class Image {
                                       $imageFunction,
                                       TaskQueueFactory $taskQueueFactory,
                                       $category, $example) use ($params) {
-            
+
             return processImageTask(
                 $request,
                 $imageFunction,

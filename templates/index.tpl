@@ -116,7 +116,7 @@
             {$remaining = 12 - $example->getColumnRightOffset()}
 
             <div class="row">
-                <div class="col-md-{$remaining} " style="padding-top: 10px; padding-bottom: 10px">
+                <div class="col-md-{$remaining} " style="padding-top: 2px;">
                     
                     {block name='mainContent'}
                     <div class="row">
@@ -138,7 +138,6 @@
 
             {$docHelper->showParametersPanel() | nofilter}
 
-            
             {$docHelper->showExamples() | nofilter}
             
             {inject name='banner' value='ImagickDemo\Banners\Banner'}
@@ -150,75 +149,13 @@
             </div>
         </div>
 
-
         <div class="row visible-xs visible-sm">
             <div class="col-md-12">
                 {$navBar->renderIssueLink() | nofilter}
             </div>
         </div>
     </div>
-    
-    
-    
-    
-    
-    <!-- 
-    
-    
-    <div class="row">
 
-        <div class="col-md-10" >
-            <div class="row" style='padding-bottom: 20px'>
-                <div class="col-md-8">
-                    <h4 class='noMarginTop'>{$example->renderTitle() | nofilter}</h4>
-
-                    <span class='visible-md visible-lg' >
-
-                        <p>
-                            {$example->renderDescription() | nofilter}
-                        </p>
-                    </span>
-                </div>
-                <div class="col-md-4 visible-md visible-lg" style='text-align: right'>
-                    
-                    {*$control->renderForm() | nofilter *}
-                </div>
-            </div>
-
-            <div class="row">
-                
-            </div>
-
-            <div class='visible-md visible-lg' style="padding-top: 30px">
-            </div>
-                
-            
-            <div class="row">
-                <div class="col-md-12">
-                    
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <span class='visible-xs visible-sm' >
-                        <i>{$docHelper->showDescription() | nofilter}</i>
-                    </span>
-                    <span class='visible-md visible-lg' >
-                         {$docHelper->showParameters() | nofilter}
-                    </span>
-                    {$docHelper->showExamples() | nofilter}
-                </div>
-            </div>
-
-          
-        </div>
-    </div>
-
-    
-    
-    -->
-    
     <div>
         <?php
         echo "<br/><br/><br/><span style='font-size: 8px; display: block;'>Peak memory ". number_format(memory_get_peak_usage())." - <a href='/info'>Status</a> </span>";
@@ -243,7 +180,6 @@
     //http://colpick.com/plugin - I love you color picker
 
     function addColorSelector(selector, targetElement) {
-    
         var params = {
             colorScheme:'dark',
             layout:'rgbhex',
@@ -277,8 +213,6 @@
     addColorSelector("#thresholdColorSelector", "#thresholdColor"); 
 
     {literal}
-    
-   
     var params = {
         links: {
             raw: 'Raw text',
@@ -287,10 +221,91 @@
     };
 
     SyntaxHighlighter.all(params);
+    
+    var checkCount = 0;
+    
 
+    function replaceImage(target, imageURI) {
+        $(target).attr('src', imageURI);
+    }
+    
+    function getAsyncDelay(number) {
+        if (number == 0) {
+            return 0;
+        }
+        if (number > 5 ) {
+            number = 5;
+        }
+
+        var delay = Math.floor(100 * Math.pow(1.5, number));
+        
+        if (delay > 4000) {
+            delay = 4000;
+        }
+
+        return delay;
+    }
+    
+    function asyncStatusUpdate(count) {
+        if (checkCount > 60) {
+            $('#asyncImageLoad').text("Yeah. I think it's broken dude. Maybe report an issue? Or it could just be taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.");
+            return false;
+        }
+        else if (checkCount > 30) {
+            $('#asyncImageLoad').text("A really long time. It might be broken.");
+        }
+
+        else if (checkCount > 8) {
+            $('#asyncImageLoad').text("Hmm, this seems to be taking a long time.");
+        }
+        else if (checkCount > 3) {
+            $('#asyncImageLoad').text("Async loading image.");
+        }
+        return true;
+    }
+    
+
+    function checkImageStatus(asyncLoad) {
+        statusURI = asyncLoad.data('statusuri');
+
+        var errorCallback = function(jqXHR, textStatus, errorThrown) {
+            alert("checkImageStatus done with error: textStatus");
+        };
+        
+        var successCallback = function(data, textStatus, jqXHR){
+            if ( data.hasOwnProperty('finished') ) {
+                var finished = data['finished'];
+
+                if (finished) {
+                    var imageURI = $(asyncLoad).data('imageuri');
+                    replaceImage('#exampleImage', imageURI);
+                    $('#asyncImageLoad').text("");
+                }
+                else {
+                    var imageCallback = function() {
+                        checkImageStatus(asyncLoad);
+                    };
+
+                    var continueProcessing = asyncStatusUpdate(checkCount);
+                    if (continueProcessing) {
+                        var delay = getAsyncDelay(checkCount);
+                        setTimeout(imageCallback, delay);
+                    }
+                }
+            }
+        };
+
+        $.ajax({
+            url: statusURI,
+            cache: false,
+            error: errorCallback,
+            success: successCallback,
+        });
+
+        checkCount += 1;
+    }
 
     $(function() {
-
         var callback = function(total) {
             if (total == 0) {
                 $('#searchResultNone').css('display', 'inline-block');
@@ -309,19 +324,30 @@
             '#searchList',
             options
         );
+
+        var asyncLoad = $('#asyncImageLoad');
+
+        if (asyncLoad) {
+            var statusURI = asyncLoad.data('statusuri');
+
+            var imageURI = $(asyncLoad).data('imageuri');
+
+            $.ajax({
+                url: imageURI,
+                //cache: false,
+                error: function (){},
+                success: function (){}
+            });
+
+            var imageCallback = function() {
+                checkImageStatus(asyncLoad);
+            };
+
+            setTimeout(imageCallback, 10);
+        }
     });
 
 
-
-    
-
-//    var list = $('#searchList');
-//    var lis = list.children();
-//    var len = lis.length;
-//    
-//    alert("length here is " + len);
-
-    
     {/literal}
 </script>
 

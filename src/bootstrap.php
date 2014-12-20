@@ -164,8 +164,8 @@ function bootstrapInjector() {
         "../var/compile/",
         'tpl',
         //Jig\JigRender::COMPILE_CHECK_EXISTS
-        Jig\JigRender::COMPILE_CHECK_MTIME
-        //Jig\JigRender::COMPILE_ALWAYS
+        //Jig\JigRender::COMPILE_CHECK_MTIME
+        Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
@@ -578,19 +578,12 @@ function getRoutes(ApplicationConfig $appConfig) {
         $imageController = [\ImagickDemo\Controller\Image::class, 'getImageResponse'];
         $customImageConroller = [\ImagickDemo\Controller\Image::class, 'getCustomImageResponse'];
 
-        $queueImages = false;//$appConfig->getQueueImages();
-        if ($queueImages) {
-            $imageController = [\ImagickDemo\Controller\ImageTask::class, 'getImageResponse'];
-            $customImageConroller = [\ImagickDemo\Controller\ImageTask::class, 'getImageResponse'];
-        }
-
         //Images
         $r->addRoute(
             'GET',
             "/image/$categories/{example:[a-zA-Z]+}",
             $imageController
         );
-
 
         //Custom images
         $r->addRoute(

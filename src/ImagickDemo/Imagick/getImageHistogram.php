@@ -11,7 +11,7 @@ class getImageHistogram extends \ImagickDemo\Example {
     /**
      * @var ImageControl
      */
-    private $control;
+    protected $control;
     
     function __construct(ImageControl $imageControl) {
         $this->control = $imageControl;

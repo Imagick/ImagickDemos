@@ -18,7 +18,7 @@ class distortImage extends \ImagickDemo\Example {
     /**
      * @var \ImagickDemo\Control\ControlCompositeImageDistortionType
      */
-    private $control;
+    protected $control;
 
     function __construct(\ImagickDemo\Control\ControlCompositeImageDistortionType $rsiControl) {
         $this->control = $rsiControl;

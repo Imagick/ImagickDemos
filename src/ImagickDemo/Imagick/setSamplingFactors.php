@@ -7,7 +7,6 @@ use ImagickDemo\Response\ImageResponse;
 
 class setSamplingFactors extends \ImagickDemo\Example {
 
-
     /**
      * @var Control\samplingFactors
      */
@@ -31,10 +30,9 @@ class setSamplingFactors extends \ImagickDemo\Example {
     function getOriginalImagePath() {
         return "../imagick/images/FineDetail.png";
     }
-    
+
     function getOriginalImageResponse() {
         $imagePath = $this->getOriginalImagePath();
-
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->resizeImage(
             $imagick->getImageWidth() * 4,
@@ -53,6 +51,22 @@ class setSamplingFactors extends \ImagickDemo\Example {
     function renderTitle() {
         return "Set sampling factor";
     }
+    
+    function renderOriginalImage() {
+
+        $imagick = new \Imagick(realpath("../imagick/images/FineDetail.png"));
+
+        $imagick->resizeImage(
+            $imagick->getImageWidth() * 4,
+            $imagick->getImageHeight() * 4,
+            \Imagick::FILTER_POINT,
+            1
+        );
+
+        \header('Content-Type: image/png');
+        echo $imagick->getImageBlob();
+    }
+    
 
     function render() {
 
@@ -71,8 +85,8 @@ class setSamplingFactors extends \ImagickDemo\Example {
 
 
         $imagePath = "../imagick/images/FineDetail.png";
-        
-        $imagick = new \Imagick($imagePath);
+
+        $imagick = new \Imagick(realpath($imagePath));
 
         $imagick->setImageFormat('jpg');
         
@@ -86,8 +100,6 @@ class setSamplingFactors extends \ImagickDemo\Example {
             $blobSize = strlen($new->getImageBlob());
 
             echo "Option ".implode(',', $option)." new size ". $blobSize."<br/>";
-            $fileName = "./setSampling".implode(',', $option).".jpg";
-            $new->writeImage($fileName);
         }
 
         return $this->renderImageURL();

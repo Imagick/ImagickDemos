@@ -9,7 +9,7 @@ class setOption extends \ImagickDemo\Example {
     /**
      * @var Control\setOption
      */
-    private $control;
+    protected $control;
     
     function __construct(\ImagickDemo\Imagick\Control\setOption $control) {
         $this->control = $control;

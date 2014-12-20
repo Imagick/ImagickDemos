@@ -30,10 +30,6 @@ class logoTshirt extends \ImagickDemo\Example {
         $this->type = $request->getVariable('type', 'simple');
     }
 
-//    function getCustomParameters() {
-//        return ['type' => 'simple'];
-//    }
-
     function getCustomImageParams() {
         return ['type' => $this->type];
     }

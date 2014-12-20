@@ -44,7 +44,7 @@ f4 - Constant vertical offset, default 0.5";
     /**
      * @var \ImagickDemo\Control\ImagickFunctionControl
      */
-    private $control;
+    protected $control;
 
     function __construct(\ImagickDemo\Control\ImagickFunctionControl $control) {
         $this->control = $control;

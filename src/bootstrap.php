@@ -20,6 +20,7 @@ $imageType = null;
 $cacheImages = false;//$appConfig->getCacheImages();
 
 function exceptionHandler(Exception $ex) {
+    
     //TODO - need to ob_end_clean as many times as required because 
     //otherwise partial content gets sent to the client.
 
@@ -50,6 +51,12 @@ function exceptionHandler(Exception $ex) {
 
 
 function errorHandler($errno, $errstr, $errfile, $errline) {
+    $level = ob_get_level();
+    
+    for($x=0; $x<$level; $x++) {
+        ob_end_clean();
+    }
+    
     if (!(error_reporting() & $errno)) {
         // This error code is not included in error_reporting
         return true;
@@ -78,6 +85,12 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
 
 
 function fatalErrorShutdownHandler() {
+    $level = ob_get_level();
+
+    for($x=0; $x<$level; $x++) {
+        ob_end_clean();
+    }
+
     $last_error = error_get_last();
 
     if (!$last_error) {
@@ -634,6 +647,7 @@ function getCachedImageResponse($category, $example, $params) {
 function checkGetOriginalImage(\Intahwebz\Request $request) {
     $original = $request->getVariable('original', false);
     if ($original) {
+        //TODO - these are not cached.
         $callable = function(\Auryn\Provider $injector) {
             return $injector->execute([\ImagickDemo\Example::class, 'renderOriginalImage']);
         };

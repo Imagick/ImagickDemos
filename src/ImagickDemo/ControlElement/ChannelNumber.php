@@ -40,7 +40,7 @@ class ChannelNumber  extends OptionKeyElement  {
     }
 
     protected function getVariableName() {
-        return 'channelNum';
+        return 'channel';
     }
 
     protected function getDisplayName() {

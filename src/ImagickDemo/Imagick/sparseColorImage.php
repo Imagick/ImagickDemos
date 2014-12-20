@@ -10,25 +10,18 @@ class sparseColorImage extends \ImagickDemo\Example {
     /**
      * @var \ImagickDemo\Control\SparseColorControl
      */
-    private $control;
+    protected $control;
     
     function __construct(\ImagickDemo\Control\SparseColorControl $sparseControl) {
         $this->control = $sparseControl;
     }
 
     function render() {
-        $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL();
+        //$output = $this->renderDescription();
+        $output = $this->renderCustomImageURL();
 
         return $output;
     }
-
-//    function renderCustomImageURL() {
-//        return sprintf(
-//            "<img src='%s' />", 
-//            $this->control->getCustomImageURL()
-//        );
-//    }
 
     function renderCustomImage() {
         $methods = [

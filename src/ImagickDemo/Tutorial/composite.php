@@ -3,6 +3,7 @@
 namespace ImagickDemo\Tutorial;
 
 use \ImagickDemo\Control\CompositeExampleControl;
+use Intahwebz\Request;
 
 class composite extends \ImagickDemo\Example {
 
@@ -17,9 +18,13 @@ class composite extends \ImagickDemo\Example {
      * @var \ImagickDemo\Control\CompositeExampleControl
      */
     private $compositeExampleControl;
+    
+    private $type;
+    
 
-    function __construct(CompositeExampleControl $compositeExampleControl) {
+    function __construct(CompositeExampleControl $compositeExampleControl, Request $request) {
         $this->compositeExampleControl = $compositeExampleControl;
+        $this->type = $request->getVariable('type', self::SOURCE_1);
     }
 
     public static function getExamples() {
@@ -43,9 +48,11 @@ class composite extends \ImagickDemo\Example {
         return $listOfExamples;
     }
 
-//    function getCustomParameters() {
-//        return ['type' => self::SOURCE_1];
-//    }
+
+    function getCustomImageParams() {
+        return ['type' => $this->type];
+    }
+    
 
     /**
      * @return string

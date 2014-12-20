@@ -5,6 +5,7 @@ namespace ImagickDemo\Tutorial;
 
 
 use Imagick;
+use Intahwebz\Request;
 
 //Example Tutorial::deconstructGif Make a simple gif with lots of frames.
 function makeSimpleGif() {
@@ -54,13 +55,20 @@ function makeSimpleGif() {
 
 class deconstructGif extends \ImagickDemo\Example {
 
-    function __construct(\ImagickDemo\Control $control) {
+    /**
+     * @var mixed
+     */
+    private $deconstruct;
+    
+    function __construct(\ImagickDemo\Control $control, Request $request) {
         $this->control = $control;
+        $this->deconstruct = $request->getVariable('deconstruct', false);
     }
 
-//    function getCustomParameters() {
-//        return ['deconstruct' => true];
-//    }
+    function getCustomImageParams() {
+        return ['deconstruct' => $this->deconstruct];
+    }
+
 
     /**
      * @return string

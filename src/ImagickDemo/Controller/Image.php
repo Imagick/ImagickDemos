@@ -28,13 +28,14 @@ class Image {
         $category,
         $example,
         \ImagickDemo\Control $control,
-        $customImageParams = []
+        \ImagickDemo\Example $exampleController
     ) {
 
-        $filename = getImageCacheFilename($category, $example, $control->getFullParams($customImageParams));
-        
-        $data = ['finished' => false];
+        $customImageParams = $exampleController->getCustomImageParams();
 
+        $filename = getImageCacheFilename($category, $example, $control->getFullParams($customImageParams));
+        $data = ['finished' => false];
+        $data['params'] = $customImageParams;
         //$data['filename'] = $filename;
 
         foreach (getKnownExtensions() as $extension) {

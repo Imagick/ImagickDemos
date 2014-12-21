@@ -25,7 +25,7 @@ END;
      */
     function render() {
         $imageURL = $this->renderImageURL();
-        
+
         $output = <<< END
 <div class='row'>
     <div class='col-md-12'>

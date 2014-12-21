@@ -166,6 +166,7 @@
 </body>
 
 <script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-ui-1.10.0.custom.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/colpick.js"></script>
 <script src="/js/jquery.fastLiveFilter.js"></script>
@@ -173,6 +174,8 @@
 <script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
 <script type="text/javascript" src="/js/syntaxhighlighter/shBrushPhp.js"></script>
 <script type="text/javascript" src="/js/syntaxhighlighter/shBrushJScript.js"></script>
+
+<script src="/js/AsyncImage.js"></script>
 
 
 <script type="text/javascript">
@@ -221,89 +224,7 @@
     };
 
     SyntaxHighlighter.all(params);
-    
-    var checkCount = 0;
-    
 
-    function replaceImage(target, imageURI) {
-        $(target).attr('src', imageURI);
-    }
-    
-    function getAsyncDelay(number) {
-        if (number == 0) {
-            return 0;
-        }
-        if (number > 5 ) {
-            number = 5;
-        }
-
-        var delay = Math.floor(100 * Math.pow(1.5, number));
-        
-        if (delay > 4000) {
-            delay = 4000;
-        }
-
-        return delay;
-    }
-    
-    function asyncStatusUpdate(count) {
-        if (checkCount > 60) {
-            $('#asyncImageLoad').text("Yeah. I think it's broken dude. Maybe report an issue? Or it could just be taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.");
-            return false;
-        }
-        else if (checkCount > 30) {
-            $('#asyncImageLoad').text("A really long time. It might be broken.");
-        }
-
-        else if (checkCount > 8) {
-            $('#asyncImageLoad').text("Hmm, this seems to be taking a long time.");
-        }
-        else if (checkCount > 3) {
-            $('#asyncImageLoad').text("Async loading image.");
-        }
-        return true;
-    }
-    
-
-    function checkImageStatus(asyncLoad) {
-        statusURI = asyncLoad.data('statusuri');
-
-        var errorCallback = function(jqXHR, textStatus, errorThrown) {
-            alert("checkImageStatus done with error: textStatus");
-        };
-        
-        var successCallback = function(data, textStatus, jqXHR){
-            if ( data.hasOwnProperty('finished') ) {
-                var finished = data['finished'];
-
-                if (finished) {
-                    var imageURI = $(asyncLoad).data('imageuri');
-                    replaceImage('#exampleImage', imageURI);
-                    $('#asyncImageLoad').text("");
-                }
-                else {
-                    var imageCallback = function() {
-                        checkImageStatus(asyncLoad);
-                    };
-
-                    var continueProcessing = asyncStatusUpdate(checkCount);
-                    if (continueProcessing) {
-                        var delay = getAsyncDelay(checkCount);
-                        setTimeout(imageCallback, delay);
-                    }
-                }
-            }
-        };
-
-        $.ajax({
-            url: statusURI,
-            cache: false,
-            error: errorCallback,
-            success: successCallback,
-        });
-
-        checkCount += 1;
-    }
 
     $(function() {
         var callback = function(total) {
@@ -314,38 +235,46 @@
                 $('#searchResultNone').css('display', 'none');
             }
         };
-        
+
         var options = {
-        //    timeout: 200,
+            //    timeout: 200,
             callback: callback
         };
-        
+
         $('#searchInput').fastLiveFilter(
-            '#searchList',
-            options
+                '#searchList',
+                options
         );
-
-        var asyncLoad = $('#asyncImageLoad');
-
-        if (asyncLoad) {
-            var statusURI = asyncLoad.data('statusuri');
-
-            var imageURI = $(asyncLoad).data('imageuri');
-
-            $.ajax({
-                url: imageURI,
-                //cache: false,
-                error: function (){},
-                success: function (){}
-            });
-
-            var imageCallback = function() {
-                checkImageStatus(asyncLoad);
-            };
-
-            setTimeout(imageCallback, 10);
-        }
     });
+
+
+
+        function toggleImage(imageSelector, mouseSelector, originalURL, originalText, modifiedURL, modifiedText) {
+
+        var newImageURL;
+        var newText;
+
+        if ( typeof toggleImage.originalImage == 'undefined' ) {
+            // First call, perform the initialization
+            toggleImage.originalImage = false;
+        }
+
+        if (toggleImage.originalImage) {
+            newImageURL = modifiedURL;
+            newText = modifiedText;
+            toggleImage.originalImage = false;
+        }
+        else {
+            newImageURL = originalURL;
+            newText = originalText;
+            toggleImage.originalImage = true;
+        }
+
+        $(imageSelector).attr('src', newImageURL);
+        $(mouseSelector).text(newText);
+    }
+
+    initAsyncImage('.asyncImage');
 
 
     {/literal}

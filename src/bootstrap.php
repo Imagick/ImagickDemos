@@ -72,7 +72,7 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
 
         default:
             {
-            echo "<b>errorHandler</b> [$errno] $errstr<br />\n";
+            echo "<b>errorHandler</b> [$errno] $errstr in file $errfile on line $errline<br />\n";
 
             return false;
             }
@@ -750,11 +750,131 @@ function processImageTask(
 function directImageFunction($imageFunction, \Auryn\Provider $injector) {
     $imageCallable = function() use ($imageFunction, $injector) {
             return $injector->execute($imageFunction);
-        };
-    
-        return createImageResponse($imageCallable);
     };
+    
+    return createImageResponse($imageCallable);
 }
+
+
+    /**
+     * @param $imgURL
+     * @return string
+     */
+    function renderAsyncImage($imgURL, $statusURL) {
+        $output = "";
+
+        $output .= sprintf(
+            "<span id='asyncImageLoad' data-statusuri='%s' data-imageuri='%s'  id='asyncImageHolder'></span>",
+            addslashes($statusURL),
+            addslashes($imgURL)
+        );
+
+        return $output;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    function renderImageURL(
+        $taskQueueIsActive, //$this->taskQueue->isActive()
+        $imgURL, //$this->getURL();
+        $originalImageURL,
+        $statusURL //$this->getImageStatusURL();
+        //$url //$this->getURL()
+    ) { 
+        $js = '';
+        $originalImage = $originalImageURL;
+
+        $output = '';
+        $asyncImage = "";
+
+        $tempImgURL = $imgURL;
+
+        if ($taskQueueIsActive) {
+
+            $output .= sprintf(
+                "<span class='asyncImage' data-statusuri='%s' data-imageuri='%s'>",
+                addslashes($statusURL),
+                addslashes($imgURL)
+            );
+
+            $output .= "<span class='asyncImageStatus'>Async image loading...</span>";
+            
+            
+            $tempImgURL = '/images/loading.gif';
+        }
+        else {
+            $output .= "<span>";
+        }
+
+        
+
+        $newWindow = sprintf(
+            "<a href='%s' target='_blank'>View modified in new window.</a>",
+            $imgURL
+        );
+
+        $originalText = "Touch/mouse over to see original ";
+        $modifiedText = "Touch/mouse out to see modified ";
+
+        if ($originalImage == true) {
+            $modifiedImage = $imgURL;//$url;//$this->getURL();
+
+            $changeToOriginal = sprintf(
+                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+                addslashes($originalImage),
+                addslashes($modifiedText)
+            );
+
+            $changeToModified = sprintf(
+                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+                addslashes($modifiedImage),
+                addslashes($originalText)
+            );
+
+            $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
+            $mouseOut = "onmouseout=\"$changeToModified\" \n";
+            $touch = sprintf(
+                "ontouchstart=\"toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')\"",
+                $originalImage,
+                $originalText,
+                $modifiedImage,
+                $modifiedText
+            );
+
+            $js = $mouseOver.' '.$mouseOut.' '.$touch;
+        }
+
+        $output .= $asyncImage;
+
+        
+        
+        $output .= sprintf(
+            "<img src='%s' id='exampleImage' class='img-responsive exampleImage' %s />",
+            $tempImgURL,
+            $js
+        );
+
+        if ($originalImage == true) {
+            $output .= "<div class='row asyncImageHidden'>";
+            $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
+
+            $output .= "<span id='mouseText'>";
+            $output .= $originalText;
+            $output .= "</span>";
+            $output .= $newWindow;
+            $output .= "</div>";
+
+            $output .= "</div>";
+        }
+
+        $output .= "</span>";
+
+        return $output;
+    }
+
+}//namespace end
 
 namespace ImagickDemo {
     

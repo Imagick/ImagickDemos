@@ -18,10 +18,10 @@ interface Control {
 
     function getCustomImageURL(array $extraParams = []);
 
-    function getImageStatusURL();
+    function getImageStatusURL($extraParams = []);
     
     function renderImageURL($originalImageURL = null);
-        
+    function renderCustomImageURL($extraParams);
 }
 
  

@@ -51,137 +51,128 @@ class ControlComposite implements \ImagickDemo\Control {
         return "";
     }
 
+//    /**
+//     * @param $imgURL
+//     * @return string
+//     */
+//    private function renderAsyncImage($imgURL) {
+//        $output = "";
+//        $statusURL = $this->getImageStatusURL();
+//
+//        $output .= sprintf(
+//            "<span id='asyncImageLoad' data-statusuri='%s' data-imageuri='%s'  id='asyncImageHolder'></span>",
+//            addslashes($statusURL),
+//            addslashes($imgURL)
+//        );
+//
+//        return $output;
+//    }
+
     /**
-     * @param $imgURL
-     * @return string
-     */
-    private function renderAsyncImage($imgURL) {
-        $output = "";
-        $statusURL = $this->getImageStatusURL();
-
-        $output .= sprintf(
-            "<span id='asyncImageLoad' data-statusuri='%s' data-imageuri='%s'  id='asyncImageHolder'></span>",
-            addslashes($statusURL),
-            addslashes($imgURL)
-        );
-
-        return $output;
-    }
-
-    /**
+     * @param null $originalImageURL
      * @return string
      */
     function renderImageURL($originalImageURL = null) {
-        $js = '';
-        $imgURL = $this->getURL();
-        $originalImage = $originalImageURL;//$this->getOriginalImage();
-
-        $output = '';
-        $asyncImage = "";
-
-        $tempImgURL = $imgURL;
-        
-        if ($this->taskQueue->isActive()) {
-            $asyncImage = $this->renderAsyncImage($imgURL);
-            $tempImgURL = '/images/loading.gif';
-        }
-
-        $newWindow = sprintf(
-            "<a href='%s' target='_blank'>View modified in new window.</a>",
-            $imgURL
+        return renderImageURL(
+            $this->taskQueue->isActive(),
+            $this->getURL(),
+            $originalImageURL,
+            $this->getImageStatusURL()
         );
-
-        $originalText = "Touch/mouse over to see original ";
-        $modifiedText = "Touch/mouse out to see modified ";
-
-        if ($originalImage == true) {
-            $modifiedImage = $this->getURL();
-
-            $output .= "
-
-<script type='text/javascript'>
-
-function toggleImage(imageSelector, mouseSelector, originalURL, originalText, modifiedURL, modifiedText) {
-
-    var newImageURL; 
-    var newText;
-    
-    if ( typeof toggleImage.originalImage == 'undefined' ) {
-        // First call, perform the initialization
-        toggleImage.originalImage = false;
     }
 
-    if (toggleImage.originalImage) {
-        newImageURL = modifiedURL;
-        newText = modifiedText;
-        toggleImage.originalImage = false;
-    }
-    else {
-        newImageURL = originalURL;
-        newText = originalText;
-        toggleImage.originalImage = true;
-    }
-
-    $(imageSelector).attr('src', newImageURL);
-    $(mouseSelector).text(newText);
-}
-
-</script>
-
-";
-
-            $changeToOriginal = sprintf(
-                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-                addslashes($originalImage),
-                addslashes($modifiedText)
-            );
-
-            $changeToModified = sprintf(
-                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-                addslashes($modifiedImage),
-                addslashes($originalText)
-            );
-
-            $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
-            $mouseOut = "onmouseout=\"$changeToModified\" \n";
-            $touch = sprintf(
-                "toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')",
-                $originalImage,
-                $originalText,
-                $modifiedImage,
-                $modifiedText
-            );
-
-            $touchStart = "ontouchstart=\"$touch\"\n";
-            //$touchEnd =  "ontouchend=\"$touch\"\n";
-
-            $js = $mouseOver.' '.$mouseOut.' '.$touchStart;
-        }
-
-
-        $output .= $asyncImage;
-
-        $output .= sprintf(
-            "<img src='%s' id='exampleImage' class='img-responsive' %s />",
-            $tempImgURL,
-            $js
+    /**
+     * @param $extraParams
+     * @return string
+     */
+    function renderCustomImageURL($extraParams) {
+        return renderImageURL(
+            $this->taskQueue->isActive(),
+            $this->getCustomImageURL($extraParams),
+            false,
+            $this->getImageStatusURL()
         );
-
-        if ($originalImage == true) {
-            $output .= "<div class='row'>";
-            $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
-
-            $output .= "<span id='mouseText'>";
-            $output .= $originalText;
-            $output .= "</span>";
-            $output .= $newWindow;
-            $output .= "</div>";
-
-            $output .= "</div>";
-        }
-
-        return $output;
     }
+
+
+//        /**
+//     * @return string
+//     */
+//    function renderImageURLBlah($originalImageURL = null) {
+//        $js = '';
+//        $imgURL = $this->getURL();
+//        $originalImage = $originalImageURL;
+//
+//        $output = '';
+//        $asyncImage = "";
+//
+//        $tempImgURL = $imgURL;
+//        
+//        if ($this->taskQueue->isActive()) {
+//            $asyncImage = $this->renderAsyncImage($imgURL);
+//            $tempImgURL = '/images/loading.gif';
+//        }
+//
+//        $newWindow = sprintf(
+//            "<a href='%s' target='_blank'>View modified in new window.</a>",
+//            $imgURL
+//        );
+//
+//        $originalText = "Touch/mouse over to see original ";
+//        $modifiedText = "Touch/mouse out to see modified ";
+//
+//        if ($originalImage == true) {
+//            $modifiedImage = $this->getURL();
+//
+//            $changeToOriginal = sprintf(
+//                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+//                addslashes($originalImage),
+//                addslashes($modifiedText)
+//            );
+//
+//            $changeToModified = sprintf(
+//                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+//                addslashes($modifiedImage),
+//                addslashes($originalText)
+//            );
+//
+//            $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
+//            $mouseOut = "onmouseout=\"$changeToModified\" \n";
+//            $touch = sprintf(
+//                "ontouchstart=\"toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')\"",
+//                $originalImage,
+//                $originalText,
+//                $modifiedImage,
+//                $modifiedText
+//            );
+//
+//            $js = $mouseOver.' '.$mouseOut.' '.$touch;
+//        }
+//
+//
+//        $output .= $asyncImage;
+//
+//        $output .= sprintf(
+//            "<img src='%s' id='exampleImage' class='img-responsive' %s />",
+//            $tempImgURL,
+//            $js
+//        );
+//
+//        if ($originalImage == true) {
+//            $output .= "<div class='row'>";
+//            $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
+//
+//            $output .= "<span id='mouseText'>";
+//            $output .= $originalText;
+//            $output .= "</span>";
+//            $output .= $newWindow;
+//            $output .= "</div>";
+//
+//            $output .= "</div>";
+//        }
+//
+//        return $output;
+//    }
 
 
     /**
@@ -212,30 +203,31 @@ function toggleImage(imageSelector, mouseSelector, originalURL, originalText, mo
      * @return string
      */
     function getURL() {
-        return $this->getBlahURL($this->imageBaseURL);
+        return $this->getURLWithParams($this->imageBaseURL);
     }
 
     /**
      * @param $baseURL
      * @return string
      */
-    function getBlahURL($baseURL) {
+    function getURLWithParams($baseURL, $extraParams = []) {
         $paramString = '';
         $params = $this->getParams();
+        $params = array_merge($params, $extraParams);
         $separator = '?';
         foreach ($params as $key => $value) {
             $paramString .= $separator.$key."=".$value;
             $separator = '&';
         }
-        
+
         return $baseURL.$paramString;
     }
 
     /**
      * @return string
      */
-    function getImageStatusURL() {
-        return $this->getBlahURL($this->imageStatusBaseURL);
+    function getImageStatusURL($extraParams = []) {
+        return $this->getURLWithParams($this->imageStatusBaseURL);
     }
 
     /**

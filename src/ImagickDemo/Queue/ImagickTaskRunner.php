@@ -48,7 +48,6 @@ class ImagickTaskRunner {
         //For any error push the task back
         //sleep if necessary
 
-        
         /** @noinspection PhpUndefinedMethodInspection */
         \ImagickDemo\Imagick\functions::load();
         \ImagickDemo\ImagickDraw\functions::load();
@@ -56,8 +55,11 @@ class ImagickTaskRunner {
         \ImagickDemo\ImagickPixelIterator\functions::load();
         \ImagickDemo\Tutorial\functions::load();
 
-        $maxRunTime = 60; //one minute
-        $maxRunTime *= 10; //10 minutes
+        $maxRunTime = 60; // one minute
+        $maxRunTime *= 60; // 1hour
+
+        //Each image generated hurries up the restart by 10 seconds
+        $taskPseudoTime = 10; 
 
         $endTime = time() + $maxRunTime;
         
@@ -79,6 +81,7 @@ class ImagickTaskRunner {
             }
     
             echo "A task! "."\n";
+            $endTime -= $taskPseudoTime;
 
             try {
                 $startTime = microtime(true);

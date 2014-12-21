@@ -270,3 +270,7 @@ pre {
 body{
     overflow-y:scroll;
 }
+
+.asyncImageHidden {
+    display: none;
+}

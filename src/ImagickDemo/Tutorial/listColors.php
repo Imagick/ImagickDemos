@@ -7,6 +7,11 @@ namespace ImagickDemo\Tutorial;
 
 class listColors extends \ImagickDemo\Example {
 
+    
+    function renderDescription() {
+        return "Any of the named colors listed here can be passed to Imagick wherever a color (ImagickPixel) argument is expected.";
+    }
+    
     function render() {
         $output = "<table class='smallPadding' width='100%'>";
         $output .= "<tbody>";

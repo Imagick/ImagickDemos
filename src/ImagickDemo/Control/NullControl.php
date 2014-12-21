@@ -3,6 +3,8 @@
 
 namespace ImagickDemo\Control;
 
+use ImagickDemo\Queue\TaskQueue;
+
 
 class NullControl implements \ImagickDemo\Control {
 
@@ -11,13 +13,41 @@ class NullControl implements \ImagickDemo\Control {
     private $activeExample;
     
     
-    function __construct(\Intahwebz\Request $request, $activeCategory, $activeExample) {
+    function __construct(TaskQueue $taskQueue, $activeCategory, $activeExample) {
+        $this->taskQueue = $taskQueue;
         $this->activeCategory = $activeCategory;
         $this->activeExample = $activeExample;
     }
-    
+
+    /**
+     * 
+     */
     function renderForm() { }
 
+    /**
+     * @param null $originalImageURL
+     * @return string
+     */
+    function renderImageURL($originalImageURL = null) {
+        return renderImageURL(
+            $this->taskQueue->isActive(),
+            $this->getURL(),
+            $originalImageURL,
+            $this->getImageStatusURL(),
+            $this->getURL()
+        );
+    }
+
+    function renderCustomImageURL($extraParams) {
+        return renderImageURL(
+            $this->taskQueue->isActive(),
+            $this->getCustomImageURL($extraParams),
+            false,
+            $this->getImageStatusURL($extraParams)
+        );
+    }
+    
+    
     /**
      * @return array
      */
@@ -50,8 +80,10 @@ class NullControl implements \ImagickDemo\Control {
         return getCustomImageURL($this->activeCategory, $this->activeExample).$paramString;
     }
 
-    function getImageStatusURL() {
-        return getImageStatusURL($this->activeCategory, $this->activeExample);
+    function getImageStatusURL($extraParams = []) {
+        $path =  getImageStatusURL($this->activeCategory, $this->activeExample);
+
+        return $path.'?'.http_build_query($extraParams);
     }
 }
 

@@ -277,6 +277,11 @@
     initAsyncImage('.asyncImage');
 
 
+    $(window).bind("pageshow", function() {
+        alert("pageshow?");
+    });
+
+
     {/literal}
 </script>
 

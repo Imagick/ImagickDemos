@@ -667,12 +667,19 @@ $controls = [
         'ImagickDemo\ControlElement\Radius',
     ],
 
-    
-    
     'ImagickDemo\Imagick\Control\embossImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Radius',
         'ImagickDemo\ControlElement\Sigma',
+    ],
+
+    'ImagickDemo\Imagick\Control\loopGif' => [
+        'ImagickDemo\ControlElement\BackgroundColorChoice',
+        'ImagickDemo\ControlElement\NumberDots',
+        'ImagickDemo\ControlElement\NumberFrames',
+        'ImagickDemo\ControlElement\LoopTime',
+        'ImagickDemo\ControlElement\PhaseMultiplier',
+        'ImagickDemo\ControlElement\PhaseDivider',
     ],
 ];
 

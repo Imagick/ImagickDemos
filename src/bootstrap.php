@@ -51,11 +51,11 @@ function exceptionHandler(Exception $ex) {
 
 
 function errorHandler($errno, $errstr, $errfile, $errline) {
-    $level = ob_get_level();
-    
-    for($x=0; $x<$level; $x++) {
-        ob_end_clean();
-    }
+//    $level = ob_get_level();
+//    
+//    for($x=0; $x<$level; $x++) {
+//        ob_end_flush();
+//    }
     
     if (!(error_reporting() & $errno)) {
         // This error code is not included in error_reporting
@@ -88,7 +88,7 @@ function fatalErrorShutdownHandler() {
     $level = ob_get_level();
 
     for($x=0; $x<$level; $x++) {
-        ob_end_clean();
+        ob_end_flush();
     }
 
     $last_error = error_get_last();
@@ -164,8 +164,8 @@ function bootstrapInjector() {
         "../var/compile/",
         'tpl',
         //Jig\JigRender::COMPILE_CHECK_EXISTS
-        //Jig\JigRender::COMPILE_CHECK_MTIME
-        Jig\JigRender::COMPILE_ALWAYS
+        Jig\JigRender::COMPILE_CHECK_MTIME
+        //Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
@@ -607,16 +607,18 @@ function getRoutes(ApplicationConfig $appConfig) {
  */
 function createImageResponse(callable $imageCallable) {
     global $imageType;
-
     ob_start();
     $imageCallable();
+
+
     if ($imageType == null) {
         ob_end_clean();
         throw new \Exception("imageType not set, can't cache image correctly.");
     }
     $imageData = ob_get_contents();
-    ob_end_clean();
 
+    ob_end_clean();
+    
     return new \ImagickDemo\Response\ImageResponse("image/".$imageType, $imageData);
 }
 
@@ -672,6 +674,10 @@ function renderImageAsFileResponse(
     };
 
     ob_start();
+    
+    global $imageType;
+    $imageType = 'gif';
+    
     $imageCallable();
     
     if ($imageType == null) {
@@ -737,6 +743,15 @@ function processImageTask(
         $job = 0;
     }
 
+    
+//    $noRedirect = $request->getVariable('noredirect', false);
+//    
+//    if ($noRedirect) {
+//        return "foo";
+//    }
+//    
+    
+
     return redirectWaitingTask($request, intval($job));
 }
     
@@ -748,131 +763,117 @@ function processImageTask(
  * @throws \Exception
  */
 function directImageFunction($imageFunction, \Auryn\Provider $injector) {
+
     $imageCallable = function() use ($imageFunction, $injector) {
+        
+        
+        try {
             return $injector->execute($imageFunction);
+        }
+        catch(\Exception $e) {
+            echo "Exception: ".$e->getMessage();
+            exit(0);
+        }
     };
+    
+   
     
     return createImageResponse($imageCallable);
 }
 
 
-    /**
-     * @param $imgURL
-     * @return string
-     */
-    function renderAsyncImage($imgURL, $statusURL) {
-        $output = "";
+/**
+ * @return string
+ */
+function renderImageURL(
+    $taskQueueIsActive, //$this->taskQueue->isActive()
+    $imgURL, //$this->getURL();
+    $originalImageURL,
+    $statusURL //$this->getImageStatusURL();
+) { 
+    $js = '';
+    $originalImage = $originalImageURL;
 
+    $output = '';
+    $asyncImage = "";
+
+    $tempImgURL = $imgURL;
+
+    if ($taskQueueIsActive) {
         $output .= sprintf(
-            "<span id='asyncImageLoad' data-statusuri='%s' data-imageuri='%s'  id='asyncImageHolder'></span>",
+            "<span class='asyncImage' data-statusuri='%s' data-imageuri='%s'>",
             addslashes($statusURL),
             addslashes($imgURL)
         );
 
-        return $output;
+        $output .= "<span class='asyncImageStatus'>Async image loading...</span>";
+        $tempImgURL = '/images/loading.gif';
     }
-    
-    
-    /**
-     * @return string
-     */
-    function renderImageURL(
-        $taskQueueIsActive, //$this->taskQueue->isActive()
-        $imgURL, //$this->getURL();
-        $originalImageURL,
-        $statusURL //$this->getImageStatusURL();
-        //$url //$this->getURL()
-    ) { 
-        $js = '';
-        $originalImage = $originalImageURL;
+    else {
+        $output .= "<span>";
+    }
 
-        $output = '';
-        $asyncImage = "";
+    $newWindow = sprintf(
+        "<a href='%s' target='_blank'>View modified in new window.</a>",
+        $imgURL
+    );
 
-        $tempImgURL = $imgURL;
+    $originalText = "Touch/mouse over to see original ";
+    $modifiedText = "Touch/mouse out to see modified ";
 
-        if ($taskQueueIsActive) {
+    if ($originalImage == true) {
+        $modifiedImage = $imgURL;//$url;//$this->getURL();
 
-            $output .= sprintf(
-                "<span class='asyncImage' data-statusuri='%s' data-imageuri='%s'>",
-                addslashes($statusURL),
-                addslashes($imgURL)
-            );
-
-            $output .= "<span class='asyncImageStatus'>Async image loading...</span>";
-            
-            
-            $tempImgURL = '/images/loading.gif';
-        }
-        else {
-            $output .= "<span>";
-        }
-
-        
-
-        $newWindow = sprintf(
-            "<a href='%s' target='_blank'>View modified in new window.</a>",
-            $imgURL
+        $changeToOriginal = sprintf(
+            "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+            addslashes($originalImage),
+            addslashes($modifiedText)
         );
 
-        $originalText = "Touch/mouse over to see original ";
-        $modifiedText = "Touch/mouse out to see modified ";
-
-        if ($originalImage == true) {
-            $modifiedImage = $imgURL;//$url;//$this->getURL();
-
-            $changeToOriginal = sprintf(
-                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-                addslashes($originalImage),
-                addslashes($modifiedText)
-            );
-
-            $changeToModified = sprintf(
-                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-                addslashes($modifiedImage),
-                addslashes($originalText)
-            );
-
-            $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
-            $mouseOut = "onmouseout=\"$changeToModified\" \n";
-            $touch = sprintf(
-                "ontouchstart=\"toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')\"",
-                $originalImage,
-                $originalText,
-                $modifiedImage,
-                $modifiedText
-            );
-
-            $js = $mouseOver.' '.$mouseOut.' '.$touch;
-        }
-
-        $output .= $asyncImage;
-
-        
-        
-        $output .= sprintf(
-            "<img src='%s' id='exampleImage' class='img-responsive exampleImage' %s />",
-            $tempImgURL,
-            $js
+        $changeToModified = sprintf(
+            "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
+            addslashes($modifiedImage),
+            addslashes($originalText)
         );
 
-        if ($originalImage == true) {
-            $output .= "<div class='row asyncImageHidden'>";
-            $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
+        $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
+        $mouseOut = "onmouseout=\"$changeToModified\" \n";
+        $touch = sprintf(
+            "ontouchstart=\"toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')\"",
+            $originalImage,
+            $originalText,
+            $modifiedImage,
+            $modifiedText
+        );
 
-            $output .= "<span id='mouseText'>";
-            $output .= $originalText;
-            $output .= "</span>";
-            $output .= $newWindow;
-            $output .= "</div>";
+        $js = $mouseOver.' '.$mouseOut.' '.$touch;
+    }
 
-            $output .= "</div>";
-        }
+    $output .= $asyncImage;
 
+    $output .= sprintf(
+        "<img src='%s' id='exampleImage' class='img-responsive exampleImage' %s />",
+        $tempImgURL,
+        $js
+    );
+
+    if ($originalImage == true) {
+        $output .= "<div class='row asyncImageHidden'>";
+        $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
+
+        $output .= "<span id='mouseText'>";
+        $output .= $originalText;
         $output .= "</span>";
+        $output .= $newWindow;
+        $output .= "</div>";
 
-        return $output;
+        $output .= "</div>";
     }
+
+    $output .= "</span>";
+
+    return $output;
+}
 
 }//namespace end
 

@@ -72,7 +72,7 @@ class ImagickTaskRunner {
             if (!$task) {
                 echo ".";
                 $count = $count + 1;
-                if ($count == 0) {
+                if (($count % 20) == 0) {
                     echo "\n";
                 }
                 //Sleep for 1/10th of a second 
@@ -111,10 +111,6 @@ class ImagickTaskRunner {
         foreach ($params as $key => $value) {
             $lowried[':'.$key] = $value;
         }
-        
-//        var_dump($lowried);
-//        exit(0);
-        
 
         $response = renderImageAsFileResponse($imageFunction, $filename, $this->injector, $lowried);
     }

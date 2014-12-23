@@ -103,6 +103,7 @@ class Image {
             'directImageFunction'
         ];
 
+        
         foreach ($callables as $callable) {
             $result = $injector->execute($callable);
             if ($result) {

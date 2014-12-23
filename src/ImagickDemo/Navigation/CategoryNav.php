@@ -928,6 +928,8 @@ END;
             'logoTshirt' => ['logoTshirt', \ImagickDemo\Control\NullControl::class],
             'psychedelicFont' => ['psychedelicFont', \ImagickDemo\Control\NullControl::class],
             'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
+
+            'whirlyGif' =>  ['whirlyGif', \ImagickDemo\Imagick\Control\loopGif::class],
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
         ];

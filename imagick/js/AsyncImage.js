@@ -117,6 +117,13 @@ var AsyncImage = {
             alert("Failed to find status element");
         }
 
+        if (this.imageURI.indexOf("?")) {
+            this.imageURI = this.imageURI + "&noredirect=true";
+        }
+        else {
+            this.imageURI = this.imageURI + "?noredirect=true";
+        }
+
         $.ajax({
             url: this.imageURI,
             //cache: false,

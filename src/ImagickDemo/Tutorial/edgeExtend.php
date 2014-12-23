@@ -15,10 +15,4 @@ class edgeExtend extends \ImagickDemo\Example {
     function render() {
         return $this->renderImageURL();
     }
-    /**
-     * @return \ImagickDemo\Control
-     */
-    function getControl() {
-        return $this->control;
-    }
 }

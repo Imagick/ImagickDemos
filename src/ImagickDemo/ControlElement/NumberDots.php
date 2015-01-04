@@ -9,7 +9,7 @@ namespace ImagickDemo\ControlElement;
 class NumberDots extends ValueElement {
 
     protected function getDefault() {
-        return 15;
+        return 40;
     }
 
     protected function getMin() {

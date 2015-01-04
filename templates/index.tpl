@@ -277,9 +277,11 @@
     initAsyncImage('.asyncImage');
 
 
-    $(window).bind("pageshow", function() {
-        alert("pageshow?");
-    });
+    
+    //$(window).bind("pageshow", function() {
+    // use this to reset form for back button cleanup
+    //    alert("pageshow?");
+    //});
 
 
     {/literal}

@@ -10,14 +10,6 @@ class functionImage extends \ImagickDemo\Example {
         $this->control = $control;
     }
 
-//    function getCustomImageParams() {
-//        return $this->control->getParams();
-//    }
-    
-    function renderTitle() {
-        return "";
-    }
-    
     function render() {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();
@@ -25,18 +17,11 @@ class functionImage extends \ImagickDemo\Example {
         return $output;
     }
 
-    function renderCustomImageURL() {
-        return sprintf(
-            "<img src='%s' />",
-            $this->control->getURL()
-        );
-    }
-
     function renderDescription() {
         return "";
     }
 
-    function renderImage() {
+    function renderCustomImage() {
         $size = 200;
         $imagick1 = new \Imagick();
         $imagick1->newPseudoImage($size, $size, 'gradient:black-white');

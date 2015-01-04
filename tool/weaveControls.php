@@ -667,6 +667,10 @@ $controls = [
         'ImagickDemo\ControlElement\Radius',
     ],
 
+    'ImagickDemo\Imagick\Control\normalizeImage' => [
+        'ImagickDemo\ControlElement\Image',
+    ],
+
     'ImagickDemo\Imagick\Control\embossImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Radius',
@@ -681,6 +685,9 @@ $controls = [
         'ImagickDemo\ControlElement\PhaseMultiplier',
         'ImagickDemo\ControlElement\PhaseDivider',
     ],
+    
+    
+    
 ];
 
 \Intahwebz\Functions::load();

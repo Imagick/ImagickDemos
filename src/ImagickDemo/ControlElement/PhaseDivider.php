@@ -9,7 +9,7 @@ namespace ImagickDemo\ControlElement;
 class PhaseDivider extends ValueElement {
 
     protected function getDefault() {
-        return 1;
+        return 8;
     }
 
     protected function getMin() {

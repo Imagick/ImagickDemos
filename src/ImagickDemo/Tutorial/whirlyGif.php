@@ -7,9 +7,12 @@ namespace ImagickDemo\Tutorial;
 class whirlyGif extends \ImagickDemo\Example {
 
     function renderDescription() {
-        $output = "Number of dots % (Phase divider + 1) = 0<br/>";
+        $output = "
+Rendering animated gifs that loop is fun!
+        
+Top-tip, you probably want 'Number of dots' % 'Phase divider' to be zero.";
 
-        return $output;
+        return nl2br($output);
     }
     
     function render() {

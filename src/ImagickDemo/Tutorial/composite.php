@@ -20,7 +20,6 @@ class composite extends \ImagickDemo\Example {
     private $compositeExampleControl;
     
     private $type;
-    
 
     function __construct(CompositeExampleControl $compositeExampleControl, Request $request) {
         $this->compositeExampleControl = $compositeExampleControl;

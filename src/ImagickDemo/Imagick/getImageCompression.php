@@ -4,7 +4,6 @@ namespace ImagickDemo\Imagick;
 
 class getImageCompression extends \ImagickDemo\Example {
 
-
     private $imagePath;
     
     private $compressionTypes = [

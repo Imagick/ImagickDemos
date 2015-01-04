@@ -525,6 +525,22 @@ function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradient
 //Example end
 
 
+//Example Imagick::equalizeImage
+//This appears to corrupt the image colors?
+function extentImage($imagePath, $startX, $startY, $width, $height) {
+    $imagick = new \Imagick(realpath($imagePath));
+    $imagick->equalizeImage();
+    header("Content-Type: image/jpg");
+    $imagick->extentImage(
+        $startX, $startY, $width, $height
+    );
+    
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+    
+
 //Example Imagick::flipImage
 function flipImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -990,11 +1006,11 @@ function newPseudoImage($canvasType) {
 
 
 //Example Imagick::normalizeImage
-function normalizeImage($imagePath) {
+function normalizeImage($imagePath, $channel) {
     $imagick = new \Imagick(realpath($imagePath));
     $original = clone $imagick;
     $original->cropimage($original->getImageWidth() / 2, $original->getImageHeight(), 0, 0);
-    $imagick->normalizeImage(\Imagick::CHANNEL_ALL);
+    $imagick->normalizeImage($channel);
     $imagick->compositeimage($original, \Imagick::COMPOSITE_ATOP, 0, 0);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

@@ -407,7 +407,11 @@ END;
             'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
             'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\EvaluateTypeControl::class],
             //'exportImagePixels',
-            //'extentImage',
+//            'extentImage' => [
+//                'extentImage',
+//                \ImagickDemo\Imagick\Control\chopImage::class
+//            ],
+
             //FrameImage
             //'flattenImages',
             'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
@@ -458,7 +462,7 @@ END;
             //'getImageColors',
             //'getImageColorspace',
             //'getImageCompose',
-            //'getImageCompression',
+            'getImageCompression' => ['getImageCompression', \ImagickDemo\Control\ImageControl::class],
             //'getCompressionQuality',
             //'getImageDelay',
             //'getImageDepth',
@@ -564,7 +568,10 @@ END;
             //'newImage',
             'newPseudoImage' => ['newPseudoImage', \ImagickDemo\Imagick\Control\newPseudoImage::class],
             //'nextImage',
-            'normalizeImage' => ['normalizeImage', \ImagickDemo\Control\ImageControl::class],
+            'normalizeImage' => [
+                'normalizeImage',
+                \ImagickDemo\Imagick\Control\separateImageChannel::class
+            ],
             'oilPaintImage' => ['oilPaintImage', \ImagickDemo\Imagick\Control\oilPaintImage::class],
             //'opaquePaintImage',
             //'optimizeImageLayers',
@@ -892,6 +899,7 @@ END;
 
         $tutorialExamples = [
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
+            //'colorspaceLinearity' => ['colorspaceLinearity', \ImagickDemo\Control\NullControl::class],
             'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
             //'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => [

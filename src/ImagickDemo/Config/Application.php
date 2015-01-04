@@ -14,8 +14,6 @@ class Application {
     
     function __construct() {
         $this->envReader = new APCCacheEnvReader();
-//        $this->cacheImages = $cacheImages;
-//        $this->queueImages = $queueImages;
     }
 
     private function readValues() {

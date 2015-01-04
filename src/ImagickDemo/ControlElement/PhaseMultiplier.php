@@ -9,7 +9,7 @@ namespace ImagickDemo\ControlElement;
 class PhaseMultiplier extends ValueElement {
 
     protected function getDefault() {
-        return 2;
+        return 16;
     }
 
     protected function getMin() {

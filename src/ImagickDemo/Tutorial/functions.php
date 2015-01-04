@@ -451,7 +451,7 @@ function psychedelicFontGif($name = 'Danack') {
 //Example end
 
     
-//Example Tutorial::smoothGif
+//Example Tutorial::whirlyGif
 
 function lerp($t, $a, $b) {
     return $a + ($t * ($b - $a));
@@ -476,15 +476,11 @@ class Dot {
         $fraction += (($this->sequence)) / ($phaseDivider);
         $fraction += $timeOffset;
 
-        //As a personal preference I like the rotations to move clockwise...
-        //$fraction = -$fraction;
-        
         while ($fraction < 0) {
             //fmod does not work 'correctly' on negative numbers
             $fraction += 64;
         }
-        
-        
+
         $fraction = fmod($fraction, 2);
         
         if ($fraction > 1) {
@@ -493,25 +489,11 @@ class Dot {
         else {
             $unitFraction = $fraction;
         }
-        
-//        return $unitFraction;
 
         return $unitFraction * $unitFraction * (3 - 2 * $unitFraction);
     }
     
-    /* 
-        Points 0...n
-    
-        at point: 
-    
-        i = 0 => f(i) = 0
-
-        i = (n / 5) /2  => f(i) = 1
-    
-        i = n / 5 => f(i) = 0    
-     */
-    
-    
+  
     
     function render(\ImagickDraw $draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider) {
         $innerDistance = 40;
@@ -532,8 +514,8 @@ class Dot {
             $offsets[$key] = $trailLength * ($trailSteps - $i) / $trailSteps;
         }
 
+        //TODO - using a pattern would make the circles look more natural
         //$draw->setFillPatternURL();
-        
 
         foreach ($offsets as $alpha => $offset) {
             $distanceFraction = $this->calculateFraction($frame, $maxFrames, $offset, $phaseMultiplier, $phaseDivider);
@@ -552,7 +534,7 @@ class Dot {
 }
 
 
-function smoothGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $phaseMultiplier, $phaseDivider) {
+function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $phaseMultiplier, $phaseDivider) {
     $aniGif = new \Imagick();
     $aniGif->setFormat("gif");
     
@@ -584,9 +566,14 @@ function smoothGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         $dots[] = new Dot($color, $i, $numberDots);
     }
 
+    
+
     for ($frame = 0; $frame < $maxFrames; $frame++) {
         $draw = new \ImagickDraw();
         $draw->setStrokeColor('none');
+        $draw->setFillColor('none');
+        $draw->rectangle(0, 0, 500, 500);
+        
         $draw->translate($width / 2, $height / 2);
 
         foreach($dots as $dot) {
@@ -594,14 +581,12 @@ function smoothGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
             $dot->render($draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider);
         }
 
-//        $draw->setFillColor('black');
-//        $draw->setStrokeWidth(0);
-//        $draw->annotation(60, 165, "Frame ".$frame);
-
         //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
         $imagick->newImage(500 * $scale, 500 * $scale, $backgroundColor);
         $imagick->setImageFormat("png");
+
+        $imagick->setImageDispose(\Imagick::DISPOSE_PREVIOUS);
 
         //Render the draw commands in the ImagickDraw object
         //into the image.
@@ -616,31 +601,16 @@ function smoothGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     $aniGif->setImageFormat('gif');
     
     $aniGif->setImageIterations(0); //loop forever
-    //$aniGif->coalesceImages();
-    $aniGif->deconstructImages();
-    $aniGif->setImageFormat('gif');
+    $aniGif->mergeImageLayers(\Imagick::LAYERMETHOD_OPTIMIZEPLUS);
+
 
     header("Content-Type: image/gif");
     echo $aniGif->getImagesBlob();
 
-    //$aniGif->writeImages("./smoothOut.gif", true);
+//    $aniGif->writeImages("./smoothOut.gif", true);
 }
 //Example end
 
-//$backgroundColor = 'white'; 
-//$numberDots = 17;
-//$numberFrames=30;
-//$loopTime = 50;
-//
-//smoothGif(
-//    $numberDots,
-//    $numberFrames,
-//    $loopTime,
-//    $backgroundColor,
-//    2,
-//    1
-//);
-    
 //Example Tutorial::svgExample
 function svgExample() {
 

@@ -39,6 +39,7 @@
         "intahwebz/routing": ">=0.9.1",
         "intahwebz/weaver": "~0.4.5",
         "intahwebz/configurator": "0.1.1",
+        "mikey179/vfsStream": "1.4.0",
         "nikic/fast-route": "dev-master",
         "oyejorge/less.php": "v1.7.0.1",
         "predis/predis": "1.0.0",

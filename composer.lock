@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e9cd24efd8d6ad4dc7da219e023b6bc9",
+    "hash": "02c346066451b460a09d92c3d30fc468",
     "packages": [
         {
             "name": "amphp/amp",
-            "version": "v0.14.0",
+            "version": "v0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/amp.git",
-                "reference": "df9a41d456e22c076ddd8beace4f2f0d2f0e2ac0"
+                "reference": "c21068fc946f5bfd692297e927773a732f205279"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/amp/zipball/df9a41d456e22c076ddd8beace4f2f0d2f0e2ac0",
-                "reference": "df9a41d456e22c076ddd8beace4f2f0d2f0e2ac0",
+                "url": "https://api.github.com/repos/amphp/amp/zipball/c21068fc946f5bfd692297e927773a732f205279",
+                "reference": "c21068fc946f5bfd692297e927773a732f205279",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                 "non-blocking",
                 "promise"
             ],
-            "time": "2014-11-18 15:08:00"
+            "time": "2014-12-08 16:52:09"
         },
         {
             "name": "amphp/artax",
@@ -116,20 +116,20 @@
         },
         {
             "name": "amphp/dns",
-            "version": "v0.3.4",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/dns.git",
-                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6"
+                "reference": "aaf718e1284d420f52545ee1cbc631b893141da8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/dns/zipball/e58d46d3c565db24c17428bf42a75d55fedd7bc6",
-                "reference": "e58d46d3c565db24c17428bf42a75d55fedd7bc6",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/aaf718e1284d420f52545ee1cbc631b893141da8",
+                "reference": "aaf718e1284d420f52545ee1cbc631b893141da8",
                 "shasum": ""
             },
             "require": {
-                "amphp/amp": "~0.12",
+                "amphp/amp": "~0.15.0",
                 "daverandom/libdns": "~0.2",
                 "php": ">=5.4.0"
             },
@@ -165,7 +165,7 @@
                 "dns",
                 "resolve"
             ],
-            "time": "2014-11-04 04:49:19"
+            "time": "2014-12-08 17:07:24"
         },
         {
             "name": "danack/auryn",
@@ -788,17 +788,55 @@
             "time": "2014-08-12 22:41:53"
         },
         {
+            "name": "mikey179/vfsStream",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikey179/vfsStream.git",
+                "reference": "61b12172292cf539685507aa65b076c1530e83c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikey179/vfsStream/zipball/61b12172292cf539685507aa65b076c1530e83c1",
+                "reference": "61b12172292cf539685507aa65b076c1530e83c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "org\\bovigo\\vfs\\": "src/main/php"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "homepage": "http://vfs.bovigo.org/",
+            "time": "2014-09-14 10:18:53"
+        },
+        {
             "name": "nikic/fast-route",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "55972aa699f7720a14e64c397146dd8d62efcafb"
+                "reference": "5460d7875f07e1bb6af8f07b7ed8d061a7604494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/55972aa699f7720a14e64c397146dd8d62efcafb",
-                "reference": "55972aa699f7720a14e64c397146dd8d62efcafb",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/5460d7875f07e1bb6af8f07b7ed8d061a7604494",
+                "reference": "5460d7875f07e1bb6af8f07b7ed8d061a7604494",
                 "shasum": ""
             },
             "require": {
@@ -831,7 +869,7 @@
                 "source": "https://github.com/nikic/FastRoute/tree/master",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2014-11-27 10:05:05"
+            "time": "2014-12-25 14:31:57"
         },
         {
             "name": "nikic/php-parser",
@@ -1034,21 +1072,21 @@
         },
         {
             "name": "rdlowrey/nbsock",
-            "version": "v0.4.5",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/nbsock.git",
-                "reference": "ce69675b0d47d15f82b871af208df93380f303d5"
+                "reference": "ac6e021f32e7960a17530cdf16cb98c932497695"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/nbsock/zipball/ce69675b0d47d15f82b871af208df93380f303d5",
-                "reference": "ce69675b0d47d15f82b871af208df93380f303d5",
+                "url": "https://api.github.com/repos/rdlowrey/nbsock/zipball/ac6e021f32e7960a17530cdf16cb98c932497695",
+                "reference": "ac6e021f32e7960a17530cdf16cb98c932497695",
                 "shasum": ""
             },
             "require": {
-                "amphp/amp": "~0.12",
-                "amphp/dns": "~0.3",
+                "amphp/amp": "~0.15.0",
+                "amphp/dns": "~0.4.0",
                 "php": ">=5.4.0"
             },
             "type": "library",
@@ -1082,7 +1120,7 @@
                 "tcp",
                 "tls"
             ],
-            "time": "2014-11-10 15:05:32"
+            "time": "2014-12-08 17:19:17"
         }
     ],
     "packages-dev": [

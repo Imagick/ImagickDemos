@@ -667,12 +667,10 @@ END;
                 'setImageBias',
                 \ImagickDemo\Imagick\Control\setImageBias::class
             ],
-
-
             //'setImageBluePrimary',
             //'setImageBorderColor',
             //'setImageChannelDepth',
-            //'setImageClipMask',
+            'setImageClipMask' => ['setImageClipMask', \ImagickDemo\Control\ImageControl::class],
             //'setImageColormapColor',
             //'setImageColorspace',
             //'setImageCompose',

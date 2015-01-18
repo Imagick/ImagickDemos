@@ -1,7 +1,7 @@
 <?php
 
 namespace ImagickDemo\Imagick;
-
+//\Imagick::COMPOSITE_DEFAULT
 
 class orderedPosterizeImage extends \ImagickDemo\Example {
 

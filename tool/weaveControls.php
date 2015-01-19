@@ -685,9 +685,6 @@ $controls = [
         'ImagickDemo\ControlElement\PhaseMultiplier',
         'ImagickDemo\ControlElement\PhaseDivider',
     ],
-    
-    
-    
 ];
 
 \Intahwebz\Functions::load();
@@ -706,10 +703,10 @@ foreach ($controls as $outputClassname => $components) {
     $weave = \Weaver\Weaver::weave($components, $compositeWeaveInfo);
 
     if (is_int($outputClassname) == false) {
-        $weave->writeFile('../var/compile/', $outputClassname);
+        $weave->writeFile(__DIR__.'/../var/compile/', $outputClassname);
     }
     else {
-        $weave->writeFile('../var/compile/');
+        $weave->writeFile(__DIR__.'/../var/compile/');
     }
 }
 

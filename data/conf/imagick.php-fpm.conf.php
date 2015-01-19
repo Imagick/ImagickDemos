@@ -11,7 +11,7 @@ $config = <<< END
 [imagick]
 
 ; Unix user/group of processes
-user = ${'phpfpm.user'}
+user = imagickdemos
 group = ${'phpfpm.group'}
 
 listen = ${'phpfpm.socket.directory'}/php-fpm-\$pool.sock
@@ -19,7 +19,7 @@ listen = ${'phpfpm.socket.directory'}/php-fpm-\$pool.sock
 ; List of ipv4 addresses of FastCGI clients which are allowed to connect.
 listen.allowed_clients = 127.0.0.1
 
-listen.owner = ${'phpfpm.user'}
+listen.owner = imagickdemos
 listen.group = ${'phpfpm.group'}
 listen.mode = 0664
 

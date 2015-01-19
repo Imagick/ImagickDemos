@@ -62,14 +62,12 @@ server {
     }
    
     location ~ ^/(www-status|ping)$ {
-
         if ( \$remote_addr != 127.0.0.1 ) { return 444;} 
-   
         access_log off;
         allow 127.0.0.1;
         deny all;
         fastcgi_param  QUERY_STRING       \$query_string;
-        include       ${'basereality.root.directory'}/conf/fastcgi.conf;
+        include       ${'imagick.root.directory'}/data/conf/fastcgi.conf;
         fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
     }
 
@@ -77,7 +75,7 @@ server {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
         fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
-        include       ${'basereality.root.directory'}/conf/fastcgi.conf;
+        include       ${'imagick.root.directory'}/data/conf/fastcgi.conf;
     }
 }
 

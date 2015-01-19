@@ -4,6 +4,7 @@
 use Danack\Console\Application;
 use Danack\Console\Output\BufferedOutput;
 use Danack\Console\Command\Command;
+use Danack\Console\Input\InputArgument;
 
 //use Danack\Console\Formatter\OutputFormatterStyle;
 //use Danack\Console\Helper\QuestionHelper;
@@ -15,7 +16,12 @@ chdir(realpath(__DIR__).'/../imagick');
 
 $injector = bootstrapInjector();
 
-$application = createApplication();
+try {
+    $application = createApplication();
+}
+catch(\Exception $e) {
+    echo "Exception: ".$e->getMessage()."\n";
+}
 
 //Figure out what Command was requested.
 try {
@@ -78,10 +84,21 @@ function createApplication() {
     $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
     $clearCacheCommand->setDescription("Clear the apc cache.");
 
+
+    $envStrings = implode(', ', \ImagickDemo\CLIConfigurator::getKnownEnvs());
+    $configurateCommand = new Command('configurate', 'ImagickDemo\CLIConfigurator::run');
+    $configurateCommand->addArgument(
+        'environment',
+        InputArgument::REQUIRED,
+        'What environment to build the config for. One of: '.$envStrings
+    );
+    $configurateCommand->setDescription("Build the config files.");
+
     $console = new Application("ImagickDemos", "1.0.0");
     $console->add($statsCommand);
     $console->add($taskCommand);
     $console->add($clearCacheCommand);
+    $console->add($configurateCommand);
 
     return $console;
 }

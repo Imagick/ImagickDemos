@@ -28,7 +28,6 @@ class Page {
     function __construct(BasicViewModel $basicViewModel, JigRender $jigRender) {
         $this->viewModel = $basicViewModel;
         $this->jigRender = $jigRender;
-
     }
 
     /**
@@ -38,7 +37,6 @@ class Page {
      */
     function generateResponseFromTemplate($templateName) {
         $this->viewModel->setVariable('pageTitle', "Imagick demos");
-
         $output = $this->jigRender->renderTemplateFile($templateName, $this->viewModel);
 
         return new TextResponse($output);

@@ -2,6 +2,7 @@
 /* @navbar-margin-bottom:             @line-height-computed; */
 /* @navbar-default-link-hover-bg:             transparent; */
 /* @navbar-default-link-hover-bg:             #cfcfcf; */
+/* @navbar-default-link-hover-bg:             #9BD1FF; */
 /* @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%); */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
@@ -3963,7 +3964,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #111111;
-  background-color: #9bd1ff;
+  background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -4004,7 +4005,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #111111;
-    background-color: #9bd1ff;
+    background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,

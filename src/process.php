@@ -1,7 +1,7 @@
 <?php
 
 
-
+http://stackoverflow.com/questions/22540211/php-imagick-distorting-text-in-arc-clipping/22618900#22618900
 
 $startTime = microtime(true);
 

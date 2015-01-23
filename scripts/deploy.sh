@@ -24,10 +24,3 @@ mkdir -p ./var/cache/less
 
 #Generate the CSS
 /usr/local/bin/php ./tool/compileLess.php
-
-
-
-cd ../autogen
-
-#Link the generated config files so that they can be found by nginx etc.
-sh addImagickConfig.sh

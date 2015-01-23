@@ -90,12 +90,12 @@ $centos = [
     'nginx.user' => 'nginx',
     'nginx.sendFile' => 'on',
     
-    'basereality.chroot.directory' => '/home/intahwebz/current',
-    'basereality.root.directory' => '/home/intahwebz/current',
-    'basereality.cache.directory' => '/home/intahwebz/current/var/cache',
-    'imagick.root.directory' => '/home/github/imagick-demos/imagick-demos/',
+    //'basereality.chroot.directory' => '/home/imagickdemos/current',
+    //'basereality.root.directory' => '/home/intahwebz/current',
+    //'basereality.cache.directory' => '/home/imagickdemos/current/var/cache',
+    'imagick.root.directory' => '/home/imagickdemos/current',
     
-    'github.root.directory' => '/home/github/',
+    //'github.root.directory' => '/home/github/',
     
     'phpfpm.socket' => '/var/run/php-fpm',
     'phpfpm.www.maxmemory' => '16M',

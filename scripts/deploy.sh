@@ -1,12 +1,14 @@
+
+environment="centos_guest"
+
 if [ "$#" -ge 1 ]; then
     environment=$1
 fi
 
-environment="centos_guest"
-cd ..
+echo "environment is ${environment}";
 
 #Run Composer install to get all the dependencies.
-/usr/local/bin/php -d allow_url_fopen=1 ./lib/composer install 
+/usr/local/bin/php -d allow_url_fopen=1 /usr/lib/composer install 
 
 #cp imagick-demos.conf.php ../imagick-demos.conf.php
 #Put some real values in the config

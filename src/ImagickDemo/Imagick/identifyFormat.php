@@ -17,7 +17,7 @@ class identifyFormat extends \ImagickDemo\Example {
     function render() {
 //Example Imagick::identifyFormat
         $output = "Output of 'Trim box: %@ number of unique colors: %k' is: <br/>";
-        $imagick = new \Imagick(realpath("images/artifact/mask.png"));
+        $imagick = new \Imagick(realpath("../../images/artifact/mask.png"));
         $output .= $imagick->identifyFormat("Trim box: %@ number of unique colors: %k");
 //Example end
 

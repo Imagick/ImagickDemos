@@ -921,22 +921,22 @@ function mergeImageLayers($layerMethodType) {
         "../imagick/images/SydneyPeople_400.jpg",
     ];
 
+
     foreach ($images as $image) {
         $nextImage = new \Imagick(realpath($image));
-
-        $nextImage->resizeimage(100, 100, \Imagick::FILTER_LANCZOS, 1);
-        $nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+        //$nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
         $imagick->addImage($nextImage);
-        $imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+        //$imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
     }
+
+    $imagick->resetIterator();
     
-    if ($nextImage == null) {
-        return;
-    }
-    
-    $imagick->mergeImageLayers($layerMethodType);
+    $imagick->setImageFormat('png');
+
+    $result = $imagick->mergeImageLayers($layerMethodType);
     header("Content-Type: image/png");
-    echo $nextImage->getImageBlob();
+    echo $result->getImageBlob();
+    exit(0);
 }
 //Example end
     

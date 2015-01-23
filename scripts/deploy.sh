@@ -25,8 +25,7 @@ mkdir -p ./var/cache/less
 #Generate the CSS
 /usr/local/bin/php ./tool/compileLess.php
 
-#back to root
-exit 
+
 
 cd ../autogen
 

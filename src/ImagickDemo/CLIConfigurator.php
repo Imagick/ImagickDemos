@@ -35,13 +35,19 @@ class CLIConfigurator {
     public static function getKnownEnvs() {
         return self::$knownEnviroments;
     }
-    
-    
+
+
+    /**
+     * 
+     */
     function __construct() {
-        $this->inputDir = '../';//__DIR__.'/../../';
-        $this->outputDir = '../';//__DIR__.'/../../';
+        $this->inputDir = '../';
+        $this->outputDir = '../';
     }
 
+    /**
+     * 
+     */
     function init() {
         $this->filesToGenerate = array(
             $this->inputDir.'data/conf/imageTaskRunner.conf.php' => $this->outputDir.'autogen/imageTaskRunner.conf',
@@ -49,11 +55,13 @@ class CLIConfigurator {
             $this->inputDir.'data/conf/imagick.nginx.conf.php' => $this->outputDir.'autogen/imagick.nginx.conf',
             $this->inputDir.'data/conf/imagick.php-fpm.conf.php' => $this->outputDir.'autogen/imagick.php-fpm.conf',
             $this->inputDir.'data/conf/imagick-demos.php.ini.php' => $this->outputDir.'autogen/imagick-demos.php.ini',
-            $this->inputDir.'data/conf/addImagickConfig.sh.php' => $this->outputDir.'autogen/addImagickConfig.sh',
+            $this->inputDir.'data/conf/addImagickConfig.sh.php' => $this->outputDir.'autogen/addConfig.sh',
         );
     }
 
-    
+    /**
+     * @throws \Exception
+     */
     function main() {
         $this->init();
 

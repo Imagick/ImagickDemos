@@ -4,13 +4,13 @@ $config = <<< END
 
 
 [program:imageTaskRunner]
-directory=${'imagick.root.directory'}/tool
-command=/usr/local/bin/php Runner.php 
+directory=${'imagick.root.directory'}
+command=/usr/local/bin/php bin/cli.php imageRunner
 process_name=%(program_name)s_%(process_num)d
 numprocs=2
 autostart=true
 autorestart=true
-user=intahwebz
+user=imagickdemos
 stdout_logfile=${'php.log.directory'}/imageTaskRunner_stdout.log
 stdout_logfile_maxbytes=1MB
 stderr_logfile=${'php.log.directory'}/imageTaskRunner_stderr.log

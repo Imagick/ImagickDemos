@@ -8,7 +8,7 @@ fi
 echo "environment is ${environment}";
 
 #Run Composer install to get all the dependencies.
-/usr/local/bin/php -d allow_url_fopen=1 /usr/lib/composer install 
+/usr/local/bin/php -d allow_url_fopen=1 /usr/sbin/composer install 
 
 #cp imagick-demos.conf.php ../imagick-demos.conf.php
 #Put some real values in the config

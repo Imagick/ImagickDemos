@@ -22,5 +22,7 @@ echo "environment is ${environment}";
 mkdir -p ./var/cache
 mkdir -p ./var/cache/less
 
+chown -R imagickdemos ./var
+
 #Generate the CSS
 /usr/local/bin/php ./tool/compileLess.php

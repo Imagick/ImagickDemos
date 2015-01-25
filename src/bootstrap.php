@@ -33,7 +33,6 @@ function exceptionHandler(Exception $ex) {
     echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
 
     foreach ($ex->getTrace() as $tracePart) {
-
         if (isset($tracePart['file']) && isset($tracePart['line'])) {
             echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
         }
@@ -44,43 +43,32 @@ function exceptionHandler(Exception $ex) {
             var_dump($tracePart);
         }
     }
-
-    //TODO - format this
-    //var_dump($ex->getTrace());
 }
 
 
 function errorHandler($errno, $errstr, $errfile, $errline) {
-//    $level = ob_get_level();
-//    
-//    for($x=0; $x<$level; $x++) {
-//        ob_end_flush();
-//    }
-    
-    if (!(error_reporting() & $errno)) {
-        // This error code is not included in error_reporting
+    if (error_reporting() == 0) {
         return true;
     }
-
+    if ($errno == E_DEPRECATED) {
+        //lol don't care.
+        return true;
+    }
+    
     switch ($errno) {
         case E_CORE_ERROR:
-        case E_ERROR:
-        {
-            echo "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
+        case E_ERROR: {
+            $message =  "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
             break;
         }
 
-        default:
-            {
-            echo "<b>errorHandler</b> [$errno] $errstr in file $errfile on line $errline<br />\n";
-
-            return false;
-            }
+        default: {
+            $message =  "<b>errorHandler</b> [$errno] $errstr in file $errfile on line $errline<br />\n";
+            break;
+        }
     }
-
-    /* Don't execute PHP internal error handler */
-
-    return true;
+    
+    throw new \Exception($message);
 }
 
 
@@ -186,8 +174,7 @@ function bootstrapInjector() {
 
     $injector->defineParam('activeCategory', null);
     $injector->defineParam('activeExample', null);
-    
-    
+
     $injector->define('ImagickDemo\DocHelper', [
         ':category' => null,
         ':example' => null
@@ -291,8 +278,6 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
     foreach ($controller->getInjectionParams() as $key => $value) {
         $injector->defineParam($key, $value);
     }
-
-    //delegateAllTheThings($injector, $controlClass);
 
     if ($function) {
         $exampleClassName = sprintf('ImagickDemo\%s\%s', $category, $function);
@@ -667,8 +652,6 @@ function renderImageAsFileResponse(
     \Auryn\Provider $injector,
     $params) {
 
-    global $imageType;
-
     $imageCallable = function() use ($imageFunction, $injector, $params){
         return $injector->execute($imageFunction, $params);
     };
@@ -687,14 +670,21 @@ function renderImageAsFileResponse(
 
     $image = ob_get_contents();
     ob_end_clean();
-    @mkdir(dirname($filename), 0755, true);
+    @mkdir(dirname($filename), 0755, true);    
     $fullFilename = $filename . "." . strtolower($imageType);
     
     if (!strlen($image)) {
         throw new \Exception("Image generated was empty for $imageFunction.");
     }
+
+    $fileWritten = @file_put_contents($fullFilename, $image);
     
-    file_put_contents($fullFilename, $image);
+    if ($fileWritten === false) {
+        throw new \Exception("Failed to write file $fullFilename");
+    }
+    if ($fileWritten === 0) {
+        throw new \Exception("Image was empty when written to $fullFilename .");
+    }
     
     return new \ImagickDemo\Response\FileResponse($fullFilename, "image/" . $imageType);
 }
@@ -742,16 +732,7 @@ function processImageTask(
         $taskQueue->pushTask($task);
         $job = 0;
     }
-
     
-//    $noRedirect = $request->getVariable('noredirect', false);
-//    
-//    if ($noRedirect) {
-//        return "foo";
-//    }
-//    
-    
-
     return redirectWaitingTask($request, intval($job));
 }
     
@@ -763,10 +744,7 @@ function processImageTask(
  * @throws \Exception
  */
 function directImageFunction($imageFunction, \Auryn\Provider $injector) {
-
     $imageCallable = function() use ($imageFunction, $injector) {
-        
-        
         try {
             return $injector->execute($imageFunction);
         }
@@ -776,103 +754,27 @@ function directImageFunction($imageFunction, \Auryn\Provider $injector) {
         }
     };
     
-   
-    
     return createImageResponse($imageCallable);
 }
 
-
-/**
- * @return string
- */
 function renderImageURL(
-    $taskQueueIsActive, //$this->taskQueue->isActive()
-    $imgURL, //$this->getURL();
+    $taskQueueIsActive,
+    $imgURL,
     $originalImageURL,
-    $statusURL //$this->getImageStatusURL();
-) { 
-    $js = '';
-    $originalImage = $originalImageURL;
+    $statusURL
+) {
+    global $cacheImages;
 
-    $output = '';
-    $asyncImage = "";
-
-    $tempImgURL = $imgURL;
-
-    if ($taskQueueIsActive) {
-        $output .= sprintf(
-            "<span class='asyncImage' data-statusuri='%s' data-imageuri='%s'>",
-            addslashes($statusURL),
-            addslashes($imgURL)
-        );
-
-        $output .= "<span class='asyncImageStatus'>Async image loading...</span>";
-        $tempImgURL = '/images/loading.gif';
-    }
-    else {
-        $output .= "<span>";
-    }
-
-    $newWindow = sprintf(
-        "<a href='%s' target='_blank'>View modified in new window.</a>",
-        $imgURL
+    $useAsyncLoading = $cacheImages && $taskQueueIsActive;
+    
+    $imageRender = new ImagickDemo\Helper\ImageRender(
+        $useAsyncLoading,
+        $imgURL,
+        $originalImageURL,
+        $statusURL
     );
 
-    $originalText = "Touch/mouse over to see original ";
-    $modifiedText = "Touch/mouse out to see modified ";
-
-    if ($originalImage == true) {
-        $modifiedImage = $imgURL;//$url;//$this->getURL();
-
-        $changeToOriginal = sprintf(
-            "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-            addslashes($originalImage),
-            addslashes($modifiedText)
-        );
-
-        $changeToModified = sprintf(
-            "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-            addslashes($modifiedImage),
-            addslashes($originalText)
-        );
-
-        $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
-        $mouseOut = "onmouseout=\"$changeToModified\" \n";
-        $touch = sprintf(
-            "ontouchstart=\"toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')\"",
-            $originalImage,
-            $originalText,
-            $modifiedImage,
-            $modifiedText
-        );
-
-        $js = $mouseOver.' '.$mouseOut.' '.$touch;
-    }
-
-    $output .= $asyncImage;
-
-    $output .= sprintf(
-        "<img src='%s' id='exampleImage' class='img-responsive exampleImage' %s />",
-        $tempImgURL,
-        $js
-    );
-
-    if ($originalImage == true) {
-        $output .= "<div class='row asyncImageHidden'>";
-        $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
-
-        $output .= "<span id='mouseText'>";
-        $output .= $originalText;
-        $output .= "</span>";
-        $output .= $newWindow;
-        $output .= "</div>";
-
-        $output .= "</div>";
-    }
-
-    $output .= "</span>";
-
-    return $output;
+    return $imageRender->render();
 }
 
 }//namespace end

@@ -389,9 +389,8 @@ class SiteChecker {
 }
 
 $site = "http://imagick.test";
-//$site = "http://test.phpimagick.com"
 
-$reactor = Amp\reactor();
+$reactor = Amp\getReactor();
 
 $client = new ArtaxClient($reactor);
 

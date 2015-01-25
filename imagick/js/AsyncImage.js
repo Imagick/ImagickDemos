@@ -2,10 +2,6 @@
 
 
 
-
-
-
-
 var AsyncImage = {
 
     checkCount: 0,
@@ -13,49 +9,46 @@ var AsyncImage = {
     imageURI: null,
     callback: null,
     statusElement: null,
+    startTime: null,
     
     options: {
-        content: null,
-        //
-        //filterTags: '.searchTags',
-        //contentTags: '.contentTags',
-        //suggestedTags: '.suggestedTags',
-        //suggestWidget: null,
+        content: null
+    },
+    
+    getTicks: function() {
+        var d = new Date();
+        return d.getTime();
     },
 
-    getAsyncDelay: function (number) {
-        if (number == 0) {
-            return 0;
+    getAsyncDelay: function () {
+        var timeElapsed = this.getTicks() - this.startTime;
+        var delays = {
+            1000: 100, 
+            5000: 250
+        };
+        for (var i in delays) {
+            if (timeElapsed < delays[i]) {
+                return delays[i];
+            }
         }
-        if (number > 5 ) {
-            number = 5;
-        }
-    
-        var delay = Math.floor(100 * Math.pow(1.5, number));
-    
-        if (delay > 4000) {
-            delay = 4000;
-        }
-    
-        return delay;
+
+        return 1000;
     },
-
-
 
     asyncStatusUpdate: function () {
-        var checkCount = this.checkCount;
-        if (checkCount > 60) {
-            this.statusElement.text("Yeah. I think it's broken dude. Maybe report an issue? Or it could just be taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.");
+        var timeElapsed = this.getTicks() - this.startTime;
+        var secondsElapsed = timeElapsed / 1000;
+        if (secondsElapsed > 60) {
+            var imageLink = "<a href='" + this.imageURI + "'>" + this.imageURI + "</a>";
+            var text = "Yeah, I think it's broken. Maybe report an issue? Or it could just be taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.";
+            this.statusElement.text(text);
             return false;
         }
-        else if (checkCount > 30) {
+        else if (secondsElapsed > 30) {
             this.statusElement.text("A really long time. It might be broken.");
         }
-        else if (checkCount > 8) {
+        else if (secondsElapsed > 5) {
             this.statusElement.text("Hmm, this seems to be taking a long time.");
-        }
-        else if (checkCount > 3) {
-            this.statusElement.text("Async loading image.");
         }
 
         return true;
@@ -74,6 +67,7 @@ var AsyncImage = {
                     $(this.element).find('.exampleImage').attr('src', this.imageURI);
                     this.statusElement.text("");
                     $(this.element).find('.asyncImageHidden').removeClass('asyncImageHidden');
+                    $(this.element).find('.asyncLoading').css('display', 'none');
                 }
                 else {
                     var continueProcessing = this.asyncStatusUpdate();
@@ -92,8 +86,6 @@ var AsyncImage = {
             error: errorCallback,
             success: successCallback
         });
-
-        this.checkCount += 1;
     },
 
     _create: function() {
@@ -103,8 +95,9 @@ var AsyncImage = {
     _init: function() {
         this.statusURI = $(this.element).data('statusuri');
         this.imageURI = $(this.element).data('imageuri');
+        this.enabled = $(this.element).data('enabled');
         this.statusElement = $(this.element).find('.asyncImageStatus');
-        
+
         if (!this.statusURI) {
             return;
         }
@@ -112,16 +105,15 @@ var AsyncImage = {
         if (!this.imageURI) {
             return;
         }
-        
-        if (!this.statusElement) {
-            alert("Failed to find status element");
-        }
 
         if (this.imageURI.indexOf("?")) {
             this.imageURI = this.imageURI + "&noredirect=true";
         }
         else {
             this.imageURI = this.imageURI + "?noredirect=true";
+        }
+        if (!JSON.parse(("" + this.enabled).toLowerCase())) {
+            return;
         }
 
         $.ajax({
@@ -132,6 +124,8 @@ var AsyncImage = {
         });
 
         this.callback = $.proxy(this, 'checkImageStatus');
+
+        this.startTime = this.getTicks();
         
         setTimeout(this.callback, 0);
     } 

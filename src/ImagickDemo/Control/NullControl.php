@@ -12,7 +12,6 @@ class NullControl implements \ImagickDemo\Control {
     private $activeCategory;
     private $activeExample;
     
-    
     function __construct(TaskQueue $taskQueue, $activeCategory, $activeExample) {
         $this->taskQueue = $taskQueue;
         $this->activeCategory = $activeCategory;

@@ -27,7 +27,7 @@ function header($string, $replace = true, $http_response_code = null) {
     
     if ($cacheImages == false) {
         if (php_sapi_name() !== 'cli') {
-            \header($string, $replace, $http_response_code);
+            //\header($string, $replace, $http_response_code);
         }
     }
 }
@@ -1515,24 +1515,22 @@ function setImageTicksPerSecond() {
 //Example end
 
 
-
 //Example Imagick::setIteratorIndex
-function setIteratorIndex() {
+    function setIteratorIndex($firstLayer) {
+        $imagick = new \Imagick(realpath("images/LayerTest.psd"));
+        $output = new \Imagick();
+        $imagick->setIteratorIndex($firstLayer);
 
-    $imagick = new \Imagick(realpath("images/LayerTest.psd"));
+        do {
+            $output->addImage($imagick->getimage());
+        } while($imagick->nextImage());
 
-    $output = new \Imagick();
-    $imagick->setIteratorIndex(1);
-    $output->addImage($imagick->getimage());
+        $merged = $output->mergeImageLayers(\Imagick::LAYERMETHOD_MERGE);
 
-    $imagick->setIteratorIndex(2);
-    $output->addImage($imagick->getimage());
-
-    $merged = @$output->flattenimages();
-    $merged->setImageFormat('png');
-    header("Content-Type: image/png");
-    echo $merged->getImageBlob();
-}
+        $merged->setImageFormat('png');
+        header("Content-Type: image/png");
+        echo $merged->getImageBlob();
+    }
 //Example end
 
 

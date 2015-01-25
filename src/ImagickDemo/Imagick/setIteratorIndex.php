@@ -2,30 +2,35 @@
 
 namespace ImagickDemo\Imagick;
 
+use Intahwebz\Request;
+
+
+
 class setIteratorIndex extends \ImagickDemo\Example {
 
+    private $firstLayer = 0;
+
+    function __construct(\ImagickDemo\Control $control, Request $request) {
+        $this->control = $control;
+        $this->firstLayer = $request->getVariable('firstLayer', 0);
+    }
+
+    function getCustomImageParams() {
+        return ['firstLayer' => $this->firstLayer];
+    }
 
     function render() {
         $output = '';
-        $output .= "Selecting first two layers:<br/>";
-        $output .= $this->renderImageURL();
-        $output .= '<br/>All layers in the image:<br/>';
-        $output .= $this->renderCustomImageURL();
+        $output .= "Selecting layers from <a href='/images/LayerTest.psd'>source PSD</a>:<br/>";
+        
+        $output .= $this->renderCustomImageURL(['firstLayer' => 1]);
+        $output .= $this->renderCustomImageURL(['firstLayer' => 2]);
+        $output .= $this->renderCustomImageURL(['firstLayer' => 3]);
 
         return $output;
     }
-
-    function renderCustomImageURL() {
-        return sprintf(
-            "<img src='%s' />",
-            $this->control->getCustomImageURL()
-        );
-    }
-
+    
     function renderCustomImage() {
-        $imagick = new \Imagick(realpath("images/LayerTest.psd"));
-        $imagick->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        setIteratorIndex($this->firstLayer);
     }
 }

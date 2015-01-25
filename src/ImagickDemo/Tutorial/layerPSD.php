@@ -8,21 +8,10 @@ class layerPSD extends \ImagickDemo\Example {
         return "";
     }
 
-
-//    function getCustomImageParams() {
-//        return $this->control->getParams();
-//    }
-
     function render() {
         return $this->renderCustomImageURL();
     }
 
-    function renderCustomImageURL() {
-        return sprintf(
-            "<img src='%s' />",
-            $this->control->getCustomImageURL()
-        );
-    }
 
     function renderDescription() {
         $output = <<< END
@@ -41,17 +30,12 @@ class layerPSD extends \ImagickDemo\Example {
 Will load just layers 1 and 2 from the source PSD file
 </p>
 
-
-
 END;
 
         
         return $output;
     }
 
-
-    
-    
 
     function renderCustomImage() {
         $files = [

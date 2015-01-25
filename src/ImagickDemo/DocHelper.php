@@ -721,6 +721,18 @@ class DocHelper {
     echo $imagick->getImageBlob();
 }
 ";s:11:"description";s:0:"";s:9:"startLine";i:459;s:7:"endLine";i:466;}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"equalizeImage";s:5:"lines";s:353:"//This appears to corrupt the image colors?
+function extentImage($imagePath, $startX, $startY, $width, $height) {
+    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick->equalizeImage();
+    header("Content-Type: image/jpg");
+    $imagick->extentImage(
+        $startX, $startY, $width, $height
+    );
+    
+    echo $imagick->getImageBlob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:528;s:7:"endLine";i:540;}',
     ),
     'evaluateimage' => 
     array (
@@ -789,7 +801,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:528;s:7:"endLine";i:535;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:544;s:7:"endLine";i:551;}',
     ),
     'floodfillpaintimage' => 
     array (
@@ -808,7 +820,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:538;s:7:"endLine";i:554;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:554;s:7:"endLine";i:570;}',
     ),
     'flopimage' => 
     array (
@@ -818,7 +830,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:557;s:7:"endLine";i:564;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:573;s:7:"endLine";i:580;}',
     ),
     'forwardfouriertransformimage' => 
     array (
@@ -874,7 +886,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/png");
     echo $magnitude->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:566;s:7:"endLine";i:619;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:582;s:7:"endLine";i:635;}',
     ),
     'frameimage' => 
     array (
@@ -894,7 +906,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:622;s:7:"endLine";i:639;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:638;s:7:"endLine";i:655;}',
     ),
     'fximage' => 
     array (
@@ -909,7 +921,7 @@ function forwardFourierTransformImage($imagePath) {
     $fxImage->setimageformat(\'png\');
     echo $fxImage->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:643;s:7:"endLine";i:655;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:659;s:7:"endLine";i:671;}',
     ),
     'gammaimage' => 
     array (
@@ -919,7 +931,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:658;s:7:"endLine";i:665;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:674;s:7:"endLine";i:681;}',
     ),
     'gaussianblurimage' => 
     array (
@@ -929,7 +941,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:668;s:7:"endLine";i:675;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:684;s:7:"endLine";i:691;}',
     ),
     'getimagegeometry' => 
     array (
@@ -938,7 +950,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:678;s:7:"endLine";i:684;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:694;s:7:"endLine";i:700;}',
     ),
     'getpixeliterator' => 
     array (
@@ -960,7 +972,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:686;s:7:"endLine";i:705;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:702;s:7:"endLine";i:721;}',
     ),
     'getimagehistogram' => 
     array (
@@ -1050,7 +1062,7 @@ function getImageHistogram($imagePath) {
     header( "Content-Type: image/png" );
     echo $histogram;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:709;s:7:"endLine";i:796;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:725;s:7:"endLine";i:812;}',
     ),
     'getpixelregioniterator' => 
     array (
@@ -1072,7 +1084,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:799;s:7:"endLine";i:818;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:815;s:7:"endLine";i:834;}',
     ),
     'haldclutimage' => 
     array (
@@ -1084,7 +1096,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:820;s:7:"endLine";i:829;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:836;s:7:"endLine";i:845;}',
     ),
     'implodeimage' => 
     array (
@@ -1095,7 +1107,7 @@ function getImageHistogram($imagePath) {
     echo $imagick->getImageBlob();
 
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:832;s:7:"endLine";i:840;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:848;s:7:"endLine";i:856;}',
     ),
     'labelimage' => 
     array (
@@ -1105,7 +1117,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
     }
-";s:11:"description";s:0:"";s:9:"startLine";i:842;s:7:"endLine";i:849;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:858;s:7:"endLine";i:865;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"labelImage";s:5:"lines";s:254:"function polaroidImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagickDraw = new \\ImagickDraw();    
@@ -1113,7 +1125,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1031;s:7:"endLine";i:1039;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1047;s:7:"endLine";i:1055;}',
     ),
     'levelimage' => 
     array (
@@ -1128,7 +1140,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:852;s:7:"endLine";i:864;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:868;s:7:"endLine";i:880;}',
     ),
     'linearstretchimage' => 
     array (
@@ -1140,7 +1152,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:867;s:7:"endLine";i:876;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:883;s:7:"endLine";i:892;}',
     ),
     'magnifyimage' => 
     array (
@@ -1150,7 +1162,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:879;s:7:"endLine";i:886;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:895;s:7:"endLine";i:902;}',
     ),
     'medianfilterimage' => 
     array (
@@ -1160,11 +1172,11 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:889;s:7:"endLine";i:896;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:905;s:7:"endLine";i:912;}',
     ),
     'mergeimagelayers' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"mergeImageLayers";s:5:"lines";s:758:"function mergeImageLayers($layerMethodType) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"mergeImageLayers";s:5:"lines";s:723:"function mergeImageLayers($layerMethodType) {
 
     $imagick = new \\Imagick();
     $nextImage = null;
@@ -1173,24 +1185,24 @@ function getImageHistogram($imagePath) {
         "../imagick/images/SydneyPeople_400.jpg",
     ];
 
+
     foreach ($images as $image) {
         $nextImage = new \\Imagick(realpath($image));
-
-        $nextImage->resizeimage(100, 100, \\Imagick::FILTER_LANCZOS, 1);
-        $nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+        //$nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
         $imagick->addImage($nextImage);
-        $imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
+        //$imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
     }
+
+    $imagick->resetIterator();
     
-    if ($nextImage == null) {
-        return;
-    }
-    
-    $imagick->mergeImageLayers($layerMethodType);
+    $imagick->setImageFormat(\'png\');
+
+    $result = $imagick->mergeImageLayers($layerMethodType);
     header("Content-Type: image/png");
-    echo $nextImage->getImageBlob();
+    echo $result->getImageBlob();
+    exit(0);
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:898;s:7:"endLine";i:925;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:914;s:7:"endLine";i:941;}',
     ),
     'modulateimage' => 
     array (
@@ -1200,7 +1212,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:928;s:7:"endLine";i:935;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:944;s:7:"endLine";i:951;}',
     ),
     'mosaicimages' => 
     array (
@@ -1224,7 +1236,7 @@ function getImageHistogram($imagePath) {
     $imagick->setimageformat(\'png\');
     header("Content-Type: image/png");
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:938;s:7:"endLine";i:959;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:954;s:7:"endLine";i:975;}',
     ),
     'motionblurimage' => 
     array (
@@ -1234,7 +1246,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:962;s:7:"endLine";i:969;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:978;s:7:"endLine";i:985;}',
     ),
     'negateimage' => 
     array (
@@ -1244,7 +1256,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:971;s:7:"endLine";i:978;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:987;s:7:"endLine";i:994;}',
     ),
     'newpseudoimage' => 
     array (
@@ -1255,20 +1267,20 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:981;s:7:"endLine";i:989;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:997;s:7:"endLine";i:1005;}',
     ),
     'normalizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"normalizeImage";s:5:"lines";s:416:"function normalizeImage($imagePath) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"normalizeImage";s:5:"lines";s:413:"function normalizeImage($imagePath, $channel) {
     $imagick = new \\Imagick(realpath($imagePath));
     $original = clone $imagick;
     $original->cropimage($original->getImageWidth() / 2, $original->getImageHeight(), 0, 0);
-    $imagick->normalizeImage(\\Imagick::CHANNEL_ALL);
+    $imagick->normalizeImage($channel);
     $imagick->compositeimage($original, \\Imagick::COMPOSITE_ATOP, 0, 0);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:992;s:7:"endLine";i:1002;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1008;s:7:"endLine";i:1018;}',
     ),
     'oilpaintimage' => 
     array (
@@ -1278,7 +1290,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1004;s:7:"endLine";i:1011;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1020;s:7:"endLine";i:1027;}',
     ),
     'orderedposterizeimage' => 
     array (
@@ -1292,7 +1304,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1017;s:7:"endLine";i:1028;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1033;s:7:"endLine";i:1044;}',
     ),
     'posterizeimage' => 
     array (
@@ -1303,7 +1315,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1043;s:7:"endLine";i:1051;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1059;s:7:"endLine";i:1067;}',
     ),
     'quantizeimage' => 
     array (
@@ -1314,7 +1326,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1054;s:7:"endLine";i:1062;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1070;s:7:"endLine";i:1078;}',
     ),
     'radialblurimage' => 
     array (
@@ -1326,7 +1338,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1065;s:7:"endLine";i:1074;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1081;s:7:"endLine";i:1090;}',
     ),
     'raiseimage' => 
     array (
@@ -1338,7 +1350,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1077;s:7:"endLine";i:1086;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1093;s:7:"endLine";i:1102;}',
     ),
     'randomthresholdimage' => 
     array (
@@ -1353,7 +1365,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1089;s:7:"endLine";i:1101;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1105;s:7:"endLine";i:1117;}',
     ),
     'readimageblob' => 
     array (
@@ -1380,7 +1392,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imageBlob;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1103;s:7:"endLine";i:1127;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1119;s:7:"endLine";i:1143;}',
     ),
     'recolorimage' => 
     array (
@@ -1401,7 +1413,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1129;s:7:"endLine";i:1147;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1145;s:7:"endLine";i:1163;}',
     ),
     'reducenoiseimage' => 
     array (
@@ -1411,7 +1423,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1149;s:7:"endLine";i:1156;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1165;s:7:"endLine";i:1172;}',
     ),
     'remapimage' => 
     array (
@@ -1422,7 +1434,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1158;s:7:"endLine";i:1166;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1174;s:7:"endLine";i:1182;}',
     ),
     'resampleimage' => 
     array (
@@ -1433,7 +1445,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1168;s:7:"endLine";i:1176;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1184;s:7:"endLine";i:1192;}',
     ),
     'resizeimage' => 
     array (
@@ -1467,7 +1479,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1180;s:7:"endLine";i:1211;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1196;s:7:"endLine";i:1227;}',
     ),
     'rollimage' => 
     array (
@@ -1477,7 +1489,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1214;s:7:"endLine";i:1221;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1230;s:7:"endLine";i:1237;}',
     ),
     'rotateimage' => 
     array (
@@ -1487,7 +1499,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1223;s:7:"endLine";i:1230;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1239;s:7:"endLine";i:1246;}',
     ),
     'rotationalblurimage' => 
     array (
@@ -1499,7 +1511,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1232;s:7:"endLine";i:1241;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1248;s:7:"endLine";i:1257;}',
     ),
     'roundcorners' => 
     array (
@@ -1526,7 +1538,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1243;s:7:"endLine";i:1267;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1259;s:7:"endLine";i:1283;}',
     ),
     'scaleimage' => 
     array (
@@ -1536,7 +1548,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1269;s:7:"endLine";i:1276;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1285;s:7:"endLine";i:1292;}',
     ),
     'segmentimage' => 
     array (
@@ -1546,7 +1558,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1279;s:7:"endLine";i:1286;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1295;s:7:"endLine";i:1302;}',
     ),
     'selectiveblurimage' => 
     array (
@@ -1556,7 +1568,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1289;s:7:"endLine";i:1296;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1305;s:7:"endLine";i:1312;}',
     ),
     'separateimagechannel' => 
     array (
@@ -1566,7 +1578,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1299;s:7:"endLine";i:1306;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1315;s:7:"endLine";i:1322;}',
     ),
     'sepiatoneimage' => 
     array (
@@ -1576,7 +1588,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1310;s:7:"endLine";i:1317;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1326;s:7:"endLine";i:1333;}',
     ),
     'setcompressionquality' => 
     array (
@@ -1602,7 +1614,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1320;s:7:"endLine";i:1343;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1336;s:7:"endLine";i:1359;}',
     ),
     'setimageartifact' => 
     array (
@@ -1619,7 +1631,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $src1->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1347;s:7:"endLine";i:1361;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1363;s:7:"endLine";i:1377;}',
     ),
     'setimagecompressionquality' => 
     array (
@@ -1629,7 +1641,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1364;s:7:"endLine";i:1371;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1380;s:7:"endLine";i:1387;}',
     ),
     'setimageorientation' => 
     array (
@@ -1640,7 +1652,7 @@ function setImageOrientation($imagePath, $orientationType) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1374;s:7:"endLine";i:1382;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1390;s:7:"endLine";i:1398;}',
     ),
     'setimagebias' => 
     array (
@@ -1662,7 +1674,43 @@ function setImageBias($bias) {
     header(\'Content-type: image/png\');
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1385;s:7:"endLine";i:1404;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1401;s:7:"endLine";i:1420;}',
+    ),
+    'setimageclipmask' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setImageClipMask";s:5:"lines";s:751:"function setImageClipMask($imagePath) {
+    $imagick = new \\Imagick();
+    $imagick->readImage(realpath($imagePath));
+
+    $width = $imagick->getImageWidth();
+    $height = $imagick->getImageHeight();
+
+    $clipMask = new \\Imagick();
+    $clipMask->newPseudoImage(
+        $width,
+        $height,
+        "canvas:transparent"
+    );
+
+    $draw = new \\ImagickDraw();
+    $draw->setFillColor(\'white\');
+    $draw->circle(
+        $width / 2,
+        $height / 2,
+        ($width / 2) + ($width / 4),
+        $height / 2
+    );
+    $clipMask->drawImage($draw);
+    $imagick->setImageClipMask($clipMask);
+
+    $imagick->negateImage(false);
+    $imagick->setFormat("png");
+
+    header("Content-Type: image/png");
+    echo $imagick->getImagesBlob();
+    
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:1423;s:7:"endLine";i:1456;}',
     ),
     'setimagedelay' => 
     array (
@@ -1682,7 +1730,7 @@ function setImageBias($bias) {
     header("Content-Type: image/gif");
     echo $imagick2->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1407;s:7:"endLine";i:1424;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1459;s:7:"endLine";i:1476;}',
     ),
     'setimageresolution' => 
     array (
@@ -1693,7 +1741,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1427;s:7:"endLine";i:1435;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1479;s:7:"endLine";i:1487;}',
     ),
     'setimagetickspersecond' => 
     array (
@@ -1721,27 +1769,26 @@ function setImageBias($bias) {
     header("Content-Type: image/gif");
     echo $imagick2->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1438;s:7:"endLine";i:1463;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1490;s:7:"endLine";i:1515;}',
     ),
     'setiteratorindex' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setIteratorIndex";s:5:"lines";s:439:"function setIteratorIndex() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setIteratorIndex";s:5:"lines";s:505:"    function setIteratorIndex($firstLayer) {
+        $imagick = new \\Imagick(realpath("images/LayerTest.psd"));
+        $output = new \\Imagick();
+        $imagick->setIteratorIndex($firstLayer);
 
-    $imagick = new \\Imagick(realpath("images/LayerTest.psd"));
+        do {
+            $output->addImage($imagick->getimage());
+        } while($imagick->nextImage());
 
-    $output = new \\Imagick();
-    $imagick->setIteratorIndex(1);
-    $output->addImage($imagick->getimage());
+        $merged = $output->mergeImageLayers(\\Imagick::LAYERMETHOD_MERGE);
 
-    $imagick->setIteratorIndex(2);
-    $output->addImage($imagick->getimage());
-
-    $merged = @$output->flattenimages();
-    $merged->setImageFormat(\'png\');
-    header("Content-Type: image/png");
-    echo $merged->getImageBlob();
-}
-";s:11:"description";s:0:"";s:9:"startLine";i:1467;s:7:"endLine";i:1484;}',
+        $merged->setImageFormat(\'png\');
+        header("Content-Type: image/png");
+        echo $merged->getImageBlob();
+    }
+";s:11:"description";s:0:"";s:9:"startLine";i:1518;s:7:"endLine";i:1534;}',
     ),
     'setsamplingfactors' => 
     array (
@@ -1768,7 +1815,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $reopen->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1507;s:7:"endLine";i:1531;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1557;s:7:"endLine";i:1581;}',
     ),
     'shadeimage' => 
     array (
@@ -1778,7 +1825,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1533;s:7:"endLine";i:1540;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1583;s:7:"endLine";i:1590;}',
     ),
     'shadowimage' => 
     array (
@@ -1788,7 +1835,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1542;s:7:"endLine";i:1549;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1592;s:7:"endLine";i:1599;}',
     ),
     'sharpenimage' => 
     array (
@@ -1798,7 +1845,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1552;s:7:"endLine";i:1559;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1602;s:7:"endLine";i:1609;}',
     ),
     'shaveimage' => 
     array (
@@ -1808,7 +1855,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1562;s:7:"endLine";i:1569;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1612;s:7:"endLine";i:1619;}',
     ),
     'shearimage' => 
     array (
@@ -1818,7 +1865,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1572;s:7:"endLine";i:1579;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1622;s:7:"endLine";i:1629;}',
     ),
     'sigmoidalcontrastimage' => 
     array (
@@ -1833,7 +1880,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1582;s:7:"endLine";i:1594;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1632;s:7:"endLine";i:1644;}',
     ),
     'sketchimage' => 
     array (
@@ -1843,7 +1890,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1597;s:7:"endLine";i:1604;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1647;s:7:"endLine";i:1654;}',
     ),
     'smushimages' => 
     array (
@@ -1858,7 +1905,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $smushed->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1606;s:7:"endLine";i:1618;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1656;s:7:"endLine";i:1668;}',
     ),
     'solarizeimage' => 
     array (
@@ -1868,7 +1915,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1621;s:7:"endLine";i:1628;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1671;s:7:"endLine";i:1678;}',
     ),
     'spliceimage' => 
     array (
@@ -1878,7 +1925,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1631;s:7:"endLine";i:1638;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1681;s:7:"endLine";i:1688;}',
     ),
     'spreadimage' => 
     array (
@@ -1888,7 +1935,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1640;s:7:"endLine";i:1647;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1690;s:7:"endLine";i:1697;}',
     ),
     'statisticimage' => 
     array (
@@ -1905,7 +1952,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1650;s:7:"endLine";i:1664;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1700;s:7:"endLine";i:1714;}',
     ),
     'stereoimage' => 
     array (
@@ -1916,7 +1963,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1667;s:7:"endLine";i:1675;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1717;s:7:"endLine";i:1725;}',
     ),
     'subimagematch' => 
     array (
@@ -1947,7 +1994,7 @@ function setImageBias($bias) {
     
     return $comparison;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1678;s:7:"endLine";i:1706;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1728;s:7:"endLine";i:1756;}',
     ),
     'swirlimage' => 
     array (
@@ -1957,7 +2004,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1710;s:7:"endLine";i:1717;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1760;s:7:"endLine";i:1767;}',
     ),
     'textureimage' => 
     array (
@@ -1971,7 +2018,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $image;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1719;s:7:"endLine";i:1730;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1769;s:7:"endLine";i:1780;}',
     ),
     'thresholdimage' => 
     array (
@@ -1981,7 +2028,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1733;s:7:"endLine";i:1740;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1783;s:7:"endLine";i:1790;}',
     ),
     'thumbnailimage' => 
     array (
@@ -1992,7 +2039,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1743;s:7:"endLine";i:1751;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1793;s:7:"endLine";i:1801;}',
     ),
     'tintimage' => 
     array (
@@ -2009,7 +2056,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1754;s:7:"endLine";i:1768;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1804;s:7:"endLine";i:1818;}',
     ),
     'transformimage' => 
     array (
@@ -2019,7 +2066,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $newImage->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1771;s:7:"endLine";i:1778;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1821;s:7:"endLine";i:1828;}',
     ),
     'transformimagecolorspace' => 
     array (
@@ -2030,7 +2077,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1781;s:7:"endLine";i:1789;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1831;s:7:"endLine";i:1839;}',
     ),
     'transparentpaintimage' => 
     array (
@@ -2050,7 +2097,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1792;s:7:"endLine";i:1809;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1842;s:7:"endLine";i:1859;}',
     ),
     'transposeimage' => 
     array (
@@ -2060,7 +2107,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1812;s:7:"endLine";i:1819;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1862;s:7:"endLine";i:1869;}',
     ),
     'transverseimage' => 
     array (
@@ -2070,7 +2117,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1822;s:7:"endLine";i:1829;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1872;s:7:"endLine";i:1879;}',
     ),
     'trimimage' => 
     array (
@@ -2082,7 +2129,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1832;s:7:"endLine";i:1841;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1882;s:7:"endLine";i:1891;}',
     ),
     'uniqueimagecolors' => 
     array (
@@ -2095,7 +2142,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1844;s:7:"endLine";i:1854;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1894;s:7:"endLine";i:1904;}',
     ),
     'unsharpmaskimage' => 
     array (
@@ -2105,7 +2152,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1857;s:7:"endLine";i:1864;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1907;s:7:"endLine";i:1914;}',
     ),
     'vignetteimage' => 
     array (
@@ -2115,7 +2162,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1867;s:7:"endLine";i:1874;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1917;s:7:"endLine";i:1924;}',
     ),
     'waveimage' => 
     array (
@@ -2125,7 +2172,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1877;s:7:"endLine";i:1884;}',
+";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1927;s:7:"endLine";i:1934;}',
     ),
     'whitethresholdimage' => 
     array (
@@ -2136,12 +2183,12 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1887;s:7:"endLine";i:1895;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1937;s:7:"endLine";i:1945;}',
     ),
     'identifyformat' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"identifyFormat";s:5:"lines";s:244:"        $output = "Output of \'Trim box: %@ number of unique colors: %k\' is: <br/>";
-        $imagick = new \\Imagick(realpath("images/artifact/mask.png"));
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"identifyFormat";s:5:"lines";s:246:"        $output = "Output of \'Trim box: %@ number of unique colors: %k\' is: <br/>";
+        $imagick = new \\Imagick(realpath("./images/artifact/mask.png"));
         $output .= $imagick->identifyFormat("Trim box: %@ number of unique colors: %k");
 ";s:11:"description";s:0:"";s:9:"startLine";i:18;s:7:"endLine";i:22;}',
     ),

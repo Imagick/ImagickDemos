@@ -20,16 +20,14 @@ Modify an animated gif so the first half of the gif is played
         played at double the speed it currently is
         
 END;
-        
-        
-        
-        echo nl2br($output);
+
+        return nl2br($output);
     }
     
     
     function render() {
-        
 
+        $output = '';
         $output .= $this->renderImageURL();
         return $output;
     }

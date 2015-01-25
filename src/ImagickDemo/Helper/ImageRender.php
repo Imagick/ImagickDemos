@@ -19,7 +19,7 @@ class ImageRender {
         $imgURL,
         $originalImageURL,
         $statusURL
-    ) {
+    ) {        
         $this->useAsyncLoading = $useAsyncLoading;
         $this->imgURL = $imgURL;
         $this->originalImageURL = $originalImageURL;
@@ -140,6 +140,11 @@ class ImageRender {
      * 
      */
     private function addOriginalText() {
+
+        if (!$this->originalImageURL) {
+            return '';
+        }
+        
         $newWindow = sprintf(
             "<a href='%s' target='_blank'>View modified in new window.</a>",
             $this->imgURL

@@ -13,14 +13,7 @@ fi
 
 #Generate the config files for nginx, etc.
 /usr/local/bin/php bin/cli.php configurate $environment
-
+#Generate some code.
 /usr/local/bin/php ./tool/weaveControls.php
-
-#need to make dir?
-mkdir -p ./var/cache
-mkdir -p ./var/cache/less
-
-chown -R imagickdemos ./var
-
 #Generate the CSS
 /usr/local/bin/php ./tool/compileLess.php

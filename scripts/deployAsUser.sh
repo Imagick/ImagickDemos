@@ -6,7 +6,7 @@ fi
 
 echo "environment is ${environment}";
 
-if ["${environment}" -ne "centos_guest"]; then
+if [ "${environment}" -ne "centos_guest" ]; then
     #Run Composer install to get all the dependencies.
     /usr/local/bin/php -d allow_url_fopen=1 /usr/sbin/composer install
 fi
@@ -21,3 +21,6 @@ mkdir -p ./var/cache/less
 /usr/local/bin/php ./tool/weaveControls.php
 #Generate the CSS
 /usr/local/bin/php ./tool/compileLess.php
+
+
+#todo - make everything other than var be not writable 

@@ -6,6 +6,7 @@ if [ "$#" -ge 1 ]; then
 fi
 
 
-
 su imagickdemos -c "./scripts/deployAsUser.sh ${environment}"
+
+
 sh ./autogen/addConfig.sh

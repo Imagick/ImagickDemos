@@ -52,7 +52,7 @@ server {
     location ~ ~$           { access_log off; log_not_found off; deny all; }
     
     #This must be the last regular epxression match
-    location ~* ^[^\?\&]+\.(html|jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|pdf|ppt|txt|tar|mid|midi|wav|bmp|rtf|js|svg|woff|ttf)$ {
+    location ~* ^[^\?\&]+\.(html|jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|pdf|ppt|psd|txt|tar|mid|midi|wav|bmp|rtf|js|svg|woff|ttf)$ {
         try_files \$uri /index.php?file=\$1;
 
         #access_log off;

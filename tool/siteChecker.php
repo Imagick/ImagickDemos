@@ -223,15 +223,19 @@ class SiteChecker {
     function fetchURL(URLToCheck $urlToCheck) {
         $this->count++;
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
-        
+        if ($this->count % 10 == 0) {
+            echo "\n";
+        }
         echo ".";
+        
+        
 //        echo "Getting $fullURL \n";
 
         $promise = $this->artaxClient->request($fullURL);
 
         $analyzeResult = function(\Exception $e = null, Response $response = null) use ($urlToCheck, $fullURL) {
 
-            echo "Result for $fullURL \n";
+            //echo "Result for $fullURL \n";
             
             if ($e) {
                 echo "Something went wrong for $fullURL : ".$e->getMessage();
@@ -278,9 +282,12 @@ class SiteChecker {
                     break;
                 }
 
+
+                case ('application/octet-stream') :
                 case ('image/gif') :
                 case ('image/jpeg') :
                 case ('image/jpg') :
+                case ('image/vnd.adobe.photoshop') :
                 case ('image/png') : {
                     //echo "Image with status - $status\n";
                     //compareImage($urlToCheck, $response->getBody(), $contentType);

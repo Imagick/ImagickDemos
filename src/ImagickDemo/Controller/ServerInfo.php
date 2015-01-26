@@ -36,11 +36,13 @@ class ServerInfo {
             return null;
         }
 
-        $client = new Client();
+        $reactor = \Amp\getReactor();
+        $client = new Client($reactor);
         $url = "http://".$serverName."/www-status?full&json";
         $promise = $client->request($url);
-    
-        $response = $promise->wait();
+
+        $response = \Amp\wait($promise);
+        //$response = $promise->wait();
 
         $headers = [
             "pool" => "Pool name",
@@ -107,12 +109,14 @@ class ServerInfo {
                         $text = $process[$processHeader];
 
                         $text = str_replace([
-                                '/home/github/imagick-demos//imagick',
-                                '/home/github/imagick-demos/imagick'
+                                '/home/github/imagick-demos//imagick-demos',
+                                '/home/github/imagick-demos/imagick-demos'
                             ],
                             '',
                             $text
                         );
+
+                        $text = ltrim($text, '/');
 
                         echo $text;
                     }

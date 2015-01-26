@@ -115,7 +115,7 @@ function fatalErrorShutdownHandler() {
 
 
 function getImageCacheFilename($category, $example, $params) {
-    $filename = "../var/cache/imageCache/" . $category . '/' . $example;
+    $filename = "../var/cache/imageCache/".$category.'/'.$example.'/'.$example;
     if (!empty($params)) {
         $filename .= '_' . md5(json_encode($params));
     }

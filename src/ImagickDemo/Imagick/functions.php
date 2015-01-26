@@ -1727,31 +1727,18 @@ function stereoImage($imagePath) {
 
 //Example Imagick::subImageMatch
 function subImageMatch($imagePath) {
-
-    //Similarity score is: 0
-    //array(4) { ["x"]=> int(250) ["y"]=> int(110) ["width"]=> int(40) ["height"]=> int(40)
-
     $imagick = new \Imagick(realpath($imagePath));
-
     $imagick2 = clone $imagick;
-    //$imagick2->blurImage(5, 1);
     $imagick2->cropimage(40, 40, 250, 110);
-
-    $imagick2->setImagePage($imagick2->getimageWidth(), $imagick2->getimageheight(), 0, 0);
     $imagick2->vignetteimage(0, 1, 3, 3);
 
     $similarity = null;
     $bestMatch = null;
     $comparison = $imagick->subImageMatch($imagick2, $bestMatch, $similarity);
 
-    //Do something with $comparison
-
-    echo "Similarity score is: ".$similarity;
-    foreach($bestMatch as $key => $value) {
-        echo "$key : $value <br/>";
-    }
-    
-    return $comparison;
+    $comparison->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
 }
 //Example end
 

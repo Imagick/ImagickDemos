@@ -53,8 +53,8 @@ END;
         return $output;
     }
 
-    function renderCustomImage($type) {
-        switch($type) {
+    function renderCustomImage() {
+        switch($this->type) {
             
             case('simple'): {
                 $this->renderCustomImageSimple();

@@ -132,10 +132,12 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return "<br/>".nl2br($descriptions[$customImage]);
     }
 
-
-    
-    
-    function renderCustomImage($type) {
+    /**
+     * @throws \Exception
+     */
+    function renderCustomImage() {
+        $type = $this->type;
+        
         $methods = [
             'multiplyGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MULTIPLY],
             'difference' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_DIFFERENCE],

@@ -8,7 +8,7 @@ use Imagick;
 use Intahwebz\Request;
 
 //Example Tutorial::deconstructGif Make a simple gif with lots of frames.
-function makeSimpleGif() {
+function makeSimpleGif($deconstruct) {
     $aniGif = new \Imagick();
     $aniGif->setFormat("gif");
 
@@ -49,9 +49,18 @@ function makeSimpleGif() {
         $aniGif->addImage($frame);
     }
 
-    return $aniGif;
+    if ($deconstruct == true) {
+        $aniGif = $aniGif->deconstructImages();
+    }
+
+    header("Content-Type: image/gif");
+    echo $aniGif->getImagesBlob();
 }
 //Example end
+
+
+
+
 
 class deconstructGif extends \ImagickDemo\Example {
 
@@ -105,18 +114,12 @@ Deconstructed:   108,772 bytes</pre>";
         return $output;
     }
 
-//Example Tutorial::deconstructGif
-    function renderCustomImage($deconstruct) {
-        $aniGif = makeSimpleGif();
-        
-        if ($deconstruct == true) {
-            $aniGif = $aniGif->deconstructImages();
-        }
-
-        header("Content-Type: image/gif");
-        echo $aniGif->getImagesBlob();        
+    /**
+     * 
+     */
+    function renderCustomImage() {
+        makeSimpleGif($this->deconstruct);
     }
-//Example end
 }
 
  

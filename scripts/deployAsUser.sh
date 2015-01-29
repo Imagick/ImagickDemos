@@ -15,8 +15,6 @@ fi
 mkdir -p ./var/cache/less
 #chown -R imagickdemos ./var
 
-find . -name "*.sh" -exec chmod 755 {} \;
-
 
 #Generate the config files for nginx, etc.
 php bin/cli.php configurate $environment

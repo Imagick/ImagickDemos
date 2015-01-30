@@ -1027,7 +1027,7 @@ function setFontSize($fillColor, $strokeColor, $backgroundColor) {
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(2);
-    $draw->setFont("../fonts/Arial.TTF");
+    $draw->setFont("../fonts/Arial.ttf");
 
     $sizes = [24, 36, 48, 60, 72];
 

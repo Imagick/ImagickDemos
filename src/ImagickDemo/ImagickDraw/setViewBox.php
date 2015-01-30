@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setViewbox extends ImagickDrawExample {
+class setViewBox extends ImagickDrawExample {
 
     function getDescription() {
         return "";

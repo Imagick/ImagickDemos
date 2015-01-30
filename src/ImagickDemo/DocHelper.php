@@ -1967,34 +1967,21 @@ function setImageBias($bias) {
     ),
     'subimagematch' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"subImageMatch";s:5:"lines";s:785:"function subImageMatch($imagePath) {
-
-    //Similarity score is: 0
-    //array(4) { ["x"]=> int(250) ["y"]=> int(110) ["width"]=> int(40) ["height"]=> int(40)
-
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"subImageMatch";s:5:"lines";s:450:"function subImageMatch($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
-
     $imagick2 = clone $imagick;
-    //$imagick2->blurImage(5, 1);
     $imagick2->cropimage(40, 40, 250, 110);
-
-    $imagick2->setImagePage($imagick2->getimageWidth(), $imagick2->getimageheight(), 0, 0);
     $imagick2->vignetteimage(0, 1, 3, 3);
 
     $similarity = null;
     $bestMatch = null;
     $comparison = $imagick->subImageMatch($imagick2, $bestMatch, $similarity);
 
-    //Do something with $comparison
-
-    echo "Similarity score is: ".$similarity;
-    foreach($bestMatch as $key => $value) {
-        echo "$key : $value <br/>";
-    }
-    
-    return $comparison;
+    $comparison->setImageFormat(\'png\');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1728;s:7:"endLine";i:1756;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1728;s:7:"endLine";i:1743;}',
     ),
     'swirlimage' => 
     array (
@@ -2004,7 +1991,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1760;s:7:"endLine";i:1767;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1747;s:7:"endLine";i:1754;}',
     ),
     'textureimage' => 
     array (
@@ -2018,7 +2005,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $image;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1769;s:7:"endLine";i:1780;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1756;s:7:"endLine";i:1767;}',
     ),
     'thresholdimage' => 
     array (
@@ -2028,7 +2015,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1783;s:7:"endLine";i:1790;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1770;s:7:"endLine";i:1777;}',
     ),
     'thumbnailimage' => 
     array (
@@ -2039,7 +2026,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1793;s:7:"endLine";i:1801;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1780;s:7:"endLine";i:1788;}',
     ),
     'tintimage' => 
     array (
@@ -2056,7 +2043,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1804;s:7:"endLine";i:1818;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1791;s:7:"endLine";i:1805;}',
     ),
     'transformimage' => 
     array (
@@ -2066,7 +2053,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $newImage->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1821;s:7:"endLine";i:1828;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1808;s:7:"endLine";i:1815;}',
     ),
     'transformimagecolorspace' => 
     array (
@@ -2077,7 +2064,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1831;s:7:"endLine";i:1839;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1818;s:7:"endLine";i:1826;}',
     ),
     'transparentpaintimage' => 
     array (
@@ -2097,7 +2084,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1842;s:7:"endLine";i:1859;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1829;s:7:"endLine";i:1846;}',
     ),
     'transposeimage' => 
     array (
@@ -2107,7 +2094,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1862;s:7:"endLine";i:1869;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1849;s:7:"endLine";i:1856;}',
     ),
     'transverseimage' => 
     array (
@@ -2117,7 +2104,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1872;s:7:"endLine";i:1879;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1859;s:7:"endLine";i:1866;}',
     ),
     'trimimage' => 
     array (
@@ -2129,7 +2116,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1882;s:7:"endLine";i:1891;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1869;s:7:"endLine";i:1878;}',
     ),
     'uniqueimagecolors' => 
     array (
@@ -2142,7 +2129,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1894;s:7:"endLine";i:1904;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1881;s:7:"endLine";i:1891;}',
     ),
     'unsharpmaskimage' => 
     array (
@@ -2152,7 +2139,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1907;s:7:"endLine";i:1914;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1894;s:7:"endLine";i:1901;}',
     ),
     'vignetteimage' => 
     array (
@@ -2162,7 +2149,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1917;s:7:"endLine";i:1924;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1904;s:7:"endLine";i:1911;}',
     ),
     'waveimage' => 
     array (
@@ -2172,7 +2159,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1927;s:7:"endLine";i:1934;}',
+";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1914;s:7:"endLine";i:1921;}',
     ),
     'whitethresholdimage' => 
     array (
@@ -2183,7 +2170,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1937;s:7:"endLine";i:1945;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1924;s:7:"endLine";i:1932;}',
     ),
     'identifyformat' => 
     array (
@@ -3426,7 +3413,7 @@ function setImageBias($bias) {
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(2);
-    $draw->setFont("../fonts/Arial.TTF");
+    $draw->setFont("../fonts/Arial.ttf");
 
     $sizes = [24, 36, 48, 60, 72];
 
@@ -4702,7 +4689,7 @@ function syncIteratorImage($imagePath) {
   array (
     'deconstructgif' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:14:"deconstructGif";s:5:"lines";s:1541:"function makeSimpleGif() {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:14:"deconstructGif";s:5:"lines";s:1694:"function makeSimpleGif($deconstruct) {
     $aniGif = new \\Imagick();
     $aniGif->setFormat("gif");
 
@@ -4743,20 +4730,14 @@ function syncIteratorImage($imagePath) {
         $aniGif->addImage($frame);
     }
 
-    return $aniGif;
-}
-";s:11:"description";s:38:"Make a simple gif with lots of frames.";s:9:"startLine";i:10;s:7:"endLine";i:54;}',
-      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:14:"deconstructGif";s:5:"lines";s:286:"    function renderCustomImage($deconstruct) {
-        $aniGif = makeSimpleGif();
-        
-        if ($deconstruct == true) {
-            $aniGif = $aniGif->deconstructImages();
-        }
-
-        header("Content-Type: image/gif");
-        echo $aniGif->getImagesBlob();        
+    if ($deconstruct == true) {
+        $aniGif = $aniGif->deconstructImages();
     }
-";s:11:"description";s:0:"";s:9:"startLine";i:108;s:7:"endLine";i:119;}',
+
+    header("Content-Type: image/gif");
+    echo $aniGif->getImagesBlob();
+}
+";s:11:"description";s:38:"Make a simple gif with lots of frames.";s:9:"startLine";i:10;s:7:"endLine";i:59;}',
     ),
     'fxanalyzeimage' => 
     array (

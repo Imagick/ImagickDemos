@@ -4,24 +4,28 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "02c346066451b460a09d92c3d30fc468",
+    "hash": "6b1c7c126806f65da456f28171d3c787",
     "packages": [
         {
             "name": "amphp/amp",
-            "version": "v0.15.0",
+            "version": "v0.15.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/amp.git",
-                "reference": "c21068fc946f5bfd692297e927773a732f205279"
+                "reference": "5a39ec6730c8af07f24a4dd153a5e0455323e254"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/amp/zipball/c21068fc946f5bfd692297e927773a732f205279",
-                "reference": "c21068fc946f5bfd692297e927773a732f205279",
+                "url": "https://api.github.com/repos/amphp/amp/zipball/5a39ec6730c8af07f24a4dd153a5e0455323e254",
+                "reference": "5a39ec6730c8af07f24a4dd153a5e0455323e254",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
+            },
+            "suggest": {
+                "pecl/libevent": "Extension for libevent backends (high performance use cases).",
+                "php-uv": "Extension for libuv backends (high performance use cases)."
             },
             "type": "library",
             "extra": {
@@ -59,7 +63,7 @@
                 "non-blocking",
                 "promise"
             ],
-            "time": "2014-12-08 16:52:09"
+            "time": "2015-01-22 01:16:07"
         },
         {
             "name": "amphp/artax",
@@ -518,7 +522,7 @@
         },
         {
             "name": "intahwebz/core",
-            "version": "dev-master",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/intahwebz-core.git",
@@ -561,7 +565,7 @@
         },
         {
             "name": "intahwebz/mb_extra",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/mb_extra.git",
@@ -605,7 +609,7 @@
         },
         {
             "name": "intahwebz/routing",
-            "version": "dev-master",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/intahwebz-routing.git",
@@ -831,12 +835,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "5460d7875f07e1bb6af8f07b7ed8d061a7604494"
+                "reference": "3763c6b17f04172f031e0e828df84843226f36a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/5460d7875f07e1bb6af8f07b7ed8d061a7604494",
-                "reference": "5460d7875f07e1bb6af8f07b7ed8d061a7604494",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/3763c6b17f04172f031e0e828df84843226f36a8",
+                "reference": "3763c6b17f04172f031e0e828df84843226f36a8",
                 "shasum": ""
             },
             "require": {
@@ -869,7 +873,7 @@
                 "source": "https://github.com/nikic/FastRoute/tree/master",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2014-12-25 14:31:57"
+            "time": "2015-01-27 11:25:22"
         },
         {
             "name": "nikic/php-parser",
@@ -1029,24 +1033,19 @@
         },
         {
             "name": "psr/log",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "a78d6504ff5d4367497785ab2ade91db3a9fbe11"
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/a78d6504ff5d4367497785ab2ade91db3a9fbe11",
-                "reference": "a78d6504ff5d4367497785ab2ade91db3a9fbe11",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Psr\\Log\\": ""
@@ -1068,7 +1067,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2014-01-18 15:33:09"
+            "time": "2012-12-21 11:40:51"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1123,21 +1122,14 @@
             "time": "2014-12-08 17:19:17"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "nikic/fast-route": 20
     },
-    "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }

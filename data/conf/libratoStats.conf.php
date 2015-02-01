@@ -5,7 +5,7 @@ $config = <<< END
 
 [program:libratoStats]
 directory=${'imagick.root.directory'}
-command=/usr/local/bin/php bin/cli.php statsRunner
+command=php bin/cli.php statsRunner
 process_name=%(program_name)s
 numprocs=1
 autostart=true

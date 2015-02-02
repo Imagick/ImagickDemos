@@ -913,30 +913,20 @@ function medianFilterImage($radius, $imagePath) {
 
 //Example Imagick::mergeImageLayers
 function mergeImageLayers($layerMethodType) {
-
     $imagick = new \Imagick();
-    $nextImage = null;
-    $images = [
-        "../imagick/images/Biter_500.jpg",
-        "../imagick/images/SydneyPeople_400.jpg",
-    ];
-
-
-    foreach ($images as $image) {
-        $nextImage = new \Imagick(realpath($image));
-        //$nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
-        $imagick->addImage($nextImage);
-        //$imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
-    }
-
-    $imagick->resetIterator();
+    $whiteDisc = new \Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
+    $imagick->addImage($whiteDisc);
     
+    $whiteDisc = new \Imagick(realpath("../imagick/images/redDiscAlpha.png"));
+    $imagick->addImage($whiteDisc);
+    
+    $whiteDisc = new \Imagick(realpath("../imagick/images/greenDiscAlpha.png"));
+    $imagick->addImage($whiteDisc);
     $imagick->setImageFormat('png');
 
     $result = $imagick->mergeImageLayers($layerMethodType);
     header("Content-Type: image/png");
     echo $result->getImageBlob();
-    exit(0);
 }
 //Example end
     

@@ -2,10 +2,12 @@
 
 namespace ImagickDemo\Tutorial {
 
-    class functions {
-        static function load() {
-        }
+use Imagick;
+    
+class functions {
+    static function load() {
     }
+}
 
 /**
  * Hack the header function to allow us to capture the image type,
@@ -707,7 +709,37 @@ function levelizeImage($blackPoint, $gamma,  $whitePoint) {
     echo $imagick->getImageBlob();
 }
 //Example end
-    
-    
+
+//Example Tutorial::imageGeometryReset
+function imageGeometryReset() {
+
+    $draw = new \ImagickDraw();
+
+    $draw->setFont("../fonts/Arial.ttf");
+    $draw->setFontSize(48);
+    $draw->setStrokeAntialias(true);
+    $draw->setTextAntialias(true);
+    $draw->setFillColor('#ff0000');
+
+    $textOnly = new \Imagick();
+    $textOnly->newImage(600, 300, "rgb(230, 230, 230)");
+    $textOnly->setImageFormat('png');
+    $textOnly->annotateImage($draw, 30, 40, 0, 'Your Text Here');
+    $textOnly->trimImage(0);
+    $textOnly->setImagePage($textOnly->getimageWidth(), $textOnly->getimageheight(), 0, 0);
+
+    $distort = array(180);
+    $textOnly->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+
+    $textOnly->setImageMatte( TRUE );
+    $textOnly->distortImage(Imagick::DISTORTION_ARC, $distort, FALSE);
+
+    $textOnly->setformat('png');
+
+    header("Content-Type: image/png");
+    echo $textOnly->getimageblob();
+}
+//Example end
+
     
 }

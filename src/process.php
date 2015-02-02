@@ -8,13 +8,14 @@ $startTime = microtime(true);
 
 require __DIR__ . '/../src/bootstrap.php';
 
+ini_set('display_errors', 'on');
+
 
 \Intahwebz\Functions::load();
 
 register_shutdown_function('fatalErrorShutdownHandler');
 set_error_handler('errorHandler');
 set_exception_handler('exceptionHandler');
-
 
 $injector = bootstrapInjector();
 

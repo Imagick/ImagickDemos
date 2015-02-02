@@ -32,7 +32,7 @@ class Application {
      * @return mixed
      */
     public function getCacheImages() {
-        return false;
+        return true;
 //        $this->readValues();
 //        return $this->cacheImages;
     }

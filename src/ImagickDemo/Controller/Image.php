@@ -3,11 +3,8 @@
 namespace ImagickDemo\Controller;
 
 use Intahwebz\Request;
-use ImagickDemo\Response\FileResponse;
 use ImagickDemo\Response\JsonResponse;
-use ImagickDemo\Response\RedirectResponse;
-use ImagickDemo\Config\Application as ApplicationConfig;
-use ImagickDemo\Queue\TaskQueueFactory;
+use ImagickDemo\Queue\ImagickTaskQueue;
 
 
 
@@ -27,15 +24,21 @@ class Image {
     function getImageJobStatus(
         $category,
         $example,
+        $imageFunction,
         \ImagickDemo\Control $control,
         \ImagickDemo\Example $exampleController
     ) {
 
+        $data = [];
         $customImageParams = $exampleController->getCustomImageParams();
-
-        $filename = getImageCacheFilename($category, $example, $control->getFullParams($customImageParams));
-        $data = ['finished' => false];
-        $data['params'] = $customImageParams;
+        $fullParams = $control->getFullParams($customImageParams);
+        
+        $filename = getImageCacheFilename($category, $example, $fullParams);
+        $data['filename'] = $filename;
+        $data['finished'] = false;
+        $data['debug'] = var_export($fullParams, true);
+        $data['params'] = $fullParams;
+        $data['asdsd'] = var_export($imageFunction, true);
 
         foreach (getKnownExtensions() as $extension) {
             if (file_exists($filename.'.'.$extension) == true) {
@@ -56,7 +59,6 @@ class Image {
      */
     private function getImageResponseInternal(\Auryn\Provider $injector, $params) {
 
-        
         $logCallable = function ($imageFunction,
                                  $category,
                                  $example) use ($params) {
@@ -70,7 +72,6 @@ class Image {
 
             file_put_contents("test.data.php", $string, FILE_APPEND);
         };
-        
 
         $cacheImageFile = function ($imageFunction, 
                                     $category,
@@ -91,17 +92,29 @@ class Image {
         
         $processImageTask = function (Request $request,
                                       $imageFunction,
-                                      TaskQueueFactory $taskQueueFactory,
+                                      ImagickTaskQueue $taskQueue,
                                       $category, $example) use ($params) {
 
-            return processImageTask(
-                $request,
-                $imageFunction,
-                $params,
-                $taskQueueFactory,
-                $category,
-                $example
-            );
+            $job = $request->getVariable('job', false);
+            if ($job === false) {
+                if ($taskQueue->isActive() == false) {
+                    //Queue isn't active - don't bother queueing a task
+                    return null;
+                }
+
+                $task = \ImagickDemo\Queue\ImagickTask::create(
+                    $category, $example,
+                    $imageFunction, $params
+                );
+
+                $taskQueue->addTask($task);
+            }
+
+            if ($request->getVariable('noredirect') == true) {
+                return new \ImagickDemo\Response\ErrorResponse(503, "image still processing.");
+            }
+
+            return redirectWaitingTask($request, intval($job));
         };
 
         global $cacheImages;

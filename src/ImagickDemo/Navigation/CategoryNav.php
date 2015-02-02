@@ -938,6 +938,7 @@ END;
             'whirlyGif' =>  ['whirlyGif', \ImagickDemo\Imagick\Control\loopGif::class],
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
+            'imageGeometryReset' => ['imageGeometryReset', \ImagickDemo\Control\NullControl::class],
         ];
 
         $examples = [

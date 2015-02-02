@@ -7,7 +7,6 @@ use ImagickDemo\Response\StandardHTTPResponse;
 use ImagickDemo\Response\FileResponse;
 use ImagickDemo\Config\Application as ApplicationConfig;
 use Intahwebz\Request;
-use ImagickDemo\Queue\TaskQueueFactory;
 use ImagickDemo\Response\RedirectResponse;
 
 require __DIR__.'/../vendor/autoload.php';
@@ -30,19 +29,27 @@ function exceptionHandler(Exception $ex) {
     else {
         //Exception after headers sent
     }
-    echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
+    
+    while($ex) {
 
-    foreach ($ex->getTrace() as $tracePart) {
-        if (isset($tracePart['file']) && isset($tracePart['line'])) {
-            echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
+        echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
+
+        foreach ($ex->getTrace() as $tracePart) {
+            if (isset($tracePart['file']) && isset($tracePart['line'])) {
+                echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
+            }
+            else if (isset($tracePart["function"])) {
+                echo $tracePart["function"] . "<br/>";
+            }
+            else {
+                var_dump($tracePart);
+            }
         }
-        else if (isset($tracePart["function"])) {
-            echo $tracePart["function"] . "<br/>";
+        $ex = $ex->getPrevious();
+        if ($ex) {
+            echo "Previously ";
         }
-        else {
-            var_dump($tracePart);
-        }
-    }
+    };
 }
 
 
@@ -87,27 +94,24 @@ function fatalErrorShutdownHandler() {
 
     switch ($last_error['type']) {
         case (E_ERROR):
-        case (E_PARSE):
-        {
+        case (E_PARSE): {
             // fatal error
             header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
             var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
             exit(0);
         }
 
-        case(E_CORE_WARNING):
-        {
+        case(E_CORE_WARNING): {
             //TODO - report errors properly.
             errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
             break;
         }
 
-        default:
-            {
+        default: {
             header("HTTP/1.0 500 Unknown fatal error", true, 500);
             var_dump($last_error);
             break;
-            }
+        }
     }
 
     return false;
@@ -169,8 +173,8 @@ function bootstrapInjector() {
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
 
-    $injector->alias('ImagickDemo\Queue\TaskQueue', 'ImagickDemo\Queue\RedisTaskQueue');
-    $injector->share('ImagickDemo\Queue\RedisTaskQueue');
+
+    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
 
     $injector->defineParam('activeCategory', null);
     $injector->defineParam('activeExample', null);
@@ -532,6 +536,22 @@ function getKnownExtensions() {
 }
 
 
+
+function foo($category,
+             $example,
+             $imageFunction,
+             \ImagickDemo\Control $control,
+             \ImagickDemo\Example $exampleController) {
+
+    $customImageParams = $exampleController->getCustomImageParams();
+    $fullParams = $control->getFullParams($customImageParams);
+
+    ImagickTask::create($category, $example, $imageFunction, $fullParams);
+}
+
+
+
+    
     
 function getRoutes(ApplicationConfig $appConfig) {
 
@@ -558,6 +578,7 @@ function getRoutes(ApplicationConfig $appConfig) {
             'GET',
             "/imageStatus/$categories/{example:[a-zA-Z]+}",
             [\ImagickDemo\Controller\Image::class, 'getImageJobStatus']
+            
         );
 
         $imageController = [\ImagickDemo\Controller\Image::class, 'getImageResponse'];
@@ -707,36 +728,6 @@ function redirectWaitingTask(Request $request, $job) {
     return $response;
 }
 
-    
-function processImageTask(
-    Request $request,
-    $imageFunction,
-    $params,
-    TaskQueueFactory $taskQueueFactory,
-    $category, $example) {
-
-    $job = $request->getVariable('job', false);
-    if ($job === false) {
-        $taskQueue = $taskQueueFactory->createTaskQueue();
-
-        if ($taskQueue->isActive() == false) {
-            //Queue isn't active - don't bother queueing a task
-            return null;
-        }
-
-        $filename = getImageCacheFilename($category, $example, $params);
-
-        $task = new \ImagickDemo\Queue\ImagickTask(
-            $imageFunction, $params, $filename
-        );        
-        $taskQueue->pushTask($task);
-        $job = 0;
-    }
-    
-    return redirectWaitingTask($request, intval($job));
-}
-    
-    
 /**
  * @param $imageFunction
  * @param \Auryn\Provider $injector

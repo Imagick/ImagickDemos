@@ -6,9 +6,6 @@ use Danack\Console\Output\BufferedOutput;
 use Danack\Console\Command\Command;
 use Danack\Console\Input\InputArgument;
 
-//use Danack\Console\Formatter\OutputFormatterStyle;
-//use Danack\Console\Helper\QuestionHelper;
-//use Danack\Console\Input\InputArgument;
 
 require __DIR__.'/../src/bootstrap.php';
 

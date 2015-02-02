@@ -10,19 +10,45 @@ class ImagickTask implements Task {
 
     use \Intahwebz\Cache\KeyName;
 
- 
     private $imageFunction;
 
     private $params;
 
     private $filename;
 
+    /**
+     * @param $imageFunction
+     * @param $params
+     * @param $filename
+     */
     function __construct($imageFunction, $params, $filename) {
         $this->imageFunction = $imageFunction;
         $this->params = $params;
         $this->filename = $filename;
     }
 
+    /**
+     * 
+     */
+    public function getKey() {
+        return $this->filename;
+    }
+    
+
+    /**
+     * @param $category
+     * @param $example
+     * @param $imageFunction
+     * @param $params
+     * @return ImagickTask
+     */
+    public static function create($category, $example, $imageFunction, $params) {
+        $filename = getImageCacheFilename($category, $example, $params);
+        return new \ImagickDemo\Queue\ImagickTask(
+            $imageFunction, $params, $filename
+        );
+    }
+    
     function getQueueName() {
         return self::getClassKey();
     }
@@ -35,12 +61,11 @@ class ImagickTask implements Task {
         return 30;
     }
 
+    /**
+     * @return array
+     */
     function serialize() {
         $data = [
-//            'category' => $this->category,
-//            'functionName' => $this->functionName,
-//            'type' => $this->type,
-//            'control' => $this->control
             'imageFunction' => $this->imageFunction,
             'params' => $this->params,
             'filename' => $this->filename
@@ -49,6 +74,10 @@ class ImagickTask implements Task {
         return $data;
     }
 
+    /**
+     * @param $serialization
+     * @return ImagickTask
+     */
     static function unserialize($serialization) {
         return new ImagickTask(
             $serialization['imageFunction'],
@@ -74,60 +103,4 @@ class ImagickTask implements Task {
     public function getFilename() {
         return $this->filename;
     }
-    
-
-//    function getFunctionName() {
-//        return $this->functionName;
-//    }
-
-    /*
-    function execute(\Auryn\Provider $injector) {
-
-        global $cacheImages;
-
-        $namespace = sprintf('ImagickDemo\%s\functions', $this->category);
-        /* * @noinspection PhpUndefinedMethodInspection * /
-        $namespace::load();
-
-        $cacheImages = true;
-
-        $filename = getImageCacheFilename($this->category, $this->functionName, $this->control->getFullParams([]));
-
-        delegateAllTheThings($injector, $this->control);
-
-        $imageCallable = 'ImagickDemo\\'.$this->category.'\\'.$this->functionName;
-
-        $lowried = [];
-
-        $imageCallable = function () use ($injector, $imageCallable, $lowried) {
-            $injector->execute($imageCallable, $lowried);
-        };
-
-        renderImageAsFileResponse($imageCallable, $filename);
-    } */
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getCategory() {
-//        return $this->category;
-//    }
-//
-//    /**
-//     * @return \ImagickDemo\Control
-//     */
-//    public function getControl() {
-//        return $this->control;
-//    }
-//
-//    /**
-//     * @return string
-//     */
-//    public function getType() {
-//        return $this->type;
-//    }
-
-    
-
-
 }

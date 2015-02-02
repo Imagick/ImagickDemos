@@ -33,7 +33,7 @@ class SimpleStats {
         $gauges = [];
         
         $queuesToCheck = [
-            'ImagickDemo\Queue\RedisTaskQueue',
+            'ImagickDemo\Queue\ImagickTaskQueue',
         ];
 
         foreach ($queuesToCheck as $queueName) {

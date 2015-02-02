@@ -3,8 +3,7 @@
 
 namespace ImagickDemo\Control;
 
-use Intahwebz\Request;
-use ImagickDemo\Queue\TaskQueue;
+use ImagickDemo\Queue\ImagickTaskQueue;
 
 class ControlComposite implements \ImagickDemo\Control {
     
@@ -13,7 +12,7 @@ class ControlComposite implements \ImagickDemo\Control {
     private $imageStatusBaseURL;
 
 
-    function __construct($activeCategory, $activeExample, TaskQueue $taskQueue) {
+    function __construct($activeCategory, $activeExample, ImagickTaskQueue $taskQueue) {
         $this->imageBaseURL = getImageURL($activeCategory, $activeExample);
         $this->customImageBaseURL = getCustomImageURL($activeCategory, $activeExample);
         $this->imageStatusBaseURL = getImageStatusURL($activeCategory, $activeExample);
@@ -51,23 +50,6 @@ class ControlComposite implements \ImagickDemo\Control {
         return "";
     }
 
-//    /**
-//     * @param $imgURL
-//     * @return string
-//     */
-//    private function renderAsyncImage($imgURL) {
-//        $output = "";
-//        $statusURL = $this->getImageStatusURL();
-//
-//        $output .= sprintf(
-//            "<span id='asyncImageLoad' data-statusuri='%s' data-imageuri='%s'  id='asyncImageHolder'></span>",
-//            addslashes($statusURL),
-//            addslashes($imgURL)
-//        );
-//
-//        return $output;
-//    }
-
     /**
      * @param null $originalImageURL
      * @return string
@@ -95,93 +77,12 @@ class ControlComposite implements \ImagickDemo\Control {
     }
 
 
-//        /**
-//     * @return string
-//     */
-//    function renderImageURLBlah($originalImageURL = null) {
-//        $js = '';
-//        $imgURL = $this->getURL();
-//        $originalImage = $originalImageURL;
-//
-//        $output = '';
-//        $asyncImage = "";
-//
-//        $tempImgURL = $imgURL;
-//        
-//        if ($this->taskQueue->isActive()) {
-//            $asyncImage = $this->renderAsyncImage($imgURL);
-//            $tempImgURL = '/images/loading.gif';
-//        }
-//
-//        $newWindow = sprintf(
-//            "<a href='%s' target='_blank'>View modified in new window.</a>",
-//            $imgURL
-//        );
-//
-//        $originalText = "Touch/mouse over to see original ";
-//        $modifiedText = "Touch/mouse out to see modified ";
-//
-//        if ($originalImage == true) {
-//            $modifiedImage = $this->getURL();
-//
-//            $changeToOriginal = sprintf(
-//                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-//                addslashes($originalImage),
-//                addslashes($modifiedText)
-//            );
-//
-//            $changeToModified = sprintf(
-//                "$('#exampleImage').attr('src', '%s' ); $('#mouseText').text('%s')",
-//                addslashes($modifiedImage),
-//                addslashes($originalText)
-//            );
-//
-//            $mouseOver = "onmouseover=\"$changeToOriginal\"\n";
-//            $mouseOut = "onmouseout=\"$changeToModified\" \n";
-//            $touch = sprintf(
-//                "ontouchstart=\"toggleImage('#exampleImage', '#mouseText', '%s', '%s', '%s', '%s')\"",
-//                $originalImage,
-//                $originalText,
-//                $modifiedImage,
-//                $modifiedText
-//            );
-//
-//            $js = $mouseOver.' '.$mouseOut.' '.$touch;
-//        }
-//
-//
-//        $output .= $asyncImage;
-//
-//        $output .= sprintf(
-//            "<img src='%s' id='exampleImage' class='img-responsive' %s />",
-//            $tempImgURL,
-//            $js
-//        );
-//
-//        if ($originalImage == true) {
-//            $output .= "<div class='row'>";
-//            $output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
-//
-//            $output .= "<span id='mouseText'>";
-//            $output .= $originalText;
-//            $output .= "</span>";
-//            $output .= $newWindow;
-//            $output .= "</div>";
-//
-//            $output .= "</div>";
-//        }
-//
-//        return $output;
-//    }
-
-
     /**
      * @return string
      */
     function renderForm() {
 
         $output =
-
         "<form method='GET' accept-charset='utf-8'>
              <div class='col-xs-12 contentPanel controlForm'>";
 

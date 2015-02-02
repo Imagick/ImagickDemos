@@ -1,30 +1,68 @@
 <?php
 
-
-
 namespace ImagickDemo\Queue;
 
 use Predis\Client as RedisClient;
+
 
 class RedisTaskQueue implements TaskQueue {
 
     private $redisClient;
 
+    private $taskListKey;
+    private $announceListKey;
+    private $statusKey;
+
+    private $queueName;
+    
     /**
      * @param RedisClient $redisClient
      */
-    function __construct(RedisClient $redisClient) {
+    function __construct(RedisClient $redisClient, $queueName) {
         $this->redisClient = $redisClient;
-        $this->redisKey = "ImagickTaskQueue";
+        $this->queueName = $queueName;
+        $this->taskListKey = $queueName.':taskList';
+        $this->announceListKey = $queueName.'_announceList';
+        $this->statusKey = $queueName.'_status';
     }
 
     /**
      * @return int
      */
     function getQueueCount() {
-        $count = $this->redisClient->LLEN($this->redisKey);
+        $count = $this->redisClient->LLEN($this->announceListKey);
 
         return $count;
+    }
+
+    /**
+     * Mark that a task is not to be processed.
+     * @param Task $task
+     * @return mixed
+     */
+    function buryTask(Task $task) {
+        $taskKey = $task->getKey();
+        $this->setStatus($taskKey, TaskQueue::STATE_BURIED);
+    }
+
+    /**
+     * Mark that a task has been completed.
+     * @param Task $task
+     * @return mixed
+     */
+    function completeTask(Task $task) {
+        $taskKey = $task->getKey();
+        $this->setStatus($taskKey, TaskQueue::STATE_COMPLETE);
+    }
+
+    /**
+     * Mark that a task has errored.
+     * @param Task $task
+     * @return mixed
+     */
+    function errorTask(Task $task) {
+        $taskKey = $task->getKey();
+        $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
     }
 
     /**
@@ -35,41 +73,83 @@ class RedisTaskQueue implements TaskQueue {
     }
 
     /**
-     * @return mixed|null
+     * @return Task
      */
-    function getTask() {
-        //A nil multi-bulk when no element could be popped and the timeout expired.
-        //A two-element multi-bulk with the first element being the name of the key where an element was popped and the second element being the value of the popped element.
+    function waitToAssignTask() {
+        $this->setActive();
+        // A nil multi-bulk when no element could be popped and the timeout expired.
+        // A two-element multi-bulk with the first element being the name of the key
+        // where an element was popped and the second element being the value of
+        // the popped element.
+        $redisData = $this->redisClient->blpop($this->announceListKey, 5);
 
-        $redisData = $this->redisClient->blpop($this->redisKey, 5);
-
-        if (!$redisData) {
+        //Pop timed out rather than got a task
+        if ($redisData === null) {
             return null;
         }
 
-        for ($x=0 ; $x<count($redisData) ; $x+=2) {
-            $task = unserialize($redisData[$x + 1]);
-            return $task;
+        list(, $taskKey) = $redisData;
+
+        $serializedTask = $this->redisClient->get($taskKey);
+
+        if (!$serializedTask) {
+            $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
+            throw new \Exception("Failed to find expected task ".$taskKey);
         }
 
-        return null;
+        $task = @unserialize($serializedTask);
+        if ($task == false) {
+            $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
+            throw new QueueException("Failed to unserialize string $serializedTask");
+        }
+
+        $this->setStatus($taskKey, TaskQueue::STATE_WORKING);
+
+        return $task;
+    }
+
+    /**
+     * @param $taskKey
+     * @param $state
+     */
+    private function setStatus($taskKey, $state) {
+        $statusKey = $this->statusKey.$taskKey;
+        $this->redisClient->set($statusKey, $state);
     }
 
     /**
      * @param Task $task
+     * @return string
      */
-    function pushTask(Task $task) {
+    function getStatus(Task $task) {
+        $statusKey = $this->statusKey.$task->getKey();
+        return $this->redisClient->get($statusKey);
+    }
+    
+    /**
+     * @param Task $task
+     */
+    function addTask(Task $task) {
         $serialized = serialize($task);
-        $this->redisClient->rpush($this->redisKey, [$serialized]);
+        $existingStatus = $this->getStatus($task);
+
+        if ($existingStatus) {
+            //TODO - what should happen here?
+            return null;
+        }
+
+        $taskKey = $task->getKey();
+        $this->redisClient->set($taskKey, $serialized);
+        $this->redisClient->rpush($this->announceListKey, $taskKey);
+        $this->setStatus($taskKey, TaskQueue::STATE_INITIAL);
     }
 
     /**
      * @return string
      */
     private function getActiveKey() {
-        return "Queue."."ImagickTaskQueue"."Active";
+        return "Queue.".$this->queueName."Active";
     }
-
 
     /**
      * @return string
@@ -81,7 +161,7 @@ class RedisTaskQueue implements TaskQueue {
     /**
      * 
      */
-    function setActive() {
+    private function setActive() {
         $this->redisClient->set(
             $this->getActiveKey(),
             true,

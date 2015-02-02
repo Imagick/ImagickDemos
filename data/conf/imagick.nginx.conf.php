@@ -28,6 +28,8 @@ server {
     root ${'imagick.root.directory'}/imagick;
 
     client_max_body_size 1m;
+    
+    rewrite ^/(.*)/$ /$1 permanent;
 
     error_page  404  /404.html;
     location = /404.html {

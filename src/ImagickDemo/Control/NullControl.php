@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\Control;
 
-use ImagickDemo\Queue\TaskQueue;
+use ImagickDemo\Queue\ImagickTaskQueue;
 
 
 class NullControl implements \ImagickDemo\Control {
@@ -12,7 +12,7 @@ class NullControl implements \ImagickDemo\Control {
     private $activeCategory;
     private $activeExample;
     
-    function __construct(TaskQueue $taskQueue, $activeCategory, $activeExample) {
+    function __construct(ImagickTaskQueue $taskQueue, $activeCategory, $activeExample) {
         $this->taskQueue = $taskQueue;
         $this->activeCategory = $activeCategory;
         $this->activeExample = $activeExample;
@@ -37,6 +37,10 @@ class NullControl implements \ImagickDemo\Control {
         );
     }
 
+    /**
+     * @param $extraParams
+     * @return string
+     */
     function renderCustomImageURL($extraParams) {
         return renderImageURL(
             $this->taskQueue->isActive(),

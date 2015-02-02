@@ -1,6 +1,6 @@
 <?php
 
-
+use Intahwebz\LogPath;
 
 
 class RedisLogWriter extends CliTool {
@@ -8,7 +8,10 @@ class RedisLogWriter extends CliTool {
     use \Intahwebz\Cache\KeyName;
     
     private $redisClient;
-    
+
+    /**
+     * @var LogPaths
+     */
     private $logPath;
 
     /**

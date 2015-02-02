@@ -34,8 +34,6 @@ $amazonec2 = [
     'phpfpm.conf.directory' => '/etc/php-fpm.d',
     'phpfpm.pid.directory' => '/var/run/php-fpm',
 
-    #'php.log.directory' => '/var/log/php-fpm',
-    #'php.errorlog.directory' => '/var/log/php-fpm',
     'php.log.directory' => '/var/log/php',
     'php.errorlog.directory' => '/var/log/php',
     'php.session.directory' => '/var/lib/php/session',
@@ -90,12 +88,7 @@ $centos = [
     'nginx.user' => 'nginx',
     'nginx.sendFile' => 'on',
     
-    //'basereality.chroot.directory' => '/home/imagickdemos/current',
-    //'basereality.root.directory' => '/home/intahwebz/current',
-    //'basereality.cache.directory' => '/home/imagickdemos/current/var/cache',
     'imagick.root.directory' => '/home/imagickdemos/current',
-    
-    //'github.root.directory' => '/home/github/',
     
     'phpfpm.socket' => '/var/run/php-fpm',
     'phpfpm.www.maxmemory' => '16M',

@@ -10,7 +10,7 @@ var AsyncImage = {
     callback: null,
     statusElement: null,
     startTime: null,
-    
+
     options: {
         content: null
     },
@@ -55,6 +55,7 @@ var AsyncImage = {
     },
     
     checkImageStatus: function (asyncLoad) {
+        var uri;
         var errorCallback = function(jqXHR, textStatus, errorThrown) {
             //alert("checkImageStatus done with error: textStatus");
         };
@@ -106,12 +107,17 @@ var AsyncImage = {
             return;
         }
 
-        if (this.imageURI.indexOf("?")) {
+        var indexx = this.imageURI.indexOf("?");
+        
+        alert("indexx = " + indexx);
+        
+        if (indexx) {
             this.imageURI = this.imageURI + "&noredirect=true";
         }
         else {
             this.imageURI = this.imageURI + "?noredirect=true";
         }
+
         if (!JSON.parse(("" + this.enabled).toLowerCase())) {
             return;
         }
@@ -124,7 +130,7 @@ var AsyncImage = {
         });
 
         this.callback = $.proxy(this, 'checkImageStatus');
-
+        this.first = true;
         this.startTime = this.getTicks();
         
         setTimeout(this.callback, 0);

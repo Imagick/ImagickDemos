@@ -12,10 +12,10 @@ class ImagickTaskRunner {
      */
     private $injector;
 
-    //<namespace>.<instrumented section>.<target (noun)>.<action (past tense verb)>.<measure (noun)>
-
-    //const event_imageGenerated = "phpimagick.imagickTask.image.generated.timeTaken";
-    //const event_imageGenerated = "phpimagick.imagickTask.image.exception";
+    // <namespace>.<instrumented section>.<target (noun)>.<action (past tense verb)>.<measure (noun)>
+    // 
+    // const event_imageGenerated = "phpimagick.imagickTask.image.generated.timeTaken";
+    // const event_imageGenerated = "phpimagick.imagickTask.image.exception";
 
     // Both should have '.time' appended.
     const event_imageGenerated = "phpimagick.imagickTask.image.generated";
@@ -29,11 +29,15 @@ class ImagickTaskRunner {
     private $asyncStats;
 
     /**
-     * @param TaskQueue $taskQueue
+     * @param ImagickTaskQueue $taskQueue
      * @param \Auryn\Provider $injector
      * @param \Stats\AsyncStats $asyncStats
      */
-    function __construct(TaskQueue $taskQueue, \Auryn\Provider $injector, \Stats\AsyncStats $asyncStats) {
+    function __construct(
+        ImagickTaskQueue $taskQueue,
+        \Auryn\Provider $injector,
+        \Stats\AsyncStats $asyncStats
+    ) {
         $this->taskQueue = $taskQueue;
         $this->injector = $injector;
         $this->asyncStats  = $asyncStats;
@@ -44,10 +48,6 @@ class ImagickTaskRunner {
      */
     function run() {
         echo "ImagickTaskRunner started\n";
-        //attempt to run the task
-        //For any error push the task back
-        //sleep if necessary
-
         /** @noinspection PhpUndefinedMethodInspection */
         \ImagickDemo\Imagick\functions::load();
         \ImagickDemo\ImagickDraw\functions::load();
@@ -58,17 +58,14 @@ class ImagickTaskRunner {
         $maxRunTime = 60; // one minute
         $maxRunTime *= 60; // 1hour
 
-        //Each image generated hurries up the restart by 10 seconds
-        $taskPseudoTime = 10; 
-
+        // Each image generated hurries up the restart by 50 seconds
+        // for a max of 72 images generated per run
+        $taskPseudoTime = 50; 
         $endTime = time() + $maxRunTime;
-        
         $count = 0;
 
         while (time() < $endTime) {
-            $this->taskQueue->setActive();
-            $task = $this->taskQueue->getTask();
-
+            $task = $this->taskQueue->waitToAssignTask();
             if (!$task) {
                 echo ".";
                 $count = $count + 1;
@@ -79,7 +76,7 @@ class ImagickTaskRunner {
                 usleep(100000);
                 continue;
             }
-    
+
             echo "A task! "."\n";
             $endTime -= $taskPseudoTime;
 
@@ -89,10 +86,12 @@ class ImagickTaskRunner {
                 $time = microtime(true) - $startTime;
                 $this->asyncStats->recordTime(self::event_imageGenerated, $time);
                 echo "Task complete\n";
+                $this->taskQueue->completeTask($task);
             }
             catch(\Auryn\BadArgumentException $bae) {
                 //Log failed job
                 echo "There was a problem running the task: ".$bae->getMessage();
+                $this->taskQueue->errorTask($task);
             }
         }
         echo "\nImagickTaskRunner exiting\n";
@@ -106,12 +105,21 @@ class ImagickTaskRunner {
         $imageFunction = $task->getImageFunction();
         $params = $task->getParams();
         $filename = $task->getFilename();
-        $lowried = [];
+        $imageTypes = ['jpg', 'gif', 'png'];
+        
+        foreach ($imageTypes as $imageType) {
+            $fullFilename = $filename.".".$imageType;
+            if (file_exists($fullFilename) == true) {
+                return;
+            }
+        }
 
+        $lowried = [];
         foreach ($params as $key => $value) {
             $lowried[':'.$key] = $value;
         }
 
-        $response = renderImageAsFileResponse($imageFunction, $filename, $this->injector, $lowried);
+        echo "filename was $filename\n";
+        renderImageAsFileResponse($imageFunction, $filename, $this->injector, $lowried);
     }
 }

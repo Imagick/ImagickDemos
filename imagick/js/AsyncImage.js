@@ -114,12 +114,13 @@ var AsyncImage = {
 
         var indexx = this.imageURI.indexOf("?");
 
-        if (indexx) {
-            this.imageURI = this.imageURI + "&noredirect=true";
-        }
-        else {
+        if (indexx == -1) {
             this.imageURI = this.imageURI + "?noredirect=true";
         }
+        else{
+            this.imageURI = this.imageURI + "&noredirect=true";
+        }
+        
 
         if (!JSON.parse(("" + this.enabled).toLowerCase())) {
             return;

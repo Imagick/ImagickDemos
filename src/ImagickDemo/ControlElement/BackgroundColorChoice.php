@@ -21,7 +21,7 @@ class BackgroundColorChoice extends OptionKeyElement {
         return [
             "white" => "White",
             "black" => "Black",
-            "none" => "Transparent",
+            //"none" => "Transparent", //This needs webp to be nice.
         ];
     }
 

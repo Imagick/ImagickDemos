@@ -461,10 +461,12 @@ function lerp($t, $a, $b) {
 
 class Dot {
     
-    function __construct($color, $sequence, $numberDots) {
+    function __construct($color, $sequence, $numberDots, $imageWidth, $imageHeight) {
         $this->color = $color;
         $this->sequence = $sequence;
         $this->numberDots = $numberDots;
+        $this->imageWidth = $imageWidth;
+        $this->imageHeight = $imageHeight;
     }
 
     function calculateFraction($frame, $maxFrames, $timeOffset, $phaseMultiplier, $phaseDivider) {
@@ -494,9 +496,8 @@ class Dot {
 
         return $unitFraction * $unitFraction * (3 - 2 * $unitFraction);
     }
-    
-  
-    
+
+
     function render(\ImagickDraw $draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider) {
         $innerDistance = 40;
         $outerDistance = 230;
@@ -526,10 +527,18 @@ class Dot {
             $yOffset = $distance * cos($angle);
             $draw->setFillColor($this->color);
             $draw->setFillAlpha($alpha / 100);
+
+            $xOffset = $xOffset * $this->imageWidth / 500;
+            $yOffset = $yOffset * $this->imageHeight / 500;
+
+            $xSize = 4 * $this->imageWidth / 500;
+            $ySize = 4 * $this->imageHeight / 500;
             
             $draw->circle(
-                $xOffset, $yOffset,
-                $xOffset + 4, $yOffset + 4
+                $xOffset,
+                $yOffset,
+                $xOffset + $xSize,
+                $yOffset + $ySize
             );
         }
     }
@@ -539,8 +548,10 @@ class Dot {
 function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $phaseMultiplier, $phaseDivider) {
     $aniGif = new \Imagick();
     $aniGif->setFormat("gif");
-    
-    
+
+    $width = 500;
+    $height = $width;
+
     $maxFrames = $numberFrames;
     $frameDelay = ceil($loopTime / $maxFrames);
 
@@ -548,8 +559,6 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     $startColor = new \ImagickPixel('red');
     $dots = [];
 
-    $width = 500;
-    $height = $width;
     
     for ($i=0 ; $i<$numberDots ; $i++) {
         $colorInfo = $startColor->getHSL();
@@ -565,16 +574,14 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         $colorInfo['saturation'] *= 0.95;
         $color->setHSL($newHue, $colorInfo['saturation'], $colorInfo['luminosity']);
 
-        $dots[] = new Dot($color, $i, $numberDots);
+        $dots[] = new Dot($color, $i, $numberDots, $width, $height);
     }
-
-    
 
     for ($frame = 0; $frame < $maxFrames; $frame++) {
         $draw = new \ImagickDraw();
         $draw->setStrokeColor('none');
         $draw->setFillColor('none');
-        $draw->rectangle(0, 0, 500, 500);
+        $draw->rectangle(0, 0, $width, $height);
         
         $draw->translate($width / 2, $height / 2);
 
@@ -585,7 +592,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
 
         //Create an image object which the draw commands can be rendered into
         $imagick = new \Imagick();
-        $imagick->newImage(500 * $scale, 500 * $scale, $backgroundColor);
+        $imagick->newImage($width * $scale, $height * $scale, $backgroundColor);
         $imagick->setImageFormat("png");
 
         $imagick->setImageDispose(\Imagick::DISPOSE_PREVIOUS);
@@ -599,17 +606,12 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         $imagick->destroy();
     }
 
-    //echo "Got here here and level is ".ob_get_level()."<br/>";
-    $aniGif->setImageFormat('gif');
-    
+    $aniGif->setImageFormat('gif');    
     $aniGif->setImageIterations(0); //loop forever
     $aniGif->mergeImageLayers(\Imagick::LAYERMETHOD_OPTIMIZEPLUS);
 
-
     header("Content-Type: image/gif");
     echo $aniGif->getImagesBlob();
-
-//    $aniGif->writeImages("./smoothOut.gif", true);
 }
 //Example end
 

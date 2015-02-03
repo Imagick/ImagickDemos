@@ -367,14 +367,10 @@ function contrastImage($imagePath, $contrastType) {
 }
 //Example end
 
-
-//Todo - allow a convolve control :-P
 //Example Imagick::convolveImage
 function convolveImage($imagePath, $bias, $kernelMatrix) {
-    $imagick = new \Imagick(realpath($imagePath));
-    
+    $imagick = new \Imagick(realpath($imagePath));    
     //$edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
-    
     $imagick->setImageBias($bias * \Imagick::getQuantum());
     $imagick->convolveImage($kernelMatrix);
     header("Content-Type: image/jpg");
@@ -1914,7 +1910,6 @@ function waveImage($imagePath, $amplitude, $length) {
 //Example Imagick::whiteThresholdImage
 function whiteThresholdImage($imagePath, $color) {
     $imagick = new \Imagick(realpath($imagePath));
-    //TODO needs a control
     $imagick->whiteThresholdImage($color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

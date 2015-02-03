@@ -274,3 +274,17 @@ body{
 .asyncImageHidden {
     display: none;
 }
+
+.infoTable {
+    border: 2px solid #7f7f7f; 
+}
+
+.infoTable td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.infoTable tbody tr:nth-child(even) {
+    background-color: #E9E9E9;
+}
+

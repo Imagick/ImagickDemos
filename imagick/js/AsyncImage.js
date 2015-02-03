@@ -9,6 +9,7 @@ var AsyncImage = {
     imageURI: null,
     callback: null,
     statusElement: null,
+    asyncSpinner: null,
     startTime: null,
 
     options: {
@@ -49,6 +50,9 @@ var AsyncImage = {
         }
         else if (secondsElapsed > 5) {
             this.statusElement.text("Hmm, this seems to be taking a long time.");
+        }
+        else if (secondsElapsed > 1) {
+            this.asyncSpinner.css('display', 'block');
         }
 
         return true;
@@ -98,6 +102,7 @@ var AsyncImage = {
         this.imageURI = $(this.element).data('imageuri');
         this.enabled = $(this.element).data('enabled');
         this.statusElement = $(this.element).find('.asyncImageStatus');
+        this.asyncSpinner = $(this.element).find('.asyncSpinner');
 
         if (!this.statusURI) {
             return;
@@ -108,9 +113,7 @@ var AsyncImage = {
         }
 
         var indexx = this.imageURI.indexOf("?");
-        
-        alert("indexx = " + indexx);
-        
+
         if (indexx) {
             this.imageURI = this.imageURI + "&noredirect=true";
         }
@@ -122,6 +125,7 @@ var AsyncImage = {
             return;
         }
 
+        //We make a single request to get the image to initiate it's generation.
         $.ajax({
             url: this.imageURI,
             //cache: false,

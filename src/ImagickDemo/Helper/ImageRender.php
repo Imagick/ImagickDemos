@@ -107,7 +107,7 @@ class ImageRender {
         if ($this->useAsyncLoading) {
             $this->output .= "<span class='asyncLoading'>";
             $this->output .= "<span class='asyncImageStatus'>Async image loading...</span> <br/>";
-            $this->output .= "<img src='/images/loading.gif'/> <br/>";
+            $this->output .= "<img class='asyncSpinner' style='display: none' src='/images/loading.gif'/> <br/>";
             $this->output .= "</span>";
         }
     }

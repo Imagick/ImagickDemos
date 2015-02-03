@@ -335,7 +335,13 @@ END;
             'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Imagick\Control\addNoiseImage::class],
             'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ImageControl::class], //Doesn't work?
             //'animateImages',
-            'annotateImage' => ['annotateImage', \ImagickDemo\Imagick\Control\annotateImage::class],
+            'annotateImage' => [
+                'annotateImage',
+                \ImagickDemo\Imagick\Control\annotateImage::class,
+                'defaultParams' => [
+                    'fillColor' => 'rgb(232, 227, 232)'
+                ],
+            ],
 
             //'appendImages',
             'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
@@ -598,7 +604,7 @@ END;
             //'profileImage',
             'quantizeImage' => ['quantizeImage', \ImagickDemo\Imagick\Control\quantizeImage::class],
             //'quantizeImages',
-            //'queryFontMetrics',
+            'queryFontMetrics'=> ['queryFontMetrics', \ImagickDemo\Control\NullControl::class],
             //'queryFonts',
             'queryFormats' => ['queryFormats', \ImagickDemo\Control\NullControl::class],
 

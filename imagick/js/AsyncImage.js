@@ -112,9 +112,9 @@ var AsyncImage = {
             return;
         }
 
-        var indexx = this.imageURI.indexOf("?");
+        var indexQuestionMark = this.imageURI.indexOf("?");
 
-        if (indexx == -1) {
+        if (indexQuestionMark == -1) {
             this.imageURI = this.imageURI + "?noredirect=true";
         }
         else{

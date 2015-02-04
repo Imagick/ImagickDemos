@@ -37,7 +37,7 @@ class isPixelSimilar extends \ImagickDemo\Example {
             ['black',               'rgba(0, 0, 0)',        0.0,            true],
             ['black',               'rgba(10, 0, 0, 1.0)',  10.0 / $root3,  true],);
 
-        $output = "<table width='100%'><thead>
+        $output = "<table width='100%' class='infoTable'><thead>
                 <tr>
                 <th>
                 Color 1

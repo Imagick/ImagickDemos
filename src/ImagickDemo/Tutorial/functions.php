@@ -467,17 +467,20 @@ class Dot {
         $this->numberDots = $numberDots;
         $this->imageWidth = $imageWidth;
         $this->imageHeight = $imageHeight;
+
+        if ($this->numberDots < 0) {
+            $this->numberDots = 0;
+        }
     }
 
     function calculateFraction($frame, $maxFrames, $timeOffset, $phaseMultiplier, $phaseDivider) {
-
         $frame = -$frame;
-        
         $totalAngle = 2 * $phaseMultiplier;
-
         $fraction = ($frame / $maxFrames * 2);
         $fraction += $totalAngle * ($this->sequence / $this->numberDots);
-        $fraction += (($this->sequence)) / ($phaseDivider);
+        if ($phaseDivider != 0) {
+            $fraction += (($this->sequence)) / ($phaseDivider);
+        }
         $fraction += $timeOffset;
 
         while ($fraction < 0) {

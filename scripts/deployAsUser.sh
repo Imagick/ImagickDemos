@@ -14,6 +14,8 @@ fi
 #need to make dir?
 mkdir -p ./var/cache/less
 
+mkdir -p autogen
+
 #Generate the config files for nginx, etc.
 vendor/bin/configurate -p data/config.php data/conf/imageTaskRunner.conf.php autogen/imageTaskRunner.conf $environment
 vendor/bin/configurate -p data/config.php data/conf/libratoStats.conf.php autogen/libratoStats.conf $environment
@@ -23,7 +25,6 @@ vendor/bin/configurate -p data/config.php data/conf/imagick-demos.php.ini.php au
 vendor/bin/configurate -p data/config.php data/conf/addImagickConfig.sh.php autogen/addImagickConfig.sh $environment
 
 vendor/bin/fpmconv autogen/imagick-demos.php.ini autogen/imagick-demos.php.fpm.ini 
-
 
 #Generate some code.
 php ./tool/weaveControls.php

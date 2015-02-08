@@ -20,8 +20,6 @@ foreach ($examples as $example) {
     set_time_limit(30);
     
     list($function, $params) = $example;
-    
-    
 
     $injector = new Auryn\Provider();
     $lowried = [];

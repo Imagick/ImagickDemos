@@ -11,4 +11,4 @@ find . -name "*.sh" -exec chmod 755 {} \;
 su imagickdemos -c "./scripts/deployAsUser.sh ${environment}"
 
 
-sh ./autogen/addConfig.sh
+sh ./autogen/addImagickConfig.sh

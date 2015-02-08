@@ -78,6 +78,16 @@ class DocHelperDisplay extends DocHelper {
         return $output;
     }
 
+    /**
+     * @return array
+     */
+    function getExamples() {
+        if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
+            return [];
+        }
+        
+        return $this->exampleEntries[$this->category][$this->example];
+    }
 
     function showExamples() {
 
@@ -85,7 +95,6 @@ class DocHelperDisplay extends DocHelper {
 
         if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
             return "";
-            //return "No example for ".$this->category. " ".$this->example ;
         }
 
         $examples = $this->exampleEntries[$this->category][$this->example];

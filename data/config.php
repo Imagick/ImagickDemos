@@ -118,10 +118,6 @@ $centos_guest = [
     'nginx.run.directory' => '/var/run',
     'nginx.user' => 'nginx',
     'nginx.sendFile' => 'off',
-    
-    'basereality.chroot.directory' => '/home/intahwebz/intahwebz',
-    'basereality.root.directory' => '/home/intahwebz/intahwebz',
-    'basereality.cache.directory' => '/home/intahwebz/intahwebz/var/cache',
 
     'imagick.root.directory' => '/home/github/imagick-demos/imagick-demos/',
     

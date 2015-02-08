@@ -28,33 +28,38 @@ class distortImage extends \ImagickDemo\Example {
         return sprintf("<img src='%s' class='img-responsive' />", $this->control->getCustomImageURL());
     }
 
-    
-    function renderCustomImage() {
 
+    function renderCustomImage() {
         $methods = [
             \Imagick::DISTORTION_AFFINE => "renderImageAffine",
             \Imagick::DISTORTION_AFFINEPROJECTION => "renderImageAffineProjection",
             \Imagick::DISTORTION_ARC => "renderImageArc",
+            \Imagick::DISTORTION_BARREL => 'renderImageBarrel',
+            \Imagick::DISTORTION_BARRELINVERSE => 'renderImageBarrelInverse',
             \Imagick::DISTORTION_BILINEAR => 'renderImageBilinear',
+            \Imagick::DISTORTION_DEPOLAR => 'renderImagePerspectiveDepolar',
             \Imagick::DISTORTION_PERSPECTIVE => 'renderImagePerspective',
             \Imagick::DISTORTION_PERSPECTIVEPROJECTION => 'renderImagePerspectiveProjection',
             \Imagick::DISTORTION_SCALEROTATETRANSLATE => 'renderImageScaleRotateTransform',
             \Imagick::DISTORTION_POLYNOMIAL => 'renderImagePerspectivePolynomial',
             \Imagick::DISTORTION_POLAR => 'renderImagePerspectivePolar',
-            \Imagick::DISTORTION_DEPOLAR => 'renderImagePerspectiveDepolar',
-            \Imagick::DISTORTION_BARREL => 'renderImageBarrel',
-            \Imagick::DISTORTION_BARRELINVERSE => 'renderImageBarrelInverse',
             \Imagick::DISTORTION_SHEPARDS => 'renderImageShepards',
-            \Imagick::DISTORTION_SENTINEL => 'renderImageBarrelSentinel',
+
+           
+
+            \Imagick::DISTORTION_BILINEARREVERSE => 'renderBilinearReverse',
+            \Imagick::DISTORTION_CYLINDER2PLANE => 'renderCyclinderToPlane',
+            \Imagick::DISTORTION_PLANE2CYLINDER => 'renderPlaneToCylinder',
+            \Imagick::DISTORTION_RESIZE         => "renderResize",
         ];
 
-        $customImage = $this->control->getDistortionType();
-        
-        if (array_key_exists($customImage, $methods) == false) {
-            throw new \Exception("Unknown composite method $customImage");
+
+        $distortionType = $this->control->getDistortionType();
+        if (array_key_exists($distortionType, $methods) == false) {
+            throw new \Exception("Unknown composite method $distortionType");
         }
 
-        $method = $methods[$customImage];
+        $method = $methods[$distortionType];
         $this->{$method}();
     }
     
@@ -392,25 +397,64 @@ class distortImage extends \ImagickDemo\Example {
 //Example end
     }
 
-    function renderImageBarrelSentinel() {
-//Example Imagick::distortImage Sentinel
-// Rsrc = r / ( A*r3 + B*r2 + C*r + D )
-// This equation does NOT produce the 'reverse' the 'Barrel' distortion.
-// You can NOT use it to 'undo' the previous distortion.
-
+    function renderBilinearReverse() {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
 
         $points = array(
-            //0.2, 0.0, 0.0, 1.0
-            0.2, 0.1, 0.0, 1.0
+            0,0, 25,25, # top left  
+            176,0, 126,0, # top right
+            0,135, 0,105, # bottom right 
+            176,135, 176,135 # bottum left
         );
-
-        $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $imagick->distortImage(\Imagick::DISTORTION_SENTINEL, $points, TRUE);
-        header("Content-Type: image/jpeg");
+        $imagick->setImageBackgroundColor("#fad888");
+        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
+        $imagick->distortImage( \Imagick::DISTORTION_BILINEARREVERSE, $points, TRUE );
+        header( "Content-Type: image/jpeg" );
         echo $imagick;
-//Example end
     }
+    
+    function renderCyclinderToPlane() {
+        //http://www.imagemagick.org/Usage/distorts/#cylinder2plane
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
+        $points = array(
+            70, //fov_angle,
+            //center_x,y,
+            //fov_output,
+            //dest_center_x,y
+        );
+        $imagick->setImageBackgroundColor("#fad888");
+        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
+        $imagick->distortImage( \Imagick::DISTORTION_CYLINDER2PLANE, $points, TRUE );
+        header( "Content-Type: image/jpeg" );
+        echo $imagick;
+    }
+    
+
+    function renderPlaneToCylinder() {
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
+        $points = array(
+            70 
+            //center_x,y
+        );
+        $imagick->setImageBackgroundColor("#fad888");
+        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
+        $imagick->distortImage( \Imagick::DISTORTION_PLANE2CYLINDER, $points, TRUE );
+        header( "Content-Type: image/jpeg" );
+        echo $imagick;
+    }
+    
+    function renderResize() {
+        $imagick = new \Imagick(realpath($this->control->getImagePath()));
+        $points = array(
+            400, 200
+        );
+        $imagick->setImageBackgroundColor("#fad888");
+        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
+        $imagick->distortImage( \Imagick::DISTORTION_RESIZE, $points, TRUE );
+        header( "Content-Type: image/jpeg" );
+        echo $imagick;
+    }
+
+
 
 }

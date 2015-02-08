@@ -37,7 +37,6 @@ class DistortionType extends OptionKeyElement {
             \Imagick::DISTORTION_BARREL => 'Barrel',
             \Imagick::DISTORTION_BARRELINVERSE => 'Barrel inverse',
             \Imagick::DISTORTION_SHEPARDS => 'Shepards',
-            \Imagick::DISTORTION_SENTINEL => 'Sentinel, doesn\'t work',
             \Imagick::DISTORTION_RESIZE => "Resize",
         ];
 

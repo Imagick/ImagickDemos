@@ -17,7 +17,7 @@ class NavigationBar {
         "/Imagick" => "Imagick",
         "/ImagickDraw" => "ImagickDraw",
         "/ImagickPixel" => "ImagickPixel",
-        "/ImagickPixelIterator" => "Imagick Pixel Interator",
+        "/ImagickPixelIterator" => "Imagick Pixel Iterator",
         "/ImagickKernel" => "Imagick Kernel",
         "/Tutorial" => "Tutorial",
     ];

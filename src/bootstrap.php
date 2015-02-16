@@ -549,15 +549,13 @@ function foo($category,
     ImagickTask::create($category, $example, $imageFunction, $fullParams);
 }
 
-
-
     
     
 function getRoutes(ApplicationConfig $appConfig) {
 
     $routesFunction = function (\FastRoute\RouteCollector $r) use ($appConfig) {
 
-        $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial}';
+        $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|ImagickKernel|Tutorial}';
 
         //Category indices
         $r->addRoute(

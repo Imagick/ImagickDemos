@@ -901,6 +901,16 @@ END;
             'syncIterator' => ['construct', \ImagickDemo\Control\ImageControl::class],
         ];
 
+        $imagickKernelExamples = [
+            'addKernel'      => ['addKernel', \ImagickDemo\Control\ImageControl::class],
+            'addUnityKernel' => ['addUnityKernel', \ImagickDemo\Control\NullControl::class],
+            'fromArray'      => ['fromArray', \ImagickDemo\Control\NullControl::class],
+            'fromBuiltin'    => ['fromBuiltin', \ImagickDemo\Control\NullControl::class],
+            'getValues'      => ['getValues', \ImagickDemo\Control\NullControl::class],
+            'scale'          => ['scale', \ImagickDemo\Control\NullControl::class],
+            'separate'       => ['separate', \ImagickDemo\Control\NullControl::class],
+        ];
+
         $tutorialExamples = [
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
             //'colorspaceLinearity' => ['colorspaceLinearity', \ImagickDemo\Control\NullControl::class],
@@ -952,6 +962,7 @@ END;
             'ImagickDraw' => $imagickDrawExamples,
             'ImagickPixel' => $imagickPixelExamples,
             'ImagickPixelIterator' => $imagickPixelIteratorExamples,
+            'ImagickKernel' => $imagickKernelExamples,
             'Tutorial' => $tutorialExamples,
         ];
 

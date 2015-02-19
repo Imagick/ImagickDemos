@@ -68,7 +68,7 @@ class ExampleFinder {
                 throw new \Exception("Failed to open $filename");
             }
 
-            $pattern = "#\w*//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|Tutorial)::(\w+)\s?(.*)?#";
+            $pattern = "#\w*//Example (Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|ImagickKernel|Tutorial)::(\w+)\s?(.*)?#";
 
             $endPattern = "#\w*//Example end.*#";
 

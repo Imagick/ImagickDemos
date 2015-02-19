@@ -685,6 +685,19 @@ $controls = [
         'ImagickDemo\ControlElement\PhaseMultiplier',
         'ImagickDemo\ControlElement\PhaseDivider',
     ],
+
+    'ImagickDemo\ImagickKernel\Control\usage' => [
+        'ImagickDemo\ControlElement\MorphologyType'
+    ],
+
+    'ImagickDemo\ImagickKernel\Control\fromBuiltIn' => [
+        'ImagickDemo\ControlElement\KernelType',
+        'ImagickDemo\ControlElement\KernelFirstTerm',
+        'ImagickDemo\ControlElement\KernelSecondTerm',
+        'ImagickDemo\ControlElement\KernelThirdTerm'
+    ],
+
+    
 ];
 
 \Intahwebz\Functions::load();

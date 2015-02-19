@@ -535,6 +535,42 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
 }
 //Example end
 
+
+//Example Imagick::filter
+function filter($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+
+    $kernel = \ImagickKernel::fromBuiltIn(
+        \Imagick::KERNEL_RING,
+        "2"
+    );
+
+    $matrix = [
+        [-1, 0, -1],
+        [0,  5,  0],
+        [-1, 0, -1],
+    ];
+    
+    $kernel = \ImagickKernel::fromMatrix($matrix);
+    
+//    var_dump($kernel->getMatrix());
+//    
+//    exit(0);
+
+    $strength = 0.5;
+    
+    $kernel->scale($strength, \Imagick::NORMALIZE_KERNEL_VALUE);
+    
+    $kernel->addUnityKernel(1 - $strength);
+
+    //$kernel->scale(1, \Imagick::NORMALIZE_KERNEL_VALUE);
+
+    $imagick->filter($kernel);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+    
     
 
 //Example Imagick::flipImage

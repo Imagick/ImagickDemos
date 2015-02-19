@@ -33,6 +33,8 @@ class HomePageExample extends \ImagickDemo\Example {
         <li><a href='/ImagickPixel'>ImagickPixel</a> - the ImagickPixel class represents colors, and this category shows how colors are represented in Imagick.</li>
         
         <li><a href='/ImagickPixelIterator'>ImagickPixelOperator</a> - allows accessing and modifying the pixels directly from PHP.</li>
+        
+        <li><a href='/ImagickKernel'>ImagickKernel</a> - used by morphology and filter functions.</li>
 
         <li><a href='/Tutorial'>Tutorial</a> - a set of more advanced examples that show how some complex effects can be achieved with Imagick. </li>
     </ul>
@@ -51,8 +53,7 @@ class HomePageExample extends \ImagickDemo\Example {
          <a href='https://github.com/Danack/Imagick-demos/blob/master/src/ImagickDemo/Example/functions.php'>tutorials.</a> The code for the more complicated examples has it's source in the controller
     </p>
 
-    <p>
-        If you find anyissues with this site as an issue, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
+    <p>If you find any issues with this site, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
      </p>     
 END;
  

@@ -13,26 +13,33 @@ class separate extends \ImagickDemo\Example {
     }
 
     function render() {
+//Example ImagickKernel::separate
         $matrix = [
             [-1, 0, -1],
             [ 0, 4,  0],
             [-1, 0, -1],
         ];
 
-        $kernel = ImagickKernel::fromArray($matrix);
-
+        $kernel = \ImagickKernel::fromMatrix($matrix);
         $kernel->scale(4, \Imagick::NORMALIZE_KERNEL_VALUE);
-        $kernel->addUnityKernel(0.5);
+        $diamondKernel = \ImagickKernel::fromBuiltIn(
+            \Imagick::KERNEL_DIAMOND,
+            "2"
+        );
 
+        $kernel->addKernel($diamondKernel);
+        
         $kernelList = $kernel->separate();
         
         $output = '';
-        
+        $count = 0;
         foreach ($kernelList as $kernel) {
-
-            $output .= renderKernelTable($kernel->getValues());
+            $output .= "<br/>Kernel $count<br/>";
+            $output .= renderKernelTable($kernel->getMatrix());
+            $count++;
         }
 
         return $output;
+//Example end
     }
 }

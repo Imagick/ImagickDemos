@@ -31,7 +31,7 @@ function header($string, $replace = true, $http_response_code = null) {
 }
 
 function renderKernelTable($matrix) {
-    $output = "<table>";
+    $output = "<table class='infoTable'>";
 
     foreach ($matrix as $row) {
         $output .= "<tr>";
@@ -56,7 +56,7 @@ function renderKernelTable($matrix) {
     
     
 function renderKernel(ImagickKernel $imagickKernel) {
-    $matrix = $imagickKernel->getValues();
+    $matrix = $imagickKernel->getMatrix();
     
     $imageMargin = 20;
     
@@ -68,8 +68,9 @@ function renderKernel(ImagickKernel $imagickKernel) {
 
     $radius = ($tileSize / 2) * 0.9;
 
+
     $rows = count($matrix);
-    $columns = count($matrix[1]);
+    $columns = count($matrix[0]);
  
     $imagickDraw = new \ImagickDraw();
 
@@ -121,7 +122,7 @@ function renderKernel(ImagickKernel $imagickKernel) {
     $kernel->setImageFormat('png');
     $kernel->drawImage($imagickDraw);
 
-    $kernel->writeImage("./testKernel.png");
+    //$kernel->writeImage("./testKernel.png");
     
     /* create drop shadow on it's own layer */
     $shadow = $kernel->clone();
@@ -129,7 +130,6 @@ function renderKernel(ImagickKernel $imagickKernel) {
     $shadow->shadowImage(100, $shadowSigma, $shadowDropX, $shadowDropY);
 
     $shadow->setImagePage($canvasWidth, $canvasHeight, -5, -5);
-    //$shadow->resetImagePage("91x91+0+0");
     $shadow->cropImage($canvasWidth, $canvasHeight, 0, 0);
     
     /* composite original text_layer onto shadow_layer */
@@ -140,14 +140,6 @@ function renderKernel(ImagickKernel $imagickKernel) {
     echo $shadow->getImageBlob();
 
 }
-
-//Example ImagickKernel::
-function construct() {
-
-  
-}
-//Example end
-
 
 //Example ImagickKernel::addKernel
 function addKernel($imagePath) {
@@ -164,13 +156,12 @@ function addKernel($imagePath) {
         [-1,  0,  1],
     ];
 
-    $kernel1 = ImagickKernel::fromArray($matrix1);
-    $kernel2 = ImagickKernel::fromArray($matrix2);
-
-    $combinedKernel = $kernel1->addKernel($kernel2);
+    $kernel1 = ImagickKernel::fromMatrix($matrix1);
+    $kernel2 = ImagickKernel::fromMatrix($matrix2);
+    $kernel1->addKernel($kernel2);
 
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->filter($combinedKernel);
+    $imagick->filter($kernel1);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 
@@ -178,7 +169,7 @@ function addKernel($imagePath) {
 //Example end
     
 
-//Example ImagickKernel::addUnityKernel
+// E xample ImagickKernel::addUnityKernel
 function addUnityKernel($imagePath) {
 
     $matrix = [
@@ -187,7 +178,7 @@ function addUnityKernel($imagePath) {
         [-1, 0, -1],
     ];
 
-    $kernel = ImagickKernel::fromArray($matrix);
+    $kernel = ImagickKernel::fromMatrix($matrix);
 
     $kernel->scale(4, \Imagick::NORMALIZE_KERNEL_VALUE);
     $kernel->addUnityKernel(0.5);
@@ -201,94 +192,43 @@ function addUnityKernel($imagePath) {
 }
 //Example end
 
-//Example ImagickKernel::fromArray
-function fromArray() {
-    
+//Example ImagickKernel::fromMatrix
+function fromMatrix() {
     $matrix = [
-        [-1, 0, -1],
-        [0, 4, 0],
-        [-1, 0, -1],
+        [0.5, 0, 0.2],
+        [0, 1, 0],
+        [0.9, 0, false],
     ];
 
-    $kernel = \ImagickKernel::fromArray($matrix);
-
+    $kernel = \ImagickKernel::fromMatrix($matrix);
     renderKernel($kernel);
 }
 //Example end
+
+//Example ImagickKernel::fromBuiltIn
+function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm) {
+    $string = '';
+
+    if ($kernelFirstTerm != false && strlen(trim($kernelFirstTerm)) != 0) {
+        $string .= $kernelFirstTerm;
+
+        if ($kernelSecondTerm != false && strlen(trim($kernelSecondTerm)) != 0) {
+            $string .= ','.$kernelSecondTerm;
+            if ($kernelThirdTerm != false && strlen(trim($kernelThirdTerm)) != 0) {
+                $string .= ','.$kernelThirdTerm;
+            }
+        }
+    }    
     
-function fromBuiltin() {
-
-
     $diamondKernel = ImagickKernel::fromBuiltIn(
-        \Imagick::KERNEL_DIAMOND,
-        "3,2"
+        $kernelType, //\Imagick::KERNEL_DIAMOND,
+        $string
     );
 
     renderKernel($diamondKernel);
 }
+//Example end
 
-    
-    
-    
-//'getValues'
-//'scale'
-//'separate'
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//
-//    class ImagickKernel {
-//
-//        // Create a kernel from an 2d matrix of values. Each value should either
-//        // be a float (if the element should be used) or 'false' if the element
-//        // should be skipped.
-//        public static function fromArray(array $values) {}
-//
-//        // Create a kernel from a builtin in kernel.
-//        // See http://www.imagemagick.org/Usage/morphology/#kernel for examples.
-//        // Currently the 'rotation' symbol are not supported.
-//        // $diamondKernel = ImagickKernel::fromBuiltIn(\Imagick::KERNEL_DIAMOND, "2");
-//        public static function fromBuiltIn($kernelType, $string){}
-//
-//        // Get the 2d matrix of values used in this kernel. The elements are either
-//        // float for elements that are used or 'false' if the element should be skipped.
-//        public function getValues(){}
-//
-//        // Attach another kernel to this kernel to allow them to both be applied 
-//        // in a single morphology or filter function.
-//        public function addKernel(ImagickKernel $kernel){}
-//
-//        // Separates a linked set of kernels and returns an array of ImagickKernels.
-//        public function separate();
-//
-//        // Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
-//        // and normalized Kernel. This in effect adds that amount of the original image 
-//        // into the resulting convolution kernel. The resulting effect is to convert the
-//        // defined kernels into blended soft-blurs, unsharp kernels or into sharpening
-//        // kernels.
-//        function addUnityKernel(float scale) {}
-//
-//    // Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
-//    // and normalized Kernel. This in effect adds that amount of the original image 
-//    // into the resulting convolution kernel. The resulting effect is to convert the
-//    // defined kernels into blended soft-blurs, unsharp kernels or into sharpening kernels.
-//    // Flag should be one of NORMALIZE_KERNEL_VALUE, NORMALIZE_KERNEL_CORRELATE, 
-//    // NORMALIZE_KERNEL_PERCENT or not set.
-//    function scale(float $scaling_factor, $normalizeFlag = 0){}
-//}
-//
-//
-//    
 
 
 }

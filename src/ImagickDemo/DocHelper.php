@@ -21,7 +21,7 @@ class DocHelper {
         $imagick->distortImage(  \\Imagick::DISTORTION_AFFINE, $points, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
-";s:11:"description";s:6:"Affine";s:9:"startLine";i:67;s:7:"endLine";i:81;}',
+";s:11:"description";s:6:"Affine";s:9:"startLine";i:72;s:7:"endLine";i:86;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:473:"        $imagick = new \\Imagick(realpath($this->control->getImagePath()));
         $points = array( 
             0.9,0.3,
@@ -33,7 +33,7 @@ class DocHelper {
         $imagick->distortImage( \\Imagick::DISTORTION_AFFINEPROJECTION, $points, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
-";s:11:"description";s:10:"Projection";s:9:"startLine";i:87;s:7:"endLine";i:99;}',
+";s:11:"description";s:10:"Projection";s:9:"startLine";i:92;s:7:"endLine";i:104;}',
       2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:708:"        //Make some text arc around the center of it\'s image
 //        convert logo: -resize x150 -gravity NorthEast -crop 100x100+10+0! \\
 //        \\( -background none label:\'IM Examples\' \\
@@ -47,7 +47,7 @@ class DocHelper {
         $imagick->distortImage( \\Imagick::DISTORTION_ARC, $degrees, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
-";s:11:"description";s:3:"Arc";s:9:"startLine";i:104;s:7:"endLine";i:118;}',
+";s:11:"description";s:3:"Arc";s:9:"startLine";i:109;s:7:"endLine";i:123;}',
       3 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:409:"        $imagick = new \\Imagick(realpath($this->control->getImagePath()));
         $degrees = array( 180, 45, 100, 20 );
         $imagick->setimagebackgroundcolor("#fad888");
@@ -55,7 +55,7 @@ class DocHelper {
         $imagick->distortImage( \\Imagick::DISTORTION_ARC, $degrees, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
-";s:11:"description";s:11:"Rotated Arc";s:9:"startLine";i:123;s:7:"endLine";i:131;}',
+";s:11:"description";s:11:"Rotated Arc";s:9:"startLine";i:128;s:7:"endLine";i:136;}',
       4 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:563:"        $imagick = new \\Imagick(realpath($this->control->getImagePath()));
         $points = array(
             0,0, 25,25, # top left  
@@ -68,7 +68,7 @@ class DocHelper {
         $imagick->distortImage( \\Imagick::DISTORTION_BILINEAR, $points, TRUE );
         header( "Content-Type: image/jpeg" );
         echo $imagick;
-";s:11:"description";s:8:"Bilinear";s:9:"startLine";i:135;s:7:"endLine";i:148;}',
+";s:11:"description";s:8:"Bilinear";s:9:"startLine";i:140;s:7:"endLine";i:153;}',
       5 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:468:"        $imagick = new \\Imagick(realpath($this->control->getImagePath()));
         $points = array(
             1.5, # scale 150%
@@ -79,7 +79,7 @@ class DocHelper {
         $imagick->distortImage( \\Imagick::DISTORTION_SCALEROTATETRANSLATE, $points, TRUE );
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:22:"Scale Rotate Transform";s:9:"startLine";i:153;s:7:"endLine";i:164;}',
+";s:11:"description";s:22:"Scale Rotate Transform";s:9:"startLine";i:158;s:7:"endLine";i:169;}',
       6 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:1193:"        //$imagick = new \\Imagick(realpath($this->rsiControl->getImagePath()));
         $imagick = new \\Imagick();
 
@@ -112,7 +112,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_PERSPECTIVE, $controlPoints, true);
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
-";s:11:"description";s:11:"Perspective";s:9:"startLine";i:169;s:7:"endLine";i:202;}',
+";s:11:"description";s:11:"Perspective";s:9:"startLine";i:174;s:7:"endLine";i:207;}',
       7 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:749:"        //X-of-destination = (sx*xs + ry+ys +tx) / (px*xs + py*ys +1)
         //Y-of-destination = (rx*xs + sy+ys +ty) / (px*xs + py*ys +1)
 
@@ -131,7 +131,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_PERSPECTIVEPROJECTION, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:21:"PerspectiveProjection";s:9:"startLine";i:208;s:7:"endLine";i:227;}',
+";s:11:"description";s:21:"PerspectiveProjection";s:9:"startLine";i:213;s:7:"endLine";i:232;}',
       8 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:1101:"
 // Order     X1,Y1 I1,J1     X2,Y2 I2,J2     X3,Y3 I3,J3     X4,Y4 I4,J4 . . . .
 // The \'Order\' argument is usually an integer from \'1\' onward, though a special value
@@ -154,7 +154,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_POLYNOMIAL, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:10:"Polynomial";s:9:"startLine";i:233;s:7:"endLine";i:256;}',
+";s:11:"description";s:10:"Polynomial";s:9:"startLine";i:238;s:7:"endLine";i:261;}',
       9 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:572:"        //v6.4.2-6
         $imagick = new \\Imagick(realpath($this->control->getImagePath()));
         $points = array(
@@ -174,7 +174,7 @@ class DocHelper {
 
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:5:"Polar";s:9:"startLine";i:264;s:7:"endLine";i:284;}',
+";s:11:"description";s:5:"Polar";s:9:"startLine";i:269;s:7:"endLine";i:289;}',
       10 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:436:"        //v6.4.2-6
         $imagick = new \\Imagick(realpath($this->control->getImagePath()));
         $points = array(
@@ -186,7 +186,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_DEPOLAR, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:5:"Polar";s:9:"startLine";i:292;s:7:"endLine";i:304;}',
+";s:11:"description";s:5:"Polar";s:9:"startLine";i:297;s:7:"endLine";i:309;}',
       11 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:1076:"
 // The arguments needed for the \'Barrel\' distort method. Generally you supply
 // 3 or 4 values only...
@@ -209,7 +209,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_BARREL, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:6:"Barrel";s:9:"startLine";i:310;s:7:"endLine";i:333;}',
+";s:11:"description";s:6:"Barrel";s:9:"startLine";i:315;s:7:"endLine";i:338;}',
       12 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:635:"//  Rsrc = r / ( A*r3 + B*r2 + C*r + D )
 // This equation does NOT produce the \'reverse\' the \'Barrel\' distortion.
 // You can NOT use it to \'undo\' the previous distortion.
@@ -226,7 +226,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_BARRELINVERSE, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:14:"Barrel Inverse";s:9:"startLine";i:338;s:7:"endLine";i:355;}',
+";s:11:"description";s:14:"Barrel Inverse";s:9:"startLine";i:343;s:7:"endLine";i:360;}',
       13 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:1750:"        //The control points move points in the image in a taffy like motion
         $imagick = new \\Imagick(realpath($this->control->getImagePath()));
 
@@ -258,24 +258,7 @@ class DocHelper {
         $imagick->distortImage(\\Imagick::DISTORTION_SHEPARDS, $points, TRUE);
         header("Content-Type: image/jpeg");
         echo $imagick;
-";s:11:"description";s:8:"Shepards";s:9:"startLine";i:360;s:7:"endLine";i:392;}',
-      14 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"distortImage";s:5:"lines";s:629:"// Rsrc = r / ( A*r3 + B*r2 + C*r + D )
-// This equation does NOT produce the \'reverse\' the \'Barrel\' distortion.
-// You can NOT use it to \'undo\' the previous distortion.
-
-        $imagick = new \\Imagick(realpath($this->control->getImagePath()));
-
-        $points = array(
-            //0.2, 0.0, 0.0, 1.0
-            0.2, 0.1, 0.0, 1.0
-        );
-
-        $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \\Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $imagick->distortImage(\\Imagick::DISTORTION_SENTINEL, $points, TRUE);
-        header("Content-Type: image/jpeg");
-        echo $imagick;
-";s:11:"description";s:8:"Sentinel";s:9:"startLine";i:396;s:7:"endLine";i:413;}',
+";s:11:"description";s:8:"Shepards";s:9:"startLine";i:365;s:7:"endLine";i:397;}',
     ),
     'adaptiveblurimage' => 
     array (
@@ -623,17 +606,15 @@ class DocHelper {
     ),
     'convolveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"convolveImage";s:5:"lines";s:365:"function convolveImage($imagePath, $bias, $kernelMatrix) {
-    $imagick = new \\Imagick(realpath($imagePath));
-    
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"convolveImage";s:5:"lines";s:359:"function convolveImage($imagePath, $bias, $kernelMatrix) {
+    $imagick = new \\Imagick(realpath($imagePath));    
     //$edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
-    
     $imagick->setImageBias($bias * \\Imagick::getQuantum());
     $imagick->convolveImage($kernelMatrix);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:372;s:7:"endLine";i:383;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:370;s:7:"endLine";i:379;}',
     ),
     'cropimage' => 
     array (
@@ -643,7 +624,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:386;s:7:"endLine";i:393;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:382;s:7:"endLine";i:389;}',
     ),
     'deskewimage' => 
     array (
@@ -670,7 +651,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $newCanvas->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:396;s:7:"endLine";i:420;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:392;s:7:"endLine";i:416;}',
     ),
     'despeckleimage' => 
     array (
@@ -680,7 +661,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:422;s:7:"endLine";i:429;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:418;s:7:"endLine";i:425;}',
     ),
     'edgeimage' => 
     array (
@@ -690,7 +671,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:431;s:7:"endLine";i:438;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:427;s:7:"endLine";i:434;}',
     ),
     'enhanceimage' => 
     array (
@@ -700,7 +681,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:440;s:7:"endLine";i:447;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:436;s:7:"endLine";i:443;}',
     ),
     'embossimage' => 
     array (
@@ -710,7 +691,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:450;s:7:"endLine";i:457;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:446;s:7:"endLine";i:453;}',
     ),
     'equalizeimage' => 
     array (
@@ -720,7 +701,7 @@ class DocHelper {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:459;s:7:"endLine";i:466;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:455;s:7:"endLine";i:462;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"equalizeImage";s:5:"lines";s:353:"//This appears to corrupt the image colors?
 function extentImage($imagePath, $startX, $startY, $width, $height) {
     $imagick = new \\Imagick(realpath($imagePath));
@@ -732,7 +713,7 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
     
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:528;s:7:"endLine";i:540;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:524;s:7:"endLine";i:536;}',
     ),
     'evaluateimage' => 
     array (
@@ -791,7 +772,7 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:469;s:7:"endLine";i:525;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:465;s:7:"endLine";i:521;}',
     ),
     'flipimage' => 
     array (
@@ -801,7 +782,7 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:544;s:7:"endLine";i:551;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:540;s:7:"endLine";i:547;}',
     ),
     'floodfillpaintimage' => 
     array (
@@ -820,7 +801,7 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:554;s:7:"endLine";i:570;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:550;s:7:"endLine";i:566;}',
     ),
     'flopimage' => 
     array (
@@ -830,7 +811,7 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:573;s:7:"endLine";i:580;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:569;s:7:"endLine";i:576;}',
     ),
     'forwardfouriertransformimage' => 
     array (
@@ -886,7 +867,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/png");
     echo $magnitude->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:582;s:7:"endLine";i:635;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:578;s:7:"endLine";i:631;}',
     ),
     'frameimage' => 
     array (
@@ -906,7 +887,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:638;s:7:"endLine";i:655;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:634;s:7:"endLine";i:651;}',
     ),
     'fximage' => 
     array (
@@ -921,7 +902,7 @@ function forwardFourierTransformImage($imagePath) {
     $fxImage->setimageformat(\'png\');
     echo $fxImage->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:659;s:7:"endLine";i:671;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:655;s:7:"endLine";i:667;}',
     ),
     'gammaimage' => 
     array (
@@ -931,7 +912,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:674;s:7:"endLine";i:681;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:670;s:7:"endLine";i:677;}',
     ),
     'gaussianblurimage' => 
     array (
@@ -941,7 +922,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:684;s:7:"endLine";i:691;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:680;s:7:"endLine";i:687;}',
     ),
     'getimagegeometry' => 
     array (
@@ -950,7 +931,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:694;s:7:"endLine";i:700;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:690;s:7:"endLine";i:696;}',
     ),
     'getpixeliterator' => 
     array (
@@ -972,7 +953,7 @@ function forwardFourierTransformImage($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:702;s:7:"endLine";i:721;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:698;s:7:"endLine";i:717;}',
     ),
     'getimagehistogram' => 
     array (
@@ -1062,7 +1043,7 @@ function getImageHistogram($imagePath) {
     header( "Content-Type: image/png" );
     echo $histogram;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:725;s:7:"endLine";i:812;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:721;s:7:"endLine";i:808;}',
     ),
     'getpixelregioniterator' => 
     array (
@@ -1084,7 +1065,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:815;s:7:"endLine";i:834;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:811;s:7:"endLine";i:830;}',
     ),
     'haldclutimage' => 
     array (
@@ -1096,7 +1077,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:836;s:7:"endLine";i:845;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:832;s:7:"endLine";i:841;}',
     ),
     'implodeimage' => 
     array (
@@ -1107,7 +1088,7 @@ function getImageHistogram($imagePath) {
     echo $imagick->getImageBlob();
 
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:848;s:7:"endLine";i:856;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:844;s:7:"endLine";i:852;}',
     ),
     'labelimage' => 
     array (
@@ -1117,7 +1098,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
     }
-";s:11:"description";s:0:"";s:9:"startLine";i:858;s:7:"endLine";i:865;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:854;s:7:"endLine";i:861;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"labelImage";s:5:"lines";s:254:"function polaroidImage($imagePath) {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagickDraw = new \\ImagickDraw();    
@@ -1125,7 +1106,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1047;s:7:"endLine";i:1055;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1033;s:7:"endLine";i:1041;}',
     ),
     'levelimage' => 
     array (
@@ -1140,7 +1121,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:868;s:7:"endLine";i:880;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:864;s:7:"endLine";i:876;}',
     ),
     'linearstretchimage' => 
     array (
@@ -1152,7 +1133,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:883;s:7:"endLine";i:892;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:879;s:7:"endLine";i:888;}',
     ),
     'magnifyimage' => 
     array (
@@ -1162,7 +1143,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:895;s:7:"endLine";i:902;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:891;s:7:"endLine";i:898;}',
     ),
     'medianfilterimage' => 
     array (
@@ -1172,37 +1153,27 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:905;s:7:"endLine";i:912;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:901;s:7:"endLine";i:908;}',
     ),
     'mergeimagelayers' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"mergeImageLayers";s:5:"lines";s:723:"function mergeImageLayers($layerMethodType) {
-
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"mergeImageLayers";s:5:"lines";s:608:"function mergeImageLayers($layerMethodType) {
     $imagick = new \\Imagick();
-    $nextImage = null;
-    $images = [
-        "../imagick/images/Biter_500.jpg",
-        "../imagick/images/SydneyPeople_400.jpg",
-    ];
-
-
-    foreach ($images as $image) {
-        $nextImage = new \\Imagick(realpath($image));
-        //$nextImage->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
-        $imagick->addImage($nextImage);
-        //$imagick->setPage(400, 400, rand(0, 5) * 50, rand(0, 5) * 50);
-    }
-
-    $imagick->resetIterator();
+    $whiteDisc = new \\Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
+    $imagick->addImage($whiteDisc);
     
+    $whiteDisc = new \\Imagick(realpath("../imagick/images/redDiscAlpha.png"));
+    $imagick->addImage($whiteDisc);
+    
+    $whiteDisc = new \\Imagick(realpath("../imagick/images/greenDiscAlpha.png"));
+    $imagick->addImage($whiteDisc);
     $imagick->setImageFormat(\'png\');
 
     $result = $imagick->mergeImageLayers($layerMethodType);
     header("Content-Type: image/png");
     echo $result->getImageBlob();
-    exit(0);
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:914;s:7:"endLine";i:941;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:910;s:7:"endLine";i:927;}',
     ),
     'modulateimage' => 
     array (
@@ -1212,7 +1183,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:944;s:7:"endLine";i:951;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:930;s:7:"endLine";i:937;}',
     ),
     'mosaicimages' => 
     array (
@@ -1236,7 +1207,7 @@ function getImageHistogram($imagePath) {
     $imagick->setimageformat(\'png\');
     header("Content-Type: image/png");
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:954;s:7:"endLine";i:975;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:940;s:7:"endLine";i:961;}',
     ),
     'motionblurimage' => 
     array (
@@ -1246,7 +1217,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:978;s:7:"endLine";i:985;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:964;s:7:"endLine";i:971;}',
     ),
     'negateimage' => 
     array (
@@ -1256,7 +1227,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:987;s:7:"endLine";i:994;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:973;s:7:"endLine";i:980;}',
     ),
     'newpseudoimage' => 
     array (
@@ -1267,7 +1238,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:997;s:7:"endLine";i:1005;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:983;s:7:"endLine";i:991;}',
     ),
     'normalizeimage' => 
     array (
@@ -1280,7 +1251,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1008;s:7:"endLine";i:1018;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:994;s:7:"endLine";i:1004;}',
     ),
     'oilpaintimage' => 
     array (
@@ -1290,7 +1261,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1020;s:7:"endLine";i:1027;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1006;s:7:"endLine";i:1013;}',
     ),
     'orderedposterizeimage' => 
     array (
@@ -1304,7 +1275,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1033;s:7:"endLine";i:1044;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1019;s:7:"endLine";i:1030;}',
     ),
     'posterizeimage' => 
     array (
@@ -1315,7 +1286,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1059;s:7:"endLine";i:1067;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1045;s:7:"endLine";i:1053;}',
     ),
     'quantizeimage' => 
     array (
@@ -1326,7 +1297,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1070;s:7:"endLine";i:1078;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1056;s:7:"endLine";i:1064;}',
     ),
     'radialblurimage' => 
     array (
@@ -1338,7 +1309,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1081;s:7:"endLine";i:1090;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1067;s:7:"endLine";i:1076;}',
     ),
     'raiseimage' => 
     array (
@@ -1350,7 +1321,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1093;s:7:"endLine";i:1102;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1079;s:7:"endLine";i:1088;}',
     ),
     'randomthresholdimage' => 
     array (
@@ -1365,7 +1336,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1105;s:7:"endLine";i:1117;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1091;s:7:"endLine";i:1103;}',
     ),
     'readimageblob' => 
     array (
@@ -1392,7 +1363,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $imageBlob;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1119;s:7:"endLine";i:1143;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1105;s:7:"endLine";i:1129;}',
     ),
     'recolorimage' => 
     array (
@@ -1413,7 +1384,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1145;s:7:"endLine";i:1163;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1131;s:7:"endLine";i:1149;}',
     ),
     'reducenoiseimage' => 
     array (
@@ -1423,7 +1394,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1165;s:7:"endLine";i:1172;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1151;s:7:"endLine";i:1158;}',
     ),
     'remapimage' => 
     array (
@@ -1434,7 +1405,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1174;s:7:"endLine";i:1182;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1160;s:7:"endLine";i:1168;}',
     ),
     'resampleimage' => 
     array (
@@ -1445,7 +1416,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1184;s:7:"endLine";i:1192;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1170;s:7:"endLine";i:1178;}',
     ),
     'resizeimage' => 
     array (
@@ -1479,7 +1450,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1196;s:7:"endLine";i:1227;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1182;s:7:"endLine";i:1213;}',
     ),
     'rollimage' => 
     array (
@@ -1489,7 +1460,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1230;s:7:"endLine";i:1237;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1216;s:7:"endLine";i:1223;}',
     ),
     'rotateimage' => 
     array (
@@ -1499,7 +1470,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1239;s:7:"endLine";i:1246;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1225;s:7:"endLine";i:1232;}',
     ),
     'rotationalblurimage' => 
     array (
@@ -1511,7 +1482,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1248;s:7:"endLine";i:1257;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1234;s:7:"endLine";i:1243;}',
     ),
     'roundcorners' => 
     array (
@@ -1538,7 +1509,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1259;s:7:"endLine";i:1283;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1245;s:7:"endLine";i:1269;}',
     ),
     'scaleimage' => 
     array (
@@ -1548,7 +1519,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1285;s:7:"endLine";i:1292;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1271;s:7:"endLine";i:1278;}',
     ),
     'segmentimage' => 
     array (
@@ -1558,7 +1529,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1295;s:7:"endLine";i:1302;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1281;s:7:"endLine";i:1288;}',
     ),
     'selectiveblurimage' => 
     array (
@@ -1568,7 +1539,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1305;s:7:"endLine";i:1312;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1291;s:7:"endLine";i:1298;}',
     ),
     'separateimagechannel' => 
     array (
@@ -1578,7 +1549,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1315;s:7:"endLine";i:1322;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1301;s:7:"endLine";i:1308;}',
     ),
     'sepiatoneimage' => 
     array (
@@ -1588,7 +1559,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1326;s:7:"endLine";i:1333;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1312;s:7:"endLine";i:1319;}',
     ),
     'setcompressionquality' => 
     array (
@@ -1614,7 +1585,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1336;s:7:"endLine";i:1359;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1322;s:7:"endLine";i:1345;}',
     ),
     'setimageartifact' => 
     array (
@@ -1631,7 +1602,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/png");
     echo $src1->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1363;s:7:"endLine";i:1377;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1349;s:7:"endLine";i:1363;}',
     ),
     'setimagecompressionquality' => 
     array (
@@ -1641,7 +1612,7 @@ function getImageHistogram($imagePath) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1380;s:7:"endLine";i:1387;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1366;s:7:"endLine";i:1373;}',
     ),
     'setimageorientation' => 
     array (
@@ -1652,7 +1623,7 @@ function setImageOrientation($imagePath, $orientationType) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1390;s:7:"endLine";i:1398;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1376;s:7:"endLine";i:1384;}',
     ),
     'setimagebias' => 
     array (
@@ -1674,7 +1645,7 @@ function setImageBias($bias) {
     header(\'Content-type: image/png\');
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1401;s:7:"endLine";i:1420;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1387;s:7:"endLine";i:1406;}',
     ),
     'setimageclipmask' => 
     array (
@@ -1710,7 +1681,7 @@ function setImageBias($bias) {
     echo $imagick->getImagesBlob();
     
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1423;s:7:"endLine";i:1456;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1409;s:7:"endLine";i:1442;}',
     ),
     'setimagedelay' => 
     array (
@@ -1730,7 +1701,7 @@ function setImageBias($bias) {
     header("Content-Type: image/gif");
     echo $imagick2->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1459;s:7:"endLine";i:1476;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1445;s:7:"endLine";i:1462;}',
     ),
     'setimageresolution' => 
     array (
@@ -1741,7 +1712,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1479;s:7:"endLine";i:1487;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1465;s:7:"endLine";i:1473;}',
     ),
     'setimagetickspersecond' => 
     array (
@@ -1769,7 +1740,7 @@ function setImageBias($bias) {
     header("Content-Type: image/gif");
     echo $imagick2->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1490;s:7:"endLine";i:1515;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1476;s:7:"endLine";i:1501;}',
     ),
     'setiteratorindex' => 
     array (
@@ -1788,7 +1759,7 @@ function setImageBias($bias) {
         header("Content-Type: image/png");
         echo $merged->getImageBlob();
     }
-";s:11:"description";s:0:"";s:9:"startLine";i:1518;s:7:"endLine";i:1534;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1504;s:7:"endLine";i:1520;}',
     ),
     'setsamplingfactors' => 
     array (
@@ -1815,7 +1786,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $reopen->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1557;s:7:"endLine";i:1581;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1543;s:7:"endLine";i:1567;}',
     ),
     'shadeimage' => 
     array (
@@ -1825,7 +1796,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1583;s:7:"endLine";i:1590;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1569;s:7:"endLine";i:1576;}',
     ),
     'shadowimage' => 
     array (
@@ -1835,7 +1806,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1592;s:7:"endLine";i:1599;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1578;s:7:"endLine";i:1585;}',
     ),
     'sharpenimage' => 
     array (
@@ -1845,7 +1816,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1602;s:7:"endLine";i:1609;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1588;s:7:"endLine";i:1595;}',
     ),
     'shaveimage' => 
     array (
@@ -1855,7 +1826,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1612;s:7:"endLine";i:1619;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1598;s:7:"endLine";i:1605;}',
     ),
     'shearimage' => 
     array (
@@ -1865,7 +1836,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1622;s:7:"endLine";i:1629;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1608;s:7:"endLine";i:1615;}',
     ),
     'sigmoidalcontrastimage' => 
     array (
@@ -1880,7 +1851,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1632;s:7:"endLine";i:1644;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1618;s:7:"endLine";i:1630;}',
     ),
     'sketchimage' => 
     array (
@@ -1890,7 +1861,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1647;s:7:"endLine";i:1654;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1633;s:7:"endLine";i:1640;}',
     ),
     'smushimages' => 
     array (
@@ -1905,7 +1876,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $smushed->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1656;s:7:"endLine";i:1668;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1642;s:7:"endLine";i:1654;}',
     ),
     'solarizeimage' => 
     array (
@@ -1915,7 +1886,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1671;s:7:"endLine";i:1678;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1657;s:7:"endLine";i:1664;}',
     ),
     'spliceimage' => 
     array (
@@ -1925,7 +1896,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1681;s:7:"endLine";i:1688;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1667;s:7:"endLine";i:1674;}',
     ),
     'spreadimage' => 
     array (
@@ -1935,7 +1906,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1690;s:7:"endLine";i:1697;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1676;s:7:"endLine";i:1683;}',
     ),
     'statisticimage' => 
     array (
@@ -1952,7 +1923,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1700;s:7:"endLine";i:1714;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1686;s:7:"endLine";i:1700;}',
     ),
     'stereoimage' => 
     array (
@@ -1963,7 +1934,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1717;s:7:"endLine";i:1725;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1703;s:7:"endLine";i:1711;}',
     ),
     'subimagematch' => 
     array (
@@ -1981,7 +1952,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1728;s:7:"endLine";i:1743;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1714;s:7:"endLine";i:1729;}',
     ),
     'swirlimage' => 
     array (
@@ -1991,7 +1962,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1747;s:7:"endLine";i:1754;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1733;s:7:"endLine";i:1740;}',
     ),
     'textureimage' => 
     array (
@@ -2005,7 +1976,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $image;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1756;s:7:"endLine";i:1767;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1742;s:7:"endLine";i:1753;}',
     ),
     'thresholdimage' => 
     array (
@@ -2015,7 +1986,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1770;s:7:"endLine";i:1777;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1756;s:7:"endLine";i:1763;}',
     ),
     'thumbnailimage' => 
     array (
@@ -2026,7 +1997,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1780;s:7:"endLine";i:1788;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1766;s:7:"endLine";i:1774;}',
     ),
     'tintimage' => 
     array (
@@ -2043,7 +2014,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1791;s:7:"endLine";i:1805;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1777;s:7:"endLine";i:1791;}',
     ),
     'transformimage' => 
     array (
@@ -2053,7 +2024,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $newImage->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1808;s:7:"endLine";i:1815;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1794;s:7:"endLine";i:1801;}',
     ),
     'transformimagecolorspace' => 
     array (
@@ -2064,7 +2035,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1818;s:7:"endLine";i:1826;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1804;s:7:"endLine";i:1812;}',
     ),
     'transparentpaintimage' => 
     array (
@@ -2084,7 +2055,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1829;s:7:"endLine";i:1846;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1815;s:7:"endLine";i:1832;}',
     ),
     'transposeimage' => 
     array (
@@ -2094,7 +2065,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1849;s:7:"endLine";i:1856;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1835;s:7:"endLine";i:1842;}',
     ),
     'transverseimage' => 
     array (
@@ -2104,7 +2075,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1859;s:7:"endLine";i:1866;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1845;s:7:"endLine";i:1852;}',
     ),
     'trimimage' => 
     array (
@@ -2116,7 +2087,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1869;s:7:"endLine";i:1878;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1855;s:7:"endLine";i:1864;}',
     ),
     'uniqueimagecolors' => 
     array (
@@ -2129,7 +2100,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1881;s:7:"endLine";i:1891;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1867;s:7:"endLine";i:1877;}',
     ),
     'unsharpmaskimage' => 
     array (
@@ -2139,7 +2110,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1894;s:7:"endLine";i:1901;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1880;s:7:"endLine";i:1887;}',
     ),
     'vignetteimage' => 
     array (
@@ -2149,7 +2120,7 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1904;s:7:"endLine";i:1911;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1890;s:7:"endLine";i:1897;}',
     ),
     'waveimage' => 
     array (
@@ -2159,18 +2130,17 @@ function setImageBias($bias) {
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1914;s:7:"endLine";i:1921;}',
+";s:11:"description";s:27:"WaveImage can be quite slow";s:9:"startLine";i:1900;s:7:"endLine";i:1907;}',
     ),
     'whitethresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"whiteThresholdImage";s:5:"lines";s:248:"function whiteThresholdImage($imagePath, $color) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"whiteThresholdImage";s:5:"lines";s:221:"function whiteThresholdImage($imagePath, $color) {
     $imagick = new \\Imagick(realpath($imagePath));
-    //TODO needs a control
     $imagick->whiteThresholdImage($color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1924;s:7:"endLine";i:1932;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1910;s:7:"endLine";i:1917;}',
     ),
     'identifyformat' => 
     array (
@@ -2178,6 +2148,228 @@ function setImageBias($bias) {
         $imagick = new \\Imagick(realpath("./images/artifact/mask.png"));
         $output .= $imagick->identifyFormat("Trim box: %@ number of unique colors: %k");
 ";s:11:"description";s:0:"";s:9:"startLine";i:18;s:7:"endLine";i:22;}',
+    ),
+    'morphology' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:397:"        $matrix = [
+            [0.0, 0.5, 0.0],
+            [0.5, 1.0, 0.5],
+            [0.0, 0.5, 0.0],
+        ];
+        $imagick = new \\Imagick(realpath("./images/character.png"));
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $imagick->morphology(\\Imagick::MORPHOLOGY_CONVOLVE, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+";s:11:"description";s:8:"Convolve";s:9:"startLine";i:116;s:7:"endLine";i:127;}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:398:"        $matrix = [
+            [0.0, 0.5, 0.0],
+            [0.5, 1.0, 0.5],
+            [0.0, 0.5, 0.0],
+        ];
+        $imagick = new \\Imagick(realpath("./images/character.png"));
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $imagick->morphology(\\Imagick::MORPHOLOGY_CORRELATE, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+";s:11:"description";s:9:"Correlate";s:9:"startLine";i:132;s:7:"endLine";i:143;}',
+      2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:276:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_ERODE, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:5:"Erode";s:9:"startLine";i:148;s:7:"endLine";i:154;}',
+      3 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "1");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_ERODE_INTENSITY, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:15:"Erode Intensity";s:9:"startLine";i:159;s:7:"endLine";i:165;}',
+      4 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:277:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DILATE, 4, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:6:"Dilate";s:9:"startLine";i:169;s:7:"endLine";i:175;}',
+      5 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:280:"        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "1");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DILATE_INTENSITY, 4, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:16:"Dilate intensity";s:9:"startLine";i:179;s:7:"endLine";i:185;}',
+      6 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_CHEBYSHEV, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:30:"Distance with Chebyshev kernel";s:9:"startLine";i:190;s:7:"endLine";i:197;}',
+      7 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_MANHATTAN, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:30:"Distance with Manhattan kernel";s:9:"startLine";i:201;s:7:"endLine";i:208;}',
+      8 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGONAL, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:31:"Distance with ocatagonal kernel";s:9:"startLine";i:212;s:7:"endLine";i:219;}',
+      9 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_EUCLIDEAN, "4");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:30:"Distance with Euclidean kernel";s:9:"startLine";i:223;s:7:"endLine";i:230;}',
+      10 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:275:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:4:"Edge";s:9:"startLine";i:234;s:7:"endLine";i:240;}',
+      11 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:486:"        // As a result you will see that \'Open\' smoothed the outline, by rounding off any sharp points, and remove any parts that is smaller than the shape used. It will also disconnect or \'open\' any thin bridges.
+        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_OPEN, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:4:"Open";s:9:"startLine";i:244;s:7:"endLine";i:251;}',
+      12 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:490:"        // As a result you will see that \'Open\' smoothed the outline, by rounding off any sharp points, and remove any parts that is smaller than the shape used. It will also disconnect or \'open\' any thin bridges.
+
+        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_OPEN_INTENSITY, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:14:"Open intensity";s:9:"startLine";i:257;s:7:"endLine";i:265;}',
+      13 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:480:"        //The basic use of the \'Close\' method is to reduce or remove any \'holes\' or \'gaps\' about the size of the kernel \'Structure Element\'. That is \'close\' parts of the background that are about that size.
+        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:5:"Close";s:9:"startLine";i:269;s:7:"endLine";i:276;}',
+      14 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:483:"        //The basic use of the \'Close\' method is to reduce or remove any \'holes\' or \'gaps\' about the size of the kernel \'Structure Element\'. That is \'close\' parts of the background that are about that size.
+        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE_INTENSITY, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:15:"Close Intensity";s:9:"startLine";i:280;s:7:"endLine";i:287;}',
+      15 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:277:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_SMOOTH, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:6:"Smooth";s:9:"startLine";i:292;s:7:"endLine";i:298;}',
+      16 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:278:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE_IN, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:7:"Edge in";s:9:"startLine";i:302;s:7:"endLine";i:308;}',
+      17 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE_OUT, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:8:"Edge out";s:9:"startLine";i:312;s:7:"endLine";i:318;}',
+      18 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:275:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_TOP_HAT, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:227:"The \'TopHat\' method, or more specifically \'White Top Hat\', returns the pixels that were removed by a Opening of the shape, that is the pixels that were removed to round off the points, and the connecting bridged between shapes.";s:9:"startLine";i:322;s:7:"endLine";i:328;}',
+      19 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"
+        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_BOTTOM_HAT, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:198:"The \'BottomHat\' method, also known as \'Black TopHat\' is the pixels that a Closing of the shape adds to the image. That is the the pixels that were used to fill in the \'holes\', \'gaps\', and \'bridges\'.";s:9:"startLine";i:333;s:7:"endLine";i:340;}',
+      20 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:412:"        $canvas = $this->getCharacterOutline();
+        //This finds all the pixels with 3 pixels of the right edge
+        $matrix = [[1, false, false, 0]];
+        $kernel = \\ImagickKernel::fromMatrix(
+            $matrix,
+            [0, 0]
+        );
+        $canvas->morphology(\\Imagick::MORPHOLOGY_HIT_AND_MISS, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:12:"Hit and Miss";s:9:"startLine";i:345;s:7:"endLine";i:356;}',
+      21 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:417:"        $canvas = $this->getCharacterOutline();
+        $leftEdgeKernel = \\ImagickKernel::fromMatrix([[0, 1]], [1, 0]);
+        $rightEdgeKernel = \\ImagickKernel::fromMatrix([[1, 0]], [0, 0]);
+        $leftEdgeKernel->addKernel($rightEdgeKernel);
+        
+        $canvas->morphology(\\Imagick::MORPHOLOGY_THINNING, 3, $leftEdgeKernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:8:"Thinning";s:9:"startLine";i:361;s:7:"endLine";i:370;}',
+      22 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:408:"        $canvas = $this->getCharacterOutline();
+        $leftEdgeKernel = \\ImagickKernel::fromMatrix([[0, 1]], [1, 0]);
+        $rightEdgeKernel = \\ImagickKernel::fromMatrix([[1, 0]], [0, 0]);
+        $leftEdgeKernel->addKernel($rightEdgeKernel);
+
+        $canvas->morphology(\\Imagick::MORPHOLOGY_THICKEN, 3, $leftEdgeKernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:7:"Thicken";s:9:"startLine";i:374;s:7:"endLine";i:383;}',
+      23 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:647:"        $canvas = $this->getCharacterOutline();
+        $diamondKernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DIAMOND, "1");
+        $convexKernel =  \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_CONVEX_HULL, "");
+
+        // The thicken morphology doesn\'t handle small gaps. We close them
+        // with the close morphology.
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $diamondKernel);
+        $canvas->morphology(\\Imagick::MORPHOLOGY_THICKEN, -1, $convexKernel);
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $diamondKernel);
+
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:31:"Thick to generate a convex hull";s:9:"startLine";i:387;s:7:"endLine";i:400;}',
+      24 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:320:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "2");        
+        $canvas->morphology(\\Imagick::MORPHOLOGY_ITERATIVE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:20:"Iterative morphology";s:9:"startLine";i:404;s:7:"endLine";i:411;}',
+      25 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:804:"    private function getCharacterOutline() {
+
+        $imagick = new \\Imagick(realpath("./images/character.png"));
+        $character = new \\Imagick();
+        $character->newPseudoImage(
+            $imagick->getImageWidth(),
+            $imagick->getImageHeight(),
+            "canvas:white"
+        );
+        $canvas = new \\Imagick();
+        $canvas->newPseudoImage(
+            $imagick->getImageWidth(),
+            $imagick->getImageHeight(),
+            "canvas:black"
+        );
+
+        $character->compositeimage(
+            $imagick,
+            \\Imagick::COMPOSITE_COPYOPACITY,
+            0, 0
+        );
+        $canvas->compositeimage(
+            $character,
+            \\Imagick::COMPOSITE_ATOP,
+            0, 0
+        );
+        $canvas->setFormat(\'png\');
+
+        return $canvas;
+";s:11:"description";s:41:"Helper functon to get an image silhouette";s:9:"startLine";i:421;s:7:"endLine";i:451;}',
     ),
     'quantum' => 
     array (
@@ -2506,7 +2698,7 @@ function setImageBias($bias) {
     ),
     'bezier' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"bezier";s:5:"lines";s:1563:"function bezier($strokeColor, $fillColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:6:"bezier";s:5:"lines";s:1843:"function bezier($strokeColor, $fillColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -2519,14 +2711,39 @@ function setImageBias($bias) {
 
     $draw->setStrokeWidth(2);
 
-    $smoothPointsSet = [[[\'x\' => 10.0 * 5, \'y\' => 10.0 * 5], [\'x\' => 30.0 * 5, \'y\' => 90.0 * 5], [\'x\' => 25.0 * 5, \'y\' => 10.0 * 5], [\'x\' => 50.0 * 5, \'y\' => 50.0 * 5],], [[\'x\' => 50.0 * 5, \'y\' => 50.0 * 5], [\'x\' => 75.0 * 5, \'y\' => 90.0 * 5], [\'x\' => 70.0 * 5, \'y\' => 10.0 * 5], [\'x\' => 90.0 * 5, \'y\' => 40.0 * 5],],];
+    $smoothPointsSet = [
+        [
+            [\'x\' => 10.0 * 5, \'y\' => 10.0 * 5],
+            [\'x\' => 30.0 * 5, \'y\' => 90.0 * 5],
+            [\'x\' => 25.0 * 5, \'y\' => 10.0 * 5],
+            [\'x\' => 50.0 * 5, \'y\' => 50.0 * 5],
+        ], 
+        [
+            [\'x\' => 50.0 * 5, \'y\' => 50.0 * 5],
+            [\'x\' => 75.0 * 5, \'y\' => 90.0 * 5],
+            [\'x\' => 70.0 * 5, \'y\' => 10.0 * 5],
+            [\'x\' => 90.0 * 5, \'y\' => 40.0 * 5],
+        ],
+    ];
 
     foreach ($smoothPointsSet as $points) {
         $draw->bezier($points);
     }
 
-
-    $disjointPoints = [[[\'x\' => 10 * 5, \'y\' => 10 * 5], [\'x\' => 30 * 5, \'y\' => 90 * 5], [\'x\' => 25 * 5, \'y\' => 10 * 5], [\'x\' => 50 * 5, \'y\' => 50 * 5],], [[\'x\' => 50 * 5, \'y\' => 50 * 5], [\'x\' => 80 * 5, \'y\' => 50 * 5], [\'x\' => 70 * 5, \'y\' => 10 * 5], [\'x\' => 90 * 5, \'y\' => 40 * 5],]];
+    $disjointPoints = [
+        [
+            [\'x\' => 10 * 5, \'y\' => 10 * 5], 
+            [\'x\' => 30 * 5, \'y\' => 90 * 5], 
+            [\'x\' => 25 * 5, \'y\' => 10 * 5],
+            [\'x\' => 50 * 5, \'y\' => 50 * 5],
+        ],
+        [
+            [\'x\' => 50 * 5, \'y\' => 50 * 5], 
+            [\'x\' => 80 * 5, \'y\' => 50 * 5],
+            [\'x\' => 70 * 5, \'y\' => 10 * 5],
+            [\'x\' => 90 * 5, \'y\' => 40 * 5],
+         ]
+    ];
     $draw->translate(0, 200);
 
     foreach ($disjointPoints as $points) {
@@ -2546,7 +2763,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:130;s:7:"endLine";i:171;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:130;s:7:"endLine";i:196;}',
     ),
     'circle' => 
     array (
@@ -2575,7 +2792,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:174;s:7:"endLine";i:200;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:199;s:7:"endLine";i:225;}',
     ),
     'composite' => 
     array (
@@ -2617,7 +2834,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:203;s:7:"endLine";i:242;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:228;s:7:"endLine";i:267;}',
     ),
     'ellipse' => 
     array (
@@ -2654,7 +2871,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:245;s:7:"endLine";i:279;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:270;s:7:"endLine";i:304;}',
     ),
     'line' => 
     array (
@@ -2679,7 +2896,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:282;s:7:"endLine";i:304;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:307;s:7:"endLine";i:329;}',
     ),
     'matte' => 
     array (
@@ -2705,7 +2922,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:307;s:7:"endLine";i:330;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:332;s:7:"endLine";i:355;}',
     ),
     'pathstart' => 
     array (
@@ -2751,7 +2968,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:333;s:7:"endLine";i:376;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:358;s:7:"endLine";i:401;}',
     ),
     'pathcurvetoquadraticbezierabsolute' => 
     array (
@@ -2802,7 +3019,7 @@ function setImageBias($bias) {
     echo $imagick->getImageBlob();
 
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:379;s:7:"endLine";i:427;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:404;s:7:"endLine";i:452;}',
     ),
     'point' => 
     array (
@@ -2824,7 +3041,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:430;s:7:"endLine";i:449;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:455;s:7:"endLine";i:474;}',
     ),
     'polygon' => 
     array (
@@ -2850,7 +3067,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:452;s:7:"endLine";i:475;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:477;s:7:"endLine";i:500;}',
     ),
     'polyline' => 
     array (
@@ -2880,7 +3097,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:478;s:7:"endLine";i:505;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:503;s:7:"endLine";i:530;}',
     ),
     'popdefs' => 
     array (
@@ -2909,7 +3126,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:507;s:7:"endLine";i:533;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:532;s:7:"endLine";i:558;}',
     ),
     'push' => 
     array (
@@ -2936,7 +3153,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:536;s:7:"endLine";i:560;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:561;s:7:"endLine";i:585;}',
     ),
     'pushpattern' => 
     array (
@@ -2982,7 +3199,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:563;s:7:"endLine";i:606;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:588;s:7:"endLine";i:631;}',
     ),
     'rectangle' => 
     array (
@@ -3006,7 +3223,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:609;s:7:"endLine";i:630;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:634;s:7:"endLine";i:655;}',
     ),
     'render' => 
     array (
@@ -3033,7 +3250,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:633;s:7:"endLine";i:657;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:658;s:7:"endLine";i:682;}',
     ),
     'rotate' => 
     array (
@@ -3055,7 +3272,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:659;s:7:"endLine";i:678;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:684;s:7:"endLine";i:703;}',
     ),
     'roundrectangle' => 
     array (
@@ -3079,7 +3296,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:680;s:7:"endLine";i:701;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:705;s:7:"endLine";i:726;}',
     ),
     'scale' => 
     array (
@@ -3102,7 +3319,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:703;s:7:"endLine";i:723;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:728;s:7:"endLine";i:748;}',
     ),
     'setclippath' => 
     array (
@@ -3131,7 +3348,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:725;s:7:"endLine";i:751;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:750;s:7:"endLine";i:776;}',
     ),
     'setcliprule' => 
     array (
@@ -3164,7 +3381,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:754;s:7:"endLine";i:784;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:779;s:7:"endLine";i:809;}',
     ),
     'setclipunits' => 
     array (
@@ -3196,7 +3413,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:786;s:7:"endLine";i:815;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:811;s:7:"endLine";i:840;}',
     ),
     'setfillalpha' => 
     array (
@@ -3220,7 +3437,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:817;s:7:"endLine";i:838;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:842;s:7:"endLine";i:863;}',
     ),
     'setfillcolor' => 
     array (
@@ -3246,7 +3463,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:841;s:7:"endLine";i:864;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:866;s:7:"endLine";i:889;}',
     ),
     'setfillopacity' => 
     array (
@@ -3272,7 +3489,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:867;s:7:"endLine";i:890;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:892;s:7:"endLine";i:915;}',
     ),
     'setfillrule' => 
     array (
@@ -3328,7 +3545,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:893;s:7:"endLine";i:946;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:918;s:7:"endLine";i:971;}',
     ),
     'setfont' => 
     array (
@@ -3362,11 +3579,11 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:948;s:7:"endLine";i:979;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:973;s:7:"endLine";i:1004;}',
     ),
     'setfontfamily' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:13:"setFontFamily";s:5:"lines";s:966:"function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:11:"ImagickDraw";s:12:"functionName";s:13:"setFontFamily";s:5:"lines";s:930:"function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
 
     $draw = new \\ImagickDraw();
 
@@ -3375,33 +3592,32 @@ function setImageBias($bias) {
 
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
-    //TODO - actually use setFontFamily
+
     $draw->setStrokeWidth(2);
 
-    $draw->setFontSize(24);
+    $draw->setFontSize(48);
+
+    $draw->setFontFamily("Times");
     $draw->annotation(50, 50, "Lorem Ipsum!");
 
-    $draw->setFontSize(36);
+    $draw->setFontFamily("AvantGarde");
     $draw->annotation(50, 100, "Lorem Ipsum!");
 
-    $draw->setFontSize(48);
+    $draw->setFontFamily("NewCenturySchlbk");    
     $draw->annotation(50, 150, "Lorem Ipsum!");
 
-    $draw->setFontSize(60);
+    $draw->setFontFamily("Palatino");
     $draw->annotation(50, 200, "Lorem Ipsum!");
 
-    $draw->setFontSize(72);
-    $draw->annotation(50, 250, "Lorem Ipsum!");
-
     $imagick = new \\Imagick();
-    $imagick->newImage(500, 500, $backgroundColor);
+    $imagick->newImage(450, 250, $backgroundColor);
     $imagick->setImageFormat("png");
     $imagick->drawImage($draw);
 
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:982;s:7:"endLine";i:1018;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1007;s:7:"endLine";i:1042;}',
     ),
     'setfontsize' => 
     array (
@@ -3430,7 +3646,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1021;s:7:"endLine";i:1047;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1045;s:7:"endLine";i:1071;}',
     ),
     'setfontstretch' => 
     array (
@@ -3460,7 +3676,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1050;s:7:"endLine";i:1077;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1074;s:7:"endLine";i:1101;}',
     ),
     'setfontstyle' => 
     array (
@@ -3487,7 +3703,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1080;s:7:"endLine";i:1104;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1104;s:7:"endLine";i:1128;}',
     ),
     'setfontweight' => 
     array (
@@ -3522,7 +3738,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1107;s:7:"endLine";i:1139;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1131;s:7:"endLine";i:1163;}',
     ),
     'setgravity' => 
     array (
@@ -3551,7 +3767,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1142;s:7:"endLine";i:1168;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1166;s:7:"endLine";i:1192;}',
     ),
     'setstrokealpha' => 
     array (
@@ -3577,7 +3793,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1171;s:7:"endLine";i:1194;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1195;s:7:"endLine";i:1218;}',
     ),
     'setstrokeantialias' => 
     array (
@@ -3606,7 +3822,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1197;s:7:"endLine";i:1223;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1221;s:7:"endLine";i:1247;}',
     ),
     'setstrokecolor' => 
     array (
@@ -3635,7 +3851,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1226;s:7:"endLine";i:1252;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1250;s:7:"endLine";i:1276;}',
     ),
     'setstrokedasharray' => 
     array (
@@ -3668,7 +3884,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1255;s:7:"endLine";i:1285;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1279;s:7:"endLine";i:1309;}',
     ),
     'setstrokedashoffset' => 
     array (
@@ -3701,7 +3917,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1288;s:7:"endLine";i:1318;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1312;s:7:"endLine";i:1342;}',
     ),
     'setstrokelinecap' => 
     array (
@@ -3730,7 +3946,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1320;s:7:"endLine";i:1346;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1344;s:7:"endLine";i:1370;}',
     ),
     'setstrokelinejoin' => 
     array (
@@ -3763,7 +3979,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1349;s:7:"endLine";i:1379;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1373;s:7:"endLine";i:1403;}',
     ),
     'setstrokemiterlimit' => 
     array (
@@ -3802,7 +4018,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1382;s:7:"endLine";i:1418;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1406;s:7:"endLine";i:1442;}',
     ),
     'setstrokeopacity' => 
     array (
@@ -3831,7 +4047,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1421;s:7:"endLine";i:1447;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1445;s:7:"endLine";i:1471;}',
     ),
     'setstrokewidth' => 
     array (
@@ -3856,7 +4072,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1450;s:7:"endLine";i:1472;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1474;s:7:"endLine";i:1496;}',
     ),
     'settextalignment' => 
     array (
@@ -3883,7 +4099,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1475;s:7:"endLine";i:1499;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1499;s:7:"endLine";i:1523;}',
     ),
     'settextantialias' => 
     array (
@@ -3911,7 +4127,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1502;s:7:"endLine";i:1527;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1526;s:7:"endLine";i:1551;}',
     ),
     'settextdecoration' => 
     array (
@@ -3934,7 +4150,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1530;s:7:"endLine";i:1550;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1554;s:7:"endLine";i:1574;}',
     ),
     'settextundercolor' => 
     array (
@@ -3958,7 +4174,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1553;s:7:"endLine";i:1574;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1577;s:7:"endLine";i:1598;}',
     ),
     'setvectorgraphics' => 
     array (
@@ -3983,7 +4199,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1581;s:7:"endLine";i:1603;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1605;s:7:"endLine";i:1627;}',
     ),
     'setviewbox' => 
     array (
@@ -4018,7 +4234,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1606;s:7:"endLine";i:1638;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1630;s:7:"endLine";i:1662;}',
     ),
     'skewx' => 
     array (
@@ -4044,7 +4260,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1641;s:7:"endLine";i:1664;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1665;s:7:"endLine";i:1688;}',
     ),
     'skewy' => 
     array (
@@ -4069,7 +4285,7 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1667;s:7:"endLine";i:1689;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1691;s:7:"endLine";i:1713;}',
     ),
     'translate' => 
     array (
@@ -4095,7 +4311,387 @@ function setImageBias($bias) {
     header("Content-Type: image/png");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:1692;s:7:"endLine";i:1715;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1716;s:7:"endLine";i:1739;}',
+    ),
+  ),
+  'imagickkernel' => 
+  array (
+    'addunitykernel' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:14:"addUnityKernel";s:5:"lines";s:524:"        $matrix = [
+            [-1, 0, -1],
+            [ 0, 4,  0],
+            [-1, 0, -1],
+        ];
+
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $kernel->scale(1, \\Imagick::NORMALIZE_KERNEL_VALUE);
+        $output = "Before adding unity kernel: <br/>";
+        $output .= renderKernelTable($kernel->getMatrix());
+        $kernel->addUnityKernel(0.5);
+        $output .= "After adding unity kernel: <br/>";
+        $output .= renderKernelTable($kernel->getMatrix());
+        
+        return $output;
+";s:11:"description";s:0:"";s:9:"startLine";i:16;s:7:"endLine";i:32;}',
+    ),
+    'addkernel' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:9:"addKernel";s:5:"lines";s:516:"function addKernel($imagePath) {
+
+    $matrix1 = [
+        [-1, -1, -1],
+        [ 0,  0,  0],
+        [ 1,  1,  1],
+    ];
+
+    $matrix2 = [
+        [-1,  0,  1],
+        [-1,  0,  1],
+        [-1,  0,  1],
+    ];
+
+    $kernel1 = ImagickKernel::fromMatrix($matrix1);
+    $kernel2 = ImagickKernel::fromMatrix($matrix2);
+    $kernel1->addKernel($kernel2);
+
+    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick->filter($kernel1);
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:143;s:7:"endLine";i:168;}',
+    ),
+    'frommatrix' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"fromMatrix";s:5:"lines";s:195:"function fromMatrix() {
+    $matrix = [
+        [0.5, 0, 0.2],
+        [0, 1, 0],
+        [0.9, 0, false],
+    ];
+
+    $kernel = \\ImagickKernel::fromMatrix($matrix);
+    renderKernel($kernel);
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:194;s:7:"endLine";i:205;}',
+    ),
+    'frombuiltin' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:11:"fromBuiltIn";s:5:"lines";s:166:"function fromBuiltin() {
+    $diamondKernel = ImagickKernel::fromBuiltIn(
+        \\Imagick::KERNEL_DIAMOND,
+        "3,2"
+    );
+
+    renderKernel($diamondKernel);
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:207;s:7:"endLine";i:216;}',
+    ),
+    'getmatrix' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:9:"getMatrix";s:5:"lines";s:382:"        $output = "The built-in kernel name \'ring\' with parameters of \'2,3.5\':<br/>";
+        $kernel = \\ImagickKernel::fromBuiltIn(
+            \\Imagick::KERNEL_RING,
+            "2,3.5"
+        );
+        $matrix = $kernel->getMatrix();
+        $output .= renderKernelTable($matrix);
+
+        $output .= "Or as an image: ". $this->renderCustomImageURL();
+
+        return $output;
+";s:11:"description";s:0:"";s:9:"startLine";i:16;s:7:"endLine";i:28;}',
+    ),
+    'scale' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:5:"scale";s:5:"lines";s:1167:"        $output = "";
+        
+        $matrix = [
+            [-1, 0, -1],
+            [ 0, 4,  0],
+            [-1, 0, -1],
+        ];
+
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $kernelClone = clone $kernel;
+
+        $output .= "Start kernel<br/>";
+        $output .= renderKernelTable($kernel->getMatrix());
+        
+        
+        $output .= "Scaling with NORMALIZE_KERNEL_VALUE. The  <br/>";
+        $kernel->scale(2, \\Imagick::NORMALIZE_KERNEL_VALUE);
+        $output .= renderKernelTable($kernel->getMatrix());
+
+
+        $kernel = clone $kernelClone;
+        $output .= "Scaling by percent<br/>";
+        $kernel->scale(2, \\Imagick::NORMALIZE_KERNEL_PERCENT);
+        $output .= renderKernelTable($kernel->getMatrix());
+
+
+        
+        
+        
+        
+        $matrix2 = [
+            [-1, -1, 1],
+            [ -1, false,  1],
+            [1, 1, 1],
+        ];
+        
+        $kernel = \\ImagickKernel::fromMatrix($matrix2);
+        $output .= "Scaling by correlate<br/>";
+        $kernel->scale(1, \\Imagick::NORMALIZE_KERNEL_CORRELATE);
+        $output .= renderKernelTable($kernel->getMatrix());
+    
+
+        return $output; 
+";s:11:"description";s:0:"";s:9:"startLine";i:25;s:7:"endLine";i:69;}',
+    ),
+    'separate' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:8:"separate";s:5:"lines";s:704:"        $matrix = [
+            [-1, 0, -1],
+            [ 0, 4,  0],
+            [-1, 0, -1],
+        ];
+
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $kernel->scale(4, \\Imagick::NORMALIZE_KERNEL_VALUE);
+        $diamondKernel = \\ImagickKernel::fromBuiltIn(
+            \\Imagick::KERNEL_DIAMOND,
+            "2"
+        );
+
+        $kernel->addKernel($diamondKernel);
+        
+        $kernelList = $kernel->separate();
+        
+        $output = \'\';
+        $count = 0;
+        foreach ($kernelList as $kernel) {
+            $output .= "<br/>Kernel $count<br/>";
+            $output .= renderKernelTable($kernel->getMatrix());
+            $count++;
+        }
+
+        return $output;
+";s:11:"description";s:0:"";s:9:"startLine";i:16;s:7:"endLine";i:43;}',
+    ),
+    'morphology' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:397:"        $matrix = [
+            [0.0, 0.5, 0.0],
+            [0.5, 1.0, 0.5],
+            [0.0, 0.5, 0.0],
+        ];
+        $imagick = new \\Imagick(realpath("./images/character.png"));
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $imagick->morphology(\\Imagick::MORPHOLOGY_CONVOLVE, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:118;s:7:"endLine";i:129;}',
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:398:"        $matrix = [
+            [0.0, 0.5, 0.0],
+            [0.5, 1.0, 0.5],
+            [0.0, 0.5, 0.0],
+        ];
+        $imagick = new \\Imagick(realpath("./images/character.png"));
+        $kernel = \\ImagickKernel::fromMatrix($matrix);
+        $imagick->morphology(\\Imagick::MORPHOLOGY_CORRELATE, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:134;s:7:"endLine";i:145;}',
+      2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:276:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_ERODE, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:150;s:7:"endLine";i:156;}',
+      3 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "1");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_ERODE_INTENSITY, 2, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:161;s:7:"endLine";i:167;}',
+      4 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:277:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DILATE, 4, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:171;s:7:"endLine";i:177;}',
+      5 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:280:"        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "1");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DILATE_INTENSITY, 4, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:181;s:7:"endLine";i:187;}',
+      6 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_CHEBYSHEV, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:192;s:7:"endLine";i:199;}',
+      7 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_MANHATTAN, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:203;s:7:"endLine";i:210;}',
+      8 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGONAL, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:214;s:7:"endLine";i:221;}',
+      9 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_EUCLIDEAN, "4");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:225;s:7:"endLine";i:232;}',
+      10 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:275:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:236;s:7:"endLine";i:242;}',
+      11 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:494:"//        As a result you will see that \'Open\' smoothed the outline, by rounding off any sharp points, and remove any parts that is smaller than the shape used. It will also disconnect or \'open\' any thin bridges.
+        
+        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_OPEN, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:246;s:7:"endLine";i:254;}',
+      12 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:489:"//        As a result you will see that \'Open\' smoothed the outline, by rounding off any sharp points, and remove any parts that is smaller than the shape used. It will also disconnect or \'open\' any thin bridges.
+
+        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_OPEN_INTENSITY, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:260;s:7:"endLine";i:268;}',
+      13 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:480:"        //The basic use of the \'Close\' method is to reduce or remove any \'holes\' or \'gaps\' about the size of the kernel \'Structure Element\'. That is \'close\' parts of the background that are about that size.
+        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:272;s:7:"endLine";i:279;}',
+      14 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:483:"        //The basic use of the \'Close\' method is to reduce or remove any \'holes\' or \'gaps\' about the size of the kernel \'Structure Element\'. That is \'close\' parts of the background that are about that size.
+        $canvas = $this->getCharacter();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE_INTENSITY, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:283;s:7:"endLine";i:290;}',
+      15 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:277:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_SMOOTH, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:295;s:7:"endLine";i:301;}',
+      16 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:278:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE_IN, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:305;s:7:"endLine";i:311;}',
+      17 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE_OUT, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:315;s:7:"endLine";i:321;}',
+      18 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:275:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "5");
+        $canvas->morphology(\\Imagick::MORPHOLOGY_TOP_HAT, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:325;s:7:"endLine";i:331;}',
+      19 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:412:"        $canvas = $this->getCharacterOutline();
+        //This finds all the pixels with 3 pixels of the right edge
+        $matrix = [[1, false, false, 0]];
+        $kernel = \\ImagickKernel::fromMatrix(
+            $matrix,
+            [0, 0]
+        );
+        $canvas->morphology(\\Imagick::MORPHOLOGY_HIT_AND_MISS, 1, $kernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:345;s:7:"endLine";i:356;}',
+      20 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:417:"        $canvas = $this->getCharacterOutline();
+        $leftEdgeKernel = \\ImagickKernel::fromMatrix([[0, 1]], [1, 0]);
+        $rightEdgeKernel = \\ImagickKernel::fromMatrix([[1, 0]], [0, 0]);
+        $leftEdgeKernel->addKernel($rightEdgeKernel);
+        
+        $canvas->morphology(\\Imagick::MORPHOLOGY_THINNING, 3, $leftEdgeKernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:361;s:7:"endLine";i:370;}',
+      21 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:408:"        $canvas = $this->getCharacterOutline();
+        $leftEdgeKernel = \\ImagickKernel::fromMatrix([[0, 1]], [1, 0]);
+        $rightEdgeKernel = \\ImagickKernel::fromMatrix([[1, 0]], [0, 0]);
+        $leftEdgeKernel->addKernel($rightEdgeKernel);
+
+        $canvas->morphology(\\Imagick::MORPHOLOGY_THICKEN, 3, $leftEdgeKernel);
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:374;s:7:"endLine";i:383;}',
+      22 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:534:"        $canvas = $this->getCharacterOutline();
+        $diamondKernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DIAMOND, "1");
+        $convexKernel =  \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_CONVEX_HULL, "");
+
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $diamondKernel);
+        $canvas->morphology(\\Imagick::MORPHOLOGY_THICKEN, -1, $convexKernel);
+        $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $diamondKernel);
+
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:387;s:7:"endLine";i:398;}',
+      23 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:320:"        $canvas = $this->getCharacterOutline();
+        $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "2");        
+        $canvas->morphology(\\Imagick::MORPHOLOGY_ITERATIVE, 3, $kernel);
+        $canvas->autoLevelImage();
+        header("Content-Type: image/png");
+        echo $canvas->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:402;s:7:"endLine";i:409;}',
+      24 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:10:"morphology";s:5:"lines";s:758:"        $imagick = new \\Imagick(realpath("./images/character.png"));
+        $character = new \\Imagick();
+        $character->newPseudoImage(
+            $imagick->getImageWidth(),
+            $imagick->getImageHeight(),
+            "canvas:white"
+        );
+        $canvas = new \\Imagick();
+        $canvas->newPseudoImage(
+            $imagick->getImageWidth(),
+            $imagick->getImageHeight(),
+            "canvas:black"
+        );
+
+        $character->compositeimage(
+            $imagick,
+            \\Imagick::COMPOSITE_COPYOPACITY,
+            0, 0
+        );
+        $canvas->compositeimage(
+            $character,
+            \\Imagick::COMPOSITE_ATOP,
+            0, 0
+        );
+        $canvas->setFormat(\'png\');
+
+        return $canvas;
+";s:11:"description";s:0:"";s:9:"startLine";i:420;s:7:"endLine";i:448;}',
     ),
   ),
   'imagickpixel' => 
@@ -4315,7 +4911,7 @@ function setImageBias($bias) {
     ),
     'issimilar' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:9:"isSimilar";s:5:"lines";s:2982:"        // The tests below are written with the maximum distance expressed as 255
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:9:"isSimilar";s:5:"lines";s:3000:"        // The tests below are written with the maximum distance expressed as 255
         // so we need to scale them by the square root of 3 - the diagonal length
         // of a unit cube.
         $root3 = 1.732050807568877;
@@ -4336,7 +4932,7 @@ function setImageBias($bias) {
             [\'black\',               \'rgba(0, 0, 0)\',        0.0,            true],
             [\'black\',               \'rgba(10, 0, 0, 1.0)\',  10.0 / $root3,  true],);
 
-        $output = "<table width=\'100%\'><thead>
+        $output = "<table width=\'100%\' class=\'infoTable\'><thead>
                 <tr>
                 <th>
                 Color 1
@@ -4801,7 +5397,7 @@ function fxAnalyzeImage(\\Imagick $imagick) {
     header("Content-Type: image/png");
     echo $outputImage;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:34;s:7:"endLine";i:95;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:36;s:7:"endLine";i:97;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:14:"fxAnalyzeImage";s:5:"lines";s:313:"    function example1() {
         $graphWidth = 256; 
         $imagick = new \\Imagick();
@@ -4875,7 +5471,7 @@ function fxAnalyzeImage(\\Imagick $imagick) {
     header("Content-Type: image/png");
     echo $canvas->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:98;s:7:"endLine";i:134;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:100;s:7:"endLine";i:136;}',
     ),
     'imagickcompositegen' => 
     array (
@@ -5020,7 +5616,7 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
     header("Content-Type: image/png");
     echo $output->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:137;s:7:"endLine";i:279;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:139;s:7:"endLine";i:281;}',
     ),
     'edgeextend' => 
     array (
@@ -5062,7 +5658,7 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
 //    "ty" => 0,
 //);
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:282;s:7:"endLine";i:321;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:284;s:7:"endLine";i:323;}',
     ),
     'gradientreflection' => 
     array (
@@ -5101,7 +5697,7 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
     header(\'Content-Type: image/png\');
     echo $canvas;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:324;s:7:"endLine";i:360;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:326;s:7:"endLine";i:362;}',
     ),
     'psychedelicfont' => 
     array (
@@ -5135,7 +5731,7 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:363;s:7:"endLine";i:394;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:365;s:7:"endLine";i:396;}',
     ),
     'psychedelicfontgif' => 
     array (
@@ -5192,32 +5788,37 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
     header("Content-Type: image/gif");
     echo $aniGif->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:397;s:7:"endLine";i:451;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:399;s:7:"endLine";i:453;}',
     ),
     'whirlygif' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:9:"whirlyGif";s:5:"lines";s:4642:"
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:9:"whirlyGif";s:5:"lines";s:5022:"
 function lerp($t, $a, $b) {
     return $a + ($t * ($b - $a));
 }
 
 class Dot {
     
-    function __construct($color, $sequence, $numberDots) {
+    function __construct($color, $sequence, $numberDots, $imageWidth, $imageHeight) {
         $this->color = $color;
         $this->sequence = $sequence;
         $this->numberDots = $numberDots;
+        $this->imageWidth = $imageWidth;
+        $this->imageHeight = $imageHeight;
+
+        if ($this->numberDots < 0) {
+            $this->numberDots = 0;
+        }
     }
 
     function calculateFraction($frame, $maxFrames, $timeOffset, $phaseMultiplier, $phaseDivider) {
-
         $frame = -$frame;
-        
         $totalAngle = 2 * $phaseMultiplier;
-
         $fraction = ($frame / $maxFrames * 2);
         $fraction += $totalAngle * ($this->sequence / $this->numberDots);
-        $fraction += (($this->sequence)) / ($phaseDivider);
+        if ($phaseDivider != 0) {
+            $fraction += (($this->sequence)) / ($phaseDivider);
+        }
         $fraction += $timeOffset;
 
         while ($fraction < 0) {
@@ -5236,9 +5837,8 @@ class Dot {
 
         return $unitFraction * $unitFraction * (3 - 2 * $unitFraction);
     }
-    
-  
-    
+
+
     function render(\\ImagickDraw $draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider) {
         $innerDistance = 40;
         $outerDistance = 230;
@@ -5268,10 +5868,18 @@ class Dot {
             $yOffset = $distance * cos($angle);
             $draw->setFillColor($this->color);
             $draw->setFillAlpha($alpha / 100);
+
+            $xOffset = $xOffset * $this->imageWidth / 500;
+            $yOffset = $yOffset * $this->imageHeight / 500;
+
+            $xSize = 4 * $this->imageWidth / 500;
+            $ySize = 4 * $this->imageHeight / 500;
             
             $draw->circle(
-                $xOffset, $yOffset,
-                $xOffset + 4, $yOffset + 4
+                $xOffset,
+                $yOffset,
+                $xOffset + $xSize,
+                $yOffset + $ySize
             );
         }
     }
@@ -5281,8 +5889,10 @@ class Dot {
 function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $phaseMultiplier, $phaseDivider) {
     $aniGif = new \\Imagick();
     $aniGif->setFormat("gif");
-    
-    
+
+    $width = 500;
+    $height = $width;
+
     $maxFrames = $numberFrames;
     $frameDelay = ceil($loopTime / $maxFrames);
 
@@ -5290,8 +5900,6 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     $startColor = new \\ImagickPixel(\'red\');
     $dots = [];
 
-    $width = 500;
-    $height = $width;
     
     for ($i=0 ; $i<$numberDots ; $i++) {
         $colorInfo = $startColor->getHSL();
@@ -5307,16 +5915,14 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         $colorInfo[\'saturation\'] *= 0.95;
         $color->setHSL($newHue, $colorInfo[\'saturation\'], $colorInfo[\'luminosity\']);
 
-        $dots[] = new Dot($color, $i, $numberDots);
+        $dots[] = new Dot($color, $i, $numberDots, $width, $height);
     }
-
-    
 
     for ($frame = 0; $frame < $maxFrames; $frame++) {
         $draw = new \\ImagickDraw();
         $draw->setStrokeColor(\'none\');
         $draw->setFillColor(\'none\');
-        $draw->rectangle(0, 0, 500, 500);
+        $draw->rectangle(0, 0, $width, $height);
         
         $draw->translate($width / 2, $height / 2);
 
@@ -5327,7 +5933,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
 
         //Create an image object which the draw commands can be rendered into
         $imagick = new \\Imagick();
-        $imagick->newImage(500 * $scale, 500 * $scale, $backgroundColor);
+        $imagick->newImage($width * $scale, $height * $scale, $backgroundColor);
         $imagick->setImageFormat("png");
 
         $imagick->setImageDispose(\\Imagick::DISPOSE_PREVIOUS);
@@ -5341,19 +5947,14 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         $imagick->destroy();
     }
 
-    //echo "Got here here and level is ".ob_get_level()."<br/>";
-    $aniGif->setImageFormat(\'gif\');
-    
+    $aniGif->setImageFormat(\'gif\');    
     $aniGif->setImageIterations(0); //loop forever
     $aniGif->mergeImageLayers(\\Imagick::LAYERMETHOD_OPTIMIZEPLUS);
 
-
     header("Content-Type: image/gif");
     echo $aniGif->getImagesBlob();
-
-//    $aniGif->writeImages("./smoothOut.gif", true);
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:454;s:7:"endLine";i:612;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:456;s:7:"endLine";i:619;}',
     ),
     'svgexample' => 
     array (
@@ -5401,7 +6002,7 @@ END;
     header("Content-Type: image/jpg");
     echo $image;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:614;s:7:"endLine";i:659;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:621;s:7:"endLine";i:666;}',
     ),
     'screenembed' => 
     array (
@@ -5431,7 +6032,7 @@ END;
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:662;s:7:"endLine";i:689;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:669;s:7:"endLine";i:696;}',
     ),
     'levelizeimage' => 
     array (
@@ -5451,7 +6052,39 @@ END;
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:692;s:7:"endLine";i:709;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:699;s:7:"endLine";i:716;}',
+    ),
+    'imagegeometryreset' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:18:"imageGeometryReset";s:5:"lines";s:893:"function imageGeometryReset() {
+
+    $draw = new \\ImagickDraw();
+
+    $draw->setFont("../fonts/Arial.ttf");
+    $draw->setFontSize(48);
+    $draw->setStrokeAntialias(true);
+    $draw->setTextAntialias(true);
+    $draw->setFillColor(\'#ff0000\');
+
+    $textOnly = new \\Imagick();
+    $textOnly->newImage(600, 300, "rgb(230, 230, 230)");
+    $textOnly->setImageFormat(\'png\');
+    $textOnly->annotateImage($draw, 30, 40, 0, \'Your Text Here\');
+    $textOnly->trimImage(0);
+    $textOnly->setImagePage($textOnly->getimageWidth(), $textOnly->getimageheight(), 0, 0);
+
+    $distort = array(180);
+    $textOnly->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+
+    $textOnly->setImageMatte( TRUE );
+    $textOnly->distortImage(Imagick::DISTORTION_ARC, $distort, FALSE);
+
+    $textOnly->setformat(\'png\');
+
+    header("Content-Type: image/png");
+    echo $textOnly->getimageblob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:718;s:7:"endLine";i:747;}',
     ),
   ),
 );

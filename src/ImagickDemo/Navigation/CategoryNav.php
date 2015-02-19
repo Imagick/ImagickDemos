@@ -417,10 +417,11 @@ END;
 //                'extentImage',
 //                \ImagickDemo\Imagick\Control\chopImage::class
 //            ],
-
+            'filter' => ['filter', \ImagickDemo\Control\ImageControl::class],
             //FrameImage
             //'flattenImages',
             'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
+            
             'floodFillPaintImage' => [
                 'floodFillPaintImage',
                 \ImagickDemo\Imagick\Control\floodFillPaintImage::class,
@@ -568,6 +569,12 @@ END;
             //'montageImage',
             //'morphImages',
             // MorphologyImage
+
+            'morphology'          => [
+                'morphology',
+                \ImagickDemo\ImagickKernel\Control\usage::class
+            ],
+            
             //'mosaicImages' => ['mosaicImages', \ImagickDemo\Control\ImageControl::class],
             'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Imagick\Control\motionBlurImage::class],
             'negateImage' => ['negateImage', \ImagickDemo\Imagick\Control\negateImage::class],
@@ -904,12 +911,17 @@ END;
         $imagickKernelExamples = [
             'addKernel'      => ['addKernel', \ImagickDemo\Control\ImageControl::class],
             'addUnityKernel' => ['addUnityKernel', \ImagickDemo\Control\NullControl::class],
-            'fromArray'      => ['fromArray', \ImagickDemo\Control\NullControl::class],
-            'fromBuiltin'    => ['fromBuiltin', \ImagickDemo\Control\NullControl::class],
-            'getValues'      => ['getValues', \ImagickDemo\Control\NullControl::class],
+            'fromMatrix'     => ['fromMatrix', \ImagickDemo\Control\NullControl::class],
+            'fromBuiltin'    => [
+                'fromBuiltin',
+                \ImagickDemo\ImagickKernel\Control\fromBuiltIn::class
+            ],
+            'getMatrix'      => ['getMatrix', \ImagickDemo\Control\NullControl::class],
             'scale'          => ['scale', \ImagickDemo\Control\NullControl::class],
             'separate'       => ['separate', \ImagickDemo\Control\NullControl::class],
+            
         ];
+
 
         $tutorialExamples = [
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],

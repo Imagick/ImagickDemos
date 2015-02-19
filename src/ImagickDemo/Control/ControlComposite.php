@@ -67,11 +67,11 @@ class ControlComposite implements \ImagickDemo\Control {
      * @param $extraParams
      * @return string
      */
-    function renderCustomImageURL($extraParams) {
+    function renderCustomImageURL($extraParams, $originalImageURL = null) {
         return renderImageURL(
             $this->taskQueue->isActive(),
             $this->getCustomImageURL($extraParams),
-            false,
+            $originalImageURL,
             $this->getImageStatusURL()
         );
     }

@@ -1014,26 +1014,25 @@ function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
 
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
-    //TODO - actually use setFontFamily
+
     $draw->setStrokeWidth(2);
 
-    $draw->setFontSize(24);
+    $draw->setFontSize(48);
+
+    $draw->setFontFamily("Times");
     $draw->annotation(50, 50, "Lorem Ipsum!");
 
-    $draw->setFontSize(36);
+    $draw->setFontFamily("AvantGarde");
     $draw->annotation(50, 100, "Lorem Ipsum!");
 
-    $draw->setFontSize(48);
+    $draw->setFontFamily("NewCenturySchlbk");    
     $draw->annotation(50, 150, "Lorem Ipsum!");
 
-    $draw->setFontSize(60);
+    $draw->setFontFamily("Palatino");
     $draw->annotation(50, 200, "Lorem Ipsum!");
 
-    $draw->setFontSize(72);
-    $draw->annotation(50, 250, "Lorem Ipsum!");
-
     $imagick = new \Imagick();
-    $imagick->newImage(500, 500, $backgroundColor);
+    $imagick->newImage(450, 250, $backgroundColor);
     $imagick->setImageFormat("png");
     $imagick->drawImage($draw);
 

@@ -45,8 +45,9 @@ abstract class Example implements renderableExample {
         return $this->control->renderImageURL($this->getOriginalImage());
     }
 
-    function renderCustomImageURL($extraParams = []) {
-        return $this->control->renderCustomImageURL($extraParams);
+    function renderCustomImageURL($extraParams = [], $originalImageURL = null) {
+        //This sucks...two default params....eww.
+        return $this->control->renderCustomImageURL($extraParams, $originalImageURL);
     }
 
     /**

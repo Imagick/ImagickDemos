@@ -276,7 +276,8 @@ body{
 }
 
 .infoTable {
-    border: 2px solid #7f7f7f; 
+    border: 2px solid #7f7f7f;
+    text-align: right;
 }
 
 .infoTable th,

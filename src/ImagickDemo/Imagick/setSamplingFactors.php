@@ -2,8 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Response\FileResponse;
-use ImagickDemo\Response\ImageResponse;
+use Intahwebz\Request;
+use \ImagickDemo\Imagick\Control\samplingFactors as samplingFactorsControl;
 
 class setSamplingFactors extends \ImagickDemo\Example {
 
@@ -11,10 +11,16 @@ class setSamplingFactors extends \ImagickDemo\Example {
      * @var Control\samplingFactors
      */
     private $samplingFactorControl;
+
+    /**
+     * @var Request
+     */
+    private $request;
     
-    function __construct(\ImagickDemo\Imagick\Control\samplingFactors $samplingFactorControl) {
+    function __construct(samplingFactorsControl $samplingFactorControl, Request $request) {
         parent::__construct($samplingFactorControl);
         $this->samplingFactorControl = $samplingFactorControl;
+        $this->request = $request;
     }
 
     /**
@@ -23,6 +29,32 @@ class setSamplingFactors extends \ImagickDemo\Example {
     function getOriginalImage() {
         return $this->control->getURL().'&original=true';
     }
+
+    function renderDescription() {
+
+        $output = "Theoretically, this function allows you to set the sampling factors to be used by the JPEG compressor. In practice though, it does not seem to function particuarly well.
+        
+I recommend using `Imagick::setImageProperty()` to set  'jpeg:sampling-factor' to one of the standard down-sampling types. e.g. 4:2:0
+
+<ul>
+   <li>4:4:4</li>
+   <li>4:4:1</li>
+   <li>4:4:0</li>
+   <li>4:2:2</li>
+   <li>4:2:0</li>
+   <li>4:2:1</li>
+   <li>4:2:0</li>
+   <li>4:1:1</li>
+   <li>4:1:0</li>
+</ul>
+
+e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
+";
+
+        return $output;
+    }
+
+
 
     /**
      * @return string
@@ -43,9 +75,6 @@ class setSamplingFactors extends \ImagickDemo\Example {
 
         header('Content-Type: image/png');
         echo $imagick->getImageBlob();
-
-        //return new ImageResponse('image/png', $imagick->getImageBlob());
-        //return new FileResponse($imagePath, "Content-Type: image/jpeg");
     }
 
     function renderTitle() {
@@ -66,33 +95,28 @@ class setSamplingFactors extends \ImagickDemo\Example {
         \header('Content-Type: image/png');
         echo $imagick->getImageBlob();
     }
-    
 
+    /**
+     * @return mixed
+     */
     function render() {
-
-        $options = [
-            ['1x1', '1x1', '1x1'],
-            ['2x1', '1x1', '1x1'],
-            ['2x2', '1x1', '1x1'],
-            ['1x1', '2x1', '1x1'],
-            ['1x1', '2x2', '1x1'],
-            ['1x2', '2x1', '1x1'],
-            ['2x2', '2x2', '1x1'],
-            ['1x1', '1x1', '1x2'],
-            ['1x1', '1x1', '2x1'],
-            ['1x1', '1x1', '2x2'],
-        ];
-
-
         $imagePath = "../imagick/images/FineDetail.png";
-
         $imagick = new \Imagick(realpath($imagePath));
 
-        $imagick->setImageFormat('jpg');
         
+        $imagick->setImageFormat('jpg');
         $originalSize = strlen($imagick->getImageBlob());
-
         echo "Original size = $originalSize <br/>";
+
+        $options = [
+            ['1', '1', '1'],
+            ['1', '1', '2'],
+            ['1', '2', '1'],
+            ['1', '2', '2'],
+            ['2', '1', '1'],
+            ['2', '1', '2'],
+            ['2', '2', '1'],
+        ];
 
         foreach ($options as $option) {
             $new = clone $imagick;

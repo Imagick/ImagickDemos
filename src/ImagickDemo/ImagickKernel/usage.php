@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickKernel;
 
 
-//use \ImagickDemo\Control\CompositeExampleControl;
+
 use Intahwebz\Request;
 
 class usage extends \ImagickDemo\Example {

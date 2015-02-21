@@ -766,6 +766,30 @@ function renderImageURL(
     return $imageRender->render();
 }
 
+function renderKernelTable($matrix) {
+    $output = "<table class='infoTable'>";
+
+    foreach ($matrix as $row) {
+        $output .= "<tr>";
+        foreach ($row as $cell) {
+            $output .= "<td>";
+            if ($cell === false) {
+                $output .= "false";
+            }
+            else {
+                $output .= round($cell, 3);
+            }
+            $output .= "</td>";
+        }
+        $output .= "</tr>";
+    }
+
+    $output .= "</table>";
+
+    return $output;
+}
+
+
 }//namespace end
 
 namespace ImagickDemo {

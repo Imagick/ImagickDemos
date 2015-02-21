@@ -37,7 +37,10 @@ class getMatrix extends \ImagickDemo\Example {
         );
         
         
-        renderKernel($kernel);
+        $imagick = renderKernel($kernel);
+
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
     }
     
     

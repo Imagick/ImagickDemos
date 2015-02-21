@@ -11,6 +11,14 @@ class morphology extends \ImagickDemo\Example {
     private $morphologyType;
 
     private $functionTable;
+    
+    
+    private static $correlateMatrix = [
+        [-1, false, false],
+        [false, false, false],
+        [false, false, 1]
+    ];
+    
 
     function __construct(\ImagickDemo\ImagickKernel\Control\usage $usageControl, Request $request) {
         $this->usageControl = $usageControl;
@@ -74,19 +82,124 @@ class morphology extends \ImagickDemo\Example {
     }
 
     function renderDescription() {
-        $output = "Applies a morpholohy effect to an image using an ImagickKernel.<br/>";
+        $output = "Applies a morpholohy effect to an image using an ImagickKernel. Please see the <a href='http://www.imagemagick.org/Usage/morphology/'>ImageMagick page on Morpgology</a> for exact details. <br/>&nbsp;<br/>";
 
         if (array_key_exists($this->morphologyType, $this->functionTable) == false) {
             $output .= "Example not done yet.";
-            return $output;
+        }
+        
+        
+        switch ($this->morphologyType) {
+            case(\Imagick::MORPHOLOGY_CONVOLVE):{
+                $output .= "Applies the kernel to the image with as a convolve (aka multiplication) function.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_CORRELATE):{
+                $correlateTable = renderKernelTable(self::$correlateMatrix);
+
+                $output .= "Applies the kernel to the image with as a correlation (aka pattern matching) function. The kernel <br/>&nbsp;<br/>".$correlateTable." <br/> finds the top left edges in an image. The value '1' means the pixel there must be white, '-1' means the pixel must be black and false means we do not care what color that pixel has.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_ERODE):{
+                $output .= "Erode the edges of an image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_DILATE):{
+                $output .= "Dilate (expand) the edges of an image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_ERODE_INTENSITY):{
+                $output .= "Erode the edges of a color image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_DILATE_INTENSITY):{
+                $output .= "Dilate (expand) the edges of a color image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_DISTANCE."Chebyshev"):{
+                $output .= "Measure the distance from the edge using the Chebyshev kernel.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_DISTANCE."Manhattan"):{
+                $output .= "Measure the distance from the edge using the Manhattan kernel.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_DISTANCE."Octagonal"):{
+                $output .= "Measure the distance from the edge using the Octagonal kernel.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_DISTANCE."Euclidian"):{
+                $output .= "Measure the distance from the edge using the Euclidian kernel.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_ITERATIVE):{
+
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_OPEN):{
+                $output .= "Open smooths the outline, by rounding off any sharp points, and removing any parts that is smaller than the shape used. It will also disconnect or 'open' any thin bridges.";
+                
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_CLOSE): {
+                $output .= "The basic effect of this operator is to smooth the outline of the shape, by filling in (closing) any holes, and indentations. It also will form connecting 'bridges' to other shapes that are close enough for the kernel to touch both simultaneously. But it does not make the basic 'core' size of the shape larger or smaller.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_OPEN_INTENSITY):{
+                $output .= "Open smooths the outline, but for a color image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_CLOSE_INTENSITY):{
+                $output .= "Open closes the outline, but for a color image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_SMOOTH):{
+                $output .= "Smooths the edge of an image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_EDGE_IN):{
+                $output .= "Find the inside edge of an image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_EDGE_OUT):{
+                $output .= "Find the outside edge of an image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_EDGE):{
+                $output .= "Find the edge of an image. This is the sum of the 'edge in' and 'edge out'.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_TOP_HAT):{
+                $output .= "The 'TopHat' method, or more specifically 'White Top Hat', returns the pixels that were removed by a Opening of the shape, that is the pixels that were removed to round off the points, and the connecting bridged between shapes.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_BOTTOM_HAT):{
+                $output .= "The 'BottomHat' method, also known as 'Black TopHat' is the pixels that a Closing of the shape adds to the image. That is the the pixels that were used to fill in the 'holes', 'gaps', and 'bridges'.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_HIT_AND_MISS ):{
+
+                $output .= "The 'Hit-And-Miss' morphology method, also commonly known as 'HMT' in computer science literature, is a high level morphology method that is specifically designed to find and locate specific patterns in images. It does this by looking for a specific configuration of 'foreground' and 'background' pixels around the 'origin'.";
+                
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_THINNING):{
+                $output .= "The 'Thinning' method is the dual of 'Thicken'. Rather than adding pixels, this method subtracts them from the original image.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_THICKEN."Standard"):{
+                $output .= "The 'Thicken' method will add pixels to the original shape at every matching location.";
+                break;
+            }
+            case(\Imagick::MORPHOLOGY_THICKEN."Convex"):{
+                $output .= "The actual 'ConvexHull' kernel is really designed to work with image shapes, and will expand a shape into a 'Octagonal Convex Hull'. That is it will try to fill in all the gaps between the extremes until it produces a 'octagonal shaped' object.";
+                break;
+            }
         }
 
         return $output;
     }
-    
-    function renderTitle() {
-        return "";
-    }
+
 
     function render() {
         if (array_key_exists($this->morphologyType, $this->functionTable) == false) {
@@ -114,13 +227,8 @@ class morphology extends \ImagickDemo\Example {
 
     private function renderConvolve() {
 //Example Imagick::morphology Convolve
-        $matrix = [
-            [0.0, 0.5, 0.0],
-            [0.5, 1.0, 0.5],
-            [0.0, 0.5, 0.0],
-        ];
-        $imagick = new \Imagick(realpath("./images/character.png"));
-        $kernel = \ImagickKernel::fromMatrix($matrix);
+        $imagick = $this->getCharacter();
+        $kernel = \ImagickKernel::fromBuiltIn(\Imagick::KERNEL_GAUSSIAN, "5,1");
         $imagick->morphology(\Imagick::MORPHOLOGY_CONVOLVE, 2, $kernel);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
@@ -130,14 +238,15 @@ class morphology extends \ImagickDemo\Example {
     
     private function renderCorrelate() {
 //Example Imagick::morphology Correlate
-        $matrix = [
-            [0.0, 0.5, 0.0],
-            [0.5, 1.0, 0.5],
-            [0.0, 0.5, 0.0],
-        ];
-        $imagick = new \Imagick(realpath("./images/character.png"));
-        $kernel = \ImagickKernel::fromMatrix($matrix);
-        $imagick->morphology(\Imagick::MORPHOLOGY_CORRELATE, 2, $kernel);
+
+        // Top-left pixel must be black
+        // Bottom right pixel must be white
+        // We don't care about the rest.
+        
+
+        $imagick = $this->getCharacterOutline();
+        $kernel = \ImagickKernel::fromMatrix(self::$correlateMatrix, [2, 2]);
+        $imagick->morphology(\Imagick::MORPHOLOGY_CORRELATE, 1, $kernel);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
 //Example end

@@ -30,29 +30,149 @@ function header($string, $replace = true, $http_response_code = null) {
     }
 }
 
-function renderKernelTable($matrix) {
-    $output = "<table class='infoTable'>";
 
-    foreach ($matrix as $row) {
-        $output .= "<tr>";
-        foreach ($row as $cell) {
-            $output .= "<td>";
-            if ($cell === false) {
-                $output .= "false";
-            }
-            else {
-                $output .= round($cell, 3);
-            }
-            $output .= "</td>";
+function makeNewKernel($currentKernels) {
+    $rotatedKernel = null;
+
+    foreach ($currentKernels as $kernelMatrix) {
+        $newKernel = ImagickKernel::fromMatrix($kernelMatrix, [0, 0]);
+
+        if ($rotatedKernel == null) {
+            $rotatedKernel = $newKernel;
         }
-        $output .= "</tr>";
+        else {
+            $rotatedKernel->addKernel($newKernel);
+        }
     }
 
-    $output .= "</table>";
+    return $rotatedKernel;
+}
 
-    return $output;
+
+
+// Cyclically rotate 3x3 kernels in 45-degree increments,
+// producing a list of up to 8 rotated kernels.
+function rotateKernel45(ImagickKernel $kernel) {
+
+    $matrix = $kernel->getMatrix();
+
+    if (count($matrix) != 3) {
+        throw new ImagickKernelException("Can only rotate 3x3 matrixes.");
+    }
+
+    if (count($matrix[0]) != 3) {
+        throw new ImagickKernelException("Can only rotate 3x3 matrixes.");
+    }
+    
+    $finished = false;
+
+    $rotatedKernels = [];
+    
+    while($finished == false) {
+        $rotatedKernels[] = $matrix;
+
+        $newMatrix = [];
+        $newMatrix[0][1] = $matrix[0][0];
+        $newMatrix[0][2] = $matrix[0][1];
+        $newMatrix[1][2] = $matrix[0][2];
+        $newMatrix[2][2] = $matrix[1][2];
+        $newMatrix[2][1] = $matrix[2][2];
+        $newMatrix[2][0] = $matrix[2][1];
+        $newMatrix[1][0] = $matrix[2][0];
+        $newMatrix[0][0] = $matrix[1][0];
+        $newMatrix[1][1] = $matrix[1][1];
+
+        if (in_array($newMatrix , $rotatedKernels, true)) {
+            $finished = true;
+        }
+        else {
+            $matrix = $newMatrix;   //Gets added in next loop
+        }
+    }
+    
+    return makeNewKernel($rotatedKernels);
+}
+
+
+
+function rotateMatrix90($matrix) {
+    $finished = false;
+    $rotatedKernels = [];
+
+    while($finished == false) {
+        $rotatedKernels[] = $matrix;
+        $newMatrix = [];
+        $rows = count($matrix);
+        $columns = count($matrix[0]);
+
+        for($row=0; $row<$rows ; $row++) {
+            for($column=0; $column<$columns ; $column++) {
+                $srcRow = ($rows - 1) - $row;
+                $srcColumn = $column;
+                $newMatrix[$column][$row] = $matrix[$srcRow][$srcColumn];
+            }
+        }
+
+        if (in_array($newMatrix, $rotatedKernels, true)) {
+            $finished = true;
+        }
+        else {
+            $matrix = $newMatrix;   //Gets added in next loop
+        }
+    }
+
+    return $rotatedKernels;
 }
     
+
+//Rotate (square or linear kernels only) in 90-degree increments.
+function rotateKernel90(ImagickKernel $kernel) {
+    $matrix = $kernel->getMatrix();
+
+    $rotatedKernels = rotateMatrix90($matrix);
+    
+    return makeNewKernel($rotatedKernels);
+}
+
+// Produce 90-degree rotations but in a 'mirror' sequence (rotation angles of 0, 180, -90, +90 ). This special form of rotation expansion works better for morphology methods such as 'Thinning'. 
+function rorateKernel90Mirror(ImagickKernel $kernel) {
+    $matrix = $kernel->getMatrix();
+    $rotatedKernels = rotateMatrix90($matrix);
+    
+    if (array_key_exists(2, $rotatedKernels) == true) {
+        $reorderedKernels = [];
+        $reorderedKernels[0] = $rotatedKernels[0];
+        $reorderedKernels[1] = $rotatedKernels[2];
+        $reorderedKernels[2] = $rotatedKernels[3];
+        $reorderedKernels[3] = $rotatedKernels[1];
+
+        $rotatedKernels = $reorderedKernels;
+    }
+
+    return makeNewKernel($rotatedKernels);
+}
+
+//$matrix = [
+//    [1, 1, 1],
+//    [0, 0, 0],
+//    [0, 0, 0],
+//];
+//    
+//$kernel = ImagickKernel::fromMatrix($matrix, [0, 0]);
+//
+//$rotated = rotateKernel45($kernel);
+//$count = 0;
+//$count++;
+//    
+//foreach ($rotated->separate() as $separateKernel) {
+//    $imagick = renderKernel($separateKernel);
+//    
+//    file_put_contents("./kernel_test_$count.png", $imagick->getImageBlob());
+//    $count++;
+//}
+ 
+
+
     
     
 function renderKernel(ImagickKernel $imagickKernel) {
@@ -67,8 +187,7 @@ function renderKernel(ImagickKernel $imagickKernel) {
     $shadowDropY = 0;
 
     $radius = ($tileSize / 2) * 0.9;
-
-
+    
     $rows = count($matrix);
     $columns = count($matrix[0]);
  
@@ -79,7 +198,11 @@ function renderKernel(ImagickKernel $imagickKernel) {
     
     $imagickDraw->translate($imageMargin, $imageMargin);
     $imagickDraw->push();
+
+    ksort($matrix);
+    
     foreach ($matrix as $row) {
+        ksort($row);
         $imagickDraw->push();
         foreach ($row as $cell) {
             if ($cell !== false) {
@@ -102,7 +225,6 @@ function renderKernel(ImagickKernel $imagickKernel) {
     $imagickDraw->push();
     $imagickDraw->translate($width/2 , $height/2);
     $imagickDraw->setFillColor('rgba(0, 0, 0, 0)');
-    //$imagickDraw->setFillAlpha(0.5);
     $imagickDraw->setStrokeColor('white');
     $imagickDraw->circle(0, 0, $radius - 1, 0);
     $imagickDraw->setStrokeColor('black');
@@ -121,24 +243,20 @@ function renderKernel(ImagickKernel $imagickKernel) {
 
     $kernel->setImageFormat('png');
     $kernel->drawImage($imagickDraw);
-
-    //$kernel->writeImage("./testKernel.png");
-    
+ 
     /* create drop shadow on it's own layer */
-    $shadow = $kernel->clone();
-    $shadow->setImageBackgroundColor(new \ImagickPixel('rgb(0, 0, 0)'));
-    $shadow->shadowImage(100, $shadowSigma, $shadowDropX, $shadowDropY);
+    $canvas = $kernel->clone();
+    $canvas->setImageBackgroundColor(new \ImagickPixel('rgb(0, 0, 0)'));
+    $canvas->shadowImage(100, $shadowSigma, $shadowDropX, $shadowDropY);
 
-    $shadow->setImagePage($canvasWidth, $canvasHeight, -5, -5);
-    $shadow->cropImage($canvasWidth, $canvasHeight, 0, 0);
+    $canvas->setImagePage($canvasWidth, $canvasHeight, -5, -5);
+    $canvas->cropImage($canvasWidth, $canvasHeight, 0, 0);
     
     /* composite original text_layer onto shadow_layer */
-    $shadow->compositeImage($kernel, \Imagick::COMPOSITE_OVER, 0, 0);
+    $canvas->compositeImage($kernel, \Imagick::COMPOSITE_OVER, 0, 0);
+    $canvas->setImageFormat('png');
 
-    $shadow->setImageFormat('png');
-    header("Content-Type: image/png");
-    echo $shadow->getImageBlob();
-
+    return $canvas;
 }
 
 //Example ImagickKernel::addKernel
@@ -201,7 +319,10 @@ function fromMatrix() {
     ];
 
     $kernel = \ImagickKernel::fromMatrix($matrix);
-    renderKernel($kernel);
+    $imagick = renderKernel($kernel);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
 }
 //Example end
 
@@ -225,7 +346,10 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
         $string
     );
 
-    renderKernel($diamondKernel);
+    $imagick = renderKernel($diamondKernel);
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
 }
 //Example end
 

@@ -26,6 +26,13 @@ The values in the kernel can be either:
 </ul>
 
 Exactly how the values in a kernel are used depends on the morphology type being used.
+
+setImageArtifact("morphology:compose")
+
+//None
+Lighten
+
+
         </p>  
 
 END;

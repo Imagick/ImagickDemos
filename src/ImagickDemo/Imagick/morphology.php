@@ -557,6 +557,6 @@ class morphology extends \ImagickDemo\Example {
         $canvas->setFormat('png');
 
         return $canvas;
-//Example end
     }
+//Example end
 }

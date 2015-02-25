@@ -30,7 +30,7 @@ class CanvasType extends OptionKeyElement {
             "xc:wheat" => "Canvas constant shorthand",
             "rose:" => "Rose",
             "gradient:" => "Gradient",
-            "gradient:khaki-tomato" => "Gradient with color",
+            "gradient:black-fuchsia" => "Gradient with color",
             "radial-gradient:" => "Radial gradient",
             "radial-gradient:red-blue" => "Radial gradient with color",
             "plasma:" => "Plasma",

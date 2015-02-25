@@ -17,10 +17,7 @@ class sparseColorImage extends \ImagickDemo\Example {
     }
 
     function render() {
-        //$output = $this->renderDescription();
-        $output = $this->renderCustomImageURL();
-
-        return $output;
+        return $this->renderCustomImageURL();
     }
 
     function renderCustomImage() {

@@ -360,7 +360,7 @@ END;
             ],
             //'clear',
             //'clipPathImage',
-            'clutImage' => ['clutImage', \ImagickDemo\Control\ImageControl::class],
+            'clutImage' => ['clutImage', \ImagickDemo\Control\NullControl::class],
             //'coalesceImages',
             //deprecated - new NavOption('colorFloodfillImage', true),
             //ColorDecisionListImage
@@ -936,8 +936,8 @@ END;
             //'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],
             'deconstructGif' => ['deconstructGif', \ImagickDemo\Control\NullControl::class],
 
+            'fontEffect' => ['fontEffect', \ImagickDemo\Control\NullControl::class],
             //'gifGeneration' => ['gifGeneration', \ImagickDemo\Control\NullControl::class],
-            
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
             'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
             'imagickComposite' => ['imagickComposite', \ImagickDemo\Control\NullControl::class],

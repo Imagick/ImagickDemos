@@ -227,17 +227,6 @@ function clipImage($imagePath) {
 //Example end
 
 
-//Example Imagick::clutImage This function appears to make no sense 
-function clutImage($imagePath) {
-    $imagick = new \Imagick(realpath($imagePath));
-    //$imagick->quantizeImage(16, \Imagick::COLORSPACE_YIQ, 8, true, false);
-    
-    $clutImagick = new \Imagick(realpath("images/webSafe.png"));
-    $imagick->clutImage($clutImagick);
-    header("Content-Type: image/jpg");
-    echo $imagick->getImageBlob();
-}
-//Example end
 
     
 //Example Imagick::colorFloodfillImage

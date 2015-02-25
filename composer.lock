@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "184b56d0efcb68121941bee842afe7e0",
+    "hash": "793c1e635fc40bf7eb1c996ff63e1237",
     "packages": [
         {
             "name": "amphp/amp",
@@ -67,22 +67,22 @@
         },
         {
             "name": "amphp/artax",
-            "version": "v1.0.0-rc5",
+            "version": "v1.0.0-rc6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/artax.git",
-                "reference": "84dff80fea3cda3ca34a9e732c56952324ae68f6"
+                "reference": "3e4c07759064c39ca7a8f9c1b4c9742e9b5143fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/artax/zipball/84dff80fea3cda3ca34a9e732c56952324ae68f6",
-                "reference": "84dff80fea3cda3ca34a9e732c56952324ae68f6",
+                "url": "https://api.github.com/repos/amphp/artax/zipball/3e4c07759064c39ca7a8f9c1b4c9742e9b5143fe",
+                "reference": "3e4c07759064c39ca7a8f9c1b4c9742e9b5143fe",
                 "shasum": ""
             },
             "require": {
-                "amphp/amp": "~0.12",
+                "amphp/amp": "~0.15.0",
                 "php": ">=5.4.0",
-                "rdlowrey/nbsock": "~0.4"
+                "rdlowrey/nbsock": "~0.5.0"
             },
             "type": "library",
             "extra": {
@@ -116,20 +116,20 @@
                 "parallel",
                 "rest"
             ],
-            "time": "2014-10-28 15:33:30"
+            "time": "2015-01-05 19:28:04"
         },
         {
             "name": "amphp/dns",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/dns.git",
-                "reference": "aaf718e1284d420f52545ee1cbc631b893141da8"
+                "reference": "46d1981ff5be827a8407c3f685635dc1926ea4e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/dns/zipball/aaf718e1284d420f52545ee1cbc631b893141da8",
-                "reference": "aaf718e1284d420f52545ee1cbc631b893141da8",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/46d1981ff5be827a8407c3f685635dc1926ea4e3",
+                "reference": "46d1981ff5be827a8407c3f685635dc1926ea4e3",
                 "shasum": ""
             },
             "require": {
@@ -169,7 +169,7 @@
                 "dns",
                 "resolve"
             ],
-            "time": "2014-12-08 17:07:24"
+            "time": "2015-02-17 20:34:12"
         },
         {
             "name": "danack/auryn",
@@ -894,16 +894,16 @@
         },
         {
             "name": "nikic/fast-route",
-            "version": "dev-master",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "3763c6b17f04172f031e0e828df84843226f36a8"
+                "reference": "57a2aec2d597f166c4139e44953bc42b7eaf9e54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/3763c6b17f04172f031e0e828df84843226f36a8",
-                "reference": "3763c6b17f04172f031e0e828df84843226f36a8",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/57a2aec2d597f166c4139e44953bc42b7eaf9e54",
+                "reference": "57a2aec2d597f166c4139e44953bc42b7eaf9e54",
                 "shasum": ""
             },
             "require": {
@@ -933,10 +933,10 @@
                 "routing"
             ],
             "support": {
-                "source": "https://github.com/nikic/FastRoute/tree/master",
+                "source": "https://github.com/nikic/FastRoute/tree/v0.3.0",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2015-01-27 11:25:22"
+            "time": "2014-11-26 18:36:25"
         },
         {
             "name": "nikic/php-parser",
@@ -1977,9 +1977,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "nikic/fast-route": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

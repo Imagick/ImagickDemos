@@ -9,3 +9,4 @@ tool/compare
 imagick/bugTests
 src/test
 scripts/trc
+checkResults.html

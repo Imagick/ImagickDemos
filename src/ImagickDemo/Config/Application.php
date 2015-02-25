@@ -32,9 +32,9 @@ class Application {
      * @return mixed
      */
     public function getCacheImages() {
-        return false;
-//        $this->readValues();
-//        return $this->cacheImages;
+//        return false;
+        $this->readValues();
+        return $this->cacheImages;
     }
 
     /**

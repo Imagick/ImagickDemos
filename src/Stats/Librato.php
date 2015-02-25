@@ -80,7 +80,7 @@ class Librato {
         try {
             $promise = $client->request($request);
             /** @var $response \Amp\Artax\Response */
-            $response = $promise->wait();
+            $response = \Amp\wait($promise);
             echo "Status ".$response->getStatus()."\n";
             echo $response->getBody();
         }

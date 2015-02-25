@@ -10,6 +10,18 @@ use ImagickDemo\Control\ImageControl;
 
 class clutImage extends \ImagickDemo\Example {
 
+    function renderDescription() {
+        $output = <<< END
+Applies a Colour LookUp Table to an image. The CLUT should be an image 1 pixel wide.
+
+The colours will be 'looked up' in the clut by using the intensity of each pixel in source image e.g. black will be taken from one end of the CLUT, white the other end, and all other values interpolated from there relevant position in the CLUT, according to the set interpolation method.
+    
+ Using \Imagick::INTERPOLATE_BILINEAR means that a very small clut can be used to generate a smooth palette of colours.
+END;
+        
+        return nl2br($output);
+
+    }
 
     function render() {
         return $this->renderCustomImageURL();
@@ -119,11 +131,15 @@ class clutImage extends \ImagickDemo\Example {
         $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
         $imagick->transformImageColorspace(\Imagick::COLORSPACE_GRAY);
         // $imagick->setImageInterpolateMethod(\Imagick::INTERPOLATE_INTEGER);
-        // $gradient->setImageInterpolateMethod(\Imagick::INTERPOLATE_INTEGER);
+        
+        //Make the color lookup be smooth
+        $gradient->setImageInterpolateMethod(\Imagick::INTERPOLATE_BILINEAR);
+        //Nearest neighbour uses exact color values from clut
+        //$gradient->setImageInterpolateMethod(\Imagick::INTERPOLATE_NEARESTNEIGHBOR);
 
         $imagick->clutImage(
             $gradient,
-            \Imagick::CHANNEL_RED | \Imagick::CHANNEL_GREEN | \Imagick::CHANNEL_BLUE |\Imagick::CHANNEL_ALPHA
+            \Imagick::CHANNEL_RGBA
         );
 
         $imagick->setImageFormat('png');

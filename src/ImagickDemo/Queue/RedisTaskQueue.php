@@ -3,10 +3,14 @@
 namespace ImagickDemo\Queue;
 
 use Predis\Client as RedisClient;
+use Predis\Collection\Iterator;
 
 
 class RedisTaskQueue implements TaskQueue {
 
+    /**
+     * @var RedisClient
+     */
     private $redisClient;
 
     private $taskListKey;
@@ -14,6 +18,8 @@ class RedisTaskQueue implements TaskQueue {
     private $statusKey;
 
     private $queueName;
+
+    private $taskKeyStateTime = 240;
     
     /**
      * @param RedisClient $redisClient
@@ -26,6 +32,20 @@ class RedisTaskQueue implements TaskQueue {
         $this->statusKey = $queueName.'_status';
     }
 
+    function clearStatusQueue() {
+        for ($x=0 ; $x<10 ; $x++) {
+            $iterator = new Iterator\Keyspace($this->redisClient, $this->statusKey . "*", 200);
+
+            $keysToDelete = [];
+            foreach ($iterator as $key) {
+                $keysToDelete[] = $key;
+            }
+            if (count($keysToDelete)) {
+                $this->redisClient->del($keysToDelete);
+            }
+        }
+    }
+    
     /**
      * @return int
      */
@@ -114,7 +134,7 @@ class RedisTaskQueue implements TaskQueue {
      */
     private function setStatus($taskKey, $state) {
         $statusKey = $this->statusKey.$taskKey;
-        $this->redisClient->set($statusKey, $state);
+        $this->redisClient->set($statusKey, $state, 'EX', $this->taskKeyStateTime);
     }
 
     /**
@@ -135,6 +155,7 @@ class RedisTaskQueue implements TaskQueue {
 
         if ($existingStatus) {
             //TODO - what should happen here?
+
             return null;
         }
 

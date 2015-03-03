@@ -87,12 +87,19 @@ class ImageRender {
         }
 
         $js = $this->getOriginalImageJS();
+
+        $imageURL = $this->imgURL;
+        
+        if ($this->useAsyncLoading) {
+            $imageURL = "/images/loading.gif";
+        }
+
         $this->output .= sprintf(
             "<div class='row %s'>
                 <img src='%s' id='exampleImage' class='img-responsive exampleImage' %s />
             ",
             $hiddenClass,
-            $this->imgURL,
+            $imageURL,
             $js
         );
 
@@ -142,7 +149,7 @@ class ImageRender {
     private function addOriginalText() {
 
         if (!$this->originalImageURL) {
-            return '';
+            return;
         }
         
         $newWindow = sprintf(

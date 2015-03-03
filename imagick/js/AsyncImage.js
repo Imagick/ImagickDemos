@@ -40,7 +40,7 @@ var AsyncImage = {
         var timeElapsed = this.getTicks() - this.startTime;
         var secondsElapsed = timeElapsed / 1000;
         if (secondsElapsed > 60) {
-            var imageLink = "<a href='" + this.imageURI + "'>" + this.imageURI + "</a>";
+            //var imageLink = "<a href='" + this.imageURI + "'>" + this.imageURI + "</a>";
             var text = "Yeah, I think it's broken. Maybe report an issue? Or it could just be taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.";
             this.statusElement.text(text);
             return false;
@@ -113,14 +113,15 @@ var AsyncImage = {
         }
 
         var indexQuestionMark = this.imageURI.indexOf("?");
+        var pingImageURI = this.imageURI;
+
 
         if (indexQuestionMark == -1) {
-            this.imageURI = this.imageURI + "?noredirect=true";
+            pingImageURI += "?noredirect=true";
         }
         else{
-            this.imageURI = this.imageURI + "&noredirect=true";
+            pingImageURI += "&noredirect=true";
         }
-        
 
         if (!JSON.parse(("" + this.enabled).toLowerCase())) {
             return;
@@ -128,7 +129,7 @@ var AsyncImage = {
 
         //We make a single request to get the image to initiate it's generation.
         $.ajax({
-            url: this.imageURI,
+            url: pingImageURI,
             //cache: false,
             error: function (){},
             success: function (){}

@@ -165,7 +165,6 @@ function bootstrapInjector() {
     $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay'); 
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
-    $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
     $injector->alias('ImagickDemo\Example', 'ImagickDemo\NullExample');
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     $injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\NullBanner');

@@ -19,6 +19,8 @@ set_exception_handler('exceptionHandler');
 
 $injector = bootstrapInjector();
 
+$injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
+
 $routesFunction = $injector->execute('getRoutes');
 
 $response = servePage($injector, $routesFunction);

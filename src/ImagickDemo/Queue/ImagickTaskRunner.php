@@ -119,7 +119,15 @@ class ImagickTaskRunner {
             $lowried[':'.$key] = $value;
         }
 
+        $injector = clone $this->injector;
+ 
+        $request = new \ImagickDemo\Queue\TaskRequest($params);
+        
+        $injector->alias('Intahwebz\Request', get_class($request));
+        $injector->share($request);
+        
+
         echo "filename was $filename\n";
-        renderImageAsFileResponse($imageFunction, $filename, $this->injector, $lowried);
+        renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
     }
 }

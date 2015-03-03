@@ -24,6 +24,11 @@ class composite extends \ImagickDemo\Example {
     function __construct(CompositeExampleControl $compositeExampleControl, Request $request) {
         $this->compositeExampleControl = $compositeExampleControl;
         $this->type = $request->getVariable('type', self::SOURCE_1);
+        
+//        if (php_sapi_name() != "fpm-fcgi") {
+//            var_dump($request);
+//            exit(0);
+//        }
     }
 
     public static function getExamples() {
@@ -89,8 +94,8 @@ END;
         return $output;
     }
 
-
-    function renderCustomImageURL($extraParams = []) {
+    function renderCustomImageURL($extraParams = [], $originalImageURL = NULL) {
+    //function renderCustomImageURL($extraParams = []) {
         return sprintf(
             "<img src='%s' />",
             $this->compositeExampleControl->getCustomImageURL($extraParams)

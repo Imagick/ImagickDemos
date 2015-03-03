@@ -78,9 +78,12 @@ function createApplication() {
     $taskCommand = new Command('imageRunner', 'ImagickDemo\Queue\ImagickTaskRunner::run');
     $taskCommand->setDescription("Pull image request jobs off the queue and generated the images.");
 
+    
     $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
     $clearCacheCommand->setDescription("Clear the apc cache.");
 
+    $clearRedisCommand = new Command('clearRedis', 'ImagickDemo\Queue\ImagickTaskQueue::clearStatusQueue');
+    $clearRedisCommand->setDescription("Clear the imagick task queue."); 
 
     $envStrings = implode(', ', \ImagickDemo\CLIConfigurator::getKnownEnvs());
     $configurateCommand = new Command('configurate', 'ImagickDemo\CLIConfigurator::run');
@@ -96,6 +99,7 @@ function createApplication() {
     $console->add($taskCommand);
     $console->add($clearCacheCommand);
     $console->add($configurateCommand);
+    $console->add($clearRedisCommand);
 
     return $console;
 }

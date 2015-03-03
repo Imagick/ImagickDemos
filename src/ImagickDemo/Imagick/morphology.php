@@ -215,7 +215,7 @@ class morphology extends \ImagickDemo\Example {
             $this->{$method}();
         }
         else {
-            $this->renderBlank();
+            //$this->renderBlank();
         }
     }
 

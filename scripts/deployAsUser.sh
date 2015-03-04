@@ -8,6 +8,9 @@ fi
 
 echo "environment is ${environment}";
 
+oauthtoken=`php bin/info.php GITHUB_ACCESS_TOKEN`
+composer config -g github-oauth.github.com $oauthtoken
+
 if [ "${environment}" != "centos_guest" ]; then
     #Run Composer install to get all the dependencies.
     php -d allow_url_fopen=1 /usr/sbin/composer install --no-interaction --prefer-dist

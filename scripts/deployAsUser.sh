@@ -8,7 +8,7 @@ echo "environment is ${environment}";
 
 if [ "${environment}" != "centos_guest" ]; then
     #Run Composer install to get all the dependencies.
-    php -d allow_url_fopen=1 /usr/sbin/composer install
+    php -d allow_url_fopen=1 /usr/sbin/composer install --no-interaction
 fi
 
 #need to make dir?

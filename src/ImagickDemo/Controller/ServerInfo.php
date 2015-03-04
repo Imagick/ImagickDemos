@@ -14,31 +14,9 @@ class ServerInfo {
 
         ob_start();
 
-        $knownServers = [
-            'imagick.test',
-            'phpimagick.com',
-            'phpimagick.test',
-            'www.phpimagick.com',
-            'test.phpimagick.com'
-        ];
-
-        $serverName = null;
-
-        if(array_key_exists("HTTP_HOST", $_SERVER)) {
-            $allgedServerName = strtolower($_SERVER["HTTP_HOST"]);
-
-            if (in_array($allgedServerName, $knownServers)) {
-                $serverName = $allgedServerName;
-            }
-        }
-
-        if (!$serverName) {
-            return null;
-        }
-
         $reactor = \Amp\getReactor();
         $client = new Client($reactor);
-        $url = "http://".$serverName."/www-status?full&json";
+        $url = "http://phpimagick.local/www-status?full&json";
         $promise = $client->request($url);
 
         $response = \Amp\wait($promise);

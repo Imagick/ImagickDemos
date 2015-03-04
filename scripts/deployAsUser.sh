@@ -31,5 +31,7 @@ php ./tool/weaveControls.php
 #Generate the CSS
 php ./tool/compileLess.php
 
+php bin/cli.php clearRedis
+
 
 #todo - make everything other than var be not writable 

@@ -227,23 +227,12 @@ class SiteChecker {
             echo "\n";
         }
         echo ".";
-        
-        
-//        echo "Getting $fullURL \n";
-
+        echo "Getting $fullURL \n";
         $promise = $this->artaxClient->request($fullURL);
-
         $analyzeResult = function(\Exception $e = null, Response $response = null) use ($urlToCheck, $fullURL) {
-
-            //echo "Result for $fullURL \n";
             
             if ($e) {
                 echo "Something went wrong for $fullURL : ".$e->getMessage();
-
-                //$url = $urlToCheck->getUrl();
-                
-//                $this->urlsChecked[$url] = new URLResult($url, 500, "Error getting $url - ".$e->getMessage(). " Exception type is ".get_class($e));
-//                
                 $this->errors++;
                 return null;
             }
@@ -281,7 +270,6 @@ class SiteChecker {
                     $this->analyzeBody($urlToCheck, $body);
                     break;
                 }
-
 
                 case ('application/octet-stream') :
                 case ('image/gif') :
@@ -366,7 +354,7 @@ class SiteChecker {
             };
     
             $dom->find('//a')->each($linkClosure);
-            $dom->find('//img')->each($imgClosure);
+            //$dom->find('//img')->each($imgClosure);
 
             $ok = true;
         }
@@ -398,23 +386,16 @@ class SiteChecker {
 $site = "http://imagick.test";
 
 $reactor = Amp\getReactor();
-
-$client = new ArtaxClient($reactor);
-
-$client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 25);
-$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 3);
-
+$client = new ArtaxClient();
+$client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 2500);
+$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 1);
 
 $siteChecker = new SiteChecker($site, $client);
 
 $start = new URLToCheck('/', '/');
 $siteChecker->checkURL($start);
-
-
 $reactor->run();
 echo "fin";
-
-
 
 $printer = new HTMLPrinter($siteChecker->getResults(), $site);
 $outputStream = fopen("./checkResults.html", "w");

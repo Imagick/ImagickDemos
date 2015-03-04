@@ -596,6 +596,7 @@ function getRoutes(ApplicationConfig $appConfig) {
         );
 
         $r->addRoute('GET', '/info', [\ImagickDemo\Controller\ServerInfo::class, 'createResponse']);
+        $r->addRoute('GET', '/queueinfo', [\ImagickDemo\Controller\QueueInfo::class, 'createResponse']);
         $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'renderTitlePage']);
     };
 

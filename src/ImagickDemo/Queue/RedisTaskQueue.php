@@ -46,6 +46,28 @@ class RedisTaskQueue implements TaskQueue {
         }
     }
     
+    function getStatusQueue() {
+
+        
+        //$iterator = new Iterator\Keyspace($this->redisClient, $this->taskListKey . "*", 2000);
+        $iterator = new Iterator\Keyspace($this->redisClient, "*", 2000);
+        //$iterator = new Iterator\Keyspace($this->redisClient, $this->statusKey . "*", 2000);
+
+        $keys = [];
+        foreach ($iterator as $key) {
+            $keys[] = $key;
+        }
+        
+        if (!count($keys)) {
+            return [];
+        }
+
+        $values = $this->redisClient->mget($keys);
+
+        return array_combine($keys,$values);
+    }
+    
+    
     /**
      * @return int
      */

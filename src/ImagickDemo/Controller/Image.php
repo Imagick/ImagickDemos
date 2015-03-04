@@ -36,7 +36,6 @@ class Image {
         $filename = getImageCacheFilename($category, $example, $fullParams);
         $data['filename'] = $filename;
         $data['finished'] = false;
-        $data['debug'] = var_export($fullParams, true);
         $data['params'] = $fullParams;
 
         foreach (getKnownExtensions() as $extension) {

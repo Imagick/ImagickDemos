@@ -46,7 +46,7 @@ class isPixelSimilar extends \ImagickDemo\Example {
                 Color 2
                 </th>
                 <th>
-                    Test distance
+                    Test distance * 255
                 </th>
                 <th>
                     Is within distance

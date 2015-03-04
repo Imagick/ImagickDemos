@@ -1,3 +1,5 @@
+set -x #echo on
+
 environment="centos_guest"
 
 if [ "$#" -ge 1 ]; then

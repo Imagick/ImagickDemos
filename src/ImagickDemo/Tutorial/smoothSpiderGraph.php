@@ -204,9 +204,12 @@ class SpiderChart {
     }
 
     /**
+     * @param $value
      * @param $position
      * @param $tangent
-     * @param $direction - which sign the control point should use to multiple the unit vector 
+     * @param $direction - which sign the control point should use to multiple the unit vector
+     * @param $roundness
+     * @param $numberSides
      * @return array
      */
     private function getControlPoint($value, $position, $tangent, $direction, $roundness, $numberSides) {

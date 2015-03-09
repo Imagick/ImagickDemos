@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 abstract class ValueElement implements ControlElement {
 
@@ -15,7 +15,7 @@ abstract class ValueElement implements ControlElement {
 
     private $value;
 
-    function __construct(Request $request) {
+    function __construct(VariableMap $variableMap) {
         $value = $this->getDefault();
 
         if ($value !== false) {
@@ -28,7 +28,7 @@ abstract class ValueElement implements ControlElement {
             }
         }
         
-        $value = $request->getVariable($this->getVariableName(), $value);
+        $value = $variableMap->getVariable($this->getVariableName(), $value);
         
         if (($value !== false) && (strlen(trim($value) != 0))) {
             if ($value < $this->getMin()) {

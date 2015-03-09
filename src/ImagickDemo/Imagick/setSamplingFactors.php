@@ -2,8 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
-use Intahwebz\Request;
-use \ImagickDemo\Imagick\Control\samplingFactors as samplingFactorsControl;
+use ImagickDemo\Framework\VariableMap;
+use ImagickDemo\Imagick\Control\samplingFactors as samplingFactorsControl;
 
 class setSamplingFactors extends \ImagickDemo\Example {
 
@@ -17,10 +17,10 @@ class setSamplingFactors extends \ImagickDemo\Example {
      */
     private $request;
     
-    function __construct(samplingFactorsControl $samplingFactorControl, Request $request) {
+    function __construct(samplingFactorsControl $samplingFactorControl, VariableMap $variableMap) {
         parent::__construct($samplingFactorControl);
         $this->samplingFactorControl = $samplingFactorControl;
-        $this->request = $request;
+        $this->request = $variableMap;
     }
 
     /**

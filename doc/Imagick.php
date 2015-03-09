@@ -223,6 +223,7 @@ class Imagick implements Iterator, Traversable {
 	const CHANNEL_MATTE = 8;
 	const CHANNEL_BLACK = 32;
 	const CHANNEL_INDEX = 32;
+	const CHANNEL_RGBA = 15;
 	const CHANNEL_ALL = 134217727;
 	const CHANNEL_DEFAULT = 134217719;
 	const METRIC_UNDEFINED = 0;
@@ -458,6 +459,76 @@ class Imagick implements Iterator, Traversable {
     const STATISTIC_MODE = 6;
     const STATISTIC_NONPEAK = 7;
     const STATISTIC_STANDARD_DEVIATION = 8;
+
+    //Which morphology type to use in the Imagick::morphology function.
+    const MORPHOLOGY_CONVOLVE = 1;
+    const MORPHOLOGY_CORRELATE = 2;
+    const MORPHOLOGY_ERODE = 3;
+    const MORPHOLOGY_DILATE = 4;
+    const MORPHOLOGY_ERODE_INTENSITY = 5;
+    const MORPHOLOGY_DILATE_INTENSITY = 6;
+    const MORPHOLOGY_DISTANCE = 7;
+    const MORPHOLOGY_OPEN = 8;
+    const MORPHOLOGY_CLOSE = 9;
+    const MORPHOLOGY_OPEN_INTENSITY = 10;
+    const MORPHOLOGY_CLOSE_INTENSITY = 11;
+    const MORPHOLOGY_SMOOTH = 12;
+    const MORPHOLOGY_EDGE_IN = 13;
+    const MORPHOLOGY_EDGE_OUT = 14;
+    const MORPHOLOGY_EDGE = 15;
+    const MORPHOLOGY_TOP_HAT = 16;
+    const MORPHOLOGY_BOTTOM_HAT = 17;
+    const MORPHOLOGY_HIT_AND_MISS = 18;
+    const MORPHOLOGY_THINNING = 19;
+    const MORPHOLOGY_THICKEN = 20;
+    const MORPHOLOGY_VORONOI = 21;
+    const MORPHOLOGY_ITERATIVE = 22;
+    
+    // The list of built-in kernel types
+    const KERNEL_UNITY = 1;
+    const KERNEL_GAUSSIAN = 2;
+    const KERNEL_DIFFERENCE_OF_GAUSSIANS = 3;
+    const KERNEL_LAPLACIAN_OF_GAUSSIANS = 4;
+    const KERNEL_BLUR = 5;
+    const KERNEL_COMET = 6;
+    const KERNEL_LAPLACIAN = 7;
+    const KERNEL_SOBEL = 8;
+    const KERNEL_FREI_CHEN = 9;
+    const KERNEL_ROBERTS = 10;
+    const KERNEL_PREWITT = 11;
+    const KERNEL_COMPASS = 12;
+    const KERNEL_KIRSCH = 13;
+    const KERNEL_DIAMOND = 14;
+    const KERNEL_SQUARE = 15;
+    const KERNEL_RECTANGLE = 16;
+    const KERNEL_OCTAGON = 17;
+    const KERNEL_DISK = 18;
+    const KERNEL_PLUS = 19;
+    const KERNEL_CROSS = 20;
+    const KERNEL_RING = 21;
+    const KERNEL_PEAKS = 22;
+    const KERNEL_EDGES = 23;
+    const KERNEL_CORNERS = 24;
+    const KERNEL_DIAGONALS = 25;
+    const KERNEL_LINE_ENDS = 26;
+    const KERNEL_LINE_JUNCTIONS = 27;
+    const KERNEL_RIDGES = 28;
+    const KERNEL_CONVEX_HULL = 29;
+    const KERNEL_THIN_SE = 30;
+    const KERNEL_SKELETON = 31;
+    const KERNEL_CHEBYSHEV = 32;
+    const KERNEL_MANHATTAN = 33;
+    const KERNEL_OCTAGONAL = 34;
+    const KERNEL_EUCLIDEAN = 35;
+    const KERNEL_USER_DEFINED = 36;
+    const KERNEL_BINOMIAL = 37;
+
+    
+    const NORMALIZE_KERNEL_NONE = 0;
+    const NORMALIZE_KERNEL_VALUE = 8192;
+    const NORMALIZE_KERNEL_CORRELATE = 65536;
+    const NORMALIZE_KERNEL_PERCENT = 4096;
+
 
     /**
 	 * (PECL imagick 2.0.0)<br/>
@@ -6196,5 +6267,49 @@ class ImagickPixel  {
 	public function setColorCount ($colorCount) {}
     
 }
+
+
+class ImagickKernel {
+
+    // Create a kernel from an 2d matrix of values. Each value should either
+    // be a float (if the element should be used) or 'false' if the element
+    // should be skipped. For matrixes that are odd sizes in both dimensions the
+    // the origin pixel will default to the centre of the kernel. For all other kernel sizes
+    // the origin pixel must be specified. 
+    public static function fromMatrix(array $values, array $origin = null) {}
+
+    // Create a kernel from a builtin in kernel.
+    // See http://www.imagemagick.org/Usage/morphology/#kernel for examples.
+    // Currently the 'rotation' symbol are not supported.
+    // $diamondKernel = ImagickKernel::fromBuiltIn(\Imagick::KERNEL_DIAMOND, "2");
+    public static function fromBuiltIn($kernelType, $string){}
+
+    // Get the 2d matrix of values used in this kernel. The elements are either
+    // float for elements that are used or 'false' if the element should be skipped.
+    public function getMatrix(){}
+
+    // Attach another kernel to this kernel to allow them to both be applied 
+    // in a single morphology or filter function.
+    public function addKernel(ImagickKernel $kernel){}
+
+    // Separates a linked set of kernels and returns an array of ImagickKernels.
+    public function separate();
+
+    // Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
+    // and normalized Kernel. This in effect adds that amount of the original image 
+    // into the resulting convolution kernel. The resulting effect is to convert the
+    // defined kernels into blended soft-blurs, unsharp kernels or into sharpening
+    // kernels.
+    function addUnityKernel(float scale) {}
+
+// Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
+// and normalized Kernel. This in effect adds that amount of the original image 
+// into the resulting convolution kernel. The resulting effect is to convert the
+// defined kernels into blended soft-blurs, unsharp kernels or into sharpening kernels.
+// Flag should be one of NORMALIZE_KERNEL_VALUE, NORMALIZE_KERNEL_CORRELATE, 
+// NORMALIZE_KERNEL_PERCENT or not set.
+function scale(float scaling_factor, int $normalizeFlag = 0){}
+}
+
 // End of imagick v.3.1.0RC1
 ?>

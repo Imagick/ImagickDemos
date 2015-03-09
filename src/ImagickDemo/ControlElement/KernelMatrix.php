@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class KernelMatrix implements ControlElement {
@@ -18,11 +18,11 @@ class KernelMatrix implements ControlElement {
 
     private $kernelMatrixSize = 9; 
 
-    function __construct(Request $request) {
+    function __construct(VariableMap $variableMap) {
         $elements = $this->kernelMatrixSize;
         for ($i=0 ; $i<$elements ; $i++) {
             $name = 'kernelMatrix_'.$i;
-            $newValue = $request->getVariable($name, $this->kernelMatrix[$i]);
+            $newValue = $variableMap->getVariable($name, $this->kernelMatrix[$i]);
             $newValue = floatval($newValue);
             $this->kernelMatrix[$i] = $newValue;
         }

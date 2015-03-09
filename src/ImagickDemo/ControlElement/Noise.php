@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+
 
 class Noise extends OptionKeyElement{
 
@@ -24,8 +24,8 @@ class Noise extends OptionKeyElement{
 //
 //    ];
 //    
-//    function __construct(Request $request) {
-//        $this->noiseName = $request->getVariable(self::noiseVar, $this->noiseName);
+//    function __construct(VariableMap $variableMap) {
+//        $this->noiseName = $variableMap->getVariable(self::noiseVar, $this->noiseName);
 //        
 //        foreach ($this->noiseTypes as $noiseType => $value) {
 //            if (strcmp($this->noiseName, $value) === 0 || $this->noiseName == null) {

@@ -7,7 +7,7 @@ use ImagickDemo\Config\Librato as LibratoConfig;
 
 use Amp\Artax\Client as ArtaxClient;
 use Amp\Artax\Request;
-use Amp\Artax\Response;
+
 use Amp\Artax\SocketException;
 
 class Librato {

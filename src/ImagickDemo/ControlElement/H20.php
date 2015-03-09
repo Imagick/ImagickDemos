@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 
@@ -13,8 +13,8 @@ class H20 implements ControlElement {
 
     const h20Name = 'h20';
 
-    function __construct(Request $request) {
-        $this->h20 = $request->getVariable(self::h20Name, $this->h20);
+    function __construct(VariableMap $variableMap) {
+        $this->h20 = $variableMap->getVariable(self::h20Name, $this->h20);
         $this->h20 = intval($this->h20);
         if ($this->h20 < 0) {
             $this->h20 = 0;

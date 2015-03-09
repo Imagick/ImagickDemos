@@ -61,13 +61,7 @@ class TaskRequest implements Request {
         if(array_key_exists($variableName, $this->variables) == true){
             $result = $this->variables[$variableName];
         }
-        else if(array_key_exists($variableName, $this->routeParameters) == true){
-            $result = $this->routeParameters[$variableName];
-        }
-        else if(array_key_exists($variableName, $this->requestParams) == true){
-            $result = $this->requestParams[$variableName];
-        }
-        else{
+        else {
             $result = $default;
         }
 

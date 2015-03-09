@@ -3,16 +3,16 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class Contrast extends ValueElement {
 
 
     private $default;
 
-    function __construct(Request $request, $defaultContrast = -20) {
+    function __construct(VariableMap $variableMap, $defaultContrast = -20) {
         $this->default = $defaultContrast;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     protected function getDefault() {

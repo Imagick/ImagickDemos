@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\Queue;
 
-use ImagickDemo\Queue\TaskQueue;
+
 use Auryn\Provider as Injector;
 
 

@@ -44,7 +44,7 @@ class Page {
 
 
     /**
-     * @param \Auryn\Provider $injector
+     * @internal param \Auryn\Provider $injector
      * @return TextResponse
      */
     function renderTitlePage() {
@@ -52,9 +52,9 @@ class Page {
     }
 
     /**
-     * @param \Auryn\Provider $injector
-     * @param $category
-     * @param $example
+     * @internal param \Auryn\Provider $injector
+     * @internal param $category
+     * @internal param $example
      * @return TextResponse
      */
     function renderExamplePage() {
@@ -62,10 +62,9 @@ class Page {
     }
 
     /**
-     * @param \Auryn\Provider $injector
-     * @param $category
+     * @internal param \Auryn\Provider $injector
+     * @internal param $category
      * @return TextResponse
-     * @throws \Exception
      */
     function renderCategoryIndex() {
         return $this->generateResponseFromTemplate('title');

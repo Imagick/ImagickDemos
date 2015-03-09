@@ -2,8 +2,7 @@
 
 namespace ImagickDemo\Tutorial;
 
-
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 function getAverageColorString(\Imagick $imagick) {
     $tshirtCrop = clone $imagick;
@@ -25,9 +24,9 @@ class logoTshirt extends \ImagickDemo\Example {
     
     private $type = 'simple';
     
-    function __construct(\ImagickDemo\Control $control, Request $request) {
+    function __construct(\ImagickDemo\Control $control, VariableMap $variableMap) {
         $this->control = $control;
-        $this->type = $request->getVariable('type', 'simple');
+        $this->type = $variableMap->getVariable('type', 'simple');
     }
 
     function getCustomImageParams() {

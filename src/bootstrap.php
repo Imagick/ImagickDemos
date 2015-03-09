@@ -166,14 +166,15 @@ function bootstrapInjector() {
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
     $injector->alias('ImagickDemo\Example', 'ImagickDemo\NullExample');
+    $injector->alias('ImagickDemo\Framework\VariableMap', 'ImagickDemo\Framework\RequestVariableMap');
+    $injector->share('ImagickDemo\Framework\VariableMap');
+
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     $injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\NullBanner');
     $injector->share('ImagickDemo\Control');
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
-
-
-    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
+    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');    
 
     $injector->defineParam('activeCategory', null);
     $injector->defineParam('activeExample', null);

@@ -1605,15 +1605,31 @@ function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnde
 //Example ImagickDraw::setVectorGraphics
 function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
 
-    $SVG = '<?xml version="1.0" encoding="utf-8"?>';
-    $SVG .= '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
-    $SVG .= '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="158px" height="92px" viewBox="0 0 158 92" enable-background="new 0 0 158 92" xml:space="preserve">';
-    $SVG .= '<text transform="matrix(1 0 0 1 32 58)" font-family="Lobster" font-style="normal" font-size="20px" font-weight="400">Lobster</text>';
-    $SVG .= '</svg>';
-    
-    
+//    $SVG = '<?xml version="1.0" encoding="utf-8"? >';
+//    $SVG .= '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+//    $SVG .= '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="158px" height="92px" viewBox="0 0 158 92" enable-background="new 0 0 158 92" xml:space="preserve">';
+//    $SVG .= '<text transform="matrix(1 0 0 1 32 58)" font-family="Lobster" font-style="normal" font-size="20px" font-weight="400">Lobster</text>';
+//    $SVG .= '</svg>';
+
+$SVG = '<?xml version="1.0"?>
+    <svg width="120" height="120"
+         viewPort="0 0 120 120" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+            <clipPath id="myClip">
+                <circle cx="30" cy="30" r="20"/>
+                <circle cx="70" cy="70" r="20"/>
+            </clipPath>
+        </defs>
+
+        <rect x="10" y="10" width="100" height="100"
+              clip-path="url(#myClip)"/>
+
+    </svg>';
+
     $draw2 = new \ImagickDraw();
-    $draw2->setvectorgraphics($SVG);
+    $draw2->setVectorGraphics($SVG);
 
     $imagick = new \Imagick();
     $imagick->newImage(500, 500, $backgroundColor);

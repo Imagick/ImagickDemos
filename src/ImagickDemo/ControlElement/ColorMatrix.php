@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class ColorMatrix implements ControlElement {
@@ -20,11 +20,11 @@ class ColorMatrix implements ControlElement {
 
     private $colorMatrixSize = 25; 
 
-    function __construct(Request $request) {
+    function __construct(VariableMap $variableMap) {
         $elements = $this->colorMatrixSize;
         for ($i=0 ; $i<$elements ; $i++) {
             $name = 'colorMatrix_'.$i;
-            $newValue = $request->getVariable($name, $this->colorMatrix[$i]);
+            $newValue = $variableMap->getVariable($name, $this->colorMatrix[$i]);
             $newValue = floatval($newValue);
             $this->colorMatrix[$i] = $newValue;
         }

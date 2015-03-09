@@ -3,9 +3,8 @@
 namespace ImagickDemo\Imagick;
 
 use Imagick;
-use ImagickDemo\Imagick\Control\newPseudoImage;
+
 use ImagickDraw;
-use ImagickDemo\Control\ImageControl;
 
 
 class clutImage extends \ImagickDemo\Example {

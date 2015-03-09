@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\Queue;
 
-
+use ImagickDemo\Framework\ArrayVariableMap;
 
 class ImagickTaskRunner {
 
@@ -52,6 +52,7 @@ class ImagickTaskRunner {
         \ImagickDemo\Imagick\functions::load();
         \ImagickDemo\ImagickDraw\functions::load();
         \ImagickDemo\ImagickPixel\functions::load();
+        \ImagickDemo\ImagickKernel\functions::load();
         \ImagickDemo\ImagickPixelIterator\functions::load();
         \ImagickDemo\Tutorial\functions::load();
 
@@ -120,12 +121,9 @@ class ImagickTaskRunner {
         }
 
         $injector = clone $this->injector;
- 
-        $request = new \ImagickDemo\Queue\TaskRequest($params);
-        
-        $injector->alias('Intahwebz\Request', get_class($request));
-        $injector->share($request);
-        
+        $variableMap = new ArrayVariableMap($params);
+        $injector->alias('ImagickDemo\Framework\VariableMap', get_class($variableMap));
+        $injector->share($variableMap);
 
         echo "filename was $filename\n";
         renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);

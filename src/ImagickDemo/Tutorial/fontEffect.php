@@ -2,15 +2,15 @@
 
 namespace ImagickDemo\Tutorial;
 
-use Intahwebz\Request;
+
 
 class fontEffect extends \ImagickDemo\Example {
     
-    private $usageControl;
-    
-    private $morphologyType;
-
-    private $functionTable;
+//    private $usageControl;
+//    
+//    private $morphologyType;
+//
+//    private $functionTable;
 
 //    function __construct(\ImagickDemo\ImagickKernel\Control\usage $usageControl, Request $request) {
 //        $this->usageControl = $usageControl;

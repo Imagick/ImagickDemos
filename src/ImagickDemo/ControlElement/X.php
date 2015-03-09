@@ -4,15 +4,15 @@
 namespace ImagickDemo\ControlElement;
 
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class X extends ValueElement {
 
     private $defaultX;
 
-    function __construct(Request $request, $defaultX = 10) {
+    function __construct(VariableMap $variableMap, $defaultX = 10) {
         $this->defaultX = $defaultX;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     

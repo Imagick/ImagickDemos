@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 abstract class OptionKeyElement implements ControlElement {
 
@@ -15,9 +15,9 @@ abstract class OptionKeyElement implements ControlElement {
     protected $key;
     protected $value;
 
-    function __construct(Request $request) {
+    function __construct(VariableMap $variableMap) {
         $this->key = $this->getDefault();
-        $newKey = $request->getVariable($this->getVariableName(), $this->key);
+        $newKey = $variableMap->getVariable($this->getVariableName(), $this->key);
 
         foreach ($this->getOptions() as $key => $value) {
             if (strcmp($newKey, $key) === 0) {

@@ -3,15 +3,15 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class AdaptiveOffset extends ValueElement {
 
     private $default;
     
-    function __construct(Request $request) {
+    function __construct(VariableMap $variableMap) {
         $this->default = 1 / 8;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     protected function getDefault() {

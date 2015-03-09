@@ -27,7 +27,7 @@ function header($string, $replace = true, $http_response_code = null) {
     
     if ($cacheImages == false) {
         if (php_sapi_name() !== 'cli') {
-            //\header($string, $replace, $http_response_code);
+            \header($string, $replace, $http_response_code);
         }
     }
 }
@@ -525,15 +525,21 @@ function extentImage($imagePath, $startX, $startY, $width, $height) {
 //Example end
 
 
+function flattenImages() {
+    $imagick = new \Imagick(realpath("images/LayerTest.psd"));
+    $imagick->flattenimages();
+    $imagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+    
+    exit(0);
+}
+    
+    
+
 //Example Imagick::filter
 function filter($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-
-    $kernel = \ImagickKernel::fromBuiltIn(
-        \Imagick::KERNEL_RING,
-        "2"
-    );
-
     $matrix = [
         [-1, 0, -1],
         [0,  5,  0],
@@ -541,13 +547,7 @@ function filter($imagePath) {
     ];
     
     $kernel = \ImagickKernel::fromMatrix($matrix);
-    
-//    var_dump($kernel->getMatrix());
-//    
-//    exit(0);
-
-    $strength = 0.5;
-    
+    $strength = 0.5;    
     $kernel->scale($strength, \Imagick::NORMALIZE_KERNEL_VALUE);
     
     $kernel->addUnityKernel(1 - $strength);
@@ -934,12 +934,18 @@ function medianFilterImage($radius, $imagePath) {
 
 //Example Imagick::mergeImageLayers
 function mergeImageLayers($layerMethodType) {
-    $imagick = new \Imagick();
-    $whiteDisc = new \Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
-    $imagick->addImage($whiteDisc);
+
+    //$imagick = new \Imagick(realpath("images/LayerTest.psd"));
+    $imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
     
-    $whiteDisc = new \Imagick(realpath("../imagick/images/redDiscAlpha.png"));
-    $imagick->addImage($whiteDisc);
+    
+//    
+//    $imagick = new \Imagick();
+//    $whiteDisc = new \Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
+//    $imagick->addImage($whiteDisc);
+//    
+//    $whiteDisc = new \Imagick(realpath("../imagick/images/redDiscAlpha.png"));
+//    $imagick->addImage($whiteDisc);
     
     $whiteDisc = new \Imagick(realpath("../imagick/images/greenDiscAlpha.png"));
     $imagick->addImage($whiteDisc);

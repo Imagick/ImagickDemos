@@ -7,8 +7,6 @@ class setVectorGraphics extends ImagickDrawExample {
     function getDescription() {
         return "";
     }
-
-
 }
 
 

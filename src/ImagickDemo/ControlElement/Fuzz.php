@@ -4,7 +4,7 @@
 namespace ImagickDemo\ControlElement;
 
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class Fuzz extends ValueElement {
@@ -12,9 +12,9 @@ class Fuzz extends ValueElement {
 
     private $defaultFuzz;
 
-    function __construct(Request $request, $defaultFuzz = 0.1) {
+    function __construct(VariableMap $variableMap, $defaultFuzz = 0.1) {
         $this->defaultFuzz = $defaultFuzz;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     

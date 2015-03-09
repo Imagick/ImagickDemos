@@ -16,7 +16,7 @@ class ServerInfo {
 
         $reactor = \Amp\getReactor();
         $client = new Client($reactor);
-        $url = "http://phpimagick.local/www-status?full&json";
+        $url = "http://phpimagick.com/www-status?full&json";
         $promise = $client->request($url);
 
         $response = \Amp\wait($promise);

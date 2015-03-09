@@ -3,15 +3,15 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class BlackThreshold extends ValueElement {
 
     private $default;
     
-    function __construct(Request $request, $defaultBlackThreshold = 0.2) {
+    function __construct(VariableMap $variableMap, $defaultBlackThreshold = 0.2) {
         $this->default = $defaultBlackThreshold;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
 
 

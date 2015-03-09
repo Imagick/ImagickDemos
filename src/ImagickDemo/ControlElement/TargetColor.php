@@ -3,15 +3,15 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class TargetColor extends ColorElement {
 
     private $defaultTargetColor; 
     
-    function __construct(Request $request, $defaultTargetColor = 'rgb(127, 0, 127)') {
+    function __construct(VariableMap $variableMap, $defaultTargetColor = 'rgb(127, 0, 127)') {
         $this->defaultTargetColor = $defaultTargetColor;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     protected function getDefault() {

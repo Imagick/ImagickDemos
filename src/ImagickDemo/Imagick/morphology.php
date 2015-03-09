@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class morphology extends \ImagickDemo\Example {
     
@@ -20,9 +20,9 @@ class morphology extends \ImagickDemo\Example {
     ];
     
 
-    function __construct(\ImagickDemo\ImagickKernel\Control\usage $usageControl, Request $request) {
+    function __construct(\ImagickDemo\ImagickKernel\Control\usage $usageControl, VariableMap $variableMap) {
         $this->usageControl = $usageControl;
-        $this->morphologyType = $request->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
+        $this->morphologyType = $variableMap->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
         parent::__construct($usageControl);
 
         $this->functionTable = [

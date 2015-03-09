@@ -619,23 +619,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
 //Example end
 
 //Example Tutorial::svgExample
-function svgExample() {
-
-    $svg = <<< END
-<?xml version="1.0"?>
-<svg version='1.0' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='746' height='742' viewBox='-362 -388 746 742' encoding='UTF-8' standalone='no'>
-    <defs>
-        <ellipse id='ellipse' cx='36' cy='-56' rx='160' ry='320' />
-        <g id='ellipses'>
-            <use xlink:href='#ellipse' fill='#0000ff' />
-            <use xlink:href='#ellipse' fill='#0099ff' transform='rotate(72)' />
-        </g>
-    </defs>
-</svg>
-END;
-
-    
-    
+function svgExample() {    
     $svg = '<?xml version="1.0"?>
     <svg width="120" height="120"
          viewPort="0 0 120 120" version="1.1"
@@ -653,9 +637,6 @@ END;
 
     </svg>';
 
-
-
-    
     $image = new \Imagick();
 
     $image->readImageBlob($svg);

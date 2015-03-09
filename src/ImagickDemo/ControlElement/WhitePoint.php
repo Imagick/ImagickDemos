@@ -3,16 +3,16 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class WhitePoint extends ValueElement {
 
     private $defaultWhitePoint;
 
-    function __construct(Request $request, $defaultWhitePoint = 10) {
+    function __construct(VariableMap $variableMap, $defaultWhitePoint = 10) {
         $this->defaultWhitePoint = $defaultWhitePoint;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     

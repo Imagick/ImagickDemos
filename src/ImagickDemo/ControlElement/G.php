@@ -4,16 +4,16 @@
 namespace ImagickDemo\ControlElement;
 
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class G extends ValueElement {
 
     private $defaultGreen;
 
-    function __construct(Request $request, $defaultG = 100) {
+    function __construct(VariableMap $variableMap, $defaultG = 100) {
         $this->defaultGreen = $defaultG;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     

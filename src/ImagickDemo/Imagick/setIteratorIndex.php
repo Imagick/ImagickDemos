@@ -2,17 +2,17 @@
 
 namespace ImagickDemo\Imagick;
 
-use Intahwebz\Request;
 
 
+use ImagickDemo\Framework\VariableMap;
 
 class setIteratorIndex extends \ImagickDemo\Example {
 
     private $firstLayer = 0;
 
-    function __construct(\ImagickDemo\Control $control, Request $request) {
+    function __construct(\ImagickDemo\Control $control, VariableMap $variableMap) {
         $this->control = $control;
-        $this->firstLayer = $request->getVariable('firstLayer', 0);
+        $this->firstLayer = $variableMap->getVariable('firstLayer', 0);
     }
 
     function getCustomImageParams() {

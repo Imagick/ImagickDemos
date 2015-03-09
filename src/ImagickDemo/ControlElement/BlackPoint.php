@@ -3,15 +3,15 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class BlackPoint extends ValueElement {
 
     private $defaultBlackPoint;
 
-    function __construct(Request $request, $defaultBlackPoint = 10) {
+    function __construct(VariableMap $variableMap, $defaultBlackPoint = 10) {
         $this->defaultBlackPoint = $defaultBlackPoint;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     protected function getDefault() {

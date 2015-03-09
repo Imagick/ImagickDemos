@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 abstract class ColorElement implements ControlElement {
 
@@ -13,10 +13,10 @@ abstract class ColorElement implements ControlElement {
 
     private $value;
 
-    function __construct(Request $request) {
+    function __construct(VariableMap $variableMap) {
         
         $value = $this->getDefault();
-        $nextColor = $request->getVariable($this->getVariableName(), $value);
+        $nextColor = $variableMap->getVariable($this->getVariableName(), $value);
         
         try {
             new \ImagickPixel($nextColor);

@@ -2,8 +2,8 @@
 
 namespace ImagickDemo\Tutorial;
 
-use \ImagickDemo\Control\CompositeExampleControl;
-use Intahwebz\Request;
+use ImagickDemo\Control\CompositeExampleControl;
+use ImagickDemo\Framework\VariableMap;
 
 class composite extends \ImagickDemo\Example {
 
@@ -21,14 +21,9 @@ class composite extends \ImagickDemo\Example {
     
     private $type;
 
-    function __construct(CompositeExampleControl $compositeExampleControl, Request $request) {
+    function __construct(CompositeExampleControl $compositeExampleControl, VariableMap $variableMap) {
         $this->compositeExampleControl = $compositeExampleControl;
-        $this->type = $request->getVariable('type', self::SOURCE_1);
-        
-//        if (php_sapi_name() != "fpm-fcgi") {
-//            var_dump($request);
-//            exit(0);
-//        }
+        $this->type = $variableMap->getVariable('type', self::SOURCE_1);
     }
 
     public static function getExamples() {

@@ -3,16 +3,16 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class Width extends ValueElement {
 
     private $default;
     
-    function __construct(Request $request, $defaultWidth = 50) {
+    function __construct(VariableMap $variableMap, $defaultWidth = 50) {
         $this->default = $defaultWidth;
 
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     protected function getDefault() {

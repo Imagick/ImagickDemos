@@ -31,9 +31,10 @@ class ControlComposite implements \ImagickDemo\Control {
         //This should get replaced by the Weaver
         return [];
     }
-    
-    
+
+
     /**
+     * @param array $extraParams
      * @return array
      */
     function getFullParams(array $extraParams = []) {
@@ -65,6 +66,7 @@ class ControlComposite implements \ImagickDemo\Control {
 
     /**
      * @param $extraParams
+     * @param null $originalImageURL
      * @return string
      */
     function renderCustomImageURL($extraParams, $originalImageURL = null) {
@@ -109,6 +111,7 @@ class ControlComposite implements \ImagickDemo\Control {
 
     /**
      * @param $baseURL
+     * @param array $extraParams
      * @return string
      */
     function getURLWithParams($baseURL, $extraParams = []) {
@@ -125,6 +128,7 @@ class ControlComposite implements \ImagickDemo\Control {
     }
 
     /**
+     * @param array $extraParams
      * @return string
      */
     function getImageStatusURL($extraParams = []) {

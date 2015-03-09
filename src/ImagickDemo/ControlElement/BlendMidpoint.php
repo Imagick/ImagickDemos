@@ -3,16 +3,16 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class BlendMidpoint extends ValueElement {
 
     private $default;
     
-    function __construct(Request $request, $defaultBlendMidpoint = 0.5) {
+    function __construct(VariableMap $variableMap, $defaultBlendMidpoint = 0.5) {
         $this->default = $defaultBlendMidpoint;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
     
     protected function getDefault() {

@@ -3,15 +3,15 @@
 
 namespace ImagickDemo\ControlElement;
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 class WhiteThreshold extends ValueElement {
 
     private $default;
     
-    function __construct(Request $request, $defaultWhiteThreshold = 0.2) {
+    function __construct(VariableMap $variableMap, $defaultWhiteThreshold = 0.2) {
         $this->default = $defaultWhiteThreshold;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
 
     protected function getDefault() {

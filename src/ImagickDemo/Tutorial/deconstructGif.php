@@ -5,7 +5,7 @@ namespace ImagickDemo\Tutorial;
 
 
 use Imagick;
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 //Example Tutorial::deconstructGif Make a simple gif with lots of frames.
 function makeSimpleGif($deconstruct) {
@@ -69,9 +69,9 @@ class deconstructGif extends \ImagickDemo\Example {
      */
     private $deconstruct;
     
-    function __construct(\ImagickDemo\Control $control, Request $request) {
+    function __construct(\ImagickDemo\Control $control, VariableMap $variableMap) {
         $this->control = $control;
-        $this->deconstruct = $request->getVariable('deconstruct', false);
+        $this->deconstruct = $variableMap->getVariable('deconstruct', false);
     }
 
     function getCustomImageParams() {

@@ -20,9 +20,10 @@ class RedisTaskQueue implements TaskQueue {
     private $queueName;
 
     private $taskKeyStateTime = 240;
-    
+
     /**
      * @param RedisClient $redisClient
+     * @param $queueName
      */
     function __construct(RedisClient $redisClient, $queueName) {
         $this->redisClient = $redisClient;

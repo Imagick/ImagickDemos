@@ -24,7 +24,7 @@ function compareImage(URLToCheck $urlToCheck, $resposeBody, $contentType) {
         file_put_contents($oututFilename, $resposeBody);
         return;
     }
-    
+       
     
     $imagickNew = new Imagick();
     $imagickNew->readimageblob($resposeBody);
@@ -232,7 +232,7 @@ class SiteChecker {
         $analyzeResult = function(\Exception $e = null, Response $response = null) use ($urlToCheck, $fullURL) {
             
             if ($e) {
-                echo "Something went wrong for $fullURL : ".$e->getMessage();
+                echo "Something went wrong for $fullURL : ".$e->getMessage()."\n";
                 $this->errors++;
                 return null;
             }
@@ -246,6 +246,7 @@ class SiteChecker {
             );
 
             if ($status != 200) {
+                echo "Error for ".$urlToCheck->getUrl()."\n";
                 $this->errors++;
                 return null;
             }
@@ -354,7 +355,7 @@ class SiteChecker {
             };
     
             $dom->find('//a')->each($linkClosure);
-            //$dom->find('//img')->each($imgClosure);
+            $dom->find('//img')->each($imgClosure);
 
             $ok = true;
         }

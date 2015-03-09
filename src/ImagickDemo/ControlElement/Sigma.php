@@ -4,16 +4,16 @@
 namespace ImagickDemo\ControlElement;
 
 
-use Intahwebz\Request;
+use ImagickDemo\Framework\VariableMap;
 
 
 class Sigma extends ValueElement {
 
     private $defaultSigma;
 
-    function __construct(Request $request, $defaultSigma = 1) {
+    function __construct(VariableMap $variableMap, $defaultSigma = 1) {
         $this->defaultSigma = $defaultSigma;
-        parent::__construct($request);
+        parent::__construct($variableMap);
     }
 
     protected function getDefault() {

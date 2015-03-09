@@ -419,7 +419,7 @@ END;
 //            ],
             'filter' => ['filter', \ImagickDemo\Control\ImageControl::class],
             //FrameImage
-            //'flattenImages',
+            'flattenImages' => ['flattenImages', \ImagickDemo\Control\NullControl::class],
             'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
             
             'floodFillPaintImage' => [
@@ -867,7 +867,7 @@ END;
             'setTextAntialias' => ['setTextAntialias', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setTextDecoration' => ['setTextDecoration', \ImagickDemo\Control\TextDecoration::class],
             'setTextUnderColor' => ['setTextUnderColor', \ImagickDemo\Control\TextUnderControl::class],
-            //'setVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'setVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setViewBox' => ['setViewBox', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'skewX' => ['skewX', \ImagickDemo\Control\SkewControl::class],
             'skewY' => ['skewY', \ImagickDemo\Control\SkewControl::class],

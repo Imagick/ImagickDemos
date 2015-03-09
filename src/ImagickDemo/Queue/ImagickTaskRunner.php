@@ -89,7 +89,7 @@ class ImagickTaskRunner {
                 echo "Task complete\n";
                 $this->taskQueue->completeTask($task);
             }
-            catch(ImagickException $ie) {
+            catch(\ImagickException $ie) {
                 echo "ImagickException running the task: ".$ie->getMessage();
                 $this->taskQueue->errorTask($task);
             }

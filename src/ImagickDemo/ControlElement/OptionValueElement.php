@@ -19,10 +19,17 @@ abstract class OptionValueElement implements ControlElement {
         $value = $this->getDefault();
         $newValue = $variableMap->getVariable($this->getVariableName(), $value);
 
-        $needle = array_search($newValue, $this->getOptions());
+        $options = $this->getOptions();
+        
+        $needle = array_search($newValue, $options);
         if ($needle !== null) {
-            $this->key =  $needle;
+            $this->key = $needle;
             $this->value = $newValue;
+        }
+        
+        if (array_key_exists($newValue, $options)) {
+            $this->key = $newValue;
+            $this->value = $options[$newValue];
         }
     }
 

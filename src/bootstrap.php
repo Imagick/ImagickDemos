@@ -9,6 +9,7 @@ use ImagickDemo\Config\Application as ApplicationConfig;
 use Intahwebz\Request;
 use ImagickDemo\Response\RedirectResponse;
 
+define('COMPOSER_OPCACHE_OPTIMIZE', true);
 require __DIR__.'/../vendor/autoload.php';
 
 //yolo - We use a global to allow us to do a hack to make all the code examples

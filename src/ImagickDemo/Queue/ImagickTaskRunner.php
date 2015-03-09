@@ -89,9 +89,13 @@ class ImagickTaskRunner {
                 echo "Task complete\n";
                 $this->taskQueue->completeTask($task);
             }
+            catch(ImagickException $ie) {
+                echo "ImagickException running the task: ".$ie->getMessage();
+                $this->taskQueue->errorTask($task);
+            }
             catch(\Auryn\BadArgumentException $bae) {
                 //Log failed job
-                echo "There was a problem running the task: ".$bae->getMessage();
+                echo "BadArgumentException running the task: ".$bae->getMessage();
                 $this->taskQueue->errorTask($task);
             }
         }

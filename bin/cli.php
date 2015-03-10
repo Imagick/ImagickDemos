@@ -85,20 +85,10 @@ function createApplication() {
     $clearRedisCommand = new Command('clearRedis', 'ImagickDemo\Queue\ImagickTaskQueue::clearStatusQueue');
     $clearRedisCommand->setDescription("Clear the imagick task queue."); 
 
-    $envStrings = implode(', ', \ImagickDemo\CLIConfigurator::getKnownEnvs());
-    $configurateCommand = new Command('configurate', 'ImagickDemo\CLIConfigurator::run');
-    $configurateCommand->addArgument(
-        'environment',
-        InputArgument::REQUIRED,
-        'What environment to build the config for. One of: '.$envStrings
-    );
-    $configurateCommand->setDescription("Build the config files.");
-
     $console = new Application("ImagickDemos", "1.0.0");
     $console->add($statsCommand);
     $console->add($taskCommand);
     $console->add($clearCacheCommand);
-    $console->add($configurateCommand);
     $console->add($clearRedisCommand);
 
     return $console;

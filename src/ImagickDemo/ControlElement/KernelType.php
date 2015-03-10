@@ -55,7 +55,8 @@ class KernelType extends OptionKeyElement {
             \Imagick::KERNEL_MANHATTAN => "Manhattan",
             \Imagick::KERNEL_OCTAGONAL => "Octagonal",
             \Imagick::KERNEL_EUCLIDEAN => "Euclidean",
-//            \Imagick::KERNEL_USER_DEFINED => "User Defined",
+         // \Imagick::KERNEL_USER_DEFINED => "User Defined", This isn't needed
+         // Imagick has fromMatrix which is far saner to use.
             \Imagick::KERNEL_BINOMIAL => "Binomial",
         ];
     }

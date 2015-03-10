@@ -745,8 +745,6 @@ function getColorStatistics($histogramElements, $colorChannel) {
     $colorStatistics = [];
 
     foreach ($histogramElements as $histogramElement) {
-        //So broken. Wow. Much surprise. Sad. Bad. Sad, bad, sad.
-        //$color = $histogramElement->getColorValueQuantum($colorChannel);
         $color = $histogramElement->getColorValue($colorChannel);
         $color = intval($color * 255);
         $count = $histogramElement->getColorCount();

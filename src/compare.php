@@ -1,7 +1,7 @@
 <?php
 
 require __DIR__.'/../vendor/autoload.php';
-require __DIR__ . "../../imagick-demos.conf.php";
+//require __DIR__ . "../../imagick-demos.conf.php";
 require __DIR__ . '/../src/bootstrap.php';
 
 
@@ -481,7 +481,7 @@ foreach ($allTests as $test) {
         }
     }
 
-    delegateAllTheThings($injector, $controlClass);
+    //delegateAllTheThings($injector, $controlClass);
 
     $filename = getImageCacheFilename($category, $functionName.".compare", $params);
 

@@ -168,9 +168,10 @@ class RedisTaskQueue implements TaskQueue {
         $statusKey = $this->statusKey.$task->getKey();
         return $this->redisClient->get($statusKey);
     }
-    
+
     /**
      * @param Task $task
+     * @return null
      */
     function addTask(Task $task) {
         $serialized = serialize($task);

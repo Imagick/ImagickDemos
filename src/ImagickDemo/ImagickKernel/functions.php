@@ -128,7 +128,6 @@ function rotateMatrix90($matrix) {
 //Rotate (square or linear kernels only) in 90-degree increments.
 function rotateKernel90(ImagickKernel $kernel) {
     $matrix = $kernel->getMatrix();
-
     $rotatedKernels = rotateMatrix90($matrix);
     
     return makeNewKernel($rotatedKernels);
@@ -151,27 +150,6 @@ function rorateKernel90Mirror(ImagickKernel $kernel) {
 
     return makeNewKernel($rotatedKernels);
 }
-
-//$matrix = [
-//    [1, 1, 1],
-//    [0, 0, 0],
-//    [0, 0, 0],
-//];
-//    
-//$kernel = ImagickKernel::fromMatrix($matrix, [0, 0]);
-//
-//$rotated = rotateKernel45($kernel);
-//$count = 0;
-//$count++;
-//    
-//foreach ($rotated->separate() as $separateKernel) {
-//    $imagick = renderKernel($separateKernel);
-//    
-//    file_put_contents("./kernel_test_$count.png", $imagick->getImageBlob());
-//    $count++;
-//}
- 
-
 
     
     

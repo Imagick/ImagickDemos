@@ -4520,9 +4520,42 @@ class Imagick implements Iterator, Traversable {
      */
     public function selectiveBlurImage($radius, $sigma, $threshold, $channel = Imagick::CHANNEL_DEFAULT){}
 
+    /**
+     * Applies a user supplied kernel to the image according to the given mophology method.
+     * iterations - A value of -1 means loop until no change found. How this is applied may
+     * depend on the morphology method. Typically this is a value of 1.
+     * @param $morphologyMethod
+     * @param $iterations
+     * @param $kernel
+     * @param $
+     * @param int $channel
+     */
+    public function morphology($morphologyMethod, $iterations, $kernel, $channel = Imagick::CHANNEL_DEFAULT) {}
+
+    /**
+     * Applies a custom convolution kernel to the image.
+     * @param ImagickKernel $kernel
+     * @param int $channel
+     * @return bool
+     */
+    public function filter(ImagickKernel $kernel, $channel = Imagick::CHANNEL_DEFAULT) { }
+
+    /**
+     * Gets the image compression type
+     * @return int
+     */
+    function getImageCompression() {}
+
+    /**
+     * Replaces any embedded formatting characters with the appropriate image 
+     * property and returns the interpreted text. See 
+     * http://www.imagemagick.org/script/escape.php for escape sequences.
+     * @param string $embedText
+     * @return bool
+     */
+    function identifyFormat($embedText) { }
 
 
-    
 }
 
 /**
@@ -6268,47 +6301,85 @@ class ImagickPixel  {
     
 }
 
-
+/**
+ * Class ImagickKernel
+ * 
+ * This class that represents 'kernel' in the underlying ImageMagick library. 
+ * Kernels are used in the filter and morphology functions. The values in the 
+ * kernel can be either:
+ * 
+ * float - the scaling value to be used against a pixel when the kernel is applied. Negative values are allowed.
+ * false - the pixel at this position should not be considered in either the filter or morphology function.
+ * Exactly how the values in a kernel are used depends on the morphology type being used.
+ * 
+ */
 class ImagickKernel {
 
-    // Create a kernel from an 2d matrix of values. Each value should either
-    // be a float (if the element should be used) or 'false' if the element
-    // should be skipped. For matrixes that are odd sizes in both dimensions the
-    // the origin pixel will default to the centre of the kernel. For all other kernel sizes
-    // the origin pixel must be specified. 
+    /**
+     * Create a kernel from an 2d matrix of values. Each value should either
+     * be a float (if the element should be used) or 'false' if the element
+     * should be skipped. For matrixes that are odd sizes in both dimensions the
+     * the origin pixel will default to the centre of the kernel. For all other kernel sizes
+     * the origin pixel must be specified.
+     * @param array $values
+     * @param array $origin
+     * @return ImagickKernel
+     */
     public static function fromMatrix(array $values, array $origin = null) {}
 
-    // Create a kernel from a builtin in kernel.
-    // See http://www.imagemagick.org/Usage/morphology/#kernel for examples.
-    // Currently the 'rotation' symbol are not supported.
-    // $diamondKernel = ImagickKernel::fromBuiltIn(\Imagick::KERNEL_DIAMOND, "2");
-    public static function fromBuiltIn($kernelType, $string){}
 
-    // Get the 2d matrix of values used in this kernel. The elements are either
-    // float for elements that are used or 'false' if the element should be skipped.
-    public function getMatrix(){}
+    /**
+     * Create a kernel from a builtin in kernel.
+     * See http://www.imagemagick.org/Usage/morphology/#kernel for examples.
+     * Currently the 'rotation' symbol are not supported.
+     * $diamondKernel = ImagickKernel::fromBuiltIn(\Imagick::KERNEL_DIAMOND, "2");
+     * @param $kernelType
+     * @param $string
+     * @return ImagickKernel
+     */
+    public static function fromBuiltIn($kernelType, $string) {}
 
-    // Attach another kernel to this kernel to allow them to both be applied 
-    // in a single morphology or filter function.
-    public function addKernel(ImagickKernel $kernel){}
+    /**
+     * Get the 2d matrix of values used in this kernel. The elements are either
+     * float for elements that are used or 'false' if the element should be skipped.
+     * @return array
+     */
+    public function getMatrix() {}
+    
+    /**
+     * Attach another kernel to this kernel to allow them to both be applied
+     * in a single morphology or filter function.
+     * @param ImagickKernel $kernel
+     */
+    public function addKernel(ImagickKernel $kernel) {}
 
-    // Separates a linked set of kernels and returns an array of ImagickKernels.
-    public function separate();
+    /**
+     * Separates a linked set of kernels and returns an array of ImagickKernels.
+     * @return ImagickKernel[]
+     */
+    public function separate() {}
 
-    // Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
-    // and normalized Kernel. This in effect adds that amount of the original image 
-    // into the resulting convolution kernel. The resulting effect is to convert the
-    // defined kernels into blended soft-blurs, unsharp kernels or into sharpening
-    // kernels.
-    function addUnityKernel(float scale) {}
+    /**
+     * Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
+     * and normalized Kernel. This in effect adds that amount of the original image
+     * into the resulting convolution kernel. The resulting effect is to convert the
+     * defined kernels into blended soft-blurs, unsharp kernels or into sharpening
+     * kernels.
+     * @param $scale
+     */
+    function addUnityKernel($scale) {}
 
-// Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
-// and normalized Kernel. This in effect adds that amount of the original image 
-// into the resulting convolution kernel. The resulting effect is to convert the
-// defined kernels into blended soft-blurs, unsharp kernels or into sharpening kernels.
-// Flag should be one of NORMALIZE_KERNEL_VALUE, NORMALIZE_KERNEL_CORRELATE, 
-// NORMALIZE_KERNEL_PERCENT or not set.
-function scale(float scaling_factor, int $normalizeFlag = 0){}
+    /**
+     * Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled
+     * and normalized Kernel. This in effect adds that amount of the original image
+     * into the resulting convolution kernel. The resulting effect is to convert the
+     * defined kernels into blended soft-blurs, unsharp kernels or into sharpening kernels.
+     * Flag should be one of NORMALIZE_KERNEL_VALUE, NORMALIZE_KERNEL_CORRELATE,
+     * NORMALIZE_KERNEL_PERCENT or not set.
+     * @param $scalingFactor
+     * @param int $normalizeFlag
+     */
+    function scale($scalingFactor, $normalizeFlag = 0) {}
 }
 
 // End of imagick v.3.1.0RC1

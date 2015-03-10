@@ -261,7 +261,6 @@ function renderKernel(ImagickKernel $imagickKernel) {
 
 //Example ImagickKernel::addKernel
 function addKernel($imagePath) {
-
     $matrix1 = [
         [-1, -1, -1],
         [ 0,  0,  0],
@@ -287,7 +286,7 @@ function addKernel($imagePath) {
 //Example end
     
 
-// E xample ImagickKernel::addUnityKernel
+//Example ImagickKernel::addUnityKernel
 function addUnityKernel($imagePath) {
 
     $matrix = [
@@ -311,7 +310,8 @@ function addUnityKernel($imagePath) {
 //Example end
 
 //Example ImagickKernel::fromMatrix
-function fromMatrix() {
+
+function createFromMatrix() {
     $matrix = [
         [0.5, 0, 0.2],
         [0, 1, 0],
@@ -319,6 +319,12 @@ function fromMatrix() {
     ];
 
     $kernel = \ImagickKernel::fromMatrix($matrix);
+
+    return $kernel;
+}
+    
+function fromMatrix() {
+    $kernel = createFromMatrix();
     $imagick = renderKernel($kernel);
 
     header("Content-Type: image/png");
@@ -327,7 +333,7 @@ function fromMatrix() {
 //Example end
 
 //Example ImagickKernel::fromBuiltIn
-function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm) {
+function createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm) {
     $string = '';
 
     if ($kernelFirstTerm != false && strlen(trim($kernelFirstTerm)) != 0) {
@@ -339,13 +345,18 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
                 $string .= ','.$kernelThirdTerm;
             }
         }
-    }    
-    
-    $diamondKernel = ImagickKernel::fromBuiltIn(
+    }
+
+    $kernel = ImagickKernel::fromBuiltIn(
         $kernelType, //\Imagick::KERNEL_DIAMOND,
         $string
     );
 
+    return $kernel;
+}
+    
+function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm) {
+    $diamondKernel = createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm);
     $imagick = renderKernel($diamondKernel);
 
     header("Content-Type: image/png");

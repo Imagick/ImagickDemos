@@ -694,10 +694,14 @@ $controls = [
         'ImagickDemo\ControlElement\KernelType',
         'ImagickDemo\ControlElement\KernelFirstTerm',
         'ImagickDemo\ControlElement\KernelSecondTerm',
-        'ImagickDemo\ControlElement\KernelThirdTerm'
+        'ImagickDemo\ControlElement\KernelThirdTerm',
+        'ImagickDemo\ControlElement\KernelRender'
     ],
 
-    
+    'ImagickDemo\ImagickKernel\Control\fromMatrixControl' => [
+        'ImagickDemo\ControlElement\KernelRender'
+    ],
+
 ];
 
 \Intahwebz\Functions::load();

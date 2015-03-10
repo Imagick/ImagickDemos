@@ -548,11 +548,8 @@ function filter($imagePath) {
     
     $kernel = \ImagickKernel::fromMatrix($matrix);
     $strength = 0.5;    
-    $kernel->scale($strength, \Imagick::NORMALIZE_KERNEL_VALUE);
-    
+    $kernel->scale($strength, \Imagick::NORMALIZE_KERNEL_VALUE);    
     $kernel->addUnityKernel(1 - $strength);
-
-    //$kernel->scale(1, \Imagick::NORMALIZE_KERNEL_VALUE);
 
     $imagick->filter($kernel);
     header("Content-Type: image/jpg");

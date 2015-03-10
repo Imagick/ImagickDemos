@@ -7,7 +7,7 @@ namespace ImagickDemo\ControlElement;
 class KernelType extends OptionKeyElement {
 
     protected function getDefault() {
-        return \Imagick::KERNEL_GAUSSIAN;
+        return \Imagick::KERNEL_DISK;
     }
 
     protected function getVariableName() {
@@ -60,7 +60,7 @@ class KernelType extends OptionKeyElement {
         ];
     }
 
-    function getMorphologyType() {
+    function getKernelType() {
         return $this->getKey();
     }
 }

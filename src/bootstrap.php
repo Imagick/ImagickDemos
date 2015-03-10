@@ -774,7 +774,7 @@ function renderKernelTable($matrix) {
     foreach ($matrix as $row) {
         $output .= "<tr>";
         foreach ($row as $cell) {
-            $output .= "<td>";
+            $output .= "<td style='text-align:left'>";
             if ($cell === false) {
                 $output .= "false";
             }

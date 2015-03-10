@@ -1564,7 +1564,7 @@ function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDeco
     $draw->annotation(50, 75, "Lorem Ipsum!");
 
     $imagick = new \Imagick();
-    $imagick->newImage(500, 500, $backgroundColor);
+    $imagick->newImage(500, 200, $backgroundColor);
     $imagick->setImageFormat("png");
     $imagick->drawImage($draw);
 

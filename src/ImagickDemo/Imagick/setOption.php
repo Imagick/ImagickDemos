@@ -53,6 +53,11 @@ class setOption extends \ImagickDemo\Example {
                 $this->renderCustomBitDepthPNG();
                  break;
             }
+
+            case (5): {
+                $this->renderBlackPoint();
+                break;
+            }
         }
     }
 
@@ -104,6 +109,22 @@ class setOption extends \ImagickDemo\Example {
         }
     }
 //Example end
+
+
+
+    function renderBlackPoint() {
+        $imagePath = $this->control->getImagePath();
+        $imagick = new \Imagick();
+        $imagick->setOption('black-point-compensation', 0.25 * \Imagick::getQuantum());
+        
+        $imagick->readImage(realpath($imagePath));
+
+        $imagick->setImageFormat('png');
+
+
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
 }
 
 

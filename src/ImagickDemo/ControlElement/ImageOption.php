@@ -25,7 +25,8 @@ class ImageOption extends OptionKeyElement {
             1 => "'jpeg:extent', '60kb'",
             2 => "'png:format', 'png00'",
             3 => "'png:format', 'png64'",
-            4 => "16bit rgba PNG"
+            4 => "16bit rgba PNG",
+        //  5 => "Black point compensation"
         ];
     }
 

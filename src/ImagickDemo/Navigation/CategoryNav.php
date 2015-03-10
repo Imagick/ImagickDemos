@@ -911,7 +911,10 @@ END;
         $imagickKernelExamples = [
             'addKernel'      => ['addKernel', \ImagickDemo\Control\ImageControl::class],
             'addUnityKernel' => ['addUnityKernel', \ImagickDemo\Control\NullControl::class],
-            'fromMatrix'     => ['fromMatrix', \ImagickDemo\Control\NullControl::class],
+            'fromMatrix'     => [
+                'fromMatrix',
+                \ImagickDemo\ImagickKernel\Control\fromMatrixControl::class
+            ],
             'fromBuiltin'    => [
                 'fromBuiltin',
                 \ImagickDemo\ImagickKernel\Control\fromBuiltIn::class

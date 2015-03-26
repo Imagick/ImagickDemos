@@ -1598,13 +1598,8 @@ function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnde
 //Example end
 
 
-
-
-
-
 //Example ImagickDraw::setVectorGraphics
-function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
-
+function setVectorGraphics() {
     //Setup a draw object with some drawing in it.
     $draw = new \ImagickDraw();
     $draw->setFillColor("red");
@@ -1612,15 +1607,16 @@ function setVectorGraphics($strokeColor, $fillColor, $backgroundColor) {
     $draw->setFillColor("blue");
     $draw->circle(50, 70, 50, 50);
     $draw->rectangle(50, 120, 80, 150);
+
     //Get the drawing as a string
     $SVG = $draw->getVectorGraphics();
-
-//    echo htmlentities($SVG);
-//    exit(0);
     
+    //$svg is a string, and could be saved anywhere a string can be saved
+
     //Use the saved drawing to generate a new draw object
     $draw2 = new \ImagickDraw();
-    $draw2->setVectorGraphics($SVG);
+    //Apparently the SVG text is missing the root element. 
+    $draw2->setVectorGraphics("<root>".$SVG."</root>");
 
     $imagick = new \Imagick();
     $imagick->newImage(200, 200, 'white');

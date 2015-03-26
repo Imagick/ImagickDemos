@@ -769,7 +769,7 @@ function getImageHistogram($imagePath) {
     $backgroundColor = 'black';
 
     $draw = new \ImagickDraw();
-    $draw->setStrokeWidth(0); //Lines have a wi
+    $draw->setStrokeWidth(0); //make the lines be as thin as possible
 
     $imagick = new \Imagick();
     $imagick->newImage(500, 500, $backgroundColor);
@@ -1089,6 +1089,40 @@ function quantizeImage($imagePath, $numberColors, $colorSpace, $treeDepth, $dith
 }
 //Example end
 
+
+//Example Imagick::quantizeImages
+function quantizeImages($numberColors, $colorSpace, $treeDepth, $dither) {
+    set_time_limit(120);        //This takes a long time
+    ini_set('memory_limit','128M'); //And uses a lot of memory
+    
+    $imagePathPattern = "../imagick/images/spiderGif";
+    $fileIterator = new \GlobIterator(realpath($imagePathPattern).'/*.png');
+
+    $imagick = new \Imagick();
+    $imagick->setFormat("gif");
+    $count = 0;
+    foreach ($fileIterator as $fileEntry) {
+        if ((($count++) % 3) != 0) {
+            continue;
+        }
+        $nextImage = new \Imagick(realpath($fileEntry));
+        $nextImage->setImageDelay(5);
+        $imagick->addImage($nextImage);
+        $nextImage->destroy();
+    }
+
+    $imagick->quantizeImages($numberColors, $colorSpace, $treeDepth, $dither, false);
+  
+    $imagick->setImageIterations(0); //loop forever
+    $imagick->mergeImageLayers(\Imagick::LAYERMETHOD_OPTIMIZEPLUS);
+
+    header("Content-Type: image/gif");
+    echo $imagick->getImagesBlob();
+}
+//Example end
+
+    
+    
 
 //Example Imagick::radialBlurImage
 function radialBlurImage($imagePath) {

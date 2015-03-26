@@ -20,6 +20,9 @@ class ImageResponse implements \ImagickDemo\Response\Response {
             header('Content-Type: ' . $this->mimeType);
         }
         header('Content-Length: ' . strlen($this->data));
+
+//        Content-Disposition: attachment; filename=Naïve file.txt
+
         
         echo $this->data;
     }

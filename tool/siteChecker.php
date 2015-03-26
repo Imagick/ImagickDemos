@@ -390,7 +390,7 @@ $site = "http://phpimagick.com";
 $reactor = Amp\getReactor();
 $client = new ArtaxClient();
 $client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 2500);
-$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 1);
+$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 4);
 
 $siteChecker = new SiteChecker($site, $client);
 

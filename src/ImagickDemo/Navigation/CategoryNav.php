@@ -372,7 +372,7 @@ END;
             //'commentImage',
             //'compareImageChannels',
             //'compareImageLayers',
-//'compareImages',
+            //'compareImages',
             'compositeImage' => ['compositeImage',\ImagickDemo\Control\ImageControl::class ],
             // CompositeLayers
             //__construct',
@@ -388,6 +388,9 @@ END;
             //'cycleColormapImage',
             //'constituteImage' => [ 'constituteImage', \ImagickDemo\Control\NullControl::class],
             // DestroyImage
+
+            //'debugImage' => ['debugImage', \ImagickDemo\Control\NullControl::class ],
+            
             //'decipherImage',
             //'deconstructImages',
             //'deleteImageArtifact',
@@ -610,9 +613,9 @@ END;
             //'previousImage',
             //'profileImage',
             'quantizeImage' => ['quantizeImage', \ImagickDemo\Imagick\Control\quantizeImage::class],
-            //'quantizeImages',
+            //'quantizeImages' => ['quantizeImages', \ImagickDemo\Imagick\Control\quantizeImage::class],
             'queryFontMetrics'=> ['queryFontMetrics', \ImagickDemo\Control\NullControl::class],
-            //'queryFonts',
+            'queryFonts'=> ['queryFonts', \ImagickDemo\Control\NullControl::class],
             'queryFormats' => ['queryFormats', \ImagickDemo\Control\NullControl::class],
 
             'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ImageControl::class],
@@ -808,6 +811,7 @@ END;
             'circle' => ['circle', \ImagickDemo\Control\CircleControl::class],
             'composite' => ['composite', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'ellipse' => ['ellipse', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'getVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\NullControl::class],
             'line' => ['line', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'matte' => ['matte', \ImagickDemo\ImagickDraw\Control\matte::class],
             'pathStart' => ['pathStart', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
@@ -867,7 +871,7 @@ END;
             'setTextAntialias' => ['setTextAntialias', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setTextDecoration' => ['setTextDecoration', \ImagickDemo\Control\TextDecoration::class],
             'setTextUnderColor' => ['setTextUnderColor', \ImagickDemo\Control\TextUnderControl::class],
-            //'setVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'setVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\NullControl::class],
             'setViewBox' => ['setViewBox', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'skewX' => ['skewX', \ImagickDemo\Control\SkewControl::class],
             'skewY' => ['skewY', \ImagickDemo\Control\SkewControl::class],

@@ -50,7 +50,6 @@ f4 - Constant vertical offset, default 0.5";
         $this->control = $control;
     }
 
-
     function renderDescription() {
 
         $descriptions = [

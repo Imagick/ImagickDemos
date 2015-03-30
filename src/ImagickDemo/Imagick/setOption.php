@@ -15,20 +15,10 @@ class setOption extends \ImagickDemo\Example {
         $this->control = $control;
     }
 
-
-
     function render() {
         return $this->renderCustomImageURL();
     }
 
-
-//    function renderCustomImageURL() {
-//        return sprintf(
-//            "<img src='%s' />",
-//            $this->control->getCustomImageURL()
-//        );
-//    }
-//    
     function renderCustomImage() {
         
         switch($this->control->getImageOption()) {

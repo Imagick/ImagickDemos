@@ -3,8 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Framework\VariableMap;
+use ImagickDemo\CustomImage;
 
-class morphology extends \ImagickDemo\Example {
+class morphology extends \ImagickDemo\Example implements CustomImage {
     
     private $usageControl;
     
@@ -18,7 +19,21 @@ class morphology extends \ImagickDemo\Example {
         [false, false, false],
         [false, false, 1]
     ];
-    
+
+    //CustomImage
+    function getCustomImageParams() {
+        return ['morphologyType' => $this->morphologyType];
+    }
+
+    public function renderCustomImage() {
+        if (array_key_exists($this->morphologyType, $this->functionTable) == true) {
+            $method = $this->functionTable[$this->morphologyType];
+            $this->{$method}();
+        }
+        else {
+            //$this->renderBlank();
+        }
+    }
 
     function __construct(\ImagickDemo\ImagickKernel\Control\usage $usageControl, VariableMap $variableMap) {
         $this->usageControl = $usageControl;
@@ -209,15 +224,7 @@ class morphology extends \ImagickDemo\Example {
         return $this->renderCustomImageURL([], $this->getOriginalImage());
     }
 
-    public function renderCustomImage() {
-        if (array_key_exists($this->morphologyType, $this->functionTable) == true) {
-            $method = $this->functionTable[$this->morphologyType];
-            $this->{$method}();
-        }
-        else {
-            //$this->renderBlank();
-        }
-    }
+
 
     private function renderBlank() {
         $canvas = $this->getCharacterOutline();

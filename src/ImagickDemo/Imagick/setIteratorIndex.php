@@ -5,8 +5,9 @@ namespace ImagickDemo\Imagick;
 
 
 use ImagickDemo\Framework\VariableMap;
+use ImagickDemo\CustomImage;
 
-class setIteratorIndex extends \ImagickDemo\Example {
+class setIteratorIndex extends \ImagickDemo\Example implements CustomImage {
 
     private $firstLayer = 0;
 

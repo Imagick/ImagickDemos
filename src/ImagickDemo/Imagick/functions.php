@@ -1562,21 +1562,21 @@ function setImageTicksPerSecond() {
 
 
 //Example Imagick::setIteratorIndex
-    function setIteratorIndex($firstLayer) {
-        $imagick = new \Imagick(realpath("images/LayerTest.psd"));
-        $output = new \Imagick();
-        $imagick->setIteratorIndex($firstLayer);
+function setIteratorIndex($firstLayer) {
+    $imagick = new \Imagick(realpath("images/LayerTest.psd"));
+    $output = new \Imagick();
+    $imagick->setIteratorIndex($firstLayer);
 
-        do {
-            $output->addImage($imagick->getimage());
-        } while($imagick->nextImage());
+    do {
+        $output->addImage($imagick->getimage());
+    } while($imagick->nextImage());
 
-        $merged = $output->mergeImageLayers(\Imagick::LAYERMETHOD_MERGE);
+    $merged = $output->mergeImageLayers(\Imagick::LAYERMETHOD_MERGE);
 
-        $merged->setImageFormat('png');
-        header("Content-Type: image/png");
-        echo $merged->getImageBlob();
-    }
+    $merged->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $merged->getImageBlob();
+}
 //Example end
 
 

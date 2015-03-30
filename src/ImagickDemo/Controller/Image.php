@@ -33,6 +33,7 @@ class Image {
 
         $data = [];
         $customImageParams = $exampleController->getCustomImageParams();
+        
         $fullParams = $control->getFullParams($customImageParams);
         
         $filename = getImageCacheFilename($category, $example, $fullParams);
@@ -102,7 +103,7 @@ class Image {
                                       $imageFunction,
                                       ImagickTaskQueue $taskQueue,
                                       $category, $example) use ($params) {
-            $debug = 'foo';
+            $debug = 'Unknown state';
 
             $job = $request->getVariable('job', false);
             if ($job === false) {
@@ -112,11 +113,13 @@ class Image {
                 }
 
                 $task = \ImagickDemo\Queue\ImagickTask::create(
-                    $category, $example,
-                    $imageFunction, $params
+                    $category,
+                    $example,
+                    $imageFunction,
+                    $params
                 );
 
-                $debug .= "task creted.";
+                $debug .= "task created.";
 
                 $taskQueue->addTask($task);
             }
@@ -167,7 +170,7 @@ class Image {
     ) {
         $injector->defineParam('imageFunction', $customImageFunction);
         $params = $control->getFullParams($exampleController->getCustomImageParams());
-        $defaultCustomParams = array('customImage' => true);
+        $defaultCustomParams = [];//array('customImage' => true);
         $params = array_merge($defaultCustomParams, $params);
 
         return $this->getImageResponseInternal($injector, $params);

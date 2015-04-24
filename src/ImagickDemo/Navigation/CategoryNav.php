@@ -300,7 +300,7 @@ END;
     }
 
     function getExampleDefinition($category, $example) {
-        $examples = $this->getAllExamples();
+        $examples = self::getAllExamples();
 
         if (!isset($examples[$category][$example])) {
             throw new \Exception("Somethings fucky: example [$category][$example] doesn't exist.");
@@ -310,7 +310,7 @@ END;
     }
     
     function getCategoryList($category) {
-        $examples = $this->getAllExamples();
+        $examples = self::getAllExamples();
 
         if (array_key_exists($category, $examples)) {
             return $examples[$category];
@@ -416,10 +416,7 @@ END;
             'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
             'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\EvaluateTypeControl::class],
             //'exportImagePixels',
-//            'extentImage' => [
-//                'extentImage',
-//                \ImagickDemo\Imagick\Control\chopImage::class
-//            ],
+            'extentImage' => ['extentImage',\ImagickDemo\Control\ImageControl::class],
             'filter' => ['filter', \ImagickDemo\Control\ImageControl::class],
             //FrameImage
             'flattenImages' => ['flattenImages', \ImagickDemo\Control\NullControl::class],
@@ -757,6 +754,8 @@ END;
                 ]
             ],
             'smushImages' => ['smushImages', \ImagickDemo\Control\ImageControl::class],
+            'stripImage' => ['stripImage', \ImagickDemo\Control\NullControl::class],
+
             'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ControlCompositeImageSolarizeThreshold::class],
             'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\SparseColorControl::class],
             'spliceImage' => ['spliceImage', \ImagickDemo\Imagick\Control\spliceImage::class],
@@ -986,6 +985,23 @@ END;
         ];
 
         return $examples;
+    }
+    
+    
+    static function findExample($category, $example) {
+        $allExamples = self::getAllExamples();
+
+        foreach($allExamples as $exampleCategory => $examples) {
+            if (strtolower($exampleCategory) == strtolower($category)) {
+                foreach ($examples as $exampleName => $exampleDetails) {
+                    if (strtolower($exampleName) == strtolower($example)) {
+                        return [$exampleCategory, $exampleName];
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 }
 

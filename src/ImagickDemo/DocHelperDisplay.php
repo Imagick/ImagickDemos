@@ -90,6 +90,12 @@ class DocHelperDisplay extends DocHelper {
     }
 
     function showExamples() {
+        return $this->showExamplesAsHTML();
+        //return $this->showExamplesAsXML();
+    }
+
+
+    function getXML() {
 
         $output = "";
 
@@ -99,31 +105,144 @@ class DocHelperDisplay extends DocHelper {
 
         $examples = $this->exampleEntries[$this->category][$this->example];
 
+        $xmlStart = "\n\n".'<refsect1 role="examples">
+  &reftitle.examples;
+  <para>';
+
+        $xmlEnd = '  </para>
+</refsect1>
+
+';
+
+        $exampleText =
+            '
+    <example>
+      <title>%s <function>%s</function></title>
+      <programlisting role="php">
+      <![CDATA[
+<?php
+%s
+?>
+]]>
+      </programlisting>
+    </example>'."\n";
+
+        $output .= $xmlStart;
+
+        foreach ($examples as $example) {
+            $example = unserialize($example);
+
+            $header = '';
+            $description = $example->getDescription();
+            if (strlen(trim($description))) {
+                $header = $description;
+            }
+
+            $output .= sprintf(
+                $exampleText,
+                $header,
+                $this->categoryCase.'::'.$this->exampleCase,
+                $example->getLines()
+            );
+        }
+
+        $output .= $xmlEnd;
+
+        return $output;
+    }
+    
+
+    function showExamplesAsXML() {
+
+        $output = "";
+
+        if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
+            return "";
+        }
+
+        $examples = $this->exampleEntries[$this->category][$this->example];
+
+        $xmlStart = '<refsect1 role="examples">
+  &reftitle.examples;
+  <para>';
+        
+        $xmlEnd = '  </para>
+</refsect1>
+';
+
+        $exampleText = 
+'
+    <example>
+      <title>%s <function>%s</function></title>
+      <programlisting role="php">
+      <![CDATA[
+<?php
+%s
+?>
+]]>
+      </programlisting>
+    </example>'."\n";
+
+
         
         
         $count = 1;
         foreach ($examples as $example) {
             $example = unserialize($example);
-            /** @var $example \ImagickDemo\CodeExample */
-
-            //$output .= getPanelStart(false);
-
             $output .= "<div class='row'>
                 <div class='col-md-12 contentPanel'>";
-            
-            
-            //$output .= "<h4 class='exampleHeader'>";
+
+            $header = '';    
+            $description = $example->getDescription();
+            if (strlen(trim($description))) {
+                $header = $description;
+            }
+
+            $output .= "<div class='shContainer'>";
+            $output .= "<pre>";
+
+            $xml = $xmlStart;
+
+            $xml .= sprintf(
+                $exampleText,
+                $header,
+                $this->categoryCase.'::'.$this->exampleCase,
+                $example->getLines()
+            );
+
+            $xml .= $xmlEnd;
+            $output .= htmlentities($xml);
+            $output .= "</pre></div>";
+            $count++;
+
+            $output .= getPanelEnd();
+        }
+
+        return $output;
+    }
+    
+    function showExamplesAsHTML() {
+
+        $output = "";
+
+        if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
+            return "";
+        }
+
+        $examples = $this->exampleEntries[$this->category][$this->example];
+
+        $count = 1;
+        foreach ($examples as $example) {
+            $example = unserialize($example);
+            $output .= "<div class='row'>
+                <div class='col-md-12 contentPanel'>";
 
             $header = false;
             
             if (count($examples) > 1) {
-                //$output .= "Example $count";
                 $header = "Example $count";
             }
-            else {
-                //$output .= "Example";
-                //$header = "Example";
-            }
+
             $description = $example->getDescription();
             if (strlen(trim($description))) {
 
@@ -136,11 +255,7 @@ class DocHelperDisplay extends DocHelper {
                     $header = $description;
                 }
             }
-
-//            $output .= "</h4>";
-            
-            
-
+                        
             $uri = sprintf(
                 "https://github.com/Danack/Imagick-demos/tree/master/src/ImagickDemo/%s/functions.php",
                 $example->category
@@ -159,15 +274,10 @@ class DocHelperDisplay extends DocHelper {
                     $example->startLine
                 );
             }
-            
-            
-            
-            $string = $example->getLines();
 
+            $string = $example->getLines();
             $offset = 0;
-            
             $lines = explode("\n", $string);
-            
             foreach ($lines as $line) {                
                 if (!strlen(trim($line))){
                     continue;
@@ -180,7 +290,6 @@ class DocHelperDisplay extends DocHelper {
                     break;
                 }
             }
-            
 
             $output .= "<div class='shContainer'>";
             $output .= "<pre class='brush: php;' data-github='$uri'>";
@@ -189,11 +298,9 @@ class DocHelperDisplay extends DocHelper {
                 for ($x = 0; $x < $offset; $x++) {
                     $output .= ' ';
                 }
-
                 $output .= '//' . $header . "\n\n";
             }
-            
-            
+
             $output .=  $example->getLines();
             $output .=  "</pre></div>";
             $count++;

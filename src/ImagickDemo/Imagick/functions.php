@@ -510,16 +510,18 @@ function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradient
 //Example end
 
 
-//Example Imagick::equalizeImage
-//This appears to corrupt the image colors?
-function extentImage($imagePath, $startX, $startY, $width, $height) {
+//Example Imagick::extentImage
+function extentImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->equalizeImage();
-    header("Content-Type: image/jpg");
+    $imagick->setImageBackgroundColor('orange');
     $imagick->extentImage(
-        $startX, $startY, $width, $height
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        -100,
+        -100
     );
-    
+
+    header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
 //Example end
@@ -723,7 +725,7 @@ function getPixelIterator($imagePath) {
     $imageIterator = $imagick->getPixelIterator();
 
     /** @noinspection PhpUnusedLocalVariableInspection */
-    foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+    foreach ($imageIterator as $row => $pixels) { /* Loop through pixel rows */
         foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
             /** @var $pixel \ImagickPixel */
             if ($column % 2) {
@@ -834,7 +836,7 @@ function getPixelRegionIterator($imagePath) {
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);
 
     /** @noinspection PhpUnusedLocalVariableInspection */
-    foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+    foreach ($imageIterator as $row => $pixels) { /* Loop through pixel rows */
         foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
             /** @var $pixel \ImagickPixel */
             if ($column % 2) {
@@ -1390,17 +1392,10 @@ function setCompressionQuality($imagePath, $quality) {
         $backgroundImagick->getImageHeight(),
         'canvas:white'
     );
-
-    $imagick->compositeImage(
-        $backgroundImagick,
-        \Imagick::COMPOSITE_ATOP,
-        0,
-        0
-    );
     
     $imagick->setFormat("jpg");    
     header("Content-Type: image/jpg");
-    echo $imagick->getImageBlob();
+    echo $backgroundImagick->getImageBlob();
 }
 //Example end
 
@@ -1426,7 +1421,7 @@ function setImageArtifact() {
 //Example Imagick::setImageCompressionQuality
 function setImageCompressionQuality($imagePath, $quality) {
     $imagick = new \Imagick(realpath($imagePath));
-    //$imagick->setImageCompressionQuality($quality);
+    $imagick->setImageCompressionQuality($quality);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

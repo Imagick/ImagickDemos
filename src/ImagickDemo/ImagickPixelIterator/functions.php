@@ -34,7 +34,7 @@ function clear($imagePath) {
 
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 250, 200);
 
-    /* Loop trough pixel rows */
+    /* Loop through pixel rows */
     foreach ($imageIterator as $pixels) { 
         /** @var $pixel \ImagickPixel */
         /* Loop through the pixels in the row (columns) */
@@ -117,7 +117,7 @@ function resetIterator($imagePath) {
 
     $imageIterator = $imagick->getPixelIterator();
 
-    /* Loop trough pixel rows */
+    /* Loop through pixel rows */
     foreach ($imageIterator as $pixels) {
         /* Loop through the pixels in the row (columns) */
         foreach ($pixels as $column => $pixel) {
@@ -134,7 +134,7 @@ function resetIterator($imagePath) {
 
     $imageIterator->resetiterator();
 
-    /* Loop trough pixel rows */
+    /* Loop through pixel rows */
     foreach ($imageIterator as $pixels) {
         /* Loop through the pixels in the row (columns) */
         foreach ($pixels as $column => $pixel) {
@@ -254,7 +254,7 @@ function syncIteratorImage($imagePath) {
 
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
 
-    /* Loop trough pixel rows */
+    /* Loop through pixel rows */
     foreach ($imageIterator as $pixels) { 
         $pixelStatck = new PixelStack();
         /* Loop through the pixels in the row (columns) */

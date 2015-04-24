@@ -47,7 +47,7 @@ function fxAnalyzeImage(\Imagick $imagick) {
 
     $reds = [];
 
-    foreach ($imageIterator as $pixels) { /* Loop trough pixel rows */
+    foreach ($imageIterator as $pixels) { /* Loop through pixel rows */
         foreach ($pixels as $pixel) { /* Loop through the pixels in the row (columns) */
             /** @var $pixel \ImagickPixel */
             $color = $pixel->getColor();

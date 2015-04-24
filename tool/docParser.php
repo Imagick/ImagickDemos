@@ -1169,8 +1169,14 @@ class DocHelper {
     protected \$manualEntries = $manualEntries;
     protected \$category;
     protected \$example;
+    protected \$categoryCase;
+    protected \$exampleCase;
+
 
     function __construct(\$category, \$example) {
+        \$this->categoryCase = \$category;
+        \$this->exampleCase = \$example;
+    
         \$this->category = strtolower(\$category);
         \$this->example = strtolower(\$example);
     }

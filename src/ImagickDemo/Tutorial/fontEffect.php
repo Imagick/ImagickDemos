@@ -56,7 +56,7 @@ class fontEffect extends \ImagickDemo\Example {
         return $imagick;
     }
 
-//Example Imagick::morphology Helper functon to get an image silhouette
+
     private function drawText(\Imagick $imagick, $shadow = false) {
         $draw = new \ImagickDraw();
         
@@ -82,7 +82,6 @@ class fontEffect extends \ImagickDemo\Example {
         }
         
         return $imagick;
-//Example end
     }
 
     private function getSilhouette(\Imagick $imagick) {
@@ -130,7 +129,7 @@ class fontEffect extends \ImagickDemo\Example {
 
         $text = clone $canvas;
         
-//Example Imagick::morphology Distance with Euclidean kernel
+
         $this->drawText($text);
 
         $this->drawText($shadow, true);
@@ -187,7 +186,6 @@ class fontEffect extends \ImagickDemo\Example {
         
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-//Example end
     }
 
 

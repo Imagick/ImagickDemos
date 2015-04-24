@@ -442,7 +442,7 @@ function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) 
 
     $luminosityArray = [];
 
-    foreach ($imageIterator as $row => $pixels) { /* Loop trough pixel rows */
+    foreach ($imageIterator as $row => $pixels) { /* Loop through pixel rows */
         foreach ($pixels as $column => $pixel) { /* Loop through the pixels in the row (columns) */
             /** @var $pixel \ImagickPixel */
 
@@ -791,6 +791,7 @@ function renderKernelTable($matrix) {
     return $output;
 }
 
+    
 
 }//namespace end
 

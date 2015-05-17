@@ -20,7 +20,7 @@ class ErrorResponse implements Response {
         $this->headers[$type] = $value;
     }
 
-    function send() {
+    function send(array $headers = []) {
         header("HTTP/1.1 ".$this->code." ".$this->message);
         foreach ($this->headers as $type => $value) {
             header("$type: $value");

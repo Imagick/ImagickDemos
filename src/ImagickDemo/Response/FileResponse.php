@@ -51,7 +51,7 @@ class FileResponse implements \ImagickDemo\Response\Response {
         $this->headers[$type] = $value;
     }
 
-    function send() {
+    function send(array $headers = []) {
         $this->sendHeaders();
         $this->sendFile();
     }

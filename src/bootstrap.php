@@ -8,7 +8,12 @@ use ImagickDemo\Response\FileResponse;
 use ImagickDemo\Config\Application as ApplicationConfig;
 use Intahwebz\Request;
 use ImagickDemo\Response\RedirectResponse;
-
+use Predis\Client as RedisClient;
+//use ASM\Redis\RedisDriver;
+//use ASM\SessionManager;
+//use ASM\SessionConfig;
+//
+//    
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
 require __DIR__.'/../vendor/autoload.php';
 
@@ -142,28 +147,67 @@ function renderImgTag($url, $id = '', $extra = '') {
     return $output;
 
 }
+    
+if (false) {
 
-    /**
-     * @param $libratoKey
-     * @param $libratorUsername
-     * @param $statsSourceName
-     * @return \Auryn\Provider
-     */
-function bootstrapInjector() {
+    function createRedisSessionDriver()
+    {
+        $redisConfig = array(
+            "scheme" => "tcp",
+            "host" => 'localhost',
+            "port" => 6379
+        );
+
+        $redisOptions = array(
+            'profile' => '2.6',
+            'prefix' => 'imagickdemo:',
+        );
+
+        $redisClient = new RedisClient($redisConfig, $redisOptions);
+        $redisDriver = new RedisDriver($redisClient);
+
+        return $redisDriver;
+    }
+
+    function createSessionManager(RedisDriver $redisDriver)
+    {
+        $sessionConfig = new SessionConfig(
+            'SessionTest',
+            3600 * 10,
+            60
+        );
+
+        $sessionManager = new SessionManager(
+            $sessionConfig,
+            $redisDriver
+        );
+
+        return $sessionManager;
+    }
+}
+
+/**
+ * @param $libratoKey
+ * @param $libratorUsername
+ * @param $statsSourceName
+ * @return \Auryn\Provider
+ */
+function bootstrapInjector()
+{
 
     $injector = new Auryn\Provider();
     $jigConfig = new Jig\JigConfig(
         "../templates/",
         "../var/compile/",
         'tpl',
-        Jig\JigRender::COMPILE_CHECK_EXISTS
+        //Jig\JigRender::COMPILE_CHECK_EXISTS
         //Jig\JigRender::COMPILE_CHECK_MTIME
-        //Jig\JigRender::COMPILE_ALWAYS
+        Jig\JigRender::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
 
-    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay'); 
+    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
     $injector->alias('ImagickDemo\Example', 'ImagickDemo\NullExample');
@@ -175,7 +219,16 @@ function bootstrapInjector() {
     $injector->share('ImagickDemo\Control');
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
-    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');    
+    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
+
+    
+
+    if (false) {
+        $injector->share('ASM\SessionManager');
+        $injector->delegate('ASM\SessionManager', 'createSessionManager');
+        $injector->share('ASM\Driver\RedisDriver');
+        $injector->delegate('ASM\Driver\RedisDriver', 'createRedisSessionDriver');
+    }
 
     $injector->defineParam('activeCategory', null);
     $injector->defineParam('activeExample', null);
@@ -324,6 +377,14 @@ function servePage(\Auryn\Provider $injector, $routesFunction) {
     }
 
     $routeInfo = $dispatcher->dispatch($httpMethod, $path);
+    
+    
+    if (false) {
+        $recentPages = $injector->make('ImagickDemo\RecentPages');
+        $recentPages->log($uri);
+    }
+    
+    
 
     switch ($routeInfo[0]) {
         case \FastRoute\Dispatcher::NOT_FOUND: {
@@ -418,7 +479,6 @@ function process(\Auryn\Provider $injector, $handler, $vars) {
         if ($count > 4) {
             $finished = true;
         }
-
     }
 
     return null;
@@ -611,7 +671,7 @@ function getRoutes(ApplicationConfig $appConfig) {
  * @return \ImagickDemo\Response\ImageResponse
  * @throws \Exception
  */
-function createImageResponse(callable $imageCallable) {
+function createImageResponse($filename, callable $imageCallable) {
     global $imageType;
     ob_start();
     $imageCallable();
@@ -625,7 +685,7 @@ function createImageResponse(callable $imageCallable) {
 
     ob_end_clean();
     
-    return new \ImagickDemo\Response\ImageResponse("image/".$imageType, $imageData);
+    return new \ImagickDemo\Response\ImageResponse($filename, "image/".$imageType, $imageData);
 }
 
 /**
@@ -711,6 +771,11 @@ function renderImageAsFileResponse(
 }
 
 
+/**
+ * @param Request $request
+ * @param $job
+ * @return RedirectResponse
+ */
 function redirectWaitingTask(Request $request, $job) {
     $job = intval($job) + 1;
 
@@ -734,7 +799,7 @@ function redirectWaitingTask(Request $request, $job) {
  * @return \ImagickDemo\Response\ImageResponse
  * @throws \Exception
  */
-function directImageFunction($imageFunction, \Auryn\Provider $injector) {
+function directImageFunction($filename, $imageFunction, \Auryn\Provider $injector) {
     $imageCallable = function() use ($imageFunction, $injector) {
         try {
             return $injector->execute($imageFunction);
@@ -745,7 +810,7 @@ function directImageFunction($imageFunction, \Auryn\Provider $injector) {
         }
     };
     
-    return createImageResponse($imageCallable);
+    return createImageResponse($filename, $imageCallable);
 }
 
 function renderImageURL(

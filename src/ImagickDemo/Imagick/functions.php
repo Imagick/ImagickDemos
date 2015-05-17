@@ -1,6 +1,6 @@
 <?php
 
-namespace ImagickDemo\Imagick {
+namespace ImagickDemo\Imagick;
  
 use Imagick;
 use ImagickDemo\Response\FileResponse;
@@ -129,6 +129,49 @@ function annotateImage($imagePath, $strokeColor, $fillColor) {
 }
 //Example end
 
+//Example Imagick::appendImages
+function appendImages()
+{
+
+    $images = [
+        [
+            "../imagick/images/lories/IMG_1599_480.jpg",
+            "../imagick/images/lories/IMG_2561_480.jpg"
+        ],
+        [
+            "../imagick/images/lories/IMG_2837_480.jpg",
+            "../imagick/images/lories/IMG_4023_480.jpg"
+        ]
+    ];
+    
+    $canvas = new Imagick();
+
+    foreach ($images as $imageRow) {
+        $rowImagick = new Imagick();
+        $rowImagick->setBackgroundColor('gray');
+        foreach ($imageRow as $imagePath) {
+            $imagick = new Imagick(realpath($imagePath));
+            $imagick->setImageBackgroundColor("gray");
+            $imagick->resizeimage(200, 200, \Imagick::FILTER_LANCZOS, 1.0, true);
+            $rowImagick->addImage($imagick);
+        }
+        $rowImagick->resetIterator();
+        //Add the images horizontally.
+        $combinedRow = $rowImagick->appendImages(false);
+        $canvas->addImage($combinedRow);
+    }
+
+    $canvas->resetIterator();
+    
+    //Add the images vertically.
+    $finalimage = $canvas->appendImages(true);
+    $finalimage->setImageFormat('jpg');
+
+    header("Content-Type: image/jpg");
+    echo $finalimage->getImageBlob();
+}
+//Example end
+
 //Example Imagick::autoLevelImage
 function autoLevelImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -228,7 +271,64 @@ function clipImage($imagePath) {
 
 
 
+//Example Imagick::coalesceImages
+function coalesceImages()
+{
+    $imagePaths = [
+        "../imagick/images/lories/IMG_1599_480.jpg",
+        "../imagick/images/lories/IMG_2561_480.jpg",
+        "../imagick/images/lories/IMG_2837_480.jpg",
+        "../imagick/images/lories/IMG_4023_480.jpg",
+    ];
+
+    $canvas = new Imagick();
+    foreach ($imagePaths as $imagePath) {
+        $canvas->readImage(realpath($imagePath));
+        $canvas->setImageDelay(100);
+    }
+    $canvas->setImageFormat('gif');
     
+    $finalImage = $canvas->coalesceImages();
+    $finalImage->setImageFormat('gif');
+    $finalImage->setImageIterations(0); //loop forever
+    $finalImage->mergeImageLayers(\Imagick::LAYERMETHOD_OPTIMIZEPLUS);
+
+    header("Content-Type: image/gif");
+    echo $finalImage->getImagesBlob();
+}
+//Example end
+
+
+
+
+
+//Example Imagick::colorDecisionListImage
+function colorDecisionListImage($imagePath) {
+
+    $colorList = '<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
+    <ColorCorrection id="cc03345">
+          <SOPNode>
+               <Slope> 0.9 1.2 0.5 </Slope>
+               <Offset> 0.4 -0.5 0.6 </Offset>
+               <Power> 1.0 0.8 1.5 </Power>
+          </SOPNode>
+          <SATNode>
+               <Saturation> 0.85 </Saturation>
+          </SATNode>
+    </ColorCorrection>
+    </ColorCorrectionCollection>';
+
+    $imagick = new \Imagick(realpath($imagePath));
+
+    $imagick->colorDecisionListImage($imagick);
+    
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+
 //Example Imagick::colorFloodfillImage
 function colorFloodfillImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -968,23 +1068,51 @@ function modulateImage($imagePath, $hue, $brightness, $saturation) {
 //Example Imagick::mosaicImages
 function mosaicImages() {
     $imagick = new \Imagick();
-    $imagick->newimage(500, 500, 'white');
+    $mosaicWidth = 500;
+    $mosaicHeight = 500;
+    
+    $imagick->newimage($mosaicWidth, $mosaicHeight, 'red');
 
     $images = [
         "../imagick/images/Biter_500.jpg",
         "../imagick/images/SydneyPeople_400.jpg",
+        "../imagick/images/Skyline_400.jpg",
     ];
+
+    $positions = [
+        [50, 300],
+        [200, 125],
+        [25, 50],
+    ];
+    
+    $count = 0;
 
     foreach ($images as $image) {
         $nextImage = new \Imagick(realpath($image));
-        //$nextImage->setPage(100, 100, 50, 50);
+        $nextImage->resizeimage(300, 300, \Imagick::FILTER_LANCZOS, 1.0, true);
+
+        $nextImage->setImagePage(
+            $nextImage->getImageWidth(),
+            $nextImage->getImageHeight(),
+            $positions[$count][0],
+            $positions[$count][1]
+        );
+        
         $imagick->addImage($nextImage);
+        $count++;
     }
 
-    @$imagick->mosaicimages();
+    $result = $imagick->mosaicImages();
+    $result->setImageFormat('png');
 
-    $imagick->setimageformat('png');
+    $result->cropImage(
+        $mosaicWidth,
+        $mosaicHeight,
+        0, 0
+    );
+
     header("Content-Type: image/png");
+    echo $result->getImageBlob();
 }
 //Example end
 
@@ -1970,9 +2098,4 @@ function whiteThresholdImage($imagePath, $color) {
     echo $imagick->getImageBlob();
 }
 //Example end
-
-}
-
-
-
  

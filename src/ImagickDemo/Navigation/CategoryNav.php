@@ -343,7 +343,7 @@ END;
                 ],
             ],
 
-            //'appendImages',
+            'appendImages' => ['appendImages', \ImagickDemo\Control\NullControl::class],
             'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
             'blackThresholdImage' => ['blackThresholdImage', \ImagickDemo\Imagick\Control\blackThresholdImage::class],
             'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Imagick\Control\BlueShiftControl::class],
@@ -361,9 +361,10 @@ END;
             //'clear',
             //'clipPathImage',
             'clutImage' => ['clutImage', \ImagickDemo\Control\NullControl::class],
-            //'coalesceImages',
-            //deprecated - new NavOption('colorFloodfillImage', true),
-            //ColorDecisionListImage
+            'coalesceImages' => ['coalesceImages', \ImagickDemo\Control\NullControl::class],
+            
+            //This isn't implemented yet.
+            //'colorDecisionListImage' => ['colorDecisionListImage', \ImagickDemo\Control\ImageControl::class],
             'colorizeImage' => ['colorizeImage', \ImagickDemo\Imagick\Control\colorizeImage::class],
             'colorMatrixImage' => [
                 'colorMatrixImage', \ImagickDemo\Imagick\Control\colorMatrixImage::class
@@ -409,9 +410,7 @@ END;
                 'embossImage',
                 \ImagickDemo\Imagick\Control\embossImage::class
             ],
-            
             //'encipherImage',
-
             'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
             'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
             'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\EvaluateTypeControl::class],
@@ -421,7 +420,6 @@ END;
             //FrameImage
             'flattenImages' => ['flattenImages', \ImagickDemo\Control\NullControl::class],
             'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
-            
             'floodFillPaintImage' => [
                 'floodFillPaintImage',
                 \ImagickDemo\Imagick\Control\floodFillPaintImage::class,
@@ -552,7 +550,6 @@ END;
                     'whitePoint' => 100
                 ]
             ],
-            
             'linearStretchImage' => [
                 'linearStretchImage',
                 \ImagickDemo\Control\linearStretchControl::class
@@ -568,14 +565,12 @@ END;
             'modulateImage' => ['modulateImage', \ImagickDemo\Imagick\Control\modulateImage::class],
             //'montageImage',
             //'morphImages',
-            // MorphologyImage
-
-            'morphology'          => [
+            'morphology' => [
                 'morphology',
                 \ImagickDemo\ImagickKernel\Control\usage::class
             ],
             
-            //'mosaicImages' => ['mosaicImages', \ImagickDemo\Control\ImageControl::class],
+            'mosaicImages' => ['mosaicImages', \ImagickDemo\Control\NullControl::class],
             'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Imagick\Control\motionBlurImage::class],
             'negateImage' => ['negateImage', \ImagickDemo\Imagick\Control\negateImage::class],
             //'newImage',
@@ -595,9 +590,7 @@ END;
             ],
             //'paintOpaqueImage',
             //'paintTransparentImage',
-
             'pingImage' => ['pingImage', \ImagickDemo\Control\ImageControl::class],
-
             'Quantum'  => ['Quantum', \ImagickDemo\Control\NullControl::class],
             //'pingImageBlob',
             //'pingImageFile',
@@ -614,7 +607,6 @@ END;
             'queryFontMetrics'=> ['queryFontMetrics', \ImagickDemo\Control\NullControl::class],
             'queryFonts'=> ['queryFonts', \ImagickDemo\Control\NullControl::class],
             'queryFormats' => ['queryFormats', \ImagickDemo\Control\NullControl::class],
-
             'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ImageControl::class],
             'raiseImage' => [
                 'raiseImage',
@@ -630,10 +622,7 @@ END;
             //'readImageFile',
             'recolorImage' => ['recolorImage', \ImagickDemo\Control\ImageControl::class],
             'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Imagick\Control\reduceNoiseImage::class],
-
-
             //'remapImage' => ['remapImage', \ImagickDemo\Control\ImageControl::class],
-        
             //'removeImage',
             //'removeImageProfile',
             //'render',
@@ -708,8 +697,6 @@ END;
             //'setImageMatte',
             //'setImageMatteColor',
             //'setImageOpacity',
-            
-            
             'setImageOrientation' => ['setImageOrientation', \ImagickDemo\Imagick\Control\setImageOrientation::class],
             //'setImagePage',
             //'setImageProfile',
@@ -744,8 +731,10 @@ END;
             'sharpenImage' => ['sharpenImage', \ImagickDemo\Imagick\Control\sharpenImage::class],
             'shaveImage' => ['shaveImage', \ImagickDemo\Control\ImageControl::class],
             'shearImage' => ['shearImage', \ImagickDemo\Imagick\Control\shearImage::class],
-            'sigmoidalContrastImage' => ['sigmoidalContrastImage', \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class ],
-
+            'sigmoidalContrastImage' => [
+                'sigmoidalContrastImage',
+                \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class 
+            ],
             'sketchImage' => [
                 'sketchImage',
                 \ImagickDemo\Imagick\Control\sketchImage::class,
@@ -755,7 +744,6 @@ END;
             ],
             'smushImages' => ['smushImages', \ImagickDemo\Control\ImageControl::class],
             'stripImage' => ['stripImage', \ImagickDemo\Control\NullControl::class],
-
             'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ControlCompositeImageSolarizeThreshold::class],
             'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\SparseColorControl::class],
             'spliceImage' => ['spliceImage', \ImagickDemo\Imagick\Control\spliceImage::class],
@@ -795,12 +783,14 @@ END;
                     'color' => 'rgb(39, 194, 255)' 
                 ]
             ],
-        
             'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ImageControl::class],
             'unsharpMaskImage' => ['unsharpMaskImage',\ImagickDemo\Control\ControlCompositeImageRadiusSigmaAmountUnsharpThresholdChannel::class ],
             'vignetteImage' => ['vignetteImage', \ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY::class],
             'waveImage' => ['waveImage', \ImagickDemo\Imagick\Control\waveImage::class],
-            'whiteThresholdImage' => ['whiteThresholdImage', \ImagickDemo\Imagick\Control\whiteThresholdImage::class],
+            'whiteThresholdImage' => [
+                'whiteThresholdImage',
+                \ImagickDemo\Imagick\Control\whiteThresholdImage::class
+            ],
         ];
 
         $imagickDrawExamples = [
@@ -819,16 +809,23 @@ END;
                 \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class,
                 'name' => "pathCurveToQuadratic BezierAbsolute",
             ],
-
             'pathCurveToQuadraticBezierSmoothAbsolute' => [
                 'pathCurveToQuadraticBezierAbsolute',
                 \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class,
                 'name' => 'pathCurveToQuadratic BezierSmoothAbsolute',
             ],
-
-            'point' => ['point', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-            'polygon' => ['polygon', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-            'polyline' => ['polyline', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+            'point' => [
+                'point',
+                \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class
+            ],
+            'polygon' => [
+                'polygon',
+                \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class
+            ],
+            'polyline' => [
+                'polyline',
+                \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class
+            ],
             'pop' => ['push', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
             'popClipPath' => ['setClipPath', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'popPattern' => ['pushPattern', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
@@ -862,7 +859,6 @@ END;
             'setStrokeDashOffset' => ['setStrokeDashOffset', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setStrokeLineCap' => ['setStrokeLineCap', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setStrokeLineJoin' => ['setStrokeLineJoin', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
-
             'setStrokeMiterLimit' => ['setStrokeMiterLimit', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setStrokeOpacity' => ['setStrokeOpacity', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
             'setStrokeWidth' => ['setStrokeWidth', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],

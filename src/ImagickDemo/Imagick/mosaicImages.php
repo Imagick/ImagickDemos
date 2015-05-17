@@ -10,6 +10,4 @@ class mosaicImages extends \ImagickDemo\Example {
 
         return $this->renderImageURL();
     }
-
-
 }

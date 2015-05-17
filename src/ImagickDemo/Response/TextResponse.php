@@ -13,7 +13,11 @@ class TextResponse implements \ImagickDemo\Response\Response {
         $this->text = $text;
     }
 
-    function send() {
+    function send(array $headers = []) {
+        foreach($headers as $header) {
+            header($header);
+        }
+
         echo $this->text;
     }
 }

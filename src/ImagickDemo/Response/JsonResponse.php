@@ -13,7 +13,7 @@ class JsonResponse implements \ImagickDemo\Response\Response {
         $this->data = $data;
     }
 
-    function send() {
+    function send(array $headers = []) {
         $json = json_encode($this->data, JSON_PRETTY_PRINT);
         
         if (!$json) {

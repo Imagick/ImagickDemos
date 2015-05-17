@@ -67,7 +67,7 @@ class NginxFileResponse implements \ImagickDemo\Response\Response {
     }
 
     
-    function send() {
+    function send(array $headers = []) {
         $this->sendHeaders();
         $this->sendNginxAccel();
     }

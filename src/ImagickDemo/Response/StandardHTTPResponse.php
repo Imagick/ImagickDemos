@@ -26,7 +26,7 @@ class StandardHTTPResponse implements \ImagickDemo\Response\Response {
 //            break;
 
 
-    function send() {
+    function send(array $headers = []) {
         header("HTTP/1.0 ".$this->httpCode." Temporary Redirect");
         //TODO - make this look nice
         echo $this->uri;

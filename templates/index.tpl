@@ -162,6 +162,11 @@
             //." - <a href='/info'>Status</a> <a href='/queueinfo'>QueueInfo</a> </span>"
         ?> 
     </div>
+    
+    <div>
+        {* inject name='pages' value='ImagickDemo\RecentPages' *}
+        {* $pages->display() *}
+    </div>
 </div>
 
 </body>

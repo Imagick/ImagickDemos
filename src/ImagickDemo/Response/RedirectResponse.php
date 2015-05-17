@@ -20,12 +20,10 @@ class RedirectResponse implements Response {
         $this->headers[$type] = $value;
     }
 
-    function send() {
-        
+    function send(array $headers = []) {
         if ($this->delay) {
             usleep($this->delay);
         }
-
         header("Location: ".$this->URL , null, 307);
 
         foreach ($this->headers as $type => $value) {

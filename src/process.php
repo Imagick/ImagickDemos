@@ -1,10 +1,6 @@
 <?php
 
-
-http://stackoverflow.com/questions/22540211/php-imagick-distorting-text-in-arc-clipping/22618900#22618900
-
-$startTime = microtime(true);
-
+// http://stackoverflow.com/questions/22540211/php-imagick-distorting-text-in-arc-clipping/22618900#22618900
 
 require __DIR__ . '/../src/bootstrap.php';
 
@@ -21,11 +17,25 @@ $injector = bootstrapInjector();
 
 $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
 
-$routesFunction = $injector->execute('getRoutes');
+if (false) {
+    $sessionManager = $injector->make('ASM\SessionManager');
+    $session = $sessionManager->createSession($_COOKIE);
+    $injector->alias('ASM\Session', get_class($session));
+    $injector->share($session);
+}
 
+$routesFunction = $injector->execute('getRoutes');
 $response = servePage($injector, $routesFunction);
+
+$headers = [];
+
+if (false) {
+    $session->save();
+    $headers = $session->getHeaders(\ASM\SessionManager::CACHE_NO_CACHE);
+}
+
 if ($response != null) {
-    $response->send();
+    $response->send($headers);
 }
 
 if (php_sapi_name() === 'fpm-fcgi') {

@@ -5,7 +5,7 @@ namespace ImagickDemo\Response;
 
 
 interface Response {
-    function send();
+    function send(array $headers = []);
 }
 
  

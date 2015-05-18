@@ -8,7 +8,7 @@ use ImagickDemo\Framework\ArrayVariableMap;
 class ImagickTaskRunner {
 
     /**
-     * @var \Auryn\Provider
+     * @var \Auryn\Injector
      */
     private $injector;
 
@@ -30,12 +30,12 @@ class ImagickTaskRunner {
 
     /**
      * @param ImagickTaskQueue $taskQueue
-     * @param \Auryn\Provider $injector
+     * @param \Auryn\Injector $injector
      * @param \Stats\AsyncStats $asyncStats
      */
     function __construct(
         ImagickTaskQueue $taskQueue,
-        \Auryn\Provider $injector,
+        \Auryn\Injector $injector,
         \Stats\AsyncStats $asyncStats
     ) {
         $this->taskQueue = $taskQueue;

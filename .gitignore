@@ -10,3 +10,4 @@ imagick/bugTests
 src/test
 scripts/trc
 checkResults.html
+tool/imagick/images/spiderGif

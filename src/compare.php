@@ -52,7 +52,7 @@ function compareFile($injector, $functionFullname, $filename, $fileExtension) {
 }
 
 
-function generateCompare(\Auryn\Provider $injector, $functionFullname, $filename) {
+function generateCompare(\Auryn\Injector $injector, $functionFullname, $filename) {
     
     global $imageType;
 

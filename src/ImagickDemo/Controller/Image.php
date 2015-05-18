@@ -53,12 +53,12 @@ class Image {
 
 
     /**
-     * @param \Auryn\Provider $injector
+     * @param \Auryn\Injector $injector
      * @param $params
      * @return mixed
      * @throws \Exception
      */
-    private function getImageResponseInternal(\Auryn\Provider $injector, $params) {
+    private function getImageResponseInternal(\Auryn\Injector $injector, $params) {
         $callables = [];
         
         if (false) {
@@ -85,7 +85,7 @@ class Image {
         $cacheImageFile = function ($imageFunction, 
                                     $category,
                                     $example,
-                                    \Auryn\Provider $injector) use ($params) {
+                                    \Auryn\Injector $injector) use ($params) {
             $filename = getImageCacheFilename($category, $example, $params);
             $lowried = [];
             foreach($params as $key => $value) {
@@ -135,9 +135,9 @@ class Image {
         
         $directImageCallable = function (
             $imageFunction,
-            \Auryn\Provider $injector,$category,
+            \Auryn\Injector $injector,$category,
             $example,
-            \Auryn\Provider $injector) use ($params) 
+            \Auryn\Injector $injector) use ($params) 
         {
             $filename = getImageCacheFilename($category, $example, $params);
             
@@ -170,7 +170,7 @@ class Image {
     }
 
     /**
-     * @param \Auryn\Provider $injector
+     * @param \Auryn\Injector $injector
      * @param $customImageFunction
      * @param \ImagickDemo\Example $exampleController
      * @param \ImagickDemo\Control $control
@@ -178,7 +178,7 @@ class Image {
      * @throws \Exception
      */
     function getCustomImageResponse(
-        \Auryn\Provider $injector,
+        \Auryn\Injector $injector,
         $customImageFunction,
         \ImagickDemo\Example $exampleController,
         \ImagickDemo\Control $control
@@ -192,13 +192,13 @@ class Image {
     }
 
     /**
-     * @param \Auryn\Provider $injector
+     * @param \Auryn\Injector $injector
      * @param \ImagickDemo\Control $control
      * @throws \Exception
      * @internal param Request $request
      * @return array|callable
      */
-    function getImageResponse(\Auryn\Provider $injector, \ImagickDemo\Control $control) {
+    function getImageResponse(\Auryn\Injector $injector, \ImagickDemo\Control $control) {
         $params = $control->getFullParams([]);
 
         return $this->getImageResponseInternal($injector, $params);

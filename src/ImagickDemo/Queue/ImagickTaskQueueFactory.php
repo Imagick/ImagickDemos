@@ -4,7 +4,7 @@
 namespace ImagickDemo\Queue;
 
 
-use Auryn\Provider as Injector;
+use Auryn\Injector as Injector;
 
 
 class ImagickTaskQueueFactory {

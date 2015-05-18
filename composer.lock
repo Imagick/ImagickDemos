@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7cda236d81bdeee24e2a404b7a080b9",
+    "hash": "7639c8679d6af4abf5e220036359531d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -172,70 +172,6 @@
             "time": "2015-02-17 20:34:12"
         },
         {
-            "name": "danack/auryn",
-            "version": "0.14.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/Auryn.git",
-                "reference": "28cdd00830b6a33544af3f7fc28a6f708f70b158"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Auryn/zipball/28cdd00830b6a33544af3f7fc28a6f708f70b158",
-                "reference": "28cdd00830b6a33544af3f7fc28a6f708f70b158",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "replace": {
-                "rdlowrey/auryn": "self.version"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Auryn\\": "lib/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daniel Lowrey",
-                    "email": "rdlowrey@gmail.com",
-                    "role": "Creator / Main Developer"
-                },
-                {
-                    "name": "Levi Morrison",
-                    "email": "levim@php.net",
-                    "homepage": "http://morrisonlevi.github.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
-            "homepage": "https://github.com/rdlowrey/Auryn",
-            "keywords": [
-                "dependency injection",
-                "dic",
-                "ioc"
-            ],
-            "support": {
-                "source": "https://github.com/Danack/Auryn/tree/0.14.3",
-                "issues": "https://github.com/Danack/Auryn/issues"
-            },
-            "time": "2015-02-26 00:17:40"
-        },
-        {
             "name": "danack/console",
             "version": "v2.6.1",
             "source": {
@@ -331,21 +267,21 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.9.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "27ab491c5c23c49dd71d9c3aa12484807a9d5cc2"
+                "reference": "c04d616a233010adf219b860be96add7024ce407"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/27ab491c5c23c49dd71d9c3aa12484807a9d5cc2",
-                "reference": "27ab491c5c23c49dd71d9c3aa12484807a9d5cc2",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/c04d616a233010adf219b860be96add7024ce407",
+                "reference": "c04d616a233010adf219b860be96add7024ce407",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "v0.9.3",
-                "rdlowrey/auryn": "~0.14.0"
+                "nikic/php-parser": "^0.9.3",
+                "rdlowrey/auryn": "^0.15.2"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.1",
@@ -375,10 +311,10 @@
                 "library"
             ],
             "support": {
-                "source": "https://github.com/Danack/Jig/tree/0.9.2",
+                "source": "https://github.com/Danack/Jig/tree/master",
                 "issues": "https://github.com/Danack/Jig/issues"
             },
-            "time": "2014-08-31 22:09:30"
+            "time": "2015-05-18 14:05:32"
         },
         {
             "name": "danack/syntaxhighlighter",
@@ -481,21 +417,21 @@
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.2.3",
+            "version": "0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "c76eba186dd8277542573520bb2199b457ec84b8"
+                "reference": "8d97088e2d6fce6a32324a5b7be9707a4bb61080"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/c76eba186dd8277542573520bb2199b457ec84b8",
-                "reference": "c76eba186dd8277542573520bb2199b457ec84b8",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/8d97088e2d6fce6a32324a5b7be9707a4bb61080",
+                "reference": "8d97088e2d6fce6a32324a5b7be9707a4bb61080",
                 "shasum": ""
             },
             "require": {
-                "danack/auryn": "^0.14.0",
-                "danack/console": "^2.6.1"
+                "danack/console": "^2.6.1",
+                "rdlowrey/auryn": "^0.15.2"
             },
             "require-dev": {
                 "mikey179/vfsstream": "^1.4.0",
@@ -529,7 +465,7 @@
                 "tool",
                 "utf-8"
             ],
-            "time": "2015-02-27 20:25:28"
+            "time": "2015-05-17 22:35:29"
         },
         {
             "name": "intahwebz/core",
@@ -888,22 +824,28 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v0.9.3",
+            "version": "v0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "98ebfc8d545979636fa438f51921fdbec433f0f9"
+                "reference": "ef70767475434bdb3615b43c327e2cae17ef12eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/98ebfc8d545979636fa438f51921fdbec433f0f9",
-                "reference": "98ebfc8d545979636fa438f51921fdbec433f0f9",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ef70767475434bdb3615b43c327e2cae17ef12eb",
+                "reference": "ef70767475434bdb3615b43c327e2cae17ef12eb",
                 "shasum": ""
             },
             "require": {
+                "ext-tokenizer": "*",
                 "php": ">=5.2"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "PHPParser": "lib/"
@@ -923,7 +865,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2012-11-22 18:54:05"
+            "time": "2014-07-23 18:24:17"
         },
         {
             "name": "oyejorge/less.php",
@@ -1077,16 +1019,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "dev-master",
+            "version": "v0.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/Auryn.git",
-                "reference": "3a31cdb1bac586c9eeb6da017f4d9345171c03a2"
+                "reference": "d0d875868e1d7d241983c88252c07965a65224c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/3a31cdb1bac586c9eeb6da017f4d9345171c03a2",
-                "reference": "3a31cdb1bac586c9eeb6da017f4d9345171c03a2",
+                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/d0d875868e1d7d241983c88252c07965a65224c1",
+                "reference": "d0d875868e1d7d241983c88252c07965a65224c1",
                 "shasum": ""
             },
             "require": {
@@ -1102,18 +1044,17 @@
                     "Auryn\\": "lib/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Auryn\\Test\\": "test/"
-                },
-                "files": [
-                    "test/fixtures.php"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com",
+                    "role": "Developer"
+                },
                 {
                     "name": "Daniel Lowrey",
                     "email": "rdlowrey@gmail.com",
@@ -1124,12 +1065,6 @@
                     "email": "levim@php.net",
                     "homepage": "http://morrisonlevi.github.com/",
                     "role": "Developer"
-                },
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
                 }
             ],
             "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
@@ -1139,11 +1074,7 @@
                 "dic",
                 "ioc"
             ],
-            "support": {
-                "source": "https://github.com/rdlowrey/Auryn/tree/master",
-                "issues": "https://github.com/rdlowrey/Auryn/issues"
-            },
-            "time": "2015-05-15 23:44:56"
+            "time": "2015-05-17 18:29:19"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1201,15 +1132,15 @@
     "packages-dev": [],
     "aliases": [
         {
-            "alias": "0.14.2",
-            "alias_normalized": "0.14.2.0",
+            "alias": "0.9.3",
+            "alias_normalized": "0.9.3.0",
             "version": "9999999-dev",
-            "package": "rdlowrey/auryn"
+            "package": "danack/jig"
         }
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "rdlowrey/auryn": 20
+        "danack/jig": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

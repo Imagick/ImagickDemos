@@ -7,7 +7,7 @@ use ImagickDemo\Config\Librato as LibratoConfig;
 class SimpleStats {
 
     /**
-     * @var \Auryn\Provider
+     * @var \Auryn\Injector
      */
     private $injector;
 
@@ -16,10 +16,10 @@ class SimpleStats {
     private $sourceName;
 
     /**
-     * @param \Auryn\Provider $injector
+     * @param \Auryn\Injector $injector
      * @param LibratoConfig $libratoConfig
      */
-    function __construct(\Auryn\Provider $injector, LibratoConfig $libratoConfig) {
+    function __construct(\Auryn\Injector $injector, LibratoConfig $libratoConfig) {
         $this->injector = $injector;
         $this->flushInterval = 10;
         $this->sourceName = $libratoConfig->getStatsSourceName();

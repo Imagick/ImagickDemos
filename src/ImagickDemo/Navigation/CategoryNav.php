@@ -46,9 +46,9 @@ class CategoryNav implements Nav {
     }
 
     /**
-     * @param \Auryn\Provider $injector
+     * @param \Auryn\Injector $injector
      */
-    function setupControlAndExample(\Auryn\Provider $injector) {
+    function setupControlAndExample(\Auryn\Injector $injector) {
         $navName = $this->getCurrentName();
 
         if ($navName) {

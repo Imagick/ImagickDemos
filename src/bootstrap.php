@@ -9,6 +9,8 @@ use ImagickDemo\Config\Application as ApplicationConfig;
 use Intahwebz\Request;
 use ImagickDemo\Response\RedirectResponse;
 use Predis\Client as RedisClient;
+use Jig\Jig;
+use Jig\JigConfig;
 //use ASM\Redis\RedisDriver;
 //use ASM\SessionManager;
 //use ASM\SessionConfig;
@@ -190,22 +192,27 @@ if (false) {
  * @param $libratoKey
  * @param $libratorUsername
  * @param $statsSourceName
- * @return \Auryn\Provider
+ * @return \Auryn\Injector
  */
 function bootstrapInjector()
 {
 
-    $injector = new Auryn\Provider();
-    $jigConfig = new Jig\JigConfig(
+    $injector = new Auryn\Injector();
+
+    $jigConfig = new JigConfig(
         "../templates/",
         "../var/compile/",
         'tpl',
         //Jig\JigRender::COMPILE_CHECK_EXISTS
         //Jig\JigRender::COMPILE_CHECK_MTIME
-        Jig\JigRender::COMPILE_ALWAYS
+        Jig::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
+    
+    $injector->alias('Jig\ViewModel', \Jig\ViewModel\BasicViewModel::class);
+    
+    
 
     $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
@@ -287,7 +294,7 @@ function bootstrapInjector()
 }
 
 
-function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
+function setupExampleInjection(\Auryn\Injector $injector, $category, $example) {
 
     if (!$category) {
         $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
@@ -355,11 +362,11 @@ function setupExampleInjection(\Auryn\Provider $injector, $category, $example) {
 
 
 /**
- * @param \Auryn\Provider $injector
+ * @param \Auryn\Injector $injector
  * @param $routesFunction
  * @return \ImagickDemo\Response\Response|StandardHTTPResponse|null
  */
-function servePage(\Auryn\Provider $injector, $routesFunction) {
+function servePage(\Auryn\Injector $injector, $routesFunction) {
 
     $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
 
@@ -377,14 +384,11 @@ function servePage(\Auryn\Provider $injector, $routesFunction) {
     }
 
     $routeInfo = $dispatcher->dispatch($httpMethod, $path);
-    
-    
+
     if (false) {
         $recentPages = $injector->make('ImagickDemo\RecentPages');
         $recentPages->log($uri);
     }
-    
-    
 
     switch ($routeInfo[0]) {
         case \FastRoute\Dispatcher::NOT_FOUND: {
@@ -428,12 +432,12 @@ function createFileResponseIfFileExists($filename) {
 }
 
 /**
- * @param \Auryn\Provider $injector
+ * @param \Auryn\Injector $injector
  * @param $handler
  * @param $vars
  * @return \ImagickDemo\Response\Response $response;
  */
-function process(\Auryn\Provider $injector, $handler, $vars) {
+function process(\Auryn\Injector $injector, $handler, $vars) {
 
     $category = null;
     $example = null;
@@ -709,7 +713,7 @@ function checkGetOriginalImage(\Intahwebz\Request $request) {
     $original = $request->getVariable('original', false);
     if ($original) {
         //TODO - these are not cached.
-        $callable = function(\Auryn\Provider $injector) {
+        $callable = function(\Auryn\Injector $injector) {
             return $injector->execute([\ImagickDemo\Example::class, 'renderOriginalImage']);
         };
 
@@ -721,7 +725,7 @@ function checkGetOriginalImage(\Intahwebz\Request $request) {
 
 
 /**
- * @param \Auryn\Provider $injector
+ * @param \Auryn\Injector $injector
  * @param $imageCallable
  * @param $filename
  * @return FileResponse
@@ -730,7 +734,7 @@ function checkGetOriginalImage(\Intahwebz\Request $request) {
 function renderImageAsFileResponse(
     $imageFunction,
     $filename,
-    \Auryn\Provider $injector,
+    \Auryn\Injector $injector,
     $params) {
 
     $imageCallable = function() use ($imageFunction, $injector, $params){
@@ -795,11 +799,11 @@ function redirectWaitingTask(Request $request, $job) {
 
 /**
  * @param $imageFunction
- * @param \Auryn\Provider $injector
+ * @param \Auryn\Injector $injector
  * @return \ImagickDemo\Response\ImageResponse
  * @throws \Exception
  */
-function directImageFunction($filename, $imageFunction, \Auryn\Provider $injector) {
+function directImageFunction($filename, $imageFunction, \Auryn\Injector $injector) {
     $imageCallable = function() use ($imageFunction, $injector) {
         try {
             return $injector->execute($imageFunction);

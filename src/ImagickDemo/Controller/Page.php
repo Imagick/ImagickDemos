@@ -44,7 +44,7 @@ class Page {
 
 
     /**
-     * @internal param \Auryn\Provider $injector
+     * @internal param \Auryn\Injector $injector
      * @return TextResponse
      */
     function renderTitlePage() {
@@ -52,7 +52,7 @@ class Page {
     }
 
     /**
-     * @internal param \Auryn\Provider $injector
+     * @internal param \Auryn\Injector $injector
      * @internal param $category
      * @internal param $example
      * @return TextResponse
@@ -62,7 +62,7 @@ class Page {
     }
 
     /**
-     * @internal param \Auryn\Provider $injector
+     * @internal param \Auryn\Injector $injector
      * @internal param $category
      * @return TextResponse
      */

@@ -185,7 +185,7 @@ class Image {
     ) {
         $injector->defineParam('imageFunction', $customImageFunction);
         $params = $control->getFullParams($exampleController->getCustomImageParams());
-        $defaultCustomParams = [];//array('customImage' => true);
+        $defaultCustomParams = array('customImage' => true);
         $params = array_merge($defaultCustomParams, $params);
 
         return $this->getImageResponseInternal($injector, $params);

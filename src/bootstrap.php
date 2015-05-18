@@ -1,6 +1,7 @@
 <?php
 
 namespace {
+    
 
 use ImagickDemo\Response\Response;
 use ImagickDemo\Response\StandardHTTPResponse;
@@ -14,8 +15,8 @@ use Jig\JigConfig;
 //use ASM\Redis\RedisDriver;
 //use ASM\SessionManager;
 //use ASM\SessionConfig;
-//
-//    
+
+ 
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
 require __DIR__.'/../vendor/autoload.php';
 

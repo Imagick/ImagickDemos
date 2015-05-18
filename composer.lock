@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7639c8679d6af4abf5e220036359531d",
+    "hash": "e7c412a6dc5dfb249f5a1245da515892",
     "packages": [
         {
             "name": "amphp/amp",
@@ -267,7 +267,7 @@
         },
         {
             "name": "danack/jig",
-            "version": "dev-master",
+            "version": "0.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
@@ -1130,17 +1130,10 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [
-        {
-            "alias": "0.9.3",
-            "alias_normalized": "0.9.3.0",
-            "version": "9999999-dev",
-            "package": "danack/jig"
-        }
-    ],
-    "minimum-stability": "dev",
+    "aliases": [],
+    "minimum-stability": "stable",
     "stability-flags": {
-        "danack/jig": 20
+        "amphp/artax": 5
     },
     "prefer-stable": true,
     "prefer-lowest": false,

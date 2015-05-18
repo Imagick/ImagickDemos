@@ -203,17 +203,13 @@ function bootstrapInjector()
         "../templates/",
         "../var/compile/",
         'tpl',
-        //Jig\JigRender::COMPILE_CHECK_EXISTS
-        //Jig\JigRender::COMPILE_CHECK_MTIME
-        Jig::COMPILE_ALWAYS
+        //Jig::COMPILE_CHECK_EXISTS
+        Jig::COMPILE_CHECK_MTIME
+        //Jig::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
-    
     $injector->alias('Jig\ViewModel', \Jig\ViewModel\BasicViewModel::class);
-    
-    
-
     $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
     $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
     $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
@@ -227,8 +223,7 @@ function bootstrapInjector()
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
     $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
-
-    
+    $injector->define('Jig\JigRender', [':mappedClasses' => []]);
 
     if (false) {
         $injector->share('ASM\SessionManager');

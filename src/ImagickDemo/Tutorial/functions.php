@@ -146,6 +146,98 @@ function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) 
     return $imagick;
 }
 
+//Example Tutorial::mask
+function backgroundMasking() {
+    //Load the image
+    $imagick = new \Imagick(realpath('images/chair.jpeg'));
+
+    $backgroundColor = "rgb(255, 255, 255)";
+    $fuzzFactor = 0.1;
+
+    // Create a copy of the image, and paint all the pixels that
+    // are the background color to be transparent
+    $outlineImagick = clone $imagick;    
+    $outlineImagick->transparentPaintImage(
+        $backgroundColor, 0, $fuzzFactor * \Imagick::getQuantum(), false
+    );
+    
+    //Convert to gray scale to make life simpler
+    $mask = clone $imagick;
+    $mask->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
+
+    // DstOut does a "cookie-cutter" it leaves the shape remaining after the
+    // outlineImagick image, is cut out of the mask. 
+    $mask->compositeImage(
+        $outlineImagick,
+        \Imagick::COMPOSITE_DSTOUT,
+        0, 0
+    );
+    
+    // The mask is now black where the objects are in the image and white
+    // where the background is.
+    // Negate the image, to have white where the objects are and black for
+    // the backgroun
+    $mask->negateImage(false);
+    
+    $fillPixelHoles = false;
+    
+    if ($fillPixelHoles == true) {
+        // If your image has pixel sized holes in it, you will want to fill them
+        // in. This will however also make any acute corners in the image not be
+        // transparent.
+        
+        // Fill holes - any black pixel that is surrounded by white will become
+        // white
+        $mask->blurimage(2, 1);
+        $mask->whiteThresholdImage("rgb(10, 10, 10)");
+
+        // Thinning - because the previous step made the outline thicker, we
+        // attempt to make it thinner by an equivalent amount.
+        $mask->blurimage(2, 1);
+        $mask->blackThresholdImage("rgb(255, 255, 255)");
+    }
+
+    //Soften the edge of the mask to prevent jaggies on the outline.
+    $mask->blurimage(2, 2);
+
+    // We want the mask to go from full opaque to fully transparent quite quickly to 
+    // avoid having too many semi-transparent pixels. sigmoidalContrastImage does this
+    // for us. Values to use where determined empirically.
+    $contrast = 15;
+    $midpoint = 0.7 * \Imagick::getQuantum();
+    $mask->sigmoidalContrastImage(true, $contrast, $midpoint);
+    
+    // Copy the mask into the opacity channel of the original image.
+    // You are probably done here if you just want the background removed.
+    $imagick->compositeimage(
+        $mask,
+        \Imagick::COMPOSITE_COPYOPACITY,
+        0, 0
+    );
+    
+    // To show that the background has been removed (which is difficult to see
+    // against a plain white webpage) we paste the image over a checkboard
+    // so that the edges can be seen.
+    
+    // Create the check canvas
+    $canvas = new \Imagick();
+    $canvas->newPseudoImage(
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        "pattern:checkerboard"
+    );
+
+    // Copy the image with the background removed over it.
+    $canvas->compositeimage($imagick, \Imagick::COMPOSITE_OVER, 0, 0);
+    
+    //Output the final image
+    $canvas->setImageFormat('png');
+
+    header("Content-Type: image/png");
+    echo $canvas->getImageBlob();
+}
+//Example end
+
 
 function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $blendMidpoint = 0.5, $horizontal = true) {
 
@@ -642,7 +734,7 @@ function svgExample() {
     $image->readImageBlob($svg);
     $image->setImageFormat("jpg");
     header("Content-Type: image/jpg");
-    echo $image;
+    echo $imagick->getImageBlob();
 }
 //Example end
 

@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\Navigation;
 
-
+use ImagickDemo\Control\NullControl;
 
 class CategoryNav implements Nav {
 
@@ -926,6 +926,7 @@ END;
 
 
         $tutorialExamples = [
+            'backgroundMasking' => ['backgroundMasking', NullControl::class],
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
             //'colorspaceLinearity' => ['colorspaceLinearity', \ImagickDemo\Control\NullControl::class],
             'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
@@ -969,6 +970,8 @@ END;
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
             'imageGeometryReset' => ['imageGeometryReset', \ImagickDemo\Control\NullControl::class],
+            
+
         ];
 
         $examples = [

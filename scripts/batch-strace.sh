@@ -34,6 +34,7 @@ MASTER_PID=$(ps auwx | grep php-fpm | grep -v grep | grep 'master process'  | cu
 # and generates output like this:
 # -rw-rw-rw-      tmpmsg
 
+echo "MASTER_PID is ${MASTER_PID}"
 
 summarise=""
 
@@ -41,7 +42,7 @@ summarise=""
 #summarise="-c"
 
 
-nohup strace -r $summarise -p $MASTER_PID -ff -o ./trc/master.follow.trc >"trc/master.$MASTER_PID.trc" 2>&1 &
+nohup strace -r $summarise -p $MASTER_PID -fF -o ./trc/master.follow.trc >"trc/master.$MASTER_PID.trc" 2>&1 &
  
 while read -r pid;
 do

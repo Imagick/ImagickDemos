@@ -5,6 +5,23 @@ namespace ImagickDemo\Tutorial;
 use ImagickDemo\Control\CompositeExampleControl;
 use ImagickDemo\Framework\VariableMap;
 
+
+
+function compositeImageExample()
+{
+//Example Tutorial::composite
+    $imagick = new Imagick(realpath($imagePath1));
+    $imagick2 = new Imagick(realpath($imagePath2));
+    $imagick1->compositeImage($imagick2, $type, 0, 0);
+    $imagick1->setImageFormat('png');
+
+    $image->setImageFormat("png");
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+//Example end
+}
+
+
 class composite extends \ImagickDemo\Example {
 
     private $width = 200;
@@ -195,7 +212,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
     }
 
     function genericComposite(\Imagick $imagick1, \Imagick $imagick2, $type) {
-        $imagick1->compositeimage($imagick2, $type, 0, 0);
+        $imagick1->compositeImage($imagick2, $type, 0, 0);
         $imagick1->setImageFormat('png');
 
         $this->showImage($imagick1);
@@ -464,6 +481,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
 //Copy Cyan,  Copy Magenta,  Copy Yellow,  Copy Black,
 //Hue,  Saturate,  Luminize,  Colorize,
 //
+
+
 
 
 }

@@ -5590,6 +5590,18 @@ function syncIteratorImage($imagePath) {
   ),
   'tutorial' => 
   array (
+    'composite' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:9:"composite";s:5:"lines";s:306:"    $imagick = new Imagick(realpath($imagePath1));
+    $imagick2 = new Imagick(realpath($imagePath2));
+    $imagick1->compositeImage($imagick2, $type, 0, 0);
+    $imagick1->setImageFormat(\'png\');
+
+    $image->setImageFormat("png");
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+";s:11:"description";s:0:"";s:9:"startLine";i:12;s:7:"endLine";i:21;}',
+    ),
     'deconstructgif' => 
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:14:"deconstructGif";s:5:"lines";s:1694:"function makeSimpleGif($deconstruct) {
@@ -6265,7 +6277,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     ),
     'svgexample' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:10:"svgExample";s:5:"lines";s:642:"function svgExample() {    
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:10:"svgExample";s:5:"lines";s:660:"function svgExample() {    
     $svg = \'<?xml version="1.0"?>
     <svg width="120" height="120"
          viewPort="0 0 120 120" version="1.1"
@@ -6288,7 +6300,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     $image->readImageBlob($svg);
     $image->setImageFormat("jpg");
     header("Content-Type: image/jpg");
-    echo $image;
+    echo $imagick->getImageBlob();
 }
 ";s:11:"description";s:0:"";s:9:"startLine";i:621;s:7:"endLine";i:647;}',
     ),

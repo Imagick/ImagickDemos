@@ -5,7 +5,7 @@ namespace ImagickDemo\Controller;
 use Intahwebz\Request;
 use ImagickDemo\Response\JsonResponse;
 use ImagickDemo\Queue\ImagickTaskQueue;
-
+use ImagickDemo\Helper\PageInfo;
 
 
 /**
@@ -14,6 +14,16 @@ use ImagickDemo\Queue\ImagickTaskQueue;
  */
 class Image {
 
+    /**
+     * @var PageInfo
+     */
+    private $pageInfo;
+    
+    function __construct(PageInfo $pageInfo)
+    {
+        $this->pageInfo = $pageInfo;
+    }
+    
     /**
      * @param $category
      * @param $example

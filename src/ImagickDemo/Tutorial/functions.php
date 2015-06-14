@@ -146,7 +146,7 @@ function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) 
     return $imagick;
 }
 
-//Example Tutorial::mask
+//Example Tutorial::backgroundMasking
 function backgroundMasking() {
     //Load the image
     $imagick = new \Imagick(realpath('images/chair.jpeg'));
@@ -161,8 +161,14 @@ function backgroundMasking() {
         $backgroundColor, 0, $fuzzFactor * \Imagick::getQuantum(), false
     );
     
-    //Convert to gray scale to make life simpler
+    // Copy the input image
     $mask = clone $imagick;
+    // Deactivate the alpha channel if the image has one, as later in the process 
+    // we want the mask alpha to be copied from the colour channel to the src 
+    // alpha channel. If the mask image has an alpha channel, it would be copied
+    // from that instead of from the colour channel. 
+    $mask->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
+    //Convert to gray scale to make life simpler
     $mask->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
 
     // DstOut does a "cookie-cutter" it leaves the shape remaining after the
@@ -176,9 +182,9 @@ function backgroundMasking() {
     // The mask is now black where the objects are in the image and white
     // where the background is.
     // Negate the image, to have white where the objects are and black for
-    // the backgroun
+    // the background
     $mask->negateImage(false);
-    
+
     $fillPixelHoles = false;
     
     if ($fillPixelHoles == true) {
@@ -206,7 +212,7 @@ function backgroundMasking() {
     $contrast = 15;
     $midpoint = 0.7 * \Imagick::getQuantum();
     $mask->sigmoidalContrastImage(true, $contrast, $midpoint);
-    
+
     // Copy the mask into the opacity channel of the original image.
     // You are probably done here if you just want the background removed.
     $imagick->compositeimage(
@@ -214,7 +220,7 @@ function backgroundMasking() {
         \Imagick::COMPOSITE_COPYOPACITY,
         0, 0
     );
-    
+
     // To show that the background has been removed (which is difficult to see
     // against a plain white webpage) we paste the image over a checkboard
     // so that the edges can be seen.
@@ -232,7 +238,6 @@ function backgroundMasking() {
     
     //Output the final image
     $canvas->setImageFormat('png');
-
     header("Content-Type: image/png");
     echo $canvas->getImageBlob();
 }

@@ -926,10 +926,19 @@ END;
 
 
         $tutorialExamples = [
-            'backgroundMasking' => ['backgroundMasking', NullControl::class],
+            'backgroundMasking' => [
+                'backgroundMasking',
+                NullControl::class,
+                'name' => 'Background masking'
+            ],
             'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
             //'colorspaceLinearity' => ['colorspaceLinearity', \ImagickDemo\Control\NullControl::class],
-            'edgeExtend' => ['edgeExtend', \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class],
+            'edgeExtend' => [
+                'edgeExtend',
+                \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class,
+                'name' => "Extending images"
+                
+            ],
             //'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => [
                 'fxAnalyzeImage', 
@@ -942,7 +951,11 @@ END;
             'fontEffect' => ['fontEffect', \ImagickDemo\Control\NullControl::class],
             //'gifGeneration' => ['gifGeneration', \ImagickDemo\Control\NullControl::class],
             'gradientGeneration' => ['gradientGeneration', \ImagickDemo\Control\NullControl::class],
-            'gradientReflection' => ['gradientReflection', \ImagickDemo\Control\NullControl::class],
+            'gradientReflection' => [
+                'gradientReflection',
+                \ImagickDemo\Control\NullControl::class,
+                'name' => "Gradient reflection"
+            ],
             'imagickComposite' => ['imagickComposite', \ImagickDemo\Control\NullControl::class],
             'imagickCompositeGen' => [
                 'imagickCompositeGen',

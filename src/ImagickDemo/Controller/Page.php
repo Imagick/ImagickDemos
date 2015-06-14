@@ -6,6 +6,7 @@ namespace ImagickDemo\Controller;
 use ImagickDemo\Response\TextResponse;
 use Jig\JigRender;
 use Jig\ViewModel\BasicViewModel;
+use ImagickDemo\Helper\PageInfo;
 
 
 
@@ -22,12 +23,20 @@ class Page {
     private $jigRender;
 
     /**
+     * @var PageInfo
+     */
+    private $pageInfo;
+    
+    /**
      * @param BasicViewModel $basicViewModel
      * @param JigRender $jigRender
      */
-    function __construct(BasicViewModel $basicViewModel, JigRender $jigRender) {
+    function __construct(BasicViewModel $basicViewModel, JigRender $jigRender, PageInfo $pageInfo) {
         $this->viewModel = $basicViewModel;
         $this->jigRender = $jigRender;
+        $this->pageInfo = $pageInfo;
+
+        //$this->pageInfo->setTitle("asd PHP Imagick");
     }
 
     /**

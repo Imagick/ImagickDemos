@@ -54,9 +54,7 @@ class getImageChannelStatistics extends \ImagickDemo\Example {
 
             
             foreach ($identifyInfo as $key => $value) {
-
                 $output .= '<tr>';
-
                 $output .= '<td>';
                     if (array_key_exists($key, $channels)) {
                        $output .= $channels[$key];
@@ -69,7 +67,12 @@ class getImageChannelStatistics extends \ImagickDemo\Example {
                 foreach ($headers as $header) {
                     $output .= '<td>';
                     if (array_key_exists($header, $value)) {
-                        $output .= $value[$header];
+                        $valueString = sprintf("%0.2f", $value[$header]);
+                        if (strlen($valueString) > 10) {
+                            $valueString = sprintf("%0.2e", $value[$header]);
+                        }
+                        
+                        $output .= $valueString;
                     }
                     else {
                         $output .= '-'; 

@@ -1965,9 +1965,20 @@ function tintImage($r, $g, $b, $a) {
     $imagick->newPseudoImage(400, 400, 'gradient:black-white');
 
     $tint = new \ImagickPixel("rgb($r, $g, $b)");
-    $opacity = new \ImagickPixel("rgb(128, 128, 128, $a)");
+    $opacity = new \ImagickPixel("rgba(".(255 *$a*100).", $g, $b, $a)");
+    
+    
     $imagick->tintImage($tint, $opacity);
     $imagick->setImageFormat('png');
+    
+       $draw = new \ImagickDraw();
+    $draw->setStrokeColor('black');
+    $draw->setFillColor('white');
+ 
+    $draw->setStrokeWidth(1);
+    $draw->setFontSize(36);
+    
+    $imagick->annotateImage($draw, 50, 50, 0, "Alpha is $a");
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }

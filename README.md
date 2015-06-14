@@ -2,7 +2,7 @@
 ## Imagick-demos
 
 
-An example of all the Imagick functions. Or at least most of them.
+An example of all the Imagick functions. Or at least most of them. The example can be viewed at http://phpimagick.com/
 
 
 ## PHPStorm stub file

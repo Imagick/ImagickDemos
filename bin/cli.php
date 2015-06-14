@@ -34,32 +34,16 @@ catch(\Exception $e) {
 
 try {
     $input = $parsedCommand->getInput();
-    $keynames = formatKeyNames($parsedCommand->getParams());
-    $injector->execute(
-        $parsedCommand->getCallable(),
-        $keynames
-    );
+    foreach ($parsedCommand->getParams() as $key => $value) {
+        $injector->defineParam($key, $value);
+    }
+    $injector->execute($parsedCommand->getCallable());
 }
 catch(\Exception $e) {
     echo "Unexpected exception of type ".get_class($e)." running imagick-demos: ".$e->getMessage().PHP_EOL;
     echo $e->getTraceAsString();
     exit(-2);
 }
-
-
-/**
- * @param $params
- * @return array
- */
-function formatKeyNames($params) {
-    $newParams = [];
-    foreach ($params as $key => $value) {
-        $newParams[':'.$key] = $value;
-    }
-
-    return $newParams;
-}
-
 
 
 /**
@@ -82,6 +66,11 @@ function createApplication() {
     $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
     $clearCacheCommand->setDescription("Clear the apc cache.");
 
+    $envWriteCommand = new Command('genEnvSettings', 'ImagickDemo\Config\EnvConfWriter::writeEnvFile');
+    $envWriteCommand->setDescription("Write an env setting bash script.");
+    $envWriteCommand->addArgument('env', InputArgument::REQUIRED, 'Which environment the settings should be generated for.');
+    $envWriteCommand->addArgument('filename', InputArgument::REQUIRED, 'The file name that the env settings should be written to.');
+
     $clearRedisCommand = new Command('clearRedis', 'ImagickDemo\Queue\ImagickTaskQueue::clearStatusQueue');
     $clearRedisCommand->setDescription("Clear the imagick task queue."); 
 
@@ -90,6 +79,7 @@ function createApplication() {
     $console->add($taskCommand);
     $console->add($clearCacheCommand);
     $console->add($clearRedisCommand);
+    $console->add($envWriteCommand);
 
     return $console;
 }

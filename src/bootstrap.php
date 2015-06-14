@@ -205,8 +205,8 @@ function bootstrapInjector()
         "../var/compile/",
         'tpl',
         //Jig::COMPILE_CHECK_EXISTS
-        Jig::COMPILE_CHECK_MTIME
-        //Jig::COMPILE_ALWAYS
+        //Jig::COMPILE_CHECK_MTIME
+        Jig::COMPILE_ALWAYS
     );
 
     $injector->share($jigConfig);
@@ -224,6 +224,7 @@ function bootstrapInjector()
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
     $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
+    $injector->share('ImagickDemo\Helper\PageInfo');
     $injector->define('Jig\JigRender', [':mappedClasses' => []]);
 
     if (false) {
@@ -290,7 +291,18 @@ function bootstrapInjector()
 }
 
 
-function setupExampleInjection(\Auryn\Injector $injector, $category, $example) {
+function setupExampleInjection(\Auryn\Injector $injector, $vars) {
+
+    $category = null;
+    $example = null;
+    
+    if (isset($vars['category']) == true) {
+        $category = $vars['category'];
+    }
+
+    if (isset($vars['example']) == true) {
+        $example = $vars['example'];
+    }
 
     if (!$category) {
         $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
@@ -299,6 +311,9 @@ function setupExampleInjection(\Auryn\Injector $injector, $category, $example) {
 
     $namespace = sprintf('ImagickDemo\%s\functions', $category);
     $namespace::load();
+
+    $pageInfo = $injector->make('ImagickDemo\Helper\PageInfo');
+    $pageInfo->setCatergoryAndExample($category, $example);
 
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
     $injector->define(\ImagickDemo\Navigation\CategoryNav::class, [
@@ -388,7 +403,7 @@ function servePage(\Auryn\Injector $injector, $routesFunction) {
 
     switch ($routeInfo[0]) {
         case \FastRoute\Dispatcher::NOT_FOUND: {
-            return new StandardHTTPResponse(404, $uri, "Not found");
+            return new StandardHTTPResponse(404, $uri, "Route not found");
         }
 
         case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
@@ -447,7 +462,8 @@ function process(\Auryn\Injector $injector, $handler, $vars) {
         $injector->defineParam($key, $value);
     }
 
-    $injector->execute('setupExampleInjection', $lowried);
+    setupExampleInjection($injector, $vars);
+    //$injector->execute('setupExampleInjection', $vars);
 
     $finished = false;
     $response = null;

@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{$pageTitle}</title>
+    {inject name='pageTitleObj' value='ImagickDemo\Helper\PageInfo'}
+
+    <title>{$pageTitleObj->getTitle() | nofilter}</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -251,6 +253,26 @@
                 '#searchList',
                 options
         );
+        
+        
+        $('#searchInput').keypress(function(e) {
+            if(e.which == 13) {
+                var funcTest = function(count, element) {
+                    var linkElement = $(element).children("a").first();
+                    if (!linkElement) {
+                        return;
+                    }
+                    var link = $(linkElement).attr("href");
+                    if (!link) {
+                        return;
+                    }
+
+                    window.location = link;
+                };
+
+                $('#searchList').children(":visible").first().each(funcTest);
+            }
+        });
     });
 
 

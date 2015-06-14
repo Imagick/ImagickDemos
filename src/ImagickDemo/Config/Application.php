@@ -23,8 +23,9 @@ class Application {
         if ($this->init == true) {
             return;
         }
-        $this->cacheImages = $this->envReader->getValue(Config::IMAGICK_DEMOS_CACHE_IMAGES);
-        $this->queueImages = $this->envReader->getValue(Config::IMAGICK_DEMOS_QUEUE_IMAGES);
+        
+        $this->cacheImages = boolval($this->envReader->getValue(Config::IMAGES_CACHE));
+        $this->queueImages = boolval($this->envReader->getValue(Config::IMAGES_QUEUE));
         $this->init = true;
     }
 
@@ -32,7 +33,6 @@ class Application {
      * @return mixed
      */
     public function getCacheImages() {
-        return true;
         $this->readValues();
         return $this->cacheImages;
     }

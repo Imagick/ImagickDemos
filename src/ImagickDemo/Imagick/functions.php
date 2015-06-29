@@ -374,7 +374,11 @@ function colorMatrixImage($imagePath, $colorMatrix) {
     //    ];
 
     $background = new \Imagick();
-    $background->newPseudoImage($imagick->getImageWidth(), $imagick->getImageHeight(),  "pattern:checkerboard");
+    $background->newPseudoImage(
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        "pattern:checkerboard"
+    );
 
     $background->setImageFormat('png');
 
@@ -513,6 +517,40 @@ function despeckleImage($imagePath) {
 }
 //Example end
 
+//Example Imagick::drawImage
+function drawImage()
+{
+    $strokeColor = 'black';
+    $fillColor = 'salmon';
+    $backgroundColor = 'lightblue';
+    
+    $draw = new \ImagickDraw();
+
+    $draw->setStrokeOpacity(1);
+    $draw->setStrokeColor($strokeColor);
+    $draw->setStrokeWidth(4);
+
+    $draw->setFillColor($fillColor);
+
+    $points = [
+        ['x' => 40 * 5, 'y' => 10 * 5],
+        ['x' => 20 * 5, 'y' => 20 * 5],
+        ['x' => 70 * 5, 'y' => 50 * 5],
+        ['x' => 60 * 5, 'y' => 15 * 5],
+    ];
+
+    $draw->polygon($points);
+
+    $image = new \Imagick();
+    $image->newImage(500, 300, $backgroundColor);
+    $image->setImageFormat("png");
+    $image->drawImage($draw);
+
+    header("Content-Type: image/png");
+    echo $image->getImageBlob();
+}
+//Example end
+
 //Example Imagick::edgeImage
 function edgeImage($imagePath, $radius) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -610,6 +648,10 @@ function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradient
 //Example end
 
 
+
+
+
+
 //Example Imagick::extentImage
 function extentImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -627,17 +669,39 @@ function extentImage($imagePath) {
 //Example end
 
 
+//Example Imagick::exportImagePixels
+function exportImagePixels($imagePath) {
+    $imagick = new \Imagick(realpath($imagePath));
+    for ($y=0 ; $y< $imagick->getImageHeight(); $y++) {
+        $redPixels = $imagick->exportImagePixels(0, $y, $imagick->getImageWidth(), 1, "R", \Imagick::PIXEL_CHAR);
+        
+        $average = array_sum($redPixels) / count($redPixels);
+
+        
+        //Make the pixels that are redder than average be 100% red.
+        foreach ($redPixels as &$redPixel) {
+            if ($redPixel > $average) {
+                $redPixel = 255;
+            }
+        }
+        
+        $imagick->importImagePixels(0, $y, $imagick->getImageWidth(), 1, "R", \Imagick::PIXEL_CHAR, $redPixels);
+    }
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+//Example Imagick::flattenImages
 function flattenImages() {
     $imagick = new \Imagick(realpath("images/LayerTest.psd"));
     $imagick->flattenimages();
     $imagick->setImageFormat('png');
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
-    
-    exit(0);
 }
-    
-    
+//Example end
 
 //Example Imagick::filter
 function filter($imagePath) {
@@ -973,6 +1037,80 @@ function implodeImage($imagePath) {
 }
 //Example end
 
+//Example Imagick::importImagePixels
+
+function shadePixel($value, $r, $g, $b)
+{
+    $result = [];
+    $result[] = intval($r * $value / 64);
+    $result[] = intval($g * $value / 64);
+    $result[] = intval($b * $value / 64);
+
+    return $result;
+}
+
+
+function importImagePixels()
+{
+    $width = 320;
+    $height = 200;
+    //$imagick = new \Imagick();
+
+    $imagick = new \Imagick();//;"magick:logo");
+
+    
+    for ($loop = 0 ; $loop<=255 ; $loop += 8 ) {        
+        $frame = new \Imagick();
+        $frame->newPseudoImage($width, $height, "xc:black");
+        //$frame->setImageFormat('gif');
+
+        for ($y=0 ; $y<$height ; $y++) {
+            $pixels = [];
+    
+            for ($x = 0; $x < $width; $x++) {
+                $pos = sqrt(($x * $x) + ($y * $y));
+                $pos = (256 + $pos - $loop) % 256;
+    
+                if ($pos < 64) {
+                    $rgbColor = shadePixel($pos, 255, 0, 0);
+                } else if ($pos < 128) {
+                    $rgbColor = shadePixel($pos - 64, 0, 255, 0);
+                } else if ($pos < 192) {
+                    $rgbColor = shadePixel($pos - 128, 0, 0, 255);
+                } else {
+                    $rgbColor = shadePixel($pos - 192, 255, 0, 255);
+                }
+    
+                list($r, $g, $b) = $rgbColor;
+                $pixels[] = $r;
+                $pixels[] = $g;
+                $pixels[] = $b;
+            }
+    
+            $frame->importImagePixels(
+                0, $y,
+                320, 1,
+                "RGB",
+                \Imagick::PIXEL_CHAR,
+                $pixels
+            );
+        }
+
+        $imagick->addImage($frame);
+            $imagick->setImageFormat('gif');
+        $imagick->setImageDelay(3);        
+    }
+
+    $imagick->setImageFormat('gif');
+    $imagick->mergeImageLayers(\Imagick::LAYERMETHOD_OPTIMIZEIMAGE);
+    header("Content-Type: image/gif");    
+    $imagick->setImageIterations(0);
+    
+    echo $imagick->getImagesBlob();
+
+}
+//Example end
+
 //Example Imagick::labelImage
 function labelImage($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));
@@ -1061,6 +1199,56 @@ function modulateImage($imagePath, $hue, $brightness, $saturation) {
     $imagick->modulateImage($brightness, $saturation, $hue);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
+}
+//Example end 
+
+
+//Example Imagick::montageImage
+function montageImage($montageType)
+{
+    $draw = new \ImagickDraw();
+    $draw->setStrokeColor('black');
+    $draw->setFillColor('white');
+ 
+    $draw->setStrokeWidth(1);
+    $draw->setFontSize(24);
+
+    $imagick = new \Imagick();
+
+    $mosaicWidth = 500;
+    $mosaicHeight = 500;
+    
+    $imagick->newimage($mosaicWidth, $mosaicHeight, 'red');
+
+    $images = [
+        "../imagick/images/Biter_500.jpg",
+        "../imagick/images/SydneyPeople_400.jpg",
+        "../imagick/images/Skyline_400.jpg",
+    ];
+
+    $count = 0;
+    
+    foreach ($images as $image) {
+        $nextImage = new \Imagick(realpath($image));
+        
+        $count++;
+        
+        $nextImage->labelImage("Label $count");
+        $imagick->addImage($nextImage);
+    }
+
+    $montage = $imagick->montageImage(
+        $draw,
+        "3x2+0+0", //tile_geometry
+        "200x160+3+3>", //thumbnail_geometry
+        $montageType, //\Imagick::MONTAGEMODE_CONCATENATE,
+        "10x10+2+2"
+    );
+    
+    $montage->setImageFormat('png');
+    
+    header("Content-Type: image/png");
+    echo $montage->getImageBlob();
 }
 //Example end 
 
@@ -1180,6 +1368,26 @@ function orderedPosterizeImage($imagePath, $orderedPosterizeType) {
     $imagick->orderedPosterizeImage($orderedPosterizeType);
     $imagick->setImageFormat('png');
     
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+
+//Example Imagick::opaquePaintImage
+function opaquePaintImage($color, $replacementColor, $fuzz, $inverse) {
+    $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
+
+    //Need to be in a format that supports transparency
+    $imagick->setimageformat('png');
+
+    $imagick->opaquePaintImage(
+        $color, $replacementColor, $fuzz * \Imagick::getQuantum(), $inverse
+    );
+    //Not required, but helps tidy up left over pixels
+    $imagick->despeckleimage();
+
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
@@ -2007,21 +2215,31 @@ function transformImageColorspace($imagePath, $colorSpace, $channel) {
 
 
 //Example Imagick::transparentPaintImage
-function transparentPaintImage($color, $alpha, $fuzz) {
+function transparentPaintImage($color, $alpha, $fuzz, $inverse) {
     $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
 
     //Need to be in a format that supports transparency
     $imagick->setimageformat('png');
 
     $imagick->transparentPaintImage(
-        $color, $alpha, $fuzz * \Imagick::getQuantum(), false
+        $color, $alpha, $fuzz * \Imagick::getQuantum(), $inverse
     );
 
     //Not required, but helps tidy up left over pixels
     $imagick->despeckleimage();
+    
+    $canvas = new Imagick();
+    $canvas->newPseudoImage(
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        "pattern:checkerboard"
+    );
+    
+    $canvas->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
+    $canvas->setImageFormat('png');
 
     header("Content-Type: image/png");
-    echo $imagick->getImageBlob();
+    echo $canvas->getImageBlob();
 }
 //Example end
 

@@ -116,6 +116,8 @@ class RedisTaskQueue implements TaskQueue {
     }
 
     /**
+     * @throws QueueException
+     * @throws \Exception
      * @return Task
      */
     function waitToAssignTask() {

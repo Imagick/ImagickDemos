@@ -7,19 +7,19 @@ use ImagickDemo\Framework\VariableMap;
 
 
 
-function compositeImageExample()
-{
-//Example Tutorial::composite
-    $imagick = new Imagick(realpath($imagePath1));
-    $imagick2 = new Imagick(realpath($imagePath2));
-    $imagick1->compositeImage($imagick2, $type, 0, 0);
-    $imagick1->setImageFormat('png');
-
-    $image->setImageFormat("png");
-    header("Content-Type: image/png");
-    echo $imagick->getImageBlob();
-//Example end
-}
+//function compositeImageExample()
+//{
+////Example Tutorial::composite
+//    $imagick = new Imagick(realpath($imagePath1));
+//    $imagick2 = new Imagick(realpath($imagePath2));
+//    $imagick1->compositeImage($imagick2, $type, 0, 0);
+//    $imagick1->setImageFormat('png');
+//
+//    $image->setImageFormat("png");
+//    header("Content-Type: image/png");
+//    echo $imagick->getImageBlob();
+////Example end
+//}
 
 
 class composite extends \ImagickDemo\Example {

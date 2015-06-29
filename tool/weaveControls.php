@@ -350,8 +350,18 @@ $controls = [
     'ImagickDemo\Imagick\Control\transparentPaintImage' => [
         'ImagickDemo\ControlElement\Color',
         'ImagickDemo\ControlElement\Alpha',
-        'ImagickDemo\ControlElement\Fuzz'
+        'ImagickDemo\ControlElement\Fuzz',
+        'ImagickDemo\ControlElement\Inverse'
     ],
+    
+    
+    'ImagickDemo\Imagick\Control\opaquePaintImage' => [
+        'ImagickDemo\ControlElement\Color',
+        'ImagickDemo\ControlElement\ReplacementColor',
+        'ImagickDemo\ControlElement\Fuzz',
+        'ImagickDemo\ControlElement\Inverse'
+    ],
+    
     
     'ImagickDemo\Imagick\Control\trimImage' => [
         'ImagickDemo\ControlElement\Color',
@@ -702,6 +712,13 @@ $controls = [
         'ImagickDemo\ControlElement\KernelRender'
     ],
 
+    
+    'ImagickDemo\ImagickKernel\Control\MontageTypeControl' => [
+        'ImagickDemo\ControlElement\MontageType',
+    ],
+    
+    
+    
 ];
 
 \Intahwebz\Functions::load();

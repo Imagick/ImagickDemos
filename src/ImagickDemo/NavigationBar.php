@@ -3,6 +3,7 @@
 
 namespace ImagickDemo;
 
+use ImagickDemo\Helper\PageInfo;
 
 class NavigationBar {
 
@@ -28,9 +29,10 @@ class NavigationBar {
      * @internal param null $activeCategory
      * @internal param null $activeExample
      */
-    function __construct($category = null, $example = null) {
-        $this->activeCategory = $category;
-        $this->activeExample = $example;
+    function __construct(PageInfo $pageInfo) {
+        $this->activeCategory = $pageInfo->getCategory();//$category;
+        $this->activeExample = $pageInfo->getExample();//$example;
+        
     }
 
     /**

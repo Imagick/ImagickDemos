@@ -4,6 +4,7 @@
 namespace ImagickDemo\Navigation;
 
 use ImagickDemo\Control\NullControl;
+use ImagickDemo\Helper\PageInfo;
 
 class CategoryNav implements Nav {
 
@@ -18,14 +19,26 @@ class CategoryNav implements Nav {
      * @param $category
      * @param $example
      */
-    function __construct($category, $example) {
-        $this->category = $category;
-        $this->currentExample = $example;
-        $this->exampleList = $this->getCategoryList($category);
+    function __construct(PageInfo $pageInfo) {
+        $this->category = $pageInfo->getCategory();
+        $this->currentExample = $pageInfo->getExample();
+        $this->exampleList = $this->getCategoryList($this->category);
+        $this->pageInfo = $pageInfo;
     }
 
+    
+    function getPageInfo()
+    {
+        return $this->pageInfo;
+    }
+    
     function getCategory() {
         return $this->category;
+    }
+    
+    function getExample()
+    {
+        return $this->pageInfo->getExample();
     }
 
     /**
@@ -45,21 +58,85 @@ class CategoryNav implements Nav {
         return $this->category;
     }
 
-    /**
+//    /**
+//     * @param \Auryn\Injector $injector
+//     */
+//    function setupControlAndExample(\Auryn\Injector $injector) {
+//        $navName = $this->getCurrentName();
+//
+//        if ($navName) {
+//                $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navName);
+//        }
+//        else {
+//            $exampleClassname = sprintf('ImagickDemo\%s\nullExample', $this->category);
+//        }
+//
+//        $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
+//    }
+
+    
+        /**
      * @param \Auryn\Injector $injector
      */
-    function setupControlAndExample(\Auryn\Injector $injector) {
+    function getExampleName()
+    {
         $navName = $this->getCurrentName();
-
+               
         if ($navName) {
-                $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navName);
-        }
-        else {
-            $exampleClassname = sprintf('ImagickDemo\%s\nullExample', $this->category);
+                return sprintf('ImagickDemo\%s\%s', $this->category, $navName);
         }
 
-        $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
+        if ($this->category) {
+            return sprintf('ImagickDemo\%s\IndexExample', $this->category);
+        }
+        
+        return 'ImagickDemo\HomePageExample';
     }
+
+    function getImageFunctionName()
+    {
+        $category = $this->pageInfo->getCategory();
+        $example = $this->pageInfo->getExample();
+        $exampleDefinition = $this->getExampleDefinition($category, $example);
+        $function = $exampleDefinition[0];
+        //$controlClass = $exampleDefinition[1];
+        $params = [];
+
+        if (array_key_exists('defaultParams', $exampleDefinition) == true) {
+            foreach ($exampleDefinition['defaultParams'] as $name => $value) {
+                $defaultName = 'default' . ucfirst($name);
+                $params[$defaultName] = $value;
+            }
+        }
+            
+        
+        return sprintf('ImagickDemo\%s\%s', $category, $function);
+    }
+
+    function getDIInfo()
+    {
+        $category = $this->pageInfo->getCategory();
+        $example = $this->pageInfo->getExample();
+        
+        if ($category == null || $example == null) {
+            return ['ImagickDemo\Control\NullControl', []];
+        }
+        
+        $exampleDefinition = $this->getExampleDefinition($category, $example);
+        
+        $controlClass = $exampleDefinition[1];
+        $params = [];
+
+        if (array_key_exists('defaultParams', $exampleDefinition) == true) {
+            foreach ($exampleDefinition['defaultParams'] as $name => $value) {
+                $defaultName = 'default' . ucfirst($name);
+                $params[$defaultName] = $value;
+            }
+        }
+
+        return [$controlClass, $params];
+    }
+
 
     /**
      * @internal param $current
@@ -240,6 +317,7 @@ END;
     
     
     function renderVertical() {
+       
         
         $output = "<ul class='nav nav-sidebar smallPadding' id='searchList'>";
 
@@ -303,7 +381,7 @@ END;
         $examples = self::getAllExamples();
 
         if (!isset($examples[$category][$example])) {
-            throw new \Exception("Somethings fucky: example [$category][$example] doesn't exist.");
+            throw new \Exception("Somethings borked: example [$category][$example] doesn't exist.");
         }
 
         return $examples[$category][$example];
@@ -358,8 +436,8 @@ END;
                 \ImagickDemo\Imagick\Control\chopImage::class,
                 'defaultParams' => [ 'width' => 100 ]
             ],
-            //'clear',
-            //'clipPathImage',
+            //'clear' - alias of destroy
+            //'clipPathImage' - tiff image, no1curr
             'clutImage' => ['clutImage', \ImagickDemo\Control\NullControl::class],
             'coalesceImages' => ['coalesceImages', \ImagickDemo\Control\NullControl::class],
             
@@ -392,16 +470,18 @@ END;
 
             //'debugImage' => ['debugImage', \ImagickDemo\Control\NullControl::class ],
             
-            //'decipherImage',
+            //'decipherImage' - no1curr
             //'deconstructImages',
             //'deleteImageArtifact',
             'deskewImage' => ['deskewImage', \ImagickDemo\Imagick\Control\deskewImage::class ],
             'despeckleImage' => ['despeckleImage', \ImagickDemo\Control\ImageControl::class],
             //'destroy',
-            //'displayImage',
-            //'displayImages',
+            //'displayImage' - no1curr, X server,
+            //'displayImages' - no1curr, X server,
             'distortImage' => ['distortImage', \ImagickDemo\Control\ControlCompositeImageDistortionType::class],
-            //'drawImage',
+            'drawImage' => [
+                'drawImage', \ImagickDemo\Control\NullControl::class
+            ],
             'edgeImage' => [
                 'edgeImage',
                 \ImagickDemo\Imagick\Control\edgeImage::class
@@ -410,11 +490,11 @@ END;
                 'embossImage',
                 \ImagickDemo\Imagick\Control\embossImage::class
             ],
-            //'encipherImage',
+            //'encipherImage' - no1curr
             'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
             'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
             'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\EvaluateTypeControl::class],
-            //'exportImagePixels',
+            'exportImagePixels' => ['exportImagePixels', \ImagickDemo\Control\ImageControl::class],
             'extentImage' => ['extentImage',\ImagickDemo\Control\ImageControl::class],
             'filter' => ['filter', \ImagickDemo\Control\ImageControl::class],
             //FrameImage
@@ -539,7 +619,7 @@ END;
             
             'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
             'implodeImage'  => ['implodeImage', \ImagickDemo\Control\ImageControl::class],
-            //'importImagePixels',
+            'importImagePixels' => ['importImagePixels', \ImagickDemo\Control\NullControl::class],
             //'labelImage' => basically does setImageProperty("label", $text) 
             
             'levelImage' => [
@@ -556,14 +636,17 @@ END;
             ],
             //'liquidRescaleImage',
             'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ImageControl::class],
-            //'mapImage',
-            //'matteFloodfillImage',
+            //'mapImage' - deprecated
+            //'matteFloodfillImage' - deprecated
             'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ControlCompositeRadiusImage::class],
 
             'mergeImageLayers'  => ['mergeImageLayers', \ImagickDemo\Imagick\Control\mergeImageLayers::class],
             //'minifyImage', //MagickMinifyImage() is a convenience method that scales an image proportionally to one-half its original size
             'modulateImage' => ['modulateImage', \ImagickDemo\Imagick\Control\modulateImage::class],
-            //'montageImage',
+            'montageImage'  => [
+                'montageImage',
+                \ImagickDemo\ImagickKernel\Control\MontageTypeControl::class
+            ],
             //'morphImages',
             'morphology' => [
                 'morphology',
@@ -581,15 +664,21 @@ END;
                 \ImagickDemo\Imagick\Control\separateImageChannel::class
             ],
             'oilPaintImage' => ['oilPaintImage', \ImagickDemo\Imagick\Control\oilPaintImage::class],
-            //'opaquePaintImage',
+            'opaquePaintImage' => [
+                'opaquePaintImage',
+                \ImagickDemo\Imagick\Control\opaquePaintImage::class,
+                'defaultParams' => [
+                    'color' => 'rgb(39, 194, 255)'
+                ]
+            ],
             //'optimizeImageLayers',
             // OptimizeImageTransparency
             'orderedPosterizeImage' => [
                 'orderedPosterizeImage',
                 \ImagickDemo\Imagick\Control\orderedPosterizeControl::class
             ],
-            //'paintOpaqueImage',
-            //'paintTransparentImage',
+            //'paintOpaqueImage', //deprecated
+            //'paintTransparentImage', //deprecated
             'pingImage' => ['pingImage', \ImagickDemo\Control\ImageControl::class],
             'Quantum'  => ['Quantum', \ImagickDemo\Control\NullControl::class],
             //'pingImageBlob',

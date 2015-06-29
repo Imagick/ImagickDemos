@@ -15,8 +15,7 @@ class APCCacheEnvReader {
     public function clearCache() {
         apc_clear_cache("user");
     }
-    
-    
+
     private function getKeyName($name) {
         return $this->keyPrefix.":".$name;
     }

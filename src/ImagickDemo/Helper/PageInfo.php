@@ -12,7 +12,30 @@ class PageInfo {
 
     private $example;
 
+    public function __construct($category = null, $example = null)
+    {
+        $this->setCatergoryAndExample($category, $example);
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExample()
+    {
+        return $this->example;
+    }
+    
+    
+    
+    
     function getTitle()
     {
         return $this->title;
@@ -24,7 +47,7 @@ class PageInfo {
         $this->title = $title;
     }
 
-    public function setCatergoryAndExample($category, $example)
+    private function setCatergoryAndExample($category, $example)
     {
         $this->category = $category; 
         $this->example = $example;

@@ -476,7 +476,6 @@ function point($fillColor, $backgroundColor) {
 
 //Example ImagickDraw::polygon
 function polygon($strokeColor, $fillColor, $backgroundColor) {
-
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);

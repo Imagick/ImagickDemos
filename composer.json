@@ -17,7 +17,7 @@
 
     "require":{
         "amphp/artax": "1.0.0-rc6",
-        "rdlowrey/auryn": "^0.15.2",
+        "rdlowrey/auryn": "v1.0.0-alpha as 0.15.3",
         "danack/console": "^2.6.0",
         "danack/jig": "^0.12.0",
         "danack/syntaxhighlighter": "~3.1.0",

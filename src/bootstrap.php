@@ -1,20 +1,20 @@
 <?php
 
 namespace {
-    
 
-use ImagickDemo\Response\Response;
 use ImagickDemo\Response\StandardHTTPResponse;
 use ImagickDemo\Response\FileResponse;
-use ImagickDemo\Config\Application as ApplicationConfig;
 use Intahwebz\Request;
 use ImagickDemo\Response\RedirectResponse;
 use Predis\Client as RedisClient;
-use Jig\Jig;
+use ImagickDemo\InjectionParams;
+use Auryn\Injector;
+use ImagickDemo\Tier;
+use Jig\JigRender;
 use Jig\JigConfig;
-//use ASM\Redis\RedisDriver;
-//use ASM\SessionManager;
-//use ASM\SessionConfig;
+
+use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\Navigation\CategoryNav;
 
  
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
@@ -24,8 +24,6 @@ require __DIR__.'/../vendor/autoload.php';
 //appear to use the standard 'header' function, but also capture the content type 
 //of the image
 $imageType = null;
-/** @var  $appConfig \ImagickDemo\Config\Application */
-$cacheImages = false;//$appConfig->getCacheImages();
 
 function exceptionHandler(Exception $ex) {
     
@@ -41,7 +39,7 @@ function exceptionHandler(Exception $ex) {
     
     while($ex) {
 
-        echo "Exception " . get_class($ex) . ': ' . $ex->getMessage();
+        echo "Exception " . get_class($ex) . ': ' . $ex->getMessage()."<br/>";
 
         foreach ($ex->getTrace() as $tracePart) {
             if (isset($tracePart['file']) && isset($tracePart['line'])) {
@@ -75,18 +73,23 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
         case E_CORE_ERROR:
         case E_ERROR: {
             $message =  "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
+            //echo "$message";
+
             break;
         }
 
         default: {
             $message =  "<b>errorHandler</b> [$errno] $errstr in file $errfile on line $errline<br />\n";
+
+            throw new \Exception($message);
             break;
         }
     }
     
-    throw new \Exception($message);
+    return false;
 }
 
+    
 
 function fatalErrorShutdownHandler() {
     $level = ob_get_level();
@@ -127,7 +130,11 @@ function fatalErrorShutdownHandler() {
 }
 
 
-function getImageCacheFilename($category, $example, $params) {
+function getImageCacheFilename(PageInfo $pageInfo, $params) {
+
+    $category = $pageInfo->getCategory();
+    $example = $pageInfo->getExample();
+    
     $filename = "../var/cache/imageCache/".$category.'/'.$example.'/'.$example;
     if (!empty($params)) {
         $filename .= '_' . md5(json_encode($params));
@@ -151,44 +158,72 @@ function renderImgTag($url, $id = '', $extra = '') {
 
 }
     
-if (false) {
 
-    function createRedisSessionDriver()
-    {
-        $redisConfig = array(
-            "scheme" => "tcp",
-            "host" => 'localhost',
-            "port" => 6379
-        );
+function createRedisSessionDriver()
+{
+    $redisConfig = array(
+        "scheme" => "tcp",
+        "host" => 'localhost',
+        "port" => 6379
+    );
 
-        $redisOptions = array(
-            'profile' => '2.6',
-            'prefix' => 'imagickdemo:',
-        );
+    $redisOptions = array(
+        'profile' => '2.6',
+        'prefix' => 'imagickdemo:',
+    );
 
-        $redisClient = new RedisClient($redisConfig, $redisOptions);
-        $redisDriver = new RedisDriver($redisClient);
+    $redisClient = new RedisClient($redisConfig, $redisOptions);
+    $redisDriver = new RedisDriver($redisClient);
 
-        return $redisDriver;
-    }
-
-    function createSessionManager(RedisDriver $redisDriver)
-    {
-        $sessionConfig = new SessionConfig(
-            'SessionTest',
-            3600 * 10,
-            60
-        );
-
-        $sessionManager = new SessionManager(
-            $sessionConfig,
-            $redisDriver
-        );
-
-        return $sessionManager;
-    }
+    return $redisDriver;
 }
 
+function createSessionManager(RedisDriver $redisDriver)
+{
+    $sessionConfig = new SessionConfig(
+        'SessionTest',
+        3600 * 10,
+        60
+    );
+
+    $sessionManager = new SessionManager(
+        $sessionConfig,
+        $redisDriver
+    );
+
+    return $sessionManager;
+}
+
+function prepareJigConverter(Jig\Converter\JigConverter $jigConverter, $injector)
+{
+    $jigConverter->addDefaultHelper('Jig\TemplateHelper\DebugHelper');
+}
+
+function createControl(CategoryNav $categoryNav, Injector $injector)
+{
+    list($controlClassname, $params) = $categoryNav->getDIInfo();
+
+    foreach ($params as $name => $value) {
+        $injector->defineParam($name, $value);
+    }
+
+    $control = $injector->make($controlClassname);
+    $params = $control->getFullParams();
+    
+    foreach ($params as $name => $value) {
+        $injector->defineParam($name, $value);
+    }
+    
+    return $control;
+}
+    
+function createExample(CategoryNav $categoryNav, Injector $injector)
+{
+    $exampleName = $categoryNav->getExampleName();
+
+    return $injector->make($exampleName);
+}
+    
 /**
  * @param $libratoKey
  * @param $libratorUsername
@@ -197,35 +232,28 @@ if (false) {
  */
 function bootstrapInjector()
 {
-
     $injector = new Auryn\Injector();
 
-    $jigConfig = new JigConfig(
-        "../templates/",
-        "../var/compile/",
-        'tpl',
-        //Jig::COMPILE_CHECK_EXISTS
-        //Jig::COMPILE_CHECK_MTIME
-        Jig::COMPILE_ALWAYS
-    );
+    $config = new \ImagickDemo\Config();
+    $config->delegateShit($injector);
 
-    $injector->share($jigConfig);
-    $injector->alias('Jig\ViewModel', \Jig\ViewModel\BasicViewModel::class);
-    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
-    $injector->alias('ImagickDemo\Control', 'ImagickDemo\Control\NullControl');
-    $injector->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
-    $injector->alias('ImagickDemo\Example', 'ImagickDemo\NullExample');
-    $injector->alias('ImagickDemo\Framework\VariableMap', 'ImagickDemo\Framework\RequestVariableMap');
-    $injector->share('ImagickDemo\Framework\VariableMap');
-
-    //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
-    $injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\NullBanner');
+    $injector->share('Jig\JigConfig');    
     $injector->share('ImagickDemo\Control');
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
     $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
     $injector->share('ImagickDemo\Helper\PageInfo');
-    $injector->define('Jig\JigRender', [':mappedClasses' => []]);
+    $injector->share(\ImagickDemo\Config\Application::class);
+    $injector->share(\ImagickDemo\Config\Librato::class);
+    $injector->share('ImagickDemo\Framework\VariableMap');
+    $injector->share('Predis\Client');
+    
+    $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
+    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
+    $injector->alias('ImagickDemo\Framework\VariableMap', 'ImagickDemo\Framework\RequestVariableMap');
+    //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
+    $injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\NullBanner');
+    $injector->prepare('Jig\Converter\JigConverter', 'prepareJigConverter');
 
     if (false) {
         $injector->share('ASM\SessionManager');
@@ -234,20 +262,8 @@ function bootstrapInjector()
         $injector->delegate('ASM\Driver\RedisDriver', 'createRedisSessionDriver');
     }
 
-    $injector->defineParam('activeCategory', null);
-    $injector->defineParam('activeExample', null);
-
-    $injector->define('ImagickDemo\DocHelper', [
-        ':category' => null,
-        ':example' => null
-    ]);
-
-    $injector->share(\ImagickDemo\Config\Application::class);
-    $injector->share(\ImagickDemo\Config\Librato::class);
-    $injector->define(
-         '\Stats\SimpleStats',
-         [ ':statsSourceName' => "foo"]
-    );
+    $injector->delegate('ImagickDemo\Control', 'createControl');
+    $injector->delegate('ImagickDemo\Example', 'createExample');
 
     $redisParameters = array(
         'connection_timeout' => 30,
@@ -264,23 +280,10 @@ function bootstrapInjector()
          )
     );
 
-    $injector->share('Predis\Client');
-    $injector->share($injector);
-
-    $injector->define(
-         'Intahwebz\Routing\HTTPRequest',
-         array(
-             ':server' => $_SERVER,
-             ':get' => $_GET,
-             ':post' => $_POST,
-             ':files' => $_FILES,
-             ':cookie' => $_COOKIE
-         )
-    );
-
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
     $injector->share($injector); //yolo - use injector as service locator
 
+    
     $appConfig = $injector->make('ImagickDemo\Config\Application');
     /** @var  $appConfig \ImagickDemo\Config\Application */
     
@@ -291,102 +294,25 @@ function bootstrapInjector()
 }
 
 
-function setupExampleInjection(\Auryn\Injector $injector, $vars) {
-
-    $category = null;
-    $example = null;
-    
-    if (isset($vars['category']) == true) {
-        $category = $vars['category'];
-    }
-
-    if (isset($vars['example']) == true) {
-        $example = $vars['example'];
-    }
-
-    if (!$category) {
-        $injector->alias(\ImagickDemo\Example::class, \ImagickDemo\HomePageExample::class);
-        return;
-    }
-
-    $namespace = sprintf('ImagickDemo\%s\functions', $category);
-    $namespace::load();
-
-    $pageInfo = $injector->make('ImagickDemo\Helper\PageInfo');
-    $pageInfo->setCatergoryAndExample($category, $example);
-
-    $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
-    $injector->define(\ImagickDemo\Navigation\CategoryNav::class, [
-        ':category' => $category,
-        ':example' => $example
-    ]);
-
-    $categoryNav = $injector->make(\ImagickDemo\Navigation\CategoryNav::class);
-    
-    if (!$example) {
-        $injector->alias(\ImagickDemo\Example::class, sprintf('ImagickDemo\%s\IndexExample', $category));
-        return null;
-    }
-
-    $exampleDefinition = $categoryNav->getExampleDefinition($category, $example);
-    $function = $exampleDefinition[0];
-    $controlClass = $exampleDefinition[1];
-
-    if (array_key_exists('defaultParams', $exampleDefinition) == true) {
-        foreach ($exampleDefinition['defaultParams'] as $name => $value) {
-            $defaultName = 'default' . ucfirst($name);
-            $injector->defineParam($defaultName, $value);
-        }
-    }
-
-    $injector->defineParam('activeCategory', $category);
-    $injector->defineParam('activeExample', $example);
-    $injector->alias(\ImagickDemo\Control::class, $controlClass);
-    $injector->share($controlClass);
-
-    $injector->define(\ImagickDemo\DocHelper::class, [
-        ':category' => $category,
-        ':example' => $example
-    ]);
-
-    $controller = $injector->make(\ImagickDemo\Control::class);
-
-    foreach ($controller->getInjectionParams() as $key => $value) {
-        $injector->defineParam($key, $value);
-    }
-
-    if ($function) {
-        $exampleClassName = sprintf('ImagickDemo\%s\%s', $category, $function);
-        $injector->defineParam(
-            'imageFunction', sprintf('ImagickDemo\%s\%s', $category, $function)
-        );
-        $injector->defineParam(
-            'customImageFunction', [$exampleClassName, 'renderCustomImage']
-        );
-    }
-    else {
-        $exampleClassName = sprintf('ImagickDemo\%s\IndexExample', $category);
-    }
-
-    $injector->alias(\ImagickDemo\Example::class, $exampleClassName);
-}
-
-
 /**
  * @param \Auryn\Injector $injector
  * @param $routesFunction
  * @return \ImagickDemo\Response\Response|StandardHTTPResponse|null
  */
-function servePage(\Auryn\Injector $injector, $routesFunction) {
-
+function servePage()
+{
+    $routesFunction = getRoutes(); 
     $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
 
     $httpMethod = 'GET';
-    $uri = '/';
+    //$uri = '/';
+    $uri = '/image/Imagick/adaptiveResizeImage';
 
     if (array_key_exists('REQUEST_URI', $_SERVER)) {
         $uri = $_SERVER['REQUEST_URI'];
     }
+    
+    ///$uri = '/image/Imagick/adaptiveResizeImage';
 
     $path = $uri;
     $queryPosition = strpos($path, '?');
@@ -396,31 +322,29 @@ function servePage(\Auryn\Injector $injector, $routesFunction) {
 
     $routeInfo = $dispatcher->dispatch($httpMethod, $path);
 
-    if (false) {
-        $recentPages = $injector->make('ImagickDemo\RecentPages');
-        $recentPages->log($uri);
+    $dispatcherResult = $routeInfo[0];
+    
+    if ($dispatcherResult == \FastRoute\Dispatcher::FOUND) {
+        $handler = $routeInfo[1];
+        $vars = $routeInfo[2];
+
+        if (array_key_exists('category', $vars)) {
+            $className = sprintf('ImagickDemo\%s\functions', $vars['category']);
+            $className::load();
+        }
+
+        $params = InjectionParams::fromParams($vars);
+
+        return new Tier($handler, $params);
     }
-
-    switch ($routeInfo[0]) {
-        case \FastRoute\Dispatcher::NOT_FOUND: {
-            return new StandardHTTPResponse(404, $uri, "Route not found");
-        }
-
-        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED: {
-            $allowedMethods = $routeInfo[1];
-            // ... 405 Method Not Allowed
-            return new StandardHTTPResponse(405, $uri, "Not allowed");
-        }
-
-        case \FastRoute\Dispatcher::FOUND: {
-            $handler = $routeInfo[1];
-            $vars = $routeInfo[2];
-            //TODO - support head?
-            return process($injector, $handler, $vars);
-        }
+    else if ($dispatcherResult == \FastRoute\Dispatcher::NOT_FOUND) {
+        return new StandardHTTPResponse(404, $uri, "Route not found");
     }
-
-    return null;
+    
+    //TODO - need to embed allowedMethods....theoretically.
+    // $allowedMethods = $routeInfo[1];
+    // ... 405 Method Not Allowed
+    return new StandardHTTPResponse(405, $uri, "Not allowed");
 }
 
 
@@ -436,64 +360,6 @@ function createFileResponseIfFileExists($filename) {
         if (file_exists($filenameWithExtension) == true) {
             //TODO - content type should actually be image/jpeg
             return new FileResponse($filenameWithExtension, "image/".$extension);
-        }
-    }
-
-    return null;
-}
-
-/**
- * @param \Auryn\Injector $injector
- * @param $handler
- * @param $vars
- * @return \ImagickDemo\Response\Response $response;
- */
-function process(\Auryn\Injector $injector, $handler, $vars) {
-
-    $category = null;
-    $example = null;
-    $lowried = [];
-
-    $lowried[':category'] = null;
-    $lowried[':example'] = null;
-    
-    foreach ($vars as $key => $value) {
-        $lowried[':'.$key] = $value;
-        $injector->defineParam($key, $value);
-    }
-
-    setupExampleInjection($injector, $vars);
-    //$injector->execute('setupExampleInjection', $vars);
-
-    $finished = false;
-    $response = null;
-
-    $count = 0;
-    
-    while ($finished == false) {
-        $finished = true;
-        $response = $injector->execute($handler, $lowried);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        if (is_callable($response)) {
-            $finished = false;
-            $handler = $response;
-        }
-        
-        if (is_array($response)) {
-            foreach($response as $callable) {
-                $response = $injector->execute($callable, $lowried);
-                if ($response) {
-                    return $response;
-                }
-            }
-        }
-
-        $count++;
-
-        if ($count > 4) {
-            $finished = true;
         }
     }
 
@@ -613,24 +479,9 @@ function getKnownExtensions() {
 }
 
 
+function getRoutes() {
 
-function foo($category,
-             $example,
-             $imageFunction,
-             \ImagickDemo\Control $control,
-             \ImagickDemo\Example $exampleController) {
-
-    $customImageParams = $exampleController->getCustomImageParams();
-    $fullParams = $control->getFullParams($customImageParams);
-
-    ImagickTask::create($category, $example, $imageFunction, $fullParams);
-}
-
-    
-    
-function getRoutes(ApplicationConfig $appConfig) {
-
-    $routesFunction = function (\FastRoute\RouteCollector $r) use ($appConfig) {
+    $routesFunction = function (\FastRoute\RouteCollector $r) {
 
         $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|ImagickKernel|Tutorial}';
 
@@ -691,7 +542,6 @@ function createImageResponse($filename, callable $imageCallable) {
     global $imageType;
     ob_start();
     $imageCallable();
-
 
     if ($imageType == null) {
         ob_end_clean();
@@ -756,7 +606,7 @@ function renderImageAsFileResponse(
     ob_start();
     
     global $imageType;
-    $imageType = 'gif';
+    //$imageType = 'gif';
     
     $imageCallable();
     
@@ -872,7 +722,56 @@ function renderKernelTable($matrix) {
     return $output;
 }
 
+function addInjectionParams(Injector $injector, InjectionParams $injectionParams)
+{
+    foreach ($injectionParams->getAliases() as $original => $alias) {
+        $injector->alias($original, $alias);
+    }
     
+    foreach ($injectionParams->getShares() as $share) {
+        $injector->share($share);
+    }
+    
+    foreach ($injectionParams->getParams() as $paramName => $value) {
+        $injector->defineParam($paramName, $value);
+    }
+    
+    foreach ($injectionParams->getDelegates() as $className => $callable) {
+        $injector->delegate($className, $callable);
+    }
+}
+    
+
+    
+function getTemplatRenderCallable($templateFilename)
+{
+    $fn = function (JigConfig $jigConfig) use ($templateFilename) {
+        $className = $jigConfig->getFullClassname($templateFilename);
+
+        return [$className, 'render'];
+    };
+
+    return $fn;
+}
+    
+function createTemplateResponse(Jig\JigBase $template)
+{
+    return new \ImagickDemo\Response\TemplateResponse($template);
+}
+    
+function getTemplateSetupCallable($templateName) {
+    $fn = function (JigRender $jigRender) use ($templateName) {
+        $className = $jigRender->getClassName($templateName);
+        $jigRender->checkTemplateCompiled($templateName);
+        $alias = [];
+        $alias['Jig\JigBase'] = $className;
+        $di = new InjectionParams([], $alias, [], []);
+
+        return new Tier('createTemplateResponse', $di);
+    };
+
+    return $fn;
+}
 
 }//namespace end
 

@@ -4,6 +4,7 @@
 namespace ImagickDemo\Control;
 
 use ImagickDemo\Queue\ImagickTaskQueue;
+use ImagickDemo\Helper\PageInfo;
 
 class ControlComposite implements \ImagickDemo\Control {
     
@@ -12,7 +13,11 @@ class ControlComposite implements \ImagickDemo\Control {
     private $imageStatusBaseURL;
 
 
-    function __construct($activeCategory, $activeExample, ImagickTaskQueue $taskQueue) {
+    function __construct(PageInfo $pageInfo, ImagickTaskQueue $taskQueue) {
+
+        $activeCategory = $pageInfo->getCategory();
+        $activeExample = $pageInfo->getExample();
+
         $this->imageBaseURL = getImageURL($activeCategory, $activeExample);
         $this->customImageBaseURL = getCustomImageURL($activeCategory, $activeExample);
         $this->imageStatusBaseURL = getImageStatusURL($activeCategory, $activeExample);

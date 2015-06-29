@@ -21,10 +21,10 @@ class NullNav implements Nav {
     function renderSelect() {
 
     }
-
-    function renderTitle() {
-        return "Hello!";
-    }
+//
+//    function renderTitle() {
+//        return "Hello!";
+//    }
     
     function renderNav() {
         
@@ -34,9 +34,7 @@ class NullNav implements Nav {
         
     }
 
-    function renderDescription() {
-        return "I are description.";
-    }
+
     
     function getCategory(){
         return '';

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e7c412a6dc5dfb249f5a1245da515892",
+    "hash": "c2dbb18620d3a396706bd32734e82d3f",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1019,16 +1019,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "v0.15.2",
+            "version": "v1.0.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/Auryn.git",
-                "reference": "d0d875868e1d7d241983c88252c07965a65224c1"
+                "reference": "b57a5046cfcefb0cde7fc86f9915e54aa7196cba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/d0d875868e1d7d241983c88252c07965a65224c1",
-                "reference": "d0d875868e1d7d241983c88252c07965a65224c1",
+                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/b57a5046cfcefb0cde7fc86f9915e54aa7196cba",
+                "reference": "b57a5046cfcefb0cde7fc86f9915e54aa7196cba",
                 "shasum": ""
             },
             "require": {
@@ -1074,7 +1074,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2015-05-17 18:29:19"
+            "time": "2015-05-27 12:47:19"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1130,10 +1130,18 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "0.15.3",
+            "alias_normalized": "0.15.3.0",
+            "version": "1.0.0.0-alpha",
+            "package": "rdlowrey/auryn"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "amphp/artax": 5
+        "amphp/artax": 5,
+        "rdlowrey/auryn": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -24,7 +24,8 @@ class ImageResponse implements \ImagickDemo\Response\Response {
 
         // TODO - this is not safe, needs to be encode by the appropriate
         // rfc scheme
-        header("Content-Disposition: attachment; filename=".$this->filename);
+        //header("Content-Disposition: attachment; filename=".$this->filename);
+        header("Content-Disposition: filename=".$this->filename);
 
         echo $this->data;
     }

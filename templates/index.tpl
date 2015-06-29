@@ -6,7 +6,9 @@
 
     {inject name='pageTitleObj' value='ImagickDemo\Helper\PageInfo'}
 
-    <title>{$pageTitleObj->getTitle() | nofilter}</title>
+    <title>
+        {$pageTitleObj->getTitle() | nofilter}
+    </title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,7 +33,7 @@
 
         <nav class="navbar-default pull-right" role="navigation">
             <ul class="nav navbar-nav menuBackground">
-                {$navBar->renderRight() | nofilter}
+                 {$navBar->renderRight() | nofilter}
             </ul>
         </nav>   
     </div>
@@ -48,9 +50,7 @@
 {inject name='docHelper' value='ImagickDemo\DocHelper'}
 
 
-{$remaining = 12 - $example->getColumnRightOffset();}
-
-
+{$remaining = 12 - $example->getColumnRightOffset()}
 
 <div class='container'>
 
@@ -115,11 +115,10 @@
                 {/block}
             </div>
             
-            {$remaining = 12 - $example->getColumnRightOffset()}
+            
 
             <div class="row">
                 <div class="col-md-{$remaining} " style="padding-top: 2px;">
-                    
                     {block name='mainContent'}
                     <div class="row">
                         <div class="col-md-7 col-xs-12 contentPanel">
@@ -221,7 +220,9 @@
     addColorSelector("#textUnderColorSelector", "#textUnderColor");
     addColorSelector("#gradientStartColorSelector", "#gradientStartColor");
     addColorSelector("#gradientEndColorSelector", "#gradientEndColor");
+    addColorSelector("#replacementColorSelector", "#replacementColor");
     addColorSelector("#thresholdColorSelector", "#thresholdColor"); 
+    
 
     {literal}
     var params = {

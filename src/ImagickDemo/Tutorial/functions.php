@@ -135,17 +135,6 @@ function imagickComposite() {
 }
 //Example end
 
-
-//Example Tutorial::imagickCompositeGen
-function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
-    $imagick = new \Imagick();
-    $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
-    $quantum = $imagick->getQuantum();
-    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quantum);
-
-    return $imagick;
-}
-
 //Example Tutorial::backgroundMasking
 function backgroundMasking() {
     //Load the image
@@ -242,6 +231,17 @@ function backgroundMasking() {
     echo $canvas->getImageBlob();
 }
 //Example end
+
+
+//Example Tutorial::imagickCompositeGen
+function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
+    $quantum = $imagick->getQuantum();
+    $imagick->sigmoidalContrastImage(true, $contrast, $midpoint * $quantum);
+
+    return $imagick;
+}
 
 
 function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $blendMidpoint = 0.5, $horizontal = true) {

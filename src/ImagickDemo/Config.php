@@ -3,6 +3,9 @@
 
 namespace ImagickDemo;
 
+use Auryn\Injector;
+
+
 
 class Config {
 
@@ -38,7 +41,9 @@ class Config {
     const LIBRATO_USERNAME = 'librato.username';
     const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name'; 
     
+    const JIG_COMPILE_CHECK = 'jig.compilecheck';
     
+
     public static function getConfigNames()
     {
         return [
@@ -72,7 +77,61 @@ class Config {
             self::LIBRATO_KEY,
             self::LIBRATO_USERNAME,
             self::LIBRATO_STATSSOURCENAME,
+            
+            self::JIG_COMPILE_CHECK,
         ];
+    }
+
+    
+    public function delegateShit(Injector $injector)
+    {
+        $injector->delegate(\ImagickDemo\Config\Librato::class, [$this, 'createLibrato']);
+        $injector->delegate(\Jig\JigConfig::class, [$this, 'createJigConfig']);
+        $injector->delegate(\Intahwebz\Routing\HTTPRequest::class, [$this, 'createHTTPRequest']);
+    }
+
+    public static function getEnv($key)
+    {
+        $key = str_replace('.', "_", $key);
+        $value = getenv($key);
+
+        if ($value === null || $value === false) {
+            throw new \Exception("Missing config of $key");
+        }
+
+        return $value;
+    }
+   
+    function createHTTPRequest()
+    {
+        return new \Intahwebz\Routing\HTTPRequest(
+            $_SERVER,
+            $_GET,
+            $_POST,
+            $_FILES,
+            $_COOKIE
+        );
+    }
+
+    function createLibrato()
+    {
+        return new \ImagickDemo\Config\Librato(
+            self::getEnv(self::LIBRATO_KEY),
+            self::getEnv(self::LIBRATO_USERNAME),
+            self::getEnv(self::LIBRATO_STATSSOURCENAME)
+        );
+    }
+
+    function createJigConfig()
+    {
+        $jigConfig = new \Jig\JigConfig(
+            "../templates/",
+            "../var/compile/",
+            'tpl',
+            $this->getEnv(self::JIG_COMPILE_CHECK)
+        );
+
+        return $jigConfig;
     }
 }
 

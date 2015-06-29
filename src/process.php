@@ -4,18 +4,18 @@
 
 require __DIR__ . '/../src/bootstrap.php';
 
-ini_set('display_errors', 'on');
+use ImagickDemo\Response\Response;
+use ImagickDemo\Tier;
 
+ini_set('display_errors', 'on');
 
 \Intahwebz\Functions::load();
 
-register_shutdown_function('fatalErrorShutdownHandler');
-set_error_handler('errorHandler');
+//register_shutdown_function('fatalErrorShutdownHandler');
+//set_error_handler('errorHandler');
 set_exception_handler('exceptionHandler');
 
 $injector = bootstrapInjector();
-
-$injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
 
 if (false) {
     $sessionManager = $injector->make('ASM\SessionManager');
@@ -24,15 +24,37 @@ if (false) {
     $injector->share($session);
 }
 
-$routesFunction = $injector->execute('getRoutes');
-$response = servePage($injector, $routesFunction);
-
+$callable = 'servePage';
 $headers = [];
+$count = 0;
+$response = null;
 
-if (false) {
-    $session->save();
-    $headers = $session->getHeaders(\ASM\SessionManager::CACHE_NO_CACHE);
-}
+do {
+    $result = $injector->execute($callable);
+
+    if ($result instanceof Response) {
+        $response = $result;
+        break;
+    }
+    else if ($result instanceof Tier) {
+        $injectionParams = $result->getInjectionParams();
+        if ($injectionParams) {
+            addInjectionParams($injector, $injectionParams);
+        }
+        $callable = $result->getCallable();
+    }
+    else {
+        echo "Unknown result: ";
+        var_dump($result);
+        exit(0);
+    }
+    $count++;
+} while ($count < 10);
+
+//  if (false) {
+//        $session->save();
+//        $headers = $session->getHeaders(\ASM\SessionManager::CACHE_NO_CACHE);
+//    }
 
 if ($response != null) {
     $response->send($headers);

@@ -1,10 +1,11 @@
 {extends file='index'}
 
+{inject name='pageTitleObj' value='ImagickDemo\Helper\PageInfo'}
 
 {block name='title'}
     <div class="col-xs-8">
         <h3 class='noMarginTop'>
-            {$example->renderTitle() | nofilter}
+            {$pageTitleObj->getTitle() | nofilter}
         </h3>
     </div>
 {/block}
@@ -15,7 +16,7 @@
         <div class="row hidden-sm hidden-xs">
             <div class="col-sm-8">
                 <h1 class='titleMargin'>
-                    {$example->renderTitle() | nofilter}
+                    {$pageTitleObj->getTitle() | nofilter}
                 </h1>
             </div>
         </div>
@@ -26,6 +27,7 @@
 {block name='mainContent'}
     <div class="row">
         <div class="col-sm-12 contentPanel">
+            {inject name='example' value='ImagickDemo\Example'}
             {$example->render() | nofilter}
         </div>
     </div>

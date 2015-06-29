@@ -5,6 +5,7 @@ namespace ImagickDemo\Control;
 
 use ImagickDemo\Queue\ImagickTaskQueue;
 
+use ImagickDemo\Helper\PageInfo;
 
 class NullControl implements \ImagickDemo\Control {
 
@@ -12,7 +13,10 @@ class NullControl implements \ImagickDemo\Control {
     private $activeCategory;
     private $activeExample;
     
-    function __construct(ImagickTaskQueue $taskQueue, $activeCategory, $activeExample) {
+    function __construct(ImagickTaskQueue $taskQueue, PageInfo $pageInfo) {
+        $activeCategory = $pageInfo->getCategory();
+        $activeExample = $pageInfo->getExample();
+    
         $this->taskQueue = $taskQueue;
         $this->activeCategory = $activeCategory;
         $this->activeExample = $activeExample;

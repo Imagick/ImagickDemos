@@ -4,60 +4,38 @@
 namespace ImagickDemo\Controller;
 
 use ImagickDemo\Response\TextResponse;
-use Jig\JigRender;
-use Jig\ViewModel\BasicViewModel;
-use ImagickDemo\Helper\PageInfo;
-
+use ImagickDemo\Tier;
+use ImagickDemo\InjectionParams;
+use ImagickDemo\Navigation\CategoryNav;
 
 
 class Page {
-
-    /**
-     * @var BasicViewModel
-     */
-    private $viewModel;
-
-    /**
-     * @var JigRender
-     */
-    private $jigRender;
-
-    /**
-     * @var PageInfo
-     */
-    private $pageInfo;
-    
-    /**
-     * @param BasicViewModel $basicViewModel
-     * @param JigRender $jigRender
-     */
-    function __construct(BasicViewModel $basicViewModel, JigRender $jigRender, PageInfo $pageInfo) {
-        $this->viewModel = $basicViewModel;
-        $this->jigRender = $jigRender;
-        $this->pageInfo = $pageInfo;
-
-        //$this->pageInfo->setTitle("asd PHP Imagick");
-    }
 
     /**
      * @param string $templateName
      * @return TextResponse
      * @throws \Jig\JigException
      */
-    function generateResponseFromTemplate($templateName) {
-        $this->viewModel->setVariable('pageTitle', "Imagick demos");
-        $output = $this->jigRender->renderTemplateFile($templateName, $this->viewModel);
-
-        return new TextResponse($output);
+    function generateResponseFromTemplate($templateName)
+    {
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);        
+        $callable = getTemplateSetupCallable($templateName);
+        return new Tier($callable, $injectionParams);
     }
-
 
     /**
      * @internal param \Auryn\Injector $injector
      * @return TextResponse
      */
-    function renderTitlePage() {
-        return $this->generateResponseFromTemplate('title');
+    function renderTitlePage()
+    {
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
+//        $injectionParams->alias('ImagickDemo\Example', 'ImagickDemo\HomePageExample');
+        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
+
+        $callable = getTemplateSetupCallable('title');
+
+        return new Tier($callable, $injectionParams);
     }
 
     /**
@@ -66,8 +44,15 @@ class Page {
      * @internal param $example
      * @return TextResponse
      */
-    function renderExamplePage() {
-        return $this->generateResponseFromTemplate('index');
+    function renderExamplePage(CategoryNav $categoryNav)
+    {
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);        
+        $callable = getTemplateSetupCallable('index');
+//        $exampleName = $categoryNav->getExampleName();        
+//        $injectionParams->alias('ImagickDemo\Example', $exampleName);
+        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
+
+        return new Tier($callable, $injectionParams);
     }
 
     /**
@@ -75,7 +60,14 @@ class Page {
      * @internal param $category
      * @return TextResponse
      */
-    function renderCategoryIndex() {
-        return $this->generateResponseFromTemplate('title');
+    function renderCategoryIndex(CategoryNav $categoryNav)
+    {
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);        
+        $callable = getTemplateSetupCallable('title');
+//        $exampleName = $categoryNav->getExampleName();        
+//        $injectionParams->alias('ImagickDemo\Example', $exampleName);
+        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
+
+        return new Tier($callable, $injectionParams);
     }
 }

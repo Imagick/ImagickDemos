@@ -9,7 +9,6 @@ interface Nav {
     function renderNextButton();
     function renderPreviousLink();
     function renderNextLink();
-    function renderTitle();
     function renderNav();
     function getCategory();
     function renderSelect();

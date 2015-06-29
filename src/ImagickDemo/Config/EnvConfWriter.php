@@ -8,15 +8,13 @@ use Configurator\Configurator;
 
 class EnvConfWriter
 {
-    
     private $env;
     private $outputFilename;
-    
+
     public function __construct($env, $filename)
     {
         $this->env = $env;
         $this->outputFilename = $filename;
-        
     }
 
     public function writeEnvFile()

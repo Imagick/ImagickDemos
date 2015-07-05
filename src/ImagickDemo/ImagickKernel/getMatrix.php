@@ -8,10 +8,6 @@ class getMatrix extends \ImagickDemo\Example {
         return "Get the 2d matrix of values used in this kernel. The elements are either float for elements that are used or 'false' if the element should be skipped.";
     }
 
-    function renderTitle() {
-        return "";
-    }
-
     function render() {
 //Example ImagickKernel::getMatrix
         $output = "The built-in kernel name 'ring' with parameters of '2,3.5':<br/>";

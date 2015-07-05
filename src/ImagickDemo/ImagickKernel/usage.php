@@ -83,10 +83,6 @@ class usage extends \ImagickDemo\Example {
 
         return $output;
     }
-    
-    function renderTitle() {
-        return "";
-    }
 
     function render() {
         if (array_key_exists($this->morphologyType, $this->functionTable) == false) {

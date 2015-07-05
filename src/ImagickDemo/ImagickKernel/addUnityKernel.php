@@ -8,10 +8,6 @@ class addUnityKernel extends \ImagickDemo\Example {
         return "Adds a given amount of the 'Unity' Convolution Kernel to the given pre-scaled and normalized Kernel. In effect this adds that amount of the original image  into the resulting convolution kernel. The resulting effect is to convert the defined kernels into blended soft-blurs, unsharp kernels or into sharpening kernels.";
     }
 
-    function renderTitle() {
-        return "";
-    }
-
     function render() {
 //Example ImagickKernel::addUnityKernel
         $matrix = [

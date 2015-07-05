@@ -16,10 +16,6 @@ NORMALIZE_KERNEL_CORRELATE
          Please read http://www.imagemagick.org/api/morphology.php#ScaleKernelInfo";
 
     }
-    
-    function renderTitle() {
-        return "";
-    }
 
     function render() {
 //Example ImagickKernel::scale

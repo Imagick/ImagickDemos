@@ -23,10 +23,6 @@ class fromBuiltin extends \ImagickDemo\Example {
     ";
     }
 
-    function renderTitle() {
-        return "";
-    }
-
     function render() {
         switch ($this->builtInControl->getKernelRender()) {
             case (KernelRender::KERNEL_RENDER_IMAGE): {

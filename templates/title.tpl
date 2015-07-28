@@ -1,6 +1,6 @@
 {extends file='index'}
 
-{inject name='pageTitleObj' value='ImagickDemo\Helper\PageInfo'}
+{inject name='pageTitleObj' type='ImagickDemo\Helper\PageInfo'}
 
 {block name='title'}
     <div class="col-xs-8">
@@ -27,7 +27,7 @@
 {block name='mainContent'}
     <div class="row">
         <div class="col-sm-12 contentPanel">
-            {inject name='example' value='ImagickDemo\Example'}
+            {inject name='example' type='ImagickDemo\Example'}
             {$example->render() | nofilter}
         </div>
     </div>

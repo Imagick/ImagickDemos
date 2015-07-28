@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    {inject name='pageTitleObj' value='ImagickDemo\Helper\PageInfo'}
+    {inject name='pageTitleObj' type='ImagickDemo\Helper\PageInfo'}
 
     <title>
         {$pageTitleObj->getTitle() | nofilter}
@@ -19,14 +19,14 @@
     <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shThemePHPStormLight.css">
 </head>
 
-{inject name='nav' value='ImagickDemo\Navigation\Nav'}
+{inject name='nav' type='ImagickDemo\Navigation\Nav'}
 
 <body>
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container visible-md visible-lg">
         <nav class="navbar-default " role="navigation">
             <ul class="nav navbar-nav menuBackground">
-                {inject name='navBar' value='ImagickDemo\NavigationBar'}
+                {inject name='navBar' type='ImagickDemo\NavigationBar'}
                 {$navBar->render() | nofilter}
             </ul>
         </nav>
@@ -45,9 +45,9 @@
 </header>
 
 
-{inject name='control' value='ImagickDemo\Control'}
-{inject name='example' value='ImagickDemo\Example'}
-{inject name='docHelper' value='ImagickDemo\DocHelper'}
+{inject name='control' type='ImagickDemo\Control'}
+{inject name='example' type='ImagickDemo\Example'}
+{inject name='docHelper' type='ImagickDemo\DocHelper'}
 
 
 {$remaining = 12 - $example->getColumnRightOffset()}
@@ -141,7 +141,7 @@
 
             {$docHelper->showExamples() | nofilter}
             
-            {inject name='banner' value='ImagickDemo\Banners\Banner'}
+            {inject name='banner' type='ImagickDemo\Banners\Banner'}
 
             <div class="row">
                 <div class="col-md-12">

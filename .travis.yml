@@ -1,0 +1,35 @@
+language: php
+php:
+    - 5.6
+    - 5.5
+    - 5.4
+    - 5.3
+    
+    
+
+    
+./vendor/bin/phpcs --standard=./test/codesniffer.xml --encoding=utf-8 ./src
+
+
+
+before_script:
+#    - php -l -d display_errors=1 $PROJECT/$FILE
+    - ./vendor/bin/phpcs --standard=./test/CodingStandard/ruleset.xml --encoding=utf-8 -n -p $FILES
+
+script:
+    - export NO_INTERACTION=1
+    - export REPORT_EXIT_STATUS=1
+    - export TEST_PHP_EXECUTABLE=`which php`
+    - export PHP_IMAGICK_VERSION=$(php -r '$sxe = simplexml_load_file ("package.xml"); echo (string) $sxe->version->release;')
+    - pear package
+    - . ./configure-cflags.sh
+    - mkdir /tmp/php-imagick-build
+    - tar xfz "imagick-${PHP_IMAGICK_VERSION}.tgz" -C /tmp/php-imagick-build
+    - cp ./check-loaded.phpt /tmp/php-imagick-build/imagick-${PHP_IMAGICK_VERSION}/check-loaded.phpt
+    - cd /tmp/php-imagick-build/imagick-${PHP_IMAGICK_VERSION}
+    - phpize
+    - ./configure --with-imagick="${HOME}/imagemagick-${IMAGEMAGICK_VERSION}"
+    - make
+    - php run-tests.php -d extension=imagick.so -d extension_dir=modules -n ./*.phpt
+    - php run-tests.php -d extension=imagick.so -d extension_dir=modules -n ./tests/*.phpt
+    - for i in `ls tests/*.out 2>/dev/null`; do echo "-- START ${i}"; cat $i; echo "-- END"; done

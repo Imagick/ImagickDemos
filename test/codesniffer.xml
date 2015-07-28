@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<ruleset name="Danack">
+    <description>Customised coding standard.</description>
+    <arg name="tab-width" value="4"/>
+    
+    <exclude-pattern>*Intahwebz*</exclude-pattern>
+    
+    <!-- Exclude data files -->
+    <exclude-pattern>*compare.php</exclude-pattern>
+    <exclude-pattern>*ImagickDemo/DocHelper.php</exclude-pattern>
+    
+    
+    
+    
+
+    <rule ref="PSR2">
+        
+        <!-- Need to find a way to turn this off for text, before re-enabling -->
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        
+        <!-- Bug is CSS - see https://github.com/squizlabs/PHP_CodeSniffer/issues/604 -->
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceIndent"/>
+
+        <!-- I just don't agree with these. -->
+        <exclude name="PSR2.ControlStructures.ElseIfDeclaration"/>
+        <exclude name="Squiz.ControlStructures.ElseIfDeclaration"/>
+        <exclude name="Squiz.WhiteSpace.ScopeClosingBrace"/>
+
+        <!-- TODO make this be newline -->
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+        
+        <!-- This makes co-ordinate pairs hard to read -->
+        <exclude name="PSR2.Methods.FunctionCallSignature.MultipleArguments" />
+        
+        <!-- These sniffs break 'valid' code -->
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenercase"/>
+        <exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenerdefault"/>
+    </rule>
+
+    <!-- We are doing tricksy stuff with namespaces -->
+    <rule ref="Generic.WhiteSpace.ScopeIndent.Incorrect">
+        <exclude-pattern>*bootstrap.php</exclude-pattern>
+        <exclude-pattern>*Tutorial/functions.php</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2.Classes.ClassDeclaration.SpaceBeforeBrace">
+        <exclude-pattern>*bootstrap.php</exclude-pattern>
+        <exclude-pattern>*Tutorial/functions.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.WhiteSpace.ScopeIndent.IncorrectExact">
+        <exclude-pattern>*bootstrap.php</exclude-pattern>
+        <exclude-pattern>*Tutorial/functions.php</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+        <exclude-pattern>*bootstrap.php</exclude-pattern>
+        <exclude-pattern>*Tutorial/functions.php</exclude-pattern>
+    </rule>
+    
+    
+
+    <!-- We use lowercase names to avoid having to have huge data blocks -->
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>Tutorial/*</exclude-pattern>
+    </rule>
+
+    <!-- These are there own end point and so are okay to mix declaration and calling -->
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>Tutorial/smoothSpiderGraph.php</exclude-pattern>
+    </rule>
+
+</ruleset>
+
+        

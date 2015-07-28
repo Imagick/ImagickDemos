@@ -2,16 +2,16 @@
 
 namespace ImagickDemo\Tutorial;
 
+class imagickCompositeGen extends \ImagickDemo\Example
+{
 
-
-
-class imagickCompositeGen extends \ImagickDemo\Example {
-
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "";
     }
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         $output = <<< END
 This is a more complicated example of how to cross fade a row of images with smooth transitions between each image.
 
@@ -23,7 +23,8 @@ END;
     }
 
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

@@ -8,7 +8,7 @@ $base->trimImage(0);
 $geometry = $base->getImageGeometry();
 $pageInfo = $base->getImagePage();
 
-printf (
+printf(
     "Width %d Height %d\n",
     $geometry['width'],
     $geometry['height']

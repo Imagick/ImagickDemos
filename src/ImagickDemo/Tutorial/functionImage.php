@@ -2,26 +2,30 @@
 
 namespace ImagickDemo\Tutorial;
 
-class functionImage extends \ImagickDemo\Example {
-
+class functionImage extends \ImagickDemo\Example
+{
     private $control;
     
-    function __construct($control) {
+    public function __construct($control)
+    {
         $this->control = $control;
     }
 
-    function render() {
+    public function render()
+    {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();
 
         return $output;
     }
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         return "";
     }
 
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $size = 200;
         $imagick1 = new \Imagick();
         $imagick1->newPseudoImage($size, $size, 'gradient:black-white');
@@ -39,5 +43,4 @@ class functionImage extends \ImagickDemo\Example {
         header("Content-Type: image/png");
         echo $imagick1->getImageBlob();
     }
-
 }

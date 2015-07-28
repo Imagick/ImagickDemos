@@ -1,14 +1,13 @@
 <?php
 
-
 namespace ImagickDemo\Tutorial;
-
 
 use Imagick;
 use ImagickDemo\Framework\VariableMap;
 
 //Example Tutorial::deconstructGif Make a simple gif with lots of frames.
-function makeSimpleGif($deconstruct) {
+function makeSimpleGif($deconstruct)
+{
     $aniGif = new \Imagick();
     $aniGif->setFormat("gif");
 
@@ -30,7 +29,7 @@ function makeSimpleGif($deconstruct) {
 
     $backgroundPalette->addimage($blackWhitePalette);
 
-    for($count=0 ; $count<$imageFrames ; $count++){
+    for ($count=0; $count<$imageFrames; $count++) {
         $drawing = new \ImagickDraw();
         $drawing->setFillColor('white');
         $drawing->setStrokeColor('rgba(64, 64, 64, 0.8)');
@@ -59,22 +58,21 @@ function makeSimpleGif($deconstruct) {
 //Example end
 
 
-
-
-
-class deconstructGif extends \ImagickDemo\Example {
-
+class deconstructGif extends \ImagickDemo\Example
+{
     /**
      * @var mixed
      */
     private $deconstruct;
     
-    function __construct(\ImagickDemo\Control $control, VariableMap $variableMap) {
+    public function __construct(\ImagickDemo\Control $control, VariableMap $variableMap)
+    {
         $this->control = $control;
         $this->deconstruct = $variableMap->getVariable('deconstruct', false);
     }
 
-    function getCustomImageParams() {
+    public function getCustomImageParams()
+    {
         return ['deconstruct' => $this->deconstruct];
     }
 
@@ -82,16 +80,19 @@ class deconstructGif extends \ImagickDemo\Example {
     /**
      * @return string
      */
-    function renderDescription() {
+    public function renderDescription()
+    {
          $output = <<< END
-ImageMagick has the ability to dramatically the file size of gifs that contain a large amount of area that is static.
+ImageMagick has the ability to dramatically the file size of gifs that contain a large amount of 
+area that is static.
 
-It does this by analyzing the frames, detected which parts are not changing, and excluding those areas from being written to the Gif for the frames where there is no movement.
+It does this by analyzing the frames, detected which parts are not changing, and excluding 
+those areas from being written to the Gif for the frames where there is no movement.
 
-This optimization only works for images where there is a large amount of absolutely static image. It does not work for Gifs created from a video.
+This optimization only works for images where there is a large amount of absolutely static image. 
+It does not work for Gifs created from a video.
 
 For the image below the normal vs the deconstructed file sizes are:
-
 END;
 
         $output = nl2br($output);
@@ -102,7 +103,8 @@ Deconstructed:   108,772 bytes</pre>";
         return $output;
     }
 
-    function render() {
+    public function render()
+    {
         $output = '';
         $output .= 'Normal image:<br/>';
         $output .= sprintf("<img src='%s' />", $this->control->getCustomImageURL());
@@ -115,12 +117,10 @@ Deconstructed:   108,772 bytes</pre>";
     }
 
     /**
-     * 
+     *
      */
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         makeSimpleGif($this->deconstruct);
     }
 }
-
- 
-

@@ -7,7 +7,3 @@
 //\) +swap - background white - layers merge \
 //-fuzz 2 % -trim + repage   standing_shadow . jpg
 //
-//
-//
-//
-// 

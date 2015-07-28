@@ -2,16 +2,15 @@
 
 namespace ImagickDemo\Tutorial;
 
-
-
-class compressImages extends \ImagickDemo\Example {
-
-    function render() {
+class compressImages extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return "Compression examples go here.";
     }
     
-    function renderDescription() {
-
+    public function renderDescription()
+    {
         $imagick = $this->getJpg();
 
         $qualityReduction = clone $imagick;
@@ -57,14 +56,13 @@ END;
         return $markdown;
     }
 
-
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $this->compressJpg();
     }
     
-
-    function renderSubImage($subImageType) {
-
+    public function renderSubImage($subImageType)
+    {
         $binding = [
             'jpg' => 'compressJpg',
             'jpgWithBlur' => 'compressJpgWithBlur',
@@ -76,10 +74,9 @@ END;
         
         call_user_func([$this, $binding[$subImageType]]);
     }
-    
-    
-    function getJpg() {
 
+    public function getJpg()
+    {
         //imagick-demos/imagick/images/lories/IMG_2561_480.jpg
         $imagick = new \Imagick(realpath("images/lories/IMG_2561_480.jpg"));
         $imagick->setimagecompressionquality(90);
@@ -87,20 +84,23 @@ END;
         return $imagick;
     }
     
-    function compressJpg() {
+    public function compressJpg()
+    {
         $imagick = $this->getJpg();
         header("Content-Type: image/jpg");
         echo $imagick->getimageblob();
     }
 
-    function compressJpgWithBlur() {
+    public function compressJpgWithBlur()
+    {
         $imagick = $this->getJpg();
         $imagick->blurimage(3, 1);
         header("Content-Type: image/jpg");
         echo $imagick->getimageblob();
     }
 
-    function renderDescription2() {
+    public function renderDescription2()
+    {
         $imagick = new \Imagick(realpath("images/bugs/asdsd.jpg"));
         $imagick->setImageFormat('jpg');
 
@@ -109,8 +109,8 @@ END;
         return "image size is ".strlen($output);
     }
 
-    function renderImage() {
-        
+    public function renderImage()
+    {
         $imagick = new \Imagick(realpath("imagick/images/Biter_500.jpg"));
         //$imagick->setOption('jpeg:extent', '20kb');
         //$imagick->setcompressionquality(30);
@@ -119,5 +119,4 @@ END;
         header("Content-Type: image/jpg");
         echo $imagick->getimageblob();
     }
-
 }

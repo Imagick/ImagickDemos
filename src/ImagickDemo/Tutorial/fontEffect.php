@@ -2,9 +2,8 @@
 
 namespace ImagickDemo\Tutorial;
 
-
-
-class fontEffect extends \ImagickDemo\Example {
+class fontEffect extends \ImagickDemo\Example
+{
     
 //    private $usageControl;
 //    
@@ -24,13 +23,15 @@ class fontEffect extends \ImagickDemo\Example {
 //    }
 
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         $output = "Font effects are cool.";
 
         return $output;
     }
 
-    function render() {
+    public function render()
+    {
 //        if (array_key_exists($this->morphologyType, $this->functionTable) == false) {
 //            return '';
 //        }
@@ -38,7 +39,8 @@ class fontEffect extends \ImagickDemo\Example {
         return $this->renderCustomImageURL([], $this->getOriginalImage());
     }
 
-    public function renderCustomImage() {
+    public function renderCustomImage()
+    {
 //        if (array_key_exists($this->morphologyType, $this->functionTable) == true) {
 //            $method = $this->functionTable[$this->morphologyType];
 //            $this->{$method}();
@@ -50,14 +52,16 @@ class fontEffect extends \ImagickDemo\Example {
         $this->renderDistanceEuclidian();
     }
 
-    private function getCharacter() {
+    private function getCharacter()
+    {
         $imagick = new \Imagick(realpath("./images/character.png"));
 
         return $imagick;
     }
 
 
-    private function drawText(\Imagick $imagick, $shadow = false) {
+    private function drawText(\Imagick $imagick, $shadow = false)
+    {
         $draw = new \ImagickDraw();
         
         if ($shadow == true) {
@@ -84,7 +88,8 @@ class fontEffect extends \ImagickDemo\Example {
         return $imagick;
     }
 
-    private function getSilhouette(\Imagick $imagick) {
+    private function getSilhouette(\Imagick $imagick)
+    {
         $character = new \Imagick();
         $character->newPseudoImage(
             $imagick->getImageWidth(),
@@ -111,12 +116,9 @@ class fontEffect extends \ImagickDemo\Example {
 
         return $canvas;
     }
-
-
-
     
-    private function renderDistanceEuclidian() {
-
+    private function renderDistanceEuclidian()
+    {
         $canvas = new \Imagick();
         $canvas->newPseudoImage(
             500,
@@ -181,12 +183,8 @@ class fontEffect extends \ImagickDemo\Example {
             \Imagick::COMPOSITE_ATOP,
             0, 0
         );
-        
-        
-        
+
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
     }
-
-
 }

@@ -1,15 +1,15 @@
 <?php
 
-
 namespace ImagickDemo\Tutorial;
 
-
-class levelizeImage extends \ImagickDemo\Example {
-
-    function render() {
-
+class levelizeImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         $output = <<< 'END'
-<p>The ImageMagick library has a <a href='http://www.imagemagick.org/Usage/color_mods/#level_plus'>Reversed Level Adjustment</a> function. This function is not exposed in through the ImageMagick Wand API and so it is not usable in Imagick. However we can achive the same result by using the evaluate command in two steps.</p>
+<p>The ImageMagick library has a <a href='http://www.imagemagick.org/Usage/color_mods/#level_plus'>Reversed 
+Level Adjustment</a> function. This function is not exposed in through the ImageMagick Wand API and so it 
+is not usable in Imagick. However we can achive the same result by using the evaluate command in two steps.</p>
 <p>
 
 So to do the equivalent of:
@@ -35,7 +35,8 @@ END;
     /**
      * @return \ImagickDemo\Control
      */
-    function getControl() {
+    public function getControl()
+    {
         return $this->control;
     }
 }

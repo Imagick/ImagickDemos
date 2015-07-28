@@ -10,16 +10,13 @@ $images = [
 foreach ($images as $image) {
     /** @var $combined \Imagick */
     if ($combined == null) {
-        $combined = new Imagick(realpath($image));   
+        $combined = new Imagick(realpath($image));
     }
     else {
-        $card = new Imagick(realpath($image)); ; //get single card 
+        $card = new Imagick(realpath($image)); //get single card
         $combined->addImage($card);
     }
 }
 
 $combined->setImageFormat("pdf");
-$combined->writeImages( './card.pdf', true );
-
-    
-    
+$combined->writeImages('./card.pdf', true);

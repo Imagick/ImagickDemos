@@ -1,27 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\Tutorial;
-
 
 use Imagick;
 
-
-class creatingGifs extends \ImagickDemo\Example {
-
-
-    function renderDescription() {
+class creatingGifs extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         return '';
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 
     /**
-     * 
+     *
      */
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $imagick = new \Imagick();
         $imagick->setcolorspace(\Imagick::COLORSPACE_GRAY);
         $imagick->newPseudoImage(10, 256, 'gradient:black-white');
@@ -29,5 +28,3 @@ class creatingGifs extends \ImagickDemo\Example {
         analyzeImage($imagick);
     }
 }
-
- 

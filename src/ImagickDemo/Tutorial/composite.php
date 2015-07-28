@@ -5,8 +5,6 @@ namespace ImagickDemo\Tutorial;
 use ImagickDemo\Control\CompositeExampleControl;
 use ImagickDemo\Framework\VariableMap;
 
-
-
 //function compositeImageExample()
 //{
 ////Example Tutorial::composite
@@ -21,9 +19,8 @@ use ImagickDemo\Framework\VariableMap;
 ////Example end
 //}
 
-
-class composite extends \ImagickDemo\Example {
-
+class composite extends \ImagickDemo\Example
+{
     private $width = 200;
     private $height = 200;
 
@@ -38,12 +35,16 @@ class composite extends \ImagickDemo\Example {
     
     private $type;
 
-    function __construct(CompositeExampleControl $compositeExampleControl, VariableMap $variableMap) {
+    public function __construct(
+        CompositeExampleControl $compositeExampleControl,
+        VariableMap $variableMap
+    ) {
         $this->compositeExampleControl = $compositeExampleControl;
         $this->type = $variableMap->getVariable('type', self::SOURCE_1);
     }
 
-    public static function getExamples() {
+    public static function getExamples()
+    {
         $listOfExamples = [
             'multiplyGradients' => 'MULTIPLY',
             'difference'        => 'DIFFERENCE',
@@ -64,8 +65,8 @@ class composite extends \ImagickDemo\Example {
         return $listOfExamples;
     }
 
-
-    function getCustomImageParams() {
+    public function getCustomImageParams()
+    {
         return ['type' => $this->type];
     }
     
@@ -73,9 +74,9 @@ class composite extends \ImagickDemo\Example {
     /**
      * @return string
      */
-    function render() {
-
-$layout = <<< END
+    public function render()
+    {
+        $layout = <<< END
 
 <div class='row'>
     <div class='col-md-6'>
@@ -106,7 +107,8 @@ END;
         return $output;
     }
 
-    function renderCustomImageURL($extraParams = [], $originalImageURL = NULL) {
+    public function renderCustomImageURL($extraParams = [], $originalImageURL = null)
+    {
     //function renderCustomImageURL($extraParams = []) {
         return sprintf(
             "<img src='%s' />",
@@ -114,8 +116,8 @@ END;
         );
     }
 
-    function getExampleDescription() {
-
+    public function getExampleDescription()
+    {
         $descriptions = [
             'multiplyGradients' => 'multiplies the values of the pixels in each image together.',
             'screenGradients' => "This is almost exactly like 'Multiply' except both input images are negated before the compose, and the final result is also then negated again to return the image to normal. In technical terms the two methods are 'Duals' of each other.
@@ -136,7 +138,7 @@ If the background image is fully opaque (no transparency), this operation will a
 What makes this useful is for overlaying lighting and shading effects that are limited to the object (shape) of the destination.",
 //            'Plus' => '',
 //            'Minus' => '',
-            'CopyOpacity' => '', 
+            'CopyOpacity' => '',
             'CopyOpacity2' => '',
         ];
         
@@ -152,7 +154,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
     /**
      * @throws \Exception
      */
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $type = $this->type;
         
         $methods = [
@@ -175,7 +178,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
         $customImage  = $this->compositeExampleControl->getCompositeExampleType();
 
         if (array_key_exists($customImage, $methods) == false) {
-            throw new \Exception("Unknown composite method $customImage");  
+            throw new \Exception("Unknown composite method $customImage");
         }
 
         $methodInfo = $methods[$customImage];
@@ -205,20 +208,23 @@ What makes this useful is for overlaying lighting and shading effects that are l
     }
     
     
-    private function outputImage(\Imagick $imagick) {
+    private function outputImage(\Imagick $imagick)
+    {
         $imagick->setImageFormat('png');
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
 
-    function genericComposite(\Imagick $imagick1, \Imagick $imagick2, $type) {
+    public function genericComposite(\Imagick $imagick1, \Imagick $imagick2, $type)
+    {
         $imagick1->compositeImage($imagick2, $type, 0, 0);
         $imagick1->setImageFormat('png');
 
         $this->showImage($imagick1);
     }
 
-    function showImage(\Imagick $imagick1) {
+    public function showImage(\Imagick $imagick1)
+    {
         $backGround = new \Imagick();
         $backGround->newPseudoImage(
             $imagick1->getImageWidth(),
@@ -233,7 +239,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         echo $backGround->getImageBlob();
     }
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         $output = "The Imagick::compositeImage function allows you to blend images together in many different ways.";
 
         $output .= " Please see http://www.imagemagick.org/Usage/compose/ for details ";
@@ -241,14 +248,16 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $output;
     }
 
-    private function gradientDown() {
+    private function gradientDown()
+    {
         $imagick = new \Imagick();
         $imagick->newpseudoimage($this->width, $this->height, 'gradient:black-white');
 
         return $imagick;
     }
 
-    private function gradientRight() {
+    private function gradientRight()
+    {
         $imagick = new \Imagick();
         $imagick->newpseudoimage($this->width, $this->height, 'gradient:black-white');
         $imagick->rotateimage('black', -90);
@@ -256,7 +265,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-    function getTextScan() {
+    public function getTextScan()
+    {
         $imagick = new \Imagick(realpath("images/text_scan.png"));
         $imagick->resizeImage(
             2 * $imagick->getImageWidth() / 3,
@@ -267,14 +277,16 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-    function getTextScanBlurred() {
+    public function getTextScanBlurred()
+    {
         $imagick = $this->getTextScan();
         $imagick->blurImage(0x20, 1);
 
         return $imagick;
     }
 
-    function getWhiteDiscAlpha() {
+    public function getWhiteDiscAlpha()
+    {
         $width = $this->width;
         $height = $this->height;
         $imagick = new \Imagick();
@@ -292,12 +304,14 @@ What makes this useful is for overlaying lighting and shading effects that are l
     }
     
     
-    function getTestImage() {
+    public function getTestImage()
+    {
         $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
         return $imagick;
     }
 
-    function getRedDiscAlpha() {
+    public function getRedDiscAlpha()
+    {
         $width = $this->width;
         $height = $this->height;
         
@@ -316,7 +330,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
     }
 
 
-    function getGreenDiscAlpha() {
+    public function getGreenDiscAlpha()
+    {
         $width = $this->width;
         $height = $this->height;
         $imagick = new \Imagick();
@@ -333,7 +348,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-    function getBlueDiscAlpha() {
+    public function getBlueDiscAlpha()
+    {
         $width = $this->width;
         $height = $this->height;
         
@@ -351,7 +367,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-    function getRGBDisc() {
+    public function getRGBDisc()
+    {
         $width = $this->width;
         $height = $this->height;
 
@@ -380,7 +397,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-    function getBiter() {
+    public function getBiter()
+    {
         $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
 
         //This is vital - the image must have an alpha channel.
@@ -390,7 +408,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-    function getWhiteDisc() {
+    public function getWhiteDisc()
+    {
         $width = $this->width;
         $height = $this->height;
         $imagick = new \Imagick();
@@ -403,86 +422,4 @@ What makes this useful is for overlaying lighting and shading effects that are l
 
         return $imagick;
     }
-
-
-//
-//
-//
-//$compositeModes = [
-//
-//\\Imagick::COMPOSITE_NO,
-//\Imagick::COMPOSITE_ADD,
-//\Imagick::COMPOSITE_ATOP,
-//\Imagick::COMPOSITE_BLEND,
-//\Imagick::COMPOSITE_BUMPMAP,
-//\Imagick::COMPOSITE_CLEAR,
-//\Imagick::COMPOSITE_COLORBURN,
-//\Imagick::COMPOSITE_COLORDODGE,
-//\Imagick::COMPOSITE_COLORIZE,
-//\Imagick::COMPOSITE_COPYBLACK,
-//\Imagick::COMPOSITE_COPYBLUE,
-//\Imagick::COMPOSITE_COPY,
-//\Imagick::COMPOSITE_COPYCYAN,
-//\Imagick::COMPOSITE_COPYGREEN,
-//\Imagick::COMPOSITE_COPYMAGENTA,
-//\Imagick::COMPOSITE_COPYOPACITY,
-//\Imagick::COMPOSITE_COPYRED,
-//\Imagick::COMPOSITE_COPYYELLOW,
-//\Imagick::COMPOSITE_DARKEN,
-//\Imagick::COMPOSITE_DSTATOP,
-//\Imagick::COMPOSITE_DST,
-//\Imagick::COMPOSITE_DSTIN,
-//\Imagick::COMPOSITE_DSTOUT,
-//\Imagick::COMPOSITE_DSTOVER,
-//\Imagick::COMPOSITE_DIFFERENCE,
-//\Imagick::COMPOSITE_DISPLACE,
-//\Imagick::COMPOSITE_DISSOLVE,
-//\Imagick::COMPOSITE_EXCLUSION,
-//\Imagick::COMPOSITE_HARDLIGHT,
-//\Imagick::COMPOSITE_HUE,
-//\Imagick::COMPOSITE_IN,
-//\Imagick::COMPOSITE_LIGHTEN,
-//\Imagick::COMPOSITE_LUMINIZE,
-//\Imagick::COMPOSITE_MINUS,
-//\Imagick::COMPOSITE_MODULATE,
-//\Imagick::COMPOSITE_MULTIPLY,
-//\Imagick::COMPOSITE_OUT,
-//\Imagick::COMPOSITE_OVER,
-//\Imagick::COMPOSITE_OVERLAY,
-//\Imagick::COMPOSITE_PLUS,
-//\Imagick::COMPOSITE_REPLACE,
-//\Imagick::COMPOSITE_SATURATE,
-
-//\Imagick::COMPOSITE_SOFTLIGHT,
-//\Imagick::COMPOSITE_SRCATOP,
-//\Imagick::COMPOSITE_SRC,
-//\Imagick::COMPOSITE_SRCIN,
-//\Imagick::COMPOSITE_SRCOUT,
-//\Imagick::COMPOSITE_SRCOVER,
-//\Imagick::COMPOSITE_SUBTRACT,
-//\Imagick::COMPOSITE_THRESHOLD,
-//\Imagick::COMPOSITE_XOR,
-
-//Over,  Dst Over,  Src,  Copy,  Replace,
-//Dst,  In,  Dst In,  Out,  Dst Out,
-//ATop,  Dst ATop,  Clear,  Xor
-//
-//Multiply,  Screen,  Bumpmap,  Divide,
-//Plus,  Minus,  ModulusAdd,  ModulusSubtract,
-//Difference,  Exclusion,  Lighten,  Darken,
-//LightenIntensity,  DarkenIntensity,
-//
-//
-//Overlay,  Hard Light,  Soft Light,   Pegtop Light,
-//Linear Light, Vivid Light, Pin Light,
-//Linear Dodge,  Linear Burn,  Color Dodge,  Color Burn,
-//
-//Copy Opacity,   Copy Red,  Copy Green,  Copy Blue,
-//Copy Cyan,  Copy Magenta,  Copy Yellow,  Copy Black,
-//Hue,  Saturate,  Luminize,  Colorize,
-//
-
-
-
-
 }

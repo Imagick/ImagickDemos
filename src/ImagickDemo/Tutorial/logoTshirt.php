@@ -4,7 +4,8 @@ namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Framework\VariableMap;
 
-function getAverageColorString(\Imagick $imagick) {
+function getAverageColorString(\Imagick $imagick)
+{
     $tshirtCrop = clone $imagick;
     $tshirtCrop->cropimage(100, 100, 90, 50);
     $stats = $tshirtCrop->getImageChannelStatistics();
@@ -19,24 +20,26 @@ function getAverageColorString(\Imagick $imagick) {
     return $colorString;
 }
 
-class logoTshirt extends \ImagickDemo\Example {
-
-    
+class logoTshirt extends \ImagickDemo\Example
+{
     private $type = 'simple';
-    
-    function __construct(\ImagickDemo\Control $control, VariableMap $variableMap) {
+
+    public function __construct(\ImagickDemo\Control $control, VariableMap $variableMap)
+    {
         $this->control = $control;
         $this->type = $variableMap->getVariable('type', 'simple');
     }
 
-    function getCustomImageParams() {
+    public function getCustomImageParams()
+    {
         return ['type' => $this->type];
     }
 
     /**
      * @return string
      */
-    function render() {
+    public function render()
+    {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL(['type' => 'simple']);
         $output .= $this->renderCustomImageURL(['type' => 'creases']);
@@ -45,33 +48,35 @@ class logoTshirt extends \ImagickDemo\Example {
     }
 
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         $output = <<< END
 
 END;
         return $output;
     }
 
-    function renderCustomImage() {
-        switch($this->type) {
-            
-            case('simple'): {
+    public function renderCustomImage()
+    {
+        switch ($this->type) {
+            case ('simple'): {
                 $this->renderCustomImageSimple();
                 return;
             }
 
-            case('creases'): {
+            case ('creases'): {
                 $this->renderCustomImageCreases();
                 return;
             }
         }
     }
-    
+
     //TODO - this is a little borked
-    function renderCustomImageSimple() {
+    public function renderCustomImageSimple()
+    {
         $tshirt = new \Imagick(realpath("images/tshirt/tshirt.jpg"));
         $logo = new \Imagick(realpath("images/tshirt/Logo.png"));
-        $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, TRUE);
+        $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, true);
 
         $tshirt->setImageFormat('png');
 
@@ -81,12 +86,11 @@ END;
         $mask->negateimage(true);
         //Make it transparent everywhere that it is now white.
         $mask->transparentPaintImage(
-             'black',
-                 0,
-                 0.1 * \Imagick::getQuantum(),
-                 false
+            'black',
+            0,
+            0.1 * \Imagick::getQuantum(),
+            false
         );
-
 
 //        //Paint the result of the logo + mask onto the tshirt.
 //        $tshirt->compositeimage($mask, \Imagick::COMPOSITE_DEFAULT, 0, 0);
@@ -95,11 +99,11 @@ END;
 
         $shading->transformimagecolorspace(\Imagick::COLORSPACE_GRAY);
 
-        
+
         $shading->statisticImage(
             \Imagick::STATISTIC_GRADIENT,
             5,
-            2    
+            2
         );
 
         $shading->setImageFormat('png');
@@ -119,14 +123,14 @@ END;
         echo $tshirt->getImageBlob();
     }
 
-
     /**
-     * 
+     *
      */
-    function renderCustomImageCreases() {
+    public function renderCustomImageCreases()
+    {
         $tshirt = new \Imagick(realpath("images/tshirt/tshirt.jpg"));
         $logo = new \Imagick(realpath("images/tshirt/Logo.png"));
-        $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, TRUE);
+        $logo->resizeImage(100, 100, \Imagick::FILTER_LANCZOS, 1, true);
 
         $tshirt->setImageFormat('png');
 
@@ -136,40 +140,40 @@ END;
         $creases = new \Imagick();
         $creases->newpseudoimage(
             $tshirt->getImageWidth(),
-            $tshirt->getImageHeight(), 
-            "XC:".$colorString
+            $tshirt->getImageHeight(),
+            "XC:" . $colorString
         );
 
         //Composite difference finds the creases
         $creases->compositeimage($tshirt, \Imagick::COMPOSITE_DIFFERENCE, 0, 0);
         $creases->setImageFormat('png');
-        //We need the image negated for the maths to work later. 
+        //We need the image negated for the maths to work later.
         $creases->negateimage(true);
         //We also want "no crease" to equal 50% gray later
         //$creases->brightnessContrastImage(-50, 0);
 
         $creases->modulateImage(50, 100, 100);
-        
+
         //Copy the logo into an image the same size as the shirt image
         //to make life easier
         $logoCentre = new \Imagick();
         $logoCentre->newpseudoimage(
-           $tshirt->getImageWidth(),
-           $tshirt->getImageHeight(),
-           "XC:none"
+            $tshirt->getImageWidth(),
+            $tshirt->getImageHeight(),
+            "XC:none"
         );
         $logoCentre->setImageFormat('png');
         $logoCentre->compositeimage($logo, \Imagick::COMPOSITE_SRCOVER, 110, 75);
 
         //Save a copy of the tshirt sized logo
         $logoCentreMask = clone $logoCentre;
-        
+
         //Blend the creases with the logo
         $logoCentre->compositeimage($creases, \Imagick::COMPOSITE_MODULATE, 0, 0);
-        
+
         //Mask the logo so that only the pixels under the logo come through
         $logoCentreMask->compositeimage($logoCentre, \Imagick::COMPOSITE_SRCIN, 0, 0);
-        
+
         //Composite the creased logo onto the shirt
         $tshirt->compositeimage($logoCentreMask, \Imagick::COMPOSITE_DEFAULT, 0, 0);
 

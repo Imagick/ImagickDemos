@@ -2,16 +2,16 @@
 
 namespace ImagickDemo\Tutorial;
 
-
-class fxAnalyzeImage extends \ImagickDemo\Example {
-
-
-    function renderDescription() {
+class fxAnalyzeImage extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
 
         $output = <<< END
 Gradients are key to producing complicated effects in Imagick.
 
-However it is not very easily to visualise exactly what is happening in them, as your eyes are just not very good at comparing shades of gray.
+However it is not very easily to visualise exactly what is happening in them, as 
+your eyes are just not very good at comparing shades of gray.
 
 The code below takes a gradient and produces an easy to visualise graph from the gradient. 
 
@@ -19,12 +19,14 @@ END;
 
         return nl2br($output);
     }
-    
-    function render() {        
+
+    public function render()
+    {
         return $this->renderCustomImageURL();
     }
 
-    function renderCustomImage($fxAnalyzeExample) {
+    public function renderCustomImage($fxAnalyzeExample)
+    {
         $methods = [
             'example1' => 'example1',
             'example2' => 'example2',
@@ -41,8 +43,9 @@ END;
     }
 
 //Example Tutorial::fxAnalyzeImage
-    function example1() {
-        $graphWidth = 256; 
+    public function example1()
+    {
+        $graphWidth = 256;
         $imagick = new \Imagick();
         $imagick->newPseudoImage($graphWidth, 1, 'gradient:black-white');
         $arguments = array(9, -90);
@@ -52,7 +55,8 @@ END;
 //Example end
 
 //Example Tutorial::fxAnalyzeImage
-    function example2() {
+    public function example2()
+    {
         $graphWidth = 256;
         $imagick = new \Imagick();
         $imagick->newPseudoImage($graphWidth, 1, 'gradient:black-white');
@@ -61,7 +65,8 @@ END;
 //Example end
 
 //Example Tutorial::fxAnalyzeImage
-    function example3() {
+    public function example3()
+    {
         $graphWidth = 256;
         $imagick = new \Imagick();
         $imagick->newPseudoImage($graphWidth, 1, 'gradient:black-white');
@@ -71,7 +76,8 @@ END;
 //Example end
 
 //Example Tutorial::fxAnalyzeImage
-    function example4() {
+    public function example4()
+    {
         $graphWidth = 256;
         $imagick = new \Imagick();
         $imagick->newPseudoImage($graphWidth, 1, 'gradient:black-white');

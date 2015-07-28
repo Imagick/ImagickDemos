@@ -4,8 +4,10 @@ namespace ImagickDemo\Tutorial {
 
 use Imagick;
     
-class functions {
-    static function load() {
+class functions
+{
+    public static function load()
+    {
     }
 }
 
@@ -17,7 +19,8 @@ class functions {
  * @param bool $replace
  * @param null $http_response_code
  */
-function header($string, $replace = true, $http_response_code = null) {
+function header($string, $replace = true, $http_response_code = null)
+{
     global $imageType;
     global $cacheImages;
 
@@ -36,8 +39,8 @@ function header($string, $replace = true, $http_response_code = null) {
 //Example Tutorial::fxAnalyzeImage
 // Analyzes a one pixel wide image to make it easy to see what the
 // gradient is doing
-function fxAnalyzeImage(\Imagick $imagick) {
-    
+function fxAnalyzeImage(\Imagick $imagick)
+{
     $graphWidth = $imagick->getImageWidth();
     $sampleHeight = 20;
     $graphHeight = 128;
@@ -98,7 +101,8 @@ function fxAnalyzeImage(\Imagick $imagick) {
 
 
 //Example Tutorial::imagickComposite
-function imagickComposite() {
+function imagickComposite()
+{
     //Load the images
     $left = new \Imagick(realpath('images/im/holocaust_tn.gif'));
     $right = new \Imagick(realpath('images/im/spiral_stairs_tn.gif'));
@@ -136,7 +140,8 @@ function imagickComposite() {
 //Example end
 
 //Example Tutorial::backgroundMasking
-function backgroundMasking() {
+function backgroundMasking()
+{
     //Load the image
     $imagick = new \Imagick(realpath('images/chair.jpeg'));
 
@@ -145,23 +150,23 @@ function backgroundMasking() {
 
     // Create a copy of the image, and paint all the pixels that
     // are the background color to be transparent
-    $outlineImagick = clone $imagick;    
+    $outlineImagick = clone $imagick;
     $outlineImagick->transparentPaintImage(
         $backgroundColor, 0, $fuzzFactor * \Imagick::getQuantum(), false
     );
     
     // Copy the input image
     $mask = clone $imagick;
-    // Deactivate the alpha channel if the image has one, as later in the process 
-    // we want the mask alpha to be copied from the colour channel to the src 
+    // Deactivate the alpha channel if the image has one, as later in the process
+    // we want the mask alpha to be copied from the colour channel to the src
     // alpha channel. If the mask image has an alpha channel, it would be copied
-    // from that instead of from the colour channel. 
+    // from that instead of from the colour channel.
     $mask->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
     //Convert to gray scale to make life simpler
     $mask->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
 
     // DstOut does a "cookie-cutter" it leaves the shape remaining after the
-    // outlineImagick image, is cut out of the mask. 
+    // outlineImagick image, is cut out of the mask.
     $mask->compositeImage(
         $outlineImagick,
         \Imagick::COMPOSITE_DSTOUT,
@@ -195,7 +200,7 @@ function backgroundMasking() {
     //Soften the edge of the mask to prevent jaggies on the outline.
     $mask->blurimage(2, 2);
 
-    // We want the mask to go from full opaque to fully transparent quite quickly to 
+    // We want the mask to go from full opaque to fully transparent quite quickly to
     // avoid having too many semi-transparent pixels. sigmoidalContrastImage does this
     // for us. Values to use where determined empirically.
     $contrast = 15;
@@ -234,7 +239,8 @@ function backgroundMasking() {
 
 
 //Example Tutorial::imagickCompositeGen
-function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) {
+function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5)
+{
     $imagick = new \Imagick();
     $imagick->newPseudoImage($height, $overlap, 'gradient:black-white');
     $quantum = $imagick->getQuantum();
@@ -244,7 +250,14 @@ function generateBlendImage($height, $overlap, $contrast = 10, $midpoint = 0.5) 
 }
 
 
-function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $blendMidpoint = 0.5, $horizontal = true) {
+function mergeImages(
+    array $srcImages,
+    $outputSize,
+    $overlap,
+    $contrast = 10,
+    $blendMidpoint = 0.5,
+    $horizontal = true
+) {
 
     $images = array();
     $newImageWidth = 0;
@@ -350,11 +363,11 @@ function mergeImages(array $srcImages, $outputSize, $overlap, $contrast = 10, $b
     return $canvas;
 }
 
-function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
-
+function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5)
+{
     $size = 160;
 
-    //Load the images 
+    //Load the images
     $output = mergeImages(
         [
             'images/lories/6E6F9109_480.jpg',
@@ -367,7 +380,8 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
         0.2 * $size, //overlap
         $contrast,
         $blendMidpoint,
-        true);
+        true
+    );
 
     //$output = generateBlendImage(200, 200, 5, 0.5);
     $output->setImageFormat('png');
@@ -379,7 +393,8 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5) {
 
 
 //Example Tutorial::edgeExtend
-function edgeExtend($virtualPixelType, $imagePath) {
+function edgeExtend($virtualPixelType, $imagePath)
+{
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->setImageVirtualPixelMethod($virtualPixelType);
 
@@ -421,8 +436,8 @@ function edgeExtend($virtualPixelType, $imagePath) {
 
 
 //Example Tutorial::gradientReflection
-function gradientReflection() {
-
+function gradientReflection()
+{
     $im = new \Imagick(realpath('images/sample.png'));
     
     $reflection = clone $im;
@@ -433,16 +448,16 @@ function gradientReflection() {
 
     $gradient = new \Imagick();
     $gradient->newPseudoImage(
-         $reflection->getImageWidth(),
-         $reflection->getImageHeight(),
-         //Putting spaces in the rgba string is bad
-         'gradient:rgba(255,0,255,0.6)-rgba(255,255,0,0.99)'
+        $reflection->getImageWidth(),
+        $reflection->getImageHeight(),
+        //Putting spaces in the rgba string is bad
+        'gradient:rgba(255,0,255,0.6)-rgba(255,255,0,0.99)'
     );
 
     $reflection->compositeimage(
-       $gradient,
-       \Imagick::COMPOSITE_DSTOUT,
-       0, 0
+        $gradient,
+        \Imagick::COMPOSITE_DSTOUT,
+        0, 0
     );
 
     $canvas = new \Imagick();
@@ -460,7 +475,8 @@ function gradientReflection() {
 
 
 //Example Tutorial::psychedelicFont
-function psychedelicFont() {
+function psychedelicFont()
+{
     $draw = new \ImagickDraw();
     $name = 'Danack';
 
@@ -494,8 +510,8 @@ function psychedelicFont() {
 
 
 //Example Tutorial::psychedelicFontGif
-function psychedelicFontGif($name = 'Danack') {
-
+function psychedelicFontGif($name = 'Danack')
+{
     set_time_limit(3000);
 
     $aniGif = new \Imagick();
@@ -505,9 +521,7 @@ function psychedelicFontGif($name = 'Danack') {
     $scale = 0.25;
 
     for ($frame = 0; $frame < $maxFrames; $frame++) {
-
         $draw = new \ImagickDraw();
-
         $draw->setStrokeOpacity(1);
         $draw->setFont("../fonts/CANDY.TTF");
         $draw->setfontsize(150 * $scale);
@@ -552,13 +566,15 @@ function psychedelicFontGif($name = 'Danack') {
     
 //Example Tutorial::whirlyGif
 
-function lerp($t, $a, $b) {
+function lerp($t, $a, $b)
+{
     return $a + ($t * ($b - $a));
 }
 
-class Dot {
-    
-    function __construct($color, $sequence, $numberDots, $imageWidth, $imageHeight) {
+class Dot
+{
+    public function __construct($color, $sequence, $numberDots, $imageWidth, $imageHeight)
+    {
         $this->color = $color;
         $this->sequence = $sequence;
         $this->numberDots = $numberDots;
@@ -570,7 +586,8 @@ class Dot {
         }
     }
 
-    function calculateFraction($frame, $maxFrames, $timeOffset, $phaseMultiplier, $phaseDivider) {
+    public function calculateFraction($frame, $maxFrames, $timeOffset, $phaseMultiplier, $phaseDivider)
+    {
         $frame = -$frame;
         $totalAngle = 2 * $phaseMultiplier;
         $fraction = ($frame / $maxFrames * 2);
@@ -598,7 +615,8 @@ class Dot {
     }
 
 
-    function render(\ImagickDraw $draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider) {
+    public function render(\ImagickDraw $draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider)
+    {
         $innerDistance = 40;
         $outerDistance = 230;
 
@@ -612,7 +630,7 @@ class Dot {
             100 => 0,
         ];
         
-        for($i=0 ; $i<=$trailSteps ; $i++) {
+        for ($i=0; $i<=$trailSteps; $i++) {
             $key = intval(50 * $i / $trailSteps);
             $offsets[$key] = $trailLength * ($trailSteps - $i) / $trailSteps;
         }
@@ -645,7 +663,8 @@ class Dot {
 }
 
 
-function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $phaseMultiplier, $phaseDivider) {
+function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $phaseMultiplier, $phaseDivider)
+{
     $aniGif = new \Imagick();
     $aniGif->setFormat("gif");
 
@@ -659,8 +678,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     $startColor = new \ImagickPixel('red');
     $dots = [];
 
-    
-    for ($i=0 ; $i<$numberDots ; $i++) {
+    for ($i=0; $i<$numberDots; $i++) {
         $colorInfo = $startColor->getHSL();
 
         //Rotate the hue by 180 degrees
@@ -685,7 +703,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         
         $draw->translate($width / 2, $height / 2);
 
-        foreach($dots as $dot) {
+        foreach ($dots as $dot) {
             /** @var $dot Dot */
             $dot->render($draw, $frame, $maxFrames, $phaseMultiplier, $phaseDivider);
         }
@@ -706,7 +724,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
         $imagick->destroy();
     }
 
-    $aniGif->setImageFormat('gif');    
+    $aniGif->setImageFormat('gif');
     $aniGif->setImageIterations(0); //loop forever
     $aniGif->mergeImageLayers(\Imagick::LAYERMETHOD_OPTIMIZEPLUS);
 
@@ -716,7 +734,8 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
 //Example end
 
 //Example Tutorial::svgExample
-function svgExample() {    
+function svgExample()
+{
     $svg = '<?xml version="1.0"?>
     <svg width="120" height="120"
          viewPort="0 0 120 120" version="1.1"
@@ -739,13 +758,14 @@ function svgExample() {
     $image->readImageBlob($svg);
     $image->setImageFormat("jpg");
     header("Content-Type: image/jpg");
-    echo $imagick->getImageBlob();
+    echo $image->getImageBlob();
 }
 //Example end
 
 
 //Example Tutorial::screenEmbed
-function screenEmbed() {
+function screenEmbed()
+{
     $overlay = new \Imagick(realpath("images/dickbutt.jpg"));
     $imagick = new \Imagick(realpath("images/Screeny.png"));
 
@@ -756,10 +776,10 @@ function screenEmbed() {
 
     $offset = 332.9;
 
-    $points = array(    
-        0, 0, 364 - $offset, 51, 
-        $width, 0, 473.4 - $offset, 23, 
-        0, $height, 433.5 - $offset, 182, 
+    $points = array(
+        0, 0, 364 - $offset, 51,
+        $width, 0, 473.4 - $offset, 23,
+        0, $height, 433.5 - $offset, 182,
         $width, $height, 523 - $offset, 119.4
     );
 
@@ -775,14 +795,15 @@ function screenEmbed() {
 
 
 //Example Tutorial::levelizeImage
-function levelizeImage($blackPoint, $gamma,  $whitePoint) {
+function levelizeImage($blackPoint, $gamma, $whitePoint)
+{
     $imagick = new \Imagick();
     $imagick->newPseudoimage(300, 300, 'gradient:black-white');
     $maxQuantum = $imagick->getQuantum();
     $imagick->evaluateimage(\Imagick::EVALUATE_POW, 1 / $gamma);
     
     //Adjust the scale from black to white to the new 'distance' between black and white
-    $imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100 );
+    $imagick->evaluateimage(\Imagick::EVALUATE_MULTIPLY, ($whitePoint - $blackPoint) / 100);
 
     //Add move the black point to it's new value
     $imagick->evaluateimage(\Imagick::EVALUATE_ADD, ($blackPoint / 100) * $maxQuantum);
@@ -794,8 +815,8 @@ function levelizeImage($blackPoint, $gamma,  $whitePoint) {
 //Example end
 
 //Example Tutorial::imageGeometryReset
-function imageGeometryReset() {
-
+function imageGeometryReset()
+{
     $draw = new \ImagickDraw();
 
     $draw->setFont("../fonts/Arial.ttf");
@@ -814,8 +835,8 @@ function imageGeometryReset() {
     $distort = array(180);
     $textOnly->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
 
-    $textOnly->setImageMatte( TRUE );
-    $textOnly->distortImage(Imagick::DISTORTION_ARC, $distort, FALSE);
+    $textOnly->setImageMatte(true);
+    $textOnly->distortImage(Imagick::DISTORTION_ARC, $distort, false);
 
     $textOnly->setformat('png');
 

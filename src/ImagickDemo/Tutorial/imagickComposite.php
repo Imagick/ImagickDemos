@@ -2,17 +2,18 @@
 
 namespace ImagickDemo\Tutorial;
 
-class imagickComposite extends \ImagickDemo\Example {
-
-    function __construct(\ImagickDemo\Control $control) {
+class imagickComposite extends \ImagickDemo\Example
+{
+    public function __construct(\ImagickDemo\Control $control)
+    {
         $this->control = $control;
     }
 
     /**
      * @return string
      */
-    function renderDescription() {
-
+    public function renderDescription()
+    {
         $output = <<< END
 This is a simple example of how to cross fade between two images with a pre-computed gradient.
 END;
@@ -23,7 +24,8 @@ END;
     /**
      * @return string
      */
-    function render() {
+    public function render()
+    {
         $imageURL = $this->renderImageURL();
 
         $output = <<< END

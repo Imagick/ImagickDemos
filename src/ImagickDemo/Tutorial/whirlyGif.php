@@ -1,12 +1,11 @@
 <?php
 
-
 namespace ImagickDemo\Tutorial;
 
-
-class whirlyGif extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class whirlyGif extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         $output = "
 Rendering animated gifs that loop is fun!
         
@@ -15,8 +14,8 @@ Top-tip, you probably want 'Number of dots' % 'Phase divider' to be zero.";
         return nl2br($output);
     }
     
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
-
 }

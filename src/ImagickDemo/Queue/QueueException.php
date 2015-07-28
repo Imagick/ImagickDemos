@@ -1,8 +1,8 @@
 <?php
 
-
 namespace ImagickDemo\Queue;
 
+class QueueException extends \Exception
+{
 
-class QueueException extends \Exception {}
-
+}

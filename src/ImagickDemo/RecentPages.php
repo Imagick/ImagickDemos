@@ -5,19 +5,19 @@ namespace ImagickDemo;
 
 use ASM\Session;
 
-class RecentPages {
-
+class RecentPages
+{
     /**
      * @var Session
      */
     private $session;
     
-    function __construct(Session $session)
+    public function __construct(Session $session)
     {
         $this->session = $session;
     }
 
-    function log($uri)
+    public function log($uri)
     {
         $sessionData = &$this->session->getData();
         $sessionData['uris'][] = $uri;
@@ -31,7 +31,7 @@ class RecentPages {
         }
     }
 
-    function display()
+    public function display()
     {
         $sessionData = $this->session->getData();
         if (isset($sessionData['uris']) && is_array($sessionData['uris'])) {
@@ -46,4 +46,3 @@ class RecentPages {
         }
     }
 }
-

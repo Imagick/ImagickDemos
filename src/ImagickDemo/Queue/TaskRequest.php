@@ -4,49 +4,57 @@ namespace ImagickDemo\Queue;
 
 use Intahwebz\Request;
 
-
-class TaskRequest implements Request {
-    
+class TaskRequest implements Request
+{
     private $variables;
-    
-    function __construct($variables) {
+
+    public function __construct($variables)
+    {
         $this->variables = $variables;
     }
-    
-    
-    function getClientIP() {
+
+    public function getClientIP()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getHostName() {
+    public function getHostName()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function setRouteParameters($routeParameters) {
+    public function setRouteParameters($routeParameters)
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getScheme() {
+    public function getScheme()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getRequestParams() {
+    public function getRequestParams()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getPath() {
+    public function getPath()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getPort() {
+    public function getPort()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getMethod() {
+    public function getMethod()
+    {
         throw new \Exception("Not implemented");
     }
 
-    function getReferrer() {
+    public function getReferrer()
+    {
         throw new \Exception("Not implemented");
     }
 
@@ -57,22 +65,22 @@ class TaskRequest implements Request {
      * @param mixed $maximum
      * @return mixed
      */
-    function getVariable($variableName, $default = false, $minimum = false, $maximum = false) {
-        if(array_key_exists($variableName, $this->variables) == true){
+    public function getVariable($variableName, $default = false, $minimum = false, $maximum = false)
+    {
+        if (array_key_exists($variableName, $this->variables) == true) {
             $result = $this->variables[$variableName];
-        }
-        else {
+        } else {
             $result = $default;
         }
 
-        if($minimum !== false){
-            if($result < $minimum){
+        if ($minimum !== false) {
+            if ($result < $minimum) {
                 $result = $minimum;
             }
         }
 
-        if($maximum !== false){
-            if($result > $maximum){
+        if ($maximum !== false) {
+            if ($result > $maximum) {
                 $result = $maximum;
             }
         }
@@ -80,7 +88,8 @@ class TaskRequest implements Request {
         return $result;
     }
 
-    function checkIfModifiedHeader($unixTime) {
+    public function checkIfModifiedHeader($unixTime)
+    {
         throw new \Exception("Not implemented");
     }
 }

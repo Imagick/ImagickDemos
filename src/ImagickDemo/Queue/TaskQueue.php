@@ -3,7 +3,6 @@
 
 namespace ImagickDemo\Queue;
 
-
 // http://www.sitepoint.com/message-queues-comparing-beanstalkd-ironmq-amazon-sqs/
 
 /*
@@ -42,9 +41,8 @@ Worker – a client which connects to the message server to reserve, delete and 
 
 */
 
-
-interface TaskQueue {
-
+interface TaskQueue
+{
     const STATE_INITIAL = 'initial';
     const STATE_WORKING = 'working';
     const STATE_COMPLETE = 'completed';
@@ -55,49 +53,49 @@ interface TaskQueue {
      * Returns
      * @return Task
      */
-    function waitToAssignTask();
+    public function waitToAssignTask();
 
     /**
      * Add a task to the queue.
      * @param Task $task
      */
-    function addTask(Task $task);
+    public function addTask(Task $task);
 
     /**
      * Mark that a task is not to be processed.
      * @param Task $task
      * @return mixed
      */
-    function buryTask(Task $task);
+    public function buryTask(Task $task);
 
     /**
      * Mark that a task has been completed.
      * @param Task $task
      * @return mixed
      */
-    function completeTask(Task $task);
+    public function completeTask(Task $task);
 
     /**
      * Mark that a task has errored.
      * @param Task $task
      * @return mixed
      */
-    function errorTask(Task $task);
+    public function errorTask(Task $task);
     
     /**
      * @return mixed
      */
-    function getName();
+    public function getName();
 
     /**
      * @return mixed
      */
-    function getQueueCount();
+    public function getQueueCount();
 
     /**
-     * Returns true if the queue processor has run in the last 
+     * Returns true if the queue processor has run in the last
      * 30 seconds.
      * @return mixed
      */
-    function isActive();
+    public function isActive();
 }

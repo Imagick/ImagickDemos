@@ -1,13 +1,12 @@
 <?php
 
-
 namespace ImagickDemo\Navigation;
 
 use ImagickDemo\Control\NullControl;
 use ImagickDemo\Helper\PageInfo;
 
-class CategoryNav implements Nav {
-
+class CategoryNav implements Nav
+{
     protected $currentExample;
 
     /**
@@ -19,24 +18,25 @@ class CategoryNav implements Nav {
      * @param $category
      * @param $example
      */
-    function __construct(PageInfo $pageInfo) {
+    public function __construct(PageInfo $pageInfo)
+    {
         $this->category = $pageInfo->getCategory();
         $this->currentExample = $pageInfo->getExample();
         $this->exampleList = $this->getCategoryList($this->category);
         $this->pageInfo = $pageInfo;
     }
 
-    
-    function getPageInfo()
+    public function getPageInfo()
     {
         return $this->pageInfo;
     }
     
-    function getCategory() {
+    public function getCategory()
+    {
         return $this->category;
     }
     
-    function getExample()
+    public function getExample()
     {
         return $this->pageInfo->getExample();
     }
@@ -44,41 +44,24 @@ class CategoryNav implements Nav {
     /**
      * @return mixed
      */
-    function getBaseURI() {
+    public function getBaseURI()
+    {
         return $this->category;
     }
 
     /**
      * @return mixed
      */
-    function renderTitle() {
+    public function renderTitle()
+    {
         if ($this->currentExample) {
             return $this->currentExample;
         }
+
         return $this->category;
     }
 
-//    /**
-//     * @param \Auryn\Injector $injector
-//     */
-//    function setupControlAndExample(\Auryn\Injector $injector) {
-//        $navName = $this->getCurrentName();
-//
-//        if ($navName) {
-//                $exampleClassname = sprintf('ImagickDemo\%s\%s', $this->category, $navName);
-//        }
-//        else {
-//            $exampleClassname = sprintf('ImagickDemo\%s\nullExample', $this->category);
-//        }
-//
-//        $injector->alias(\ImagickDemo\Example::class, $exampleClassname);
-//    }
-
-    
-        /**
-     * @param \Auryn\Injector $injector
-     */
-    function getExampleName()
+    public function getExampleName()
     {
         $navName = $this->getCurrentName();
                
@@ -93,7 +76,7 @@ class CategoryNav implements Nav {
         return 'ImagickDemo\HomePageExample';
     }
 
-    function getImageFunctionName()
+    public function getImageFunctionName()
     {
         $category = $this->pageInfo->getCategory();
         $example = $this->pageInfo->getExample();
@@ -113,7 +96,7 @@ class CategoryNav implements Nav {
         return sprintf('ImagickDemo\%s\%s', $category, $function);
     }
 
-    function getDIInfo()
+    public function getDIInfo()
     {
         $category = $this->pageInfo->getCategory();
         $example = $this->pageInfo->getExample();
@@ -143,8 +126,8 @@ class CategoryNav implements Nav {
      * @internal param $array
      * @return string
      */
-    function getPreviousName() {
-
+    public function getPreviousName()
+    {
         $current = $this->currentExample;
         $previous = null;
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
@@ -162,7 +145,8 @@ class CategoryNav implements Nav {
     /**
      * @return string
      */
-    function getCurrentName() {
+    public function getCurrentName()
+    {
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
             if (strcmp($this->currentExample, $exampleName) === 0) {
                 return $exampleName;
@@ -172,14 +156,12 @@ class CategoryNav implements Nav {
         return null;
     }
 
-
-    
-    
     /**
      * @internal param $current
      * @return string
      */
-    function getNextName() {
+    public function getNextName()
+    {
         $current = $this->currentExample;
         $next = false;
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
@@ -197,7 +179,8 @@ class CategoryNav implements Nav {
     /**
      * @return string
      */
-    function renderPreviousButton() {
+    public function renderPreviousButton()
+    {
         $previousNavName = $this->getPreviousName();
 
         if ($previousNavName) {
@@ -214,7 +197,8 @@ class CategoryNav implements Nav {
     /**
      * @return string
      */
-    function renderPreviousLink() {
+    public function renderPreviousLink()
+    {
         $previousNavName = $this->getPreviousName();
 
         if ($previousNavName) {
@@ -230,7 +214,8 @@ class CategoryNav implements Nav {
     /**
      * @return string
      */
-    function renderNextButton() {
+    public function renderNextButton()
+    {
         $nextName = $this->getNextName();
 
         if ($nextName) {
@@ -247,7 +232,8 @@ class CategoryNav implements Nav {
     /**
      * @return string
      */
-    function renderNextLink() {
+    public function renderNextLink()
+    {
         $nextName = $this->getNextName();
 
         if ($nextName) {
@@ -263,8 +249,8 @@ class CategoryNav implements Nav {
     /**
      *
      */
-    function renderSelect() {
-
+    public function renderSelect()
+    {
         $output = '';
 
         $exampleLabel = 'Choose example';
@@ -300,8 +286,8 @@ END;
     /**
      * @return string
      */
-    function renderSearchBox() {
-
+    public function renderSearchBox()
+    {
         $output = <<< END
 <div class='smallPadding navSpacer searchContainer' role='search'   >
     <input type="text" class='searchBox' id='searchInput' placeholder="Search..." name="query" value="" />
@@ -316,9 +302,8 @@ END;
     }
     
     
-    function renderVertical() {
-       
-        
+    public function renderVertical()
+    {
         $output = "<ul class='nav nav-sidebar smallPadding' id='searchList'>";
 
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
@@ -347,8 +332,8 @@ END;
         return $output;
     }
 
-    function renderHorizontal() {
-
+    public function renderHorizontal()
+    {
         echo "<div style='font-size: 12px'>";
         
         foreach ($this->exampleList as $exampleName => $exampleDefinition) {
@@ -370,14 +355,16 @@ END;
     /**
      * @param bool $horizontal
      */
-    function renderNav($horizontal = false) {
+    public function renderNav($horizontal = false)
+    {
         echo "<div class='contentPanel navContainer' >";
             echo $this->renderSearchBox();
             echo $this->renderVertical();
         echo "</div>";
     }
 
-    function getExampleDefinition($category, $example) {
+    public function getExampleDefinition($category, $example)
+    {
         $examples = self::getAllExamples();
 
         if (!isset($examples[$category][$example])) {
@@ -387,7 +374,8 @@ END;
         return $examples[$category][$example];
     }
     
-    function getCategoryList($category) {
+    public function getCategoryList($category)
+    {
         $examples = self::getAllExamples();
 
         if (array_key_exists($category, $examples)) {
@@ -397,9 +385,8 @@ END;
         return [];
     }
 
-    
-    function getAllExamples() {
-
+    public function getAllExamples()
+    {
         $imagickExamples = [
             'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Imagick\Control\adaptiveBlurImage::class],
 
@@ -458,7 +445,7 @@ END;
             'contrastImage' => ['contrastImage', \ImagickDemo\Imagick\Control\contrastImage::class],
             //'contrastStretchImage',
             'convolveImage' => [
-                'convolveImage', 
+                'convolveImage',
                 \ImagickDemo\Imagick\Control\convolveImage::class
             ],
             'cropImage' => ['cropImage', \ImagickDemo\Imagick\Control\cropImage::class],
@@ -503,7 +490,7 @@ END;
             'floodFillPaintImage' => [
                 'floodFillPaintImage',
                 \ImagickDemo\Imagick\Control\floodFillPaintImage::class,
-                'defaultParams' => [ 
+                'defaultParams' => [
                     'x' => 260,
                     'y' => 150,
                     'fuzz' => 0.2,
@@ -620,7 +607,7 @@ END;
             'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
             'implodeImage'  => ['implodeImage', \ImagickDemo\Control\ImageControl::class],
             'importImagePixels' => ['importImagePixels', \ImagickDemo\Control\NullControl::class],
-            //'labelImage' => basically does setImageProperty("label", $text) 
+            //'labelImage' => basically does setImageProperty("label", $text)
             
             'levelImage' => [
                 'levelImage',
@@ -823,7 +810,7 @@ END;
             'shearImage' => ['shearImage', \ImagickDemo\Imagick\Control\shearImage::class],
             'sigmoidalContrastImage' => [
                 'sigmoidalContrastImage',
-                \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class 
+                \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class
             ],
             'sketchImage' => [
                 'sketchImage',
@@ -870,7 +857,7 @@ END;
                 'trimImage',
                 \ImagickDemo\Imagick\Control\trimImage::class,
                 'defaultParams' => [
-                    'color' => 'rgb(39, 194, 255)' 
+                    'color' => 'rgb(39, 194, 255)'
                 ]
             ],
             'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ImageControl::class],
@@ -1031,7 +1018,7 @@ END;
             ],
             //'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
             'fxAnalyzeImage' => [
-                'fxAnalyzeImage', 
+                'fxAnalyzeImage',
                 \ImagickDemo\Control\FXAnalyzeControl::class
             ],
 
@@ -1073,8 +1060,6 @@ END;
             'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
             'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
             'imageGeometryReset' => ['imageGeometryReset', \ImagickDemo\Control\NullControl::class],
-            
-
         ];
 
         $examples = [
@@ -1088,12 +1073,12 @@ END;
 
         return $examples;
     }
-    
-    
-    static function findExample($category, $example) {
+
+    public static function findExample($category, $example)
+    {
         $allExamples = self::getAllExamples();
 
-        foreach($allExamples as $exampleCategory => $examples) {
+        foreach ($allExamples as $exampleCategory => $examples) {
             if (strtolower($exampleCategory) == strtolower($category)) {
                 foreach ($examples as $exampleName => $exampleDetails) {
                     if (strtolower($exampleName) == strtolower($example)) {
@@ -1106,5 +1091,3 @@ END;
         return null;
     }
 }
-
- 

@@ -2,18 +2,20 @@
 
 namespace ImagickDemo\ImagickPixelIterator;
 
-class IndexExample extends \ImagickDemo\Example {
-
-    function getColumnRightOffset() {
+class IndexExample extends \ImagickDemo\Example
+{
+    public function getColumnRightOffset()
+    {
         return 2;
     }
 
-
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "ImagickPixelIterator";
     }
-    
-    function render() {
+
+    public function render()
+    {
 
         $output = <<< END
 <p>

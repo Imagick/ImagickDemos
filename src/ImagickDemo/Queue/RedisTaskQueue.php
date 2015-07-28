@@ -5,9 +5,8 @@ namespace ImagickDemo\Queue;
 use Predis\Client as RedisClient;
 use Predis\Collection\Iterator;
 
-
-class RedisTaskQueue implements TaskQueue {
-
+class RedisTaskQueue implements TaskQueue
+{
     /**
      * @var RedisClient
      */
@@ -25,16 +24,18 @@ class RedisTaskQueue implements TaskQueue {
      * @param RedisClient $redisClient
      * @param $queueName
      */
-    function __construct(RedisClient $redisClient, $queueName) {
+    public function __construct(RedisClient $redisClient, $queueName)
+    {
         $this->redisClient = $redisClient;
         $this->queueName = $queueName;
-        $this->taskListKey = $queueName.':taskList';
-        $this->announceListKey = $queueName.'_announceList';
-        $this->statusKey = $queueName.'_status';
+        $this->taskListKey = $queueName . ':taskList';
+        $this->announceListKey = $queueName . '_announceList';
+        $this->statusKey = $queueName . '_status';
     }
 
-    function clearStatusQueue() {
-        for ($x=0 ; $x<10 ; $x++) {
+    public function clearStatusQueue()
+    {
+        for ($x = 0; $x < 10; $x++) {
             $iterator = new Iterator\Keyspace($this->redisClient, $this->statusKey . "*", 200);
 
             $keysToDelete = [];
@@ -46,10 +47,9 @@ class RedisTaskQueue implements TaskQueue {
             }
         }
     }
-    
-    function getStatusQueue() {
 
-        
+    public function getStatusQueue()
+    {
         //$iterator = new Iterator\Keyspace($this->redisClient, $this->taskListKey . "*", 2000);
         $iterator = new Iterator\Keyspace($this->redisClient, "*", 2000);
         //$iterator = new Iterator\Keyspace($this->redisClient, $this->statusKey . "*", 2000);
@@ -58,21 +58,22 @@ class RedisTaskQueue implements TaskQueue {
         foreach ($iterator as $key) {
             $keys[] = $key;
         }
-        
+
         if (!count($keys)) {
             return [];
         }
 
         $values = $this->redisClient->mget($keys);
 
-        return array_combine($keys,$values);
+        return array_combine($keys, $values);
     }
-    
-    
+
+
     /**
      * @return int
      */
-    function getQueueCount() {
+    public function getQueueCount()
+    {
         $count = $this->redisClient->LLEN($this->announceListKey);
 
         return $count;
@@ -83,7 +84,8 @@ class RedisTaskQueue implements TaskQueue {
      * @param Task $task
      * @return mixed
      */
-    function buryTask(Task $task) {
+    public function buryTask(Task $task)
+    {
         $taskKey = $task->getKey();
         $this->setStatus($taskKey, TaskQueue::STATE_BURIED);
     }
@@ -93,7 +95,8 @@ class RedisTaskQueue implements TaskQueue {
      * @param Task $task
      * @return mixed
      */
-    function completeTask(Task $task) {
+    public function completeTask(Task $task)
+    {
         $taskKey = $task->getKey();
         $this->setStatus($taskKey, TaskQueue::STATE_COMPLETE);
     }
@@ -103,7 +106,8 @@ class RedisTaskQueue implements TaskQueue {
      * @param Task $task
      * @return mixed
      */
-    function errorTask(Task $task) {
+    public function errorTask(Task $task)
+    {
         $taskKey = $task->getKey();
         $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
     }
@@ -111,8 +115,9 @@ class RedisTaskQueue implements TaskQueue {
     /**
      * @return string
      */
-    function getName() {
-        return "Queue."."ImagickTaskQueue";
+    public function getName()
+    {
+        return "Queue." . "ImagickTaskQueue";
     }
 
     /**
@@ -120,7 +125,8 @@ class RedisTaskQueue implements TaskQueue {
      * @throws \Exception
      * @return Task
      */
-    function waitToAssignTask() {
+    public function waitToAssignTask()
+    {
         $this->setActive();
         // A nil multi-bulk when no element could be popped and the timeout expired.
         // A two-element multi-bulk with the first element being the name of the key
@@ -139,7 +145,7 @@ class RedisTaskQueue implements TaskQueue {
 
         if (!$serializedTask) {
             $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
-            throw new \Exception("Failed to find expected task ".$taskKey);
+            throw new \Exception("Failed to find expected task " . $taskKey);
         }
 
         $task = @unserialize($serializedTask);
@@ -157,8 +163,9 @@ class RedisTaskQueue implements TaskQueue {
      * @param $taskKey
      * @param $state
      */
-    private function setStatus($taskKey, $state) {
-        $statusKey = $this->statusKey.$taskKey;
+    private function setStatus($taskKey, $state)
+    {
+        $statusKey = $this->statusKey . $taskKey;
         $this->redisClient->set($statusKey, $state, 'EX', $this->taskKeyStateTime);
     }
 
@@ -166,8 +173,9 @@ class RedisTaskQueue implements TaskQueue {
      * @param Task $task
      * @return string
      */
-    function getStatus(Task $task) {
-        $statusKey = $this->statusKey.$task->getKey();
+    public function getStatus(Task $task)
+    {
+        $statusKey = $this->statusKey . $task->getKey();
         return $this->redisClient->get($statusKey);
     }
 
@@ -175,7 +183,8 @@ class RedisTaskQueue implements TaskQueue {
      * @param Task $task
      * @return null
      */
-    function addTask(Task $task) {
+    public function addTask(Task $task)
+    {
         $serialized = serialize($task);
         $existingStatus = $this->getStatus($task);
 
@@ -194,21 +203,24 @@ class RedisTaskQueue implements TaskQueue {
     /**
      * @return string
      */
-    private function getActiveKey() {
-        return "Queue.".$this->queueName."Active";
+    private function getActiveKey()
+    {
+        return "Queue." . $this->queueName . "Active";
     }
 
     /**
      * @return string
      */
-    function isActive() {
+    public function isActive()
+    {
         return $this->redisClient->get($this->getActiveKey());
     }
 
     /**
-     * 
+     *
      */
-    private function setActive() {
+    private function setActive()
+    {
         $this->redisClient->set(
             $this->getActiveKey(),
             true,

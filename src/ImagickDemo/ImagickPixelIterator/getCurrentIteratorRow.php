@@ -1,15 +1,11 @@
 <?php
 
-
-
-
 namespace ImagickDemo\ImagickPixelIterator;
 
-
-class getCurrentIteratorRow extends \ImagickDemo\Example {
-
-    function render() {
+class getCurrentIteratorRow extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return "";
     }
-
 }

@@ -1,12 +1,13 @@
 <?php
 
+namespace ImagickDemo;
+
 use Intahwebz\LogPath;
 
-
-class RedisLogWriter extends CliTool {
-
+class RedisLogWriter extends CliTool
+{
     use \Intahwebz\Cache\KeyName;
-    
+
     private $redisClient;
 
     /**
@@ -18,23 +19,22 @@ class RedisLogWriter extends CliTool {
      * @param RedisClient $redisClient
      * @param LogPath $logPath
      */
-    function __construct(RedisClient $redisClient, LogPath $logPath) {
+    public function __construct(RedisClient $redisClient, LogPath $logPath)
+    {
         $this->redisClient = $redisClient;
         $this->logPath = $logPath;
     }
 
     /**
-     * 
+     *
      */
-    function main() {
+    public function main()
+    {
         $key = self::getClassKey();
-
         $fileHandle = fopen($this->logPath->getSafePath('.', "Redis.log"), "a");
-
         $loops = 0;
-        
         $writesPerSecond = 500;
-        $maxRunTime = 30; 
+        $maxRunTime = 30;
         
         $sleepTime = intval(1000000 / $writesPerSecond);
 
@@ -42,7 +42,6 @@ class RedisLogWriter extends CliTool {
         $count = 0;
 
         while (time() < $endTime) {
-
             //A nil multi-bulk when no element could be popped and the timeout expired.
             //A two-element multi-bulk with the first element being the name of the key where an element was popped and the second element being the value of the popped element.
 
@@ -50,8 +49,7 @@ class RedisLogWriter extends CliTool {
             $logEntries = $this->redisClient->blpop($key, 5);
 
             if ($logEntries) {
-                for ($x=0 ; $x<count($logEntries) ; $x+=2) {
-
+                for ($x=0; $x<count($logEntries); $x+=2) {
                     $logEntry = $logEntries[$x + 1];
                     
                     $written = fwrite($fileHandle, $logEntry);

@@ -5,14 +5,13 @@ namespace ImagickDemo;
 
 use ImagickDemo\Helper\PageInfo;
 
-class NavigationBar {
+class NavigationBar
+{
 
-    
     private $activeCategory;
-    
+
     private $activeExample;
-    
-    
+
     private $navOptions = [
         "/" => "Home",
         "/Imagick" => "Imagick",
@@ -29,16 +28,18 @@ class NavigationBar {
      * @internal param null $activeCategory
      * @internal param null $activeExample
      */
-    function __construct(PageInfo $pageInfo) {
+    public function __construct(PageInfo $pageInfo)
+    {
         $this->activeCategory = $pageInfo->getCategory();//$category;
         $this->activeExample = $pageInfo->getExample();//$example;
-        
+
     }
 
     /**
      * @return string
      */
-    function renderIssueLink() {
+    public function renderIssueLink()
+    {
         $output = '';
         $issueURL = "https://github.com/Danack/Imagick-demos/issues/new?title=&body=";
         if ($this->activeExample && $this->activeCategory) {
@@ -51,17 +52,17 @@ class NavigationBar {
 
         return $output;
     }
-    
-    
-    /**
-     * 
-     */
-    function renderSelect() {
 
+
+    /**
+     *
+     */
+    public function renderSelect()
+    {
         $output = '';
 
-        $categoryLabel = 'Choose category'; 
-        
+        $categoryLabel = 'Choose category';
+
         if ($this->activeCategory) {
             $categoryLabel = $this->activeCategory;
         }
@@ -74,11 +75,11 @@ class NavigationBar {
   </button>
   <ul class="dropdown-menu" role="menu">
 END;
-  
+
         foreach ($this->navOptions as $url => $name) {
             $output .= "<li><a href='$url'>$name</a></li>";
         }
-$output .="
+        $output .= "
   </ul>
 </div>";
 
@@ -88,12 +89,13 @@ $output .="
     /**
      * @return string
      */
-    function render() {
+    public function render()
+    {
         $output = "";
 
         foreach ($this->navOptions as $url => $name) {
             $activeClass = '';
-            if (strcmp($url, '/'.$this->activeCategory) === 0) {
+            if (strcmp($url, '/' . $this->activeCategory) === 0) {
                 $activeClass = 'active';
             }
             $output .= "<li class='menuItem $activeClass'>";
@@ -107,10 +109,10 @@ $output .="
     /**
      * @return string
      */
-    function renderRight() {
-        
+    public function renderRight()
+    {
         $output = "";
-        
+
         $output .= "
 <li class='menuItem'>
     <a href='https://github.com/Danack/Imagick-demos' target='_blank'>Source code</a>
@@ -130,7 +132,4 @@ $output .="
 
         return $output;
     }
-    
 }
-
- 

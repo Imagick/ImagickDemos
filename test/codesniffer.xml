@@ -10,7 +10,8 @@
     <exclude-pattern>*ImagickDemo/DocHelper.php</exclude-pattern>
     
     
-    
+    <!-- These will be removed when we switch to tier fully. -->
+    <exclude-pattern>*ImagickDemo/Response/*</exclude-pattern>
     
 
     <rule ref="PSR2">
@@ -56,13 +57,18 @@
 
     <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
         <exclude-pattern>*bootstrap.php</exclude-pattern>
-        <exclude-pattern>*Tutorial/functions.php</exclude-pattern>
+        <exclude-pattern>*/functions.php</exclude-pattern>
     </rule>
     
-    
+
 
     <!-- We use lowercase names to avoid having to have huge data blocks -->
     <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>Imagick/*</exclude-pattern>
+        <exclude-pattern>ImagickDraw/*</exclude-pattern>
+        <exclude-pattern>ImagickKernel/*</exclude-pattern>
+        <exclude-pattern>ImagickPixel/*</exclude-pattern>
+        <exclude-pattern>ImagickPixelIterator/*</exclude-pattern>        
         <exclude-pattern>Tutorial/*</exclude-pattern>
     </rule>
 

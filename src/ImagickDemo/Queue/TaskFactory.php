@@ -1,14 +1,12 @@
 <?php
 
-
 namespace ImagickDemo\Queue;
 
-
-interface TaskFactory {
+interface TaskFactory
+{
 
     /**
      * @return mixed
      */
-    function createTask();
+    public function createTask();
 }
-

@@ -67,8 +67,8 @@ class SimpleStats
         $counters = array_merge($counters, $asyncStats->getCounters());
 
         $requiredTimers = [
-            \ImagickDemo\Queue\ImagickTaskRunner::event_imageGenerated,
-            \ImagickDemo\Queue\ImagickTaskRunner::event_pageGenerated,
+            \ImagickDemo\Queue\ImagickTaskRunner::EVENT_IMAGE_GENERATED,
+            \ImagickDemo\Queue\ImagickTaskRunner::EVENT_PAGE_GENERATED,
         ];
 
         $gauges = array_merge($gauges, $asyncStats->summariseTimers($requiredTimers));

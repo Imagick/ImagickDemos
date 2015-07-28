@@ -1,17 +1,15 @@
 <?php
 
-
-
 namespace ImagickDemo\ImagickPixelIterator;
 
-
-class newPixelIterator extends \ImagickDemo\Example {
-
-    function render() {
+class newPixelIterator extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return "";
     }
 
-    function renderImage() {
+    public function renderImage()
+    {
     }
 }
- 

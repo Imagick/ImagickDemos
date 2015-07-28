@@ -2,20 +2,19 @@
 
 namespace ImagickDemo\Queue;
 
-
-interface Task {
-
+interface Task
+{
     /**
      * Return a unique string for the task.
      * @return string
      */
-    function getKey();
+    public function getKey();
     
     /**
      * Serialize the task to a string.
      * @return mixed
      */
-    function serialize();
+    public function serialize();
 
     /**
      * Unserialize a string to be an instantiated instance
@@ -23,5 +22,5 @@ interface Task {
      * @param $data
      * @return mixed
      */
-    static function unserialize($data);
+    public static function unserialize($data);
 }

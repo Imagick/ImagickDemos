@@ -1,44 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\Navigation;
 
-
-class NullNav implements Nav {
-
-    function renderPreviousButton() {
+class NullNav implements Nav
+{
+    public function renderPreviousButton()
+    {
     }
 
-    function renderNextButton() {
+    public function renderNextButton()
+    {
     }
 
-    function renderPreviousLink() {
+    public function renderPreviousLink()
+    {
     }
 
-    function renderNextLink() {
+    public function renderNextLink()
+    {
     }
 
-    function renderSelect() {
+    public function renderSelect()
+    {
 
     }
 //
 //    function renderTitle() {
 //        return "Hello!";
 //    }
-    
-    function renderNav() {
-        
+
+    public function renderNav()
+    {
+
     }
 
-    function getURL() {
-        
+    public function getURL()
+    {
+
     }
 
-
-    
-    function getCategory(){
+    public function getCategory()
+    {
         return '';
     }
 }
-
- 

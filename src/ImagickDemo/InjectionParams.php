@@ -1,12 +1,9 @@
 <?php
 
-
 namespace ImagickDemo;
-
 
 class InjectionParams
 {
-
     public $shares;
     public $aliases;
     public $params;
@@ -41,13 +38,13 @@ class InjectionParams
     
     public function defineParam($paramName, $value)
     {
-        $this->params[$paramName] = $value; 
+        $this->params[$paramName] = $value;
     }
     
     
     public function delegate($className, $delegate)
     {
-        $this->params[$className] = $delegate; 
+        $this->params[$className] = $delegate;
     }
     
     /**
@@ -82,4 +79,3 @@ class InjectionParams
         return $this->delegates;
     }
 }
-

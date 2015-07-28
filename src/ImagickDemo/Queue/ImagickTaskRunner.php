@@ -5,7 +5,8 @@ namespace ImagickDemo\Queue;
 
 use ImagickDemo\Framework\ArrayVariableMap;
 
-class ImagickTaskRunner {
+class ImagickTaskRunner
+{
 
     /**
      * @var \Auryn\Injector
@@ -13,13 +14,13 @@ class ImagickTaskRunner {
     private $injector;
 
     // <namespace>.<instrumented section>.<target (noun)>.<action (past tense verb)>.<measure (noun)>
-    // 
+    //
     // const event_imageGenerated = "phpimagick.imagickTask.image.generated.timeTaken";
     // const event_imageGenerated = "phpimagick.imagickTask.image.exception";
 
     // Both should have '.time' appended.
-    const event_imageGenerated = "phpimagick.imagickTask.image.generated";
-    const event_pageGenerated =  "phpimagick.imagickTask.page.generated";
+    const EVENT_IMAGE_GENERATED = "phpimagick.imagickTask.image.generated";
+    const EVENT_PAGE_GENERATED = "phpimagick.imagickTask.page.generated";
 
     /**
      * @var TaskQueue
@@ -33,20 +34,21 @@ class ImagickTaskRunner {
      * @param \Auryn\Injector $injector
      * @param \Stats\AsyncStats $asyncStats
      */
-    function __construct(
+    public function __construct(
         ImagickTaskQueue $taskQueue,
         \Auryn\Injector $injector,
         \Stats\AsyncStats $asyncStats
     ) {
         $this->taskQueue = $taskQueue;
         $this->injector = $injector;
-        $this->asyncStats  = $asyncStats;
+        $this->asyncStats = $asyncStats;
     }
 
     /**
-     * 
+     *
      */
-    function run() {
+    public function run()
+    {
         echo "ImagickTaskRunner started\n";
         /** @noinspection PhpUndefinedMethodInspection */
         \ImagickDemo\Imagick\functions::load();
@@ -61,7 +63,7 @@ class ImagickTaskRunner {
 
         // Each image generated hurries up the restart by 50 seconds
         // for a max of 72 images generated per run
-        $taskPseudoTime = 50; 
+        $taskPseudoTime = 50;
         $endTime = time() + $maxRunTime;
         $count = 0;
 
@@ -73,29 +75,29 @@ class ImagickTaskRunner {
                 if (($count % 20) == 0) {
                     echo "\n";
                 }
-                //Sleep for 1/10th of a second 
+                //Sleep for 1/10th of a second
                 usleep(100000);
                 continue;
             }
 
-            echo "A task! "."\n";
+            echo "A task! " . "\n";
             $endTime -= $taskPseudoTime;
 
             try {
                 $startTime = microtime(true);
                 $this->execute($task);
                 $time = microtime(true) - $startTime;
-                $this->asyncStats->recordTime(self::event_imageGenerated, $time);
+                $this->asyncStats->recordTime(self::EVENT_IMAGE_GENERATED, $time);
                 echo "Task complete\n";
                 $this->taskQueue->completeTask($task);
             }
-            catch(\ImagickException $ie) {
-                echo "ImagickException running the task: ".$ie->getMessage();
+            catch (\ImagickException $ie) {
+                echo "ImagickException running the task: " . $ie->getMessage();
                 $this->taskQueue->errorTask($task);
             }
-            catch(\Auryn\BadArgumentException $bae) {
+            catch (\Auryn\BadArgumentException $bae) {
                 //Log failed job
-                echo "BadArgumentException running the task: ".$bae->getMessage();
+                echo "BadArgumentException running the task: " . $bae->getMessage();
                 $this->taskQueue->errorTask($task);
             }
         }
@@ -106,14 +108,15 @@ class ImagickTaskRunner {
      * @param ImagickTask $task
      * @throws \Exception
      */
-    private function execute(ImagickTask $task) {
+    private function execute(ImagickTask $task)
+    {
         $imageFunction = $task->getImageFunction();
         $params = $task->getParams();
         $filename = $task->getFilename();
         $imageTypes = ['jpg', 'gif', 'png'];
-        
+
         foreach ($imageTypes as $imageType) {
-            $fullFilename = $filename.".".$imageType;
+            $fullFilename = $filename . "." . $imageType;
             if (file_exists($fullFilename) == true) {
                 return;
             }
@@ -121,7 +124,7 @@ class ImagickTaskRunner {
 
         $lowried = [];
         foreach ($params as $key => $value) {
-            $lowried[':'.$key] = $value;
+            $lowried[':' . $key] = $value;
         }
 
         $injector = clone $this->injector;
@@ -132,9 +135,7 @@ class ImagickTaskRunner {
         echo "filename was $filename\n";
         renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
     }
-}
 /*
-
 
 <?php
 
@@ -162,3 +163,4 @@ exit();
 
 
 */
+}

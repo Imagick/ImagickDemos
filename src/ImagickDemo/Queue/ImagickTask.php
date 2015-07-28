@@ -4,10 +4,8 @@ namespace ImagickDemo\Queue;
 
 use ImagickDemo\Control;
 
-
-
-class ImagickTask implements Task {
-
+class ImagickTask implements Task
+{
     use \Intahwebz\Cache\KeyName;
 
     private $imageFunction;
@@ -21,19 +19,21 @@ class ImagickTask implements Task {
      * @param $params
      * @param $filename
      */
-    function __construct($imageFunction, $params, $filename) {
+    public function __construct($imageFunction, $params, $filename)
+    {
         $this->imageFunction = $imageFunction;
         $this->params = $params;
         $this->filename = $filename;
     }
 
     /**
-     * 
+     *
      */
-    public function getKey() {
+    public function getKey()
+    {
         return $this->filename;
     }
-    
+
 
     /**
      * @param $category
@@ -42,29 +42,34 @@ class ImagickTask implements Task {
      * @param $params
      * @return ImagickTask
      */
-    public static function create($category, $example, $imageFunction, $params) {
+    public static function create($category, $example, $imageFunction, $params)
+    {
         $filename = getImageCacheFilename($category, $example, $params);
         return new \ImagickDemo\Queue\ImagickTask(
             $imageFunction, $params, $filename
         );
     }
-    
-    function getQueueName() {
+
+    public function getQueueName()
+    {
         return self::getClassKey();
     }
 
-    function itemsToRun() {
+    public function itemsToRun()
+    {
         return 1;
     }
 
-    function getMaxRunTime() {
+    public function getMaxRunTime()
+    {
         return 30;
     }
 
     /**
      * @return array
      */
-    function serialize() {
+    public function serialize()
+    {
         $data = [
             'imageFunction' => $this->imageFunction,
             'params' => $this->params,
@@ -78,7 +83,8 @@ class ImagickTask implements Task {
      * @param $serialization
      * @return ImagickTask
      */
-    static function unserialize($serialization) {
+    public static function unserialize($serialization)
+    {
         return new ImagickTask(
             $serialization['imageFunction'],
             $serialization['params'],
@@ -89,18 +95,21 @@ class ImagickTask implements Task {
     /**
      * @return string
      */
-    public function getImageFunction() {
+    public function getImageFunction()
+    {
         return $this->imageFunction;
     }
 
     /**
      * @return mixed
      */
-    public function getParams() {
+    public function getParams()
+    {
         return $this->params;
     }
-    
-    public function getFilename() {
+
+    public function getFilename()
+    {
         return $this->filename;
     }
 }

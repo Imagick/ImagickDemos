@@ -1,19 +1,16 @@
 <?php
 
-
 namespace ImagickDemo;
 
-
-class NullExample extends \ImagickDemo\Example {
-
-    function __construct(\ImagickDemo\Control\NullControl $control) {
+class NullExample extends \ImagickDemo\Example
+{
+    public function __construct(\ImagickDemo\Control\NullControl $control)
+    {
         $this->control = $control;
     }
 
-    function render() {
+    public function render()
+    {
         return "";
     }
-
 }
-
- 

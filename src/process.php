@@ -68,6 +68,6 @@ if (php_sapi_name() === 'fpm-fcgi') {
 $time = microtime(true) - $startTime;
 $asyncStats = $injector->make('Stats\AsyncStats');
 $asyncStats->recordTime(
-    \ImagickDemo\Queue\ImagickTaskRunner::event_pageGenerated,
+    \ImagickDemo\Queue\ImagickTaskRunner::EVENT_PAGE_GENERATED,
     $time
 );

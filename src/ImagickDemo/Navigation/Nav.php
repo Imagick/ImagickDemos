@@ -1,17 +1,14 @@
 <?php
 
-
 namespace ImagickDemo\Navigation;
 
-
-interface Nav {
-    function renderPreviousButton();
-    function renderNextButton();
-    function renderPreviousLink();
-    function renderNextLink();
-    function renderNav();
-    function getCategory();
-    function renderSelect();
+interface Nav
+{
+    public function renderPreviousButton();
+    public function renderNextButton();
+    public function renderPreviousLink();
+    public function renderNextLink();
+    public function renderNav();
+    public function getCategory();
+    public function renderSelect();
 }
-
- 

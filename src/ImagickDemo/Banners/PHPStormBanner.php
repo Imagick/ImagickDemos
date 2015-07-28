@@ -1,10 +1,9 @@
 <?php
 
-
 namespace ImagickDemo\Banners;
 
-
-class PHPStormBanner implements Banner {
+class PHPStormBanner implements Banner
+{
 
     function render() {
         
@@ -14,9 +13,7 @@ class PHPStormBanner implements Banner {
 
 END;
 
-        
         return $output;
     }
 }
-
  

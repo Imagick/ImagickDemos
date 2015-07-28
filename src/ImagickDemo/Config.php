@@ -6,7 +6,6 @@ namespace ImagickDemo;
 use Auryn\Injector;
 
 
-
 class Config {
 
     const FLICKR_KEY = 'flickr.key';

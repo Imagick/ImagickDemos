@@ -28,6 +28,48 @@ function header($string, $replace = true, $http_response_code = null) {
     }
 }
 
+
+//$imagick = new \Imagick(realpath($imagePath));
+//$imagick2 = clone $imagick;
+//$imageIterator1 = new \ImagickPixelIterator($imagick);
+//$imageIterator2 = new \ImagickPixelIterator($imagick2);
+//
+//$imageIterator2->reset();
+//
+///* Loop through pixel rows */
+//foreach ($imageIterator1 as $pixelRow1) { 
+//
+//    if (!$imageIterator2->valid()) {
+//        // need to check validity when iterating manually
+//        break;
+//    }
+//
+//	$pixelRow2 = $imageIterator2->current();
+//    /* Loop through the pixels in the row (columns) */
+//
+//    foreach ($pixelRow1 as $column => $pixel1) { 
+//        /** @var $pixel \ImagickPixel */
+//        if ($column % 2) {
+//            /* Paint every second pixel black*/
+//            $pixel1->setColor("rgba(0, 0, 0, 0)");
+//        }
+//        else{
+//            $pixel2 = $pixelRow2[$column];
+//            //do something to $imagick2 here 
+//            $pixel2->setColor("rgba(255, 255, 255, 0)");
+//        }
+//        
+//        $count++;
+//    }
+//
+//    $imageIterator2->next();
+//    /* Sync the iterator, this is important to do on each iteration */
+//    $imageIterator1->syncIterator();
+//    $imageIterator2->syncIterator();
+//}
+
+
+
 //Example ImagickPixelIterator::clear
 function clear($imagePath) {
     $imagick = new \Imagick(realpath($imagePath));

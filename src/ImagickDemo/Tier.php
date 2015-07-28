@@ -2,7 +2,6 @@
 
 namespace ImagickDemo;
 
-
 class Tier
 {
     private $callable;

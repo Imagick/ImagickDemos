@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Stats;
 
-
-class Counter {
-
+class Counter
+{
     private $name;
 
     private $value;
@@ -14,14 +12,16 @@ class Counter {
 
     private $source;
 
-    function __construct($name, $value, $source, $measureTime = null) {
+    public function __construct($name, $value, $source, $measureTime = null)
+    {
         $this->name = $name;
         $this->value = $value;
         $this->source = $source;
         $this->measureTime = $measureTime;
     }
 
-    function convertToArray() {
+    public function convertToArray()
+    {
         $array = [
             "name" => $this->name,
             "value" => $this->value,
@@ -34,5 +34,3 @@ class Counter {
         return $array;
     }
 }
-
- 

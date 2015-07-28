@@ -16,7 +16,6 @@ use Jig\JigConfig;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
 
- 
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
 require __DIR__.'/../vendor/autoload.php';
 
@@ -74,13 +73,11 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
         case E_ERROR: {
             $message =  "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
             //echo "$message";
-
             break;
         }
 
         default: {
             $message =  "<b>errorHandler</b> [$errno] $errstr in file $errfile on line $errline<br />\n";
-
             throw new \Exception($message);
             break;
         }
@@ -508,7 +505,7 @@ function getRoutes() {
         );
 
         $imageController = [\ImagickDemo\Controller\Image::class, 'getImageResponse'];
-        $customImageConroller = [\ImagickDemo\Controller\Image::class, 'getCustomImageResponse'];
+        $customImageController = [\ImagickDemo\Controller\Image::class, 'getCustomImageResponse'];
 
         //Images
         $r->addRoute(
@@ -521,7 +518,7 @@ function getRoutes() {
         $r->addRoute(
             'GET',
             "/customImage/$categories/{example:[a-zA-Z]*}",
-            $customImageConroller
+            $customImageController
         );
 
         $r->addRoute('GET', '/info', [\ImagickDemo\Controller\ServerInfo::class, 'createResponse']);

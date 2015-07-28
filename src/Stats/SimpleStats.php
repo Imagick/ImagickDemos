@@ -4,22 +4,23 @@ namespace Stats;
 
 use ImagickDemo\Config\Librato as LibratoConfig;
 
-class SimpleStats {
-
+class SimpleStats
+{
     /**
      * @var \Auryn\Injector
      */
     private $injector;
 
     private $flushInterval;
-    
+
     private $sourceName;
 
     /**
      * @param \Auryn\Injector $injector
      * @param LibratoConfig $libratoConfig
      */
-    function __construct(\Auryn\Injector $injector, LibratoConfig $libratoConfig) {
+    public function __construct(\Auryn\Injector $injector, LibratoConfig $libratoConfig)
+    {
         $this->injector = $injector;
         $this->flushInterval = 10;
         $this->sourceName = $libratoConfig->getStatsSourceName();
@@ -29,9 +30,10 @@ class SimpleStats {
      * Measure the queues - this should probably be in a different class.
      * @return array
      */
-    function getQueueGauges() {
+    public function getQueueGauges()
+    {
         $gauges = [];
-        
+
         $queuesToCheck = [
             'ImagickDemo\Queue\ImagickTaskQueue',
         ];
@@ -52,9 +54,10 @@ class SimpleStats {
     }
 
     /**
-     * 
+     *
      */
-    function execute() {
+    public function execute()
+    {
         $gauges = [];
         $counters = [];
 
@@ -62,7 +65,7 @@ class SimpleStats {
 
         $gauges = array_merge($gauges, $this->getQueueGauges());
         $counters = array_merge($counters, $asyncStats->getCounters());
-        
+
         $requiredTimers = [
             \ImagickDemo\Queue\ImagickTaskRunner::event_imageGenerated,
             \ImagickDemo\Queue\ImagickTaskRunner::event_pageGenerated,
@@ -77,9 +80,10 @@ class SimpleStats {
     }
 
     /**
-     * 
+     *
      */
-    function run() {
+    public function run()
+    {
         $maxRunTime = 1000;
         $endTime = time() + $maxRunTime;
 
@@ -89,4 +93,3 @@ class SimpleStats {
         }
     }
 }
-

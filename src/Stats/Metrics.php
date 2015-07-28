@@ -1,10 +1,9 @@
 <?php
 
-
 namespace Stats;
 
-
-class Metrics {
+class Metrics
+{
 
     /**
      * @var Counter[]
@@ -16,14 +15,13 @@ class Metrics {
      */
     private $timers = [];
 
-    function getCounters() {
+    public function getCounters()
+    {
         return $this->counters;
     }
-    
-    function getTimers() {
+
+    public function getTimers()
+    {
         return $this->timers;
     }
-    
 }
-
- 

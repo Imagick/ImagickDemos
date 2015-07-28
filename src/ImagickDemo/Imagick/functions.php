@@ -1252,6 +1252,33 @@ function montageImage($montageType)
 }
 //Example end 
 
+//Example Imagick::mosaicImages
+function morphImages()
+{
+    $images = [
+        //"../imagick/images/lories/IMG_1599_480.jpg",
+        //"../imagick/images/lories/IMG_2837_480.jpg",
+        "../imagick/images/lories/IMG_1599_480.jpg",
+        "../imagick/images/lories/6E6F9109_480.jpg",
+        "../imagick/images/lories/IMG_2561_480.jpg",
+    ];
+
+    $imagick = new \Imagick(realpath($images[count($images) - 1]));
+
+    foreach ($images as $image) {
+        $nextImage = new \Imagick(realpath($image));
+        $imagick->addImage($nextImage);
+    }
+
+    $imagick->resetIterator();
+    $morphed = $imagick->morphImages(10);
+    $morphed->setImageTicksPerSecond(10);
+
+    header("Content-Type: image/gif");
+    $morphed->setImageFormat('gif');
+    echo $morphed->getImagesBlob();
+}
+//Example end 
 
 //Example Imagick::mosaicImages
 function mosaicImages() {

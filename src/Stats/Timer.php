@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Stats;
 
-
-class Timer {
-
+class Timer
+{
     private $name;
 
     private $value;
@@ -14,14 +12,16 @@ class Timer {
 
     private $source;
 
-    function __construct($name, $value, $source, $measureTime = null) {
+    public function __construct($name, $value, $source, $measureTime = null)
+    {
         $this->name = $name;
         $this->value = $value;
         $this->source = $source;
         $this->measureTime = $measureTime;
     }
 
-    function convertToArray() {
+    public function convertToArray()
+    {
         $array = [
             "name" => $this->name,
             "value" => $this->value,
@@ -34,38 +34,32 @@ class Timer {
     /**
      * @return mixed
      */
-    public function getMeasureTime() {
+    public function getMeasureTime()
+    {
         return $this->measure_time;
     }
 
     /**
      * @return mixed
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * @return mixed
      */
-    public function getSource() {
+    public function getSource()
+    {
         return $this->source;
     }
 
     /**
      * @return mixed
      */
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
-
- 

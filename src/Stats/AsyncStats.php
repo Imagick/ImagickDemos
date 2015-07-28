@@ -1,14 +1,12 @@
 <?php
 
-
 namespace Stats;
-
 
 use Predis\Client as RedisClient;
 use ImagickDemo\Config\Librato as LibratoConfig;
 
-class AsyncStats {
-
+class AsyncStats
+{
     use \Intahwebz\Cache\KeyName;
 
     /**
@@ -21,39 +19,46 @@ class AsyncStats {
      */
     private $redisKey;
 
-    function __construct(RedisClient $redisClient, LibratoConfig $libratoConfig) {
+    public function __construct(RedisClient $redisClient, LibratoConfig $libratoConfig)
+    {
         $this->redisClient = $redisClient;
         $this->redisKey = self::getClassKey();
         $this->sourceName = $libratoConfig->getStatsSourceName();
     }
     
-    function getCounterKey() {
+    public function getCounterKey()
+    {
         return $this->redisKey.'_counter';
     }
     
-    function getGaugeKey() {
+    public function getGaugeKey()
+    {
         return $this->redisKey.'_gauge';
     }
 
-    function getTimerKey() {
+    public function getTimerKey()
+    {
         return $this->redisKey.'_timer';
     }
 
-    function recordCount($name, $value, $measureTime = null) {
+    public function recordCount($name, $value, $measureTime = null)
+    {
         $counter = new \Stats\Counter($name, $value, $this->sourceName, $measureTime);
 
         $serialized = serialize($counter);
         $this->redisClient->rpush($this->getCounterKey(), [$serialized]);
     }
 
-    function recordTime($name, $value, $measureTime = null) {
+    public function recordTime($name, $value, $measureTime = null)
+    {
         $counter = new \Stats\Timer($name, $value, $this->sourceName, $measureTime);
         $serialized = serialize($counter);
         $this->redisClient->rpush($this->getTimerKey(), [$serialized]);
         //TODO - check errors
     }
 
-    function recordGauge($name, $value, $measureTime = null) {
+    public function recordGauge($name, $value, $measureTime = null)
+    {
         $counter = new \Stats\Gauge($name, $value, $this->sourceName, $measureTime);
         $serialized = serialize($counter);
         $this->redisClient->rpush($this->getGaugeKey(), [$serialized]);
@@ -63,7 +68,8 @@ class AsyncStats {
      * @param int $max
      * @return Timer[]
      */
-    function getTimers($max = 300) {
+    public function getTimers($max = 300)
+    {
         $counters = [];
         $number = 0;
 
@@ -90,8 +96,8 @@ class AsyncStats {
      * @param array $requiredTimers
      * @return SummaryTimer[]
      */
-    function summariseTimers($requiredTimers = array()) {
-        
+    public function summariseTimers($requiredTimers = array())
+    {
         /** @var  $summaryCounters SummaryTimer[] */
         $summaryCounters = [];
         $timers = $this->getTimers();
@@ -117,7 +123,8 @@ class AsyncStats {
      * @param int $max
      * @return array
      */
-    function getCounters($max = 30) {
+    public function getCounters($max = 30)
+    {
         $counters = [];
         $number = 0;
         
@@ -139,5 +146,3 @@ class AsyncStats {
         return $counters;
     }
 }
-
- 

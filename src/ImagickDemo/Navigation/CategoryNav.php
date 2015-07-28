@@ -647,7 +647,8 @@ END;
                 'montageImage',
                 \ImagickDemo\ImagickKernel\Control\MontageTypeControl::class
             ],
-            //'morphImages',
+            'morphImages' => ['morphImages', \ImagickDemo\Control\NullControl::class],
+            
             'morphology' => [
                 'morphology',
                 \ImagickDemo\ImagickKernel\Control\usage::class

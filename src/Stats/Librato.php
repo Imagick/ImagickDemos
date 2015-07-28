@@ -1,23 +1,21 @@
 <?php
 
-
 namespace Stats;
 
 use ImagickDemo\Config\Librato as LibratoConfig;
-
 use Amp\Artax\Client as ArtaxClient;
 use Amp\Artax\Request;
-
 use Amp\Artax\SocketException;
 
-class Librato {
-
+class Librato
+{
     /**
      * @var LibratoConfig
      */
     private $libratoConfig;
     
-    function __construct(LibratoConfig $libratoConfig) {
+    public function __construct(LibratoConfig $libratoConfig)
+    {
         $this->libratoConfig = $libratoConfig;
     }
 
@@ -25,8 +23,8 @@ class Librato {
      * @param $gauges Gauge[]
      * @param $counters Counter[]
      */
-    function send($gauges, $counters) {
-
+    public function send($gauges, $counters)
+    {
         $client = new ArtaxClient;
 
         $client->setAllOptions([
@@ -84,7 +82,7 @@ class Librato {
             echo "Status ".$response->getStatus()."\n";
             echo $response->getBody();
         }
-        catch(SocketException $se) {
+        catch (SocketException $se) {
             echo "Artax\\SocketExeption".$se->getMessage();
         }
     }

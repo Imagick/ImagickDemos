@@ -2,11 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class polyline extends ImagickDrawExample {
-
-    function getDescription() {
+class polyline extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }

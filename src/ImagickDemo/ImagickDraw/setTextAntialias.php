@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setTextAntialias extends ImagickDrawExample {
-
-    function getDescription() {
+class setTextAntialias extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
- 

@@ -2,15 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeLineJoin extends ImagickDrawExample {
-
-    function getDescription() {
+class setStrokeLineJoin extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
-
 }
-
-
- 

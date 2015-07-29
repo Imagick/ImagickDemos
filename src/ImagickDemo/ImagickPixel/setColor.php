@@ -2,14 +2,10 @@
 
 namespace ImagickDemo\ImagickPixel;
 
-
-class setColor extends \ImagickDemo\Example {
-
-    function render() {
-        return "".$this->renderImageURL();
+class setColor extends \ImagickDemo\Example
+{
+    public function render()
+    {
+        return "" . $this->renderImageURL();
     }
 }
-
-
-
- 

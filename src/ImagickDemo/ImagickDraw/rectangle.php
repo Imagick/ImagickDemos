@@ -2,13 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class rectangle extends ImagickDrawExample {
-
-    function getDescription() {
+class rectangle extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
- 

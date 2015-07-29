@@ -2,18 +2,20 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-class IndexExample extends \ImagickDemo\Example {
-
-    function getColumnRightOffset() {
+class IndexExample extends \ImagickDemo\Example
+{
+    public function getColumnRightOffset()
+    {
         return 2;
     }
 
-
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "ImagickKernel";
     }
-    
-    function render() {
+
+    public function render()
+    {
         $output = <<< END
 <p>
         ImagickKernel is the class that represents 'kernel' in the underlying ImageMagick library. Kernels are used in the <a href='/Imagick/filter'>filter</a> and <a href='/Imagick/morphology'>morphology</a> functions.</p>

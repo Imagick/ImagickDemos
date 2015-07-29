@@ -1,11 +1,11 @@
 <?php
+
 namespace ImagickDemo\ImagickDraw;
 
-class skewX extends ImagickDrawExample {
-
-    function getDescription() {
+class skewX extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }

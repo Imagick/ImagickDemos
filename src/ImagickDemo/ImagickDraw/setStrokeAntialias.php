@@ -2,15 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeAntialias extends ImagickDrawExample {
-
-    function getDescription() {
+class setStrokeAntialias extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
-
-
- 

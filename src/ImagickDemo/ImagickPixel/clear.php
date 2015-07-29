@@ -1,17 +1,16 @@
 <?php
 
-
 namespace ImagickDemo\ImagickPixel;
 
-
-class clear extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class clear extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         return "";
     }
 
-    function render() {
+    public function render()
+    {
         return "";
     }
-
 }

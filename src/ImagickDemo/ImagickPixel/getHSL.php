@@ -1,17 +1,16 @@
 <?php
 
-
 namespace ImagickDemo\ImagickPixel;
 
-
-class getHSL extends \ImagickDemo\Example {
-
-    function render() {
+class getHSL extends \ImagickDemo\Example
+{
+    public function render()
+    {
 //Example ImagickPixel::getHSL
         $colorString = 'rgb(90%, 10%, 10%)';
 
         $output = "The result of getHSL for the color '$colorString' is:<br/>";
-        
+
         $color = new \ImagickPixel($colorString);
         $colorInfo = $color->getHSL();
 

@@ -2,16 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class polygon extends ImagickDrawExample {
-
-    function getDescription() {
+class polygon extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
-
-
-
- 

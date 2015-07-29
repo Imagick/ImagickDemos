@@ -2,17 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeDashArray extends ImagickDrawExample {
-
-    function getDescription() {
+class setStrokeDashArray extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
-
-
-
-
- 

@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFontWeight extends ImagickDrawExample {
-
-    function getDescription() {
+class setFontWeight extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
- 
 }
- 

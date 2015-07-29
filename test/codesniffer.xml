@@ -59,8 +59,11 @@
         <exclude-pattern>*bootstrap.php</exclude-pattern>
         <exclude-pattern>*/functions.php</exclude-pattern>
     </rule>
-    
 
+    <!-- This is not a good practice for graphics functions -->
+    <rule ref="Squiz.Functions.MultiLineFunctionDeclaration.OneParamPerLine">
+        <exclude-pattern>*/functions.php</exclude-pattern>
+    </rule>
 
     <!-- We use lowercase names to avoid having to have huge data blocks -->
     <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">

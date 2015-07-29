@@ -1,19 +1,19 @@
 <?php
 
-
 namespace ImagickDemo\ImagickPixel;
 
 define('NL', '<br/>');
-
 //These tests need a modern version of Imagick due to the https://github.com/mkoppanen/imagick/issues/10
 
-class isPixelSimilar extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class isPixelSimilar extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         return "<p>A distance of '1' is the maximum distance in the color space e.g. from 0, 0, 0 to 255, 255, 255 in RGB color space.</p> <p>The only difference between ImagickPixel::isSimilar and ImagickPixel::isPixelSimilar is that isSimilar needs to be scaled by the quantum value.</p>";
     }
-    
-    function render() {
+
+    public function render()
+    {
 
 //Example ImagickPixel::isSimilar
         // The tests below are written with the maximum distance expressed as 255
@@ -22,20 +22,20 @@ class isPixelSimilar extends \ImagickDemo\Example {
         $root3 = 1.732050807568877;
 
         $tests = array(
-            ['rgb(245, 0, 0)',      'rgb(255, 0, 0)',   9 / $root3,         false,],
-            ['rgb(245, 0, 0)',      'rgb(255, 0, 0)',  10 / $root3,         true,],
-            ['rgb(0, 0, 0)',        'rgb(7, 7, 0)',     9 / $root3,         false,],
-            ['rgb(0, 0, 0)',        'rgb(7, 7, 0)',    10 / $root3,         true,],
-            ['rgba(0, 0, 0, 1)',    'rgba(7, 7, 0, 1)', 9 / $root3,         false,],
-            ['rgba(0, 0, 0, 1)',    'rgba(7, 7, 0, 1)',    10 / $root3,     true,],
-            ['rgb(128, 128, 128)',  'rgb(128, 128, 120)',   7 / $root3,     false,],
-            ['rgb(128, 128, 128)',  'rgb(128, 128, 120)',   8 / $root3,     true,],
-            ['rgb(0, 0, 0)',        'rgb(255, 255, 255)',   254.9,          false,],
-            ['rgb(0, 0, 0)',        'rgb(255, 255, 255)',   255,            true,],
-            ['rgb(255, 0, 0)',      'rgb(0, 255, 255)',     254.9,          false,],
-            ['rgb(255, 0, 0)',      'rgb(0, 255, 255)',     255,            true,],
-            ['black',               'rgba(0, 0, 0)',        0.0,            true],
-            ['black',               'rgba(10, 0, 0, 1.0)',  10.0 / $root3,  true],);
+            ['rgb(245, 0, 0)', 'rgb(255, 0, 0)', 9 / $root3, false,],
+            ['rgb(245, 0, 0)', 'rgb(255, 0, 0)', 10 / $root3, true,],
+            ['rgb(0, 0, 0)', 'rgb(7, 7, 0)', 9 / $root3, false,],
+            ['rgb(0, 0, 0)', 'rgb(7, 7, 0)', 10 / $root3, true,],
+            ['rgba(0, 0, 0, 1)', 'rgba(7, 7, 0, 1)', 9 / $root3, false,],
+            ['rgba(0, 0, 0, 1)', 'rgba(7, 7, 0, 1)', 10 / $root3, true,],
+            ['rgb(128, 128, 128)', 'rgb(128, 128, 120)', 7 / $root3, false,],
+            ['rgb(128, 128, 128)', 'rgb(128, 128, 120)', 8 / $root3, true,],
+            ['rgb(0, 0, 0)', 'rgb(255, 255, 255)', 254.9, false,],
+            ['rgb(0, 0, 0)', 'rgb(255, 255, 255)', 255, true,],
+            ['rgb(255, 0, 0)', 'rgb(0, 255, 255)', 254.9, false,],
+            ['rgb(255, 0, 0)', 'rgb(0, 255, 255)', 255, true,],
+            ['black', 'rgba(0, 0, 0)', 0.0, true],
+            ['black', 'rgba(10, 0, 0, 1.0)', 10.0 / $root3, true],);
 
         $output = "<table width='100%' class='infoTable'><thead>
                 <tr>
@@ -68,9 +68,8 @@ class isPixelSimilar extends \ImagickDemo\Example {
 
             $isSimilar = $color1Pixel->isPixelSimilar($color2Pixel, $testDistance);
 
-
             if ($isSimilar !== $expectation) {
-                echo "Test distance failed. Color [$color1] compared to color [$color2] is not within distance $testDistance FAILED.".NL;
+                echo "Test distance failed. Color [$color1] compared to color [$color2] is not within distance $testDistance FAILED." . NL;
             }
 
             $layout = "<tr>
@@ -79,7 +78,7 @@ class isPixelSimilar extends \ImagickDemo\Example {
                 <td>%s</td>
                 <td style='text-align: center;'>%s</td>
             </tr>";
-            
+
             $output .= sprintf(
                 $layout,
                 $color1,
@@ -90,7 +89,7 @@ class isPixelSimilar extends \ImagickDemo\Example {
         }
 
         $output .= "</tbody></table>";
-        
+
         return $output;
 //Example end
     }

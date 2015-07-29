@@ -4,8 +4,8 @@ namespace ImagickDemo\Banners;
 
 class PHPStormBanner implements Banner
 {
-
-    function render() {
+    public function render()
+    {
         
         $output = <<< END
 

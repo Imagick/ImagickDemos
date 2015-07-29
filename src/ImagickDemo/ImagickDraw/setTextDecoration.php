@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setTextDecoration extends ImagickDrawExample {
-
-    function getDescription() {
+class setTextDecoration extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
-    } 
+    }
 }
-
-
- 

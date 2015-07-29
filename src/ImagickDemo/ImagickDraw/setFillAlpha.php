@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFillAlpha extends ImagickDrawExample {
-
-    function getDescription() {
+class setFillAlpha extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
- 

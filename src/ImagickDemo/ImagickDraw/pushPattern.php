@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class pushPattern extends ImagickDrawExample {
-
-    function getDescription() {
+class pushPattern extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
- 

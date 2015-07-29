@@ -2,17 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFillOpacity extends ImagickDrawExample {
-
-    function getDescription() {
+class setFillOpacity extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
-
 }
-
-
-
-
- 

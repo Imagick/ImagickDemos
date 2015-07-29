@@ -2,14 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeLineCap extends ImagickDrawExample {
-
-
-    function getDescription() {
+class setStrokeLineCap extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
- 

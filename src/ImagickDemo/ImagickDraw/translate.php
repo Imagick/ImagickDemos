@@ -2,11 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class translate extends ImagickDrawExample {
-
-    function getDescription() {
+class translate extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
 }
-
- 

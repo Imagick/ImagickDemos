@@ -2,11 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFontStretch extends ImagickDrawExample {
-
-    function getDescription() {
+class setFontStretch extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }

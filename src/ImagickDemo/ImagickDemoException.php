@@ -1,8 +1,8 @@
 <?php
 
-
 namespace ImagickDemo;
 
+class ImagickDemoException extends \Exception
+{
 
-class ImagickDemoException extends \Exception {}
-
+}

@@ -2,17 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setTextUnderColor extends ImagickDrawExample {
-
-    function getDescription() {
+class setTextUnderColor extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
-
-
-
-
- 

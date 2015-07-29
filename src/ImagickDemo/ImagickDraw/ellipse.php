@@ -2,11 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class ellipse extends ImagickDrawExample {
-
-    function getDescription() {
+class ellipse extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
 }
-
- 

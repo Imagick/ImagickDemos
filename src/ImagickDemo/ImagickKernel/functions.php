@@ -1,11 +1,13 @@
 <?php
 
-namespace ImagickDemo\ImagickKernel {
+namespace ImagickDemo\ImagickKernel;
     
 use ImagickKernel;
 
-class functions {
-    static function load() {
+class functions
+{
+    public static function load()
+    {
     }
 }
 
@@ -17,7 +19,8 @@ class functions {
  * @param bool $replace
  * @param null $http_response_code
  */
-function header($string, $replace = true, $http_response_code = null) {
+function header($string, $replace = true, $http_response_code = null)
+{
     global $imageType;
     global $cacheImages;
 
@@ -31,7 +34,8 @@ function header($string, $replace = true, $http_response_code = null) {
 }
 
 
-function makeNewKernel($currentKernels) {
+function makeNewKernel($currentKernels)
+{
     $rotatedKernel = null;
 
     foreach ($currentKernels as $kernelMatrix) {
@@ -48,12 +52,10 @@ function makeNewKernel($currentKernels) {
     return $rotatedKernel;
 }
 
-
-
 // Cyclically rotate 3x3 kernels in 45-degree increments,
 // producing a list of up to 8 rotated kernels.
-function rotateKernel45(ImagickKernel $kernel) {
-
+function rotateKernel45(ImagickKernel $kernel)
+{
     $matrix = $kernel->getMatrix();
 
     if (count($matrix) != 3) {
@@ -68,7 +70,7 @@ function rotateKernel45(ImagickKernel $kernel) {
 
     $rotatedKernels = [];
     
-    while($finished == false) {
+    while ($finished == false) {
         $rotatedKernels[] = $matrix;
 
         $newMatrix = [];
@@ -82,7 +84,7 @@ function rotateKernel45(ImagickKernel $kernel) {
         $newMatrix[0][0] = $matrix[1][0];
         $newMatrix[1][1] = $matrix[1][1];
 
-        if (in_array($newMatrix , $rotatedKernels, true)) {
+        if (in_array($newMatrix, $rotatedKernels, true)) {
             $finished = true;
         }
         else {
@@ -95,18 +97,19 @@ function rotateKernel45(ImagickKernel $kernel) {
 
 
 
-function rotateMatrix90($matrix) {
+function rotateMatrix90($matrix)
+{
     $finished = false;
     $rotatedKernels = [];
 
-    while($finished == false) {
+    while ($finished == false) {
         $rotatedKernels[] = $matrix;
         $newMatrix = [];
         $rows = count($matrix);
         $columns = count($matrix[0]);
 
-        for($row=0; $row<$rows ; $row++) {
-            for($column=0; $column<$columns ; $column++) {
+        for ($row=0; $row<$rows; $row++) {
+            for ($column=0; $column<$columns; $column++) {
                 $srcRow = ($rows - 1) - $row;
                 $srcColumn = $column;
                 $newMatrix[$column][$row] = $matrix[$srcRow][$srcColumn];
@@ -126,7 +129,8 @@ function rotateMatrix90($matrix) {
     
 
 //Rotate (square or linear kernels only) in 90-degree increments.
-function rotateKernel90(ImagickKernel $kernel) {
+function rotateKernel90(ImagickKernel $kernel)
+{
     $matrix = $kernel->getMatrix();
     $rotatedKernels = rotateMatrix90($matrix);
     
@@ -134,7 +138,8 @@ function rotateKernel90(ImagickKernel $kernel) {
 }
 
 // Produce 90-degree rotations but in a 'mirror' sequence (rotation angles of 0, 180, -90, +90 ). This special form of rotation expansion works better for morphology methods such as 'Thinning'. 
-function rorateKernel90Mirror(ImagickKernel $kernel) {
+function rorateKernel90Mirror(ImagickKernel $kernel)
+{
     $matrix = $kernel->getMatrix();
     $rotatedKernels = rotateMatrix90($matrix);
     
@@ -153,7 +158,8 @@ function rorateKernel90Mirror(ImagickKernel $kernel) {
 
     
     
-function renderKernel(ImagickKernel $imagickKernel) {
+function renderKernel(ImagickKernel $imagickKernel)
+{
     $matrix = $imagickKernel->getMatrix();
     
     $imageMargin = 20;
@@ -201,7 +207,7 @@ function renderKernel(ImagickKernel $imagickKernel) {
     $height = ($rows * $tileSize) + (($rows - 1) * $tileSpace);
 
     $imagickDraw->push();
-    $imagickDraw->translate($width/2 , $height/2);
+    $imagickDraw->translate($width/2, $height/2);
     $imagickDraw->setFillColor('rgba(0, 0, 0, 0)');
     $imagickDraw->setStrokeColor('white');
     $imagickDraw->circle(0, 0, $radius - 1, 0);
@@ -209,7 +215,7 @@ function renderKernel(ImagickKernel $imagickKernel) {
     $imagickDraw->circle(0, 0, $radius, 0);
     $imagickDraw->pop();
 
-    $canvasWidth = $width + (2 * $imageMargin); 
+    $canvasWidth = $width + (2 * $imageMargin);
     $canvasHeight = $height + (2 * $imageMargin);
 
     $kernel = new \Imagick();
@@ -238,7 +244,8 @@ function renderKernel(ImagickKernel $imagickKernel) {
 }
 
 //Example ImagickKernel::addKernel
-function addKernel($imagePath) {
+function addKernel($imagePath)
+{
     $matrix1 = [
         [-1, -1, -1],
         [ 0,  0,  0],
@@ -265,8 +272,8 @@ function addKernel($imagePath) {
     
 
 //Example ImagickKernel::addUnityKernel
-function addUnityKernel($imagePath) {
-
+function addUnityKernel($imagePath)
+{
     $matrix = [
         [-1, 0, -1],
         [ 0, 4,  0],
@@ -288,8 +295,8 @@ function addUnityKernel($imagePath) {
 //Example end
 
 //Example ImagickKernel::fromMatrix
-
-function createFromMatrix() {
+function createFromMatrix()
+{
     $matrix = [
         [0.5, 0, 0.2],
         [0, 1, 0],
@@ -301,7 +308,8 @@ function createFromMatrix() {
     return $kernel;
 }
     
-function fromMatrix() {
+function fromMatrix()
+{
     $kernel = createFromMatrix();
     $imagick = renderKernel($kernel);
 
@@ -311,7 +319,8 @@ function fromMatrix() {
 //Example end
 
 //Example ImagickKernel::fromBuiltIn
-function createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm) {
+function createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm)
+{
     $string = '';
 
     if ($kernelFirstTerm != false && strlen(trim($kernelFirstTerm)) != 0) {
@@ -333,7 +342,8 @@ function createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $ke
     return $kernel;
 }
     
-function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm) {
+function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm)
+{
     $diamondKernel = createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm);
     $imagick = renderKernel($diamondKernel);
 
@@ -341,12 +351,3 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     echo $imagick->getImageBlob();
 }
 //Example end
-
-
-
-}
-
-
-
-
- 

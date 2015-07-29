@@ -2,14 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class roundRectangle extends ImagickDrawExample {
-
- 
-    function getDescription() {
+class roundRectangle extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
 }
-
-
-
- 

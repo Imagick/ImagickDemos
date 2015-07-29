@@ -2,16 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeWidth extends ImagickDrawExample {
-
-    function getDescription() {
+class setStrokeWidth extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
-
-
-
- 

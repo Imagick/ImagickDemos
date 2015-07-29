@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setFontFamily extends ImagickDrawExample {
-
-    function getDescription() {
+class setFontFamily extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
 }
-
- 

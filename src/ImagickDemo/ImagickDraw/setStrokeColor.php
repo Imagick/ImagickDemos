@@ -2,16 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeColor extends ImagickDrawExample {
-
-    function getDescription() {
+class setStrokeColor extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
- 
 }
-
-
-
-
- 

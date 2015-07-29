@@ -2,13 +2,12 @@
 
 namespace ImagickDemo\ImagickPixel;
 
-
-class construct extends \ImagickDemo\Example {
-
+class construct extends \ImagickDemo\Example
+{
     private $columns = 4;
 
     private $exampleColors = array(
-        "rgba(100%, 0%, 0%, 0.5)", 
+        "rgba(100%, 0%, 0%, 0.5)",
         "hsb(33.3333%, 100%,  75%)", // medium green
         "hsl(120, 255,   191.25)", //medium green
         "graya(50%, 0.5)", //  semi-transparent mid gray
@@ -26,12 +25,12 @@ class construct extends \ImagickDemo\Example {
         "rgba(100%, 0%, 0%, 1.0)", //  the same, with an explicit alpha value
     );
 
-    function render() {
+    public function render()
+    {
         $output = "<table>";
-        for ($x=0 ; $x<count($this->exampleColors); $x++) {
-
+        for ($x = 0; $x < count($this->exampleColors); $x++) {
             if (($x % $this->columns) == 0) {
-                if ($x  != 0) {
+                if ($x != 0) {
                     $output .= "</tr>";
                 }
                 $output .= "<tr>";
@@ -42,7 +41,7 @@ class construct extends \ImagickDemo\Example {
             $output .= "</td>";
         }
 
-        for (;$x<$this->columns ; $x++) {
+        for (; $x < $this->columns; $x++) {
             $output .= "<tr>";
         }
 
@@ -52,9 +51,4 @@ class construct extends \ImagickDemo\Example {
 
         return $output;
     }
-
-
-
 }
-
- 

@@ -3,27 +3,29 @@
 namespace ImagickDemo\ImagickKernel;
 
 use ImagickDemo\ImagickKernel\Control\fromBuiltIn as fromBuiltInControl;
-use ImagickDemo\ControlElement\KernelRender; 
+use ImagickDemo\ControlElement\KernelRender;
 
-
-class fromBuiltin extends \ImagickDemo\Example {
-
+class fromBuiltin extends \ImagickDemo\Example
+{
     /**
      * @var fromBuiltInControl
      */
     private $builtInControl;
 
-    function __construct(fromBuiltInControl $control) {
+    public function __construct(fromBuiltInControl $control)
+    {
         parent::__construct($control);
         $this->builtInControl = $control;
     }
-    
-    function renderDescription() {
+
+    public function renderDescription()
+    {
         return "Create a kernel from a builtin in kernel. See http://www.imagemagick.org/Usage/morphology/#kernel for examples. Currently the 'rotation' symbol is not supported.
     ";
     }
 
-    function render() {
+    public function render()
+    {
         switch ($this->builtInControl->getKernelRender()) {
             case (KernelRender::KERNEL_RENDER_IMAGE): {
                 return $this->renderImageURL();
@@ -42,6 +44,6 @@ class fromBuiltin extends \ImagickDemo\Example {
             }
         }
 
-        return "Unknown render type."; 
+        return "Unknown render type.";
     }
 }

@@ -2,16 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setClipRule extends ImagickDrawExample {
-
-    function getDescription() {
+class setClipRule extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
 }
-
-
-
-
- 

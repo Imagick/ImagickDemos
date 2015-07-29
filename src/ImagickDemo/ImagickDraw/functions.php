@@ -1,15 +1,16 @@
 <?php
 
-namespace ImagickDemo\ImagickDraw {
+namespace ImagickDemo\ImagickDraw;
 
-    define('IMAGE_WIDTH', 500);
-    define('IMAGE_HEIGHT', 500);
+define('IMAGE_WIDTH', 500);
+define('IMAGE_HEIGHT', 500);
     
-    
-    class functions {
-        static function load() {
-        }
+class functions
+{
+    public static function load()
+    {
     }
+}
 
 /**
  * Hack the header function to allow us to capture the image type,
@@ -19,7 +20,8 @@ namespace ImagickDemo\ImagickDraw {
  * @param bool $replace
  * @param null $http_response_code
  */
-function header($string, $replace = true, $http_response_code = null) {
+function header($string, $replace = true, $http_response_code = null)
+{
     global $imageType;
     global $cacheImages;
 
@@ -33,8 +35,8 @@ function header($string, $replace = true, $http_response_code = null) {
 }
 
 //Example ImagickDraw::affine
-function affine($strokeColor, $fillColor, $backgroundColor) {
-
+function affine($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeWidth(1);
@@ -82,7 +84,7 @@ function affine($strokeColor, $fillColor, $backgroundColor) {
     $image->newImage(500, 750, $backgroundColor);
     $image->setImageFormat("png");
 
-    //Render the draw commands in the ImagickDraw object 
+    //Render the draw commands in the ImagickDraw object
     //into the image.
     $image->drawImage($draw);
 
@@ -101,8 +103,8 @@ function affine($strokeColor, $fillColor, $backgroundColor) {
 // ending degrees of rotation
 
 //Example ImagickDraw::arc
-function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $startAngle, $endAngle) {
-
+function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $startAngle, $endAngle)
+{
     //Create a ImagickDraw object to draw into.
     $draw = new \ImagickDraw();
     $draw->setStrokeWidth(1);
@@ -117,7 +119,7 @@ function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX
     $image->newImage(IMAGE_WIDTH, IMAGE_HEIGHT, $backgroundColor);
     $image->setImageFormat("png");
 
-    //Render the draw commands in the ImagickDraw object 
+    //Render the draw commands in the ImagickDraw object
     //into the image.
     $image->drawImage($draw);
 
@@ -128,8 +130,8 @@ function arc($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX
 //Example end
 
 //Example ImagickDraw::bezier
-function bezier($strokeColor, $fillColor, $backgroundColor) {
-
+function bezier($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $strokeColor = new \ImagickPixel($strokeColor);
@@ -147,7 +149,7 @@ function bezier($strokeColor, $fillColor, $backgroundColor) {
             ['x' => 30.0 * 5, 'y' => 90.0 * 5],
             ['x' => 25.0 * 5, 'y' => 10.0 * 5],
             ['x' => 50.0 * 5, 'y' => 50.0 * 5],
-        ], 
+        ],
         [
             ['x' => 50.0 * 5, 'y' => 50.0 * 5],
             ['x' => 75.0 * 5, 'y' => 90.0 * 5],
@@ -162,13 +164,13 @@ function bezier($strokeColor, $fillColor, $backgroundColor) {
 
     $disjointPoints = [
         [
-            ['x' => 10 * 5, 'y' => 10 * 5], 
-            ['x' => 30 * 5, 'y' => 90 * 5], 
+            ['x' => 10 * 5, 'y' => 10 * 5],
+            ['x' => 30 * 5, 'y' => 90 * 5],
             ['x' => 25 * 5, 'y' => 10 * 5],
             ['x' => 50 * 5, 'y' => 50 * 5],
         ],
         [
-            ['x' => 50 * 5, 'y' => 50 * 5], 
+            ['x' => 50 * 5, 'y' => 50 * 5],
             ['x' => 80 * 5, 'y' => 50 * 5],
             ['x' => 70 * 5, 'y' => 10 * 5],
             ['x' => 90 * 5, 'y' => 40 * 5],
@@ -185,7 +187,7 @@ function bezier($strokeColor, $fillColor, $backgroundColor) {
     $imagick->newImage(500, 500, $backgroundColor);
     $imagick->setImageFormat("png");
 
-    //Render the draw commands in the ImagickDraw object 
+    //Render the draw commands in the ImagickDraw object
     //into the image.
     $imagick->drawImage($draw);
 
@@ -197,8 +199,8 @@ function bezier($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::circle
-function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
-
+function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY)
+{
     //Create a ImagickDraw object to draw into.
     $draw = new \ImagickDraw();
 
@@ -226,8 +228,8 @@ function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, 
 
 
 //Example ImagickDraw::composite
-function composite($strokeColor, $fillColor, $backgroundColor) {
-
+function composite($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -256,7 +258,7 @@ function composite($strokeColor, $fillColor, $backgroundColor) {
     $imagick->newImage(1000, 302, $backgroundColor);
     $imagick->setImageFormat("png");
 
-    //Render the draw commands in the ImagickDraw object 
+    //Render the draw commands in the ImagickDraw object
     //into the image.
     $imagick->drawImage($draw);
 
@@ -268,8 +270,8 @@ function composite($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::ellipse
-function ellipse($strokeColor, $fillColor, $backgroundColor) {
-
+function ellipse($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -305,8 +307,8 @@ function ellipse($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::line
-function line($strokeColor, $fillColor, $backgroundColor) {
-
+function line($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -330,7 +332,8 @@ function line($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::matte
-function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
+function matte($strokeColor, $fillColor, $backgroundColor, $paintType)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -340,7 +343,6 @@ function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
     $draw->setFontSize(72);
 
     $draw->matte(120, 120, $paintType);
-    
     $draw->rectangle(100, 100, 300, 200);
     
 
@@ -356,8 +358,8 @@ function matte($strokeColor, $fillColor, $backgroundColor, $paintType) {
 
 
 //Example ImagickDraw::pathStart
-function pathStart($strokeColor, $fillColor, $backgroundColor) {
-
+function pathStart($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -402,8 +404,8 @@ function pathStart($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::pathCurveToQuadraticBezierAbsolute
-function pathCurveToQuadraticBezierAbsolute($strokeColor, $fillColor, $backgroundColor) {
-
+function pathCurveToQuadraticBezierAbsolute($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -414,27 +416,27 @@ function pathCurveToQuadraticBezierAbsolute($strokeColor, $fillColor, $backgroun
     $draw->setFontSize(72);
 
     $draw->pathStart();
-    $draw->pathMoveToAbsolute(50,250);
+    $draw->pathMoveToAbsolute(50, 250);
 
     // This specifies a quadratic bezier curve with the current position as the start
     // point, the control point is the first two params, and the end point is the last two params.
     $draw->pathCurveToQuadraticBezierAbsolute(
-        150,50, 
-        250,250
+        150, 50,
+        250, 250
     );
 
     // This specifies a quadratic bezier curve with the current position as the start
     // point, the control point is mirrored from the previous curves control point
     // and the end point is defined by the x, y values.
     $draw->pathCurveToQuadraticBezierSmoothAbsolute(
-        450,250
+        450, 250
     );
 
     // This specifies a quadratic bezier curve with the current position as the start
     // point, the control point is mirrored from the previous curves control point
     // and the end point is defined relative from the current position by the x, y values.
     $draw->pathCurveToQuadraticBezierSmoothRelative(
-        200,-100
+        200, -100
     );
 
     $draw->pathFinish();
@@ -453,8 +455,8 @@ function pathCurveToQuadraticBezierAbsolute($strokeColor, $fillColor, $backgroun
     
 
 //Example ImagickDraw::point
-function point($fillColor, $backgroundColor) {
-
+function point($fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setFillColor($fillColor);
@@ -475,7 +477,8 @@ function point($fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::polygon
-function polygon($strokeColor, $fillColor, $backgroundColor) {
+function polygon($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -500,7 +503,8 @@ function polygon($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::polyline
-function polyline($strokeColor, $fillColor, $backgroundColor) {
+function polyline($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -529,8 +533,8 @@ function polyline($strokeColor, $fillColor, $backgroundColor) {
 //Example end
     
 //Example ImagickDraw::popDefs
-function popDefs($strokeColor, $fillColor, $backgroundColor) {
-
+function popDefs($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -558,8 +562,8 @@ function popDefs($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::push
-function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
-
+function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillModifiedColor);
@@ -585,7 +589,8 @@ function push($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
     
 
 //Example ImagickDraw::pushPattern
-function pushPattern($strokeColor, $fillColor, $backgroundColor) {
+function pushPattern($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -631,7 +636,8 @@ function pushPattern($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::rectangle
-function rectangle($strokeColor, $fillColor, $backgroundColor) {
+function rectangle($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $strokeColor = new \ImagickPixel($strokeColor);
     $fillColor = new \ImagickPixel($fillColor);
@@ -655,7 +661,8 @@ function rectangle($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::render
-function render($strokeColor, $fillColor, $backgroundColor) {
+function render($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $strokeColor = new \ImagickPixel($strokeColor);
@@ -681,7 +688,8 @@ function render($strokeColor, $fillColor, $backgroundColor) {
 //Example end
     
 //Example ImagickDraw::rotate
-function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
+function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setStrokeOpacity(1);
@@ -702,8 +710,8 @@ function rotate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) 
 //Example end
     
 //Example ImagickDraw::roundRectangle
-function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $roundX, $roundY) {
-
+function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $startY, $endX, $endY, $roundX, $roundY)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -725,8 +733,8 @@ function roundRectangle($strokeColor, $fillColor, $backgroundColor, $startX, $st
 //Example end
     
 //Example ImagickDraw::scale
-function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
-
+function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setStrokeWidth(4);
@@ -747,8 +755,8 @@ function scale($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor) {
 //Example end
     
 //Example ImagickDraw::setClipPath
-function setClipPath($strokeColor, $fillColor, $backgroundColor) {
-
+function setClipPath($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -776,8 +784,8 @@ function setClipPath($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setClipRule
-function setClipRule($strokeColor, $fillColor, $backgroundColor) {
-
+function setClipRule($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -808,8 +816,8 @@ function setClipRule($strokeColor, $fillColor, $backgroundColor) {
 //Example end
 
 //Example ImagickDraw::setClipUnits
-function setClipUnits($strokeColor, $fillColor, $backgroundColor) {
-
+function setClipUnits($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -839,8 +847,8 @@ function setClipUnits($strokeColor, $fillColor, $backgroundColor) {
 //Example end
 
 //Example ImagickDraw::setFillAlpha
-function setFillAlpha($strokeColor, $fillColor, $backgroundColor) {
-
+function setFillAlpha($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -863,8 +871,8 @@ function setFillAlpha($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFillColor
-function setFillColor($strokeColor, $fillColor, $backgroundColor) {
-
+function setFillColor($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -889,8 +897,8 @@ function setFillColor($strokeColor, $fillColor, $backgroundColor) {
  
 
 //Example ImagickDraw::setFillOpacity
-function setFillOpacity($strokeColor, $fillColor, $backgroundColor) {
-
+function setFillOpacity($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -915,8 +923,8 @@ function setFillOpacity($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFillRule
-function setFillRule($fillColor, $strokeColor, $backgroundColor) {
-
+function setFillRule($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeWidth(1);
@@ -934,7 +942,6 @@ function setFillRule($fillColor, $strokeColor, $backgroundColor) {
         $draw->setFillRule($fillRules[$x]);
         $draw->pathStart();
         for ($n = 0; $n < $points * 2; $n++) {
-
             if ($n >= $points) {
                 $angle = fmod($n * 360 * 4 / $points, 360) * pi() / 180;
             }
@@ -970,8 +977,8 @@ function setFillRule($fillColor, $strokeColor, $backgroundColor) {
 //Example end
 
 //Example ImagickDraw::setFont
-function setFont($fillColor, $strokeColor, $backgroundColor) {
-
+function setFont($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1004,8 +1011,8 @@ function setFont($fillColor, $strokeColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFontFamily
-function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
-
+function setFontFamily($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $strokeColor = new \ImagickPixel($strokeColor);
@@ -1024,7 +1031,7 @@ function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
     $draw->setFontFamily("AvantGarde");
     $draw->annotation(50, 100, "Lorem Ipsum!");
 
-    $draw->setFontFamily("NewCenturySchlbk");    
+    $draw->setFontFamily("NewCenturySchlbk");
     $draw->annotation(50, 150, "Lorem Ipsum!");
 
     $draw->setFontFamily("Palatino");
@@ -1042,8 +1049,8 @@ function setFontFamily($fillColor, $strokeColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFontSize
-function setFontSize($fillColor, $strokeColor, $backgroundColor) {
-
+function setFontSize($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
@@ -1071,8 +1078,8 @@ function setFontSize($fillColor, $strokeColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFontStretch
-function setFontStretch($fillColor, $strokeColor, $backgroundColor) {
-
+function setFontStretch($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1101,7 +1108,8 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFontStyle
-function setFontStyle($fillColor, $strokeColor, $backgroundColor) {
+function setFontStyle($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -1128,8 +1136,8 @@ function setFontStyle($fillColor, $strokeColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setFontWeight
-function setFontWeight($fillColor, $strokeColor, $backgroundColor) {
-
+function setFontWeight($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1163,8 +1171,8 @@ function setFontWeight($fillColor, $strokeColor, $backgroundColor) {
 
     
 //Example ImagickDraw::setGravity
-function setGravity($fillColor, $strokeColor, $backgroundColor) {
-
+function setGravity($fillColor, $strokeColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -1192,8 +1200,8 @@ function setGravity($fillColor, $strokeColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeAlpha
-function setStrokeAlpha($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeAlpha($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1218,7 +1226,8 @@ function setStrokeAlpha($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeAntialias
-function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor) {
+function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor)
+{
 
     $draw = new \ImagickDraw();
 
@@ -1247,7 +1256,8 @@ function setStrokeAntialias($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeColor
-function setStrokeColor($strokeColor, $fillColor, $backgroundColor) {
+function setStrokeColor($strokeColor, $fillColor, $backgroundColor)
+{
 
     $draw = new \ImagickDraw();
 
@@ -1276,8 +1286,8 @@ function setStrokeColor($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeDashArray
-function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1309,8 +1319,8 @@ function setStrokeDashArray($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeDashOffset
-function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1341,8 +1351,8 @@ function setStrokeDashOffset($strokeColor, $fillColor, $backgroundColor) {
 //Example end
     
 //Example ImagickDraw::setStrokeLineCap
-function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -1370,8 +1380,8 @@ function setStrokeLineCap($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeLineJoin
-function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeWidth(1);
     $draw->setStrokeColor($strokeColor);
@@ -1403,8 +1413,8 @@ function setStrokeLineJoin($strokeColor, $fillColor, $backgroundColor) {
  
 
 //Example ImagickDraw::setStrokeMiterLimit
-function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1417,7 +1427,6 @@ function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
     $draw->setStrokeLineJoin(\Imagick::LINEJOIN_MITER);
 
     for ($y = 0; $y < 3; $y++) {
-
         $draw->setStrokeMiterLimit(40 * $y);
 
         $points = [['x' => 22 * 3, 'y' => 15 * 4 + $y * $yOffset], ['x' => 20 * 3, 'y' => 20 * 4 + $y * $yOffset], ['x' => 70 * 5, 'y' => 45 * 4 + $y * $yOffset],];
@@ -1442,7 +1451,8 @@ function setStrokeMiterLimit($strokeColor, $fillColor, $backgroundColor) {
  
 
 //Example ImagickDraw::setStrokeOpacity
-function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor) {
+function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeWidth(1);
@@ -1471,8 +1481,8 @@ function setStrokeOpacity($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setStrokeWidth
-function setStrokeWidth($strokeColor, $fillColor, $backgroundColor) {
-
+function setStrokeWidth($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeWidth(1);
@@ -1496,7 +1506,8 @@ function setStrokeWidth($strokeColor, $fillColor, $backgroundColor) {
 
     
 //Example ImagickDraw::setTextAlignment
-function setTextAlignment($strokeColor, $fillColor, $backgroundColor) {
+function setTextAlignment($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
@@ -1523,8 +1534,8 @@ function setTextAlignment($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setTextAntialias
-function setTextAntialias($fillColor, $backgroundColor) {
-
+function setTextAntialias($fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
     $draw->setStrokeColor('none');
     $draw->setFillColor($fillColor);
@@ -1551,8 +1562,8 @@ function setTextAntialias($fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::setTextDecoration
-function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDecoration) {
-
+function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDecoration)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1574,7 +1585,8 @@ function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDeco
 
 
 //Example ImagickDraw::setTextUnderColor
-function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnderColor) {
+function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnderColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1598,7 +1610,8 @@ function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnde
 
 
 //Example ImagickDraw::setVectorGraphics
-function setVectorGraphics() {
+function setVectorGraphics()
+{
     //Setup a draw object with some drawing in it.
     $draw = new \ImagickDraw();
     $draw->setFillColor("red");
@@ -1614,7 +1627,7 @@ function setVectorGraphics() {
 
     //Use the saved drawing to generate a new draw object
     $draw2 = new \ImagickDraw();
-    //Apparently the SVG text is missing the root element. 
+    //Apparently the SVG text is missing the root element.
     $draw2->setVectorGraphics("<root>".$SVG."</root>");
 
     $imagick = new \Imagick();
@@ -1630,8 +1643,8 @@ function setVectorGraphics() {
 
 
 //Example ImagickDraw::setViewBox
-function setViewBox($strokeColor, $fillColor, $backgroundColor) {
-
+function setViewBox($strokeColor, $fillColor, $backgroundColor)
+{
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1651,7 +1664,6 @@ function setViewBox($strokeColor, $fillColor, $backgroundColor) {
     $draw->translate(250, 125);
     $draw->circle(0, 0, 125, 0);
 
-
     $imagick = new \Imagick();
     $imagick->newImage(500, 500, $backgroundColor);
     $imagick->setImageFormat("png");
@@ -1665,9 +1677,10 @@ function setViewBox($strokeColor, $fillColor, $backgroundColor) {
 
 
 //Example ImagickDraw::skewX
-function skewX($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
-               $startX, $startY, $endX, $endY, $skew) {
-
+function skewX(
+    $strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
+    $startX, $startY, $endX, $endY, $skew
+) {
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1691,9 +1704,10 @@ function skewX($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
 
 
 //Example ImagickDraw::skewY
-function skewY($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
-               $startX, $startY, $endX, $endY, $skew) {
-
+function skewY(
+    $strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
+    $startX, $startY, $endX, $endY, $skew
+) {
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1716,9 +1730,10 @@ function skewY($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
 
 
 //Example ImagickDraw::translate
-function translate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColor, 
-                   $startX, $startY, $endX, $endY, $translateX, $translateY) {
-
+function translate(
+    $strokeColor, $fillColor, $backgroundColor, $fillModifiedColor,
+    $startX, $startY, $endX, $endY, $translateX, $translateY
+) {
     $draw = new \ImagickDraw();
 
     $draw->setStrokeColor($strokeColor);
@@ -1739,9 +1754,3 @@ function translate($strokeColor, $fillColor, $backgroundColor, $fillModifiedColo
     echo $image->getImageBlob();
 }
 //Example end
-
-}
-
-
-
- 

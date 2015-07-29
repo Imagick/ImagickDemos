@@ -2,17 +2,19 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-class separate extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class separate extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         return "Separates a linked set of kernels and returns an array of ImagickKernels.";
     }
 
-    function render() {
+    public function render()
+    {
 //Example ImagickKernel::separate
         $matrix = [
             [-1, 0, -1],
-            [ 0, 4,  0],
+            [0, 4, 0],
             [-1, 0, -1],
         ];
 
@@ -24,9 +26,9 @@ class separate extends \ImagickDemo\Example {
         );
 
         $kernel->addKernel($diamondKernel);
-        
+
         $kernelList = $kernel->separate();
-        
+
         $output = '';
         $count = 0;
         foreach ($kernelList as $kernel) {

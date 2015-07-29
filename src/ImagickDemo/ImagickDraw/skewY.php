@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class skewY extends ImagickDrawExample {
-
-    function getDescription() {
+class skewY extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
 }

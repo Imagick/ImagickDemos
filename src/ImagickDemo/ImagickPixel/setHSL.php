@@ -1,17 +1,16 @@
 <?php
 
-
 namespace ImagickDemo\ImagickPixel;
 
-
-class setHSL extends \ImagickDemo\Example {
-
-    function render() {
+class setHSL extends \ImagickDemo\Example
+{
+    public function render()
+    {
 
 //Example ImagickPixel::setHSL
 
         $output = "This example creates a red color, rotates the hue by 180 degrees and sets the new color.<br/>";
-        
+
         //Create an almost pure red color
         $color = new \ImagickPixel('rgb(90%, 10%, 10%)');
         $originalColor = clone $color;
@@ -36,7 +35,7 @@ class setHSL extends \ImagickDemo\Example {
         }
 
 
-        $output .= "<h3>Rotated color</h3>";        
+        $output .= "<h3>Rotated color</h3>";
         //Check that the new color is blue/green
         $colorInfo = $color->getcolor();
         foreach ($colorInfo as $key => $value) {

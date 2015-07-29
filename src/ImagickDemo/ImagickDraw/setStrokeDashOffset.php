@@ -2,17 +2,10 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-class setStrokeDashOffset extends ImagickDrawExample {
-
-    function getDescription() {
+class setStrokeDashOffset extends ImagickDrawExample
+{
+    public function getDescription()
+    {
         return "";
     }
-
-
-
 }
-
-
-
-
- 

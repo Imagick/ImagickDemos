@@ -2,16 +2,14 @@
 
 namespace ImagickDemo\ImagickPixel;
 
+class getColorCount extends \ImagickDemo\Example
+{
 
-
-
-
-class getColorCount extends \ImagickDemo\Example {
-
-    function render() {
+    public function render()
+    {
 //Example ImagickPixel::getColorCount
-        $output = "I have pretty much no idea what this function is meant ".
-         "to do...if you know I'd love to hear.<br/>";
+        $output = "I have pretty much no idea what this function is meant " .
+            "to do...if you know I'd love to hear.<br/>";
 
         $color = new \ImagickPixel('red');
         $colorInfo = $color->getColorCount();

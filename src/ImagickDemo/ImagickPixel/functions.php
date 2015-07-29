@@ -1,13 +1,13 @@
 <?php
 
+namespace ImagickDemo\ImagickPixel;
 
-
-namespace ImagickDemo\ImagickPixel {
-
-    class functions {
-        static function load() {
-        }
+class functions
+{
+    public static function load()
+    {
     }
+}
 
 /**
  * Hack the header function to allow us to capture the image type,
@@ -17,7 +17,8 @@ namespace ImagickDemo\ImagickPixel {
  * @param bool $replace
  * @param null $http_response_code
  */
-function header($string, $replace = true, $http_response_code = null) {
+function header($string, $replace = true, $http_response_code = null)
+{
     global $imageType;
     global $cacheImages;
 
@@ -31,8 +32,8 @@ function header($string, $replace = true, $http_response_code = null) {
 }
 
 //Example ImagickPixel::construct
-function construct() {
-
+function construct()
+{
     $columns = 4;
     
     $exampleColors = array(
@@ -81,7 +82,8 @@ function construct() {
 
 
 //Example ImagickPixel::setColor
-function setColor() {
+function setColor()
+{
     $draw = new \ImagickDraw();
 
     $strokeColor = new \ImagickPixel('green');
@@ -106,7 +108,8 @@ function setColor() {
 
 
 //Example ImagickPixel::setColorValue
-function setColorValue() {
+function setColorValue()
+{
     $image = new \Imagick();
     $draw = new \ImagickDraw();
 
@@ -129,7 +132,8 @@ function setColorValue() {
 
 
 //Example ImagickPixel::setColorValueQuantum
-function setColorValueQuantum() {
+function setColorValueQuantum()
+{
     $image = new \Imagick();
 
     $quantumRange = $image->getQuantumRange();
@@ -152,10 +156,3 @@ function setColorValueQuantum() {
     echo $image->getImageBlob();
 }
 //Example end
-
-}
-
-
-
-
- 

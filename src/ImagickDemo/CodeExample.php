@@ -1,8 +1,6 @@
 <?php
 
-
 namespace ImagickDemo;
-
 
 class CodeExample
 {
@@ -13,7 +11,7 @@ class CodeExample
     public $startLine;
     public $endLine = null;
 
-    function __construct($category, $function, $lines, $description, $startLine)
+    public function __construct($category, $function, $lines, $description, $startLine)
     {
         $this->category = $category;
         $this->functionName = $function;

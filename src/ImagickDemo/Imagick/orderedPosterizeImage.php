@@ -1,14 +1,15 @@
 <?php
 
 namespace ImagickDemo\Imagick;
+
 //\Imagick::COMPOSITE_DEFAULT
 
-class orderedPosterizeImage extends \ImagickDemo\Example {
-
+class orderedPosterizeImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderDescription() {
-
+    public function renderDescription()
+    {
         $output = <<< END
         
 From the <a href='http://www.imagemagick.org/api/magick-image.php#MagickOrderedPosterizeImage'>ImageMagick manual for MagickOrderedPosterizeImage</a>: <i>A string containing the name of the threshold dither map to use, followed by zero or more numbers representing the number of color levels tho dither between.
@@ -20,8 +21,9 @@ END;
 
         return nl2br($output);
     }
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

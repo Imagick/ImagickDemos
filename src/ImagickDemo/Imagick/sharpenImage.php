@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class sharpenImage extends \ImagickDemo\Example {
-
+class sharpenImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

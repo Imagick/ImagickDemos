@@ -2,20 +2,20 @@
 
 namespace ImagickDemo\Imagick;
 
-
-
-class setProgressMonitor extends \ImagickDemo\Example {
-
+class setProgressMonitor extends \ImagickDemo\Example
+{
     /**
      * @var \ImagickDemo\Control\ImageControl
      */
     protected $control;
-    
-    function __construct(\ImagickDemo\Control\ImageControl $control) {
+
+    public function __construct(\ImagickDemo\Control\ImageControl $control)
+    {
         $this->control = $control;
     }
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         $output = <<< END
 The progress monitor allows you to be notified of progress during image processing. It also allows you to abort the image processing, for example if it's taking too long, or it is detected the image is no longer needed.
 
@@ -27,18 +27,18 @@ END;
         return nl2br($output);
     }
 
-    function render() {
-
+    public function render()
+    {
         echo "<pre>";
 //Example Imagick::setProgressMonitor
         $abortReason = null;
-        
+
         try {
             $imagick = new \Imagick(realpath($this->control->getImagePath()));
             $startTime = time();
 
-            $callback = function ($offset, $span)  use ($startTime, &$abortReason) {
-                if (((100 * $offset) / $span)  > 20) {
+            $callback = function ($offset, $span) use ($startTime, &$abortReason) {
+                if (((100 * $offset) / $span) > 20) {
                     $abortReason = "Processing reached 20%";
                     return false;
                 }
@@ -59,14 +59,14 @@ END;
 
             $imagick->waveImage(2, 15);
 
-            echo "Data len is: ".strlen($imagick->getImageBlob());
+            echo "Data len is: " . strlen($imagick->getImageBlob());
         }
-        catch(\ImagickException $e) {
+        catch (\ImagickException $e) {
             if ($abortReason != null) {
-                echo "Image processing was aborted: ".$abortReason."<br/>";
+                echo "Image processing was aborted: " . $abortReason . "<br/>";
             }
             else {
-                echo "ImagickException caught: ".$e->getMessage()." Exception type is ".get_class($e);
+                echo "ImagickException caught: " . $e->getMessage() . " Exception type is " . get_class($e);
             }
         }
 //Example end

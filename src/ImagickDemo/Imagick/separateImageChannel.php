@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class separateImageChannel extends \ImagickDemo\Example {
-
-    function render() {
+class separateImageChannel extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

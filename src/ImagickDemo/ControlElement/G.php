@@ -1,44 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
-
 
 use ImagickDemo\Framework\VariableMap;
 
-
-class G extends ValueElement {
-
+class G extends ValueElement
+{
     private $defaultGreen;
 
-    function __construct(VariableMap $variableMap, $defaultG = 100) {
+    public function __construct(VariableMap $variableMap, $defaultG = 100)
+    {
         $this->defaultGreen = $defaultG;
         parent::__construct($variableMap);
     }
-    
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->defaultGreen;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 255;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'g';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Green';
     }
 
-    function getG() {
+    public function getG()
+    {
         return $this->getValue();
     }
 }
-

@@ -1,9 +1,8 @@
 <?php
 
-
 namespace ImagickDemo\Banners;
 
-
-interface Banner {
-    function render();
-} 
+interface Banner
+{
+    public function render();
+}

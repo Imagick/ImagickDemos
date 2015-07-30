@@ -1,24 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class GradientEndColor extends ColorElement {
-
-    protected function getDefault() {
+class GradientEndColor extends ColorElement
+{
+    protected function getDefault()
+    {
         return 'white';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'gradientEndColor';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Gradient end';
     }
 
-    function getGradientEndColor() {
+    public function getGradientEndColor()
+    {
         return $this->getValue();
     }
 }

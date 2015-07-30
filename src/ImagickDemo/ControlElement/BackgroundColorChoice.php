@@ -1,23 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class BackgroundColorChoice extends OptionKeyElement {
-    protected function getDefault() {
+class BackgroundColorChoice extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return "white";
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'backgroundColor';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Background color";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
             "white" => "White",
             "black" => "Black",
@@ -25,9 +28,8 @@ class BackgroundColorChoice extends OptionKeyElement {
         ];
     }
 
-    function getBackgroundColorChoiceType() {
+    public function getBackgroundColorChoiceType()
+    {
         return $this->getKey();
     }
 }
-
- 

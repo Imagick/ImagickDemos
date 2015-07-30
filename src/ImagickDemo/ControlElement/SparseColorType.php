@@ -1,27 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class SparseColorType extends OptionKeyElement {
-
-
-    protected function getDefault() {
+class SparseColorType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 'renderImageVoronoi';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'sparse';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Sparse color type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             'renderImageBilinear' => 'Bilinear',
             'renderImageVoronoi' => 'Voronoi',
@@ -32,9 +31,8 @@ class SparseColorType extends OptionKeyElement {
         ];
     }
 
-    function getSparseColorType() {
+    public function getSparseColorType()
+    {
         return $this->getKey();
     }
 }
-
- 

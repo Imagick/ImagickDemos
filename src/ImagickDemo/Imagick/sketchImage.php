@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class sketchImage extends \ImagickDemo\Example {
-
+class sketchImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

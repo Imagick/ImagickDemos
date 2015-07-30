@@ -1,53 +1,60 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-abstract class OptionValueElement implements ControlElement {
-
+abstract class OptionValueElement implements ControlElement
+{
     abstract protected function getDefault();
+
     abstract protected function getVariableName();
+
     abstract protected function getDisplayName();
+
     abstract protected function getOptions();
 
     protected $key;
     protected $value;
 
-    function __construct(VariableMap $variableMap) {
+    public function __construct(VariableMap $variableMap)
+    {
         $value = $this->getDefault();
         $newValue = $variableMap->getVariable($this->getVariableName(), $value);
 
         $options = $this->getOptions();
-        
+
         $needle = array_search($newValue, $options);
         if ($needle !== null) {
             $this->key = $needle;
             $this->value = $newValue;
         }
-        
+
         if (array_key_exists($newValue, $options)) {
             $this->key = $newValue;
             $this->value = $options[$newValue];
         }
     }
 
-    protected function getOptionKey() {
+    protected function getOptionKey()
+    {
         return $this->key;
     }
 
-    protected function getValue() {
+    protected function getValue()
+    {
         return $this->value;
     }
-    
-    function getParams() {
+
+    public function getParams()
+    {
         return [
             $this->getVariableName() => $this->value,
         ];
     }
 
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return [
             $this->getVariableName() => $this->key,
         ];
@@ -56,7 +63,8 @@ abstract class OptionValueElement implements ControlElement {
     /**
      * @return string
      */
-    function renderFormElement() {
+    public function renderFormElement()
+    {
 
         $select = '';
 
@@ -65,7 +73,7 @@ abstract class OptionValueElement implements ControlElement {
             if ($value == $this->value) { //Unsafe compare?
                 $selected = "selected='selected'";
             }
-            $select .= "<option value='".$value."' $selected>$value</option>";
+            $select .= "<option value='" . $value . "' $selected>$value</option>";
         }
 
         $text = <<< END
@@ -93,7 +101,3 @@ END;
         );
     }
 }
-
-
-
- 

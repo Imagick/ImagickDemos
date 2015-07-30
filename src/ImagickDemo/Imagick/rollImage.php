@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class rollImage extends \ImagickDemo\Example {
-
+class rollImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

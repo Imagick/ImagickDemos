@@ -1,38 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class HighThreshold extends ValueElement {
-
-    protected function getDefault() {
+class HighThreshold extends ValueElement
+{
+    protected function getDefault()
+    {
         return 0.9;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'highThreshold';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'High threshold';
     }
 
-    function getHighThreshold() {
+    public function getHighThreshold()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

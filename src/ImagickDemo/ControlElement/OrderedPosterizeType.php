@@ -1,23 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class OrderedPosterizeType extends OptionKeyElement {
-    protected function getDefault() {
+class OrderedPosterizeType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 'o8x8';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'orderedPosterizeType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Posterize type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         $orderedPosterizeOptions = [
             'o4x4' => 'o4x4',
             'o4x4,3,3' => 'o4x4,3,3',
@@ -27,7 +30,7 @@ class OrderedPosterizeType extends OptionKeyElement {
             'o8x8' => 'o8x8',
             'o8x8,3' => 'o8x8,3',
             'o8x8,6,6' => 'o8x8,6,6',
-            
+
             'h8x8a' => 'h8x8a',
             'h8x8a,3,3' => 'h8x8a,3,3',
             'h8x8a,8,8' => 'h8x8a,8,8',
@@ -39,9 +42,8 @@ class OrderedPosterizeType extends OptionKeyElement {
         return $orderedPosterizeOptions;
     }
 
-    function getOrderedPosterizeType() {
+    public function getOrderedPosterizeType()
+    {
         return $this->getKey();
     }
 }
-
- 

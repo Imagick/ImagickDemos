@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class ContrastType extends OptionKeyElement {
-    protected function getDefault() {
+class ContrastType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'contrastType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Contrast type';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             0 => 'Enabled - unsharpen',
             1 => 'Enabled - sharpen',
@@ -27,7 +28,8 @@ class ContrastType extends OptionKeyElement {
         ];
     }
 
-    function getContrastType() {
+    public function getContrastType()
+    {
         return $this->key;
     }
 }

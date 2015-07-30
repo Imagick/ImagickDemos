@@ -1,48 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
-
 
 use ImagickDemo\Framework\VariableMap;
 
-
-class Fuzz extends ValueElement {
-
-
+class Fuzz extends ValueElement
+{
     private $defaultFuzz;
 
-    function __construct(VariableMap $variableMap, $defaultFuzz = 0.1) {
+    public function __construct(VariableMap $variableMap, $defaultFuzz = 0.1)
+    {
         $this->defaultFuzz = $defaultFuzz;
         parent::__construct($variableMap);
     }
-    
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->defaultFuzz;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'fuzz';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Fuzz';
     }
 
-    function getFuzz() {
+    public function getFuzz()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

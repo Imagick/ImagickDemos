@@ -2,13 +2,15 @@
 
 namespace ImagickDemo\Imagick;
 
-class polaroidImage extends \ImagickDemo\Example {
-
-    function renderTitle() {
+class polaroidImage extends \ImagickDemo\Example
+{
+    public function renderTitle()
+    {
         return "Polaroid image";
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

@@ -2,11 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class brightnessContrastImage extends \ImagickDemo\Example {
-
+class brightnessContrastImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

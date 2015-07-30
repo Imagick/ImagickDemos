@@ -1,32 +1,33 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class FilterType extends OptionKeyElement {
-    protected function getDefault() {
+class FilterType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::FILTER_LANCZOS;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'filterType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Filter type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             \Imagick::FILTER_POINT => "Point",
             \Imagick::FILTER_BOX => "Box",
             \Imagick::FILTER_TRIANGLE => "Triangle",
             \Imagick::FILTER_HERMITE => "Hermite",
-            \Imagick::FILTER_HANNING  => "Hanning",
-            \Imagick::FILTER_HAMMING  => "Hamming",
+            \Imagick::FILTER_HANNING => "Hanning",
+            \Imagick::FILTER_HAMMING => "Hamming",
             \Imagick::FILTER_BLACKMAN => "Blackman",
             \Imagick::FILTER_GAUSSIAN => "Gaussian",
             \Imagick::FILTER_QUADRATIC => "Quadratic",
@@ -54,9 +55,8 @@ class FilterType extends OptionKeyElement {
         ];
     }
 
-    function getFilterType() {
+    public function getFilterType()
+    {
         return $this->getKey();
     }
 }
-
- 

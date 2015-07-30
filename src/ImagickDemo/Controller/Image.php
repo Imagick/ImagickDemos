@@ -6,10 +6,8 @@ use Intahwebz\Request;
 use ImagickDemo\Response\JsonResponse;
 use ImagickDemo\Queue\ImagickTaskQueue;
 use ImagickDemo\Helper\PageInfo;
-
 use ImagickDemo\Tier;
 use ImagickDemo\Navigation\CategoryNav;
-
 
 /**
  * Used to generate a list function calls for testing offline
@@ -17,14 +15,11 @@ use ImagickDemo\Navigation\CategoryNav;
  * @param $category
  * @param $example
  */
-function logCallable($imageFunction,
-                         $category,
-                         $example)
-{
-    
-    
-//     use ($params)
-
+function logCallable(
+    $imageFunction,
+    $category,
+    $example
+) {
     if (file_exists("test.data.php") == false) {
         file_put_contents("test.data.php", "<?php \n\n\$data = [];\n\n", FILE_APPEND);
     }
@@ -37,28 +32,31 @@ function logCallable($imageFunction,
     $string .= "];\n\n";
 
     file_put_contents("test.data.php", $string, FILE_APPEND);
-};
+}
 
-            
-function cacheImageFile($imageFunction, 
-                            $category,
-                            $example)
-{
+
+function cacheImageFile(
+    $imageFunction,
+    $category,
+    $example
+) {
 
     $filename = getImageCacheFilename($category, $example, $params);
     $lowried = [];
-    foreach($params as $key => $value) {
+    foreach ($params as $key => $value) {
         $lowried[':'.$key] = $value;
     }
 
     return renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
-};
+}
 
-function processImageTask(Request $request,
-                          $imageFunction,
-                          ImagickTaskQueue $taskQueue,
-                          $category, $example)  
-{
+function processImageTask(
+    Request $request,
+    $imageFunction,
+    ImagickTaskQueue $taskQueue,
+    $category,
+    $example
+) {
 
     //use ($params)
     
@@ -91,7 +89,7 @@ function processImageTask(Request $request,
 }
 
 
-function  directImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector, $params)
+function directImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector, $params)
 {
     $imageFunction = $categoryNav->getImageFunctionName();
     $filename = getImageCacheFilename(
@@ -117,22 +115,19 @@ function  directImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injecto
 
 
 
-
-
-
-
 /**
  * Class Image
  * @package ImagickDemo\Controller
  */
-class Image {
+class Image
+{
 
     /**
      * @var PageInfo
      */
     private $pageInfo;
     
-    function __construct(PageInfo $pageInfo)
+    public function __construct(PageInfo $pageInfo)
     {
         $this->pageInfo = $pageInfo;
     }
@@ -146,7 +141,7 @@ class Image {
      * @internal param array $customImageParams
      * @return JsonResponse
      */
-    function getImageJobStatus(
+    public function getImageJobStatus(
         $category,
         $example,
         $imageFunction,
@@ -251,7 +246,7 @@ class Image {
      * @return mixed
      * @throws \Exception
      */
-    function getCustomImageResponse(
+    public function getCustomImageResponse(
         CategoryNav $categoryNav,
         \Auryn\Injector $injector,
         $customImageFunction,
@@ -273,7 +268,8 @@ class Image {
      * @internal param Request $request
      * @return array|callable
      */
-    function getImageResponse(CategoryNav $categoryNav, \Auryn\Injector $injector) {
+    public function getImageResponse(CategoryNav $categoryNav, \Auryn\Injector $injector)
+    {
         $control = $injector->make('ImagickDemo\Control');
         $params = $control->getFullParams([]);
 

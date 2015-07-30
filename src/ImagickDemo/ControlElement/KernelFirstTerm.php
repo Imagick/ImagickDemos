@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class KernelFirstTerm extends ValueElement {
-
-    protected function getDefault() {
+class KernelFirstTerm extends ValueElement
+{
+    protected function getDefault()
+    {
         return '2';
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 1;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 5;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'kernelFirstTerm';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'First term';
     }
 
-    function getKernelFirstTerm() {
+    public function getKernelFirstTerm()
+    {
         return $this->getValue();
     }
 }

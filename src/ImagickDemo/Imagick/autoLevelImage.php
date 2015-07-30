@@ -2,11 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class autoLevelImage extends \ImagickDemo\Example {
-
+class autoLevelImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

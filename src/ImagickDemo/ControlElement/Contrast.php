@@ -1,41 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-class Contrast extends ValueElement {
-
-
+class Contrast extends ValueElement
+{
     private $default;
 
-    function __construct(VariableMap $variableMap, $defaultContrast = -20) {
+    public function __construct(VariableMap $variableMap, $defaultContrast = -20)
+    {
         $this->default = $defaultContrast;
         parent::__construct($variableMap);
     }
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->default;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -100;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 100;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'contrast';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Contrast';
     }
 
-    function getContrast() {
+    public function getContrast()
+    {
         return $this->getValue();
     }
 }

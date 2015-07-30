@@ -1,42 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
-
 
 use ImagickDemo\Framework\VariableMap;
 
-
-class Sigma extends ValueElement {
-
+class Sigma extends ValueElement
+{
     private $defaultSigma;
 
-    function __construct(VariableMap $variableMap, $defaultSigma = 1) {
+    public function __construct(VariableMap $variableMap, $defaultSigma = 1)
+    {
         $this->defaultSigma = $defaultSigma;
         parent::__construct($variableMap);
     }
 
-    protected function getDefault() {
+    protected function getDefault()
+    {
         return 1;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 100;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'sigma';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Sigma';
     }
 
-    function getSigma() {
+    public function getSigma()
+    {
         return $this->getValue();
     }
 }

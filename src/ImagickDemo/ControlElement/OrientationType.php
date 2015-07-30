@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class OrientationType extends OptionKeyElement {
-    protected function getDefault() {
+class OrientationType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         \Imagick::ORIENTATION_TOPLEFT;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'orientationType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Orientation type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             \Imagick::ORIENTATION_TOPLEFT => "TopLeftOrientation",
             \Imagick::ORIENTATION_TOPRIGHT => "TopRightOrientation",
@@ -32,9 +33,8 @@ class OrientationType extends OptionKeyElement {
         ];
     }
 
-    function getOrientationType() {
+    public function getOrientationType()
+    {
         return $this->getKey();
     }
 }
-
- 

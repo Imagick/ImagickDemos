@@ -5,8 +5,8 @@ namespace ImagickDemo\Imagick;
 use ImagickDemo\Framework\VariableMap;
 use ImagickDemo\Imagick\Control\samplingFactors as samplingFactorsControl;
 
-class setSamplingFactors extends \ImagickDemo\Example {
-
+class setSamplingFactors extends \ImagickDemo\Example
+{
     /**
      * @var Control\samplingFactors
      */
@@ -16,8 +16,9 @@ class setSamplingFactors extends \ImagickDemo\Example {
      * @var Request
      */
     private $request;
-    
-    function __construct(samplingFactorsControl $samplingFactorControl, VariableMap $variableMap) {
+
+    public function __construct(samplingFactorsControl $samplingFactorControl, VariableMap $variableMap)
+    {
         parent::__construct($samplingFactorControl);
         $this->samplingFactorControl = $samplingFactorControl;
         $this->request = $variableMap;
@@ -26,12 +27,13 @@ class setSamplingFactors extends \ImagickDemo\Example {
     /**
      * @return string
      */
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
+    public function getOriginalImage()
+    {
+        return $this->control->getURL() . '&original=true';
     }
 
-    function renderDescription() {
-
+    public function renderDescription()
+    {
         $output = "Theoretically, this function allows you to set the sampling factors to be used by the JPEG compressor. In practice though, it does not seem to function particuarly well.
         
 I recommend using `Imagick::setImageProperty()` to set  'jpeg:sampling-factor' to one of the standard down-sampling types. e.g. 4:2:0
@@ -55,15 +57,16 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
     }
 
 
-
     /**
      * @return string
      */
-    function getOriginalImagePath() {
+    public function getOriginalImagePath()
+    {
         return "../imagick/images/FineDetail.png";
     }
 
-    function getOriginalImageResponse() {
+    public function getOriginalImageResponse()
+    {
         $imagePath = $this->getOriginalImagePath();
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->resizeImage(
@@ -77,12 +80,13 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
         echo $imagick->getImageBlob();
     }
 
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "Set sampling factor";
     }
-    
-    function renderOriginalImage() {
 
+    public function renderOriginalImage()
+    {
         $imagick = new \Imagick(realpath("../imagick/images/FineDetail.png"));
 
         $imagick->resizeImage(
@@ -99,11 +103,11 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
     /**
      * @return mixed
      */
-    function render() {
+    public function render()
+    {
         $imagePath = "../imagick/images/FineDetail.png";
         $imagick = new \Imagick(realpath($imagePath));
 
-        
         $imagick->setImageFormat('jpg');
         $originalSize = strlen($imagick->getImageBlob());
         echo "Original size = $originalSize <br/>";
@@ -123,7 +127,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
             $new->setSamplingFactors($option);
             $blobSize = strlen($new->getImageBlob());
 
-            echo "Option ".implode(',', $option)." new size ". $blobSize."<br/>";
+            echo "Option " . implode(',', $option) . " new size " . $blobSize . "<br/>";
         }
 
         return $this->renderImageURL();

@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class adaptiveSharpenImage extends \ImagickDemo\Example {
-
+class adaptiveSharpenImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
-    }   
+    }
 }

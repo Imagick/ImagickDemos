@@ -1,40 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-class BlackPoint extends ValueElement {
-
+class BlackPoint extends ValueElement
+{
     private $defaultBlackPoint;
 
-    function __construct(VariableMap $variableMap, $defaultBlackPoint = 10) {
+    public function __construct(VariableMap $variableMap, $defaultBlackPoint = 10)
+    {
         $this->defaultBlackPoint = $defaultBlackPoint;
         parent::__construct($variableMap);
     }
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->defaultBlackPoint;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 255;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'blackPoint';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Black point';
     }
 
-    function getBlackPoint() {
+    public function getBlackPoint()
+    {
         return $this->getValue();
     }
 }

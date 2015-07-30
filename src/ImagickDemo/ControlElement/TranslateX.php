@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class TranslateX extends ValueElement {
-
-    protected function getDefault() {
+class TranslateX extends ValueElement
+{
+    protected function getDefault()
+    {
         return 75;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 500;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'translateX';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Translate X';
     }
 
-    function getTranslateX() {
+    public function getTranslateX()
+    {
         return $this->getValue();
     }
 }

@@ -3,9 +3,8 @@
 
 namespace ImagickDemo\Helper;
 
-
-class PageInfo {
-
+class PageInfo
+{
     private $title = "PHP Imagick by Example";
 
     private $category;
@@ -32,16 +31,13 @@ class PageInfo {
     {
         return $this->example;
     }
-    
-    
-    
-    
-    function getTitle()
+
+    public function getTitle()
     {
         return $this->title;
     }
-    
-    function setTitle($title)
+
+    public function setTitle($title)
     {
         // Need to escape string
         $this->title = $title;
@@ -49,7 +45,7 @@ class PageInfo {
 
     private function setCatergoryAndExample($category, $example)
     {
-        $this->category = $category; 
+        $this->category = $category;
         $this->example = $example;
         
         if ($category == null && $example == null) {

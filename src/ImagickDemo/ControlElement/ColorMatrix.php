@@ -1,13 +1,11 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-
-class ColorMatrix implements ControlElement {
-
+class ColorMatrix implements ControlElement
+{
     private $colorMatrix = [
         1.5, 0.0, 0.0, 0.0, -0.157,
         0.0, 1.0, 0.5, 0.0, -0.157,
@@ -18,12 +16,13 @@ class ColorMatrix implements ControlElement {
 
     private $matrixDimension = 5;
 
-    private $colorMatrixSize = 25; 
+    private $colorMatrixSize = 25;
 
-    function __construct(VariableMap $variableMap) {
+    public function __construct(VariableMap $variableMap)
+    {
         $elements = $this->colorMatrixSize;
-        for ($i=0 ; $i<$elements ; $i++) {
-            $name = 'colorMatrix_'.$i;
+        for ($i = 0; $i < $elements; $i++) {
+            $name = 'colorMatrix_' . $i;
             $newValue = $variableMap->getVariable($name, $this->colorMatrix[$i]);
             $newValue = floatval($newValue);
             $this->colorMatrix[$i] = $newValue;
@@ -33,11 +32,12 @@ class ColorMatrix implements ControlElement {
     /**
      * @return array
      */
-    function getParams() {
+    public function getParams()
+    {
         $return = [];
-        
-        foreach($this->colorMatrix as $key => $value) {
-            $return['colorMatrix_'.$key] = $value;
+
+        foreach ($this->colorMatrix as $key => $value) {
+            $return['colorMatrix_' . $key] = $value;
         }
 
         return $return;
@@ -46,27 +46,28 @@ class ColorMatrix implements ControlElement {
     /**
      * @return array
      */
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return ['colorMatrix' => $this->colorMatrix];
     }
-    
+
 
     /**
      * @return string
      */
-    function renderFormElement() {
-
+    public function renderFormElement()
+    {
         $output = "
         <div class='row controlRow'>
         <div class='col-xs-12 controlCell' style='font-size: 12px'>";
-        
+
         foreach ($this->colorMatrix as $key => $value) {
             if (($key % $this->matrixDimension) == 0) {
                 $output .= "<div class='row'>";
             }
 
             $output .= "<div class='col-xs-2 '>";
-            $name = 'colorMatrix_'.$key;
+            $name = 'colorMatrix_' . $key;
             $output .= "<input type='text' length='4' name='$name' value='$value' style='width: 40px'/>";
             $output .= "</div>";
 
@@ -81,9 +82,8 @@ class ColorMatrix implements ControlElement {
         return $output;
     }
 
-    public function getColorMatrix() {
+    public function getColorMatrix()
+    {
         return $this->colorMatrix;
     }
 }
-
- 

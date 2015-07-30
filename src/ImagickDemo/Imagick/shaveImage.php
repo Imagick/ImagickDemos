@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class shaveImage extends \ImagickDemo\Example {
-
-    function render() {
+class shaveImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

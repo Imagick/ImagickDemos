@@ -1,34 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class ThresholdAngle extends ValueElement {
-
-    protected function getDefault() {
+class ThresholdAngle extends ValueElement
+{
+    protected function getDefault()
+    {
         return 10;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 90;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'thresholdAngle';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Threshold angle';
     }
 
-    function getThresholdAngle() {
+    public function getThresholdAngle()
+    {
         return $this->getValue();
     }
 }

@@ -1,42 +1,41 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class PhaseMultiplier extends ValueElement {
-
-    protected function getDefault() {
+class PhaseMultiplier extends ValueElement
+{
+    protected function getDefault()
+    {
         return 16;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -100;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 1000;
     }
 
-    protected function filterValue($value) {
+    protected function filterValue($value)
+    {
         return intval($value);
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'phaseMultiplier';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Phase multiplier';
     }
 
-    function getPhaseMultiplier() {
+    public function getPhaseMultiplier()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

@@ -2,11 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class colorMatrixImage extends \ImagickDemo\Example {
-
+class colorMatrixImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         //http://www.imagemagick.org/Usage/color_mods/#color-matrix
         //http://www.c-sharpcorner.com/UploadFile/mahesh/Transformations0512192005050129AM/Transformations05.aspx
         //http://www.graficaobscura.com/matrix/index.html
@@ -26,7 +27,8 @@ END;
         return $output;
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL('#0000ff');
-    } 
+    }
 }

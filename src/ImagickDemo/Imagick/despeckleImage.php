@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class despeckleImage extends \ImagickDemo\Example {
-
+class despeckleImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

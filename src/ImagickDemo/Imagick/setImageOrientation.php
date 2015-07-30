@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class setImageOrientation extends \ImagickDemo\Example {
-
-    function render() {
+class setImageOrientation extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

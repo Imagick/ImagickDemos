@@ -1,32 +1,34 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Raise extends OptionKeyElement {
-    protected function getDefault() {
+class Raise extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'raise';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Raise';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             0 => 'Lower',
             1 => 'Raise',
         ];
     }
 
-    function getRaise() {
+    public function getRaise()
+    {
         return $this->key;
     }
 }

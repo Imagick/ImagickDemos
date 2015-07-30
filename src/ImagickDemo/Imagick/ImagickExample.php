@@ -3,34 +3,35 @@
 
 namespace ImagickDemo\Imagick;
 
-
 use ImagickDemo\Control\ImageControl;
 
-abstract class ImagickExample extends \ImagickDemo\Example {
-
+abstract class ImagickExample extends \ImagickDemo\Example
+{
     protected $imagePath;
 
     /**
      * @var \ImagickDemo\Control\ImageControl
      */
     protected $imageControl;
-    
-    function __construct(ImageControl $imageControl) {
+
+    public function __construct(ImageControl $imageControl)
+    {
         $this->imageControl = $imageControl;
         $this->imagePath = $imageControl->getImagePath();
     }
 
-    function getControl() {
+    public function getControl()
+    {
         return $this->imageControl;
     }
 
-    function getURL() {
+    public function getURL()
+    {
         return $this->imageControl->getURL();
     }
 
-    function renderImageURL() {
+    public function renderImageURL()
+    {
         return $this->imageControl->getURL();
     }
 }
-
- 

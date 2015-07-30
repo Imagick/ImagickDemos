@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class waveImage extends \ImagickDemo\Example {
-
+class waveImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

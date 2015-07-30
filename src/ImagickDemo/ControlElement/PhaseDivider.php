@@ -1,42 +1,41 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class PhaseDivider extends ValueElement {
-
-    protected function getDefault() {
+class PhaseDivider extends ValueElement
+{
+    protected function getDefault()
+    {
         return 8;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -30;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 30;
     }
 
-    protected function filterValue($value) {
+    protected function filterValue($value)
+    {
         return intval($value);
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'phaseDivider';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Phase divider';
     }
 
-    function getPhaseDivider() {
+    public function getPhaseDivider()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

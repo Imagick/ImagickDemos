@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class vignetteImage extends \ImagickDemo\Example {
-
+class vignetteImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

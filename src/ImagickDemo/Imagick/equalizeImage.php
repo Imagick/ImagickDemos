@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class equalizeImage extends \ImagickDemo\Example {
-
+class equalizeImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

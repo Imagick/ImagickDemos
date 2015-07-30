@@ -1,12 +1,9 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-class Channel  extends OptionKeyElement  {
-
+class Channel extends OptionKeyElement
+{
     //Whoa
 //RedChannel = 0x0001,
 //GrayChannel = 0x0001,
@@ -35,42 +32,45 @@ class Channel  extends OptionKeyElement  {
 //DefaultChannels = ((AllChannels | SyncChannels) &~ OpacityChannel)
 //    
 
-    protected function getDefault() {
+    protected function getDefault()
+    {
         return \Imagick::CHANNEL_ALL;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'channel';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Channel';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         $options = [
-            \Imagick::CHANNEL_RED       => 'Red',
+            \Imagick::CHANNEL_RED => 'Red',
             //\Imagick::CHANNEL_GRAY      => 'Gray',
             //\Imagick::CHANNEL_CYAN      => 'Cyan',
-            \Imagick::CHANNEL_GREEN     => 'Green',
+            \Imagick::CHANNEL_GREEN => 'Green',
             //\Imagick::CHANNEL_MAGENTA   => 'Magenta',
-            \Imagick::CHANNEL_BLUE      => 'Blue',
+            \Imagick::CHANNEL_BLUE => 'Blue',
             //\Imagick::CHANNEL_YELLOW    => 'Yellow',
-            \Imagick::CHANNEL_ALPHA     => 'Alpha',
+            \Imagick::CHANNEL_ALPHA => 'Alpha',
             //\Imagick::CHANNEL_OPACITY   => 'Opacity',
             //\Imagick::CHANNEL_MATTE     => 'Matte',
             //\Imagick::CHANNEL_BLACK     => 'Black',
             //\Imagick::CHANNEL_INDEX     => 'Index',
-            \Imagick::CHANNEL_ALL       => 'All',
+            \Imagick::CHANNEL_ALL => 'All',
             //\Imagick::CHANNEL_DEFAULT   => 'Default',
         ];
 
         return $options;
     }
 
-    function getChannel() {
+    public function getChannel()
+    {
         return $this->getKey();
     }
 }
-
- 

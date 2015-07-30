@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class scaleImage extends \ImagickDemo\Example {
-
-    function render() {
+class scaleImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

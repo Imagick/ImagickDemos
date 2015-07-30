@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class adaptiveThresholdImage extends \ImagickDemo\Example {
-
+class adaptiveThresholdImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

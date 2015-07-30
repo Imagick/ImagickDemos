@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class DistortionType extends OptionKeyElement {
-    protected function getDefault() {
+class DistortionType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::DISTORTION_AFFINE;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'distortion';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Distortion type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         $colorSpaceTypes = [
             \Imagick::DISTORTION_AFFINE => 'Affine',
             \Imagick::DISTORTION_AFFINEPROJECTION => 'Affine projection',
@@ -43,9 +44,8 @@ class DistortionType extends OptionKeyElement {
         return $colorSpaceTypes;
     }
 
-    function getDistortionType() {
+    public function getDistortionType()
+    {
         return $this->getKey();
     }
 }
-
- 

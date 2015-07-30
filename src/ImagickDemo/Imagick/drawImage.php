@@ -2,13 +2,15 @@
 
 namespace ImagickDemo\Imagick;
 
-class drawImage extends \ImagickDemo\Example {
-
-    function renderTitle() {
+class drawImage extends \ImagickDemo\Example
+{
+    public function renderTitle()
+    {
         return "Draw image";
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class adaptiveResizeImage extends \ImagickDemo\Example {
-    function render() {
+class adaptiveResizeImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

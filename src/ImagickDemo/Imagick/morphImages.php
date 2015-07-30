@@ -2,13 +2,15 @@
 
 namespace ImagickDemo\Imagick;
 
-class morphImages extends \ImagickDemo\Example {
-
-    function renderTitle() {
+class morphImages extends \ImagickDemo\Example
+{
+    public function renderTitle()
+    {
         return "Morph images";
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

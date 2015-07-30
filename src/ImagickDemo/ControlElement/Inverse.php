@@ -1,32 +1,34 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Inverse extends OptionKeyElement {
-    protected function getDefault() {
+class Inverse extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 0;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'inverse';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Inverse';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             0 => 'Normal',
             1 => 'Inverse',
         ];
     }
 
-    function getInverse() {
+    public function getInverse()
+    {
         return $this->key;
     }
 }

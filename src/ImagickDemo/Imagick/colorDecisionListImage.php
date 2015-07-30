@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-// since 6.5.4.3
-
-class colorDecisionListImage extends \ImagickDemo\Example {
-    function render() {
+class colorDecisionListImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

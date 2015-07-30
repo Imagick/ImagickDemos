@@ -21,11 +21,11 @@ class EnvConfWriter
     {
         $configurator = new Configurator();
         $configurator->addPHPConfig($this->env, __DIR__."/../../../../clavis.php");
-        $contents = "";        
+        $contents = "";
         $config = $configurator->getConfig();
         $envVarsToWrite = \ImagickDemo\Config::getConfigNames();
 
-        foreach ($envVarsToWrite as $key ) {
+        foreach ($envVarsToWrite as $key) {
             if (array_key_exists($key, $config) == false) {
                 throw new \Exception("Value not set for $key");
             }
@@ -40,4 +40,3 @@ class EnvConfWriter
         file_put_contents($this->outputFilename, $contents);
     }
 }
-

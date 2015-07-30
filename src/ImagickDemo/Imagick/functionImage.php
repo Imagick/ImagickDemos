@@ -2,9 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class functionImage extends \ImagickDemo\Example {
-
+class functionImage extends \ImagickDemo\Example
+{
     private $polynomial = "FUNCTION_POLYNOMIAL 
 
 Each value will be used as a coefficient from the highest order to the lowest, to produce a polynomial with the number of terms given.
@@ -21,7 +20,7 @@ f1 - Frequency of wave
 f2 - Start angle, default = 0
 f3 - Amplitude, default = 0.5
 f4 - Constant waves are applied to, default = 0.5";
-    
+
     private $arctan = "FUNCTION_ARCTAN intensity = f3 * atan((f1 * x) + f2 )
 
  value = range/PI * atan(slope*PI*( value - center ) ) + bias
@@ -31,7 +30,7 @@ f2 - Middle offset, default 0.5
 f3 - Vertical scale, default 1
 f4 - Vertical offset, default 0.5";
 
-    
+
     private $arcsin = "FUNCTION_ARCSIN Intensity = (f3 * asin(f1 * (x + f2))) + f4
   value = range/PI * asin(2/width*( value - center ) ) + bias
 
@@ -39,19 +38,20 @@ f1 - How fast the transition occurs, lower = faster
 f2 - Offset of the transition, default = 0;
 f3 - Amplitude, default 1
 f4 - Constant vertical offset, default 0.5";
-    
-    
+
+
     /**
      * @var \ImagickDemo\Control\ImagickFunctionControl
      */
     protected $control;
 
-    function __construct(\ImagickDemo\Control\ImagickFunctionControl $control) {
+    public function __construct(\ImagickDemo\Control\ImagickFunctionControl $control)
+    {
         $this->control = $control;
     }
 
-    function renderDescription() {
-
+    public function renderDescription()
+    {
         $descriptions = [
             'renderImagePolynomial' => $this->polynomial,
             'renderImageSinusoid' => $this->sinusoid,
@@ -61,9 +61,8 @@ f4 - Constant vertical offset, default 0.5";
 
         $output = "FunctionImage applies one of the following functions to an image: Polynomial, Sinusoid, Arctan, Arcsin to generate a gradient image with varying intensity. The image below shows the generated gradient, and an analysis of the image generated (the red line) to make it easier to see the gradient <br/>";
 
-
         $functionType = $this->control->getFunctionType();
-        
+
         if (array_key_exists($functionType, $descriptions)) {
             $output .= nl2br($descriptions[$functionType]);
         }
@@ -72,25 +71,27 @@ f4 - Constant vertical offset, default 0.5";
         }
 
         $output .= "<br/>";
-        
+
         return $output;
     }
 
     /**
      * @return string
      */
-    function render() {
+    public function render()
+    {
         $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
 
         return $output;
     }
 
     /**
-     * 
+     *
      */
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $function = $this->control->getFunctionType();
-        
+
         if (method_exists($this, $function)) {
             call_user_func([$this, $function]);
             return;
@@ -100,9 +101,10 @@ f4 - Constant vertical offset, default 0.5";
     }
 
     /**
-     * 
+     *
      */
-    function renderImagePolynomial() {
+    public function renderImagePolynomial()
+    {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -116,7 +118,7 @@ f4 - Constant vertical offset, default 0.5";
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
                 $arguments[] = $thirdTerm;
-                if(strlen($fourthTerm)) {
+                if (strlen($fourthTerm)) {
                     $arguments[] = $fourthTerm;
                 }
             }
@@ -129,9 +131,10 @@ f4 - Constant vertical offset, default 0.5";
     }
 
     /**
-     * 
+     *
      */
-    function renderImageSinusoid() {
+    public function renderImageSinusoid()
+    {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -145,7 +148,7 @@ f4 - Constant vertical offset, default 0.5";
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
                 $arguments[] = $thirdTerm;
-                if(strlen($fourthTerm)) {
+                if (strlen($fourthTerm)) {
                     $arguments[] = $fourthTerm;
                 }
             }
@@ -157,7 +160,8 @@ f4 - Constant vertical offset, default 0.5";
         analyzeImage($imagick, 512, 256);
     }
 
-    function renderImageArctan() {
+    public function renderImageArctan()
+    {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -171,21 +175,21 @@ f4 - Constant vertical offset, default 0.5";
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
                 $arguments[] = $thirdTerm;
-                if(strlen($fourthTerm)) {
+                if (strlen($fourthTerm)) {
                     $arguments[] = $fourthTerm;
                 }
             }
         }
-        
-        
+
+
         $imagick->functionImage(\Imagick::FUNCTION_ARCTAN, $arguments);
         $imagick->setimageformat('png');
 
         analyzeImage($imagick, 512, 256);
     }
 
-
-    function renderImageArcsin() {
+    public function renderImageArcsin()
+    {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -199,8 +203,8 @@ f4 - Constant vertical offset, default 0.5";
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
                 $arguments[] = $thirdTerm;
-    
-                if(strlen($fourthTerm)) {
+
+                if (strlen($fourthTerm)) {
                     $arguments[] = $fourthTerm;
                 }
             }
@@ -210,5 +214,5 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->setimageformat('png');
 
         analyzeImage($imagick, 512, 256);
-    }    
+    }
 }

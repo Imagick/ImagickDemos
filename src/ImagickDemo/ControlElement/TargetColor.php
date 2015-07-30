@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-class TargetColor extends ColorElement {
+class TargetColor extends ColorElement
+{
+    private $defaultTargetColor;
 
-    private $defaultTargetColor; 
-    
-    function __construct(VariableMap $variableMap, $defaultTargetColor = 'rgb(127, 0, 127)') {
+    public function __construct(VariableMap $variableMap, $defaultTargetColor = 'rgb(127, 0, 127)')
+    {
         $this->defaultTargetColor = $defaultTargetColor;
         parent::__construct($variableMap);
     }
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->defaultTargetColor;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'targetColor';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Target color';
     }
 
-    function getTargetColor() {
+    public function getTargetColor()
+    {
         return $this->getValue();
     }
 }

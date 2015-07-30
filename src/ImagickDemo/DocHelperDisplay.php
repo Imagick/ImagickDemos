@@ -1,12 +1,11 @@
 <?php
 
-
 namespace ImagickDemo;
 
-
-class DocHelperDisplay extends DocHelper {
-
-    function showDescription() {
+class DocHelperDisplay extends DocHelper
+{
+    public function showDescription()
+    {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
         }
@@ -16,7 +15,8 @@ class DocHelperDisplay extends DocHelper {
         return $manualEntry['description'];
     }
 
-    function showDescriptionPanel($smaller = false) {
+    public function showDescriptionPanel($smaller = false)
+    {
         $description = trim($this->showDescription());
         if (!$description) {
             return null;
@@ -31,13 +31,14 @@ class DocHelperDisplay extends DocHelper {
         return $output;
     }
 
-    function showParametersPanel() {
+    public function showParametersPanel()
+    {
         $params = $this->showParameters();
         
         if (!$params) {
             return null;
         }
-        
+
         $output  = "<div class='row'> ";
         $output .= "<div class='col-md-12 visible-md visible-lg contentPanel'>";
         $output .= $params;
@@ -47,9 +48,9 @@ class DocHelperDisplay extends DocHelper {
 
         return $output;
     }
-    
-    
-    function showParameters() {
+
+    public function showParameters()
+    {
         if (isset($this->manualEntries[$this->category][$this->example]) == false) {
             return "";
         }
@@ -81,7 +82,8 @@ class DocHelperDisplay extends DocHelper {
     /**
      * @return array
      */
-    function getExamples() {
+    public function getExamples()
+    {
         if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
             return [];
         }
@@ -89,14 +91,14 @@ class DocHelperDisplay extends DocHelper {
         return $this->exampleEntries[$this->category][$this->example];
     }
 
-    function showExamples() {
+    public function showExamples()
+    {
         return $this->showExamplesAsHTML();
         //return $this->showExamplesAsXML();
     }
 
-
-    function getXML() {
-
+    public function getXML()
+    {
         $output = "";
 
         if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
@@ -152,8 +154,8 @@ class DocHelperDisplay extends DocHelper {
     }
     
 
-    function showExamplesAsXML() {
-
+    public function showExamplesAsXML()
+    {
         $output = "";
 
         if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
@@ -170,8 +172,7 @@ class DocHelperDisplay extends DocHelper {
 </refsect1>
 ';
 
-        $exampleText = 
-'
+        $exampleText = '
     <example>
       <title>%s <function>%s</function></title>
       <programlisting role="php">
@@ -192,7 +193,7 @@ class DocHelperDisplay extends DocHelper {
             $output .= "<div class='row'>
                 <div class='col-md-12 contentPanel'>";
 
-            $header = '';    
+            $header = '';
             $description = $example->getDescription();
             if (strlen(trim($description))) {
                 $header = $description;
@@ -220,9 +221,9 @@ class DocHelperDisplay extends DocHelper {
 
         return $output;
     }
-    
-    function showExamplesAsHTML() {
 
+    public function showExamplesAsHTML()
+    {
         $output = "";
 
         if (isset($this->exampleEntries[$this->category][$this->example]) == false) {
@@ -245,10 +246,7 @@ class DocHelperDisplay extends DocHelper {
 
             $description = $example->getDescription();
             if (strlen(trim($description))) {
-
                 if ($header) {
-
-                    //              $output .= ' - '.$description;
                     $header .= ' - ' . $description;
                 }
                 else {
@@ -278,8 +276,8 @@ class DocHelperDisplay extends DocHelper {
             $string = $example->getLines();
             $offset = 0;
             $lines = explode("\n", $string);
-            foreach ($lines as $line) {                
-                if (!strlen(trim($line))){
+            foreach ($lines as $line) {
+                if (!strlen(trim($line))) {
                     continue;
                 }
 
@@ -310,6 +308,4 @@ class DocHelperDisplay extends DocHelper {
 
         return $output;
     }
-
 }
-

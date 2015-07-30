@@ -1,24 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class FXAnalyzeExample extends OptionKeyElement {
-
-    function getVariableName() {
+class FXAnalyzeExample extends OptionKeyElement
+{
+    public function getVariableName()
+    {
         return 'fxAnalyzeExample';
     }
 
-    function getDefault() {
+    public function getDefault()
+    {
         return 'example1';
     }
 
-    function getDisplayName() {
+    public function getDisplayName()
+    {
         return "FX Analyze example";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         $listOfExamples = [
             'example1' => 'Sinusoid',
             'example2' => 'Linear gradient',
@@ -29,9 +31,8 @@ class FXAnalyzeExample extends OptionKeyElement {
         return $listOfExamples;
     }
 
-    function getCompositeExampleType() {
+    public function getCompositeExampleType()
+    {
         return $this->getKey();
     }
 }
-
- 

@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class Skew extends ValueElement {
-
-    protected function getDefault() {
+class Skew extends ValueElement
+{
+    protected function getDefault()
+    {
         return 10;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -500;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 500;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'skew';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Skew';
     }
 
-    function getSkew() {
+    public function getSkew()
+    {
         return $this->getValue();
     }
 }

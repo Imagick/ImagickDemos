@@ -1,28 +1,27 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-//http://www.imagemagick.org/script/formats.php#builtin-images
-
-class LayerMethodType extends OptionKeyElement {
-    protected function getDefault() {
+class LayerMethodType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::LAYERMETHOD_MERGE;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'layerMethodType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Layer method type";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
-
             \Imagick::LAYERMETHOD_COALESCE => "Coalesce",
             \Imagick::LAYERMETHOD_COMPAREANY => "Compare any",
             \Imagick::LAYERMETHOD_COMPARECLEAR => "Compare clear",
@@ -43,9 +42,8 @@ class LayerMethodType extends OptionKeyElement {
         ];
     }
 
-    function getLayerMethodType() {
+    public function getLayerMethodType()
+    {
         return $this->getKey();
     }
 }
-
- 

@@ -1,30 +1,31 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class CompositeExample extends OptionKeyElement {
-
-    function getVariableName() {
+class CompositeExample extends OptionKeyElement
+{
+    public function getVariableName()
+    {
         return 'compositeExample';
     }
 
-    function getDefault() {
+    public function getDefault()
+    {
         return 'screenGradients';
     }
 
-    function getDisplayName() {
+    public function getDisplayName()
+    {
         return "Composite example";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return \ImagickDemo\Tutorial\composite::getExamples();
     }
 
-    function getCompositeExampleType() {
+    public function getCompositeExampleType()
+    {
         return $this->getKey();
     }
 }
-
- 

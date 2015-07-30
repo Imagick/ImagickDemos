@@ -1,13 +1,11 @@
 <?php
 
-
 namespace ImagickDemo;
 
 use Auryn\Injector;
 
-
-class Config {
-
+class Config
+{
     const FLICKR_KEY = 'flickr.key';
     const FLICKR_SECRET = 'flickr.secret';
     
@@ -38,7 +36,7 @@ class Config {
     
     const LIBRATO_KEY = 'librato.key';
     const LIBRATO_USERNAME = 'librato.username';
-    const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name'; 
+    const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name';
     
     const JIG_COMPILE_CHECK = 'jig.compilecheck';
     
@@ -101,7 +99,7 @@ class Config {
         return $value;
     }
    
-    function createHTTPRequest()
+    public function createHTTPRequest()
     {
         return new \Intahwebz\Routing\HTTPRequest(
             $_SERVER,
@@ -112,7 +110,7 @@ class Config {
         );
     }
 
-    function createLibrato()
+    public function createLibrato()
     {
         return new \ImagickDemo\Config\Librato(
             self::getEnv(self::LIBRATO_KEY),
@@ -121,7 +119,7 @@ class Config {
         );
     }
 
-    function createJigConfig()
+    public function createJigConfig()
     {
         $jigConfig = new \Jig\JigConfig(
             "../templates/",
@@ -133,4 +131,3 @@ class Config {
         return $jigConfig;
     }
 }
-

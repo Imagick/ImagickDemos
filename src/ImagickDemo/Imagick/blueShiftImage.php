@@ -2,13 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class blueShiftImage extends \ImagickDemo\Example {
-
+class blueShiftImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
-
-  
 }

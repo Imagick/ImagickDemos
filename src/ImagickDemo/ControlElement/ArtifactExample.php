@@ -1,30 +1,31 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class ArtifactExample extends OptionKeyElement {
-
-    function getVariableName() {
+class ArtifactExample extends OptionKeyElement
+{
+    public function getVariableName()
+    {
         return 'artifactExample';
     }
 
-    function getDefault() {
+    public function getDefault()
+    {
         return 'screenGradients';
     }
 
-    function getDisplayName() {
+    public function getDisplayName()
+    {
         return "Artifact example";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return \ImagickDemo\Imagick\setImageArtifact::getExamples();
     }
 
-    function getArtifactExample() {
+    public function getArtifactExample()
+    {
         return $this->getKey();
     }
 }
-
- 

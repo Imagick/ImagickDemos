@@ -2,22 +2,24 @@
 
 namespace ImagickDemo;
 
-class HomePageExample extends \ImagickDemo\Example {
-
+class HomePageExample extends \ImagickDemo\Example
+{
     /**
      * Get number of bootstrap columns the content should be offset by
      * @return int
      */
-    function getColumnOffset() {
+    public function getColumnOffset()
+    {
         return 2;
     }
 
-    function getColumnRightOffset() {
+    public function getColumnRightOffset()
+    {
         return 2;
     }
-    
-    
-    function render() {
+
+    public function render()
+    {
         $output = <<< END
    
    <p>
@@ -60,10 +62,12 @@ END;
         return $output;
     }
 
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "PHP Imagick by example";
     }
 
-    function renderImage() {
+    public function renderImage()
+    {
     }
 }

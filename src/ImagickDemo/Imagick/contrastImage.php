@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class contrastImage extends \ImagickDemo\Example {
-
+class contrastImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

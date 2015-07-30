@@ -1,13 +1,11 @@
 <?php
 
-
 namespace ImagickDemo\Config;
 
 use ImagickDemo\Config;
 
-
-class Librato {
-
+class Librato
+{
     private $libratoKey;
     private $libratorUsername;
     private $statsSourceName;
@@ -19,16 +17,18 @@ class Librato {
         $this->statsSourceName = $sourceName;
     }
     
-    public function getLibratoKey() {
+    public function getLibratoKey()
+    {
         return $this->libratoKey;
     }
 
-    public function getLibratoUsername() {
+    public function getLibratoUsername()
+    {
         return $this->libratorUsername;
     }
     
-    public function getStatsSourceName() {
+    public function getStatsSourceName()
+    {
         return $this->statsSourceName;
     }
 }
-

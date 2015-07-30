@@ -1,34 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Sigma20 extends ValueElement {
-
-    protected function getDefault() {
+class Sigma20 extends ValueElement
+{
+    protected function getDefault()
+    {
         return 20;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 200;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'sigma';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Sigma';
     }
 
-    function getSigma() {
+    public function getSigma()
+    {
         return $this->getValue();
     }
 }

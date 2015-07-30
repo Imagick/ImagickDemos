@@ -1,20 +1,18 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-
-
-class H20 implements ControlElement {
-    
+class H20 implements ControlElement
+{
     private $h20 = "5";
 
-    const h20Name = 'h20';
+    const H20_NAME = 'h20';
 
-    function __construct(VariableMap $variableMap) {
-        $this->h20 = $variableMap->getVariable(self::h20Name, $this->h20);
+    public function __construct(VariableMap $variableMap)
+    {
+        $this->h20 = $variableMap->getVariable(self::H20_NAME, $this->h20);
         $this->h20 = intval($this->h20);
         if ($this->h20 < 0) {
             $this->h20 = 0;
@@ -27,30 +25,33 @@ class H20 implements ControlElement {
     /**
      * @return array
      */
-    function getParams() {
+    public function getParams()
+    {
         return [
-            self::h20Name => $this->h20,
+            self::H20_NAME => $this->h20,
         ];
     }
 
     /**
      * @return array
      */
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return $this->getParams();
     }
 
     /**
      * @return string
      */
-    function renderFormElement() {
+    public function renderFormElement()
+    {
         $sWidth = safeText($this->h20);
-   
+
         $text = "<div class='row controlRow'>
-    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." controlCell'>
+    <div class='col-sm-" . self::FIRST_ELEMENT_SIZE . " controlCell'>
         %s
     </div>    
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." inputValue controlCell'>
+    <div class='col-sm-" . self::MIDDLE_ELEMENT_SIZE . " inputValue controlCell'>
         <input type='text' name='%s' value='%s'/>
     </div>
 </div>";
@@ -58,7 +59,7 @@ class H20 implements ControlElement {
         return sprintf(
             $text,
             "Height",
-            self::h20Name,
+            self::H20_NAME,
             $sWidth
         );
     }
@@ -66,9 +67,8 @@ class H20 implements ControlElement {
     /**
      * @return string
      */
-    public function getH20() {
+    public function getH20()
+    {
         return $this->h20;
     }
 }
-
- 

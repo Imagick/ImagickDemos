@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class resampleImage extends \ImagickDemo\Example {
-
-    function render() {
+class resampleImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

@@ -1,21 +1,25 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-abstract class ValueElement implements ControlElement {
-
+abstract class ValueElement implements ControlElement
+{
     abstract protected function getDefault();
+
     abstract protected function getMin();
+
     abstract protected function getMax();
+
     abstract protected function getVariableName();
+
     abstract protected function getDisplayName();
 
     private $value;
 
-    function __construct(VariableMap $variableMap) {
+    public function __construct(VariableMap $variableMap)
+    {
         $value = $this->getDefault();
 
         if ($value !== false) {
@@ -27,9 +31,9 @@ abstract class ValueElement implements ControlElement {
                 trigger_error("Default is smaller than min in " . get_class($this) . ", someone has dun goofed", E_USER_NOTICE);
             }
         }
-        
+
         $value = $variableMap->getVariable($this->getVariableName(), $value);
-        
+
         if (($value !== false) && (strlen(trim($value) != 0))) {
             if ($value < $this->getMin()) {
                 $value = $this->getMin();
@@ -38,36 +42,41 @@ abstract class ValueElement implements ControlElement {
                 $value = $this->getMax();
             }
         }
-        
+
         $this->value = $this->filterValue($value);
     }
-    
-    protected function filterValue($value) {
+
+    protected function filterValue($value)
+    {
         return $value;
     }
 
-    protected function getValue() {
+    protected function getValue()
+    {
         return $this->value;
     }
-    
-    function getParams() {
+
+    public function getParams()
+    {
         return [
             $this->getVariableName() => $this->value,
         ];
     }
 
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return $this->getParams();
     }
-    
-    function renderFormElement() {
+
+    public function renderFormElement()
+    {
         $sValue = safeText($this->value);
 
         $text = "<div class='row controlRow'>
-    <div class='col-sm-".self::FIRST_ELEMENT_SIZE." controlCell'>
+    <div class='col-sm-" . self::FIRST_ELEMENT_SIZE . " controlCell'>
         %s
     </div>    
-    <div class='col-sm-".self::MIDDLE_ELEMENT_SIZE." controlCell'>
+    <div class='col-sm-" . self::MIDDLE_ELEMENT_SIZE . " controlCell'>
         <input type='text' class='inputValue' name='%s' value='%s'/>
     </div>
 </div>";
@@ -80,7 +89,3 @@ abstract class ValueElement implements ControlElement {
         );
     }
 }
-
-
-
- 

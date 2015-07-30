@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class importImagePixels extends \ImagickDemo\Example {
-
-    function render() {
+class importImagePixels extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

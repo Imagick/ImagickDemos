@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class EvaluateType extends OptionKeyElement {
-    protected function getDefault() {
+class EvaluateType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::EVALUATE_ADD;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'evaluateType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Evaluate type";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
             \Imagick::EVALUATE_ADD => 'Add',
             \Imagick::EVALUATE_AND => 'And',
@@ -50,9 +51,8 @@ class EvaluateType extends OptionKeyElement {
         ];
     }
 
-    function getEvaluateType() {
+    public function getEvaluateType()
+    {
         return $this->getKey();
     }
 }
-
- 

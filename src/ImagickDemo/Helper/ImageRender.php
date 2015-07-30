@@ -1,11 +1,9 @@
 <?php
 
-
 namespace ImagickDemo\Helper;
 
-
-class ImageRender {
-
+class ImageRender
+{
     private $useAsyncLoading;
     private $imgURL;
     private $originalImageURL;
@@ -14,12 +12,12 @@ class ImageRender {
     private $originalText = "Touch/mouse over to see original ";
     private $modifiedText = "Touch/mouse out to see modified ";
 
-    function __construct(
+    public function __construct(
         $useAsyncLoading,
         $imgURL,
         $originalImageURL,
         $statusURL
-    ) {        
+    ) {
         $this->useAsyncLoading = $useAsyncLoading;
         $this->imgURL = $imgURL;
         $this->originalImageURL = $originalImageURL;
@@ -29,7 +27,8 @@ class ImageRender {
     /**
      * @return string
      */
-    private function getOriginalImageJS() {
+    private function getOriginalImageJS()
+    {
         if (!$this->originalImageURL) {
             return '';
         }
@@ -62,7 +61,8 @@ class ImageRender {
     /**
      * @return string
      */
-    function render() {
+    public function render()
+    {
         $this->output = '';
         $this->openContainer();
         
@@ -78,9 +78,10 @@ class ImageRender {
     }
 
     /**
-     * 
+     *
      */
-    private function addImage() {
+    private function addImage()
+    {
         $hiddenClass = '';
         if ($this->useAsyncLoading) {
             $hiddenClass = 'asyncImageHidden';
@@ -108,9 +109,10 @@ class ImageRender {
     }
 
     /**
-     * 
+     *
      */
-    private function addAsyncLoading() {
+    private function addAsyncLoading()
+    {
         if ($this->useAsyncLoading) {
             $this->output .= "<span class='asyncLoading'>";
             $this->output .= "<span class='asyncImageStatus'>Async image loading...</span> <br/>";
@@ -120,9 +122,10 @@ class ImageRender {
     }
 
     /**
-     * 
+     *
      */
-    private function openContainer() {
+    private function openContainer()
+    {
         $enabled = 'false';
         if ($this->useAsyncLoading) {
             $enabled = 'true';
@@ -137,17 +140,18 @@ class ImageRender {
     }
 
     /**
-     * 
+     *
      */
-    private function closeContainer() {
+    private function closeContainer()
+    {
         $this->output .= "</span>";
     }
 
     /**
-     * 
+     *
      */
-    private function addOriginalText() {
-
+    private function addOriginalText()
+    {
         if (!$this->originalImageURL) {
             return;
         }
@@ -163,4 +167,3 @@ class ImageRender {
         $this->output .= $newWindow;
     }
 }
-

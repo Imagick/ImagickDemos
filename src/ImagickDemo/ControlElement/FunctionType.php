@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class FunctionType extends OptionKeyElement {
-    protected function getDefault() {
+class FunctionType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 'renderImageSinusoid';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'imagickFunction';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Function";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
             "renderImagePolynomial" => 'Polynomial',
             "renderImageSinusoid" => 'Sinusoid',
@@ -28,9 +29,8 @@ class FunctionType extends OptionKeyElement {
         ];
     }
 
-    function getFunctionType() {
+    public function getFunctionType()
+    {
         return $this->getKey();
     }
 }
-
- 

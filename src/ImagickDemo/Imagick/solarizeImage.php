@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class solarizeImage extends \ImagickDemo\Example {
-
+class solarizeImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

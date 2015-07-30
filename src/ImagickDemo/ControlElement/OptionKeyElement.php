@@ -1,21 +1,24 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-abstract class OptionKeyElement implements ControlElement {
-
+abstract class OptionKeyElement implements ControlElement
+{
     abstract protected function getDefault();
+
     abstract protected function getVariableName();
+
     abstract protected function getDisplayName();
+
     abstract protected function getOptions();
 
     protected $key;
     protected $value;
 
-    function __construct(VariableMap $variableMap) {
+    public function __construct(VariableMap $variableMap)
+    {
         $this->key = $this->getDefault();
         $newKey = $variableMap->getVariable($this->getVariableName(), $this->key);
 
@@ -25,44 +28,47 @@ abstract class OptionKeyElement implements ControlElement {
                 $this->value = $value;
                 break;
             }
-        } 
+        }
     }
 
-    protected function getKey() {
+    protected function getKey()
+    {
         return $this->key;
     }
 
-    protected function getValue() {
+    protected function getValue()
+    {
         return $this->value;
     }
-    
-    function getParams() {
+
+    public function getParams()
+    {
         return [
             $this->getVariableName() => $this->key,
         ];
     }
 
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return $this->getParams();
     }
-    
-    
+
     /**
      * @return string
      */
-    function renderFormElement() {
-
+    public function renderFormElement()
+    {
         $select = '';
-        
+
         foreach ($this->getOptions() as $key => $value) {
             $selected = '';
             if ($key == $this->key) {
                 $selected = "selected='selected'";
             }
-            $select .= "<option value='".$key."' $selected>$value</option>";
+            $select .= "<option value='" . $key . "' $selected>$value</option>";
         }
-        
-        
+
+
         $text = <<< END
 <div class='row controlRow'>
     <div class='col-sm-%d controlCell'>
@@ -86,7 +92,3 @@ END;
         );
     }
 }
-
-
-
- 

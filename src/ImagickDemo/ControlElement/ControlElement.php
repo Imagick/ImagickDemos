@@ -3,9 +3,8 @@
 
 namespace ImagickDemo\ControlElement;
 
-
-interface ControlElement {
-
+interface ControlElement
+{
     const FIRST_ELEMENT_SIZE = 7;
     const MIDDLE_ELEMENT_SIZE = 5;
 
@@ -16,15 +15,15 @@ interface ControlElement {
     /**
      * @return array
      */
-    function getParams();
+    public function getParams();
 
     /**
      * @return array
      */
-    function getInjectionParams();
-    
+    public function getInjectionParams();
+
     /**
      * @return string
      */
-    function renderFormElement();
-} 
+    public function renderFormElement();
+}

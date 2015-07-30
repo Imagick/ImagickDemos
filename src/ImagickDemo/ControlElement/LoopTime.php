@@ -1,42 +1,41 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class LoopTime extends ValueElement {
-
-    protected function getDefault() {
+class LoopTime extends ValueElement
+{
+    protected function getDefault()
+    {
         return 160;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 1024;
     }
 
-    protected function filterValue($value) {
+    protected function filterValue($value)
+    {
         return intval($value);
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'loopTime';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Loop time';
     }
 
-    function getLoopTime() {
+    public function getLoopTime()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

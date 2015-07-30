@@ -1,42 +1,41 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class NumberLevels extends ValueElement {
-
-    protected function getDefault() {
+class NumberLevels extends ValueElement
+{
+    protected function getDefault()
+    {
         return 8;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 256;
     }
 
-    protected function filterValue($value) {
+    protected function filterValue($value)
+    {
         return intval($value);
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'numberLevels';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Number Levels';
     }
 
-    function getNumberLevels() {
+    public function getNumberLevels()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class randomThresholdImage extends \ImagickDemo\Example {
-
-    function render() {
+class randomThresholdImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

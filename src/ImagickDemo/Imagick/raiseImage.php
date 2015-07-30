@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class raiseImage extends \ImagickDemo\Example {
-
-    function render() {
+class raiseImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

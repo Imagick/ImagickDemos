@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class setImageAlphaChannel extends \ImagickDemo\Example {
-
-    function render() {
+class setImageAlphaChannel extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

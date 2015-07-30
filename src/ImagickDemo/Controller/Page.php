@@ -8,17 +8,16 @@ use ImagickDemo\Tier;
 use ImagickDemo\InjectionParams;
 use ImagickDemo\Navigation\CategoryNav;
 
-
-class Page {
-
+class Page
+{
     /**
      * @param string $templateName
      * @return TextResponse
      * @throws \Jig\JigException
      */
-    function generateResponseFromTemplate($templateName)
+    public function generateResponseFromTemplate($templateName)
     {
-        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);        
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
         $callable = getTemplateSetupCallable($templateName);
         return new Tier($callable, $injectionParams);
     }
@@ -27,12 +26,10 @@ class Page {
      * @internal param \Auryn\Injector $injector
      * @return TextResponse
      */
-    function renderTitlePage()
+    public function renderTitlePage()
     {
         $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
-//        $injectionParams->alias('ImagickDemo\Example', 'ImagickDemo\HomePageExample');
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
-
         $callable = getTemplateSetupCallable('title');
 
         return new Tier($callable, $injectionParams);
@@ -44,12 +41,10 @@ class Page {
      * @internal param $example
      * @return TextResponse
      */
-    function renderExamplePage(CategoryNav $categoryNav)
+    public function renderExamplePage()
     {
-        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);        
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
         $callable = getTemplateSetupCallable('index');
-//        $exampleName = $categoryNav->getExampleName();        
-//        $injectionParams->alias('ImagickDemo\Example', $exampleName);
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
         return new Tier($callable, $injectionParams);
@@ -60,12 +55,10 @@ class Page {
      * @internal param $category
      * @return TextResponse
      */
-    function renderCategoryIndex(CategoryNav $categoryNav)
+    public function renderCategoryIndex()
     {
-        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);        
+        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
         $callable = getTemplateSetupCallable('title');
-//        $exampleName = $categoryNav->getExampleName();        
-//        $injectionParams->alias('ImagickDemo\Example', $exampleName);
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
         return new Tier($callable, $injectionParams);

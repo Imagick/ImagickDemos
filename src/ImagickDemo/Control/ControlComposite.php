@@ -1,20 +1,19 @@
 <?php
 
-
 namespace ImagickDemo\Control;
 
 use ImagickDemo\Queue\ImagickTaskQueue;
 use ImagickDemo\Helper\PageInfo;
 
-class ControlComposite implements \ImagickDemo\Control {
-    
+class ControlComposite implements \ImagickDemo\Control
+{
     private $imageBaseURL;
     private $customImageBaseURL;
     private $imageStatusBaseURL;
+    private $taskQueue;
 
-
-    function __construct(PageInfo $pageInfo, ImagickTaskQueue $taskQueue) {
-
+    public function __construct(PageInfo $pageInfo, ImagickTaskQueue $taskQueue)
+    {
         $activeCategory = $pageInfo->getCategory();
         $activeExample = $pageInfo->getExample();
 
@@ -27,22 +26,24 @@ class ControlComposite implements \ImagickDemo\Control {
     /**
      * @return array
      */
-    function getParams() {
+    public function getParams()
+    {
         //This should get replaced by the Weaver
         return [];
     }
 
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         //This should get replaced by the Weaver
         return [];
     }
-
 
     /**
      * @param array $extraParams
      * @return array
      */
-    function getFullParams(array $extraParams = []) {
+    public function getFullParams(array $extraParams = [])
+    {
         $params = $this->getInjectionParams();
         $params += $extraParams;
         return $params;
@@ -51,7 +52,8 @@ class ControlComposite implements \ImagickDemo\Control {
     /**
      * @return string
      */
-    function renderFormElement() {
+    public function renderFormElement()
+    {
         //This should get replaced by the Weaver
         return "";
     }
@@ -60,7 +62,8 @@ class ControlComposite implements \ImagickDemo\Control {
      * @param null $originalImageURL
      * @return string
      */
-    function renderImageURL($originalImageURL = null) {
+    public function renderImageURL($originalImageURL = null)
+    {
         return renderImageURL(
             $this->taskQueue->isActive(),
             $this->getURL(),
@@ -74,7 +77,8 @@ class ControlComposite implements \ImagickDemo\Control {
      * @param null $originalImageURL
      * @return string
      */
-    function renderCustomImageURL($extraParams, $originalImageURL = null) {
+    public function renderCustomImageURL($extraParams, $originalImageURL = null)
+    {
         return renderImageURL(
             $this->taskQueue->isActive(),
             $this->getCustomImageURL($extraParams),
@@ -87,8 +91,8 @@ class ControlComposite implements \ImagickDemo\Control {
     /**
      * @return string
      */
-    function renderForm() {
-
+    public function renderForm()
+    {
         $output =
         "<form method='GET' accept-charset='utf-8'>
              <div class='col-xs-12 contentPanel controlForm'>";
@@ -110,7 +114,8 @@ class ControlComposite implements \ImagickDemo\Control {
     /**
      * @return string
      */
-    function getURL() {
+    public function getURL()
+    {
         return $this->getURLWithParams($this->imageBaseURL);
     }
 
@@ -119,7 +124,8 @@ class ControlComposite implements \ImagickDemo\Control {
      * @param array $extraParams
      * @return string
      */
-    function getURLWithParams($baseURL, $extraParams = []) {
+    public function getURLWithParams($baseURL, $extraParams = [])
+    {
         $paramString = '';
         $params = $this->getParams();
         $params = array_merge($params, $extraParams);
@@ -136,7 +142,8 @@ class ControlComposite implements \ImagickDemo\Control {
      * @param array $extraParams
      * @return string
      */
-    function getImageStatusURL($extraParams = []) {
+    public function getImageStatusURL($extraParams = [])
+    {
         return $this->getURLWithParams($this->imageStatusBaseURL);
     }
 
@@ -144,7 +151,8 @@ class ControlComposite implements \ImagickDemo\Control {
      * @param array $extraParams
      * @return string
      */
-    function getCustomImageURL(array $extraParams = []) {
+    public function getCustomImageURL(array $extraParams = [])
+    {
         $paramString = '';
         $params = $this->getParams();
         $separator = '?';

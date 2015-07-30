@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class extentImage extends \ImagickDemo\Example {
-
-    function render() {
+class extentImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

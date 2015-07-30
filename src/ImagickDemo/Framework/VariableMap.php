@@ -1,10 +1,8 @@
 <?php
 
-
 namespace ImagickDemo\Framework;
 
-
-interface VariableMap {
-    function getVariable($variableName, $default = false, $minimum = false, $maximum = false);
+interface VariableMap
+{
+    public function getVariable($variableName, $default = false, $minimum = false, $maximum = false);
 }
-

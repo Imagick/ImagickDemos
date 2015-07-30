@@ -1,35 +1,37 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class PosterizeType extends OptionKeyElement {
-    protected function getDefault() {
+class PosterizeType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::DITHERMETHOD_RIEMERSMA;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'posterizeType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Posterize type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         $images = [
             \Imagick::DITHERMETHOD_NO => 'None',
-            \Imagick::DITHERMETHOD_RIEMERSMA  => 'Riemersma',
-            \Imagick::DITHERMETHOD_FLOYDSTEINBERG  => 'Floydsteinberg',
+            \Imagick::DITHERMETHOD_RIEMERSMA => 'Riemersma',
+            \Imagick::DITHERMETHOD_FLOYDSTEINBERG => 'Floydsteinberg',
         ];
 
         return $images;
     }
 
-    function getPosterizeType() {
+    public function getPosterizeType()
+    {
         return $this->getKey();
     }
 }
-
- 

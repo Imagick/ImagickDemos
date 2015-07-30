@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class SecondTerm extends ValueElement {
-
-    protected function getDefault() {
+class SecondTerm extends ValueElement
+{
+    protected function getDefault()
+    {
         return '';
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -1000;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 10000;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'secondTerm';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Second term';
     }
 
-    function getSecondTerm() {
+    public function getSecondTerm()
+    {
         return $this->getValue();
     }
 }

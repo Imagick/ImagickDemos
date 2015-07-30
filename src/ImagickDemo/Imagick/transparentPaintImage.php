@@ -2,18 +2,20 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class transparentPaintImage extends \ImagickDemo\Example {
-
-    function getOriginalImage() {
-        return $this->control->getURL().'&original=true';
+class transparentPaintImage extends \ImagickDemo\Example
+{
+    public function getOriginalImage()
+    {
+        return $this->control->getURL() . '&original=true';
     }
 
-    function renderOriginalImage() {
+    public function renderOriginalImage()
+    {
         return \ImagickDemo\Imagick\renderFile(realpath("images/BlueScreen.jpg"));
     }
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

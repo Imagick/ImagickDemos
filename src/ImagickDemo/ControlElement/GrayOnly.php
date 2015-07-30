@@ -1,32 +1,34 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class GrayOnly extends OptionKeyElement {
-    protected function getDefault() {
+class GrayOnly extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 0;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'grayOnly';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Pixels';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             0 => 'All pixels',
             1 => 'Gray pixels only',
         ];
     }
 
-    function getGrayOnly() {
+    public function getGrayOnly()
+    {
         return $this->key;
     }
 }

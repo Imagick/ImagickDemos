@@ -1,33 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Swirl extends ValueElement {
-    protected function getDefault() {
+class Swirl extends ValueElement
+{
+    protected function getDefault()
+    {
         return 100;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -3600;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 3600;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'swirl';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Swirl';
     }
-    
-    function getSwirl() {
+
+    public function getSwirl()
+    {
         return $this->getValue();
     }
 }

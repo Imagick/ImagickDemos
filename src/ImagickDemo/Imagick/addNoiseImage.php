@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class addNoiseImage extends \ImagickDemo\Example {
-
+class addNoiseImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         $output = "NOISE_UNIFORM = 1;
         NOISE_GAUSSIAN = 2;
         NOISE_MULTIPLICATIVEGAUSSIAN = 3;
@@ -15,11 +15,12 @@ class addNoiseImage extends \ImagickDemo\Example {
         NOISE_LAPLACIAN = 5;
         NOISE_POISSON = 6;
         NOISE_RANDOM = 7;  <br/>";
-        
+
         return $output;
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

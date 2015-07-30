@@ -3,13 +3,12 @@
 namespace ImagickDemo\Imagick;
 
 use Imagick;
-
 use ImagickDraw;
 
-
-class clutImage extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class clutImage extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         $output = <<< END
 Applies a Colour LookUp Table to an image. The CLUT should be an image 1 pixel wide.
 
@@ -17,21 +16,24 @@ The colours will be 'looked up' in the clut by using the intensity of each pixel
     
  Using \Imagick::INTERPOLATE_BILINEAR means that a very small clut can be used to generate a smooth palette of colours.
 END;
-        
+
         return nl2br($output);
 
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderCustomImageURL();
     }
 
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $this->clutImage();
         //$this->metalicFont();
     }
 
-    function metalicFont() {
+    public function metalicFont()
+    {
         //Make a gradient
         $draw = new \ImagickDraw();
         $draw->setStrokeOpacity(0);
@@ -57,11 +59,11 @@ END;
 //        -compose Overlay -composite \
 //        -rotate 90 \
 //        metallic_clut.png
-        
+
         $gradient = new Imagick();
         $gradient->newPseudoImage(50, 1000, 'gradient:');
         $gradient->gammaImage(0.9);
-        $gradient->functionImage(\Imagick::FUNCTION_SINUSOID, [2.25,0,0.5,0.5]);
+        $gradient->functionImage(\Imagick::FUNCTION_SINUSOID, [2.25, 0, 0.5, 0.5]);
 
         $gradient2 = new Imagick();
         $gradient2->newPseudoImage(50, 1000, "gradient:rgb(100%,100%,80%)-black");
@@ -91,8 +93,9 @@ END;
 //        -trim +repage metallic.png
 
     }
-    
-    function clutImage() {
+
+    public function clutImage()
+    {
 //Example Imagick::clutImage
         //Make a shape
         $draw = new \ImagickDraw();
@@ -130,7 +133,7 @@ END;
         $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
         $imagick->transformImageColorspace(\Imagick::COLORSPACE_GRAY);
         // $imagick->setImageInterpolateMethod(\Imagick::INTERPOLATE_INTEGER);
-        
+
         //Make the color lookup be smooth
         $gradient->setImageInterpolateMethod(\Imagick::INTERPOLATE_BILINEAR);
         //Nearest neighbour uses exact color values from clut
@@ -147,5 +150,4 @@ END;
         echo $imagick->getImageBlob();
 //Example end
     }
-
 }

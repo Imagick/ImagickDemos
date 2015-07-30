@@ -1,20 +1,21 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-class AdaptiveOffset extends ValueElement {
-
+class AdaptiveOffset extends ValueElement
+{
     private $default;
-    
-    function __construct(VariableMap $variableMap) {
+
+    public function __construct(VariableMap $variableMap)
+    {
         $this->default = 1 / 8;
         parent::__construct($variableMap);
     }
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->default;
     }
 
@@ -22,27 +23,33 @@ class AdaptiveOffset extends ValueElement {
 //        return intval($value);
 //    }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'adaptiveOffset';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Offset';
     }
 
-    protected function getHelpText() {
+    protected function getHelpText()
+    {
         return "";
     }
-    
-    function getAdaptiveOffset() {
+
+    public function getAdaptiveOffset()
+    {
         return $this->getValue();
     }
 }

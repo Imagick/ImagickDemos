@@ -1,33 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class B extends ValueElement {
-
-    protected function getDefault() {
+class B extends ValueElement
+{
+    protected function getDefault()
+    {
         return 100;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 255;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'b';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'B';
     }
 
-    function getB() {
+    public function getB()
+    {
         return $this->getValue();
     }
 }
- 

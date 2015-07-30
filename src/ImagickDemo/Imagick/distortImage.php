@@ -5,31 +5,31 @@ namespace ImagickDemo\Imagick;
 /**
  * Class distortImage
  * @package ImagickDemo\Imagick
- * 
- * Thanks to DJ Mike for some of the examples taken from 
+ *
+ * Thanks to DJ Mike for some of the examples taken from
  * http://www.php.net/manual/en/imagick.distortimage.php#103403
  */
 
 
-
-
-class distortImage extends \ImagickDemo\Example {
-
+class distortImage extends \ImagickDemo\Example
+{
     /**
      * @var \ImagickDemo\Control\ControlCompositeImageDistortionType
      */
     protected $control;
 
-    function __construct(\ImagickDemo\Control\ControlCompositeImageDistortionType $rsiControl) {
+    public function __construct(\ImagickDemo\Control\ControlCompositeImageDistortionType $rsiControl)
+    {
         $this->control = $rsiControl;
     }
 
-    function render() {
+    public function render()
+    {
         return sprintf("<img src='%s' class='img-responsive' />", $this->control->getCustomImageURL());
     }
 
-
-    function renderCustomImage() {
+    public function renderCustomImage()
+    {
         $methods = [
             \Imagick::DISTORTION_AFFINE => "renderImageAffine",
             \Imagick::DISTORTION_AFFINEPROJECTION => "renderImageAffineProjection",
@@ -45,12 +45,11 @@ class distortImage extends \ImagickDemo\Example {
             \Imagick::DISTORTION_POLAR => 'renderImagePerspectivePolar',
             \Imagick::DISTORTION_SHEPARDS => 'renderImageShepards',
 
-           
 
             \Imagick::DISTORTION_BILINEARREVERSE => 'renderBilinearReverse',
             \Imagick::DISTORTION_CYLINDER2PLANE => 'renderCyclinderToPlane',
             \Imagick::DISTORTION_PLANE2CYLINDER => 'renderPlaneToCylinder',
-            \Imagick::DISTORTION_RESIZE         => "renderResize",
+            \Imagick::DISTORTION_RESIZE => "renderResize",
         ];
 
 
@@ -62,50 +61,52 @@ class distortImage extends \ImagickDemo\Example {
         $method = $methods[$distortionType];
         $this->{$method}();
     }
-    
-    function renderDescription() {
+
+    public function renderDescription()
+    {
         return "Various distortion effects.<br/>";
     }
 
-
-    function renderImageAffine() {
+    public function renderImageAffine()
+    {
 //Example Imagick::distortImage Affine
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
-            0,    0, 
-            25,  25,
-            100,  0, 
+            0, 0,
+            25, 25,
+            100, 0,
             100, 50
         );
 
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage(  \Imagick::DISTORTION_AFFINE, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_AFFINE, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
 
-
-    function renderImageAffineProjection() {
+    public function renderImageAffineProjection()
+    {
 //Example Imagick::distortImage Projection
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
-        $points = array( 
-            0.9,0.3,
-            -0.2,0.7,
-            20,15
+        $points = array(
+            0.9, 0.3,
+            -0.2, 0.7,
+            20, 15
         );
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_AFFINEPROJECTION, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_AFFINEPROJECTION, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
 
-    function renderImageArc() {
+    public function renderImageArc()
+    {
 //Example Imagick::distortImage Arc
         //Make some text arc around the center of it's image
 //        convert logo: -resize x150 -gravity NorthEast -crop 100x100+10+0! \
@@ -114,47 +115,50 @@ class distortImage extends \ImagickDemo\Example {
 //        -repage +75+21\! \)  -flatten  arc_overlay.jpg
 
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
-        $degrees = array( 180 );
+        $degrees = array(180);
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_ARC, $degrees, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_ARC, $degrees, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
 
-    function renderImageRotatedArc() {
+    public function renderImageRotatedArc()
+    {
 //Example Imagick::distortImage Rotated Arc
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
-        $degrees = array( 180, 45, 100, 20 );
+        $degrees = array(180, 45, 100, 20);
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_ARC, $degrees, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_ARC, $degrees, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    function renderImageBilinear() {
+    public function renderImageBilinear()
+    {
 //Example Imagick::distortImage Bilinear
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
-            0,0, 25,25, # top left  
-            176,0, 126,0, # top right
-            0,135, 0,105, # bottom right 
-            176,135, 176,135 # bottum left
+            0, 0, 25, 25, # top left
+            176, 0, 126, 0, # top right
+            0, 135, 0, 105, # bottom right
+            176, 135, 176, 135 # bottum left
         );
         $imagick->setImageBackgroundColor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_BILINEAR, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_BILINEAR, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    
-    function renderImageScaleRotateTransform() {
+
+    public function renderImageScaleRotateTransform()
+    {
 //Example Imagick::distortImage Scale Rotate Transform
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
@@ -162,15 +166,16 @@ class distortImage extends \ImagickDemo\Example {
             150 # rotate
         );
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_SCALEROTATETRANSLATE, $points, TRUE );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_SCALEROTATETRANSLATE, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    
-    function renderImagePerspective() {
+
+    public function renderImagePerspective()
+    {
 //Example Imagick::distortImage Perspective
         //$imagick = new \Imagick(realpath($this->rsiControl->getImagePath()));
         $imagick = new \Imagick();
@@ -188,7 +193,7 @@ class distortImage extends \ImagickDemo\Example {
         $imagick->setImageMatte(true);
 
         /* Control points for the distortion */
-        $controlPoints = array( 10, 10,
+        $controlPoints = array(10, 10,
             10, 5,
 
             10, $imagick->getImageHeight() - 20,
@@ -208,8 +213,8 @@ class distortImage extends \ImagickDemo\Example {
     }
 
 
-
-    function renderImagePerspectiveProjection() {
+    public function renderImagePerspectiveProjection()
+    {
 //Example Imagick::distortImage PerspectiveProjection
         //X-of-destination = (sx*xs + ry+ys +tx) / (px*xs + py*ys +1)
         //Y-of-destination = (rx*xs + sy+ys +ty) / (px*xs + py*ys +1)
@@ -217,24 +222,23 @@ class distortImage extends \ImagickDemo\Example {
         // sx   ry   tx
         // rx   sy   ty
         // px   py
-        
+
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
-            1.945622, 0.071451, 
-            -12.187838, 0.799032, 
+            1.945622, 0.071451,
+            -12.187838, 0.799032,
             1.276214, -24.470275, 0.006258, 0.000715
         );
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
-        $imagick->distortImage(\Imagick::DISTORTION_PERSPECTIVEPROJECTION, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_PERSPECTIVEPROJECTION, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    
-
-    function renderImagePerspectivePolynomial() {
+    public function renderImagePerspectivePolynomial()
+    {
 //Example Imagick::distortImage Polynomial
 
 // Order     X1,Y1 I1,J1     X2,Y2 I2,J2     X3,Y3 I3,J3     X4,Y4 I4,J4 . . . .
@@ -248,24 +252,24 @@ class distortImage extends \ImagickDemo\Example {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             1.5,   //Order 1.5 = special
-            0, 0, 26, 0,   
-            128,0,  114,23,  
-            128,128,  128,100,
-            0,128,  0,123
+            0, 0, 26, 0,
+            128, 0, 114, 23,
+            128, 128, 128, 100,
+            0, 128, 0, 123
         );
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
-        $imagick->distortImage(\Imagick::DISTORTION_POLYNOMIAL, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_POLYNOMIAL, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    
+
     //Polar args
     //Radius_Max   Radius_Min   Center_X,Center_Y   Start_Angle,End_Angle
-
-    function renderImagePerspectivePolar() {
+    public function renderImagePerspectivePolar()
+    {
 //Example Imagick::distortImage Polar
         //v6.4.2-6
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
@@ -279,10 +283,10 @@ class distortImage extends \ImagickDemo\Example {
 //        );
 
 //        HorizontalTile
-        
+
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_HORIZONTALTILE);
-        $imagick->distortImage(\Imagick::DISTORTION_POLAR, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_HORIZONTALTILE);
+        $imagick->distortImage(\Imagick::DISTORTION_POLAR, $points, true);
 
         header("Content-Type: image/jpeg");
         echo $imagick;
@@ -293,25 +297,26 @@ class distortImage extends \ImagickDemo\Example {
     //Polar args
     //Radius_Max   Radius_Min   Center_X,Center_Y   Start_Angle,End_Angle
 
-    function renderImagePerspectiveDepolar() {
+    public function renderImagePerspectiveDepolar()
+    {
 //Example Imagick::distortImage Polar
         //v6.4.2-6
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             0
-        );     
+        );
 
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
-        $imagick->distortImage(\Imagick::DISTORTION_DEPOLAR, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_DEPOLAR, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    
- 
-    function renderImageBarrel() {
+
+    public function renderImageBarrel()
+    {
 //Example Imagick::distortImage Barrel
 
 // The arguments needed for the 'Barrel' distort method. Generally you supply
@@ -322,24 +327,25 @@ class distortImage extends \ImagickDemo\Example {
 // The coefficients are designed so that if all four A to D values, add up to '1.0', the minimal
 // width/height of the image will not change. For this reason if D (which controls the overall
 // scaling of the image) is not supplied it will be set so all four values do add up to '1.0'.
-    
+
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
-     
+
         $points = array(
             //0.2, 0.0, 0.0, 1.0
             0.4, 0.6, 0.0, 1.0
         );
 
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $imagick->distortImage(\Imagick::DISTORTION_BARREL, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
+        $imagick->distortImage(\Imagick::DISTORTION_BARREL, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    
-    function renderImageBarrelInverse() {
+
+    public function renderImageBarrelInverse()
+    {
 //Example Imagick::distortImage Barrel Inverse
 //  Rsrc = r / ( A*r3 + B*r2 + C*r + D )
 // This equation does NOT produce the 'reverse' the 'Barrel' distortion.
@@ -353,15 +359,16 @@ class distortImage extends \ImagickDemo\Example {
         );
 
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $imagick->distortImage(\Imagick::DISTORTION_BARRELINVERSE, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
+        $imagick->distortImage(\Imagick::DISTORTION_BARRELINVERSE, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
 
-    function renderImageShepards() {
+    public function renderImageShepards()
+    {
 //Example Imagick::distortImage Shepards
         //The control points move points in the image in a taffy like motion
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
@@ -371,7 +378,7 @@ class distortImage extends \ImagickDemo\Example {
             //Setup some control points that don't move
             5 * $imagick->getImageWidth() / 100, 5 * $imagick->getImageHeight() / 100,
             5 * $imagick->getImageWidth() / 100, 5 * $imagick->getImageHeight() / 100,
-            
+
             5 * $imagick->getImageWidth() / 100, 95 * $imagick->getImageHeight() / 100,
             5 * $imagick->getImageWidth() / 100, 95 * $imagick->getImageHeight() / 100,
 
@@ -390,30 +397,32 @@ class distortImage extends \ImagickDemo\Example {
         );
 
         $imagick->setimagebackgroundcolor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_EDGE);
-        $imagick->distortImage(\Imagick::DISTORTION_SHEPARDS, $points, TRUE);
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_EDGE);
+        $imagick->distortImage(\Imagick::DISTORTION_SHEPARDS, $points, true);
         header("Content-Type: image/jpeg");
         echo $imagick;
 //Example end
     }
 
-    function renderBilinearReverse() {
+    public function renderBilinearReverse()
+    {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
 
         $points = array(
-            0,0, 25,25, # top left  
-            176,0, 126,0, # top right
-            0,135, 0,105, # bottom right 
-            176,135, 176,135 # bottum left
+            0, 0, 25, 25, # top left
+            176, 0, 126, 0, # top right
+            0, 135, 0, 105, # bottom right
+            176, 135, 176, 135 # bottum left
         );
         $imagick->setImageBackgroundColor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_BILINEARREVERSE, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_BILINEARREVERSE, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
     }
-    
-    function renderCyclinderToPlane() {
+
+    public function renderCyclinderToPlane()
+    {
         //http://www.imagemagick.org/Usage/distorts/#cylinder2plane
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
@@ -423,38 +432,36 @@ class distortImage extends \ImagickDemo\Example {
             //dest_center_x,y
         );
         $imagick->setImageBackgroundColor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_CYLINDER2PLANE, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_CYLINDER2PLANE, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
     }
-    
 
-    function renderPlaneToCylinder() {
+    public function renderPlaneToCylinder()
+    {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
-            70 
+            70
             //center_x,y
         );
         $imagick->setImageBackgroundColor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_PLANE2CYLINDER, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_PLANE2CYLINDER, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
     }
-    
-    function renderResize() {
+
+    public function renderResize()
+    {
         $imagick = new \Imagick(realpath($this->control->getImagePath()));
         $points = array(
             400, 200
         );
         $imagick->setImageBackgroundColor("#fad888");
-        $imagick->setImageVirtualPixelMethod( \Imagick::VIRTUALPIXELMETHOD_BACKGROUND );
-        $imagick->distortImage( \Imagick::DISTORTION_RESIZE, $points, TRUE );
-        header( "Content-Type: image/jpeg" );
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_BACKGROUND);
+        $imagick->distortImage(\Imagick::DISTORTION_RESIZE, $points, true);
+        header("Content-Type: image/jpeg");
         echo $imagick;
     }
-
-
-
 }

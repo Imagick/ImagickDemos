@@ -1,35 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-
-class SolarizeThreshold extends ValueElement {
-
-    protected function getDefault() {
+class SolarizeThreshold extends ValueElement
+{
+    protected function getDefault()
+    {
         return 0.2;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'solarizeThreshold';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Solarize threshold';
     }
 
-    function getSolarizeThreshold() {
+    public function getSolarizeThreshold()
+    {
         return $this->getValue();
     }
 }

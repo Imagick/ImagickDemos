@@ -1,17 +1,14 @@
 <?php
 
-
 namespace ImagickDemo\Controller;
 
 use ImagickDemo\Response\TextResponse;
 use ImagickDemo\Queue\ImagickTaskQueue;
 
-
-
-class QueueInfo {
-
-    function createResponse(ImagickTaskQueue $taskQueue) {
-
+class QueueInfo
+{
+    public function createResponse(ImagickTaskQueue $taskQueue)
+    {
         ob_start();
 
         $foo = $taskQueue->getStatusQueue();
@@ -29,5 +26,3 @@ class QueueInfo {
         return new TextResponse($output);
     }
 }
-
- 

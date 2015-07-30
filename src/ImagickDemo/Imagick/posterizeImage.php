@@ -2,21 +2,21 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class posterizeImage extends \ImagickDemo\Example {
-
+class posterizeImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderDescription() {
-
+    public function renderDescription()
+    {
         $output = <<< END
 
 END;
 
         return nl2br($output);
     }
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

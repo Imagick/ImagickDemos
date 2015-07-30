@@ -1,14 +1,13 @@
 <?php
 
-
 namespace ImagickDemo\Imagick;
 
-
-class swirlImage extends \ImagickDemo\Example {
-
+class swirlImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

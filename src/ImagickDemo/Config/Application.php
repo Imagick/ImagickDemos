@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\Config;
+
 use ImagickDemo\Config;
 
-
-class Application {
-
+class Application
+{
     private $cacheImages;
     private $queueImages;
     
     private $init = false;
     
-    function __construct() {
+    public function __construct()
+    {
         $this->envReader = new APCCacheEnvReader();
     }
 
     /**
-     * 
+     *
      */
-    private function readValues() {
+    private function readValues()
+    {
         if ($this->init == true) {
             return;
         }
@@ -32,7 +33,8 @@ class Application {
     /**
      * @return mixed
      */
-    public function getCacheImages() {
+    public function getCacheImages()
+    {
         $this->readValues();
         return $this->cacheImages;
     }
@@ -40,7 +42,8 @@ class Application {
     /**
      * @return mixed
      */
-    public function getQueueImages() {
+    public function getQueueImages()
+    {
         $this->readValues();
         return $this->queueImages;
     }

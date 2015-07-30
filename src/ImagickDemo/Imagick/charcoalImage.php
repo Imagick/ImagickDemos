@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class charcoalImage extends \ImagickDemo\Example {
-
+class charcoalImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

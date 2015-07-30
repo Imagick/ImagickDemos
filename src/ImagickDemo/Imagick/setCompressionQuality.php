@@ -2,11 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class setCompressionQuality extends \ImagickDemo\Example {
-
+class setCompressionQuality extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

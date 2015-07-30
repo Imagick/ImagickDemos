@@ -1,26 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-//http://www.imagemagick.org/script/formats.php#builtin-images
-
-class CanvasType extends OptionKeyElement {
-    protected function getDefault() {
+class CanvasType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return "gradient:";
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'canvasType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Canvas type";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
             "GRANITE:" => "Granite",
             "LOGO:" => "Logo",
@@ -42,9 +42,8 @@ class CanvasType extends OptionKeyElement {
         ];
     }
 
-    function getCanvasType() {
+    public function getCanvasType()
+    {
         return $this->getKey();
     }
 }
-
- 

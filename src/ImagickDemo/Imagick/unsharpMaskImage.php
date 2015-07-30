@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class unsharpMaskImage extends \ImagickDemo\Example {
-
+class unsharpMaskImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

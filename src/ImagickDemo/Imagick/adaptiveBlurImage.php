@@ -2,15 +2,17 @@
 
 namespace ImagickDemo\Imagick;
 
-class adaptiveBlurImage extends \ImagickDemo\Example {
-
+class adaptiveBlurImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "Adaptive blur image";
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

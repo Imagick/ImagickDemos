@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class fxImage extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class fxImage extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         $text = <<< END
 
 The fxImage function allows you to define almost any possible image manipulation by defining the operation to perform as a string composed of a large selection of variables.
@@ -17,12 +17,14 @@ END;
 
         return nl2br($text);
     }
-    
-    function render() {        
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 
-    function renderImage2() {
+    public function renderImage2()
+    {
         $imagick = new \Imagick();
         $imagick->newPseudoImage(200, 200, "xc:white");
 
@@ -35,9 +37,9 @@ END;
     }
 
 
-
     //This is actually an example for FX image
-    function example2() {
+    public function example2()
+    {
         $graph = new \Imagick();
         $graph->newPseudoImage(256, 256, "xc:pink");
 
@@ -58,15 +60,13 @@ END;
 
     }
 
-
-
-
-    function renderImage3() {
+    public function renderImage3()
+    {
         $gradient = new \Imagick();
         $gradient->newPseudoImage(1, 256, "gradient:white-black");
         $newImage = $gradient->fxImage("floor(u*10+0.5)/10");
         $newImage->setimageformat('jpg');
-        header( "Content-Type: image/jpg" );
+        header("Content-Type: image/jpg");
         echo $newImage;
     }
 }

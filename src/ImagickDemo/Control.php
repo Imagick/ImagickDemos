@@ -1,27 +1,23 @@
 <?php
 
-
 namespace ImagickDemo;
 
+interface Control
+{
+    public function renderForm();
 
-interface Control {
+    public function getParams();
 
-    function renderForm();
+    public function getInjectionParams();
 
-    function getParams();
+    public function getFullParams(array $extraParams = []);
 
-    function getInjectionParams();
+    public function getURL();
 
-    function getFullParams(array $extraParams = []);
+    public function getCustomImageURL(array $extraParams = []);
 
-    function getURL();
-
-    function getCustomImageURL(array $extraParams = []);
-
-    function getImageStatusURL($extraParams = []);
+    public function getImageStatusURL($extraParams = []);
     
-    function renderImageURL($originalImageURL = null);
-    function renderCustomImageURL($extraParams);
+    public function renderImageURL($originalImageURL = null);
+    public function renderCustomImageURL($extraParams);
 }
-
- 

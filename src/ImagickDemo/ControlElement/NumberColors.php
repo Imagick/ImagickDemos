@@ -1,42 +1,41 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class NumberColors extends ValueElement {
-
-    protected function getDefault() {
+class NumberColors extends ValueElement
+{
+    protected function getDefault()
+    {
         return 64;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 256;
     }
 
-    protected function filterValue($value) {
+    protected function filterValue($value)
+    {
         return intval($value);
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'numberColors';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Number colors';
     }
 
-    function getNumberColors() {
+    public function getNumberColors()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

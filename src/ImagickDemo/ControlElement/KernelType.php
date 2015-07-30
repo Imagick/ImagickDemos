@@ -1,24 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class KernelType extends OptionKeyElement {
-
-    protected function getDefault() {
+class KernelType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::KERNEL_DISK;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'kernelType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Kernel type";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
             \Imagick::KERNEL_UNITY => "Unity",
             \Imagick::KERNEL_GAUSSIAN => "Gaussian",
@@ -55,15 +57,14 @@ class KernelType extends OptionKeyElement {
             \Imagick::KERNEL_MANHATTAN => "Manhattan",
             \Imagick::KERNEL_OCTAGONAL => "Octagonal",
             \Imagick::KERNEL_EUCLIDEAN => "Euclidean",
-         // \Imagick::KERNEL_USER_DEFINED => "User Defined", This isn't needed
-         // Imagick has fromMatrix which is far saner to use.
+            // \Imagick::KERNEL_USER_DEFINED => "User Defined", This isn't needed
+            // Imagick has fromMatrix which is far saner to use.
             \Imagick::KERNEL_BINOMIAL => "Binomial",
         ];
     }
 
-    function getKernelType() {
+    public function getKernelType()
+    {
         return $this->getKey();
     }
 }
-
- 

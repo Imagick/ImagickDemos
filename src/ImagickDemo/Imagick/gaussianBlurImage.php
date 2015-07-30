@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class gaussianBlurImage extends \ImagickDemo\Example {
-
+class gaussianBlurImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

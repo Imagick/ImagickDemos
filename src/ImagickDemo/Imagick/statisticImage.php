@@ -2,11 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class statisticImage extends \ImagickDemo\Example {
-
+class statisticImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

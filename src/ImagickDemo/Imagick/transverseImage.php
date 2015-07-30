@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class transverseImage extends \ImagickDemo\Example {
-
-    function render() {
+class transverseImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

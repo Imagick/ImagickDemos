@@ -1,32 +1,34 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-class Noise extends OptionKeyElement {
-
+class Noise extends OptionKeyElement
+{
     /**
      * @return array
      */
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return ['noiseType' => $this->key];
     }
 
-    protected function getDefault() {
+    protected function getDefault()
+    {
         return \Imagick::NOISE_GAUSSIAN;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'noiseType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Noise type";
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             \Imagick::NOISE_UNIFORM => 'Uniform',
             \Imagick::NOISE_GAUSSIAN => 'Gaussian',
@@ -38,9 +40,8 @@ class Noise extends OptionKeyElement {
         ];
     }
 
-    function getNoiseType() {
+    public function getNoiseType()
+    {
         return $this->key;
     }
 }
-
- 

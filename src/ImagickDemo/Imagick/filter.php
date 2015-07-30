@@ -2,15 +2,17 @@
 
 namespace ImagickDemo\Imagick;
 
-class filter extends \ImagickDemo\Example {
-
+class filter extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderTitle() {
+    public function renderTitle()
+    {
         return "Filter";
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

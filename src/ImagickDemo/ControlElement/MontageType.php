@@ -1,34 +1,35 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class MontageType extends OptionKeyElement {
-
-    protected function getDefault() {
+class MontageType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::MONTAGEMODE_FRAME;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'montageType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return "Montage type";
     }
 
-    function getOptions() {
+    public function getOptions()
+    {
         return [
             \Imagick::MONTAGEMODE_FRAME => "Frame",
-            \Imagick::MONTAGEMODE_UNFRAME  => "Unframe",
+            \Imagick::MONTAGEMODE_UNFRAME => "Unframe",
             \Imagick::MONTAGEMODE_CONCATENATE => "Concatenate"
         ];
     }
 
-    function getMontageType() {
+    public function getMontageType()
+    {
         return $this->getKey();
     }
 }
-
- 

@@ -1,38 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class ShearX extends ValueElement {
-
-    protected function getDefault() {
+class ShearX extends ValueElement
+{
+    protected function getDefault()
+    {
         return 15;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 255;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'shearX';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Shear X';
     }
 
-    function getShearX() {
+    public function getShearX()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

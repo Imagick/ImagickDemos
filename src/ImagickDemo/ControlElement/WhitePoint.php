@@ -1,42 +1,46 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
 use ImagickDemo\Framework\VariableMap;
 
-
-class WhitePoint extends ValueElement {
-
+class WhitePoint extends ValueElement
+{
     private $defaultWhitePoint;
 
-    function __construct(VariableMap $variableMap, $defaultWhitePoint = 10) {
+    public function __construct(VariableMap $variableMap, $defaultWhitePoint = 10)
+    {
         $this->defaultWhitePoint = $defaultWhitePoint;
         parent::__construct($variableMap);
     }
-    
-    
-    protected function getDefault() {
+
+    protected function getDefault()
+    {
         return $this->defaultWhitePoint;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 255;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'whitePoint';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'WhitePoint';
     }
 
-    function getWhitePoint() {
+    public function getWhitePoint()
+    {
         return $this->getValue();
     }
 }

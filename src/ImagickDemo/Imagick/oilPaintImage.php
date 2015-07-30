@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class oilPaintImage extends \ImagickDemo\Example {
-
+class oilPaintImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

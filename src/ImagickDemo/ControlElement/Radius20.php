@@ -1,34 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Radius20 extends ValueElement {
-
-    protected function getDefault() {
+class Radius20 extends ValueElement
+{
+    protected function getDefault()
+    {
         return 20;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 100;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'radius';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Radius';
     }
 
-    function getRadius() {
+    public function getRadius()
+    {
         return $this->getValue();
     }
 }

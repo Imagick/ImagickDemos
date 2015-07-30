@@ -24,9 +24,9 @@ require __DIR__.'/../vendor/autoload.php';
 //of the image
 $imageType = null;
 
-function exceptionHandler(Exception $ex) {
-    
-    //TODO - need to ob_end_clean as many times as required because 
+function exceptionHandler(Exception $ex)
+{
+    //TODO - need to ob_end_clean as many times as required because
     //otherwise partial content gets sent to the client.
 
     if (headers_sent() == false) {
@@ -35,9 +35,8 @@ function exceptionHandler(Exception $ex) {
     else {
         //Exception after headers sent
     }
-    
-    while($ex) {
 
+    while ($ex) {
         echo "Exception " . get_class($ex) . ': ' . $ex->getMessage()."<br/>";
 
         foreach ($ex->getTrace() as $tracePart) {
@@ -58,8 +57,8 @@ function exceptionHandler(Exception $ex) {
     };
 }
 
-
-function errorHandler($errno, $errstr, $errfile, $errline) {
+function errorHandler($errno, $errstr, $errfile, $errline)
+{
     if (error_reporting() == 0) {
         return true;
     }
@@ -86,12 +85,12 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
     return false;
 }
 
-    
 
-function fatalErrorShutdownHandler() {
+function fatalErrorShutdownHandler()
+{
     $level = ob_get_level();
 
-    for($x=0; $x<$level; $x++) {
+    for ($x=0; $x<$level; $x++) {
         ob_end_flush();
     }
 
@@ -110,7 +109,7 @@ function fatalErrorShutdownHandler() {
             exit(0);
         }
 
-        case(E_CORE_WARNING): {
+        case (E_CORE_WARNING): {
             //TODO - report errors properly.
             errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
             break;
@@ -127,8 +126,8 @@ function fatalErrorShutdownHandler() {
 }
 
 
-function getImageCacheFilename(PageInfo $pageInfo, $params) {
-
+function getImageCacheFilename(PageInfo $pageInfo, $params)
+{
     $category = $pageInfo->getCategory();
     $example = $pageInfo->getExample();
     
@@ -140,10 +139,8 @@ function getImageCacheFilename(PageInfo $pageInfo, $params) {
     return $filename;
 }
 
-
-
-function renderImgTag($url, $id = '', $extra = '') {
-
+function renderImgTag($url, $id = '', $extra = '')
+{
     $output = sprintf(
         "<img src='%s' id='%s' class='img-responsive' %s />",
         $url,
@@ -152,9 +149,7 @@ function renderImgTag($url, $id = '', $extra = '') {
     );
 
     return $output;
-
 }
-    
 
 function createRedisSessionDriver()
 {
@@ -234,7 +229,7 @@ function bootstrapInjector()
     $config = new \ImagickDemo\Config();
     $config->delegateShit($injector);
 
-    $injector->share('Jig\JigConfig');    
+    $injector->share('Jig\JigConfig');
     $injector->share('ImagickDemo\Control');
     $injector->share('ImagickDemo\Example');
     $injector->share('ImagickDemo\Navigation\Nav');
@@ -270,11 +265,11 @@ function bootstrapInjector()
     $redisOptions = [];
 
     $injector->define(
-         'Predis\Client',
-         array(
-             ':parameters' => $redisParameters,
-             ':options' => $redisOptions,
-         )
+        'Predis\Client',
+        array(
+            ':parameters' => $redisParameters,
+            ':options' => $redisOptions,
+        )
     );
 
     $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
@@ -298,7 +293,7 @@ function bootstrapInjector()
  */
 function servePage()
 {
-    $routesFunction = getRoutes(); 
+    $routesFunction = getRoutes();
     $dispatcher = \FastRoute\simpleDispatcher($routesFunction);
 
     $httpMethod = 'GET';
@@ -349,7 +344,8 @@ function servePage()
  * @param $filename
  * @return FileResponse|null
  */
-function createFileResponseIfFileExists($filename) {
+function createFileResponseIfFileExists($filename)
+{
     $extensions = ["jpg", 'jpeg', "gif", "png", ];
 
     foreach ($extensions as $extension) {
@@ -369,8 +365,8 @@ function createFileResponseIfFileExists($filename) {
  * @param int $graphWidth
  * @param int $graphHeight
  */
-function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) {
-
+function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127)
+{
     $sampleHeight = 20;
     $border = 2;
 
@@ -434,15 +430,14 @@ function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127) 
 
     $outputImage->compositeimage($imagick, \Imagick::COMPOSITE_ATOP, 0, $graphHeight);
     $outputImage->borderimage('black', $border, $border);
-
-    
     $outputImage->setImageFormat("png");
 
     \ImagickDemo\header("Content-Type: image/png");
     echo $outputImage;
 }
 
-function getPanelStart($smaller, $extraClass = '', $style = '') {
+function getPanelStart($smaller, $extraClass = '', $style = '')
+{
     if ($smaller == true) {
         $output = "<div class='row'>
             <div class='col-md-12 visible-xs visible-sm contentPanel $extraClass'  style='$style'>";
@@ -455,29 +450,34 @@ function getPanelStart($smaller, $extraClass = '', $style = '') {
     return $output;
 }
 
-function getPanelEnd() {
+function getPanelEnd()
+{
     return "</div></div>";
 }
 
-function getImageURL($activeCategory, $activeExample) {
+function getImageURL($activeCategory, $activeExample)
+{
     return '/image/'.$activeCategory.'/'.$activeExample;
 }
 
-function getCustomImageURL($activeCategory, $activeExample) {
+function getCustomImageURL($activeCategory, $activeExample)
+{
     return '/customImage/'.$activeCategory.'/'.$activeExample;
 }
 
-function getImageStatusURL($activeCategory, $activeExample) {
+function getImageStatusURL($activeCategory, $activeExample)
+{
     return '/imageStatus/'.$activeCategory.'/'.$activeExample;
 }
 
-function getKnownExtensions() {
+function getKnownExtensions()
+{
     return ['gif', 'jpg', 'png', 'webp'];
 }
 
 
-function getRoutes() {
-
+function getRoutes()
+{
     $routesFunction = function (\FastRoute\RouteCollector $r) {
 
         $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|ImagickKernel|Tutorial}';
@@ -501,7 +501,6 @@ function getRoutes() {
             'GET',
             "/imageStatus/$categories/{example:[a-zA-Z]+}",
             [\ImagickDemo\Controller\Image::class, 'getImageJobStatus']
-            
         );
 
         $imageController = [\ImagickDemo\Controller\Image::class, 'getImageResponse'];
@@ -535,7 +534,8 @@ function getRoutes() {
  * @return \ImagickDemo\Response\ImageResponse
  * @throws \Exception
  */
-function createImageResponse($filename, callable $imageCallable) {
+function createImageResponse($filename, callable $imageCallable)
+{
     global $imageType;
     ob_start();
     $imageCallable();
@@ -557,7 +557,8 @@ function createImageResponse($filename, callable $imageCallable) {
  * @param \ImagickDemo\Control $control
  * @return mixed
  */
-function getCachedImageResponse($category, $example, $params) {
+function getCachedImageResponse($category, $example, $params)
+{
     $filename = getImageCacheFilename($category, $example, $params);
 
     return createFileResponseIfFileExists($filename);
@@ -568,11 +569,12 @@ function getCachedImageResponse($category, $example, $params) {
  * @param \Intahwebz\Request $request
  * @return callable|null
  */
-function checkGetOriginalImage(\Intahwebz\Request $request) {
+function checkGetOriginalImage(\Intahwebz\Request $request)
+{
     $original = $request->getVariable('original', false);
     if ($original) {
         //TODO - these are not cached.
-        $callable = function(\Auryn\Injector $injector) {
+        $callable = function (\Auryn\Injector $injector) {
             return $injector->execute([\ImagickDemo\Example::class, 'renderOriginalImage']);
         };
 
@@ -594,9 +596,9 @@ function renderImageAsFileResponse(
     $imageFunction,
     $filename,
     \Auryn\Injector $injector,
-    $params) {
-
-    $imageCallable = function() use ($imageFunction, $injector, $params){
+    $params
+) {
+    $imageCallable = function () use ($imageFunction, $injector, $params) {
         return $injector->execute($imageFunction, $params);
     };
 
@@ -614,7 +616,7 @@ function renderImageAsFileResponse(
 
     $image = ob_get_contents();
     ob_end_clean();
-    @mkdir(dirname($filename), 0755, true);    
+    @mkdir(dirname($filename), 0755, true);
     $fullFilename = $filename . "." . strtolower($imageType);
     
     if (!strlen($image)) {
@@ -639,7 +641,8 @@ function renderImageAsFileResponse(
  * @param $job
  * @return RedirectResponse
  */
-function redirectWaitingTask(Request $request, $job) {
+function redirectWaitingTask(Request $request, $job)
+{
     $job = intval($job) + 1;
 
     if ($job > 20) {
@@ -662,12 +665,13 @@ function redirectWaitingTask(Request $request, $job) {
  * @return \ImagickDemo\Response\ImageResponse
  * @throws \Exception
  */
-function directImageFunction($filename, $imageFunction, \Auryn\Injector $injector) {
-    $imageCallable = function() use ($imageFunction, $injector) {
+function directImageFunction($filename, $imageFunction, \Auryn\Injector $injector)
+{
+    $imageCallable = function () use ($imageFunction, $injector) {
         try {
             return $injector->execute($imageFunction);
         }
-        catch(\Exception $e) {
+        catch (\Exception $e) {
             echo "Exception: ".$e->getMessage();
             exit(0);
         }
@@ -696,7 +700,8 @@ function renderImageURL(
     return $imageRender->render();
 }
 
-function renderKernelTable($matrix) {
+function renderKernelTable($matrix)
+{
     $output = "<table class='infoTable'>";
 
     foreach ($matrix as $row) {
@@ -737,9 +742,8 @@ function addInjectionParams(Injector $injector, InjectionParams $injectionParams
         $injector->delegate($className, $callable);
     }
 }
-    
 
-    
+
 function getTemplatRenderCallable($templateFilename)
 {
     $fn = function (JigConfig $jigConfig) use ($templateFilename) {
@@ -756,7 +760,8 @@ function createTemplateResponse(Jig\JigBase $template)
     return new \ImagickDemo\Response\TemplateResponse($template);
 }
     
-function getTemplateSetupCallable($templateName) {
+function getTemplateSetupCallable($templateName)
+{
     $fn = function (JigRender $jigRender) use ($templateName) {
         $className = $jigRender->getClassName($templateName);
         $jigRender->checkTemplateCompiled($templateName);
@@ -782,7 +787,8 @@ namespace ImagickDemo {
      * @param bool $replace
      * @param null $http_response_code
      */
-    function header($string, $replace = true, $http_response_code = null) {
+    function header($string, $replace = true, $http_response_code = null)
+    {
         global $imageType;
         global $cacheImages;
 

@@ -2,11 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class selectiveBlurImage extends \ImagickDemo\Example {
-
+class selectiveBlurImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

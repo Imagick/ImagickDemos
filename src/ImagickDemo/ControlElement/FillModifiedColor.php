@@ -1,29 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class FillModifiedColor extends ColorElement {
-
-    protected function getDefault() {
+class FillModifiedColor extends ColorElement
+{
+    protected function getDefault()
+    {
         return 'LightCoral';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'fillModifiedColor';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Fill modified color';
     }
 
-    function getFillModifiedColor() {
+    public function getFillModifiedColor()
+    {
         return $this->getValue();
     }
 }
-
-
- 

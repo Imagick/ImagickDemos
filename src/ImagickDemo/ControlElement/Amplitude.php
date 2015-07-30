@@ -1,35 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Amplitude extends ValueElement {
-
-    protected function getDefault() {
+class Amplitude extends ValueElement
+{
+    protected function getDefault()
+    {
         return 5;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 20;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'amplitude';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Amplitude';
     }
 
-    function getAmplitude() {
+    public function getAmplitude()
+    {
         return $this->getValue();
     }
 }
- 

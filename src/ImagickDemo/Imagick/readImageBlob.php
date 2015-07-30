@@ -2,15 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class readImageBlob extends \ImagickDemo\Example {
-
-
-//
-//    function renderTitle() {
-//        return "Adaptive blur image";
-//    }
-
-    function render() {
+class readImageBlob extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

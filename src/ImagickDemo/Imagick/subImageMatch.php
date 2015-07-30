@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class subImageMatch extends \ImagickDemo\Example {
-
-    function render() {
+class subImageMatch extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

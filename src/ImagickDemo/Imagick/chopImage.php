@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class chopImage extends \ImagickDemo\Example {
-
-    function render() {
+class chopImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

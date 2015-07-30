@@ -2,19 +2,21 @@
 
 namespace ImagickDemo\Imagick;
 
-class identifyFormat extends \ImagickDemo\Example {
-
+class identifyFormat extends \ImagickDemo\Example
+{
     /**
      * @return string
      */
-    function renderDescription() {
+    public function renderDescription()
+    {
         return "Replaces any embedded formatting characters with the appropriate image property and returns the interpreted text. See <a href='http://www.imagemagick.org/script/escape.php'>http://www.imagemagick.org/script/escape.php</a> for escape sequences.";
     }
 
     /**
      * @return string
      */
-    function render() {
+    public function render()
+    {
 //Example Imagick::identifyFormat
         $output = "Output of 'Trim box: %@ number of unique colors: %k' is: <br/>";
         $imagick = new \Imagick(realpath("./images/artifact/mask.png"));
@@ -24,7 +26,7 @@ class identifyFormat extends \ImagickDemo\Example {
         $output .= "<br/>";
         $output .= "For this image:<br/>";
         $output .= renderImgTag('/images/artifact/mask.png');
-        
+
         return $output;
     }
 }

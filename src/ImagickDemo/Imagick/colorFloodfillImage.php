@@ -2,12 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class colorFloodfillImage extends \ImagickDemo\Example {
-
-    function render() {
+class colorFloodfillImage extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
-
-
 }

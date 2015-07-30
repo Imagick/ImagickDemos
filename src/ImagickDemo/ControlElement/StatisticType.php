@@ -1,25 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class StatisticType extends OptionKeyElement {
-    protected function getDefault() {
+class StatisticType extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return \Imagick::STATISTIC_GRADIENT;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'statisticType';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Statistic type';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             \Imagick::STATISTIC_GRADIENT => "Gradient",
             \Imagick::STATISTIC_MAXIMUM => "Maximum",
@@ -32,7 +33,8 @@ class StatisticType extends OptionKeyElement {
         ];
     }
 
-    function getStatisticType() {
+    public function getStatisticType()
+    {
         return $this->key;
     }
 }

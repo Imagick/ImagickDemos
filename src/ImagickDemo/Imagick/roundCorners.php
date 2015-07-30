@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class roundCorners extends \ImagickDemo\Example {
-
+class roundCorners extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

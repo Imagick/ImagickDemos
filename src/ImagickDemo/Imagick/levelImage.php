@@ -2,11 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class levelImage extends \ImagickDemo\Example {
-
-    
-    function renderDescription() {
+class levelImage extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         $output = <<< END
 
 The <a href='http://www.imagemagick.org/Usage/color_mods/#level_plus'>'Reversed level adjustment'</a> function isn't exposed as function in the ImageMagick library so isn't usable in Imagick.
@@ -18,8 +17,9 @@ END;
 
         return $output;
     }
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
-    }    
+    }
 }

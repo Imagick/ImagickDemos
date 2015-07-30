@@ -1,24 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class TextUnderColor extends ColorElement {
-
-    protected function getDefault() {
+class TextUnderColor extends ColorElement
+{
+    protected function getDefault()
+    {
         return 'DeepPink2';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'textUnderColor';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Text under color';
     }
 
-    function getTextUnderColor() {
+    public function getTextUnderColor()
+    {
         return $this->getValue();
     }
 }

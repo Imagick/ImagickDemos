@@ -1,32 +1,34 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class CropZoom extends OptionKeyElement {
-    protected function getDefault() {
+class CropZoom extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'cropZoom';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Crop + zoom';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             0 => 'Disabled',
             1 => 'Enabled',
         ];
     }
 
-    function getCropZoom() {
+    public function getCropZoom()
+    {
         return $this->key;
     }
 }

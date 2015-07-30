@@ -1,17 +1,14 @@
 <?php
 
-
 namespace ImagickDemo\Controller;
 
 use ImagickDemo\Response\TextResponse;
-
 use Amp\Artax\Client;
 
-
-class ServerInfo {
-
-    function createResponse() {
-
+class ServerInfo
+{
+    public function createResponse()
+    {
         ob_start();
 
         $reactor = \Amp\getReactor();
@@ -77,7 +74,6 @@ class ServerInfo {
         }
 
         if (isset($json['processes']) && is_array($json['processes'])) {
-
             foreach ($json['processes'] as $process) {
                 echo "<tr>";
 
@@ -86,7 +82,8 @@ class ServerInfo {
                     if (array_key_exists($processHeader, $process)) {
                         $text = $process[$processHeader];
 
-                        $text = str_replace([
+                        $text = str_replace(
+                            [
                                 '/home/github/imagick-demos//imagick-demos',
                                 '/home/github/imagick-demos/imagick-demos'
                             ],
@@ -120,5 +117,3 @@ class ServerInfo {
         return new TextResponse($output);
     }
 }
-
- 

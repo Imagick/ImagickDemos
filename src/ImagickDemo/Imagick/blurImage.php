@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-class blurImage extends \ImagickDemo\Example {
-
+class blurImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
-
 }

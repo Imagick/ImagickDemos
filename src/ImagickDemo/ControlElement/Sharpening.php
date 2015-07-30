@@ -1,32 +1,34 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class Sharpening extends OptionKeyElement {
-    protected function getDefault() {
+class Sharpening extends OptionKeyElement
+{
+    protected function getDefault()
+    {
         return 1;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'sharpening';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Contrast';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             0 => 'Decrease',
             1 => 'Increase',
         ];
     }
 
-    function getSharpening() {
+    public function getSharpening()
+    {
         return $this->key;
     }
 }

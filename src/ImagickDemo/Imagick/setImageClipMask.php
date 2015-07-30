@@ -2,13 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class setImageClipMask extends \ImagickDemo\Example {
-
-//    function renderTitle() {
-//        return "Adaptive blur image";
-//    }
-
-    function render() {
+class setImageClipMask extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

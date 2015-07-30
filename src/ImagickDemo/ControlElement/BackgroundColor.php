@@ -1,24 +1,26 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class BackgroundColor extends ColorElement {
-
-    protected function getDefault() {
+class BackgroundColor extends ColorElement
+{
+    protected function getDefault()
+    {
         return 'rgb(225, 225, 225)';
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'backgroundColor';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Background color';
     }
 
-    function getBackgroundColor() {
+    public function getBackgroundColor()
+    {
         return $this->getValue();
     }
 }

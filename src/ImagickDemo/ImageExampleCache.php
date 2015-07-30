@@ -3,12 +3,12 @@
 
 namespace ImagickDemo\Imagick {
 
-
 }
 
 namespace ImagickDemo\ImagickDraw {
 
-    function header($string, $replace = true, $http_response_code = null) {
+    function header($string, $replace = true, $http_response_code = null)
+    {
         global $imageType;
 
         if (stripos($string, "Content-Type: image/") === 0) {
@@ -21,7 +21,8 @@ namespace ImagickDemo\ImagickDraw {
 
 namespace ImagickDemo\ImagickPixel {
 
-    function header($string, $replace = true, $http_response_code = null) {
+    function header($string, $replace = true, $http_response_code = null)
+    {
         global $imageType;
 
         if (stripos($string, "Content-Type: image/") === 0) {
@@ -34,7 +35,8 @@ namespace ImagickDemo\ImagickPixel {
 
 namespace ImagickDemo\ImagickPixelIterator {
 
-    function header($string, $replace = true, $http_response_code = null) {
+    function header($string, $replace = true, $http_response_code = null)
+    {
         global $imageType;
 
         if (stripos($string, "Content-Type: image/") === 0) {
@@ -47,7 +49,8 @@ namespace ImagickDemo\ImagickPixelIterator {
 
 namespace ImagickDemo\Tutorial {
 
-    function header($string, $replace = true, $http_response_code = null) {
+    function header($string, $replace = true, $http_response_code = null)
+    {
         global $imageType;
 
         if (stripos($string, "Content-Type: image/") === 0) {
@@ -60,7 +63,5 @@ namespace ImagickDemo\Tutorial {
 
 
 namespace ImagickDemo {
-
-
 
 }

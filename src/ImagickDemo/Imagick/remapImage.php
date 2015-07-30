@@ -2,15 +2,16 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class remapImage extends \ImagickDemo\Example {
-
+class remapImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function renderDescription() {
+    public function renderDescription()
+    {
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

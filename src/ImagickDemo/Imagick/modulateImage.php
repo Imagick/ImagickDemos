@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class modulateImage extends \ImagickDemo\Example {
-
+class modulateImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

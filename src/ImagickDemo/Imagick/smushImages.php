@@ -2,9 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-class smushImages extends \ImagickDemo\Example {
-
-    function render() {
+class smushImages extends \ImagickDemo\Example
+{
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

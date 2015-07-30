@@ -1,33 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-class Midpoint extends ValueElement {
-
-    protected function getDefault() {
+class Midpoint extends ValueElement
+{
+    protected function getDefault()
+    {
         return 4;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -100;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 100;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'midpoint';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Midpoint';
     }
 
-    function getMidpoint() {
+    public function getMidpoint()
+    {
         return $this->getValue();
     }
 }

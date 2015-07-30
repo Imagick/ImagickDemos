@@ -1,38 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-
-class RollY extends ValueElement {
-
-    protected function getDefault() {
+class RollY extends ValueElement
+{
+    protected function getDefault()
+    {
         return 100;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 800;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'rollY';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Roll Y';
     }
 
-    function getRollY() {
+    public function getRollY()
+    {
         return $this->getValue();
     }
 }
-
-
-
- 

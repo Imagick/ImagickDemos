@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class BlueShift extends ValueElement {
-
-    function getDefault() {
+class BlueShift extends ValueElement
+{
+    public function getDefault()
+    {
         return 1.5;
     }
-    
-    function getMin() {
+
+    public function getMin()
+    {
         return 0;
     }
-    
-    function getMax() {
+
+    public function getMax()
+    {
         return 255;
     }
-    
-    function getVariableName() {
+
+    public function getVariableName()
+    {
         return 'blueShift';
     }
-    
-    function getDisplayName() {
+
+    public function getDisplayName()
+    {
         return 'Blueshift';
     }
 
-    function getBlueShift() {
+    public function getBlueShift()
+    {
         return $this->getValue();
     }
 }

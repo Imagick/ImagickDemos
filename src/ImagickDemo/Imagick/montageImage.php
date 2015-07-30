@@ -2,13 +2,15 @@
 
 namespace ImagickDemo\Imagick;
 
-class montageImage extends \ImagickDemo\Example {
-
-    function renderTitle() {
+class montageImage extends \ImagickDemo\Example
+{
+    public function renderTitle()
+    {
         return "Montage image";
     }
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

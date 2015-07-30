@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class ResizeHeight extends ValueElement {
-
-    function getDefault() {
+class ResizeHeight extends ValueElement
+{
+    protected function getDefault()
+    {
         return 200;
     }
-    
-    function getMin() {
+
+    protected function getMin()
+    {
         return 0;
     }
-    
-    function getMax() {
+
+    protected function getMax()
+    {
         return 1000;
     }
-    
-    function getVariableName() {
+
+    protected function getVariableName()
+    {
         return 'height';
     }
-    
-    function getDisplayName() {
+
+    protected function getDisplayName()
+    {
         return 'Height';
     }
 
-    function getHeight() {
+    protected function getHeight()
+    {
         return $this->getValue();
     }
 }

@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class getCopyright extends \ImagickDemo\Example {
-
-    function render() {
+class getCopyright extends \ImagickDemo\Example
+{
+    public function render()
+    {
         $output = '';
         $output .= "Copyright information is:<pre>";
         $output .= \Imagick::getCopyright();

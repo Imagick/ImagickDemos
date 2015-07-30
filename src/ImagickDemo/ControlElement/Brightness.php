@@ -1,32 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-class Brightness extends ValueElement {
-
-    protected function getDefault() {
+class Brightness extends ValueElement
+{
+    protected function getDefault()
+    {
         return -20;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return -100;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 100;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'brightness';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Brightness';
     }
 
-    function getBrightness() {
+    public function getBrightness()
+    {
         return $this->getValue();
     }
 }

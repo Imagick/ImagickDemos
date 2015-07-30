@@ -1,33 +1,36 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-class Blur extends ValueElement {
-
-    protected function getDefault() {
+class Blur extends ValueElement
+{
+    protected function getDefault()
+    {
         return 1;
     }
 
-    protected function getMin() {
+    protected function getMin()
+    {
         return 0;
     }
 
-    protected function getMax() {
+    protected function getMax()
+    {
         return 50;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'blur';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Blur';
     }
 
-    function getBlur() {
+    public function getBlur()
+    {
         return $this->getValue();
     }
 }

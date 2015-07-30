@@ -3,62 +3,73 @@
 
 namespace ImagickDemo;
 
+//
+//interface renderableExample
+//{
+//    function renderTitle();
+//    function render();
+//    function renderCodeLink();
+//}
 
-interface renderableExample {
-    function renderTitle();
-    function render();
-    function renderCodeLink();
-}
-
-abstract class Example implements renderableExample {
-
+abstract class Example // implements renderableExample
+{
     /**
      * @var Control
      */
     protected $control;
 
-    function __construct(\ImagickDemo\Control $control) {
+    public function __construct(\ImagickDemo\Control $control)
+    {
         $this->control = $control;
     }
 
-    function getOriginalImage() {
+    public function getOriginalImage()
+    {
         return false;
     }
 
-    function renderOriginalImage() {
+    public function renderOriginalImage()
+    {
         throw new \Exception("This shouldn't be reached - example missing renderOriginalImage method.");
     }
     
-    function renderTitle() {
+    public function renderTitle()
+    {
         return getClassName(get_class($this));
     }
 
-    function renderDescription() {
+    public function renderDescription()
+    {
         return null;
     }
 
-    function getCustomImageParams() {
+    public function getCustomImageParams()
+    {
         return [];
     }
 
-    function renderImageURL() {
+    public function renderImageURL()
+    {
         return $this->control->renderImageURL($this->getOriginalImage());
     }
 
-    function renderCustomImageURL($extraParams = [], $originalImageURL = null) {
+    public function renderCustomImageURL($extraParams = [], $originalImageURL = null)
+    {
         //This sucks...two default params....eww.
         return $this->control->renderCustomImageURL($extraParams, $originalImageURL);
     }
 
     /**
-     * Get number of bootstrap columns the content should be offset by 
+     * Get number of bootstrap columns the content should be offset by
      * @return int
      */
-    function getColumnOffset() {
+    public function getColumnOffset()
+    {
         return 2;
     }
 
-    function getColumnRightOffset() {
+    public function getColumnRightOffset()
+    {
         return 0;
     }
 
@@ -66,7 +77,8 @@ abstract class Example implements renderableExample {
      * @param bool $smaller
      * @return null|string
      */
-    function renderDescriptionPanel($smaller = false) {
+    public function renderDescriptionPanel($smaller = false)
+    {
         $description = $this->renderDescription();
         if (!$description) {
             return null;
@@ -82,7 +94,8 @@ abstract class Example implements renderableExample {
     /**
      * @return string
      */
-    function renderCodeLink() {
+    public function renderCodeLink()
+    {
         //TODO - this is the wrong link.
         $classname = get_class($this);
         $classname = str_replace('\\', '/', $classname);
@@ -91,5 +104,3 @@ abstract class Example implements renderableExample {
         return "<a href='$url' target='_blank'>Source code on Github</a>";
     }
 }
-
- 

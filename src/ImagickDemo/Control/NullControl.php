@@ -1,19 +1,18 @@
 <?php
 
-
 namespace ImagickDemo\Control;
 
 use ImagickDemo\Queue\ImagickTaskQueue;
-
 use ImagickDemo\Helper\PageInfo;
 
-class NullControl implements \ImagickDemo\Control {
-
+class NullControl implements \ImagickDemo\Control
+{
 
     private $activeCategory;
     private $activeExample;
     
-    function __construct(ImagickTaskQueue $taskQueue, PageInfo $pageInfo) {
+    public function __construct(ImagickTaskQueue $taskQueue, PageInfo $pageInfo)
+    {
         $activeCategory = $pageInfo->getCategory();
         $activeExample = $pageInfo->getExample();
     
@@ -23,15 +22,18 @@ class NullControl implements \ImagickDemo\Control {
     }
 
     /**
-     * 
+     *
      */
-    function renderForm() { }
+    public function renderForm()
+    {
+    }
 
     /**
      * @param null $originalImageURL
      * @return string
      */
-    function renderImageURL($originalImageURL = null) {
+    public function renderImageURL($originalImageURL = null)
+    {
         return renderImageURL(
             $this->taskQueue->isActive(),
             $this->getURL(),
@@ -45,7 +47,8 @@ class NullControl implements \ImagickDemo\Control {
      * @param $extraParams
      * @return string
      */
-    function renderCustomImageURL($extraParams) {
+    public function renderCustomImageURL($extraParams)
+    {
         return renderImageURL(
             $this->taskQueue->isActive(),
             $this->getCustomImageURL($extraParams),
@@ -58,24 +61,28 @@ class NullControl implements \ImagickDemo\Control {
     /**
      * @return array
      */
-    function getParams() {
+    public function getParams()
+    {
         return [];
     }
 
-    function getInjectionParams() {
+    public function getInjectionParams()
+    {
         return [];
     }
     
-
-    function getFullParams(array $extraParams = []) {
+    public function getFullParams(array $extraParams = [])
+    {
         return $extraParams;
     }
 
-    function getURL() {
+    public function getURL()
+    {
         return getImageURL($this->activeCategory, $this->activeExample);
     }
 
-    function getCustomImageURL(array $extraParams = array()) {
+    public function getCustomImageURL(array $extraParams = array())
+    {
         $paramString = '';
         $separator = '?';
 
@@ -87,11 +94,10 @@ class NullControl implements \ImagickDemo\Control {
         return getCustomImageURL($this->activeCategory, $this->activeExample).$paramString;
     }
 
-    function getImageStatusURL($extraParams = []) {
+    public function getImageStatusURL($extraParams = [])
+    {
         $path =  getImageStatusURL($this->activeCategory, $this->activeExample);
 
         return $path.'?'.http_build_query($extraParams);
     }
 }
-
- 

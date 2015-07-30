@@ -1,12 +1,9 @@
 <?php
 
-
 namespace ImagickDemo\ControlElement;
 
-
-
-class ChannelNumber  extends OptionKeyElement  {
-
+class ChannelNumber extends OptionKeyElement
+{
     //Whoa
 //RedChannel = 0x0001,
 //GrayChannel = 0x0001,
@@ -35,34 +32,37 @@ class ChannelNumber  extends OptionKeyElement  {
 //DefaultChannels = ((AllChannels | SyncChannels) &~ OpacityChannel)
 //    
 
-    protected function getDefault() {
+    protected function getDefault()
+    {
         return \Imagick::CHANNEL_ALL;
     }
 
-    protected function getVariableName() {
+    protected function getVariableName()
+    {
         return 'channel';
     }
 
-    protected function getDisplayName() {
+    protected function getDisplayName()
+    {
         return 'Channel no.';
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         $options = [
-            \Imagick::CHANNEL_RED       => '1',
-            \Imagick::CHANNEL_GREEN     => '2',
-            \Imagick::CHANNEL_BLUE      => '3',
-            \Imagick::CHANNEL_ALPHA     => 'Alpha',
-            \Imagick::CHANNEL_BLACK     => 'Black',
+            \Imagick::CHANNEL_RED => '1',
+            \Imagick::CHANNEL_GREEN => '2',
+            \Imagick::CHANNEL_BLUE => '3',
+            \Imagick::CHANNEL_ALPHA => 'Alpha',
+            \Imagick::CHANNEL_BLACK => 'Black',
 
         ];
 
         return $options;
     }
 
-    function getChannel() {
+    public function getChannel()
+    {
         return $this->getKey();
     }
 }
-
- 

@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class convolveImage extends \ImagickDemo\Example {
-
+class convolveImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
 
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

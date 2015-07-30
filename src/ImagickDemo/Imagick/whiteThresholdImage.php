@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class whiteThresholdImage extends \ImagickDemo\Example {
-
+class whiteThresholdImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

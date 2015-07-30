@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class reduceNoiseImage extends \ImagickDemo\Example {
-
+class reduceNoiseImage extends \ImagickDemo\Example
+{
     use OriginalImageFile;
-    
-    function render() {
+
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

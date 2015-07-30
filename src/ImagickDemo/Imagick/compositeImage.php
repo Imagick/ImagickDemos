@@ -2,10 +2,10 @@
 
 namespace ImagickDemo\Imagick;
 
-
-class compositeImage extends \ImagickDemo\Example {
-
-    function renderDescription() {
+class compositeImage extends \ImagickDemo\Example
+{
+    public function renderDescription()
+    {
         $tutorialURL = '/Tutorial/composite';
 
         $output = '';
@@ -14,8 +14,8 @@ class compositeImage extends \ImagickDemo\Example {
         return $output;
     }
 
-
-    function render() {
+    public function render()
+    {
         return $this->renderImageURL();
     }
 }

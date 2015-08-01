@@ -5,6 +5,8 @@
     
     <exclude-pattern>*Intahwebz*</exclude-pattern>
     
+    <exclude-pattern>*src/Arya*</exclude-pattern>
+    
     <!-- Exclude data files -->
     <exclude-pattern>*compare.php</exclude-pattern>
     <exclude-pattern>*ImagickDemo/DocHelper.php</exclude-pattern>
@@ -15,7 +17,6 @@
     
 
     <rule ref="PSR2">
-        
         <!-- Need to find a way to turn this off for text, before re-enabling -->
         <exclude name="Generic.Files.LineLength.TooLong"/>
         
@@ -78,6 +79,7 @@
     <!-- These are there own end point and so are okay to mix declaration and calling -->
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
         <exclude-pattern>Tutorial/smoothSpiderGraph.php</exclude-pattern>
+        <exclude-pattern>src/bootstrap.php</exclude-pattern>
     </rule>
 
 </ruleset>

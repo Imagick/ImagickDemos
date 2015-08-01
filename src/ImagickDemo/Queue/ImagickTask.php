@@ -3,27 +3,28 @@
 namespace ImagickDemo\Queue;
 
 use ImagickDemo\Control;
+use ImagickDemo\Navigation\CategoryNav;
 
 class ImagickTask implements Task
 {
     use \Intahwebz\Cache\KeyName;
 
-    private $imageFunction;
-
+    /**
+     * @var CategoryNav
+     */
+    private $categoryNav;
+    
+    
     private $params;
 
-    private $filename;
-
     /**
-     * @param $imageFunction
+     * @param CategoryNav $categoryNav
      * @param $params
-     * @param $filename
      */
-    public function __construct($imageFunction, $params, $filename)
+    public function __construct(CategoryNav $categoryNav, $params)
     {
-        $this->imageFunction = $imageFunction;
+        $this->categoryNav = $categoryNav;
         $this->params = $params;
-        $this->filename = $filename;
     }
 
     /**
@@ -31,22 +32,16 @@ class ImagickTask implements Task
      */
     public function getKey()
     {
-        return $this->filename;
-    }
+        $key = '';
+        foreach ($this->params as $param) {
+            $key = hash("sha256", $key.$param);
+        }
 
-
-    /**
-     * @param $category
-     * @param $example
-     * @param $imageFunction
-     * @param $params
-     * @return ImagickTask
-     */
-    public static function create($category, $example, $imageFunction, $params)
-    {
-        $filename = getImageCacheFilename($category, $example, $params);
-        return new \ImagickDemo\Queue\ImagickTask(
-            $imageFunction, $params, $filename
+        return sprintf(
+            "%s_%s_%s",
+            $this->categoryNav->getCategory(),
+            $this->categoryNav->getExample(),
+            $key
         );
     }
 
@@ -71,9 +66,8 @@ class ImagickTask implements Task
     public function serialize()
     {
         $data = [
-            'imageFunction' => $this->imageFunction,
-            'params' => $this->params,
-            'filename' => $this->filename
+            'categoryNav' => $this->categoryNav,
+            'params' => $this->$params
         ];
 
         return $data;
@@ -86,20 +80,16 @@ class ImagickTask implements Task
     public static function unserialize($serialization)
     {
         return new ImagickTask(
-            $serialization['imageFunction'],
-            $serialization['params'],
-            $serialization['filename']
+            $serialization['categoryNav'],
+            $serialization['params']
         );
     }
 
-    /**
-     * @return string
-     */
-    public function getImageFunction()
+    public function getCategoryNav()
     {
-        return $this->imageFunction;
+        return $this->categoryNav;
     }
-
+    
     /**
      * @return mixed
      */
@@ -110,6 +100,9 @@ class ImagickTask implements Task
 
     public function getFilename()
     {
-        return $this->filename;
+        return getImageCacheFilename(
+            $this->categoryNav->getPageInfo(),
+            $this->params
+        );
     }
 }

@@ -110,7 +110,7 @@ class ImagickTaskRunner
      */
     private function execute(ImagickTask $task)
     {
-        $imageFunction = $task->getImageFunction();
+        $categoryNav = $task->getCategoryNav();
         $params = $task->getParams();
         $filename = $task->getFilename();
         $imageTypes = ['jpg', 'gif', 'png'];
@@ -122,16 +122,29 @@ class ImagickTaskRunner
             }
         }
 
+        
+        $injector = clone $this->injector;
+        
         $lowried = [];
         foreach ($params as $key => $value) {
             $lowried[':' . $key] = $value;
+            
+            //$injector->def
         }
 
-        $injector = clone $this->injector;
+        
         $variableMap = new ArrayVariableMap($params);
         $injector->alias('ImagickDemo\Framework\VariableMap', get_class($variableMap));
         $injector->share($variableMap);
 
+        $imageFunction = $categoryNav->getImageFunctionName();
+        
+        echo "Image Function name is: \n";
+        var_dump($imageFunction);
+        
+        echo "Params are: \n";
+        var_dump($params);
+        
         echo "filename was $filename\n";
         renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
     }

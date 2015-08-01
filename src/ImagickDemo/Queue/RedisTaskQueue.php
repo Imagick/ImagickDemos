@@ -18,7 +18,7 @@ class RedisTaskQueue implements TaskQueue
 
     private $queueName;
 
-    private $taskKeyStateTime = 240;
+    private $taskKeyStateTime = 10;//240;
 
     /**
      * @param RedisClient $redisClient
@@ -33,10 +33,32 @@ class RedisTaskQueue implements TaskQueue
         $this->statusKey = $queueName . '_status';
     }
 
+    
+    
+    public function clearTaskQueue()
+    {
+        $this->clearQueue($this->taskListKey);
+    }
+    
+    public function clearAnnounceQueue()
+    {
+        $this->clearQueue($this->announceListKey);
+    }
+    
+    public function clearAllQueue()
+    {
+        $this->clearQueue("");
+    }
+
     public function clearStatusQueue()
     {
+        $this->clearQueue($this->statusKey);
+    }
+     
+    public function clearQueue($stub)
+    {
         for ($x = 0; $x < 10; $x++) {
-            $iterator = new Iterator\Keyspace($this->redisClient, $this->statusKey . "*", 200);
+            $iterator = new Iterator\Keyspace($this->redisClient, $stub."*", 200);
 
             $keysToDelete = [];
             foreach ($iterator as $key) {
@@ -48,24 +70,45 @@ class RedisTaskQueue implements TaskQueue
         }
     }
 
+    /**
+     * @return array
+     */
     public function getStatusQueue()
     {
-        //$iterator = new Iterator\Keyspace($this->redisClient, $this->taskListKey . "*", 2000);
-        $iterator = new Iterator\Keyspace($this->redisClient, "*", 2000);
-        //$iterator = new Iterator\Keyspace($this->redisClient, $this->statusKey . "*", 2000);
-
-        $keys = [];
+        return $this->getQueueEntries($this->statusKey);
+    }
+    
+    public function getTaskQueue()
+    {
+        return $this->getQueueEntries($this->taskListKey);
+    }
+    
+    public function getAnnounceQueue()
+    {
+        return $this->getQueueEntries($this->announceListKey);
+    }
+    
+    public function getAllQueue()
+    {
+        return $this->getQueueEntries('');
+    }
+    
+    private function getQueueEntries($keyStub)
+    {
+        $iterator = new Iterator\Keyspace($this->redisClient, $keyStub."*", 2000);
+        $keyList = [];
         foreach ($iterator as $key) {
-            $keys[] = $key;
+            $keyList[] = $key;
+            
         }
 
-        if (!count($keys)) {
+        if (!count($keyList)) {
             return [];
         }
 
-        $values = $this->redisClient->mget($keys);
+        $values = $this->redisClient->mget($keyList);
 
-        return array_combine($keys, $values);
+        return array_combine($keyList, $values);
     }
 
 

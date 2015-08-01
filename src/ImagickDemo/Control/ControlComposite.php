@@ -8,6 +8,7 @@ use ImagickDemo\Helper\PageInfo;
 class ControlComposite implements \ImagickDemo\Control
 {
     private $imageBaseURL;
+    private $orignalImageBaseURL;
     private $customImageBaseURL;
     private $imageStatusBaseURL;
     private $taskQueue;
@@ -18,6 +19,7 @@ class ControlComposite implements \ImagickDemo\Control
         $activeExample = $pageInfo->getExample();
 
         $this->imageBaseURL = getImageURL($activeCategory, $activeExample);
+        $this->orignalImageBaseURL = getOriginalImageURL($activeCategory, $activeExample);
         $this->customImageBaseURL = getCustomImageURL($activeCategory, $activeExample);
         $this->imageStatusBaseURL = getImageStatusURL($activeCategory, $activeExample);
         $this->taskQueue = $taskQueue;
@@ -119,6 +121,14 @@ class ControlComposite implements \ImagickDemo\Control
         return $this->getURLWithParams($this->imageBaseURL);
     }
 
+    public function getOriginalURL()
+    {
+        return $this->getURLWithParams($this->orignalImageBaseURL);
+    }
+    
+    
+    
+    
     /**
      * @param $baseURL
      * @param array $extraParams

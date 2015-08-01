@@ -1,17 +1,8 @@
 <?php
 
-
 namespace ImagickDemo;
 
-//
-//interface renderableExample
-//{
-//    function renderTitle();
-//    function render();
-//    function renderCodeLink();
-//}
-
-abstract class Example // implements renderableExample
+abstract class Example
 {
     /**
      * @var Control
@@ -31,6 +22,19 @@ abstract class Example // implements renderableExample
     public function renderOriginalImage()
     {
         throw new \Exception("This shouldn't be reached - example missing renderOriginalImage method.");
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalFilename()
+    {
+        throw new \Exception("This shouldn't be reached - example missing getOriginalFilename method.");
+    }
+    
+    public function renderCustomImage()
+    {
+        throw new \Exception("This shouldn't be reached - example missing renderCustomImage method.");
     }
     
     public function renderTitle()

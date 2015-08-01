@@ -105,6 +105,7 @@ f4 - Constant vertical offset, default 0.5";
      */
     public function renderImagePolynomial()
     {
+//Example Imagick::functionImage Polynomial
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -128,6 +129,7 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->setimageformat('png');
 
         analyzeImage($imagick, 512, 256);
+//Example end
     }
 
     /**
@@ -135,6 +137,7 @@ f4 - Constant vertical offset, default 0.5";
      */
     public function renderImageSinusoid()
     {
+//Example Imagick::functionImage Sinusoid
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -158,10 +161,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->setimageformat('png');
 
         analyzeImage($imagick, 512, 256);
+//Example end
     }
 
     public function renderImageArctan()
     {
+//Example Imagick::functionImage ArcTan
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -181,15 +186,16 @@ f4 - Constant vertical offset, default 0.5";
             }
         }
 
-
         $imagick->functionImage(\Imagick::FUNCTION_ARCTAN, $arguments);
         $imagick->setimageformat('png');
 
         analyzeImage($imagick, 512, 256);
+//Example end
     }
 
     public function renderImageArcsin()
     {
+//Example Imagick::functionImage ArcSin 
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
@@ -214,5 +220,6 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->setimageformat('png');
 
         analyzeImage($imagick, 512, 256);
+//Example end
     }
 }

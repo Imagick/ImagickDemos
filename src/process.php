@@ -1,13 +1,13 @@
 <?php
 
-// http://stackoverflow.com/questions/22540211/php-imagick-distorting-text-in-arc-clipping/22618900#22618900
-
-require __DIR__ . '/../src/bootstrap.php';
-
-use ImagickDemo\Response\Response;
-use ImagickDemo\Tier;
-
 ini_set('display_errors', 'on');
+require __DIR__ . '/../src/bootstrap.php';
+require_once __DIR__ . "/./Tier/tierFunctions.php";
+
+use Arya\Request;
+use Tier\Tier;
+use Tier\TierApp;
+use Tier\ResponseBody\ExceptionHtmlBody;
 
 \Intahwebz\Functions::load();
 
@@ -15,59 +15,54 @@ ini_set('display_errors', 'on');
 //set_error_handler('errorHandler');
 set_exception_handler('exceptionHandler');
 
-$injector = bootstrapInjector();
+//if (false) {
+//    $sessionManager = $injector->make('ASM\SessionManager');
+//    $session = $sessionManager->createSession($_COOKIE);
+//    $injector->alias('ASM\Session', get_class($session));
+//    $injector->share($session);
+//}
 
-if (false) {
-    $sessionManager = $injector->make('ASM\SessionManager');
-    $session = $sessionManager->createSession($_COOKIE);
-    $injector->alias('ASM\Session', get_class($session));
-    $injector->share($session);
+$injectionParams = require_once "injectionParams.php";
+
+
+try {
+    $_input = empty($_SERVER['CONTENT-LENGTH']) ? null : fopen('php://input', 'r');
+    $request = new Request($_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_input);
+}
+catch (\Exception $e) {
+    //TODO - exit quickly.
+    header("We totally failed", true, 501);
+    echo "we ded ".$e->getMessage();
+    exit(0);
 }
 
-$callable = 'servePage';
-$headers = [];
-$count = 0;
-$response = null;
+try {
+    // Create the first Tier that needs to be run.
+    $tier = new Tier('routeRequest');
 
-do {
-    $result = $injector->execute($callable);
+    // Create the Tier application
+    $app = new TierApp($tier, $injectionParams);
 
-    if ($result instanceof Response) {
-        $response = $result;
-        break;
-    }
-    else if ($result instanceof Tier) {
-        $injectionParams = $result->getInjectionParams();
-        if ($injectionParams) {
-            addInjectionParams($injector, $injectionParams);
-        }
-        $callable = $result->getCallable();
-    }
-    else {
-        echo "Unknown result: ";
-        var_dump($result);
-        exit(0);
-    }
-    $count++;
-} while ($count < 10);
-
-//  if (false) {
-//        $session->save();
-//        $headers = $session->getHeaders(\ASM\SessionManager::CACHE_NO_CACHE);
-//    }
-
-if ($response != null) {
-    $response->send($headers);
+    $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
+    $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
+    
+    // Run it
+    $app->execute($request);
+}
+catch (InjectorException $ie) {
+    // TODO - add custom notifications.
+    $body = new ExceptionHtmlBody($ie);
+    \Tier\sendErrorResponse($request, $body, 500);
+}
+catch (JigException $je) {
+    $body = new ExceptionHtmlBody($je);
+    \Tier\sendErrorResponse($request, $body, 500);
+}
+catch (\Exception $e) {
+    $body = new ExceptionHtmlBody($e);
+    \Tier\sendErrorResponse($request, $body, 500);
 }
 
 if (php_sapi_name() === 'fpm-fcgi') {
     fastcgi_finish_request();
 }
-
-//Everything below here should never affect user time.
-$time = microtime(true) - $startTime;
-$asyncStats = $injector->make('Stats\AsyncStats');
-$asyncStats->recordTime(
-    \ImagickDemo\Queue\ImagickTaskRunner::EVENT_PAGE_GENERATED,
-    $time
-);

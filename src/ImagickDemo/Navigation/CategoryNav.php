@@ -82,16 +82,15 @@ class CategoryNav implements Nav
         $example = $this->pageInfo->getExample();
         $exampleDefinition = $this->getExampleDefinition($category, $example);
         $function = $exampleDefinition[0];
-        //$controlClass = $exampleDefinition[1];
-        $params = [];
 
-        if (array_key_exists('defaultParams', $exampleDefinition) == true) {
-            foreach ($exampleDefinition['defaultParams'] as $name => $value) {
-                $defaultName = 'default' . ucfirst($name);
-                $params[$defaultName] = $value;
-            }
-        }
-            
+//        $params = [];
+//        if (array_key_exists('defaultParams', $exampleDefinition) == true) {
+//            foreach ($exampleDefinition['defaultParams'] as $name => $value) {
+//                $defaultName = 'default' . ucfirst($name);
+//                $params[$defaultName] = $value;
+//            }
+//        }
+//            
         
         return sprintf('ImagickDemo\%s\%s', $category, $function);
     }

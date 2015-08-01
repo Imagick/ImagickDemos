@@ -3,7 +3,9 @@
 namespace ImagickDemo\Imagick;
  
 use Imagick;
-use ImagickDemo\Response\FileResponse;
+//use ImagickDemo\Response\FileResponse;
+
+use Tier\ResponseBody\FileResponseIM as FileResponse;
 
 class functions
 {
@@ -1307,7 +1309,7 @@ function montageImage($montageType)
 }
 //Example end 
 
-//Example Imagick::mosaicImages
+//Example Imagick::morphImages
 function morphImages()
 {
     $images = [

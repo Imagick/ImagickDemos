@@ -158,11 +158,22 @@
     </div>
 
     <div>
-        <?php
-        echo "<br/><br/><br/><span style='font-size: 8px; display: block;'>Peak memory ". number_format(memory_get_peak_usage());
-            //." - <a href='/info'>Status</a> <a href='/queueinfo'>QueueInfo</a> </span>"
-        ?> 
+        <br/>
+        <br/>
+        <br/>
+        <span style='font-size: 8px; display: block;'>
+            
+            Peak memory 
+            
+            <?php
+            echo  number_format(memory_get_peak_usage());
+            ?>
+        </span>
+        
     </div>
+    
+    <a href='/info'>Status</a>
+    <a href='/queueinfo'>QueueInfo</a> 
     
     <div>
         {* inject name='pages' value='ImagickDemo\RecentPages' *}

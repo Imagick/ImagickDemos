@@ -12,6 +12,12 @@ class opaquePaintImage extends \ImagickDemo\Example
     public function renderOriginalImage()
     {
         return \ImagickDemo\Imagick\renderFile(realpath("images/BlueScreen.jpg"));
+        
+    }
+
+    public function getOriginalFilename()
+    {
+        return realpath("images/BlueScreen.jpg");
     }
 
     public function render()

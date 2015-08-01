@@ -8,6 +8,9 @@ class RedisLogWriter extends CliTool
 {
     use \Intahwebz\Cache\KeyName;
 
+    /**
+     * @var RedisClient
+     */
     private $redisClient;
 
     /**

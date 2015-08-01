@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c712b629c1bc10ac7134047385d2af01",
+    "hash": "7f4061b7b5e24b682db857b7515c54fe",
     "packages": [
         {
             "name": "amphp/amp",
@@ -928,16 +928,16 @@
         },
         {
             "name": "predis/predis",
-            "version": "v1.0.1",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "7a170b3d8123c556597b4fbdb88631f99de180c2"
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/7a170b3d8123c556597b4fbdb88631f99de180c2",
-                "reference": "7a170b3d8123c556597b4fbdb88631f99de180c2",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/84060b9034d756b4d79641667d7f9efe1aeb8e04",
+                "reference": "84060b9034d756b4d79641667d7f9efe1aeb8e04",
                 "shasum": ""
             },
             "require": {
@@ -975,9 +975,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nrk/predis/issues",
-                "source": "https://github.com/nrk/predis/tree/v1.0.1"
+                "source": "https://github.com/nrk/predis/tree/v1.0.3"
             },
-            "time": "2015-01-02 12:51:34"
+            "time": "2015-07-30 18:34:15"
         },
         {
             "name": "psr/log",
@@ -1019,16 +1019,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "v1.0.0-alpha",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rdlowrey/Auryn.git",
-                "reference": "b57a5046cfcefb0cde7fc86f9915e54aa7196cba"
+                "url": "https://github.com/rdlowrey/auryn.git",
+                "reference": "cfce81b3a979452364eff22b9bb5c51cfba7ed12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/Auryn/zipball/b57a5046cfcefb0cde7fc86f9915e54aa7196cba",
-                "reference": "b57a5046cfcefb0cde7fc86f9915e54aa7196cba",
+                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/cfce81b3a979452364eff22b9bb5c51cfba7ed12",
+                "reference": "cfce81b3a979452364eff22b9bb5c51cfba7ed12",
                 "shasum": ""
             },
             "require": {
@@ -1036,7 +1036,8 @@
             },
             "require-dev": {
                 "athletic/athletic": "~0.1",
-                "phpunit/phpunit": "~4.5"
+                "fabpot/php-cs-fixer": "~1.9",
+                "phpunit/phpunit": "^4.7"
             },
             "type": "library",
             "autoload": {
@@ -1056,25 +1057,26 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Daniel Lowrey",
-                    "email": "rdlowrey@gmail.com",
-                    "role": "Creator / Main Developer"
-                },
-                {
                     "name": "Levi Morrison",
                     "email": "levim@php.net",
                     "homepage": "http://morrisonlevi.github.com/",
                     "role": "Developer"
+                },
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "homepage": "https://github.com/rdlowrey",
+                    "role": "Creator / Main Developer"
                 }
             ],
             "description": "Auryn is a dependency injector for bootstrapping object-oriented PHP applications.",
-            "homepage": "https://github.com/rdlowrey/Auryn",
+            "homepage": "https://github.com/rdlowrey/auryn",
             "keywords": [
                 "dependency injection",
                 "dic",
                 "ioc"
             ],
-            "time": "2015-05-27 12:47:19"
+            "time": "2015-07-26 16:16:05"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1208,14 +1210,13 @@
         {
             "alias": "0.15.3",
             "alias_normalized": "0.15.3.0",
-            "version": "1.0.0.0-alpha",
+            "version": "1.0.1.0",
             "package": "rdlowrey/auryn"
         }
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "amphp/artax": 5,
-        "rdlowrey/auryn": 15
+        "amphp/artax": 5
     },
     "prefer-stable": true,
     "prefer-lowest": false,

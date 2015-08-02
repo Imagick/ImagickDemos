@@ -3,8 +3,6 @@
 namespace ImagickDemo\Imagick;
  
 use Imagick;
-//use ImagickDemo\Response\FileResponse;
-
 use Tier\ResponseBody\FileResponseIM as FileResponse;
 
 class functions

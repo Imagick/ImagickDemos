@@ -2,22 +2,29 @@
 
 namespace ImagickDemo\Controller;
 
-use ImagickDemo\Response\TextResponse;
 use Amp\Artax\Client;
+use Arya\TextBody;
+use Tier\InjectionParams;
 
 class ServerInfo
 {
+    public function renderOPCacheInfo()
+    {
+        $injectionParams = InjectionParams::fromParams([]);
+
+        return getRenderTemplateTier($injectionParams, 'serverInfo');
+    }
+    
     public function createResponse()
     {
         ob_start();
 
         $reactor = \Amp\getReactor();
         $client = new Client($reactor);
-        $url = "http://phpimagick.com/www-status?full&json";
+        $url = "http://phpimagick.test/www-status?full&json";
         $promise = $client->request($url);
 
         $response = \Amp\wait($promise);
-        //$response = $promise->wait();
 
         $headers = [
             "pool" => "Pool name",
@@ -54,10 +61,11 @@ class ServerInfo
         $processHeaders = [
             "pid",
             "state",
-            "start time",
+            //"start time",
             "start since",
             "requests",
-            "request duration",
+            //https://bugs.php.net/bug.php?id=62382
+            // "request duration", todo re-enable after upgrade
             //"request method",
             "request URI",
             "content length",
@@ -114,6 +122,6 @@ class ServerInfo
 
         ob_end_clean();
 
-        return new TextResponse($output);
+        return new TextBody($output);
     }
 }

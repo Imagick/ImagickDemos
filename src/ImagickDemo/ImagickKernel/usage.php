@@ -54,6 +54,12 @@ class usage extends \ImagickDemo\Example
         return $this->control->getCustomImageURL(['original' => true]);
     }
 
+    public function getOriginalFilename()
+    {
+        return realpath("./images/character.png");
+    }
+
+    
     public function renderOriginalImage()
     {
         $characterMethods = [

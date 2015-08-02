@@ -3455,7 +3455,16 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+}
+@media (min-width: 1200px) {
+  .nav > li > a {
+    padding: 10px 15px;
+  }
+}
+@media (max-width: 1200px) {
+  .nav > li > a {
+    padding: 5px 6px;
+  }
 }
 .nav > li > a:hover,
 .nav > li > a:focus {

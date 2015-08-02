@@ -24,14 +24,14 @@ class NullNav implements Nav
     {
 
     }
-//
+
 //    function renderTitle() {
 //        return "Hello!";
 //    }
 
     public function renderNav()
     {
-
+        return "Yeah this is a null nv.";
     }
 
     public function getURL()

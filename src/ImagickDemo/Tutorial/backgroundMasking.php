@@ -11,12 +11,22 @@ class backgroundMasking extends \ImagickDemo\Example
 
     public function getOriginalImage()
     {
-        return $this->control->getCustomImageURL(['original' => true]);
+        //return $this->control->getCustomImageURL(['original' => true]);
+        
+        //return $this->control->getOriginalURL();
+        
+        return "/imageOriginal/Tutorial/backgroundMasking";
+        
+    }
+    
+    public function getOriginalFilename()
+    {
+        return realpath("./images/chair.jpeg");
     }
 
     public function renderOriginalImage()
     {
-        $imagick = new \Imagick(realpath("./images/chair.jpeg"));
+        $imagick = new \Imagick();
         header("Content-Type: image/jpg");
         echo $imagick->getImageBlob();
         return;

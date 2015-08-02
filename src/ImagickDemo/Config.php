@@ -4,6 +4,8 @@ namespace ImagickDemo;
 
 use Auryn\Injector;
 
+//use Jig\JigConfig;
+
 class Config
 {
     const FLICKR_KEY = 'flickr.key';
@@ -125,6 +127,7 @@ class Config
             "../templates/",
             "../var/compile/",
             'tpl',
+            //  \Jig\Jig::COMPILE_CHECK_EXISTS
             $this->getEnv(self::JIG_COMPILE_CHECK)
         );
 

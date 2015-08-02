@@ -1,16 +1,5 @@
  {
     "name": "danack/imagick-demos",
-
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/nrk/predis"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/danack/jig"
-        }
-    ],
  
     "require-dev": {
     },

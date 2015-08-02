@@ -19,7 +19,15 @@
     > a {
       position: relative;
       display: block;
-      padding: @nav-link-padding;
+      
+      @media (min-width: @screen-lg) {
+        padding: @nav-link-padding;
+      }
+      
+      @media (max-width: @screen-lg) {
+        padding: @nav-link-padding-md;
+      }
+        
       &:hover,
       &:focus {
         text-decoration: none;

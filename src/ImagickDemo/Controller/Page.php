@@ -1,12 +1,8 @@
 <?php
 
-
 namespace ImagickDemo\Controller;
 
-//use ImagickDemo\Response\TextResponse;
-use Tier\Tier;
 use Tier\InjectionParams;
-use ImagickDemo\Navigation\CategoryNav;
 
 class Page
 {
@@ -17,9 +13,7 @@ class Page
      */
     public function generateResponseFromTemplate($templateName)
     {
-        //$injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
         return getRenderTemplateTier($templateName, [], ['pageTitle' => "Imagick demos"]);
-        //return new Tier($callable, $injectionParams);
     }
 
     /**
@@ -30,10 +24,8 @@ class Page
     {
         $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
-        //$callable = getTemplateSetupCallable('title');
-        return getRenderTemplateTier($injectionParams, 'title');
 
-        //return new Tier($callable, $injectionParams);
+        return getRenderTemplateTier($injectionParams, 'title');
     }
 
     /**
@@ -45,12 +37,9 @@ class Page
     public function renderExamplePage()
     {
         $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
-        $callable = getTemplateSetupCallable('index');
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return getRenderTemplateTier($injectionParams, 'index');
-        
-        //return new Tier($callable, $injectionParams);
+        return getRenderTemplateTier($injectionParams, 'example');
     }
 
     /**
@@ -61,10 +50,8 @@ class Page
     public function renderCategoryIndex()
     {
         $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
-        //$callable = getTemplateSetupCallable('title');
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return getRenderTemplateTier($injectionParams, 'title');
-        //return new Tier($callable, $injectionParams);
+        return getRenderTemplateTier($injectionParams, 'categoryIndex');
     }
 }

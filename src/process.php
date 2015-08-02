@@ -24,7 +24,6 @@ set_exception_handler('exceptionHandler');
 
 $injectionParams = require_once "injectionParams.php";
 
-
 try {
     $_input = empty($_SERVER['CONTENT-LENGTH']) ? null : fopen('php://input', 'r');
     $request = new Request($_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_input);
@@ -43,9 +42,9 @@ try {
     // Create the Tier application
     $app = new TierApp($tier, $injectionParams);
 
-    $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
-    $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
-    
+//    $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
+//    $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
+//    
     // Run it
     $app->execute($request);
 }

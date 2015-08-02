@@ -1,6 +1,5 @@
 <?php
 
-
 namespace ImagickDemo;
 
 use Stats\AsyncStats;
@@ -27,7 +26,6 @@ class AppTimer
             throw new \Exception("Calling timerEnd without starting it first.");
         }
 
-        //Everything below here should never affect user time.
         $time = microtime(true) - $this->startTime;
 
         $this->asyncStats->recordTime(

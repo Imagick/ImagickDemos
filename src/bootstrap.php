@@ -1,12 +1,9 @@
 <?php
 
-//namespace {
-
 use Arya\TextBody;
 use ImagickDemo\Framework\VariableMap;
 use ImagickDemo\Response\RedirectResponse;
 use Predis\Client as RedisClient;
-
 use Auryn\Injector;
 use Jig\Jig;
 use Jig\Converter\JigConverter;
@@ -217,10 +214,10 @@ function createControl(CategoryNav $categoryNav, Injector $injector)
     foreach ($params as $name => $value) {
         $injector->defineParam($name, $value);
     }
-    
+
     return $control;
 }
-    
+
 function createExample(CategoryNav $categoryNav, Injector $injector)
 {
     $exampleName = $categoryNav->getExampleName();
@@ -228,72 +225,6 @@ function createExample(CategoryNav $categoryNav, Injector $injector)
     return $injector->make($exampleName);
 }
 
-/**
- * @param $libratoKey
- * @param $libratorUsername
- * @param $statsSourceName
- * @return \Auryn\Injector
- */
-function bootstrapInjector()
-{
-    $injector = new Auryn\Injector();
-
-    $config = new \ImagickDemo\Config();
-    $config->delegateShit($injector);
-    $injector->share('Jig\JigConfig');
-    $injector->share('ImagickDemo\Control');
-    $injector->share('ImagickDemo\Example');
-    $injector->share('ImagickDemo\Navigation\Nav');
-    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
-    $injector->share('ImagickDemo\Helper\PageInfo');
-    $injector->share(\ImagickDemo\Config\Application::class);
-    $injector->share(\ImagickDemo\Config\Librato::class);
-    $injector->share('ImagickDemo\Framework\VariableMap');
-    $injector->share('Predis\Client');
-    
-    $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
-    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
-    $injector->alias('ImagickDemo\Framework\VariableMap', 'ImagickDemo\Framework\RequestVariableMap');
-    //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
-    $injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\NullBanner');
-    $injector->prepare('Jig\Converter\JigConverter', 'prepareJigConverter');
-
-    if (false) {
-        $injector->share('ASM\SessionManager');
-        $injector->delegate('ASM\SessionManager', 'createSessionManager');
-        $injector->share('ASM\Driver\RedisDriver');
-        $injector->delegate('ASM\Driver\RedisDriver', 'createRedisSessionDriver');
-    }
-
-    $injector->delegate('ImagickDemo\Control', 'createControl');
-    $injector->delegate('ImagickDemo\Example', 'createExample');
-
-    $redisParameters = array(
-        'connection_timeout' => 30,
-        'read_write_timeout' => 30,
-    );
-
-    $redisOptions = [];
-
-    $injector->define(
-        'Predis\Client',
-        array(
-            ':parameters' => $redisParameters,
-            ':options' => $redisOptions,
-        )
-    );
-
-    $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
-    $injector->share($injector); //yolo - use injector as service locator
-
-    $appConfig = $injector->make('ImagickDemo\Config\Application');
-    /** @var  $appConfig \ImagickDemo\Config\Application */
-    
-    global $cacheImages;
-    $cacheImages = $appConfig->getCacheImages();
-
-    return $injector;
-}
 
 
 /**
@@ -328,6 +259,7 @@ function routeRequest()
         $vars = $routeInfo[2];
 
         if (array_key_exists('category', $vars)) {
+            //This is actually only needed for image requests
             $className = sprintf('ImagickDemo\%s\functions', $vars['category']);
             $className::load();
         }
@@ -364,41 +296,6 @@ function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
 
     return null;
 }
-
-    
-function processImageTask(
-    VariableMap $variableMap,
-    ImagickTaskQueue $taskQueue,
-    PageInfo $pageInfo,
-    Response $response,
-    $params
-) {
-
-    $job = $variableMap->getVariable('job', false);
-    if ($job === false) {
-        if ($taskQueue->isActive() == false) {
-            //Queue isn't active - don't bother queueing a task
-            return false;
-        }
-
-        $task = new \ImagickDemo\Queue\ImagickTask(
-            $pageInfo,
-            $params
-        );
-
-        $taskQueue->addTask($task);
-    }
-    
-    if ($variableMap->getVariable('noredirect') == true) {
-        $response->setStatus(503);
-        $response->setReasonPhrase("image still processing $job is ".$job);
-        
-        return false;
-    }
-    
-    return redirectWaitingTask($request, intval($job));
-}
-    
     
     
 function cachedImageCallable(CategoryNav $categoryNav, Request $request, Response $response, $params)
@@ -609,6 +506,7 @@ function routesFunction(\FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/queueinfo', [\ImagickDemo\Controller\QueueInfo::class, 'createResponse']);
     
     $r->addRoute('GET', '/queuedelete', [\ImagickDemo\Controller\QueueInfo::class, 'deleteQueue']);
+    $r->addRoute('GET', '/opinfo', ['ImagickDemo\Controller\ServerInfo', 'renderOPCacheInfo']);
     $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'renderTitlePage']);
 }
 
@@ -626,7 +524,7 @@ function createImageResponse($filename, callable $imageCallable)
 
     if ($imageType == null) {
         ob_end_clean();
-        throw new \Exception("imageType not set, can't cache image correctly.");
+        throw new \Exception("imageType not set, can't set image content type correctly.");
     }
     $imageData = ob_get_contents();
 
@@ -634,7 +532,6 @@ function createImageResponse($filename, callable $imageCallable)
     
     return new \ImagickDemo\Response\ImageResponse($filename, "image/".$imageType, $imageData);
 }
-
 
 
 /**
@@ -841,21 +738,21 @@ function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
     return new Tier($fn);
 }
 
-
-function getTemplateSetupCallable($templateName)
-{
-    $fn = function (JigRender $jigRender) use ($templateName) {
-        $className = $jigRender->getClassName($templateName);
-        $jigRender->checkTemplateCompiled($templateName);
-        $alias = [];
-        $alias['Jig\JigBase'] = $className;
-        $di = new InjectionParams([], $alias, [], []);
-
-        return new Tier('createTemplateResponse', $di);
-    };
-
-    return $fn;
-}
+//
+//function getTemplateSetupCallable($templateName)
+//{
+//    $fn = function (JigRender $jigRender) use ($templateName) {
+//        $className = $jigRender->getClassName($templateName);
+//        $jigRender->checkTemplateCompiled($templateName);
+//        $alias = [];
+//        $alias['Jig\JigBase'] = $className;
+//        $di = new InjectionParams([], $alias, [], []);
+//
+//        return new Tier('createTemplateResponse', $di);
+//    };
+//
+//    return $fn;
+//}
     
 function createRedisClient()
 {
@@ -935,31 +832,3 @@ function serve405ErrorPage(Response $response)
 
     return new TextBody('Method not allowed for route.');
 }
-
-
-//}//namespace end
-//
-//namespace ImagickDemo {
-//
-//    /**
-//     * Hack the header function to allow us to capture the image type,
-//     * while still having clean example code.
-//     *
-//     * @param $string
-//     * @param bool $replace
-//     * @param null $http_response_code
-//     */
-//    function header($string, $replace = true, $http_response_code = null)
-//    {
-//        global $imageType;
-//        global $cacheImages;
-//
-//        if (stripos($string, "Content-Type: image/") === 0) {
-//            $imageType = substr($string, strlen("Content-Type: image/"));
-//        }
-//
-//        if ($cacheImages == false) {
-//            \header($string, $replace, $http_response_code);
-//        }
-//    }
-//}

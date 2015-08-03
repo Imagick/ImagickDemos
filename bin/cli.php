@@ -6,7 +6,7 @@ use Danack\Console\Output\BufferedOutput;
 use Danack\Console\Command\Command;
 use Danack\Console\Input\InputArgument;
 
-
+require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../src/bootstrap.php';
 
 chdir(realpath(__DIR__).'/../imagick');
@@ -20,7 +20,7 @@ chdir(realpath(__DIR__).'/../imagick');
  */
 function bootstrapInjector()
 {
-    $injector = new Auryn\Injector();
+    $injector = new \Auryn\Injector();
 
     $config = new \ImagickDemo\Config();
     $config->delegateShit($injector);

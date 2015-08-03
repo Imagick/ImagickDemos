@@ -97,7 +97,7 @@ END;
     public function clutImage()
     {
 //Example Imagick::clutImage
-        //Make a shape
+        // Make a shape
         $draw = new \ImagickDraw();
         $draw->setStrokeOpacity(0);
         $draw->setFillColor('black');

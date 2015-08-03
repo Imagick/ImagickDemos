@@ -35,12 +35,16 @@ class TierApp
         $this->tiers[] = $tier;
     }
 
-    public function addPreCallable(callable $callable)
+    // This can't be type-hinted as callable as we allow instance methods
+    // on uncreated classes.
+    public function addPreCallable($callable)
     {
         $this->preCallables[] = $callable;
     }
 
-    public function addPostCallable(callable $callable)
+    // This can't be type-hinted as callable as we allow instance methods
+    // on uncreated classes.
+    public function addPostCallable($callable)
     {
         $this->postCallables[] = $callable;
     }

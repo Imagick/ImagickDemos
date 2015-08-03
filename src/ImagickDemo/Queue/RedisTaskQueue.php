@@ -20,6 +20,8 @@ class RedisTaskQueue implements TaskQueue
 
     private $taskKeyStateTime = 10;//240;
 
+    const ACTIVE_TIMEOUT = 30;
+    
     /**
      * @param RedisClient $redisClient
      * @param $queueName
@@ -28,13 +30,11 @@ class RedisTaskQueue implements TaskQueue
     {
         $this->redisClient = $redisClient;
         $this->queueName = $queueName;
-        $this->taskListKey = $queueName . ':taskList';
-        $this->announceListKey = $queueName . '_announceList';
-        $this->statusKey = $queueName . '_status';
+        $this->taskListKey = $queueName . '_taskList:';
+        $this->announceListKey = $queueName . '_announceList:';
+        $this->statusKey = $queueName . '_status:';
     }
 
-    
-    
     public function clearTaskQueue()
     {
         $this->clearQueue($this->taskListKey);
@@ -129,8 +129,7 @@ class RedisTaskQueue implements TaskQueue
      */
     public function buryTask(Task $task)
     {
-        $taskKey = $task->getKey();
-        $this->setStatus($taskKey, TaskQueue::STATE_BURIED);
+        $this->setStatus($task, TaskQueue::STATE_BURIED);
     }
 
     /**
@@ -140,8 +139,7 @@ class RedisTaskQueue implements TaskQueue
      */
     public function completeTask(Task $task)
     {
-        $taskKey = $task->getKey();
-        $this->setStatus($taskKey, TaskQueue::STATE_COMPLETE);
+        $this->setStatus($task, TaskQueue::STATE_COMPLETE);
     }
 
     /**
@@ -151,8 +149,7 @@ class RedisTaskQueue implements TaskQueue
      */
     public function errorTask(Task $task)
     {
-        $taskKey = $task->getKey();
-        $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
+        $this->setStatus($task, TaskQueue::STATE_ERROR);
     }
 
     /**
@@ -184,7 +181,7 @@ class RedisTaskQueue implements TaskQueue
 
         list(, $taskKey) = $redisData;
 
-        $serializedTask = $this->redisClient->get($taskKey);
+        $serializedTask = $this->redisClient->get($this->taskListKey.$taskKey);
 
         if (!$serializedTask) {
             $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
@@ -197,17 +194,15 @@ class RedisTaskQueue implements TaskQueue
             throw new QueueException("Failed to unserialize string $serializedTask");
         }
 
-        $this->setStatus($taskKey, TaskQueue::STATE_WORKING);
+        $this->setStatus($task, TaskQueue::STATE_WORKING);
 
         return $task;
     }
 
-    /**
-     * @param $taskKey
-     * @param $state
-     */
-    private function setStatus($taskKey, $state)
+
+    private function setStatus(Task $task, $state)
     {
+        $taskKey = $task->getKey();
         $statusKey = $this->statusKey . $taskKey;
         $this->redisClient->set($statusKey, $state, 'EX', $this->taskKeyStateTime);
     }
@@ -238,9 +233,9 @@ class RedisTaskQueue implements TaskQueue
         }
 
         $taskKey = $task->getKey();
-        $this->redisClient->set($taskKey, $serialized);
+        $this->redisClient->set($this->taskListKey.$taskKey, $serialized);
         $this->redisClient->rpush($this->announceListKey, $taskKey);
-        $this->setStatus($taskKey, TaskQueue::STATE_INITIAL);
+        $this->setStatus($task, TaskQueue::STATE_INITIAL);
     }
 
     /**
@@ -268,7 +263,7 @@ class RedisTaskQueue implements TaskQueue
             $this->getActiveKey(),
             true,
             'EX',
-            30
+            self::ACTIVE_TIMEOUT
         );
     }
 }

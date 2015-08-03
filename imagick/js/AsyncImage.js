@@ -1,7 +1,6 @@
 /*jslint evil: false, vars: true, eqeq: true, white: true */
 
 
-
 var AsyncImage = {
 
     checkCount: 0,
@@ -15,13 +14,13 @@ var AsyncImage = {
     options: {
         content: null
     },
-    
+
     getTicks: function() {
         var d = new Date();
         return d.getTime();
     },
 
-    getAsyncDelay: function () {
+    getAsyncDelay: function() {
         var timeElapsed = this.getTicks() - this.startTime;
         var delays = {
             1000: 100, 
@@ -40,8 +39,7 @@ var AsyncImage = {
         var timeElapsed = this.getTicks() - this.startTime;
         var secondsElapsed = timeElapsed / 1000;
         if (secondsElapsed > 60) {
-            //var imageLink = "<a href='" + this.imageURI + "'>" + this.imageURI + "</a>";
-            var text = "Yeah, I think it's broken. Maybe report an issue? Or it could just be taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.";
+            var text = "Yeah, I think it's broken. Maybe report an issue? Or the background image processor is just taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.";
             this.statusElement.text(text);
             return false;
         }
@@ -52,40 +50,36 @@ var AsyncImage = {
             this.statusElement.text("Hmm, this seems to be taking a long time.");
         }
         else if (secondsElapsed > 1) {
-            this.asyncSpinner.css('display', 'block');
+            this.asyncSpinner.css('display', 'inline-block');
         }
 
         return true;
     },
     
     checkImageStatus: function (asyncLoad) {
-        var uri;
+
         var errorCallback = function(jqXHR, textStatus, errorThrown) {
-            //alert("checkImageStatus done with error: textStatus");
+            this.statusElement.text("Image generation failed with status code '" + jqXHR.status + "'");
         };
 
         var successCallback = function(data, textStatus, jqXHR) {
-            if (data.hasOwnProperty('finished')) {
-                var finished = data['finished'];
-
-                if (finished) {
-                    $(this.element).find('.exampleImage').attr('src', this.imageURI);
-                    this.statusElement.text("");
-                    $(this.element).find('.asyncImageHidden').removeClass('asyncImageHidden');
-                    $(this.element).find('.asyncLoading').css('display', 'none');
-                }
-                else {
-                    var continueProcessing = this.asyncStatusUpdate();
-                    if (continueProcessing) {
-                        var delay = this.getAsyncDelay();
-                        setTimeout(this.callback, delay);
-                    }
-                }
+            if (jqXHR.status == 200) {
+                $(this.element).find('.exampleImage').attr('src', this.imageURI);
+                this.statusElement.text("");
+                $(this.element).find('.asyncImageHidden').removeClass('asyncImageHidden');
+                $(this.element).find('.asyncLoading').css('display', 'none');
+                return;
+            }
+  
+            var continueProcessing = this.asyncStatusUpdate();
+            if (continueProcessing) {
+                var delay = this.getAsyncDelay();
+                setTimeout(this.callback, delay);
             }
         };
 
         $.ajax({
-            url: this.statusURI,
+            url: this.imageURI,
             cache: false,
             context: this,
             error: errorCallback,
@@ -112,24 +106,13 @@ var AsyncImage = {
             return;
         }
 
-        var indexQuestionMark = this.imageURI.indexOf("?");
-        var pingImageURI = this.imageURI;
-
-
-        if (indexQuestionMark == -1) {
-            pingImageURI += "?noredirect=true";
-        }
-        else{
-            pingImageURI += "&noredirect=true";
-        }
-
         if (!JSON.parse(("" + this.enabled).toLowerCase())) {
             return;
         }
 
         //We make a single request to get the image to initiate it's generation.
         $.ajax({
-            url: pingImageURI,
+            url: this.imageURI,
             //cache: false,
             error: function (){},
             success: function (){}

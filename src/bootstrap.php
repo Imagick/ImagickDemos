@@ -11,21 +11,14 @@ use Tier\ResponseBody\EmptyBody;
 use Tier\Tier;
 use Tier\ResponseBody\HtmlBody;
 use Tier\InjectionParams;
-use Jig\JigRender;
 use Jig\JigConfig;
 use Arya\Request;
 use Arya\Response;
-use Arya\RedirectBody;
 use Tier\ResponseBody\ImageResponse;
 use Tier\ResponseBody\FileResponseIM as FileResponse;
 use ImagickDemo\Queue\ImagickTaskQueue;
-
-    
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
-
-define('COMPOSER_OPCACHE_OPTIMIZE', true);
-require __DIR__.'/../vendor/autoload.php';
 
 //yolo - We use a global to allow us to do a hack to make all the code examples
 //appear to use the standard 'header' function, but also capture the content type 
@@ -74,64 +67,65 @@ function errorHandler($errno, $errstr, $errfile, $errline)
         //lol don't care.
         return true;
     }
-    
-    
-    switch ($errno) {
-        case E_CORE_ERROR:
-        case E_ERROR: {
-            $message =  "<b>Fatality</b> [$errno] $errstr on line $errline in file $errfile <br />\n";
-            //echo "$message";
-            break;
-        }
 
-        default: {
-            $message =  "<b>errorHandler</b> [$errno] $errstr in file $errfile on line $errline<br />\n";
-            throw new \Exception($message);
-            break;
-        }
-    }
+    $errorNames = [
+        E_ERROR => "E_ERROR",
+        E_WARNING => "E_WARNING",
+        E_PARSE => "E_PARSE",
+        E_NOTICE => "E_NOTICE",
+        E_CORE_ERROR => "E_CORE_ERROR",
+        E_CORE_WARNING => "E_CORE_WARNING",
+        E_COMPILE_ERROR => "E_COMPILE_ERROR",
+        E_COMPILE_WARNING => "E_COMPILE_WARNING",
+        E_USER_ERROR => "E_USER_ERROR",
+        E_USER_WARNING => "E_USER_WARNING",
+        E_USER_NOTICE => "E_USER_NOTICE",
+        E_STRICT => "E_STRICT",
+        E_RECOVERABLE_ERROR => "E_RECOVERABLE_ERROR",
+        E_DEPRECATED => "E_DEPRECATED",
+        E_USER_DEPRECATED => "E_USER_DEPRECATED",
+    ];
     
-    return false;
+    $errorType = "Error type $errno";
+
+    if (array_key_exists($errno, $errorNames)) {
+        $errorType = $errorNames[$errno];
+    }
+
+    $message =  "$errorType: [$errno] $errstr in file $errfile on line $errline";
+    throw new \LogicException($message);
 }
 
 
 function fatalErrorShutdownHandler()
 {
-    $level = ob_get_level();
-
-    for ($x=0; $x<$level; $x++) {
-        ob_end_flush();
-    }
-
-    $last_error = error_get_last();
-
-    if (!$last_error) {
-        return false;
-    }
-
-    switch ($last_error['type']) {
-        case (E_ERROR):
-        case (E_PARSE): {
-            // fatal error
-            header("HTTP/1.0 500 Bugger bugger bugger", true, 500);
-            var_dump($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
-            exit(0);
+    $fatals = [
+        E_ERROR,
+        E_PARSE,
+        E_USER_ERROR,
+        E_CORE_ERROR,
+        E_CORE_WARNING,
+        E_COMPILE_ERROR,
+        E_COMPILE_WARNING
+    ];
+    $lastError = error_get_last();
+    
+    if ($lastError && in_array($lastError['type'], $fatals)) {
+        if (headers_sent()) {
+            return;
         }
+        header_remove();
+        header("HTTP/1.0 500 Internal Server Error");
+        
+        extract($lastError);
+        $errorMessage = sprintf("Fatal error: %s in %s on line %d", $message, $file, $line);
 
-        case (E_CORE_WARNING): {
-            //TODO - report errors properly.
-            errorHandler($last_error['type'], $last_error['message'], $last_error['file'], $last_error['line']);
-            break;
-        }
+        error_log($errorMessage);
+        $msg = "Oops! Something went terribly wrong :(";
 
-        default: {
-            header("HTTP/1.0 500 Unknown fatal error", true, 500);
-            var_dump($last_error);
-            break;
-        }
+        $msg = "<pre style=\"color:red;\">{$msg}</pre>";
+        echo "<html><body><h1>500 Internal Server Error</h1><hr/>{$msg}</body></html>";
     }
-
-    return false;
 }
 
 
@@ -203,7 +197,6 @@ function prepareJigConverter(JigConverter $jigConverter, $injector)
 function createControl(CategoryNav $categoryNav, Injector $injector)
 {
     list($controlClassname, $params) = $categoryNav->getDIInfo();
-
     foreach ($params as $name => $value) {
         $injector->defineParam($name, $value);
     }
@@ -214,7 +207,7 @@ function createControl(CategoryNav $categoryNav, Injector $injector)
     foreach ($params as $name => $value) {
         $injector->defineParam($name, $value);
     }
-
+    
     return $control;
 }
 
@@ -635,10 +628,9 @@ function renderImageURL(
     $originalImageURL,
     $statusURL
 ) {
-    global $cacheImages;
 
-    $useAsyncLoading = $cacheImages && $taskQueueIsActive;
-    
+    $useAsyncLoading = $taskQueueIsActive;
+
     $imageRender = new ImagickDemo\Helper\ImageRender(
         $useAsyncLoading,
         $imgURL,
@@ -702,28 +694,7 @@ function createHtmlBody(\Jig\JigBase $template)
 
     return new HtmlBody($text);
 }
-    
-/**
- * Helper function to allow template rendering to be easier.
- * @param $templateName
- * @param array $sharedObjects
- * @return Tier
- */
-function getRenderTemplateTierSasdsd($templateName, array $sharedObjects = [], $params = [])
-{
-    $fn = function (Jig $jigRender) use ($templateName, $sharedObjects, $params) {
-        $className = $jigRender->getTemplateCompiledClassname($templateName);
-        $jigRender->checkTemplateCompiled($templateName);
 
-        $alias = [];
-        $alias['Jig\JigBase'] = $className;
-        $injectionParams = new InjectionParams($sharedObjects, $alias, [], $params);
-
-        return new Tier('createHtmlBody', $injectionParams);
-    };
-
-    return new Tier($fn);
-}
     
 function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
 {
@@ -737,22 +708,6 @@ function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
 
     return new Tier($fn);
 }
-
-//
-//function getTemplateSetupCallable($templateName)
-//{
-//    $fn = function (JigRender $jigRender) use ($templateName) {
-//        $className = $jigRender->getClassName($templateName);
-//        $jigRender->checkTemplateCompiled($templateName);
-//        $alias = [];
-//        $alias['Jig\JigBase'] = $className;
-//        $di = new InjectionParams([], $alias, [], []);
-//
-//        return new Tier('createTemplateResponse', $di);
-//    };
-//
-//    return $fn;
-//}
     
 function createRedisClient()
 {
@@ -818,7 +773,6 @@ function createImageTask(
     return new TextBody("Image is generating.");
 }
 
-    
 function serve404ErrorPage(Response $response)
 {
     $response->setStatus(404);

@@ -1,8 +1,11 @@
 <?php
 
 ini_set('display_errors', 'on');
+define('COMPOSER_OPCACHE_OPTIMIZE', true);
+
+require __DIR__.'/../vendor/autoload.php';
 require __DIR__ . '/../src/bootstrap.php';
-require_once __DIR__ . "/./Tier/tierFunctions.php";
+require __DIR__ . "/./Tier/tierFunctions.php";
 
 use Arya\Request;
 use Tier\Tier;
@@ -11,18 +14,14 @@ use Tier\ResponseBody\ExceptionHtmlBody;
 
 \Intahwebz\Functions::load();
 
-//register_shutdown_function('fatalErrorShutdownHandler');
-//set_error_handler('errorHandler');
+register_shutdown_function('fatalErrorShutdownHandler');
 set_exception_handler('exceptionHandler');
+set_error_handler('errorHandler');
 
-//if (false) {
-//    $sessionManager = $injector->make('ASM\SessionManager');
-//    $session = $sessionManager->createSession($_COOKIE);
-//    $injector->alias('ASM\Session', get_class($session));
-//    $injector->share($session);
-//}
 
-$injectionParams = require_once "injectionParams.php";
+
+
+$injectionParams = require "injectionParams.php";
 
 try {
     $_input = empty($_SERVER['CONTENT-LENGTH']) ? null : fopen('php://input', 'r');
@@ -42,9 +41,9 @@ try {
     // Create the Tier application
     $app = new TierApp($tier, $injectionParams);
 
-//    $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
-//    $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
-//    
+    $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
+    $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
+
     // Run it
     $app->execute($request);
 }

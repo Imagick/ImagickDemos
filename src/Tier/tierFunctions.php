@@ -2,7 +2,6 @@
 
 namespace Tier;
 
-use ArtaxServiceBuilder\ResponseCache;
 use Arya\Request;
 use Arya\Response;
 use Auryn\Injector;
@@ -80,7 +79,6 @@ function sendErrorResponse(Request $request, $body, $errorCode)
     $response = new Response();
     $response->setBody($body);
     $response->setStatus($errorCode);
-
     sendResponse($request, $response);
 }
 
@@ -121,13 +119,7 @@ function sendResponse(Request $request, Response $response, $autoAddReason = tru
         echo $body;
     }
     elseif (is_callable($body)) {
-        //$this->outputCallableBody($body);
-        
-        //try {
-            $body();
-//        } catch (\Exception $e) {
-//        $this->outputManualExceptionResponse($e);
-//   }      
+        $body();
     }
     else {
         //this is bad.

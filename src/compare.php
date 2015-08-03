@@ -1,8 +1,11 @@
 <?php
 
+use ImagickDemo\Helper\PageInfo;
+
 require __DIR__.'/../vendor/autoload.php';
-//require __DIR__ . "../../imagick-demos.conf.php";
 require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . "/./Tier/tierFunctions.php";
+
 
 
 \ImagickDemo\Imagick\functions::load();
@@ -11,14 +14,9 @@ require __DIR__ . '/../src/bootstrap.php';
 \ImagickDemo\ImagickPixelIterator\functions::load();
 \ImagickDemo\Tutorial\functions::load();
 
-
 function compareFile($injector, $functionFullname, $filename, $fileExtension) {
-
     $newFilename = $filename."new1";
-    
     generateCompare($injector, $functionFullname, $newFilename);
-
-    //echo "Comparing $filename to $newFilename \n";
     echo ".";
     
     $imagickSrc = new Imagick($filename.$fileExtension);
@@ -91,7 +89,7 @@ $allTests = [
     ['Imagick', 'brightnessContrastImage', 'a:4:{s:5:"image";s:8:"Lorikeet";s:10:"brightness";i:-20;s:8:"contrast";i:-20;s:7:"channel";i:134217727;}'],
     ['Imagick', 'charcoalImage', 'a:3:{s:6:"radius";i:5;s:5:"sigma";i:1;s:5:"image";s:8:"Lorikeet";}'],
     ['Imagick', 'chopImage', 'a:5:{s:5:"image";s:8:"Lorikeet";s:6:"startX";i:100;s:6:"startY";i:100;s:5:"width";i:50;s:6:"height";i:50;}'],
-    ['Imagick', 'clutImage', 'a:1:{s:5:"image";s:8:"Lorikeet";}'],
+    //['Imagick', 'clutImage', 'a:1:{s:5:"image";s:8:"Lorikeet";}'],
     ['Imagick', 'colorizeImage', 'a:3:{s:5:"image";s:8:"Lorikeet";s:5:"color";s:18:"rgb(127, 127, 127)";s:7:"opacity";i:100;}'],
     ['Imagick', 'colorMatrixImage', 'a:26:{s:5:"image";s:8:"Lorikeet";s:13:"colorMatrix_0";d:1.5;s:13:"colorMatrix_1";d:0;s:13:"colorMatrix_2";d:0;s:13:"colorMatrix_3";d:0;s:13:"colorMatrix_4";d:-0.157;s:13:"colorMatrix_5";d:0;s:13:"colorMatrix_6";d:1;s:13:"colorMatrix_7";d:0.5;s:13:"colorMatrix_8";d:0;s:13:"colorMatrix_9";d:-0.157;s:14:"colorMatrix_10";d:0;s:14:"colorMatrix_11";d:0;s:14:"colorMatrix_12";d:0.5;s:14:"colorMatrix_13";d:0;s:14:"colorMatrix_14";d:0.5;s:14:"colorMatrix_15";d:0;s:14:"colorMatrix_16";d:0;s:14:"colorMatrix_17";d:0;s:14:"colorMatrix_18";d:1;s:14:"colorMatrix_19";d:0;s:14:"colorMatrix_20";d:0;s:14:"colorMatrix_21";d:0;s:14:"colorMatrix_22";d:0;s:14:"colorMatrix_23";d:0;s:14:"colorMatrix_24";d:1;}'],
     ['Imagick', 'compositeImage', 'a:1:{s:5:"image";s:8:"Lorikeet";}'],
@@ -449,24 +447,41 @@ $allTests = [
 
 
 
+//function delegateAllTheThings(\Auryn\Provider $injector, $controlClass) {
+//    $params = ['a', 'adaptiveOffset', 'alpha', 'amount', 'amplitude', 'angle', 'b', 'backgroundColor', 'bestFit', 'blackPoint', 'blackThreshold', 'blendMidpoint', 'blueShift', 'blur', 'brightness', 'canvasType', 'channel', 'clusterThreshold', 'color', 'colorElement', 'colorMatrix', 'colorSpace',  'contrast',  'contrastType', 'cropZoom', 'distortionExample', 'dither', 'endAngle', 'endX', 'endY', 'evaluateType', 'fillColor', 'filterType', 'firstTerm', 'fillModifiedColor', 'fourthTerm', 'fuzz', 'g', 'gamma', 'gradientStartColor', 'gradientEndColor', 'grayOnly', 'height', 'highThreshold', 'hue', 'image', 'imagePath', 'innerBevel', 'inverse', 'layerMethodType', 'length', 'lowThreshold',  'meanOffset', 'noiseType', 'numberColors', 'numberLevels', 'opacity', 'orderedPosterizeType', 'orientationType', 'originX', 'originY', 'outerBevel', 'paintType', 'posterizeType', 'r', 'raise', 'radius', 'reduceNoise', 'rollX', 'rollY', 'roundX', 'roundY', 'saturation', 'secondTerm', 'sepia', 'shearX', 'shearY', 'sigma', 'skew', 'smoothThreshold', 'solarizeThreshold', 'startAngle', 'startX', 'startY', 'statisticType', 'strokeColor', 'swirl', 'targetColor', 'textDecoration', 'textUnderColor', 'thirdTerm', 'threshold', 'thresholdAngle', 'thresholdColor', 'translateX', 'translateY', 'treeDepth', 'unsharpThreshold', 'virtualPixelType', 'whitePoint', 'whiteThreshold', 'x', 'y', 'w20', 'width', 'h20', 'sharpening', 'midpoint', 'sigmoidalContrast',];
+//
+//
+//    foreach ($params as $param) {
+//        $paramGet = 'get'.ucfirst($param);
+//        $injector->delegateParam(
+//             $param,
+//             [$controlClass, $paramGet]
+//        );
+//    }
+//}
+
+
+
+
+
+$injectionParams = require "injectionParams.php";
+
 foreach ($allTests as $test) {
-
+    $injector = new \Auryn\Injector();
+    Tier\addInjectionParams($injector, $injectionParams);
+    
     list($category, $functionName, $serializedParams) = $test;
-
     $params = unserialize($serializedParams);
-
-    $functionFullname = 'ImagickDemo\\'.$category.'\\'.$functionName;
-    $injector = bootstrapInjector('testkey', 'testpass', 'testsource');
 
     foreach ($params as $name => $value) {
         $injector->defineParam($name, $value);
     }
 
+    $functionFullname = 'ImagickDemo\\'.$category.'\\'.$functionName;
     $injector->alias(\ImagickDemo\Navigation\Nav::class, \ImagickDemo\Navigation\CategoryNav::class);
-    $injector->define(\ImagickDemo\Navigation\CategoryNav::class, [
-        ':category' => $category,
-        ':example' => $functionName
-    ]);
+
+    $pageInfo = new PageInfo($category, $functionName);
+    $injector->share($pageInfo);
     
     $categoryNav = $injector->make(\ImagickDemo\Navigation\CategoryNav::class);
 
@@ -481,9 +496,11 @@ foreach ($allTests as $test) {
         }
     }
 
-    //delegateAllTheThings($injector, $controlClass);
+    createControl($categoryNav, $injector);
 
-    $filename = getImageCacheFilename($category, $functionName.".compare", $params);
+    $pageInfo = new \ImagickDemo\Helper\PageInfo($category, $functionName);
+
+    $filename = getImageCacheFilename($pageInfo, $params);
 
     $extensions = [".jpg", '.jpeg', ".gif", ".png", ];
 

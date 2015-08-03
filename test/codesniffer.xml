@@ -80,6 +80,7 @@
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
         <exclude-pattern>Tutorial/smoothSpiderGraph.php</exclude-pattern>
         <exclude-pattern>src/bootstrap.php</exclude-pattern>
+        <exclude-pattern>src/process.php</exclude-pattern>
     </rule>
 
 </ruleset>

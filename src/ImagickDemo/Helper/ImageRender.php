@@ -68,9 +68,7 @@ class ImageRender
         
         $this->output .= "<div class='col-xs-12 text-center' style='font-size: 12px'>";
         $this->addAsyncLoading();
-        
         $this->addImage();
-        
         $this->output .= "</div>";
         $this->closeContainer();
 

@@ -18,10 +18,11 @@ class RedisTaskQueue implements TaskQueue
 
     private $queueName;
 
-    private $taskKeyStateTime = 10;//240;
+    private $taskKeyStateTime = 10;
 
     const ACTIVE_TIMEOUT = 30;
-    
+    const TASK_TTL = 120;
+
     /**
      * @param RedisClient $redisClient
      * @param $queueName
@@ -233,7 +234,12 @@ class RedisTaskQueue implements TaskQueue
         }
 
         $taskKey = $task->getKey();
-        $this->redisClient->set($this->taskListKey.$taskKey, $serialized);
+        $this->redisClient->set(
+            $this->taskListKey.$taskKey,
+            $serialized,
+            'EX',
+            self::TASK_TTL
+        );
         $this->redisClient->rpush($this->announceListKey, $taskKey);
         $this->setStatus($task, TaskQueue::STATE_INITIAL);
     }

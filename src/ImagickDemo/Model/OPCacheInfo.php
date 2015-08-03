@@ -35,7 +35,7 @@ class OPCacheInfo
             return $this->renderLoadedFiles($tableName);
         }
 
-        $this->renderJustOpcache($tableName);
+        return $this->renderJustOpcache($tableName);
     }
 
     public function renderJustOpcache($tableName)
@@ -63,7 +63,7 @@ class OPCacheInfo
             $scriptInfoArray[] = $newScriptInfo;
         }
 
-        $this->renderTable($tableName, $scriptInfoArray);
+        return $this->renderTable($tableName, $scriptInfoArray);
     }
 
 
@@ -167,5 +167,7 @@ class OPCacheInfo
         echo "</tr>";
         echo "</tfoot>";
         echo "</table>";
+        
+        return "";
     }
 }

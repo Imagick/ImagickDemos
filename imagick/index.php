@@ -1,4 +1,4 @@
 <?php
 
-require_once "../src/process.php";
+require "../src/process.php";
 

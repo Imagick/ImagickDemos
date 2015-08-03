@@ -48,7 +48,7 @@ class SpiderChart
     }
 
     /**
-     * @return ImagickDraw
+     * @return \ImagickDraw
      */
     public function getDraw()
     {

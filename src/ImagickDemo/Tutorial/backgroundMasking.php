@@ -11,10 +11,6 @@ class backgroundMasking extends \ImagickDemo\Example
 
     public function getOriginalImage()
     {
-        //return $this->control->getCustomImageURL(['original' => true]);
-        
-        //return $this->control->getOriginalURL();
-        
         return "/imageOriginal/Tutorial/backgroundMasking";
         
     }

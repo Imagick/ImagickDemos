@@ -213,12 +213,21 @@ function createControl(CategoryNav $categoryNav, Injector $injector)
 
 function createExample(CategoryNav $categoryNav, Injector $injector)
 {
-    $exampleName = $categoryNav->getExampleName();
+
+    $exampleName = $categoryNav->getImageFunctionName();
 
     return $injector->make($exampleName);
 }
 
 
+function setupCategoryExample($vars)
+{
+    if (array_key_exists('category', $vars)) {
+        //This is actually only needed for image requests
+        $className = sprintf('ImagickDemo\%s\functions', $vars['category']);
+        $className::load();
+    }
+}
 
 /**
  * @param \Auryn\Injector $injector
@@ -251,15 +260,15 @@ function routeRequest()
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
 
-        if (array_key_exists('category', $vars)) {
-            //This is actually only needed for image requests
-            $className = sprintf('ImagickDemo\%s\functions', $vars['category']);
-            $className::load();
-        }
+        //var_dump($handler);
+        
+        $fn = function () use ($vars) {
+            setupCategoryExample($vars);
+        };
 
         $params = InjectionParams::fromParams($vars);
 
-        return new Tier($handler, $params);
+        return new Tier($handler, $params, $fn);
     }
     else if ($dispatcherResult == \FastRoute\Dispatcher::NOT_FOUND) {
         //return new StandardHTTPResponse(404, $uri, "Route not found");
@@ -326,6 +335,21 @@ function cachedImageCallable(CategoryNav $categoryNav, Request $request, Respons
 }
 
 
+function cachingheader($string, $replace = true, $http_response_code = null)
+{
+    global $imageType;
+    global $cacheImages;
+
+    if (stripos($string, "Content-Type: image/") === 0) {
+        $imageType = substr($string, strlen("Content-Type: image/"));
+    }
+    
+    if ($cacheImages == false) {
+        if (php_sapi_name() !== 'cli') {
+            \header($string, $replace, $http_response_code);
+        }
+    }
+}
     
 /**
  * @param \Imagick $imagick
@@ -399,7 +423,7 @@ function analyzeImage(\Imagick $imagick, $graphWidth = 255, $graphHeight = 127)
     $outputImage->borderimage('black', $border, $border);
     $outputImage->setImageFormat("png");
 
-    \ImagickDemo\header("Content-Type: image/png");
+    cachingHeader("Content-Type: image/png");
     echo $outputImage;
 }
 
@@ -543,38 +567,44 @@ function renderImageAsFileResponse(
     
     var_dump($imageFunction);
 
-    ob_start();
+    try {
+        ob_start();
 
-    global $imageType;
+        global $imageType;
 
-   
-    $injector->execute($imageFunction, $params);
-    
-    if ($imageType == null) {
+        $injector->execute($imageFunction, $params);
+
+
+        if ($imageType == null) {
+            ob_end_clean();
+            throw new \Exception("imageType not set, can't cache image correctly.");
+        }
+
+        $image = ob_get_contents();
         ob_end_clean();
-        throw new \Exception("imageType not set, can't cache image correctly.");
-    }
+        @mkdir(dirname($filename), 0755, true);
+        $fullFilename = $filename . "." . strtolower($imageType);
 
-    $image = ob_get_contents();
-    ob_end_clean();
-    @mkdir(dirname($filename), 0755, true);
-    $fullFilename = $filename . "." . strtolower($imageType);
-    
-    if (!strlen($image)) {
-        throw new \Exception("Image generated was empty for $imageFunction.");
-    }
+        if (!strlen($image)) {
+            throw new \Exception("Image generated was empty for $imageFunction.");
+        }
 
-    $fileWritten = @file_put_contents($fullFilename, $image);
-    
-    if ($fileWritten === false) {
-        throw new \Exception("Failed to write file $fullFilename");
-    }
-    if ($fileWritten === 0) {
-        throw new \Exception("Image was empty when written to $fullFilename .");
-    }
-    
-    return [$fullFilename, $imageType];
+        $fileWritten = @file_put_contents($fullFilename, $image);
 
+        if ($fileWritten === false) {
+            throw new \Exception("Failed to write file $fullFilename");
+        }
+        if ($fileWritten === 0) {
+            throw new \Exception("Image was empty when written to $fullFilename .");
+        }
+
+        return [$fullFilename, $imageType];
+    }
+    finally {
+        while (ob_get_level() > 0) {
+            ob_end_flush();
+        }
+    }
 }
 
 
@@ -745,12 +775,37 @@ function directImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector
     return new ImageResponse($filename, "image/".$imageType, $imageData);
 }
     
+function directCustomImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector, $params)
+{
+    $imageFunction = $categoryNav->getCustomImageFunctionName();
+    $filename = getImageCacheFilename(
+        $categoryNav->getPageInfo(),
+        $params
+    );
+
+    global $imageType;
+
+    ob_start();
+    $injector->execute($imageFunction);
+
+    if ($imageType == null) {
+        ob_end_clean();
+        throw new \Exception("imageType not set, can't cache image correctly.");
+    }
+    $imageData = ob_get_contents();
+
+    ob_end_clean();
+
+    return new ImageResponse($filename, "image/".$imageType, $imageData);
+}
+
     
 function createImageTask(
     VariableMap $variableMap,
     ImagickTaskQueue $taskQueue,
     CategoryNav $categoryNav,
     Response $response,
+    $customImage,
     $params
 ) {
     $job = $variableMap->getVariable('job', false);
@@ -760,7 +815,7 @@ function createImageTask(
             return false;
         }
     
-        $task = new \ImagickDemo\Queue\ImagickTask($categoryNav, $params);
+        $task = new \ImagickDemo\Queue\ImagickTask($categoryNav, $params, $customImage);
         $taskQueue->addTask($task);
     }
     

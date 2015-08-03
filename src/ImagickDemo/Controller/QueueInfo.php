@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Controller;
 
-use ImagickDemo\Response\TextResponse;
+
 use ImagickDemo\Queue\ImagickTaskQueue;
 
 use Arya\TextBody;

@@ -28,7 +28,6 @@ $aliases = [
     'ImagickDemo\Framework\VariableMap' => 'ImagickDemo\Framework\RequestVariableMap',
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
-    
     'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
 ];
 

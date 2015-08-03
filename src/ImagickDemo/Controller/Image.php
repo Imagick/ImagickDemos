@@ -3,9 +3,9 @@
 namespace ImagickDemo\Controller;
 
 use ImagickDemo\Framework\VariableMap;
-use Intahwebz\Request;
+
 use ImagickDemo\Response\JsonResponse;
-use ImagickDemo\Queue\ImagickTaskQueue;
+
 use ImagickDemo\Helper\PageInfo;
 use Tier\InjectionParams;
 use Tier\Tier;
@@ -114,12 +114,19 @@ class Image
         $defaultCustomParams = array('customImage' => true);
         $params = array_merge($defaultCustomParams, $params);
 
-        $injectionParams = InjectionParams::fromParams(['params' => $params]);
-
-        return new Tier(
-            ['ImagickDemo\Example', 'renderCustomImage'],
-            $injectionParams
+        $injectionParams = InjectionParams::fromParams(
+            array (
+                'params' => $params,
+                'customImage' => true
+            )
         );
+
+        $tiers = [];
+        $tiers[] = new Tier('cachedImageCallable', $injectionParams);
+        $tiers[] = new Tier('createImageTask');
+        $tiers[] = new Tier('directCustomImageCallable');
+
+        return $tiers;
     }
 
 
@@ -128,8 +135,13 @@ class Image
         VariableMap $variableMap
     ) {
         $params = $control->getFullParams([]);
-
-        $injectionParams = InjectionParams::fromParams(['params' => $params]);
+        $params['customImage'] = false;
+        $injectionParams = InjectionParams::fromParams(
+            array (
+                'params' => $params,
+                'customImage' => false
+            )
+        );
         $tiers = [];
         $tiers[] = new Tier('cachedImageCallable', $injectionParams);
         $tiers[] = new Tier('createImageTask');

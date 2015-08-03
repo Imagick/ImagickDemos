@@ -66,7 +66,7 @@ class CategoryNav implements Nav
         $navName = $this->getCurrentName();
                
         if ($navName) {
-                return sprintf('ImagickDemo\%s\%s', $this->category, $navName);
+            return sprintf('ImagickDemo\%s\%s', $this->category, $navName);
         }
 
         if ($this->category) {
@@ -79,12 +79,31 @@ class CategoryNav implements Nav
     public function getImageFunctionName()
     {
         $category = $this->pageInfo->getCategory();
+        if ($category == null) {
+            return 'ImagickDemo\HomePageExample';
+        }
+        
         $example = $this->pageInfo->getExample();
+        if ($example == null) {
+            return sprintf('ImagickDemo\%s\IndexExample', $this->category);
+        }
+        
         $exampleDefinition = $this->getExampleDefinition($category, $example);
         $function = $exampleDefinition[0];
 
         return sprintf('ImagickDemo\%s\%s', $category, $function);
     }
+    
+    public function getCustomImageFunctionName()
+    {
+        $category = $this->pageInfo->getCategory();
+        $example = $this->pageInfo->getExample();
+        $exampleDefinition = $this->getExampleDefinition($category, $example);
+        //$function = $exampleDefinition[0];
+
+        return [sprintf('ImagickDemo\%s\%s', $category, $example), 'renderCustomImage'];
+    }
+    
 
     public function getDIInfo()
     {

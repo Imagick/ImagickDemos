@@ -4,6 +4,7 @@
 namespace ImagickDemo\Queue;
 
 use ImagickDemo\Framework\ArrayVariableMap;
+use Auryn\InjectionException;
 
 class ImagickTaskRunner
 {
@@ -137,16 +138,28 @@ class ImagickTaskRunner
         $injector->alias('ImagickDemo\Framework\VariableMap', get_class($variableMap));
         $injector->share($variableMap);
 
-        $imageFunction = $categoryNav->getImageFunctionName();
-        
+        if ($task->isCustomImage()) {
+            $imageFunction = $categoryNav->getCustomImageFunctionName();
+        }
+        else {
+            $imageFunction = $categoryNav->getImageFunctionName();
+        }
+
         echo "Image Function name is: \n";
         var_dump($imageFunction);
         
-        echo "Params are: \n";
-        var_dump($params);
+//        echo "Params are: \n";
+//        var_dump($params);
         
-        echo "filename was $filename\n";
-        renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
+        try {
+            $result = renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
+            echo "file writte";
+        }
+        catch (InjectionException $ie) {
+            echo "InjectionException calling image function: ".var_export($imageFunction, true)."\n";
+            echo "Details: ".$ie->getMessage()."\n";
+        }
+
     }
 /*
 

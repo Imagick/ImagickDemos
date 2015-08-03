@@ -17,25 +17,35 @@ class ImagickTask implements Task
     
     private $params;
 
+    private $customImage;
+    
     /**
      * @param CategoryNav $categoryNav
      * @param $params
      */
-    public function __construct(CategoryNav $categoryNav, $params)
+    public function __construct(CategoryNav $categoryNav, $params, $customImage)
     {
         $this->categoryNav = $categoryNav;
         $this->params = $params;
+        $this->customImage = $customImage;
     }
 
+    /**
+     * @return mixed
+     */
+    public function isCustomImage()
+    {
+        return $this->customImage;
+    }
+
+    
+    
     /**
      *
      */
     public function getKey()
     {
-        $key = '';
-        foreach ($this->params as $param) {
-            $key = hash("sha256", $key.$param);
-        }
+        $key = hash("sha256", json_encode($this->params));
 
         return sprintf(
             "%s_%s_%s",
@@ -67,7 +77,8 @@ class ImagickTask implements Task
     {
         $data = [
             'categoryNav' => $this->categoryNav,
-            'params' => $this->$params
+            'params' => $this->$params,
+            'customImage' => $this->customImage
         ];
 
         return $data;
@@ -81,7 +92,8 @@ class ImagickTask implements Task
     {
         return new ImagickTask(
             $serialization['categoryNav'],
-            $serialization['params']
+            $serialization['params'],
+            $serialization['customImage']
         );
     }
 

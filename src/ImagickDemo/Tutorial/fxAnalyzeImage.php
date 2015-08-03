@@ -2,8 +2,24 @@
 
 namespace ImagickDemo\Tutorial;
 
+use ImagickDemo\Control\FXAnalyzeControl;
+
 class fxAnalyzeImage extends \ImagickDemo\Example
 {
+    private $type;
+    
+    public function __construct(FXAnalyzeControl $fxAnalyzeControl)
+    {
+        parent::__construct($fxAnalyzeControl);
+        $this->type = $fxAnalyzeControl->getCompositeExampleType();
+    }
+    
+    
+    public function getCustomImageParams()
+    {
+        return ['type' => $this->type];
+    }
+    
     public function renderDescription()
     {
 
@@ -25,8 +41,8 @@ END;
         return $this->renderCustomImageURL();
     }
 
-    public function renderCustomImage($fxAnalyzeExample)
-    {
+    public function renderCustomImage()
+    {        
         $methods = [
             'example1' => 'example1',
             'example2' => 'example2',
@@ -34,11 +50,11 @@ END;
             'example4' => 'example4',
         ];
 
-        if (array_key_exists($fxAnalyzeExample, $methods) == false) {
-            throw new \Exception("Unknown fxanalyze example $fxAnalyzeExample");
+        if (array_key_exists($this->type, $methods) == false) {
+            throw new \Exception("Unknown fxanalyze example ".$this->type);
         }
 
-        $method = $methods[$fxAnalyzeExample];
+        $method = $methods[$this->type];
         $this->{$method}();
     }
 

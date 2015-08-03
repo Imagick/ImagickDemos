@@ -23,7 +23,8 @@ var AsyncImage = {
     getAsyncDelay: function() {
         var timeElapsed = this.getTicks() - this.startTime;
         var delays = {
-            1000: 100, 
+            500: 10,
+            1000: 100,
             5000: 250
         };
         for (var i in delays) {
@@ -32,7 +33,8 @@ var AsyncImage = {
             }
         }
 
-        return 1000;
+        return 0;
+        //return 1000;
     },
 
     asyncStatusUpdate: function () {
@@ -92,15 +94,12 @@ var AsyncImage = {
     },
 
     _init: function() {
-        this.statusURI = $(this.element).data('statusuri');
+//        this.statusURI = $(this.element).data('statusuri');
         this.imageURI = $(this.element).data('imageuri');
         this.enabled = $(this.element).data('enabled');
         this.statusElement = $(this.element).find('.asyncImageStatus');
         this.asyncSpinner = $(this.element).find('.asyncSpinner');
 
-        if (!this.statusURI) {
-            return;
-        }
 
         if (!this.imageURI) {
             return;
@@ -109,14 +108,6 @@ var AsyncImage = {
         if (!JSON.parse(("" + this.enabled).toLowerCase())) {
             return;
         }
-
-        //We make a single request to get the image to initiate it's generation.
-        $.ajax({
-            url: this.imageURI,
-            //cache: false,
-            error: function (){},
-            success: function (){}
-        });
 
         this.callback = $.proxy(this, 'checkImageStatus');
         this.first = true;

@@ -10,12 +10,18 @@ class Librato
     private $libratorUsername;
     private $statsSourceName;
 
-    public function __construct($key, $username, $sourceName)
+    private function __construct($key, $username, $sourceName)
     {
         $this->libratoKey = $key;
         $this->libratorUsername = $username;
         $this->statsSourceName = $sourceName;
     }
+    
+    public static function make($key, $username, $sourceName)
+    {
+        return new Librato($key, $username, $sourceName);
+    }
+    
     
     public function getLibratoKey()
     {

@@ -15,6 +15,15 @@ class EnvConfWriter
     {
         $this->env = $env;
         $this->outputFilename = $filename;
+        
+        $knownEnvironments = [
+            'live',
+            'dev'
+        ];
+        
+        if (in_array($env, $knownEnvironments) == false) {
+            throw new \Exception("Environment '$env' is not known, use one of ".implode(', ', $knownEnvironments));
+        }
     }
 
     public function writeEnvFile()
@@ -29,11 +38,8 @@ class EnvConfWriter
             if (array_key_exists($key, $config) == false) {
                 throw new \Exception("Value not set for $key");
             }
-            
             $value = $config[$key];
-            
             $key = str_replace('.', "_", $key);
-            
             $contents .= "export \"$key\"=\"$value\"\n";
         }
 

@@ -3,27 +3,42 @@
 namespace Stats;
 
 use ImagickDemo\Config\Librato as LibratoConfig;
+use Stats\AsyncStats;
+use ImagickDemo\Queue\ImagickTaskQueue;
+use Stats\Librato;
 
 class SimpleStats
 {
-    /**
-     * @var \Auryn\Injector
-     */
-    private $injector;
-
     private $flushInterval;
 
     private $sourceName;
 
     /**
-     * @param \Auryn\Injector $injector
-     * @param LibratoConfig $libratoConfig
+     * @var \Stats\AsyncStats
      */
-    public function __construct(\Auryn\Injector $injector, LibratoConfig $libratoConfig)
-    {
-        $this->injector = $injector;
+    private $asyncStats;
+
+    /**
+     * @var ImagickTaskQueue
+     */
+    private $imagickTaskQueue;
+
+    /**
+     * @var Librato
+     */
+    private $librato;
+
+    public function __construct(
+        LibratoConfig $libratoConfig,
+        AsyncStats $asyncStats,
+        ImagickTaskQueue $imagickTaskQueue,
+        Librato $librato
+    ){
+        $this->asyncStats = $asyncStats;
         $this->flushInterval = 10;
         $this->sourceName = $libratoConfig->getStatsSourceName();
+        $this->imagickTaskQueue = $imagickTaskQueue;
+        $this->librato = $librato;
     }
 
     /**
@@ -34,21 +49,16 @@ class SimpleStats
     {
         $gauges = [];
 
-        $queuesToCheck = [
-            'ImagickDemo\Queue\ImagickTaskQueue',
-        ];
+        // TODO - we are probably going to have more than one queue at some point.
+        $taskQueue = $this->imagickTaskQueue;
+        /** @var $taskQueue \ImagickDemo\Queue\TaskQueue */
+        $gauge = new Gauge(
+            $taskQueue->getName(),
+            $taskQueue->getQueueCount(),
+            $this->sourceName
+        );
 
-        foreach ($queuesToCheck as $queueName) {
-            $taskQueue = $this->injector->make($queueName);
-            /** @var $taskQueue \ImagickDemo\Queue\TaskQueue */
-            $gauge = new Gauge(
-                $taskQueue->getName(),
-                $taskQueue->getQueueCount(),
-                $this->sourceName
-            );
-
-            $gauges[] = $gauge;
-        }
+        $gauges[] = $gauge;
 
         return $gauges;
     }
@@ -61,21 +71,18 @@ class SimpleStats
         $gauges = [];
         $counters = [];
 
-        $asyncStats = $this->injector->make('Stats\AsyncStats');
-
         $gauges = array_merge($gauges, $this->getQueueGauges());
-        $counters = array_merge($counters, $asyncStats->getCounters());
+        $counters = array_merge($counters, $this->asyncStats->getCounters());
 
         $requiredTimers = [
             \ImagickDemo\Queue\ImagickTaskRunner::EVENT_IMAGE_GENERATED,
             \ImagickDemo\Queue\ImagickTaskRunner::EVENT_PAGE_GENERATED,
         ];
 
-        $gauges = array_merge($gauges, $asyncStats->summariseTimers($requiredTimers));
+        $gauges = array_merge($gauges, $this->asyncStats->summariseTimers($requiredTimers));
 
         if (count($counters) || count($gauges)) {
-            $librato = $this->injector->make('Stats\Librato');
-            $librato->send($gauges, $counters);
+            $this->librato->send($gauges, $counters);
         }
     }
 

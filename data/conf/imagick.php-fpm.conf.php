@@ -49,13 +49,10 @@ php_admin_value[error_log] = ${'php.errorlog.directory'}/\$pool-error.log
 
 security.limit_extensions = .php
 
+clear_env = false
+
 include = ${'imagick.root.directory'}/autogen/imagick-demos.php.fpm.ini
 
-env[IMAGICK_DEMOS_LIBRATO_KEY] = \$IMAGICK_DEMOS_LIBRATO_KEY
-env[IMAGICK_DEMOS_LIBRATO_USERNAME] = \$IMAGICK_DEMOS_LIBRATO_USERNAME
-env[IMAGICK_DEMOS_LIBRATO_STATS_SOURCE_NAME] = \$IMAGICK_DEMOS_LIBRATO_STATS_SOURCE_NAME
-env[IMAGICK_DEMOS_CACHE_IMAGES] = \$IMAGICK_DEMOS_CACHE_IMAGES
-env[IMAGICK_DEMOS_QUEUE_IMAGES] = \$IMAGICK_DEMOS_QUEUE_IMAGES
 
 END;
 

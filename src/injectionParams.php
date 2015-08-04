@@ -36,10 +36,12 @@ $aliases = [
 $delegates = [
     'ImagickDemo\Control' => 'createControl',
     'ImagickDemo\Example' => 'createExample',
+    'Intahwebz\Routing\HTTPRequest' => 'createHTTPRequest',
+    'Predis\Client' => 'createRedisClient',
+    
+    // These rely purely on env vars
     'ImagickDemo\Config\Librato' => ['ImagickDemo\Config', 'createLibrato'],
     'Jig\JigConfig' => ['ImagickDemo\Config', 'createJigConfig'],
-    'Intahwebz\Routing\HTTPRequest' => ['ImagickDemo\Config', 'createHTTPRequest'],
-    'Predis\Client' => 'createRedisClient'
 ];
 
 // If necessary, define some params that can be injected purely by name.

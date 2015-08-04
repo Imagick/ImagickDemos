@@ -38,12 +38,6 @@ try {
 
     // Create the Tier application
     $app = new TierApp($tier, $injectionParams);
-
-//    $start = function(ImagickDemo\AppTimer $appTimer) { $appTimer->timerStart(); };
-//    $stop = function(ImagickDemo\AppTimer $appTimer) { $appTimer->timerStart(); };    
-//    $app->addPreCallable($start);
-//    $app->addPostCallable($stop);
-
     $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
     $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
 

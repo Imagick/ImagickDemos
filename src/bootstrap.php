@@ -481,50 +481,50 @@ function routesFunction(\FastRoute\RouteCollector $r)
     $r->addRoute(
         'GET',
         "/$categories",
-        [\ImagickDemo\Controller\Page::class, 'renderCategoryIndex']
+        ['ImagickDemo\Controller\Page', 'renderCategoryIndex']
     );
 
     //Category + example
     $r->addRoute(
         'GET',
         "/$categories/{example:[a-zA-Z]+}",
-        [\ImagickDemo\Controller\Page::class, 'renderExamplePage']
+        ['ImagickDemo\Controller\Page', 'renderExamplePage']
     );
 
     //Images
     $r->addRoute(
         'GET',
         "/imageStatus/$categories/{example:[a-zA-Z]+}",
-        [\ImagickDemo\Controller\Image::class, 'getImageJobStatus']
+        ['ImagickDemo\Controller\Image', 'getImageJobStatus']
     );
 
     //Images
     $r->addRoute(
         'GET',
         "/image/$categories/{example:[a-zA-Z]+}",
-        [\ImagickDemo\Controller\Image::class, 'getImageResponse']
+        ['ImagickDemo\Controller\Image', 'getImageResponse']
     );
     
     //Original image
     $r->addRoute(
         'GET',
         "/imageOriginal/$categories/{example:[a-zA-Z]+}",
-        [\ImagickDemo\Controller\Image::class, 'getOriginalImage']
+        ['ImagickDemo\Controller\Image', 'getOriginalImage']
     );
 
     //Custom images
     $r->addRoute(
         'GET',
         "/customImage/$categories/{example:[a-zA-Z]*}",
-        [\ImagickDemo\Controller\Image::class, 'getCustomImageResponse']
+        ['ImagickDemo\Controller\Image', 'getCustomImageResponse']
     );
 
-    $r->addRoute('GET', '/info', [\ImagickDemo\Controller\ServerInfo::class, 'createResponse']);
-    $r->addRoute('GET', '/queueinfo', [\ImagickDemo\Controller\QueueInfo::class, 'createResponse']);
+    $r->addRoute('GET', '/info', ['ImagickDemo\Controller\ServerInfo', 'createResponse']);
+    $r->addRoute('GET', '/queueinfo', ['ImagickDemo\Controller\QueueInfo', 'createResponse']);
     
-    $r->addRoute('GET', '/queuedelete', [\ImagickDemo\Controller\QueueInfo::class, 'deleteQueue']);
+    $r->addRoute('GET', '/queuedelete', ['ImagickDemo\Controller\QueueInfo', 'deleteQueue']);
     $r->addRoute('GET', '/opinfo', ['ImagickDemo\Controller\ServerInfo', 'renderOPCacheInfo']);
-    $r->addRoute('GET', '/', [\ImagickDemo\Controller\Page::class, 'renderTitlePage']);
+    $r->addRoute('GET', '/', ['ImagickDemo\Controller\Page', 'renderTitlePage']);
 }
 
 
@@ -600,11 +600,14 @@ function renderImageAsFileResponse(
 
         return [$fullFilename, $imageType];
     }
-    finally {
-        while (ob_get_level() > 0) {
-            ob_end_flush();
-        }
+    catch (\Exception $e) {
+        throw $e;
     }
+//    finally {
+//        while (ob_get_level() > 0) {
+//            ob_end_flush();
+//        }
+//    }
 }
 
 
@@ -840,4 +843,16 @@ function serve405ErrorPage(Response $response)
     $response->setStatus(404);
 
     return new TextBody('Method not allowed for route.');
+}
+
+
+function createHTTPRequest()
+{
+    return new \Intahwebz\Routing\HTTPRequest(
+        $_SERVER,
+        $_GET,
+        $_POST,
+        $_FILES,
+        $_COOKIE
+    );
 }

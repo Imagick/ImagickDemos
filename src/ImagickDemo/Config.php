@@ -25,17 +25,6 @@ class Config
     const AMAZON_EC2_SECURITY_GROUP = 'amazon.ec2.security_group';
     const AMAZON_EC2_SSH_KEY_PAIR_NAME = 'amazon.ec2.ssh_key_pair_name';
     
-    const IMAGES_CACHE = 'images.cache';
-    const IMAGES_QUEUE = 'images.queue';
-    
-    const NGINX_LOG_DIRECTORY = 'nginx.log.directory';
-    const NGINX_ROOT_DIRECTORY = 'nginx.root.directory';
-    const NGINX_CONF_DIRECTORY = 'nginx.conf.directory';
-    
-    const MYSQL_USERNAME = 'mysql.username';
-    const MYSQL_PASSWORD = 'mysql.password';
-    const MYSQL_ROOT_PASSWORD = 'mysql.root_password';
-    
     const LIBRATO_KEY = 'librato.key';
     const LIBRATO_USERNAME = 'librato.username';
     const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name';
@@ -61,32 +50,13 @@ class Config
             self::AMAZON_EC2_VPC,
             self::AMAZON_EC2_SECURITY_GROUP,
             self::AMAZON_EC2_SSH_KEY_PAIR_NAME,
-            
-            self::IMAGES_CACHE,
-            self::IMAGES_QUEUE,
-            
-            self::NGINX_LOG_DIRECTORY,
-            self::NGINX_ROOT_DIRECTORY,
-            self::NGINX_CONF_DIRECTORY,
-            
-            self::MYSQL_USERNAME,
-            self::MYSQL_PASSWORD,
-            self::MYSQL_ROOT_PASSWORD,
-            
+
             self::LIBRATO_KEY,
             self::LIBRATO_USERNAME,
             self::LIBRATO_STATSSOURCENAME,
             
             self::JIG_COMPILE_CHECK,
         ];
-    }
-
-    
-    public function delegateShit(Injector $injector)
-    {
-        $injector->delegate(\ImagickDemo\Config\Librato::class, [$this, 'createLibrato']);
-        $injector->delegate(\Jig\JigConfig::class, [$this, 'createJigConfig']);
-        $injector->delegate(\Intahwebz\Routing\HTTPRequest::class, [$this, 'createHTTPRequest']);
     }
 
     public static function getEnv($key)
@@ -100,21 +70,10 @@ class Config
 
         return $value;
     }
-   
-    public function createHTTPRequest()
-    {
-        return new \Intahwebz\Routing\HTTPRequest(
-            $_SERVER,
-            $_GET,
-            $_POST,
-            $_FILES,
-            $_COOKIE
-        );
-    }
 
     public function createLibrato()
     {
-        return new \ImagickDemo\Config\Librato(
+        return\ImagickDemo\Config\Librato::make(
             self::getEnv(self::LIBRATO_KEY),
             self::getEnv(self::LIBRATO_USERNAME),
             self::getEnv(self::LIBRATO_STATSSOURCENAME)
@@ -127,7 +86,6 @@ class Config
             "../templates/",
             "../var/compile/",
             'tpl',
-            //  \Jig\Jig::COMPILE_CHECK_EXISTS
             $this->getEnv(self::JIG_COMPILE_CHECK)
         );
 

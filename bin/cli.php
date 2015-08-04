@@ -1,6 +1,5 @@
 <?php
 
-
 use Danack\Console\Application;
 use Danack\Console\Output\BufferedOutput;
 use Danack\Console\Command\Command;
@@ -8,79 +7,12 @@ use Danack\Console\Input\InputArgument;
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../src/bootstrap.php';
+require __DIR__ . "/../src/Tier/tierFunctions.php";
 
-chdir(realpath(__DIR__).'/../imagick');
+$injector = new \Auryn\Injector();
+$injectionParams = require __DIR__."/../src/injectionParams.php";
+Tier\addInjectionParams($injector, $injectionParams);
 
-
-/**
- * @param $libratoKey
- * @param $libratorUsername
- * @param $statsSourceName
- * @return \Auryn\Injector
- */
-function bootstrapInjector()
-{
-    $injector = new \Auryn\Injector();
-
-    $config = new \ImagickDemo\Config();
-    $config->delegateShit($injector);
-    $injector->share('Jig\JigConfig');
-    $injector->share('ImagickDemo\Control');
-    $injector->share('ImagickDemo\Example');
-    $injector->share('ImagickDemo\Navigation\Nav');
-    $injector->share('ImagickDemo\Queue\ImagickTaskQueue');
-    $injector->share('ImagickDemo\Helper\PageInfo');
-    $injector->share(\ImagickDemo\Config\Application::class);
-    $injector->share(\ImagickDemo\Config\Librato::class);
-    $injector->share('ImagickDemo\Framework\VariableMap');
-    $injector->share('Predis\Client');
-    
-    $injector->alias('Intahwebz\Request', 'Intahwebz\Routing\HTTPRequest');
-    $injector->alias('ImagickDemo\DocHelper', 'ImagickDemo\DocHelperDisplay');
-    $injector->alias('ImagickDemo\Framework\VariableMap', 'ImagickDemo\Framework\RequestVariableMap');
-    //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
-    $injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\NullBanner');
-    $injector->prepare('Jig\Converter\JigConverter', 'prepareJigConverter');
-
-    if (false) {
-        $injector->share('ASM\SessionManager');
-        $injector->delegate('ASM\SessionManager', 'createSessionManager');
-        $injector->share('ASM\Driver\RedisDriver');
-        $injector->delegate('ASM\Driver\RedisDriver', 'createRedisSessionDriver');
-    }
-
-    $injector->delegate('ImagickDemo\Control', 'createControl');
-    $injector->delegate('ImagickDemo\Example', 'createExample');
-
-    $redisParameters = array(
-        'connection_timeout' => 30,
-        'read_write_timeout' => 30,
-    );
-
-    $redisOptions = [];
-
-    $injector->define(
-        'Predis\Client',
-        array(
-            ':parameters' => $redisParameters,
-            ':options' => $redisOptions,
-        )
-    );
-
-    $injector->defineParam('imageCachePath', "../var/cache/imageCache/");
-    $injector->share($injector); //yolo - use injector as service locator
-
-    $appConfig = $injector->make('ImagickDemo\Config\Application');
-    /** @var  $appConfig \ImagickDemo\Config\Application */
-    
-    global $cacheImages;
-    $cacheImages = $appConfig->getCacheImages();
-
-    return $injector;
-}
-
-
-$injector = bootstrapInjector();
 
 try {
     $application = createApplication();
@@ -108,6 +40,18 @@ try {
     }
     $injector->execute($parsedCommand->getCallable());
 }
+
+catch (Auryn\InjectionException $ie) {
+
+    echo "Injection exception: ".$ie->getMessage()."\n";
+    echo "Dependency chain is:\n";
+    foreach ($ie->getDependencyChain() as $dependency) {
+        echo "    $dependency\n";
+    }
+    
+    echo $ie->getTraceAsString();
+}
+
 catch(\Exception $e) {
     echo "Unexpected exception of type ".get_class($e)." running imagick-demos: ".$e->getMessage().PHP_EOL;
     echo $e->getTraceAsString();
@@ -131,7 +75,6 @@ function createApplication() {
     $taskCommand = new Command('imageRunner', 'ImagickDemo\Queue\ImagickTaskRunner::run');
     $taskCommand->setDescription("Pull image request jobs off the queue and generated the images.");
 
-    
     $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
     $clearCacheCommand->setDescription("Clear the apc cache.");
 

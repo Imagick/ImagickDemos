@@ -8,7 +8,7 @@
         "amphp/artax": "1.0.0-rc6",
         "rdlowrey/auryn": "v1.0.1 as 0.15.3",
         "danack/console": "^2.6.0",
-        "danack/jig": "^0.12.0",
+        "danack/jig": "^0.15.0",
         "danack/syntaxhighlighter": "~3.1.0",
         "fluentdom/fluentdom": "v4.1.3",
         "intahwebz/routing": "~0.9.1",

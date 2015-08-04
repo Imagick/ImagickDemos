@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dd40ded7da64cba3c24e99d931c8e5a9",
+    "hash": "aad97969ce1dec917ab4d725ba79e54a",
     "packages": [
         {
             "name": "amphp/amp",
@@ -267,26 +267,27 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.12.0",
+            "version": "0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "c04d616a233010adf219b860be96add7024ce407"
+                "reference": "24dd50bdf28b61be4cc6b0575f68dadbe431c7c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/c04d616a233010adf219b860be96add7024ce407",
-                "reference": "c04d616a233010adf219b860be96add7024ce407",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/24dd50bdf28b61be4cc6b0575f68dadbe431c7c0",
+                "reference": "24dd50bdf28b61be4cc6b0575f68dadbe431c7c0",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^0.9.3",
-                "rdlowrey/auryn": "^0.15.2"
+                "nikic/php-parser": "^0.9.3"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.1",
                 "nikic/fast-route": "~0.2.0",
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "3.7.*",
+                "rdlowrey/auryn": "v1.0.0-alpha",
+                "squizlabs/php_codesniffer": "^2.0.0"
             },
             "type": "library",
             "autoload": {
@@ -294,6 +295,7 @@
                     "Jig": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -304,17 +306,14 @@
                     "homepage": "http://www.basereality.com"
                 }
             ],
-            "description": "Lightweight, fast, flexible PHP templating system. Just like all the others.",
+            "description": "Lightweight, fast, flexible PHP templating system that uses real dependency injection.",
             "keywords": [
-                "core",
-                "intahwebz",
-                "library"
+                "jig",
+                "library",
+                "template",
+                "view"
             ],
-            "support": {
-                "source": "https://github.com/Danack/Jig/tree/master",
-                "issues": "https://github.com/Danack/Jig/issues"
-            },
-            "time": "2015-05-18 14:05:32"
+            "time": "2015-08-04 23:07:21"
         },
         {
             "name": "danack/syntaxhighlighter",

@@ -12,7 +12,7 @@ fi
 
 find . -name "*.sh" -exec chmod 755 {} \;
 
-php bin/cli.php genEnvSettings  /etc/profile.d/imagick.sh
+php bin/cli.php genEnvSettings ${envSetting} /etc/profile.d/imagick.sh
 
 su imagickdemos -c "./scripts/deployAsUser.sh ${environment}"
 

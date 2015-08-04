@@ -23,7 +23,7 @@ $amazonec2 = [
     'nginx.user' => 'nginx',
     'nginx.sendFile' => 'on',
 
-    'imagick.root.directory' => '/home/imagick-demos/imagick-demos/',
+    'imagick.root.directory' => '/home/imagickdemos/current/',
 
     'phpfpm.socket' => '/var/run/php-fpm',
     'phpfpm.www.maxmemory' => '16M',

@@ -600,14 +600,11 @@ function renderImageAsFileResponse(
 
         return [$fullFilename, $imageType];
     }
-    catch (\Exception $e) {
-        throw $e;
+    finally {
+        while (ob_get_level() > 0) {
+            ob_end_flush();
+        }
     }
-//    finally {
-//        while (ob_get_level() > 0) {
-//            ob_end_flush();
-//        }
-//    }
 }
 
 

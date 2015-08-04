@@ -13,6 +13,7 @@ $injector = new \Auryn\Injector();
 $injectionParams = require __DIR__."/../src/injectionParams.php";
 Tier\addInjectionParams($injector, $injectionParams);
 
+chdir(realpath(__DIR__).'/../imagick');
 
 try {
     $application = createApplication();

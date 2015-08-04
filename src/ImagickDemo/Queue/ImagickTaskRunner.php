@@ -147,13 +147,10 @@ class ImagickTaskRunner
 
         echo "Image Function name is: \n";
         var_dump($imageFunction);
-        
-//        echo "Params are: \n";
-//        var_dump($params);
-        
+
         try {
             $result = renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
-            echo "file writte";
+            echo "file written";
         }
         catch (InjectionException $ie) {
             echo "InjectionException calling image function: ".var_export($imageFunction, true)."\n";

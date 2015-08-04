@@ -19,8 +19,6 @@ set_exception_handler('exceptionHandler');
 set_error_handler('errorHandler');
 
 
-
-
 $injectionParams = require "injectionParams.php";
 
 try {

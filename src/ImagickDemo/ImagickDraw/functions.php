@@ -28,9 +28,11 @@ function header($string, $replace = true, $http_response_code = null)
     if (stripos($string, "Content-Type: image/") === 0) {
         $imageType = substr($string, strlen("Content-Type: image/"));
     }
-
+    
     if ($cacheImages == false) {
-        \header($string, $replace, $http_response_code);
+        if (php_sapi_name() !== 'cli') {
+            \header($string, $replace, $http_response_code);
+        }
     }
 }
 

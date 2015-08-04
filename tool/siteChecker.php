@@ -245,8 +245,8 @@ class SiteChecker {
                 substr($response->getBody(), 0, 200)
             );
 
-            if ($status != 200) {
-                echo "Error for ".$urlToCheck->getUrl()."\n";
+            if ($status != 200 && $status != 202) {
+                echo "Status is not ok for ".$urlToCheck->getUrl()."\n";
                 $this->errors++;
                 return null;
             }

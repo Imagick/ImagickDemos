@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aad97969ce1dec917ab4d725ba79e54a",
+    "hash": "25e3a9e56ab7d83b7a7f69be697c393c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -267,16 +267,16 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.15.0",
+            "version": "0.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "24dd50bdf28b61be4cc6b0575f68dadbe431c7c0"
+                "reference": "6b31fb7a305daf5f5a29bae917445503a6905b04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/24dd50bdf28b61be4cc6b0575f68dadbe431c7c0",
-                "reference": "24dd50bdf28b61be4cc6b0575f68dadbe431c7c0",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/6b31fb7a305daf5f5a29bae917445503a6905b04",
+                "reference": "6b31fb7a305daf5f5a29bae917445503a6905b04",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,6 @@
                     "Jig": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -313,7 +312,11 @@
                 "template",
                 "view"
             ],
-            "time": "2015-08-04 23:07:21"
+            "support": {
+                "source": "https://github.com/Danack/Jig/tree/0.15.1",
+                "issues": "https://github.com/Danack/Jig/issues"
+            },
+            "time": "2015-08-04 23:30:13"
         },
         {
             "name": "danack/syntaxhighlighter",

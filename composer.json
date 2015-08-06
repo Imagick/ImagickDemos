@@ -1,14 +1,8 @@
  {
     "name": "danack/imagick-demos",
  
-    "repositories": [
-        {
-          "type": "vcs",
-          "url": "https://github.com/Danack/Jig"
-        }
-    ],
-
     "require-dev": {
+        "squizlabs/php_codesniffer": "^2.3.3"
     },
 
     "require":{
@@ -26,8 +20,7 @@
         "oyejorge/less.php": "v1.7.0.1",
         "predis/predis": "^1.0.1",
         "leafo/lessphp": "0.4.0",
-        "leafo/scssphp": "0.1.1",
-        "squizlabs/php_codesniffer": "^2.3.3"
+        "leafo/scssphp": "0.1.1"
     },
     "autoload": {
         "psr-0": {
@@ -35,7 +28,11 @@
             "Jig": ["./var/compile" ],
             "Stats": ["./src/" ],
             "Tier": ["./src/" ],
-            "Arya": ["./src/" ]
+            "Arya": ["./src/" ],
+
+            "FileFilter": ["./lib/" ],
+            "FilePacker": ["./lib/" ],
+            "ScriptServer": ["./lib/" ]
         }
     },
     "prefer-stable": true

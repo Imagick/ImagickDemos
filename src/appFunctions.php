@@ -525,6 +525,10 @@ function routesFunction(\FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/queuedelete', ['ImagickDemo\Controller\QueueInfo', 'deleteQueue']);
     $r->addRoute('GET', '/opinfo', ['ImagickDemo\Controller\ServerInfo', 'renderOPCacheInfo']);
     $r->addRoute('GET', '/', ['ImagickDemo\Controller\Page', 'renderTitlePage']);
+    
+    $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
+    $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
+    
 }
 
 
@@ -852,4 +856,48 @@ function createHTTPRequest()
         $_FILES,
         $_COOKIE
     );
+}
+
+function routeJSInclude($url)
+{
+    return "/js/".$url;
+}
+
+function getTrace($traceParts, $directory)
+{
+    $traceText = "";
+    $i = 1;
+
+    foreach ($traceParts as $node) {
+        $traceText .= "#$i ";
+        if (isset($node['file'])) {
+            $traceText .= $node['file']." ";
+        }
+        if (isset($node['line'])) {
+            $traceText .= "(".$node['line']."): ";
+        }
+        if (isset($node['class'])) {
+            $traceText .= $node['class'] . "->";
+        }
+        $traceText .= $node['function'] . "()\n";
+        $i++;
+    }
+    
+    $traceText = str_replace($directory, '', $traceText);
+
+    return $traceText;
+}
+
+function getExceptionText(\Exception $e)
+{
+    $fullText = "";
+    $fullText .= "<p>";
+    $fullText .= get_class($e)." caught: ".$e->getMessage(). "<br/>";
+    $fullText .= "</p>";
+
+    $fullText .= "<p><pre>";
+    $fullText .= getTrace($e->getTrace(), realpath(__DIR__."/../"));
+    $fullText .= "</pre></p>";
+
+    return $fullText;
 }

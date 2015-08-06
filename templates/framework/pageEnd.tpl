@@ -1,20 +1,28 @@
 
 </body>
 
-<script src="/js/jquery-1.11.0.min.js"></script>
-<script src="/js/jquery-ui-1.10.0.custom.min.js"></script>
+
+{inject name='scriptInclude' type='ScriptServer\Service\ScriptInclude'}
+
+
+
+{$scriptInclude->addJS("jquery-1.11.0.min")}
+{$scriptInclude->addJS("jquery-ui-1.10.0.custom.min")}
+ 
+{$scriptInclude->addJS("colpick")}
+{$scriptInclude->addJS("jquery.fastLiveFilter")}
+{$scriptInclude->addJS("syntaxhighlighter/xregexp")}
+{$scriptInclude->addJS("syntaxhighlighter/shCore")}
+{$scriptInclude->addJS("syntaxhighlighter/shBrushPhp")}
+{$scriptInclude->addJS("syntaxhighlighter/shBrushJScript")}
+{$scriptInclude->addJS("AsyncImage")}
+{$scriptInclude->addJS("jQuery/jquery.tablesorter")}
+{$scriptInclude->addJS("jQuery/jquery.tablesorter.parser-metric")}
+{$scriptInclude->linkJS() | nofilter}
+
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/colpick.js"></script>
-<script src="/js/jquery.fastLiveFilter.js"></script>
-<script type="text/javascript" src="/js/syntaxhighlighter/xregexp.js"></script>
-<script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
-<script type="text/javascript" src="/js/syntaxhighlighter/shBrushPhp.js"></script>
-<script type="text/javascript" src="/js/syntaxhighlighter/shBrushJScript.js"></script>
 
-<script src="/js/AsyncImage.js"></script>
-<script src="/js/jQuery/jquery.tablesorter.js"></script>
-<script src="/js/jQuery/jquery.tablesorter.parser-metric.js"></script>
-
+{* $scriptInclude->addJS("bootstrap.min") *}
 
 <script type="text/javascript">
     

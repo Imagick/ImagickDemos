@@ -4,13 +4,14 @@ ini_set('display_errors', 'on');
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
 
 require __DIR__.'/../vendor/autoload.php';
-require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../src/appFunctions.php';
 require __DIR__ . "/./Tier/tierFunctions.php";
 
 use Arya\Request;
 use Tier\Tier;
 use Tier\TierApp;
 use Tier\ResponseBody\ExceptionHtmlBody;
+use Auryn\InjectionException;
 
 \Intahwebz\Functions::load();
 
@@ -44,17 +45,29 @@ try {
     // Run it
     $app->execute($request);
 }
-catch (InjectorException $ie) {
+//TODO - move injectionException inside the tierApp
+catch (InjectionException $ie) {
     // TODO - add custom notifications.
-    $body = new ExceptionHtmlBody($ie);
+    $bodyText  = "InjectionException: ".$ie->getMessage();
+    $bodyText .= "<br/>Dependency chain is:<br/>";
+    $bodyText .= "<ul>";
+    
+    foreach ($ie->getDependencyChain() as $dependency) {
+        $bodyText .= "<li>";
+        $bodyText .= $dependency;
+        $bodyText .= "</li>";
+    }
+    $bodyText .= "</ul>";
+    
+    $body = new ExceptionHtmlBody($bodyText);
     \Tier\sendErrorResponse($request, $body, 500);
 }
 catch (JigException $je) {
-    $body = new ExceptionHtmlBody($je);
+    $body = new ExceptionHtmlBody(getExceptionText($je));
     \Tier\sendErrorResponse($request, $body, 500);
 }
 catch (\Exception $e) {
-    $body = new ExceptionHtmlBody($e);
+    $body = new ExceptionHtmlBody(getExceptionText($e));
     \Tier\sendErrorResponse($request, $body, 500);
 }
 

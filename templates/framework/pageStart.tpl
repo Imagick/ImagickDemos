@@ -5,21 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     {inject name='pageTitleObj' type='ImagickDemo\Helper\PageInfo'}
-
+    {inject name='scriptInclude' type='ScriptServer\Service\ScriptInclude'}
+    
     <title>
         {$pageTitleObj->getTitle() | nofilter}
     </title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {$scriptInclude->addCSS("bootstrap")}
+    {$scriptInclude->addCSS("imagick")}
+    {$scriptInclude->addCSS("colpick")}
+    {$scriptInclude->addCSS("jquery/jQuery.tablesorter")}
+    {$scriptInclude->addCSS("syntaxhighlighter/shCoreDefault")}
+    {$scriptInclude->addCSS("syntaxhighlighter/shThemePHPStormLight")}
 
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/imagick.css" rel="stylesheet">
-    <link href="/css/colpick.css" rel="stylesheet">
-
-    <link type="text/css" rel="stylesheet" href="/css/jquery/jQuery.tablesorter.css">
-    <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shCoreDefault.css">
-    <link type="text/css" rel="stylesheet" href="/css/syntaxhighlighter/shThemePHPStormLight.css">
+    {$scriptInclude->linkCSS() | nofilter}
 </head>
-
 
 <body>

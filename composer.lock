@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "25e3a9e56ab7d83b7a7f69be697c393c",
+    "hash": "9fa7bf6e3b881ab17e5b13bf0b655a3f",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1131,7 +1131,9 @@
                 "tls"
             ],
             "time": "2014-12-08 17:19:17"
-        },
+        }
+    ],
+    "packages-dev": [
         {
             "name": "squizlabs/php_codesniffer",
             "version": "2.3.3",
@@ -1207,7 +1209,6 @@
             "time": "2015-06-24 03:16:23"
         }
     ],
-    "packages-dev": [],
     "aliases": [
         {
             "alias": "0.15.3",

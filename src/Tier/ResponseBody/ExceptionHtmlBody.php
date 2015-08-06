@@ -2,30 +2,7 @@
 
 namespace Tier\ResponseBody;
 
-function getTrace($traceParts, $directory)
-{
-    $traceText = "";
-    $i = 1;
 
-    foreach ($traceParts as $node) {
-        $traceText .= "#$i ";
-        if (isset($node['file'])) {
-            $traceText .= $node['file']." ";
-        }
-        if (isset($node['line'])) {
-            $traceText .= "(".$node['line']."): ";
-        }
-        if (isset($node['class'])) {
-            $traceText .= $node['class'] . "->";
-        }
-        $traceText .= $node['function'] . "()\n";
-        $i++;
-    }
-    
-    $traceText = str_replace($directory, '', $traceText);
-
-    return $traceText;
-}
 
 
 /**
@@ -38,21 +15,10 @@ function getTrace($traceParts, $directory)
  */
 class ExceptionHtmlBody extends HtmlBody
 {
-    public function __construct(\Exception $e)
+    public function __construct($bodyText)
     {
         $fullText = $this->getBeforeText();
-        $fullText .= "<p>";
-        $fullText .= "Exception caught: ".$e->getMessage(). "<br/>";
-        $fullText .= "</p>";
-
-        $fullText .= "<p>";
-        $fullText .= "Exception type: ".get_class($e). "<br/>";
-        $fullText .= "</p>";
-
-        $fullText .= "<p><pre>";
-        $fullText .= getTrace($e->getTrace(), realpath(__DIR__."/../../../"));
-        $fullText .= "</pre></p>";
-
+        $fullText .= $bodyText;
         $fullText .= $this->getAfterText();
 
         parent::__construct($fullText);

@@ -31,6 +31,7 @@ class Config
     
     const JIG_COMPILE_CHECK = 'jig.compilecheck';
     
+    const SITE_NAME = 'site.name';
 
     public static function getConfigNames()
     {
@@ -86,7 +87,8 @@ class Config
             "../templates/",
             "../var/compile/",
             'tpl',
-            $this->getEnv(self::JIG_COMPILE_CHECK)
+            \Jig\Jig::COMPILE_ALWAYS
+            //$this->getEnv(self::JIG_COMPILE_CHECK)
         );
 
         return $jigConfig;

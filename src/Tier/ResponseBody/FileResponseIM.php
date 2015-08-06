@@ -29,9 +29,11 @@ class FileResponseIM implements Body
         return $this->headers;
     }
 
-
-    public function __construct($fileNameToServe, $contentType)
-    {
+    public function __construct(
+        $fileNameToServe,
+        $contentType,
+        $headers = []
+    ) {
         if (is_readable($fileNameToServe) === false) {
             throw new \Exception("File $fileNameToServe isn't readable, can't serve it.");
         }
@@ -61,5 +63,9 @@ class FileResponseIM implements Body
 
         $this->headers['Content-Length'] = $fileSize;
         $this->headers['Last-Modified'] = \getLastModifiedTime($lastModifiedTime);
+        
+        foreach ($headers as $key => $value) {
+            $this->headers[$key] = $value;
+        }
     }
 }

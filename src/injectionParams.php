@@ -1,6 +1,15 @@
 <?php
 
 use Tier\InjectionParams;
+use Tier\Path\AutogenPath;
+use Intahwebz\DataPath;
+use Intahwebz\StoragePath;
+
+use Tier\Path\WebRootPath;
+use Tier\Path\ExternalLibPath;
+use Tier\Path\YuiCompressorPath;
+use Tier\Path\CachePath;
+
 
 // These classes will only be created once by the injector.
 $shares = [
@@ -16,8 +25,17 @@ $shares = [
     'ImagickDemo\Config\Application',
     'ImagickDemo\Config\Librato',
     'ImagickDemo\Framework\VariableMap',
-    
+
     'Predis\Client',
+    'ScriptServer\Service\ScriptInclude',
+
+    new AutogenPath(__DIR__."/../autogen/"),
+    new DataPath(__DIR__."/../data/"),
+    new StoragePath(__DIR__."/../var/"),
+    new WebRootPath(__DIR__.'/../imagick/'),
+    new ExternalLibPath(__DIR__.'/../lib/'),
+    new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
+    new CachePath(__DIR__.'/../var/cache/'),
 ];
 
 // Alias interfaces (or classes) to the actual types that should be used 
@@ -29,6 +47,11 @@ $aliases = [
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
     'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
+    'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludePacked',
+    //'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludeIndividual',
+    
+    'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
+    
 ];
 
 

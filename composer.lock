@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9fa7bf6e3b881ab17e5b13bf0b655a3f",
+    "hash": "677b8117871d72a6e706e5adb4466ff3",
     "packages": [
         {
             "name": "amphp/amp",
@@ -871,20 +871,20 @@
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.1",
+            "version": "v1.7.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "958476be9e47a13db0579397f0164af1776bdbee"
+                "reference": "4385036b1dbfaf37f5380bd26a1e6006fc43149f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/958476be9e47a13db0579397f0164af1776bdbee",
-                "reference": "958476be9e47a13db0579397f0164af1776bdbee",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/4385036b1dbfaf37f5380bd26a1e6006fc43149f",
+                "reference": "4385036b1dbfaf37f5380bd26a1e6006fc43149f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "php": ">=5.3"
             },
             "bin": [
                 "bin/lessc"
@@ -926,7 +926,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2014-03-17 04:51:51"
+            "time": "2015-07-13 20:34:18"
         },
         {
             "name": "predis/predis",

@@ -9,7 +9,7 @@ use FilePacker\FilePacker;
 use Arya\Request;
 use Arya\Response;
 use Tier\ResponseBody\EmptyBody;
-use Tier\ResponseBody\FileResponseIM as FileResponseBody;
+use Tier\ResponseBody\FileResponseIMFactory;
 
 function extractItems($cssInclude)
 {
@@ -70,12 +70,15 @@ class ScriptServer
      */
     private $filePacker;
 
+    private $fileResponseFactory;
+    
     public function __construct(
         Response $response,
-        FileResponseCreator $fileResponseCreator,
+        FileResponseIMFactory $fileResponseFactory,
         FilePacker $filePacker,
         WebRootPath $webRootPath
     ) {
+        $this->fileResponseFactory = $fileResponseFactory;
         $this->webRootPath = $webRootPath->getPath();
         $this->filePacker = $filePacker;
         $this->response = $response;
@@ -184,12 +187,10 @@ class ScriptServer
         
         $finalFilename = $this->filePacker->pack($jsIncludeArray, $appendLine, $extension);
 
-        $fileBody = new FileResponseBody(
+        return $this->fileResponseFactory->create(
             $finalFilename,
             $contentType,
             $this->filePacker->getHeaders()
         );
-
-        return $fileBody;
     }
 }

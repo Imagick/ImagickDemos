@@ -32,8 +32,6 @@
         </div>
     </div> 
 
-    
-    
     <div class="row visible-md">
         <div class="col-md-12 ">
             <div class='row'>

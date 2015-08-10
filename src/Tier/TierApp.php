@@ -95,6 +95,7 @@ class TierApp
             // If it's a responseBody send it
             if ($result instanceof ResponseBody) {
                 $response->setBody($result);
+                
                 sendResponse($request, $response);
                 break;
             } // If it's a new Tier to run, setup the next loop.

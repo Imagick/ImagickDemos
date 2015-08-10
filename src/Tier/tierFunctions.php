@@ -101,8 +101,12 @@ function sendResponse(Request $request, Response $response, $autoAddReason = tru
     if (isset($reason[0])) {
         $statusLine .= " {$reason}";
     }
-
+    
+    //TODO - always set this.
+    //$this->headers["Date"] = gmdate("D, d M Y H:i:s", time()) . " UTC";
+    
     header($statusLine);
+    
 
     foreach ($response->getAllHeaderLines() as $headerLine) {
         header($headerLine, $replace = false);

@@ -93,6 +93,24 @@ class CategoryNav implements Nav
 
         return sprintf('ImagickDemo\%s\%s', $category, $function);
     }
+ 
+    public function getControlClassName()
+    {
+        $category = $this->pageInfo->getCategory();
+        if ($category == null) {
+            return null;
+        }
+        
+        $example = $this->pageInfo->getExample();
+        if ($example == null) {
+            return null;
+        }
+        
+        $exampleDefinition = $this->getExampleDefinition($category, $example);
+
+        return $exampleDefinition[1];
+    }
+    
     
     public function getCustomImageFunctionName()
     {
@@ -103,6 +121,9 @@ class CategoryNav implements Nav
 
         return [sprintf('ImagickDemo\%s\%s', $category, $example), 'renderCustomImage'];
     }
+    
+    
+    
     
 
     public function getDIInfo()

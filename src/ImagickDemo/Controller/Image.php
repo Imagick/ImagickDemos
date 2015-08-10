@@ -7,9 +7,11 @@ use ImagickDemo\Framework\VariableMap;
 use ImagickDemo\Response\JsonResponse;
 
 use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\Example;
+use ImagickDemo\Control;
 use Tier\InjectionParams;
 use Tier\Tier;
-use Tier\ResponseBody\FileResponseIM as FileResponse;
+use Tier\ResponseBody\FileResponseIMFactory;
 
 use Arya\JsonBody;
 
@@ -57,11 +59,13 @@ class Image
     }
     
     
-    public function getOriginalImage(\ImagickDemo\Example $example)
-    {
+    public function getOriginalImage(
+        Example $example,
+        FileResponseIMFactory $fileResponseIMFactory
+    ) {
         $filename = $example->getOriginalFilename();
 
-        return new FileResponse($filename, "Content-Type: image/jpg");
+        return $fileResponseIMFactory->create($filename, "image/jpg");
     }
     
     /**
@@ -75,8 +79,8 @@ class Image
      */
     public function getImageJobStatus(
         PageInfo $pageInfo,
-        \ImagickDemo\Control $control,
-        \ImagickDemo\Example $exampleController
+        Control $control,
+        Example $exampleController
     ) {
         $data = [];
         $customImageParams = $exampleController->getCustomImageParams();
@@ -107,8 +111,8 @@ class Image
      * @throws \Exception
      */
     public function getCustomImageResponse(
-        \ImagickDemo\Example $exampleController,
-        \ImagickDemo\Control $control
+        Example $exampleController,
+        Control $control
     ) {
         $params = $control->getFullParams($exampleController->getCustomImageParams());
         $defaultCustomParams = array('customImage' => true);

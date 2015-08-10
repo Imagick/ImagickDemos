@@ -5797,3 +5797,38 @@ button.close {
     display: none !important;
   }
 }
+.table-serverSettings {
+  border: 1px solid #dddddd;
+}
+.table-serverSettings > thead > tr > th,
+.table-serverSettings > tbody > tr > th,
+.table-serverSettings > tfoot > tr > th,
+.table-serverSettings > thead > tr > td,
+.table-serverSettings > tbody > tr > td,
+.table-serverSettings > tfoot > tr > td {
+  border: 1px solid #dddddd;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: right;
+}
+.table-serverSettings > thead > tr > th.bad,
+.table-serverSettings > tbody > tr > th.bad,
+.table-serverSettings > tfoot > tr > th.bad,
+.table-serverSettings > thead > tr > td.bad,
+.table-serverSettings > tbody > tr > td.bad,
+.table-serverSettings > tfoot > tr > td.bad {
+  background-color: #ffdbdb;
+}
+.table-serverSettings > thead > tr > th:first-child,
+.table-serverSettings > tbody > tr > th:first-child,
+.table-serverSettings > tfoot > tr > th:first-child,
+.table-serverSettings > thead > tr > td:first-child,
+.table-serverSettings > tbody > tr > td:first-child,
+.table-serverSettings > tfoot > tr > td:first-child {
+  padding-right: 30px;
+  text-align: left;
+}
+.table-serverSettings > thead > tr > th,
+.table-serverSettings > thead > tr > td {
+  border-bottom-width: 2px;
+}

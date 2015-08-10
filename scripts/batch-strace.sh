@@ -42,7 +42,7 @@ summarise=""
 #summarise="-c"
 
 
-nohup strace -r $summarise -p $MASTER_PID -fF -o ./trc/master.follow.trc >"trc/master.$MASTER_PID.trc" 2>&1 &
+nohup strace -r $summarise -p $MASTER_PID -s 64 -fF -o ./trc/master.follow.trc >"trc/master.$MASTER_PID.trc" 2>&1 &
  
 while read -r pid;
 do
@@ -52,7 +52,7 @@ do
             #nohup strace -r -p "$pid" $additional_strace_args >"trc/$pid.trc" 2>&1 &
 
 		#shows total of calls
-		nohup strace -r $summarise -p "$pid" $additional_strace_args >"trc/$pid.summary.trc" 2>&1 &
+		nohup strace -r $summarise -s 64 -p "$pid" $additional_strace_args >"trc/$pid.summary.trc" 2>&1 &
 	fi
 done < <(pgrep php-fpm)
 

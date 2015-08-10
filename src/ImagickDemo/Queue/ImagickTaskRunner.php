@@ -123,17 +123,13 @@ class ImagickTaskRunner
             }
         }
 
-        
         $injector = clone $this->injector;
         
         $lowried = [];
         foreach ($params as $key => $value) {
             $lowried[':' . $key] = $value;
-            
-            //$injector->def
         }
 
-        
         $variableMap = new ArrayVariableMap($params);
         $injector->alias('ImagickDemo\Framework\VariableMap', get_class($variableMap));
         $injector->share($variableMap);
@@ -143,6 +139,11 @@ class ImagickTaskRunner
         }
         else {
             $imageFunction = $categoryNav->getImageFunctionName();
+        }
+        
+        $controlClassName = $categoryNav->getControlClassName();
+        if ($controlClassName) {
+            $injector->alias('ImagickDemo\Control', $controlClassName);
         }
 
         echo "Image Function name is: \n";

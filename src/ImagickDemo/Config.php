@@ -3,8 +3,13 @@
 namespace ImagickDemo;
 
 use Auryn\Injector;
+use Tier\Caching\Caching;
 
-//use Jig\JigConfig;
+use Tier\Caching\CachingDisabled;
+use Tier\Caching\CachingRevalidate;
+use Tier\Caching\CachingTime;
+use Tier\TierException;
+
 
 class Config
 {
@@ -31,33 +36,19 @@ class Config
     
     const JIG_COMPILE_CHECK = 'jig.compilecheck';
     
-    const SITE_NAME = 'site.name';
+    //const SITE_NAME = 'site.name';
+    
+    const DOMAIN_CANONICAL = 'domain.canonical';
+    const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
+    const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
+
+    const CACHING_SETTING = 'caching.setting';    
 
     public static function getConfigNames()
     {
-        return [
-            self::FLICKR_KEY,
-            self::FLICKR_SECRET,
-            
-            self::GITHUB_ACCESS_TOKEN,
-            self::GITHUB_REPO_NAME,
+        $reflClass = new \ReflectionClass(__CLASS__);
 
-            self::AWS_SERVICES_KEY,
-            self::AWS_SERVICES_SECRET,
-            
-            self::AMAZON_EC2_MACHINEIMAGENAME,
-            self::AMAZON_EC2_INSTANCE_TYPE,
-            
-            self::AMAZON_EC2_VPC,
-            self::AMAZON_EC2_SECURITY_GROUP,
-            self::AMAZON_EC2_SSH_KEY_PAIR_NAME,
-
-            self::LIBRATO_KEY,
-            self::LIBRATO_USERNAME,
-            self::LIBRATO_STATSSOURCENAME,
-            
-            self::JIG_COMPILE_CHECK,
-        ];
+        return $reflClass->getConstants();
     }
 
     public static function getEnv($key)
@@ -87,10 +78,40 @@ class Config
             "../templates/",
             "../var/compile/",
             'tpl',
-            \Jig\Jig::COMPILE_ALWAYS
-            //$this->getEnv(self::JIG_COMPILE_CHECK)
+            $this->getEnv(self::JIG_COMPILE_CHECK)
         );
 
         return $jigConfig;
+    }
+    
+    public function createDomain()
+    {
+        return new \Tier\Domain(
+            self::getEnv(self::DOMAIN_CANONICAL),
+            self::getEnv(self::DOMAIN_CDN_PATTERN),
+            self::getEnv(self::DOMAIN_CDN_TOTAL)
+        );
+    }
+
+    public function createCaching()
+    {
+        $cacheSetting = self::getEnv(Config::CACHING_SETTING);
+        switch($cacheSetting) {
+            case Caching::CACHING_DISABLED: {
+                return new CachingDisabled();
+                break;
+            }
+            case Caching::CACHING_REVALIDATE: {
+                return new CachingRevalidate(3600 * 2, 3600);
+                break;
+            }
+            case Caching::CACHING_TIME: {
+                return new CachingTime(3600 * 10, 3600);
+                break;
+            }
+            default: {
+                throw new TierException("Unknown caching setting '$cacheSetting'.");
+            }
+        }
     }
 }

@@ -20,9 +20,9 @@
 {$scriptInclude->addJS("jQuery/jquery.tablesorter.parser-metric")}
 {$scriptInclude->linkJS() | nofilter}
 
+{* Yui compressor is currently breaking this, and it's already minified.*}
 <script src="/js/bootstrap.min.js"></script>
 
-{* $scriptInclude->addJS("bootstrap.min") *}
 
 <script type="text/javascript">
     

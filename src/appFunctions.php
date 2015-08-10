@@ -15,7 +15,7 @@ use Jig\JigConfig;
 use Arya\Request;
 use Arya\Response;
 use Tier\ResponseBody\ImageResponse;
-use Tier\ResponseBody\FileResponseIM as FileResponse;
+use Tier\ResponseBody\FileResponseIMFactory;
 use ImagickDemo\Queue\ImagickTaskQueue;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
@@ -300,38 +300,43 @@ function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
 }
     
     
-function cachedImageCallable(CategoryNav $categoryNav, Request $request, Response $response, $params)
+function cachedImageCallable(
+    CategoryNav $categoryNav,
+    Request $request,
+    Response $response,
+    FileResponseIMFactory $fileResponseFactory,
+    $params)
 {
     $filename = getImageCacheFilename($categoryNav->getPageInfo(), $params);
     $extensions = ["jpg", 'jpeg', "gif", "png", ];
     
     $contentType = false;
 
-    $fileFound = false;
+    $filenameFound = false;
     
     foreach ($extensions as $extension) {
         $filenameWithExtension = $filename.".".$extension;
         if (file_exists($filenameWithExtension) == true) {
             //TODO - content type should actually be image/jpeg
             $contentType = "image/".$extension;
-            $fileFound = $filenameWithExtension;
+            $filenameFound = $filenameWithExtension;
             break;
         }
     }
     
-    if ($fileFound == false) {
+    if ($filenameFound == false) {
         return false;
     }
 
     if ($request->hasHeader('HTTP_IF_MODIFIED_SINCE')) {
-        $lastModifiedTime = filemtime($fileFound);
+        $lastModifiedTime = filemtime($filenameFound);
         if (strtotime($request->getHeader('HTTP_IF_MODIFIED_SINCE')) >= $lastModifiedTime) {
             $response->setStatus(304);
             return new EmptyBody();
         }
     }
 
-    return new FileResponse($fileFound, $contentType);
+    return $fileResponseFactory->create($filenameFound, $contentType);
 }
 
 
@@ -524,10 +529,15 @@ function routesFunction(\FastRoute\RouteCollector $r)
     
     $r->addRoute('GET', '/queuedelete', ['ImagickDemo\Controller\QueueInfo', 'deleteQueue']);
     $r->addRoute('GET', '/opinfo', ['ImagickDemo\Controller\ServerInfo', 'renderOPCacheInfo']);
+    $r->addRoute('GET', '/settingsCheck', ['ImagickDemo\Controller\ServerInfo', 'serverSettings']);
+    
+
     $r->addRoute('GET', '/', ['ImagickDemo\Controller\Page', 'renderTitlePage']);
     
     $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
     $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
+    
+    
     
 }
 

@@ -1,10 +1,6 @@
 
 {include file='framework/pageStart'}
-
-
 {include file='framework/topNavBar'}
-
-
 {inject name='control' type='ImagickDemo\Control'}
 {inject name='example' type='ImagickDemo\Example'}
 {inject name='docHelper' type='ImagickDemo\DocHelper'}

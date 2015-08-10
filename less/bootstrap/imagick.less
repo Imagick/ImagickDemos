@@ -1,0 +1,35 @@
+
+
+
+
+.table-serverSettings {
+  border: 1px solid @table-border-color;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        border: 1px solid @table-border-color;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: right;
+        &.bad {
+          background-color: #ffdbdb;
+        }
+      }
+      > th:first-child,
+      > td:first-child {
+        padding-right: 30px;
+        text-align: left;
+      }
+
+    }
+  }
+  > thead > tr {
+    > th,
+    > td {
+      border-bottom-width: 2px;
+    }
+  }
+}

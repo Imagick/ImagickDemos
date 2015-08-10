@@ -17,7 +17,7 @@
         "intahwebz/configurator": "^0.2.5",
         "mikey179/vfsStream": "1.4.0",
         "nikic/fast-route": "0.3.0",
-        "oyejorge/less.php": "v1.7.0.1",
+        "oyejorge/less.php": "v1.7.0.5",
         "predis/predis": "^1.0.1",
         "leafo/lessphp": "0.4.0",
         "leafo/scssphp": "0.1.1"

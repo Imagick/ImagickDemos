@@ -47,8 +47,8 @@ $aliases = [
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
     'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
-    'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludePacked',
-    //'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludeIndividual',
+    //'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludePacked',
+    'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludeIndividual',
     
     'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
     
@@ -65,7 +65,10 @@ $delegates = [
     // These rely purely on env vars
     'ImagickDemo\Config\Librato' => ['ImagickDemo\Config', 'createLibrato'],
     'Jig\JigConfig' => ['ImagickDemo\Config', 'createJigConfig'],
+    
+    'Tier\Caching\Caching' => ['ImagickDemo\Config', 'createCaching'],
 ];
+
 
 // If necessary, define some params that can be injected purely by name.
 $params = [

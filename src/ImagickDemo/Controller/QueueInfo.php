@@ -25,7 +25,7 @@ class QueueInfo
             'Status' => 'getStatusQueue',
             'Task' => 'getTaskQueue',
             'Announce' => 'getAnnounceQueue',
-            'All' => 'getAllQueue',
+            //'All' => 'getAllQueue',
         ];
 
         foreach ($functions as $title => $method) {

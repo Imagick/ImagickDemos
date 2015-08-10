@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
  
 use Imagick;
-use Tier\ResponseBody\FileResponseIM as FileResponse;
+use Tier\ResponseBody\FileResponseIMFactory;
 
 class functions
 {
@@ -36,9 +36,9 @@ function header($string, $replace = true, $http_response_code = null)
     }
 }
     
-function renderFile($filename)
+function renderFile(FileResponseIMFactory $fileResponseFactory, $filename)
 {
-    return new FileResponse($filename, "Content-Type: image/jpg");
+    return $fileResponseFactory->create($filename, "image/jpg");
 }
     
 

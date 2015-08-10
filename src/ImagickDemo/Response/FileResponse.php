@@ -2,12 +2,14 @@
 
 namespace ImagickDemo\Response;
 
+use Tier\Caching\Caching;
+
 class FileResponse implements \ImagickDemo\Response\Response {
 
     private $fileNameToServe;
     private $headers = [];
 
-    function __construct($fileNameToServe, $contentType) {
+    function __construct(Caching $cachingStrategy, $fileNameToServe, $contentType) {
         if (is_readable($fileNameToServe) === false) {
             throw new \Exception("File $fileNameToServe isn't readable, can't serve it.");
         }

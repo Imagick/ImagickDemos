@@ -1,16 +1,11 @@
 <?php
 
-//if (defined('LOW_MEM_CLASS_LOADER') && LOW_MEM_CLASS_LOADER == true) {
-//    require __DIR__.'/../vendor/intahwebz/lowmemoryclassloader/LowMemoryClassloader.php';
-//}
-//else {
-    require __DIR__.'/../vendor/autoload.php';
-//}
+
+require __DIR__.'/../vendor/autoload.php';
 
 $parser = new Less_Parser();
 
 $cacheDir = __DIR__.'/../var/cache/less';
-
 @mkdir($cacheDir, 0755, true);
 
 $compileItems = [
@@ -23,6 +18,6 @@ foreach ($compileItems as $input => $output) {
     Less_Cache::$cache_dir = $cacheDir;
     $cssFileName = Less_Cache::Get( $cacheSetting );    
     echo "$cssFileName \n";
-    $compiled = file_get_contents( $cacheDir.'/'.$cssFileName );
+    $compiled = file_get_contents($cacheDir.'/'.$cssFileName);
     file_put_contents($output, $compiled);
 }

@@ -6,7 +6,7 @@ use Danack\Console\Command\Command;
 use Danack\Console\Input\InputArgument;
 
 require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/../src/bootstrap.php';
+require __DIR__.'/../src/appFunctions.php';
 require __DIR__ . "/../src/Tier/tierFunctions.php";
 
 $injector = new \Auryn\Injector();

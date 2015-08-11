@@ -910,3 +910,4 @@ function getExceptionText(\Exception $e)
 
     return $fullText;
 }
+

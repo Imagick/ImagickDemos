@@ -33,7 +33,7 @@ class SimpleStats
         AsyncStats $asyncStats,
         ImagickTaskQueue $imagickTaskQueue,
         Librato $librato
-    ){
+    ) {
         $this->asyncStats = $asyncStats;
         $this->flushInterval = 10;
         $this->sourceName = $libratoConfig->getStatsSourceName();

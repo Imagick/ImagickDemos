@@ -79,7 +79,7 @@
     <!-- These are there own end point and so are okay to mix declaration and calling -->
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
         <exclude-pattern>Tutorial/smoothSpiderGraph.php</exclude-pattern>
-        <exclude-pattern>src/bootstrap.php</exclude-pattern>
+        <exclude-pattern>src/appFunctions.php</exclude-pattern>
         <exclude-pattern>src/process.php</exclude-pattern>
     </rule>
 

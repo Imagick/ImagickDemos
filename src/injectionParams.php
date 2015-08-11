@@ -1,15 +1,13 @@
 <?php
 
-use Tier\InjectionParams;
-use Tier\Path\AutogenPath;
 use Intahwebz\DataPath;
 use Intahwebz\StoragePath;
-
-use Tier\Path\WebRootPath;
-use Tier\Path\ExternalLibPath;
-use Tier\Path\YuiCompressorPath;
+use Tier\InjectionParams;
+use Tier\Path\AutogenPath;
 use Tier\Path\CachePath;
-
+use Tier\Path\ExternalLibPath;
+use Tier\Path\WebRootPath;
+use Tier\Path\YuiCompressorPath;
 
 // These classes will only be created once by the injector.
 $shares = [

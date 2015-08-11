@@ -2,7 +2,7 @@
 
 namespace Tier\Caching;
 
-class CachingTime implements Caching 
+class CachingTime implements Caching
 {
     private $seconds_to_cache;
     private $secondsForCDNToCache;
@@ -32,6 +32,4 @@ class CachingTime implements Caching
 
         return $headers;
     }
-
 }
-

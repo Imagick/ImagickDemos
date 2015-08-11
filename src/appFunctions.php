@@ -298,15 +298,14 @@ function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
 
     return null;
 }
-    
-    
+
 function cachedImageCallable(
     CategoryNav $categoryNav,
     Request $request,
     Response $response,
     FileResponseIMFactory $fileResponseFactory,
-    $params)
-{
+    $params
+) {
     $filename = getImageCacheFilename($categoryNav->getPageInfo(), $params);
     $extensions = ["jpg", 'jpeg', "gif", "png", ];
     

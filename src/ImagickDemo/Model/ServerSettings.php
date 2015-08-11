@@ -9,7 +9,7 @@ use Jig\Jig;
 
 class ServerSettings
 {
-    function renderIniSettings()
+    public function renderIniSettings()
     {
         $settings = [
             'opcache.enabled' => true,
@@ -49,16 +49,13 @@ class ServerSettings
 
         return $output;
     }
-    
-    
 
-
-    function renderConfSettings()
+    public function renderConfSettings()
     {
         $settings = [
             'JIG_COMPILE_CHECK' => Jig::COMPILE_CHECK_EXISTS,
             'CACHING_SETTING' => Caching::CACHING_TIME,
-            'LIBRATO_STATSSOURCENAME' => null, 
+            'LIBRATO_STATSSOURCENAME' => null,
             
         ];
 
@@ -77,7 +74,7 @@ class ServerSettings
 
             $class = 'good';
             if ($expectedValue === null) {
-
+                //Do nothing.
             }
             else if ($value != $expectedValue) {
                 $class = 'bad';
@@ -99,7 +96,7 @@ class ServerSettings
         return $output;
     }
 
-    function render()
+    public function render()
     {
         $output = "";
         $output .= $this->renderIniSettings();
@@ -108,4 +105,3 @@ class ServerSettings
         return $output;
     }
 }
-

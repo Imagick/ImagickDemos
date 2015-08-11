@@ -2,9 +2,7 @@
 
 namespace ImagickDemo\Controller;
 
-
 use ImagickDemo\Queue\ImagickTaskQueue;
-
 use Arya\TextBody;
 
 class QueueInfo

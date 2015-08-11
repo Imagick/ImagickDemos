@@ -42,7 +42,7 @@ END;
     }
 
     public function renderCustomImage()
-    {        
+    {
         $methods = [
             'example1' => 'example1',
             'example2' => 'example2',

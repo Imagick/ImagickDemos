@@ -4,12 +4,10 @@ namespace ImagickDemo;
 
 use Auryn\Injector;
 use Tier\Caching\Caching;
-
 use Tier\Caching\CachingDisabled;
 use Tier\Caching\CachingRevalidate;
 use Tier\Caching\CachingTime;
 use Tier\TierException;
-
 
 class Config
 {
@@ -42,7 +40,7 @@ class Config
     const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
     const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
 
-    const CACHING_SETTING = 'caching.setting';    
+    const CACHING_SETTING = 'caching.setting';
 
     public static function getConfigNames()
     {
@@ -96,7 +94,7 @@ class Config
     public function createCaching()
     {
         $cacheSetting = self::getEnv(Config::CACHING_SETTING);
-        switch($cacheSetting) {
+        switch ($cacheSetting) {
             case Caching::CACHING_DISABLED: {
                 return new CachingDisabled();
                 break;

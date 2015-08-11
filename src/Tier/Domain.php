@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tier;
-
 
 class Domain
 {
@@ -31,4 +29,3 @@ class Domain
         return sprintf($this->cdnNamePattern, $cdnIndex);
     }
 }
-

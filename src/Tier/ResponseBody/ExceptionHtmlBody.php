@@ -2,9 +2,6 @@
 
 namespace Tier\ResponseBody;
 
-
-
-
 /**
  * Class ExceptionHtmlBody
  *

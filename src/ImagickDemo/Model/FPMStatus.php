@@ -6,10 +6,9 @@ namespace ImagickDemo\Model;
 use Amp\Artax\Client;
 use Arya\TextBody;
 
-class FPMStatus {
-
-    
-    function render()
+class FPMStatus
+{
+    public function render()
     {
         try {
             ob_start();
@@ -129,4 +128,3 @@ class FPMStatus {
         }
     }
 }
-

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tier;
 
 class File
@@ -18,7 +17,7 @@ class File
         $this->extension = $extension;
     }
     
-    static public function fromFullPath($fullPath)
+    public static function fromFullPath($fullPath)
     {
         $fileInfo = pathinfo($fullPath);
         
@@ -34,7 +33,7 @@ class File
         $path = $this->directory.'/'.$this->filename;
 
         if ($this->extension != null) {
-            $path .= '.'.$this->extension; 
+            $path .= '.'.$this->extension;
         }
         
         return $path;

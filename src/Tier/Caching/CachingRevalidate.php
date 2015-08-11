@@ -2,7 +2,7 @@
 
 namespace Tier\Caching;
 
-class CachingRevalidate implements Caching 
+class CachingRevalidate implements Caching
 {
     private $seconds_to_cache;
     private $secondsForCDNToCache;
@@ -31,5 +31,4 @@ class CachingRevalidate implements Caching
 
         return $headers;
     }
-
 }

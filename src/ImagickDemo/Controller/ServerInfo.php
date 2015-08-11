@@ -4,7 +4,6 @@ namespace ImagickDemo\Controller;
 
 use Tier\InjectionParams;
 
-
 class ServerInfo
 {
     public function renderOPCacheInfo()
@@ -13,8 +12,7 @@ class ServerInfo
 
         return getRenderTemplateTier($injectionParams, 'serverInfo');
     }
-    
-    
+
     public function serverSettings()
     {
         $injectionParams = InjectionParams::fromParams([]);

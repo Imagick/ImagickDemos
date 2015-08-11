@@ -1,21 +1,18 @@
 <?php
 
-
 namespace ImagickDemo\Model;
 
-
-class ScriptVersion {
-
+class ScriptVersion
+{
     private $value;
-    
-    function __construct($value)
+
+    public function __construct($value)
     {
         $this->value = $value;
     }
-    
-    function getValue()
+
+    public function getValue()
     {
         return $this->value;
     }
 }
-

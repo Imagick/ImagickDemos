@@ -56,7 +56,6 @@ class ServerSettings
             'JIG_COMPILE_CHECK' => Jig::COMPILE_CHECK_EXISTS,
             'CACHING_SETTING' => Caching::CACHING_TIME,
             'LIBRATO_STATSSOURCENAME' => null,
-            
         ];
 
         $output = "";

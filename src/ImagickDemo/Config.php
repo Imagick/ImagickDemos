@@ -96,18 +96,16 @@ class Config
     public function createCaching()
     {
         $cacheSetting = self::getEnv(Config::CACHING_SETTING);
+
         switch ($cacheSetting) {
             case Caching::CACHING_DISABLED: {
                 return new CachingDisabled();
-                break;
             }
             case Caching::CACHING_REVALIDATE: {
                 return new CachingRevalidate(3600 * 2, 3600);
-                break;
             }
             case Caching::CACHING_TIME: {
                 return new CachingTime(3600 * 10, 3600);
-                break;
             }
             default: {
                 throw new TierException("Unknown caching setting '$cacheSetting'.");

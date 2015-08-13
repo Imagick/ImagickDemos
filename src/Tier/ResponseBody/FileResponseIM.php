@@ -24,7 +24,7 @@ class FileResponseIM implements Body
             throw new \Exception("File $fileNameToServe isn't readable, can't serve it.");
         }
         $this->fileNameToServe = $fileNameToServe;
-
+        $this->headers = $this->caching->getHeaders(filemtime($fileNameToServe));
         if ($contentType) {
             $this->headers["Content-Type"] = $contentType;
         }

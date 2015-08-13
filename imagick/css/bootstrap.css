@@ -5797,6 +5797,11 @@ button.close {
     display: none !important;
   }
 }
+@media (max-width: 768px) {
+  a {
+    font-size: 24px;
+  }
+}
 .table-serverSettings {
   border: 1px solid #dddddd;
 }

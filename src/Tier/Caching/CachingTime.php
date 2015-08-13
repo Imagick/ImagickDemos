@@ -29,7 +29,7 @@ class CachingTime implements Caching
             $this->seconds_to_cache,
             $this->secondsForCDNToCache
         );
-
+        
         return $headers;
     }
 }

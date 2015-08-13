@@ -48,6 +48,7 @@ $aliases = [
     //'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludePacked',
     'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludeIndividual',
     
+    
     'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
     
 ];
@@ -66,6 +67,7 @@ $delegates = [
 
     'Tier\Caching\Caching' => ['ImagickDemo\Config', 'createCaching'],
     'ScriptServer\Value\ScriptVersion' => ['ImagickDemo\Config', 'createScriptVersion'],
+    'Tier\Domain' => ['ImagickDemo\Config', 'createDomain'],
 ];
 
 
@@ -76,6 +78,7 @@ $params = [
 
 $prepares = [
     'Jig\Converter\JigConverter' => 'prepareJigConverter',
+    'Jig\Jig' => 'prepareJig',
 ];
 
 $injectionParams = new InjectionParams(

@@ -12,7 +12,7 @@ class ServerSettings
     public function renderIniSettings()
     {
         $settings = [
-            'opcache.enabled' => true,
+            'opcache.enable' => true,
             'opcache.validate_timestamps' => false,
             'opcache.file_update_protection' => false,
         ];

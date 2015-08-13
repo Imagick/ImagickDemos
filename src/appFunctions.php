@@ -192,6 +192,9 @@ function createSessionManager(RedisDriver $redisDriver)
 function prepareJigConverter(JigConverter $jigConverter, $injector)
 {
     $jigConverter->addDefaultHelper('Jig\TemplateHelper\DebugHelper');
+    
+    
+
 }
 
 function createControl(CategoryNav $categoryNav, Injector $injector)
@@ -742,6 +745,7 @@ function createHtmlBody(\Jig\JigBase $template)
 function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
 {
     $fn = function (Jig $jigRender) use ($injectionParams, $templateName) {
+
         $className = $jigRender->getTemplateCompiledClassname($templateName);
         $jigRender->checkTemplateCompiled($templateName);
         $injectionParams->alias('Jig\JigBase', $className);
@@ -751,6 +755,16 @@ function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
 
     return new Tier($fn);
 }
+
+function prepareJig(Jig $jigRender, $injector)
+{
+    $jigRender->addDefaultPlugin('ImagickDemo\JigPlugin\ImagickPlugin');
+    
+    
+    
+}
+
+
     
 function createRedisClient()
 {

@@ -6,8 +6,21 @@ namespace ImagickDemo\Model;
 use Amp\Artax\Client;
 use Arya\TextBody;
 
+use Tier\Domain;
+
 class FPMStatus
 {
+    /**
+     * @var Domain
+     */
+    private $domain;
+    
+    
+    public function __construct(Domain $domain)
+    {
+        $this->domain = $domain;
+    }
+    
     public function render()
     {
         try {
@@ -15,7 +28,11 @@ class FPMStatus
 
             $reactor = \Amp\getReactor();
             $client = new Client($reactor);
-            $url = "http://phpimagick.test/www-status?full&json";
+            $url = sprintf(
+                "http://%s/www-status?full&json",
+                $this->domain->getCanonicalDomain()
+            );
+
             $promise = $client->request($url);
 
             $response = \Amp\wait($promise);

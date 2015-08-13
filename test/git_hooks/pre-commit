@@ -3,7 +3,11 @@
 set -eux -o pipefail
 
 PROJECT=`php -r "echo dirname(dirname(dirname(realpath('$0'))));"`
+
+#grep has exit code of 1 for no match
+set +x
 STAGED_FILES_CMD=`git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\\\.php`
+set -x
 
 # Determine if a file list is passed
 if [ "$#" -eq 1 ]
@@ -21,7 +25,7 @@ php -v
 
 FILES=""
 #echo "Checking PHP Lint..."
-#I skip this due to 
+#I skip this due to 5.4 shenanigans.
 for FILE in $SFILES
 do
     #php -l -d display_errors=1 $PROJECT/$FILE

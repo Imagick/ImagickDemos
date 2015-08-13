@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eux -o pipefail
+
 PROJECT=`php -r "echo dirname(dirname(dirname(realpath('$0'))));"`
 STAGED_FILES_CMD=`git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\\\.php`
 
@@ -17,15 +19,17 @@ SFILES=${SFILES:-$STAGED_FILES_CMD}
 echo "Checking php"
 php -v
 
-echo "Checking PHP Lint..."
+FILES=""
+#echo "Checking PHP Lint..."
+#I skip this due to 
 for FILE in $SFILES
 do
-    php -l -d display_errors=1 $PROJECT/$FILE
-    if [ $? != 0 ]
-    then
-        echo "Fix the error before commit."
-        exit 1
-    fi
+    #php -l -d display_errors=1 $PROJECT/$FILE
+    #if [ $? != 0 ]
+    #then
+    #    echo "Fix the error before commit."
+    #    exit 1
+    #fi
     FILES="$FILES $PROJECT/$FILE"
 done
 
@@ -33,7 +37,7 @@ if [ "$FILES" != "" ]
 then
     echo "Running Code Sniffer..."
 
-    ./vendor/bin/phpcs --standard=./test/CodingStandard/ruleset.xml --encoding=utf-8 -n -p $FILES
+    ./vendor/bin/phpcs --standard=./test/codesniffer.xml --encoding=utf-8 -n -p $FILES
     if [ $? != 0 ]
     then
         echo "Fix the error before commit."

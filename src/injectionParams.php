@@ -59,12 +59,13 @@ $delegates = [
     'ImagickDemo\Example' => 'createExample',
     'Intahwebz\Routing\HTTPRequest' => 'createHTTPRequest',
     'Predis\Client' => 'createRedisClient',
-    
+
     // These rely purely on env vars
     'ImagickDemo\Config\Librato' => ['ImagickDemo\Config', 'createLibrato'],
     'Jig\JigConfig' => ['ImagickDemo\Config', 'createJigConfig'],
-    
+
     'Tier\Caching\Caching' => ['ImagickDemo\Config', 'createCaching'],
+    'ScriptServer\Value\ScriptVersion' => ['ImagickDemo\Config', 'createScriptVersion'],
 ];
 
 

@@ -2,15 +2,30 @@
 
 namespace ScriptServer\Service;
 
+use ScriptServer\Value\ScriptVersion;
+
 class ScriptIncludeIndividual extends ScriptInclude
 {
+    /**
+     * @var ScriptVersion
+     */
+    private $scriptVersion;
+    
+    public function __construct(ScriptVersion $scriptVersion)
+    {
+        $this->scriptVersion = $scriptVersion;
+    }
+    
     public function linkJS()
     {
-        $jsVersion = $this->scriptVersion;
         $output = '';
 
         foreach ($this->includeJSArray as $includeJS) {
-            $output .= "<script type='text/javascript' src='/js/".$includeJS.".js?version=$jsVersion'></script>\n";
+            $output .= sprintf(
+                "<script type='text/javascript' src='/js/%s.js?version=%s'></script>\n",
+                $includeJS,
+                $this->scriptVersion->getValue()
+            );
         }
 
         return $output;
@@ -34,7 +49,7 @@ class ScriptIncludeIndividual extends ScriptInclude
                 "<link rel='stylesheet' type='text/css' %s href='/css/%s.css?%s' />\n",
                 $mediaString,
                 $cssFile->file,
-                $this->scriptVersion
+                $this->scriptVersion->getValue()
             );
         }
 

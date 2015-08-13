@@ -31,16 +31,16 @@ class Config
     const LIBRATO_KEY = 'librato.key';
     const LIBRATO_USERNAME = 'librato.username';
     const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name';
-    
+
     const JIG_COMPILE_CHECK = 'jig.compilecheck';
-    
-    //const SITE_NAME = 'site.name';
-    
+
     const DOMAIN_CANONICAL = 'domain.canonical';
     const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
     const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
 
     const CACHING_SETTING = 'caching.setting';
+    
+    const SCRIPT_VERSION = 'script.version';
 
     public static function getConfigNames()
     {
@@ -111,5 +111,13 @@ class Config
                 throw new TierException("Unknown caching setting '$cacheSetting'.");
             }
         }
+    }
+    
+    public function createScriptVersion()
+    {
+        $value = self::getEnv(self::SCRIPT_VERSION);
+        return new \ScriptServer\Value\ScriptVersion(
+            $value
+        );
     }
 }

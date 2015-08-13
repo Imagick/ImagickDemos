@@ -6,8 +6,6 @@ use ScriptServer\CSSFile;
 
 abstract class ScriptInclude
 {
-    protected $scriptVersion;
-
     protected $includeJSArray = array();
 
     /**
@@ -17,13 +15,6 @@ abstract class ScriptInclude
 
     private $onBodyLoadJavascript = array();
 
-    /**
-     * 
-     */
-    public function __construct()
-    {
-        $this->scriptVersion = '1.2.3';//$siteScriptVersion->getString();
-    }
 
     abstract public function linkCSS();
     abstract public function linkJS();

@@ -3,30 +3,20 @@
 namespace ScriptServer\Service;
 
 use ScriptServer\CSSFile;
+use ScriptServer\Value\ScriptVersion;
 
 class ScriptIncludePacked extends ScriptInclude
 {
     private $useCDNForScripts = true;
 
-    /**
-     * @var bool
-     */
-    private $showJSErrors;
+    private $scriptVersion;
+    
+    public function __construct(
+        ScriptVersion $scriptVersion
+    ) {
 
-    /**
-     * @param $packScripts
-     * @param $useCDNForScripts
-     * @param \Intahwebz\Domain $domain
-     * @param $liveServer
-     * @param $siteScriptVersion
-     */
-    public function __construct()
-    {
-        //$this->domain = $domain;
-        $this->showJSErrors = true;//$showJSErrors->getBool();
-        $this->scriptVersion = '1.2.3';//$siteScriptVersion->getString();
+        $this->scriptVersion = $scriptVersion;
     }
-
 
     public function linkJS()
     {
@@ -42,7 +32,6 @@ class ScriptIncludePacked extends ScriptInclude
         $output = "<script type='text/javascript'>\n";
 
         foreach ($this->includeJSArray as $includeJS) {
-            //$output .= "setJSLoaded('".basename($includeJS).".js', false);\n";
             $url .= $separator;
             $url .= urlencode($includeJS);
         }

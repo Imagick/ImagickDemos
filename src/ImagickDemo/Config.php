@@ -8,6 +8,7 @@ use Tier\Caching\CachingDisabled;
 use Tier\Caching\CachingRevalidate;
 use Tier\Caching\CachingTime;
 use Tier\TierException;
+use ScriptServer\Value\ScriptVersion;
 
 class Config
 {
@@ -41,7 +42,8 @@ class Config
     const CACHING_SETTING = 'caching.setting';
     
     const SCRIPT_VERSION = 'script.version';
-
+    const SCRIPT_PACKING = 'script.packing';
+    
     public static function getConfigNames()
     {
         $reflClass = new \ReflectionClass(__CLASS__);
@@ -118,6 +120,19 @@ class Config
         $value = self::getEnv(self::SCRIPT_VERSION);
         return new \ScriptServer\Value\ScriptVersion(
             $value
+        );
+    }
+    
+    public function createScriptInclude(ScriptVersion $scriptVersion)
+    {
+        $value = self::getEnv(self::SCRIPT_PACKING);
+        
+        if ($value) {
+            return new \ScriptServer\Service\ScriptIncludePacked($scriptVersion);
+        }
+            
+        return new \ScriptServer\Service\ScriptIncludeIndividual(
+            $scriptVersion
         );
     }
 }

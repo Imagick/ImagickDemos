@@ -7,28 +7,23 @@ use ScriptServer\Value\ScriptVersion;
 
 class ScriptIncludePacked extends ScriptInclude
 {
-    private $useCDNForScripts = true;
-
     private $scriptVersion;
     
     public function __construct(
         ScriptVersion $scriptVersion
     ) {
-
         $this->scriptVersion = $scriptVersion;
     }
 
     public function linkJS()
     {
-        $jsVersion = $this->scriptVersion;
         $separator = ',';
 
         if (count($this->includeJSArray) == 0) {
             return "";
         }
 
-        $url = "$jsVersion";
-
+        $url = $this->scriptVersion->getValue();
         $output = "<script type='text/javascript'>\n";
 
         foreach ($this->includeJSArray as $includeJS) {
@@ -37,19 +32,13 @@ class ScriptIncludePacked extends ScriptInclude
         }
 
         $output .= "</script>\n";
-
         $domain = '';
-
 //        $domain = $this->domain->getContentDomain(0);
-        
         $uri = routeJSInclude($url);
-
         $output .= "<script type='text/javascript' src='".$domain.$uri."'></script>";
 
         return $output;
     }
-
-
 
     /**
      * @param $media
@@ -79,7 +68,7 @@ class ScriptIncludePacked extends ScriptInclude
             "<link rel='stylesheet' type='text/css' %s href='/css/%s?%s' />\n",
             $mediaString,
             $fileList,
-            $this->scriptVersion
+            $this->scriptVersion->getValue()
         );
 
         return $output;

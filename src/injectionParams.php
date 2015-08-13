@@ -12,7 +12,6 @@ use Tier\Path\YuiCompressorPath;
 // These classes will only be created once by the injector.
 $shares = [
     'Jig\JigConfig',
-    
     'ImagickDemo\AppTimer',
     'ImagickDemo\Config',
     'ImagickDemo\Control',
@@ -23,10 +22,8 @@ $shares = [
     'ImagickDemo\Config\Application',
     'ImagickDemo\Config\Librato',
     'ImagickDemo\Framework\VariableMap',
-
     'Predis\Client',
     'ScriptServer\Service\ScriptInclude',
-
     new AutogenPath(__DIR__."/../autogen/"),
     new DataPath(__DIR__."/../data/"),
     new StoragePath(__DIR__."/../var/"),
@@ -45,12 +42,7 @@ $aliases = [
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
     'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
-    //'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludePacked',
-    'ScriptServer\Service\ScriptInclude' => 'ScriptServer\Service\ScriptIncludeIndividual',
-    
-    
     'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
-    
 ];
 
 
@@ -60,18 +52,14 @@ $delegates = [
     'ImagickDemo\Example' => 'createExample',
     'Intahwebz\Routing\HTTPRequest' => 'createHTTPRequest',
     'Predis\Client' => 'createRedisClient',
-
-    // These rely purely on env vars
     'ImagickDemo\Config\Librato' => ['ImagickDemo\Config', 'createLibrato'],
     'Jig\JigConfig' => ['ImagickDemo\Config', 'createJigConfig'],
-
     'Tier\Caching\Caching' => ['ImagickDemo\Config', 'createCaching'],
     'ScriptServer\Value\ScriptVersion' => ['ImagickDemo\Config', 'createScriptVersion'],
     'Tier\Domain' => ['ImagickDemo\Config', 'createDomain'],
+    'ScriptServer\Service\ScriptInclude' => ['ImagickDemo\Config', 'createScriptInclude'],
 ];
 
-
-// If necessary, define some params that can be injected purely by name.
 $params = [
     'imageCachePath' => "../var/cache/imageCache/",
 ];

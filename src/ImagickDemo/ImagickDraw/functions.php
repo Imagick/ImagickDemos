@@ -1089,7 +1089,16 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor)
     $draw->setStrokeWidth(2);
     $draw->setFontSize(36);
 
-    $fontStretchTypes = [\Imagick::STRETCH_ULTRACONDENSED, \Imagick::STRETCH_CONDENSED, \Imagick::STRETCH_SEMICONDENSED, \Imagick::STRETCH_SEMIEXPANDED, \Imagick::STRETCH_EXPANDED, \Imagick::STRETCH_EXTRAEXPANDED, \Imagick::STRETCH_ULTRAEXPANDED, \Imagick::STRETCH_ANY];
+    $fontStretchTypes = [
+        \Imagick::STRETCH_ULTRACONDENSED,
+        \Imagick::STRETCH_CONDENSED,
+        \Imagick::STRETCH_SEMICONDENSED,
+        \Imagick::STRETCH_SEMIEXPANDED,
+        \Imagick::STRETCH_EXPANDED,
+        \Imagick::STRETCH_EXTRAEXPANDED,
+        \Imagick::STRETCH_ULTRAEXPANDED,
+        \Imagick::STRETCH_ANY
+    ];
 
     $offset = 0;
     foreach ($fontStretchTypes as $fontStretch) {

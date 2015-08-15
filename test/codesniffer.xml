@@ -11,11 +11,9 @@
     <!-- Exclude data files -->
     <exclude-pattern>*compare.php</exclude-pattern>
     <exclude-pattern>*ImagickDemo/DocHelper.php</exclude-pattern>
-    
-    
+
     <!-- These will be removed when we switch to tier fully. -->
     <exclude-pattern>*ImagickDemo/Response/*</exclude-pattern>
-    
 
     <rule ref="PSR2">
         <!-- Need to find a way to turn this off for text, before re-enabling -->
@@ -87,5 +85,4 @@
     </rule>
 
 </ruleset>
-
         

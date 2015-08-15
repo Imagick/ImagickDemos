@@ -25,6 +25,7 @@ class FileResponseIM implements Body
         }
         $this->fileNameToServe = $fileNameToServe;
         $this->headers = $this->caching->getHeaders(filemtime($fileNameToServe));
+
         if ($contentType) {
             $this->headers["Content-Type"] = $contentType;
         }
@@ -35,7 +36,7 @@ class FileResponseIM implements Body
         }
 
         $this->headers['Content-Length'] = $fileSize;
-        
+
         foreach ($headers as $key => $value) {
             $this->headers[$key] = $value;
         }

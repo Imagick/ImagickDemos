@@ -82,7 +82,7 @@ var AsyncImage = {
 
         $.ajax({
             url: this.imageURI,
-            cache: false,
+            cache: true,
             context: this,
             error: errorCallback,
             success: successCallback
@@ -90,16 +90,13 @@ var AsyncImage = {
     },
 
     _create: function() {
-        //alert("create called");
     },
 
     _init: function() {
-//        this.statusURI = $(this.element).data('statusuri');
         this.imageURI = $(this.element).data('imageuri');
         this.enabled = $(this.element).data('enabled');
         this.statusElement = $(this.element).find('.asyncImageStatus');
         this.asyncSpinner = $(this.element).find('.asyncSpinner');
-
 
         if (!this.imageURI) {
             return;

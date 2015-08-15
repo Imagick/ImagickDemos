@@ -310,14 +310,10 @@ function cachedImageCallable(
     $params
 ) {
     $filename = getImageCacheFilename($pageInfo, $params);
-    
-    
     $extensions = ["jpg", 'jpeg', "gif", "png", ];
-    
     $contentType = false;
-
     $filenameFound = false;
-    
+
     foreach ($extensions as $extension) {
         $filenameWithExtension = $filename.".".$extension;
         if (file_exists($filenameWithExtension) == true) {
@@ -339,6 +335,8 @@ function cachedImageCallable(
             return new EmptyBody();
         }
     }
+    
+    
 
     return $fileResponseFactory->create($filenameFound, $contentType);
 }
@@ -627,29 +625,6 @@ function renderImageAsFileResponse(
 
 
 /**
- * @param Request $request
- * @param $job
- * @return RedirectResponse
- */
-function redirectWaitingTask(Response $response, Request $request, $job)
-{
-    $job = intval($job) + 1;
-
-    if ($job > 20) {
-        //probably ought to time out at some point.
-    }
-
-    $request->getPath();
-    $params = $request->getRequestParams();
-    $params['job'] = $job;
-
-    $newURL = 'http://'.$request->getHostName().$request->getPath()."?".http_build_query($params);
-    $response->setStatus(202);
-    
-    return new TextBody("Image is generating.");
-}
-
-/**
  * @param $imageFunction
  * @param \Auryn\Injector $injector
  * @return \ImagickDemo\Response\ImageResponse
@@ -825,7 +800,6 @@ function directCustomImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector
     return new ImageResponse($filename, "image/".$imageType, $imageData);
 }
 
-    
 function createImageTask(
     VariableMap $variableMap,
     ImagickTaskQueue $taskQueue,
@@ -841,7 +815,7 @@ function createImageTask(
             //Queue isn't active - don't bother queueing a task
             return false;
         }
-    
+
         $task = new \ImagickDemo\Queue\ImagickTask(
             $pageInfo,
             $params,
@@ -850,15 +824,18 @@ function createImageTask(
         );
         $taskQueue->addTask($task);
     }
-    
-    
-    
+
     if ($variableMap->getVariable('noredirect') == true) {
         return new \ImagickDemo\Response\ErrorResponse(503, "image still processing $job is ".$job);
     }
 
-    $response->setStatus(202);
+    $caching = new \Tier\Caching\CachingDisabled();
+    foreach ($caching->getHeaders(time()) as $key => $value) {
+        $response->addHeader($key, $value);
+    }
     
+    $response->setStatus(202);
+
     return new TextBody("Image is generating.");
 }
 

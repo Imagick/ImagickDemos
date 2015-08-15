@@ -1326,7 +1326,7 @@ function morphImages()
     }
 
     $imagick->resetIterator();
-    $morphed = $imagick->morphImages(10);
+    $morphed = $imagick->morphImages(5);
     $morphed->setImageTicksPerSecond(10);
 
     header("Content-Type: image/gif");

@@ -11,7 +11,7 @@
         <a href='/settingsCheck'>Settings check</a><br/>
         <a href='/queueinfo'>QueueInfo</a><br/>
         <a href='/opinfo'>OPMem Usage</a><br/>
-        <a href='http://127.0.0.1:9002'>DupervisorD</a><br/>
+        <a href='http://127.0.0.1:9002'>SupervisorD</a><br/>
         <a href='https://metrics.librato.com/share/dashboards/cuy923ae' target='_blank'>Librato dashboard</a><br/>
 
         &nbsp;<br/>

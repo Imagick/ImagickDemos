@@ -23,8 +23,8 @@ foreach ($categories as $category) {
 }
 
 
-function process($directory, $category) {
-    
+function process($directory, $category)
+{
     $files = glob($directory.'/*.xml');
 
     foreach ($files as $file) {
@@ -50,7 +50,7 @@ function process($directory, $category) {
         list($exampleCategory, $exampleFunction) = $exampleInfo;
         $docHelper = new DocHelperDisplay($exampleCategory, $exampleFunction);
         $xml = $docHelper->getXML();
-        $start = substr($contents, 0, $examplePosition);        
+        $start = substr($contents, 0, $examplePosition);
         $end = substr($contents, $examplePosition);
         
         $newContents = $start;
@@ -67,5 +67,4 @@ function process($directory, $category) {
 
         //exit(0);
     }
-    
 }

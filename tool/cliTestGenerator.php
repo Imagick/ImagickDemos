@@ -212,9 +212,6 @@ $searchReplace = [
 
     '= gradient:;' => "= 'gradient:';",
     '= o8x8;' => '= "o8x8";', 
-    
-    
-    
     'IMAGE_WIDTH' => '500',
     'IMAGE_HEIGHT' => '500',
     

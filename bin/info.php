@@ -22,7 +22,7 @@ $allowedVariables = array(
     'GITHUB_ACCESS_TOKEN',
 );
 
-if(in_array($variableRequired, $allowedVariables) == true){
+if (in_array($variableRequired, $allowedVariables) == true) {
     exit(constant($variableRequired));
 }
 

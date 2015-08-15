@@ -6,6 +6,7 @@
     <exclude-pattern>*Intahwebz*</exclude-pattern>
     
     <exclude-pattern>*src/Arya*</exclude-pattern>
+    <exclude-pattern>*tool/*</exclude-pattern>
     
     <!-- Exclude data files -->
     <exclude-pattern>*compare.php</exclude-pattern>
@@ -81,6 +82,8 @@
         <exclude-pattern>Tutorial/smoothSpiderGraph.php</exclude-pattern>
         <exclude-pattern>src/appFunctions.php</exclude-pattern>
         <exclude-pattern>src/process.php</exclude-pattern>
+        <exclude-pattern>tool/*</exclude-pattern>
+        <exclude-pattern>bin/*</exclude-pattern>
     </rule>
 
 </ruleset>

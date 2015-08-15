@@ -27,7 +27,8 @@ foreach ($itemsToProcess as $inputFilename => $outputFilename) {
     sassCss($inputFilename, $outputFilename, $inputPath);
 }
 
-function sassCss($inputFilename, $outputFilename, $inputPath) {
+function sassCss($inputFilename, $outputFilename, $inputPath)
+{
     $compiler = new Leafo\ScssPhp\Compiler();
 
     $compiler->addImportPath($inputPath);

@@ -41,6 +41,8 @@ class Request implements \ArrayAccess, \Iterator {
         $uri = $_server['REQUEST_URI'];
         $uriPath = parse_url($uri, PHP_URL_PATH);
         $this->vars['REQUEST_URI'] = $uri;
+        
+        
         $this->vars['REQUEST_URI_PATH'] = $uriPath;
 
         $isEncrypted = !(empty($_server['HTTPS']) || strcasecmp($_server['HTTPS'], 'off') === 0);
@@ -59,6 +61,11 @@ class Request implements \ArrayAccess, \Iterator {
         if (isset($_server['REQUEST_METHOD'])) {
             $this->method = $_server['REQUEST_METHOD'];
         }
+    }
+
+    public function getPath()
+    {
+        return $this->vars['REQUEST_URI'];
     }
 
     private function processInput($_input) {

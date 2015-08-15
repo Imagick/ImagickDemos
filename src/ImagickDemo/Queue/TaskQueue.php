@@ -80,7 +80,7 @@ interface TaskQueue
      * @param Task $task
      * @return mixed
      */
-    public function errorTask(Task $task);
+    public function errorTask(Task $task, $message);
     
     /**
      * @return mixed

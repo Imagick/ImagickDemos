@@ -4,6 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class EndX extends ValueElement
 {
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
+
     protected function getDefault()
     {
         return 400;

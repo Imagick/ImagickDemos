@@ -1,13 +1,6 @@
 <?php
 
-use Intahwebz\DataPath;
-use Intahwebz\StoragePath;
 use Tier\InjectionParams;
-use Tier\Path\AutogenPath;
-use Tier\Path\CachePath;
-use Tier\Path\ExternalLibPath;
-use Tier\Path\WebRootPath;
-use Tier\Path\YuiCompressorPath;
 
 // These classes will only be created once by the injector.
 $shares = [
@@ -24,14 +17,25 @@ $shares = [
     'ImagickDemo\Framework\VariableMap',
     'Predis\Client',
     'ScriptServer\Service\ScriptInclude',
-    new AutogenPath(__DIR__."/../autogen/"),
-    new DataPath(__DIR__."/../data/"),
-    new StoragePath(__DIR__."/../var/"),
-    new WebRootPath(__DIR__.'/../imagick/'),
-    new ExternalLibPath(__DIR__.'/../lib/'),
-    new YuiCompressorPath("/usr/lib/yuicompressor.jar"),
-    new CachePath(__DIR__.'/../var/cache/'),
+    'Tier\Path\AutogenPath',
+    'Intahwebz\DataPath',
+    'Intahwebz\StoragePath',
+    'Tier\Path\CachePath',
+    'Tier\Path\ExternalLibPath',
+    'Tier\Path\YuiCompressorPath',
+    'Tier\Path\WebRootPath',
 ];
+
+$defines = [
+    'Tier\Path\AutogenPath'       => [':path' => __DIR__."/../autogen/"],
+    'Intahwebz\DataPath'          => [':path' => __DIR__."/../data/"],
+    'Intahwebz\StoragePath'       => [':path' => __DIR__."/../var/"],
+    'Tier\Path\CachePath'         => [':path' => __DIR__.'/../var/cache/'],
+    'Tier\Path\ExternalLibPath'   => [':path' => __DIR__.'/../lib/'],
+    'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../imagick/'],
+    'Tier\Path\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
+];
+
 
 // Alias interfaces (or classes) to the actual types that should be used 
 // where they are required. 
@@ -61,7 +65,6 @@ $delegates = [
 ];
 
 $params = [
-    'imageCachePath' => "../var/cache/imageCache/",
 ];
 
 $prepares = [
@@ -74,7 +77,8 @@ $injectionParams = new InjectionParams(
     $aliases,
     $delegates,
     $params,
-    $prepares
+    $prepares,
+    $defines
 );
 
 return $injectionParams;

@@ -15,6 +15,11 @@ class X extends ValueElement
         parent::__construct($variableMap);
     }
 
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
+    
     protected function getDefault()
     {
         return $this->defaultX;

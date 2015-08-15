@@ -233,6 +233,12 @@ class SiteChecker {
             
             if ($e) {
                 echo "Something went wrong for $fullURL : ".$e->getMessage()."\n";
+                
+                if ($response) {
+                    var_dump($response->getAllHeaders());
+                }
+                
+                
                 $this->errors++;
                 return null;
             }

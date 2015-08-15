@@ -4,15 +4,14 @@ namespace Tier\Path;
 
 class Path
 {
-
     private $path;
 
-    public function __construct($string)
+    public function __construct($path)
     {
-        if ($string == null) {
+        if ($path == null) {
             throw new \Exception("Path cannot be null for class ".get_class($this));
         }
-        $this->path = $string;
+        $this->path = $path;
     }
 
     public function getPath()

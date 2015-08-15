@@ -19,9 +19,10 @@ class AdaptiveOffset extends ValueElement
         return $this->default;
     }
 
-//    protected function filterValue($value) {
-//        return intval($value);
-//    }
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
 
     protected function getMin()
     {

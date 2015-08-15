@@ -3,31 +3,29 @@
 namespace ImagickDemo\Queue;
 
 use ImagickDemo\Control;
-use ImagickDemo\Navigation\CategoryNav;
+use ImagickDemo\Helper\PageInfo;
 
 class ImagickTask implements Task
 {
     use \Intahwebz\Cache\KeyName;
 
     /**
-     * @var CategoryNav
+     * @var PageInfo
      */
-    private $categoryNav;
-    
-    
+    private $pageInfo;
+
     private $params;
 
     private $customImage;
     
-    /**
-     * @param CategoryNav $categoryNav
-     * @param $params
-     */
-    public function __construct(CategoryNav $categoryNav, $params, $customImage)
+    private $uri;
+
+    public function __construct(PageInfo $pageInfo, $params, $customImage, $uri)
     {
-        $this->categoryNav = $categoryNav;
+        $this->pageInfo = $pageInfo;
         $this->params = $params;
         $this->customImage = $customImage;
+        $this->uri = $uri;
     }
 
     /**
@@ -38,8 +36,6 @@ class ImagickTask implements Task
         return $this->customImage;
     }
 
-    
-    
     /**
      *
      */
@@ -49,8 +45,8 @@ class ImagickTask implements Task
 
         return sprintf(
             "%s_%s_%s",
-            $this->categoryNav->getCategory(),
-            $this->categoryNav->getExample(),
+            $this->pageInfo->getCategory(),
+            $this->pageInfo->getExample(),
             $key
         );
     }
@@ -76,9 +72,10 @@ class ImagickTask implements Task
     public function serialize()
     {
         $data = [
-            'categoryNav' => $this->categoryNav,
+            'categoryNav' => $this->pageInfo,
             'params' => $this->$params,
-            'customImage' => $this->customImage
+            'customImage' => $this->customImage,
+            'uri' => $this->uri
         ];
 
         return $data;
@@ -93,13 +90,19 @@ class ImagickTask implements Task
         return new ImagickTask(
             $serialization['categoryNav'],
             $serialization['params'],
-            $serialization['customImage']
+            $serialization['customImage'],
+            $serialization['uri']
         );
     }
 
-    public function getCategoryNav()
+    public function getPageInfo()
     {
-        return $this->categoryNav;
+        return $this->pageInfo;
+    }
+    
+    public function getUri()
+    {
+        return $this->uri;
     }
     
     /**
@@ -113,7 +116,7 @@ class ImagickTask implements Task
     public function getFilename()
     {
         return getImageCacheFilename(
-            $this->categoryNav->getPageInfo(),
+            $this->pageInfo,
             $this->params
         );
     }

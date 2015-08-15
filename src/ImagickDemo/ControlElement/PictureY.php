@@ -13,6 +13,11 @@ class PictureY extends ValueElement
         $this->defaultY = $defaultY;
         parent::__construct($variableMap);
     }
+    
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
 
     protected function getDefault()
     {

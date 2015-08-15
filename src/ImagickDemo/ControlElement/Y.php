@@ -13,6 +13,11 @@ class Y extends ValueElement
         $this->defaultY = $defaultY;
         parent::__construct($variableMap);
     }
+    
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
 
     protected function getDefault()
     {

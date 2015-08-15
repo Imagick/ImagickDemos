@@ -16,6 +16,8 @@ abstract class ValueElement implements ControlElement
 
     abstract protected function getDisplayName();
 
+    abstract protected function filterValue($value);
+    
     private $value;
 
     public function __construct(VariableMap $variableMap)
@@ -44,11 +46,6 @@ abstract class ValueElement implements ControlElement
         }
 
         $this->value = $this->filterValue($value);
-    }
-
-    protected function filterValue($value)
-    {
-        return $value;
     }
 
     protected function getValue()

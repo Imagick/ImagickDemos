@@ -4,6 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class HighThreshold extends ValueElement
 {
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+    
     protected function getDefault()
     {
         return 0.9;

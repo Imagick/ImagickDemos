@@ -9,6 +9,6 @@ interface Nav
     public function renderPreviousLink();
     public function renderNextLink();
     public function renderNav();
-    public function getCategory();
+    //public function getCategory();
     public function renderSelect();
 }

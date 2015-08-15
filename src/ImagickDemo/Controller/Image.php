@@ -134,10 +134,8 @@ class Image
     }
 
 
-    public function getImageResponse(
-        \ImagickDemo\Control $control,
-        VariableMap $variableMap
-    ) {
+    public function getImageResponse(\ImagickDemo\Control $control)
+    {
         $params = $control->getFullParams([]);
         $params['customImage'] = false;
         $injectionParams = InjectionParams::fromParams(

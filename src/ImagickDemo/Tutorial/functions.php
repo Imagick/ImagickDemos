@@ -672,6 +672,11 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
 
     $width = 500;
     $height = $width;
+    
+    $numberDots = intval($numberDots);
+    if ($numberDots < 1) {
+        $numberDots = 1;
+    }
 
     $maxFrames = $numberFrames;
     $frameDelay = ceil($loopTime / $maxFrames);

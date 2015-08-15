@@ -21,7 +21,7 @@ class ArtifactExample extends OptionKeyElement
 
     public function getOptions()
     {
-        return \ImagickDemo\Imagick\setImageArtifact::getExamples();
+        return [];//\ImagickDemo\Imagick\setImageArtifact::getExamples();
     }
 
     public function getArtifactExample()

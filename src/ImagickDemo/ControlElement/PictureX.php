@@ -13,6 +13,11 @@ class PictureX extends ValueElement
         $this->defaultX = $defaultX;
         parent::__construct($variableMap);
     }
+    
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
 
     protected function getDefault()
     {

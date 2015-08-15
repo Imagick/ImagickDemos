@@ -13,6 +13,11 @@ class G extends ValueElement
         $this->defaultGreen = $defaultG;
         parent::__construct($variableMap);
     }
+    
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
 
     protected function getDefault()
     {

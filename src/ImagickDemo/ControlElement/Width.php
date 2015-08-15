@@ -39,6 +39,11 @@ class Width extends ValueElement
     {
         return 'Width';
     }
+    
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
 
     public function getWidth()
     {

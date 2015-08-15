@@ -28,6 +28,11 @@ class StartY extends ValueElement
     {
         return 'Start Y';
     }
+    
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
 
     public function getStartY()
     {

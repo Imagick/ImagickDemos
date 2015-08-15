@@ -4,6 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class Alpha extends ValueElement
 {
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
+    
     protected function getDefault()
     {
         return 0;

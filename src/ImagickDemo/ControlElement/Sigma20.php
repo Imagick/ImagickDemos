@@ -4,6 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class Sigma20 extends ValueElement
 {
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+    
     protected function getDefault()
     {
         return 20;

@@ -4,6 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class MeanOffset extends ValueElement
 {
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+
     protected function getDefault()
     {
         return 5;

@@ -63,7 +63,7 @@ class YuiFilePacker implements FilePacker
         $outputFilename = str_replace(array(',', '.', '/', '\\', '%2F'), '_', $jsInclude);
         $outputFilename = mb_substr($outputFilename, 0, 64).'_'.md5($outputFilename);
 
-        return $this->cachePath."/cache/filepacker/".$outputFilename.".".$extension;
+        return $this->cachePath."/filepacker/".$outputFilename.".".$extension;
     }
     
     public function pack($jsIncludeArray, $appendLine, $extension)

@@ -4,7 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class Width5 extends ValueElement
 {
-
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+    
     protected function getDefault()
     {
         return 5;

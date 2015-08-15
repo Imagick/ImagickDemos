@@ -39,6 +39,11 @@ class Height extends ValueElement
         return 'Height';
     }
 
+    protected function filterValue($value)
+    {
+        return intval($value);
+    }
+    
     public function getHeight()
     {
         return $this->getValue();

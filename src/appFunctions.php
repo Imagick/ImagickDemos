@@ -19,6 +19,7 @@ use Tier\ResponseBody\FileResponseIMFactory;
 use ImagickDemo\Queue\ImagickTaskQueue;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
+use ImagickDemo\Navigation\CategoryInfo;
 
 //yolo - We use a global to allow us to do a hack to make all the code examples
 //appear to use the standard 'header' function, but also capture the content type 
@@ -197,9 +198,9 @@ function prepareJigConverter(JigConverter $jigConverter, $injector)
 
 }
 
-function createControl(CategoryNav $categoryNav, Injector $injector)
+function createControl(PageInfo $pageInfo, Injector $injector)
 {
-    list($controlClassname, $params) = $categoryNav->getDIInfo();
+    list($controlClassname, $params) = CategoryInfo::getDIInfo($pageInfo);
     foreach ($params as $name => $value) {
         $injector->defineParam($name, $value);
     }
@@ -214,10 +215,9 @@ function createControl(CategoryNav $categoryNav, Injector $injector)
     return $control;
 }
 
-function createExample(CategoryNav $categoryNav, Injector $injector)
+function createExample(PageInfo $pageInfo, Injector $injector)
 {
-
-    $exampleName = $categoryNav->getImageFunctionName();
+    $exampleName = CategoryInfo::getImageFunctionName($pageInfo);
 
     return $injector->make($exampleName);
 }
@@ -303,13 +303,15 @@ function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
 }
 
 function cachedImageCallable(
-    CategoryNav $categoryNav,
+    PageInfo $pageInfo,
     Request $request,
     Response $response,
     FileResponseIMFactory $fileResponseFactory,
     $params
 ) {
-    $filename = getImageCacheFilename($categoryNav->getPageInfo(), $params);
+    $filename = getImageCacheFilename($pageInfo, $params);
+    
+    
     $extensions = ["jpg", 'jpeg', "gif", "png", ];
     
     $contentType = false;
@@ -759,9 +761,6 @@ function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
 function prepareJig(Jig $jigRender, $injector)
 {
     $jigRender->addDefaultPlugin('ImagickDemo\JigPlugin\ImagickPlugin');
-    
-    
-    
 }
 
 
@@ -778,11 +777,11 @@ function createRedisClient()
     return new \Predis\Client($redisParameters, $redisOptions);
 }
 
-function directImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector, $params)
+function directImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $params)
 {
-    $imageFunction = $categoryNav->getImageFunctionName();
+    $imageFunction = CategoryInfo::getImageFunctionName($pageInfo);
     $filename = getImageCacheFilename(
-        $categoryNav->getPageInfo(),
+        $pageInfo,
         $params
     );
 
@@ -802,11 +801,11 @@ function directImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector
     return new ImageResponse($filename, "image/".$imageType, $imageData);
 }
     
-function directCustomImageCallable(CategoryNav $categoryNav, \Auryn\Injector $injector, $params)
+function directCustomImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $params)
 {
-    $imageFunction = $categoryNav->getCustomImageFunctionName();
+    $imageFunction = CategoryInfo::getCustomImageFunctionName($pageInfo);
     $filename = getImageCacheFilename(
-        $categoryNav->getPageInfo(),
+        $pageInfo,
         $params
     );
 
@@ -830,7 +829,8 @@ function directCustomImageCallable(CategoryNav $categoryNav, \Auryn\Injector $in
 function createImageTask(
     VariableMap $variableMap,
     ImagickTaskQueue $taskQueue,
-    CategoryNav $categoryNav,
+    PageInfo $pageInfo,
+    Request $request,
     Response $response,
     $customImage,
     $params
@@ -842,9 +842,16 @@ function createImageTask(
             return false;
         }
     
-        $task = new \ImagickDemo\Queue\ImagickTask($categoryNav, $params, $customImage);
+        $task = new \ImagickDemo\Queue\ImagickTask(
+            $pageInfo,
+            $params,
+            $customImage,
+            $request->getPath()
+        );
         $taskQueue->addTask($task);
     }
+    
+    
     
     if ($variableMap->getVariable('noredirect') == true) {
         return new \ImagickDemo\Response\ErrorResponse(503, "image still processing $job is ".$job);

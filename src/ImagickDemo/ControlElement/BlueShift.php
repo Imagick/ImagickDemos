@@ -9,6 +9,11 @@ class BlueShift extends ValueElement
         return 1.5;
     }
 
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+    
     public function getMin()
     {
         return 0;

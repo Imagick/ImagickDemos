@@ -4,6 +4,11 @@ namespace ImagickDemo\ControlElement;
 
 class FourthTerm extends ValueElement
 {
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+    
     protected function getDefault()
     {
         return '';

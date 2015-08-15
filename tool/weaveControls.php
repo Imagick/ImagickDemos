@@ -134,11 +134,11 @@ $controls = [
     'ImagickDemo\Imagick\Control\floodFillPaintImage' => [
 
         'ImagickDemo\ControlElement\FillColor', //$fill,
-        'ImagickDemo\ControlElement\Fuzz', //$fuzz, 
+        'ImagickDemo\ControlElement\Fuzz', //$fuzz,
         'ImagickDemo\ControlElement\TargetColor', // $target,
         'ImagickDemo\ControlElement\PictureX',  // $x,
-        'ImagickDemo\ControlElement\PictureY',  // $y,  
-        'ImagickDemo\ControlElement\Inverse', //       $invert, 
+        'ImagickDemo\ControlElement\PictureY',  // $y,
+        'ImagickDemo\ControlElement\Inverse', //       $invert,
         'ImagickDemo\ControlElement\Channel', //$channel
     ],
 
@@ -170,8 +170,8 @@ $controls = [
         'ImagickDemo\ControlElement\LayerMethodType',
     ],
 
-        
-     'ImagickDemo\Imagick\Control\modulateImage' => [
+
+    'ImagickDemo\Imagick\Control\modulateImage' => [
          'ImagickDemo\ControlElement\Image',
          'ImagickDemo\ControlElement\ModulateHue',
          'ImagickDemo\ControlElement\ModulateSaturation',
@@ -411,7 +411,7 @@ $controls = [
         '\ImagickDemo\ControlElement\BlackPoint',
         '\ImagickDemo\ControlElement\WhitePoint',
         '\ImagickDemo\ControlElement\X',
-        '\ImagickDemo\ControlElement\Y' 
+        '\ImagickDemo\ControlElement\Y'
     ],
 
 
@@ -656,16 +656,10 @@ $controls = [
         'ImagickDemo\ControlElement\Quality',
     ],
 
-//    'ImagickDemo\Imagick\Control\ArtifactExample' => [
-//        'ImagickDemo\ControlElement\ArtifactExample',
-//    ],
-
     'ImagickDemo\Imagick\Control\setImageBias' => [
         '\ImagickDemo\ControlElement\Bias',
     ],
 
-    
-    
     'ImagickDemo\Imagick\Control\convolveImage' => [
         'ImagickDemo\ControlElement\Image',
         '\ImagickDemo\ControlElement\Bias',
@@ -743,6 +737,3 @@ foreach ($controls as $outputClassname => $components) {
         $weave->writeFile(__DIR__.'/../var/compile/');
     }
 }
-
-
- 

@@ -15,10 +15,13 @@ class RedisTaskQueue implements TaskQueue
     private $taskListKey;
     private $announceListKey;
     private $statusKey;
+    private $errorKey;
 
     private $queueName;
 
     private $taskKeyStateTime = 10;
+    
+    private $errorKeyStateTime = 604800;//(7 * 24 * 3600);
 
     const ACTIVE_TIMEOUT = 30;
     const TASK_TTL = 120;
@@ -34,6 +37,8 @@ class RedisTaskQueue implements TaskQueue
         $this->taskListKey = $queueName . '_taskList:';
         $this->announceListKey = $queueName . '_announceList:';
         $this->statusKey = $queueName . '_status:';
+        
+        $this->errorKey = $queueName . '_errors:';
     }
 
     public function clearTaskQueue()
@@ -50,12 +55,34 @@ class RedisTaskQueue implements TaskQueue
     {
         $this->clearQueue("");
     }
+    
+    public function clearErrors()
+    {
+        $this->redisClient->ltrim($this->errorKey, 100, -1);
+    }
 
     public function clearStatusQueue()
     {
         $this->clearQueue($this->statusKey);
     }
      
+    public function getErrors()
+    {
+        $jsonEntries = $this->redisClient->lrange(
+            $this->errorKey,
+            0,
+            99
+        );
+        
+        $entries = [];
+        
+        foreach ($jsonEntries as $entry) {
+            $entries[] = json_decode($entry, true);
+        }
+        
+        return $entries;
+    }
+    
     public function clearQueue($stub)
     {
         for ($x = 0; $x < 10; $x++) {
@@ -148,9 +175,19 @@ class RedisTaskQueue implements TaskQueue
      * @param Task $task
      * @return mixed
      */
-    public function errorTask(Task $task)
+    public function errorTask(Task $task, $message)
     {
         $this->setStatus($task, TaskQueue::STATE_ERROR);
+        /** @var  ImagickTask $task */
+    
+        $data = json_encode([
+            'message' => $message,
+            'uri' => $task->getUri(),
+        ]);
+        $this->redisClient->rpush(
+            $this->errorKey,
+            [$data]
+        );
     }
 
     /**

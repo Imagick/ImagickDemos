@@ -5,6 +5,7 @@ namespace ImagickDemo\Queue;
 
 use ImagickDemo\Framework\ArrayVariableMap;
 use Auryn\InjectionException;
+use ImagickDemo\Navigation\CategoryInfo;
 
 class ImagickTaskRunner
 {
@@ -81,7 +82,8 @@ class ImagickTaskRunner
                 continue;
             }
 
-            echo "A task! " . "\n";
+            echo "A task! "."\n";
+
             $endTime -= $taskPseudoTime;
 
             try {
@@ -94,13 +96,19 @@ class ImagickTaskRunner
             }
             catch (\ImagickException $ie) {
                 echo "ImagickException running the task: " . $ie->getMessage();
-                $this->taskQueue->errorTask($task);
+                $this->taskQueue->errorTask($task, get_class($ie).": ".$ie->getMessage());
             }
             catch (\Auryn\BadArgumentException $bae) {
                 //Log failed job
                 echo "BadArgumentException running the task: " . $bae->getMessage();
-                $this->taskQueue->errorTask($task);
+                $this->taskQueue->errorTask($task, get_class($bae).": ".$bae->getMessage());
             }
+            catch (\Exception $e) {
+                echo "Exception running the task: " . $e->getMessage();
+                $this->taskQueue->errorTask($task, get_class($e).": ".$e->getMessage());
+            }
+            
+            
         }
         echo "\nImagickTaskRunner exiting\n";
     }
@@ -111,14 +119,17 @@ class ImagickTaskRunner
      */
     private function execute(ImagickTask $task)
     {
-        $categoryNav = $task->getCategoryNav();
+        $pageInfo = $task->getPageInfo();
         $params = $task->getParams();
         $filename = $task->getFilename();
         $imageTypes = ['jpg', 'gif', 'png'];
 
+        echo "file base name is $filename\n";
+        
         foreach ($imageTypes as $imageType) {
             $fullFilename = $filename . "." . $imageType;
             if (file_exists($fullFilename) == true) {
+                echo "File $fullFilename already exists - skipping generation\n";
                 return;
             }
         }
@@ -135,13 +146,13 @@ class ImagickTaskRunner
         $injector->share($variableMap);
 
         if ($task->isCustomImage()) {
-            $imageFunction = $categoryNav->getCustomImageFunctionName();
+            $imageFunction = CategoryInfo::getCustomImageFunctionName($pageInfo);
         }
         else {
-            $imageFunction = $categoryNav->getImageFunctionName();
+            $imageFunction = CategoryInfo::getImageFunctionName($pageInfo);
         }
         
-        $controlClassName = $categoryNav->getControlClassName();
+        $controlClassName = CategoryInfo::getControlClassName($pageInfo);
         if ($controlClassName) {
             $injector->alias('ImagickDemo\Control', $controlClassName);
         }
@@ -157,7 +168,6 @@ class ImagickTaskRunner
             echo "InjectionException calling image function: ".var_export($imageFunction, true)."\n";
             echo "Details: ".$ie->getMessage()."\n";
         }
-
     }
 /*
 

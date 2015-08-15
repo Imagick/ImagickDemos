@@ -468,7 +468,7 @@ $injectionParams = require "injectionParams.php";
 
 foreach ($allTests as $test) {
     $injector = new \Auryn\Injector();
-    Tier\addInjectionParams($injector, $injectionParams);
+    $injectionParams->addInjectionParams($injector);
     
     list($category, $functionName, $serializedParams) = $test;
     $params = unserialize($serializedParams);
@@ -485,7 +485,7 @@ foreach ($allTests as $test) {
     
     $categoryNav = $injector->make(\ImagickDemo\Navigation\CategoryNav::class);
 
-    $exampleDefinition = $categoryNav->getExampleDefinition($category, $functionName);
+    $exampleDefinition = CategoryNav::getExampleDefinition($category, $functionName);
     $function = $exampleDefinition[0];
     $controlClass = $exampleDefinition[1];
 

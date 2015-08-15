@@ -7,7 +7,7 @@ use Arya\Request;
 use Arya\Response;
 use Arya\Body as ResponseBody;
 
-class TierApp
+class TierCliApp
 {
     /**
      * @var Tier[]

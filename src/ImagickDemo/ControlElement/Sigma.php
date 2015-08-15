@@ -14,6 +14,11 @@ class Sigma extends ValueElement
         parent::__construct($variableMap);
     }
 
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
+    
     protected function getDefault()
     {
         return 1;

@@ -1,7 +1,8 @@
 <?php
 
-
 namespace Tier;
+
+use Auryn\Injector;
 
 class InjectionParams
 {
@@ -10,19 +11,22 @@ class InjectionParams
     public $params;
     public $delegates;
     public $prepares;
+    public $defines;
 
     public function __construct(
         array $shares = [],
         array $aliases = [],
         array $delegates = [],
         array $params = [],
-        array $prepares = []
+        array $prepares = [],
+        array $defines = []
     ) {
         $this->shares = $shares;
         $this->aliases = $aliases;
         $this->delegates = $delegates;
         $this->params = $params;
         $this->prepares = $prepares;
+        $this->defines = $defines;
     }
 
     /**
@@ -52,6 +56,11 @@ class InjectionParams
     public function delegate($className, $delegate)
     {
         $this->delegates[$className] = $delegate;
+    }
+    
+    public function define($className, $params)
+    {
+        $this->defines[$className] = $params;
     }
     
     /**
@@ -94,6 +103,11 @@ class InjectionParams
         return $this->prepares;
     }
 
+    public function getDefines()
+    {
+        return $this->defines;
+    }
+
     public function mergeMocks($mocks)
     {
         $newAliases = [];
@@ -115,5 +129,38 @@ class InjectionParams
         }
 
         $this->aliases = $newAliases;
+    }
+    
+    
+    /**
+     * @param Injector $injector
+     * @param InjectionParams $injectionParams
+     * @throws \Auryn\InjectorException
+     */
+    public function addToInjector(Injector $injector)
+    {
+        foreach ($this->aliases as $original => $alias) {
+            $injector->alias($original, $alias);
+        }
+        
+        foreach ($this->shares as $share) {
+            $injector->share($share);
+        }
+        
+        foreach ($this->params as $paramName => $value) {
+            $injector->defineParam($paramName, $value);
+        }
+        
+        foreach ($this->delegates as $className => $callable) {
+            $injector->delegate($className, $callable);
+        }
+        
+        foreach ($this->prepares as $className => $callable) {
+            $injector->prepare($className, $callable);
+        }
+    
+        foreach ($this->defines as $className => $params) {
+            $injector->define($className, $params);
+        }
     }
 }

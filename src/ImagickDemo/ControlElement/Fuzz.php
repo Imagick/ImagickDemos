@@ -13,6 +13,11 @@ class Fuzz extends ValueElement
         $this->defaultFuzz = $defaultFuzz;
         parent::__construct($variableMap);
     }
+    
+    protected function filterValue($value)
+    {
+        return floatval($value);
+    }
 
     protected function getDefault()
     {

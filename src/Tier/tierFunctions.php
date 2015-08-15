@@ -96,19 +96,21 @@ function sendResponse(Request $request, Response $response, $autoAddReason = tru
         $reason = defined($reasonConstant) ? constant($reasonConstant) : '';
         $response->setReasonPhrase($reason);
     }
+    
+    if ($response->hasHeader('Date') == false) {
+         $response->addHeader("Date", gmdate("D, d M Y H:i:s", time())." UTC");
+    }
 
     $statusLine = sprintf("HTTP/%s %s", $request['SERVER_PROTOCOL'], $statusCode);
     if (isset($reason[0])) {
         $statusLine .= " {$reason}";
     }
-    
-    //TODO - always set this.
-    //$this->headers["Date"] = gmdate("D, d M Y H:i:s", time()) . " UTC";
-    
-    header($statusLine);
-    
 
-    foreach ($response->getAllHeaderLines() as $headerLine) {
+    header($statusLine);
+
+    $headers = $response->getAllHeaderLines();
+
+    foreach ($headers as $headerLine) {
         header($headerLine, $replace = false);
     }
 
@@ -127,34 +129,6 @@ function sendResponse(Request $request, Response $response, $autoAddReason = tru
     }
     else {
         //this is bad.
-    }
-}
-
-/**
- * @param Injector $injector
- * @param InjectionParams $injectionParams
- * @throws \Auryn\InjectorException
- */
-function addInjectionParams(Injector $injector, InjectionParams $injectionParams)
-{
-    foreach ($injectionParams->getAliases() as $original => $alias) {
-        $injector->alias($original, $alias);
-    }
-    
-    foreach ($injectionParams->getShares() as $share) {
-        $injector->share($share);
-    }
-    
-    foreach ($injectionParams->getParams() as $paramName => $value) {
-        $injector->defineParam($paramName, $value);
-    }
-    
-    foreach ($injectionParams->getDelegates() as $className => $callable) {
-        $injector->delegate($className, $callable);
-    }
-    
-    foreach ($injectionParams->getPrepares() as $className => $callable) {
-        $injector->prepare($className, $callable);
     }
 }
 

@@ -1173,9 +1173,10 @@ class DocHelper {
     protected \$exampleCase;
 
 
-    function __construct(\$category, \$example) {
-        \$this->categoryCase = \$category;
-        \$this->exampleCase = \$example;
+    function __construct(\ImagickDemo\Helper\PageInfo \$pageInfo)
+    {
+        \$category = \$pageInfo->getCategory();
+        \$example = \$pageInfo->getExample();
     
         \$this->category = strtolower(\$category);
         \$this->example = strtolower(\$example);

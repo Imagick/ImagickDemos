@@ -21,6 +21,14 @@
     {$scriptInclude->addCSS("syntaxhighlighter/shThemePHPStormLight")}
 
     {$scriptInclude->linkCSS() | nofilter}
+    
+    
+    <style>
+        .filter-table .quick { margin-left: 0.5em; font-size: 40px; text-decoration: none; }
+        .fitler-table .quick:hover { text-decoration: underline; }
+        td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
+    </style>
+    
 </head>
 
 <body>

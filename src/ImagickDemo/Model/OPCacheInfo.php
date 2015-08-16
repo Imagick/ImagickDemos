@@ -2,14 +2,21 @@
 
 namespace ImagickDemo\Model;
 
+use ImagickDemo\Widget\OpcacheInfoSelector;
+
 class OPCacheInfo
 {
     private $loadedFiles = false;
-    private $root = "/home/github/imagick-demos/imagick-demos";
+    private $root;
 
-    public function __construct($loadedFiles = false)
-    {
-        $this->loadedFiles = $loadedFiles;
+    public function __construct(
+        OpcacheInfoSelector $infoSelector//,
+        //VariableMap $variableMap
+    ) {
+        //$this->loadedFiles = $variableMap->getVariable('filesOnly', false);
+        
+        $this->loadedFiles = $infoSelector->getLoadedFiles();
+        $this->root = realpath(__DIR__.'/../../../');
     }
 
     private function sizeForHumans($bytes)
@@ -32,19 +39,18 @@ class OPCacheInfo
         }
 
         if ($this->loadedFiles == true) {
-            return $this->renderLoadedFiles($tableName);
+            $output = $this->renderLoadedFiles($tableName);
+        }
+        else {
+            $output = $this->renderJustOpcache($tableName);
         }
 
-        return $this->renderJustOpcache($tableName);
+        return $output;
     }
 
     public function renderJustOpcache($tableName)
     {
-        //$config = opcache_get_configuration();
         $status = opcache_get_status();
-//
-//        htmlvar_dump($status);
-//        exit(0);
 
         $scriptInfoArray = array();
 
@@ -54,7 +60,7 @@ class OPCacheInfo
             $newScriptInfo['path'] = $scriptInfo["full_path"];
 
             if (mb_strpos($scriptInfo["full_path"], $this->root) === 0) {
-                $newScriptInfo['path'] = mb_substr($scriptInfo["full_path"], mb_strlen($this->root));
+                $newScriptInfo['path'] = '.'.mb_substr($scriptInfo["full_path"], mb_strlen($this->root));
             }
 
             $newScriptInfo["memory_consumption"] = $scriptInfo["memory_consumption"];
@@ -91,20 +97,17 @@ class OPCacheInfo
             $newScriptInfo['path'] = $loadedFile;
 
             if (mb_strpos($loadedFile, $this->root) === 0) {
-                $newScriptInfo['path'] = mb_substr($loadedFile, mb_strlen($this->root));
+                $newScriptInfo['path'] = '.'.mb_substr($loadedFile, mb_strlen($this->root));
             }
             $scriptInfo[] = $newScriptInfo;
         }
 
-        $this->renderTable($tableName, $scriptInfo);
-        
-        return "";
+        return $this->renderTable($tableName, $scriptInfo);
     }
-
 
     public function renderTable($tableName, $scriptInfoArray)
     {
-        echo "<table id='$tableName' class='tablesorter' style='border-collapse:collapse; border: 2px solid #1f2f1f;'>";
+        $output = "<table id='$tableName' class='tablesorter tablefilter' style='border-collapse:collapse; border: 2px solid #1f2f1f;'>";
 
         $headers = array(
             "Size",
@@ -112,62 +115,47 @@ class OPCacheInfo
             "Filename"
         );
 
-        echo "<thead><tr>";
+        $output .= "<thead><tr>";
         foreach ($headers as $header) {
-            echo "<th style='text-align: left;'>";
-            echo $header;
-            echo "</th>";
+            $output .= "<th style='text-align: left;'>";
+            $output .= $header;
+            $output .= "</th>";
         }
 
+        $output .= "</tr><tr>";
+        $output .= "<td colspan='3' style='text-align:right; padding-right: 5px' >";
+        $output .= "<input id='opcacheFilterInput' class='form-control form-inline' type='search' placeholder='search this table' name='' style='margin-left: 3px; width: 700px; margin-top: 3px; margin-bottom: 3px; display: inline-block' >";
+        $output .= "</td>";
+        $output .= "</tr></thead>";
 
-        echo "</tr></thead>";
-
-        echo "<tbody>";
+        $output .= "<tbody>";
 
         $totalMemory = 0;
+        $totalFiles = 0;
 
         foreach ($scriptInfoArray as $scriptInfo) {
-            echo "<tr>";
-
-            echo "<td style='text-align: right' data-memory='".$scriptInfo["memory_consumption"]."'>";
-
-            echo $this->sizeForHumans($scriptInfo["memory_consumption"]);
-            echo "</td><td style='text-align: right'>";
-            echo $scriptInfo["hits"];
-            echo "</td><td>";
-
-            echo $scriptInfo["path"];
-
+            $output .= "<tr>";
+            $output .= "<td style='text-align: right' data-memory='".$scriptInfo["memory_consumption"]."'>";
+            $output .= $this->sizeForHumans($scriptInfo["memory_consumption"]);
+            $output .= "</td><td style='text-align: right'>";
+            $output .= $scriptInfo["hits"];
+            $output .= "</td><td>";
+            $output .= $scriptInfo["path"];
             $totalMemory += $scriptInfo["memory_consumption"];
-
-            echo "</td></tr>";
+            $output .= "</td></tr>";
+            
+            $totalFiles++;
         }
 
-
-//        'scripts' => ARRAY
-//        (
-//            '/home/intahwebz/intahwebz/lib/amazonWS/sdk.class.php' => ARRAY
-//            (
-//                'full_path' =>  "/home/intahwebz/intahwebz/lib/amazonWS/sdk.class.php",
-//                'hits' =>  80,
-//                'memory_consumption' =>  127624,
-//                'last_used' =>  "Mon Aug  5 15:32:31 2013",
-//                'last_used_timestamp' =>  1375716751,
-//                'timestamp' =>  1363226973,
-//            ),
-//        
-
-        echo "</tbody>";
-
-        echo "<tfoot>";
-        echo "<tr>";
-        echo "<td>" . $this->sizeForHumans($totalMemory) . "</td>";
-        echo "<td></td>";
-        echo "<td>Total memory</td>";
-        echo "</tr>";
-        echo "</tfoot>";
-        echo "</table>";
+        $output .= "</tbody>";
+        $output .= "<tfoot>";
+        $output .= "<tr>";
+        $output .= "<td colspan='2'>Total: ".$this->sizeForHumans($totalMemory)."</td>";
+        $output .= "<td>Total files: $totalFiles</td>";
+        $output .= "</tr>";
+        $output .= "</tfoot>";
+        $output .= "</table>";
         
-        return "";
+        return $output;
     }
 }

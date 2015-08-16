@@ -8,7 +8,6 @@
 
 {$scriptInclude->addJS("jquery-1.11.0.min")}
 {$scriptInclude->addJS("jquery-ui-1.10.0.custom.min")}
- 
 {$scriptInclude->addJS("colpick")}
 {$scriptInclude->addJS("jquery.fastLiveFilter")}
 {$scriptInclude->addJS("syntaxhighlighter/xregexp")}
@@ -18,10 +17,19 @@
 {$scriptInclude->addJS("AsyncImage")}
 {$scriptInclude->addJS("jQuery/jquery.tablesorter")}
 {$scriptInclude->addJS("jQuery/jquery.tablesorter.parser-metric")}
+
+
+
+
 {$scriptInclude->linkJS() | nofilter}
 
 {* Yui compressor is currently breaking this, and it's already minified.*}
 <script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/jquery.filtertable.min.js"></script>
+
+
+
 
 
 <script type="text/javascript">
@@ -90,11 +98,10 @@
         };
 
         $('#searchInput').fastLiveFilter(
-                '#searchList',
-                options
+            '#searchList',
+            options
         );
-        
-        
+
         $('#searchInput').keypress(function(e) {
             if(e.which == 13) {
                 var funcTest = function(count, element) {
@@ -115,10 +122,7 @@
         });
     });
 
-
-
-        function toggleImage(imageSelector, mouseSelector, originalURL, originalText, modifiedURL, modifiedText) {
-
+    function toggleImage(imageSelector, mouseSelector, originalURL, originalText, modifiedURL, modifiedText) {
         var newImageURL;
         var newText;
 
@@ -146,28 +150,33 @@
 
     
     function initTableSorter() {
+        var table = $("#myTable");
     
-    var table = $("#myTable");
-
-    if (table) {
-        table.tablesorter({
-            headers: {
-                0: {
-                    sorter: 'metric'
-                }/*,
-                1: {
-                    sorter: 'text'
-                } */
-            },
-            widgets: ['zebra']
-        });
+        if (table) {
+            table.tablesorter({
+                headers: {
+                    0: {
+                        sorter: 'metric'
+                    }/*,
+                    1: {
+                        sorter: 'text'
+                    } */
+                },
+                widgets: ['zebra'],
+                sortList: [[0,1]] 
+            });
+        }
     }
-    else{
-        alert("table not found");
-    }
-}
 
     initTableSorter();
+    
+    // https://sunnywalker.github.io/jQuery.FilterTable/
+    var options = {
+        minRows: 1,
+        inputSelector: '#opcacheFilterInput',
+    };
+
+    $('.tablefilter').filterTable(options);
     
     //$(window).bind("pageshow", function() {
     // use this to reset form for back button cleanup

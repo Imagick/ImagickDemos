@@ -10,14 +10,14 @@ class ServerInfo
     {
         $injectionParams = InjectionParams::fromParams([]);
 
-        return getRenderTemplateTier($injectionParams, 'serverInfo');
+        return getRenderTemplateTier($injectionParams, 'admin/opcacheInfo');
     }
 
     public function serverSettings()
     {
         $injectionParams = InjectionParams::fromParams([]);
 
-        return getRenderTemplateTier($injectionParams, 'serverSettings');
+        return getRenderTemplateTier($injectionParams, 'admin/serverSettings');
     }
     
     
@@ -25,6 +25,6 @@ class ServerInfo
     {
         $injectionParams = InjectionParams::fromParams([]);
 
-        return getRenderTemplateTier($injectionParams, 'fpmStatus');
+        return getRenderTemplateTier($injectionParams, 'admin/fpmStatus');
     }
 }

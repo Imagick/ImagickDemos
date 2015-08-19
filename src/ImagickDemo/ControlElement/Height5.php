@@ -16,7 +16,7 @@ class Height5 extends ValueElement
 
     protected function getMin()
     {
-        return 0;
+        return 1;
     }
 
     protected function getMax()

@@ -1719,10 +1719,31 @@ function rollImage($imagePath, $rollX, $rollY)
 //Example end
 
 //Example Imagick::rotateImage
-function rotateImage($imagePath, $angle, $color)
+function rotateImage($imagePath, $angle, $color, $crop)
 {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick->rotateimage($color, $angle);
+    
+    $originalWidth = $imagick->getImageWidth();
+    $originalHeight = $imagick->getImageHeight();
+    
+    $imagick->rotateImage($color, $angle);
+    
+    if ($crop) {
+        $imagick->setImagePage(
+            $imagick->getimageWidth(),
+            $imagick->getimageheight(),
+            0,
+            0
+        );
+
+        $imagick->cropImage(
+            $originalWidth,
+            $originalHeight,
+            ($imagick->getimageWidth() - $originalWidth) / 2,
+            ($imagick->getimageHeight() - $originalHeight) / 2
+        );
+    }
+
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

@@ -250,6 +250,7 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\Angle',
         'ImagickDemo\ControlElement\Color',
+        'ImagickDemo\ControlElement\Crop',
     ],
 
     'ImagickDemo\Imagick\Control\quantizeImage' => [

@@ -1,6 +1,7 @@
  {
     "name": "danack/imagick-demos",
- 
+
+    "license": "MIT",
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.3.3"
     },

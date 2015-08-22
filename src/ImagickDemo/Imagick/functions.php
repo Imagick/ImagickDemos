@@ -3,7 +3,7 @@
 namespace ImagickDemo\Imagick;
  
 use Imagick;
-use Tier\ResponseBody\FileResponseIMFactory;
+use Tier\ResponseBody\CachingFileResponseFactory;
 
 class functions
 {
@@ -29,14 +29,16 @@ function header($string, $replace = true, $http_response_code = null)
         $imageType = substr($string, strlen("Content-Type: image/"));
     }
     
-    if ($cacheImages == false) {
-        if (php_sapi_name() !== 'cli') {
-            \header($string, $replace, $http_response_code);
-        }
-    }
+//    if ($cacheImages == false) {
+//        if (php_sapi_name() !== 'cli') {
+//            \header($string, $replace, $http_response_code);
+//        }
+//    }
+    
+    
 }
     
-function renderFile(FileResponseIMFactory $fileResponseFactory, $filename)
+function renderFile(CachingFileResponseFactory $fileResponseFactory, $filename)
 {
     return $fileResponseFactory->create($filename, "image/jpg");
 }
@@ -325,18 +327,18 @@ function coalesceImages()
 //Example Imagick::colorDecisionListImage
 function colorDecisionListImage($imagePath)
 {
-    $colorList = '<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
-    <ColorCorrection id="cc03345">
-          <SOPNode>
-               <Slope> 0.9 1.2 0.5 </Slope>
-               <Offset> 0.4 -0.5 0.6 </Offset>
-               <Power> 1.0 0.8 1.5 </Power>
-          </SOPNode>
-          <SATNode>
-               <Saturation> 0.85 </Saturation>
-          </SATNode>
-    </ColorCorrection>
-    </ColorCorrectionCollection>';
+//    $colorList = '<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
+//    <ColorCorrection id="cc03345">
+//          <SOPNode>
+//               <Slope> 0.9 1.2 0.5 </Slope>
+//               <Offset> 0.4 -0.5 0.6 </Offset>
+//               <Power> 1.0 0.8 1.5 </Power>
+//          </SOPNode>
+//          <SATNode>
+//               <Saturation> 0.85 </Saturation>
+//          </SATNode>
+//    </ColorCorrection>
+//    </ColorCorrectionCollection>';
 
     $imagick = new \Imagick(realpath($imagePath));
 
@@ -1225,23 +1227,25 @@ function medianFilterImage($radius, $imagePath)
 function mergeImageLayers($layerMethodType)
 {
     //$imagick = new \Imagick(realpath("images/LayerTest.psd"));
-    $imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
+    //$imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
+    $imagick = new \Imagick(realpath("../imagick/images/redDiscAlpha.png"));
     
     
 //    
 //    $imagick = new \Imagick();
-//    $whiteDisc = new \Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
-//    $imagick->addImage($whiteDisc);
+    $blueDisc = new \Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
+    $imagick->addImage($blueDisc);
 //    
-//    $whiteDisc = new \Imagick(realpath("../imagick/images/redDiscAlpha.png"));
+
 //    $imagick->addImage($whiteDisc);
     
-    $whiteDisc = new \Imagick(realpath("../imagick/images/greenDiscAlpha.png"));
-    $imagick->addImage($whiteDisc);
+    $greenDisc = new \Imagick(realpath("../imagick/images/greenDiscAlpha.png"));
+    $imagick->addImage($greenDisc);
     $imagick->setImageFormat('png');
 
     $result = $imagick->mergeImageLayers($layerMethodType);
     header("Content-Type: image/png");
+
     echo $result->getImageBlob();
 }
 //Example end

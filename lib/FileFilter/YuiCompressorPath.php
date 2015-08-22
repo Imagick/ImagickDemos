@@ -1,7 +1,9 @@
 <?php
 
 
-namespace Tier\Path;
+namespace FileFilter;
+
+use Tier\Path;
 
 class YuiCompressorPath
 {

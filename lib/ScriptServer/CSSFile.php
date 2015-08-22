@@ -20,10 +20,10 @@ class CSSFile
      * Media queries look a little like:
      *    screen and (min-width: 1280px), print and (min-resolution: 300dpi)
      */
-    function __construct($file, $mediaQuery)
+    public function __construct($file, $mediaQuery)
     {
         $this->file = $file;
-        $this->mediaQuery = $mediaQuery;        
+        $this->mediaQuery = $mediaQuery;
     }
 
     /**
@@ -42,7 +42,7 @@ class CSSFile
         return $this->mediaQuery;
     }
 
-    function render($jsVersion)
+    public function render($jsVersion)
     {
         $mediaString = '';
 
@@ -58,5 +58,3 @@ class CSSFile
         );
     }
 }
-
- 

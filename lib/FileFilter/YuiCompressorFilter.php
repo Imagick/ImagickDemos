@@ -2,11 +2,8 @@
 
 namespace FileFilter;
 
-use Tier\Path\YuiCompressorPath;
-
 class YuiCompressorFilter extends FileFilter
 {
-
     /**
      * @var YuiCompressorPath
      */
@@ -18,7 +15,8 @@ class YuiCompressorFilter extends FileFilter
      * @param YuiCompressorPath $yuiCommpressorPath
      * @param int $filterUpdateMode
      */
-    function __construct(FileFilter $previousFilter, 
+    public function __construct(
+        FileFilter $previousFilter,
         $destFile,
         YuiCompressorPath $yuiCommpressorPath,
         $filterUpdateMode = FileFilter::CHECK_EXISTS_MTIME_AND_PREVIOUS
@@ -33,7 +31,8 @@ class YuiCompressorFilter extends FileFilter
     /**
      * @param $tempMinifiedFilename
      */
-    function filter($tempMinifiedFilename) {
+    public function filter($tempMinifiedFilename)
+    {
         $originalFilename = $this->srcFile->getPath();
         $jarPath = $this->yuiCommpressorPath->getPath();
         $command = "java -jar $jarPath --line-break 200 $originalFilename -o $tempMinifiedFilename";
@@ -50,5 +49,3 @@ class YuiCompressorFilter extends FileFilter
         }
     }
 }
-
- 

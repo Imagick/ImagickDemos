@@ -3,10 +3,11 @@
 namespace ImagickDemo;
 
 use Auryn\Injector;
-use Tier\Caching\Caching;
-use Tier\Caching\CachingDisabled;
-use Tier\Caching\CachingRevalidate;
-use Tier\Caching\CachingTime;
+
+use Room11\Caching\LastModifiedStrategy;
+use Room11\Caching\LastModified\Disabled as CachingDisabled;
+use Room11\Caching\LastModified\Revalidate as CachingRevalidate;
+use Room11\Caching\LastModified\Time as CachingTime;
 use Tier\TierException;
 use ScriptServer\Value\ScriptVersion;
 
@@ -96,15 +97,14 @@ class Config
     public function createCaching()
     {
         $cacheSetting = self::getEnv(Config::CACHING_SETTING);
-
         switch ($cacheSetting) {
-            case Caching::CACHING_DISABLED: {
+            case LastModifiedStrategy::CACHING_DISABLED: {
                 return new CachingDisabled();
             }
-            case Caching::CACHING_REVALIDATE: {
+            case LastModifiedStrategy::CACHING_REVALIDATE: {
                 return new CachingRevalidate(3600 * 2, 3600);
             }
-            case Caching::CACHING_TIME: {
+            case LastModifiedStrategy::CACHING_TIME: {
                 return new CachingTime(3600 * 10, 3600);
             }
             default: {

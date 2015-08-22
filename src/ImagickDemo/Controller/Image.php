@@ -2,8 +2,6 @@
 
 namespace ImagickDemo\Controller;
 
-use ImagickDemo\Framework\VariableMap;
-
 use ImagickDemo\Response\JsonResponse;
 
 use ImagickDemo\Helper\PageInfo;
@@ -11,7 +9,7 @@ use ImagickDemo\Example;
 use ImagickDemo\Control;
 use Tier\InjectionParams;
 use Tier\Tier;
-use Tier\ResponseBody\FileResponseIMFactory;
+use Tier\ResponseBody\CachingFileResponseFactory;
 
 use Arya\JsonBody;
 
@@ -61,11 +59,11 @@ class Image
     
     public function getOriginalImage(
         Example $example,
-        FileResponseIMFactory $fileResponseIMFactory
+        CachingFileResponseFactory $fileResponseFactory
     ) {
         $filename = $example->getOriginalFilename();
 
-        return $fileResponseIMFactory->create($filename, "image/jpg");
+        return $fileResponseFactory->create($filename, "image/jpg");
     }
     
     /**
@@ -146,7 +144,7 @@ class Image
         );
         $tiers = [];
         $tiers[] = new Tier('cachedImageCallable', $injectionParams);
-        $tiers[] = new Tier('createImageTask');
+        //$tiers[] = new Tier('createImageTask');
         $tiers[] = new Tier('directImageCallable');
 
         return $tiers;

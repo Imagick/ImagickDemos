@@ -4,8 +4,8 @@ namespace FileFilter;
 
 use Psr\Log\LoggerInterface;
 
-class ClosureCompilerFilter extends  FileFilter{
-
+class ClosureCompilerFilter extends FileFilter
+{
     /**
      * @var \Psr\Log\LoggerInterface
      */
@@ -21,7 +21,8 @@ class ClosureCompilerFilter extends  FileFilter{
      */
     private $externalLibPath;
 
-    function __construct(FileFilter $previousFilter, 
+    public function __construct(
+        FileFilter $previousFilter,
         LoggerInterface $logger,
         $externalLibPath,
         $storagePath,
@@ -37,8 +38,8 @@ class ClosureCompilerFilter extends  FileFilter{
         $this->filterUpdateMode = $filterUpdateMode;
     }
 
-    function filter($tempMinifiedFilename) {
-
+    public function filter($tempMinifiedFilename)
+    {
         $originalFilename = $this->srcFile->getPath();
         $jarPath = $this->externalLibPath.'/closurecompiler/compiler.jar';
         $command = "java -jar $jarPath --warning_level QUIET --language_in ECMASCRIPT5 --compilation_level SIMPLE_OPTIMIZATIONS --js $originalFilename --js_output_file $tempMinifiedFilename";
@@ -68,5 +69,3 @@ class ClosureCompilerFilter extends  FileFilter{
         }
     }
 }
-
- 

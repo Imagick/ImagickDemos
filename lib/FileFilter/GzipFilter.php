@@ -6,7 +6,7 @@ use Tier\File;
 
 class GzipFilter extends FileFilter
 {
-    function __construct(
+    public function __construct(
         FileFilter $previousFilter,
         File $outputFile,
         $filterUpdateMode = FileFilter::CHECK_EXISTS_MTIME_AND_PREVIOUS
@@ -17,7 +17,8 @@ class GzipFilter extends FileFilter
         $this->filterUpdateMode = $filterUpdateMode;
     }
 
-    function filter($tmpName) {
+    public function filter($tmpName)
+    {
 
         $safeMinifiedFilename = escapeshellarg($this->srcFile->getPath());
         $safeGzipFilename = escapeshellarg($tmpName);

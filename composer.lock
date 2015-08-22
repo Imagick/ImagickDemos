@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "677b8117871d72a6e706e5adb4466ff3",
+    "hash": "6f64c9f0d66379f58b6f5a8d2e667395",
     "packages": [
         {
             "name": "amphp/amp",
@@ -267,16 +267,16 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.15.1",
+            "version": "0.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "6b31fb7a305daf5f5a29bae917445503a6905b04"
+                "reference": "12a555ef2eaf0252f32b087f017207a6cdbde01b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/6b31fb7a305daf5f5a29bae917445503a6905b04",
-                "reference": "6b31fb7a305daf5f5a29bae917445503a6905b04",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/12a555ef2eaf0252f32b087f017207a6cdbde01b",
+                "reference": "12a555ef2eaf0252f32b087f017207a6cdbde01b",
                 "shasum": ""
             },
             "require": {
@@ -295,6 +295,7 @@
                     "Jig": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -312,11 +313,7 @@
                 "template",
                 "view"
             ],
-            "support": {
-                "source": "https://github.com/Danack/Jig/tree/0.15.1",
-                "issues": "https://github.com/Danack/Jig/issues"
-            },
-            "time": "2015-08-04 23:30:13"
+            "time": "2015-08-18 21:12:17"
         },
         {
             "name": "danack/syntaxhighlighter",
@@ -341,6 +338,54 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "The syntaxhighlighter made less crazy..",
             "time": "2014-11-09 14:09:46"
+        },
+        {
+            "name": "danack/tier",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/Tier.git",
+                "reference": "4a22f645ac07185ee2f2b6a3d08aee4dc281be99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/4a22f645ac07185ee2f2b6a3d08aee4dc281be99",
+                "reference": "4a22f645ac07185ee2f2b6a3d08aee4dc281be99",
+                "shasum": ""
+            },
+            "require": {
+                "rdlowrey/arya": "dev-master",
+                "rdlowrey/auryn": "1.0.2 as 0.14.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.1",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Tier": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "An example of how to implement an application using DI with tiers",
+            "keywords": [
+                "application",
+                "auryn",
+                "di",
+                "example"
+            ],
+            "time": "2015-08-19 00:47:45"
         },
         {
             "name": "daverandom/libdns",
@@ -419,21 +464,21 @@
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.2.5",
+            "version": "0.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "13576b7967386ac5f35f0146133dbe0af610f100"
+                "reference": "0299fae800710ab0d2a70ee58bea5f8939625177"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/13576b7967386ac5f35f0146133dbe0af610f100",
-                "reference": "13576b7967386ac5f35f0146133dbe0af610f100",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/0299fae800710ab0d2a70ee58bea5f8939625177",
+                "reference": "0299fae800710ab0d2a70ee58bea5f8939625177",
                 "shasum": ""
             },
             "require": {
                 "danack/console": "^2.6.1",
-                "rdlowrey/auryn": "^0.15.2"
+                "rdlowrey/auryn": "^1.0.2"
             },
             "require-dev": {
                 "mikey179/vfsstream": "^1.4.0",
@@ -467,7 +512,7 @@
                 "tool",
                 "utf-8"
             ],
-            "time": "2015-07-06 16:49:21"
+            "time": "2015-08-19 00:56:16"
         },
         {
             "name": "intahwebz/core",
@@ -1020,17 +1065,66 @@
             "time": "2012-12-21 11:40:51"
         },
         {
-            "name": "rdlowrey/auryn",
-            "version": "v1.0.1",
+            "name": "rdlowrey/arya",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rdlowrey/auryn.git",
-                "reference": "cfce81b3a979452364eff22b9bb5c51cfba7ed12"
+                "url": "https://github.com/rdlowrey/Arya.git",
+                "reference": "7a110ded0c4c247c12855ad30427a1f5f7008349"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/cfce81b3a979452364eff22b9bb5c51cfba7ed12",
-                "reference": "cfce81b3a979452364eff22b9bb5c51cfba7ed12",
+                "url": "https://api.github.com/repos/rdlowrey/Arya/zipball/7a110ded0c4c247c12855ad30427a1f5f7008349",
+                "reference": "7a110ded0c4c247c12855ad30427a1f5f7008349",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/fast-route": "~0.2.0",
+                "php": ">=5.4.0",
+                "rdlowrey/auryn": "~0.14.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7",
+                "rdlowrey/artax": "~0.6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Arya\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Lowrey",
+                    "email": "rdlowrey@gmail.com",
+                    "role": "Creator / Lead Developer"
+                }
+            ],
+            "description": "A microframework for PHP 5.4+",
+            "homepage": "https://github.com/rdlowrey/Arya",
+            "keywords": [
+                "dependency-injection",
+                "microframework",
+                "routing"
+            ],
+            "time": "2015-07-29 12:25:01"
+        },
+        {
+            "name": "rdlowrey/auryn",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rdlowrey/auryn.git",
+                "reference": "70744560af9fea36f5c7f930b8cadc4586ff1944"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/70744560af9fea36f5c7f930b8cadc4586ff1944",
+                "reference": "70744560af9fea36f5c7f930b8cadc4586ff1944",
                 "shasum": ""
             },
             "require": {
@@ -1078,7 +1172,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2015-07-26 16:16:05"
+            "time": "2015-08-12 02:24:20"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1131,6 +1225,89 @@
                 "tls"
             ],
             "time": "2014-12-08 17:19:17"
+        },
+        {
+            "name": "room11/caching",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "http://www.github.com/danack/caching",
+                "reference": "047f914ee2b1272c5692cfa70fcc68c780037165"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.5",
+                "rdlowrey/auryn": "^1.0.2",
+                "squizlabs/php_codesniffer": "^2.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Room11/HTTP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "A set of interfaces and standard implementations to allow sweet sweet interoperability.",
+            "keywords": [
+                "caching",
+                "http",
+                "interface",
+                "room11"
+            ],
+            "time": "2015-08-20 14:52:42"
+        },
+        {
+            "name": "room11/http",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/HTTP.git",
+                "reference": "7ab905b96263d5d95eeec07fbbf3c0bee23c42ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/HTTP/zipball/7ab905b96263d5d95eeec07fbbf3c0bee23c42ba",
+                "reference": "7ab905b96263d5d95eeec07fbbf3c0bee23c42ba",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.5",
+                "rdlowrey/auryn": "^1.0.2",
+                "squizlabs/php_codesniffer": "^2.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Room11/HTTP": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Ackroyd",
+                    "email": "Danack@basereality.com",
+                    "homepage": "http://www.basereality.com"
+                }
+            ],
+            "description": "A set of interfaces and standard implementations to allow sweet sweet interoperability.",
+            "keywords": [
+                "http",
+                "interface",
+                "room11"
+            ],
+            "time": "2015-08-19 13:43:55"
         }
     ],
     "packages-dev": [
@@ -1211,16 +1388,20 @@
     ],
     "aliases": [
         {
-            "alias": "0.15.3",
-            "alias_normalized": "0.15.3.0",
-            "version": "1.0.1.0",
+            "alias": "0.14.0",
+            "alias_normalized": "0.14.0.0",
+            "version": "1.0.2.0",
             "package": "rdlowrey/auryn"
+        },
+        {
+            "alias": "0.2.8",
+            "alias_normalized": "0.2.8.0",
+            "version": "0.3.0.0",
+            "package": "nikic/fast-route"
         }
     ],
-    "minimum-stability": "stable",
-    "stability-flags": {
-        "amphp/artax": 5
-    },
+    "minimum-stability": "dev",
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

@@ -9,12 +9,8 @@ class OPCacheInfo
     private $loadedFiles = false;
     private $root;
 
-    public function __construct(
-        OpcacheInfoSelector $infoSelector//,
-        //VariableMap $variableMap
-    ) {
-        //$this->loadedFiles = $variableMap->getVariable('filesOnly', false);
-        
+    public function __construct(OpcacheInfoSelector $infoSelector)
+    {
         $this->loadedFiles = $infoSelector->getLoadedFiles();
         $this->root = realpath(__DIR__.'/../../../');
     }

@@ -4,7 +4,6 @@ namespace FileFilter;
 
 use Tier\File;
 
-
 function correctUmask($filename)
 {
     $umask = umask();
@@ -20,8 +19,8 @@ function saveTmpFile($tmpName, $destFilename)
     //@unlink($tmpName);
 }
 
-abstract class FileFilter {
-
+abstract class FileFilter
+{
     const ALWAYS_UPDATE     = 0x1;
     const NEVER_UPDATE      = 0x2;
     const CHECK_MTIME       = 0x4;
@@ -34,7 +33,7 @@ abstract class FileFilter {
     
     /**
      * @var FileFilter
-     * 
+     *
      */
     protected $previousFilter;
     
@@ -57,9 +56,10 @@ abstract class FileFilter {
      * @param $tmpName
      * @return File
      */
-    abstract function filter($tmpName);
+    abstract public function filter($tmpName);
     
-    function srcModified() {
+    public function srcModified()
+    {
         $destTime = @filemtime($this->destFile->getPath());
         $sourceTime = @filemtime($this->srcFile->getPath());
 
@@ -73,7 +73,8 @@ abstract class FileFilter {
     /**
      * @return bool
      */
-    function requiresUpdate() {
+    public function requiresUpdate()
+    {
         if ($this->updateMode & FileFilter::ALWAYS_UPDATE) {
             return true;
         }
@@ -103,14 +104,16 @@ abstract class FileFilter {
     /**
      * @return File
      */
-    function getFile() {
+    public function getFile()
+    {
         return $this->destFile;
     }
 
     /**
      * @return File
      */
-    function process() {
+    public function process()
+    {
         if ($this->requiresUpdate() == true) {
             if ($this->previousFilter != null) {
                 $this->previousFilter->process();
@@ -121,5 +124,3 @@ abstract class FileFilter {
         }
     }
 }
-
- 

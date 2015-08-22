@@ -5,13 +5,13 @@ define('COMPOSER_OPCACHE_OPTIMIZE', true);
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__ . '/../src/appFunctions.php';
-require __DIR__ . "/./Tier/tierFunctions.php";
+require __DIR__ . "/../vendor/danack/Tier/src/Tier/tierFunctions.php";
 
-use Arya\Request;
+use Auryn\InjectionException;
 use Tier\Tier;
 use Tier\TierApp;
 use Tier\ResponseBody\ExceptionHtmlBody;
-use Auryn\InjectionException;
+use Room11\HTTP\Request\Request;
 
 \Intahwebz\Functions::load();
 
@@ -19,6 +19,8 @@ register_shutdown_function('fatalErrorShutdownHandler');
 set_exception_handler('exceptionHandler');
 set_error_handler('errorHandler');
 
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
 
 $injectionParams = require "injectionParams.php";
 

@@ -18,8 +18,6 @@ class QueueInfo
 
     public function createResponse()
     {
-        $injectionParams = InjectionParams::fromParams([]);
-
-        return getRenderTemplateTier($injectionParams, 'admin/queueInfo');
+        return createRenderTemplateTier('admin/queueInfo');
     }
 }

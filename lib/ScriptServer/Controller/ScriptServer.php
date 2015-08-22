@@ -6,10 +6,14 @@ use Tier\ResponseBody\FileResponseIM as FileResponse;
 use Tier\Path\WebRootPath;
 use Tier\ResponseBody\FileResponseCreator;
 use FilePacker\FilePacker;
-use Arya\Request;
-use Arya\Response;
-use Tier\ResponseBody\EmptyBody;
-use Tier\ResponseBody\FileResponseIMFactory;
+//use Arya\Request;
+//use Arya\Response;
+
+use Room11\HTTP\Request;
+use Room11\HTTP\Response;
+
+use Room11\HTTP\Body\EmptyBody;
+use Tier\ResponseBody\CachingFileResponseFactory;
 
 function extractItems($cssInclude)
 {
@@ -74,7 +78,7 @@ class ScriptServer
     
     public function __construct(
         Response $response,
-        FileResponseIMFactory $fileResponseFactory,
+        CachingFileResponseFactory $fileResponseFactory,
         FilePacker $filePacker,
         WebRootPath $webRootPath
     ) {
@@ -174,7 +178,7 @@ class ScriptServer
     
     public function getPackedFiles(Request $request, $jsIncludeArray, $appendLine, $contentType, $extension)
     {
-        $finalFilename = $this->filePacker->getFinalFilename($jsIncludeArray, $extension);        
+        $finalFilename = $this->filePacker->getFinalFilename($jsIncludeArray, $extension);
         $notModifiedHeader = checkIfModifiedHeader(
             $request,
             @filemtime($finalFilename)

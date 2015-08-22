@@ -1,11 +1,11 @@
 <?php
 
-
 namespace FileFilter;
+
 use Tier\File;
 
-class ConcatenatingFilter extends FileFilter  {
-
+class ConcatenatingFilter extends FileFilter
+{
     private $prependString;
 
     /**
@@ -17,7 +17,7 @@ class ConcatenatingFilter extends FileFilter  {
      * @param $jsInclude
      * @param $extension
      */
-    function __construct(
+    public function __construct(
         File $outputFile,
         array $jsIncludeArray,
         $prependString = null,
@@ -32,7 +32,8 @@ class ConcatenatingFilter extends FileFilter  {
     /**
      * @return bool
      */
-    function srcModified() {
+    public function srcModified()
+    {
         $destTime = filemtime($this->destFile->getPath());
         foreach ($this->jsIncludeArray as $jsFileToInclude) {
             $sourceTime = filemtime($jsFileToInclude);
@@ -48,8 +49,8 @@ class ConcatenatingFilter extends FileFilter  {
      * @return \Intahwebz\File|void
      * @throws \Exception
      */
-    function filter($tempFilename) {
-
+    public function filter($tempFilename)
+    {
         $fileHandle = fopen($tempFilename, 'w');
 
         foreach ($this->jsIncludeArray as $jsFileToInclude) {
@@ -80,5 +81,3 @@ class ConcatenatingFilter extends FileFilter  {
         fclose($fileHandle);
     }
 }
-
- 

@@ -3,6 +3,7 @@
 
 namespace Intahwebz\FileFilter;
 
+// TODO - this probably shouldn't be in a standard library.
 use Intahwebz\Storage\Storage;
 use Intahwebz\File;
 
@@ -17,10 +18,10 @@ class StorageDownloadFilter extends FileFilter
     
     private $bucket;
 
-    function __construct(
-        Storage $storage, 
+    public function __construct(
+        Storage $storage,
         File $destFile,
-        $bucket, 
+        $bucket,
         $storageFilename,
         $filterUpdateMode = FileFilter::CHECK_EXISTS_AND_PREVIOUS
     ) {
@@ -31,11 +32,13 @@ class StorageDownloadFilter extends FileFilter
         $this->storageFilename = $storageFilename;
     }
 
-    function filter($tmpName) {
+    public function filter($tmpName)
+    {
         $this->storage->downloadFileFromS3Bucket($this->bucket, $this->storageFilename, $tmpName);
     }
 
-    function srcModified() {
+    public function srcModified()
+    {
         $destPath = $this->destFile->getPath();
         
         if (@file_exists($destPath) == false) {
@@ -47,8 +50,6 @@ class StorageDownloadFilter extends FileFilter
             return true;
         }
 
-        return false;   
+        return false;
     }
 }
-
- 

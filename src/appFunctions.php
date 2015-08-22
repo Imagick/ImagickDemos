@@ -1,25 +1,25 @@
 <?php
 
-use Arya\TextBody;
-use ImagickDemo\Framework\VariableMap;
-use ImagickDemo\Response\RedirectResponse;
-use Predis\Client as RedisClient;
+
+use Room11\HTTP\Request;
+use Room11\HTTP\Response;
+use Room11\HTTP\Body;
 use Auryn\Injector;
-use Jig\Jig;
-use Jig\Converter\JigConverter;
-use Tier\ResponseBody\EmptyBody;
-use Tier\Tier;
-use Tier\ResponseBody\HtmlBody;
-use Tier\InjectionParams;
-use Jig\JigConfig;
-use Arya\Request;
-use Arya\Response;
-use Tier\ResponseBody\ImageResponse;
-use Tier\ResponseBody\FileResponseIMFactory;
-use ImagickDemo\Queue\ImagickTaskQueue;
+use ImagickDemo\Framework\VariableMap;
 use ImagickDemo\Helper\PageInfo;
-use ImagickDemo\Navigation\CategoryNav;
 use ImagickDemo\Navigation\CategoryInfo;
+use ImagickDemo\Queue\ImagickTaskQueue;
+use Jig\Converter\JigConverter;
+use Jig\Jig;
+use Jig\JigConfig;
+use Predis\Client as RedisClient;
+use Room11\HTTP\Body\DataBody;
+use Room11\HTTP\Body\EmptyBody;
+use Room11\HTTP\Body\HtmlBody;
+use Room11\HTTP\Body\TextBody;
+use Tier\InjectionParams;
+use Tier\ResponseBody\CachingFileResponseFactory;
+use Tier\Tier;
 
 //yolo - We use a global to allow us to do a hack to make all the code examples
 //appear to use the standard 'header' function, but also capture the content type 
@@ -94,6 +94,7 @@ function errorHandler($errno, $errstr, $errfile, $errline)
     }
 
     $message =  "$errorType: [$errno] $errstr in file $errfile on line $errline";
+
     throw new \LogicException($message);
 }
 
@@ -110,11 +111,11 @@ function fatalErrorShutdownHandler()
         E_COMPILE_WARNING
     ];
     $lastError = error_get_last();
-    
+
     if ($lastError && in_array($lastError['type'], $fatals)) {
-        if (headers_sent()) {
-            return;
-        }
+//        if (headers_sent()) {
+//            return;
+//        }
         header_remove();
         header("HTTP/1.0 500 Internal Server Error");
         
@@ -124,7 +125,12 @@ function fatalErrorShutdownHandler()
         error_log($errorMessage);
         $msg = "Oops! Something went terribly wrong :(";
 
-        $msg = "<pre style=\"color:red;\">{$msg}</pre>";
+        //$msg = "<pre style=\"color:red;\">{$msg}</pre>";
+        $msg = sprintf(
+            "<pre style=\"color:red;\">%s</pre>",
+            $errorMessage
+        );
+
         echo "<html><body><h1>500 Internal Server Error</h1><hr/>{$msg}</body></html>";
     }
 }
@@ -306,7 +312,7 @@ function cachedImageCallable(
     PageInfo $pageInfo,
     Request $request,
     Response $response,
-    FileResponseIMFactory $fileResponseFactory,
+    CachingFileResponseFactory $fileResponseFactory,
     $params
 ) {
     $filename = getImageCacheFilename($pageInfo, $params);
@@ -323,7 +329,7 @@ function cachedImageCallable(
             break;
         }
     }
-    
+
     if ($filenameFound == false) {
         return false;
     }
@@ -337,7 +343,6 @@ function cachedImageCallable(
     }
     
     
-
     return $fileResponseFactory->create($filenameFound, $contentType);
 }
 
@@ -563,6 +568,9 @@ function createImageResponse($filename, callable $imageCallable)
 
     ob_end_clean();
     
+    var_dump("adssd");
+    exit(0);
+    
     return new \ImagickDemo\Response\ImageResponse($filename, "image/".$imageType, $imageData);
 }
 
@@ -632,16 +640,14 @@ function renderImageAsFileResponse(
  */
 function directImageFunction($filename, $imageFunction, \Auryn\Injector $injector)
 {
-    $imageCallable = function () use ($imageFunction, $injector) {
-        try {
-            return $injector->execute($imageFunction);
-        }
-        catch (\Exception $e) {
-            echo "Exception: ".$e->getMessage();
-            exit(0);
-        }
-    };
     
+    var_dump("asdsd");
+    exit(0);
+    
+    $imageCallable = function () use ($imageFunction, $injector) {
+            return $injector->execute($imageFunction);
+    };
+
     return createImageResponse($filename, $imageCallable);
 }
 
@@ -719,12 +725,15 @@ function createHtmlBody(\Jig\JigBase $template)
 }
 
     
-function getRenderTemplateTier(InjectionParams $injectionParams, $templateName)
+function createRenderTemplateTier($templateName, InjectionParams $injectionParams = null)
 {
-    $fn = function (Jig $jigRender) use ($injectionParams, $templateName) {
+    $fn = function (Jig $jig) use ($injectionParams, $templateName) {
+        if ($injectionParams == null) {
+            $injectionParams = InjectionParams::fromParams([]);
+        }
 
-        $className = $jigRender->getTemplateCompiledClassname($templateName);
-        $jigRender->checkTemplateCompiled($templateName);
+        $className = $jig->getTemplateCompiledClassname($templateName);
+        $jig->checkTemplateCompiled($templateName);
         $injectionParams->alias('Jig\JigBase', $className);
 
         return new Tier('createHtmlBody', $injectionParams);
@@ -773,7 +782,7 @@ function directImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $par
 
     ob_end_clean();
 
-    return new ImageResponse($filename, "image/".$imageType, $imageData);
+    return new DataBody($filename, $imageData, "image/".$imageType);
 }
     
 function directCustomImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $params)
@@ -835,6 +844,8 @@ function createImageTask(
     }
     
     $response->setStatus(202);
+
+    
 
     return new TextBody("Image is generating.");
 }

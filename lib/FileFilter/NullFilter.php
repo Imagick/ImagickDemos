@@ -6,20 +6,18 @@ use Intahwebz\File;
 
 class NullFilter extends FileFilter
 {
-    function __construct(File $srcFile)
+    public function __construct(File $srcFile)
     {
         $this->srcFile = $srcFile;
         $this->destFile = $this->srcFile;
     }
 
-    function filter($tmpName)
+    public function filter($tmpName)
     {
     }
 
-    function process()
+    public function process()
     {
         //Has no previous to call.
     }
 }
-
- 

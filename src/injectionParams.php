@@ -24,6 +24,7 @@ $shares = [
     'Tier\Path\ExternalLibPath',
     'Tier\Path\YuiCompressorPath',
     'Tier\Path\WebRootPath',
+    'Room11\HTTP\Response',
 ];
 
 $defines = [
@@ -33,7 +34,7 @@ $defines = [
     'Tier\Path\CachePath'         => [':path' => __DIR__.'/../var/cache/'],
     'Tier\Path\ExternalLibPath'   => [':path' => __DIR__.'/../lib/'],
     'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../imagick/'],
-    'Tier\Path\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
+    'FileFilter\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
 ];
 
 
@@ -47,6 +48,8 @@ $aliases = [
     'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
     'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
     'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
+    'Room11\HTTP\Request' => 'Room11\HTTP\Request\Request',
+    'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
 ];
 
 
@@ -58,7 +61,7 @@ $delegates = [
     'Predis\Client' => 'createRedisClient',
     'ImagickDemo\Config\Librato' => ['ImagickDemo\Config', 'createLibrato'],
     'Jig\JigConfig' => ['ImagickDemo\Config', 'createJigConfig'],
-    'Tier\Caching\Caching' => ['ImagickDemo\Config', 'createCaching'],
+    '\Room11\Caching\LastModifiedStrategy' => ['ImagickDemo\Config', 'createCaching'],
     'ScriptServer\Value\ScriptVersion' => ['ImagickDemo\Config', 'createScriptVersion'],
     'Tier\Domain' => ['ImagickDemo\Config', 'createDomain'],
     'ScriptServer\Service\ScriptInclude' => ['ImagickDemo\Config', 'createScriptInclude'],

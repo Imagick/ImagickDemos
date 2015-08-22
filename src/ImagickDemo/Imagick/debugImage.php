@@ -37,7 +37,7 @@ class debugImage extends \ImagickDemo\Example
      */
     public function renderCustomImage()
     {
-        $function = $this->control->getFunctionType();
+        //$function = $this->control->getFunctionType();
 
         $this->renderImage();
     }

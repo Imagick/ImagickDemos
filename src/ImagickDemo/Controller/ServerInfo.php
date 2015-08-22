@@ -8,23 +8,16 @@ class ServerInfo
 {
     public function renderOPCacheInfo()
     {
-        $injectionParams = InjectionParams::fromParams([]);
-
-        return getRenderTemplateTier($injectionParams, 'admin/opcacheInfo');
+        return createRenderTemplateTier('admin/opcacheInfo');
     }
 
     public function serverSettings()
     {
-        $injectionParams = InjectionParams::fromParams([]);
-
-        return getRenderTemplateTier($injectionParams, 'admin/serverSettings');
+        return createRenderTemplateTier('admin/serverSettings');
     }
-    
-    
+
     public function createResponse()
     {
-        $injectionParams = InjectionParams::fromParams([]);
-
-        return getRenderTemplateTier($injectionParams, 'admin/fpmStatus');
+        return createRenderTemplateTier('admin/fpmStatus');
     }
 }

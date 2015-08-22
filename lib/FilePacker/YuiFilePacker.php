@@ -11,7 +11,7 @@ use Tier\Path\CachePath;
 use Tier\Path\WebRootPath;
 use Tier\Path\ExternalLibPath;
 use Tier\File;
-use Tier\Path\YuiCompressorPath;
+use FileFilter\YuiCompressorPath;
 
 class YuiFilePacker implements FilePacker
 {

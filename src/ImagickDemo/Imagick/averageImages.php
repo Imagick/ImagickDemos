@@ -11,7 +11,7 @@ class averageImages extends \ImagickDemo\Example
 
     public function foo()
     {
-        $imagick = new \Imagick(\Imagick::LAYERMETHOD_MERGE);
+        //$imagick = new \Imagick(\Imagick::LAYERMETHOD_MERGE);
         //$imagick->mergeImageLayers($layerMethodType);
     }
 }

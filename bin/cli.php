@@ -7,13 +7,11 @@ use Danack\Console\Input\InputArgument;
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../src/appFunctions.php';
-require __DIR__ . "/../src/Tier/tierFunctions.php";
-
+require __DIR__ . "/../vendor/danack/Tier/src/Tier/tierFunctions.php";
 
 register_shutdown_function('fatalErrorShutdownHandler');
 set_exception_handler('exceptionHandler');
 set_error_handler('errorHandler');
-
 
 //Figure out what Command was requested.
 try {

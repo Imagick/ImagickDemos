@@ -46,14 +46,14 @@ nohup strace -r $summarise -p $MASTER_PID -s 64 -fF -o ./trc/master.follow.trc >
  
 while read -r pid;
 do
-	if [[ $pid != $MASTER_PID ]]; then
+    if [[ $pid != $MASTER_PID ]]; then
 
-	    #shows individual calls
+        #shows individual calls
             #nohup strace -r -p "$pid" $additional_strace_args >"trc/$pid.trc" 2>&1 &
 
-		#shows total of calls
-		nohup strace -r $summarise -s 64 -p "$pid" $additional_strace_args >"trc/$pid.summary.trc" 2>&1 &
-	fi
+        #shows total of calls
+        nohup strace -r $summarise -s 64 -p "$pid" $additional_strace_args >"trc/$pid.summary.trc" 2>&1 &
+    fi
 done < <(pgrep php-fpm)
 
 #This needs bash not SH

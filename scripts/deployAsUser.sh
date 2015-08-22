@@ -1,4 +1,4 @@
-set -x #echo on
+set -eux -o pipefail
 
 environment="centos_guest"
 

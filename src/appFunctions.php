@@ -838,14 +838,12 @@ function createImageTask(
         return new \ImagickDemo\Response\ErrorResponse(503, "image still processing $job is ".$job);
     }
 
-    $caching = new \Tier\Caching\CachingDisabled();
+    $caching = new \Room11\Caching\LastModified\Disabled();
     foreach ($caching->getHeaders(time()) as $key => $value) {
         $response->addHeader($key, $value);
     }
-    
-    $response->setStatus(202);
 
-    
+    $response->setStatus(202);
 
     return new TextBody("Image is generating.");
 }

@@ -28,7 +28,6 @@ class ClosureCompilerFilter extends FileFilter
         $storagePath,
         $filterUpdateMode = FileFilter::CHECK_EXISTS_MTIME_AND_PREVIOUS
     ) {
-
         $this->logger =  $logger;
         $this->storagePath = $storagePath;
         $this->externalLibPath = $externalLibPath;

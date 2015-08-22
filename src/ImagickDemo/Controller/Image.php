@@ -144,7 +144,7 @@ class Image
         );
         $tiers = [];
         $tiers[] = new Tier('cachedImageCallable', $injectionParams);
-        //$tiers[] = new Tier('createImageTask');
+        $tiers[] = new Tier('createImageTask');
         $tiers[] = new Tier('directImageCallable');
 
         return $tiers;

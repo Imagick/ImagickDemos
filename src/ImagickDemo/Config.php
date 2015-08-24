@@ -55,6 +55,7 @@ class Config
     public static function getEnv($key)
     {
         $key = str_replace('.', "_", $key);
+        $key = 'imagickdemos_'.$key;
         $value = getenv($key);
 
         if ($value === null || $value === false) {

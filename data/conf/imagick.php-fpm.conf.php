@@ -14,7 +14,7 @@ $config = <<< END
 user = imagickdemos
 group = ${'phpfpm.group'}
 
-listen = ${'phpfpm.socket.directory'}/php-fpm-\$pool.sock
+listen = ${'phpfpm.fullsocketpath'}
 
 ; List of ipv4 addresses of FastCGI clients which are allowed to connect.
 listen.allowed_clients = 127.0.0.1
@@ -53,8 +53,8 @@ clear_env = false
 
 include = ${'imagick.root.directory'}/autogen/imagick-demos.php.fpm.ini
 
+env[imagickdemos_script_version] = 123
 
 END;
 
 return $config;
-

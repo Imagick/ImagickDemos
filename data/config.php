@@ -14,7 +14,6 @@ $default = [
     Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS
 ];
 
-
 $amazonec2 = [
     'nginx.log.directory' => '/var/log/nginx',
     'nginx.root.directory' => '/usr/share/nginx',
@@ -25,7 +24,6 @@ $amazonec2 = [
 
     'imagick.root.directory' => '/home/imagickdemos/current/',
 
-    'phpfpm.socket' => '/var/run/php-fpm',
     'phpfpm.www.maxmemory' => '16M',
     'phpfpm.images.maxmemory' => '48M',
     'phpfpm.user' => 'intahwebz',
@@ -45,8 +43,6 @@ $amazonec2 = [
 ];
 
 
-
-
 $centos = [
     'nginx.log.directory' => '/var/log/nginx',
     'nginx.root.directory' => '/usr/share/nginx',
@@ -57,7 +53,6 @@ $centos = [
     
     'imagick.root.directory' => '/home/imagickdemos/current',
     
-    'phpfpm.socket' => '/var/run/php-fpm',
     'phpfpm.www.maxmemory' => '16M',
     'phpfpm.images.maxmemory' => '48M',
     'phpfpm.user' => 'intahwebz',
@@ -113,3 +108,50 @@ $centos_guest = array(
     
     Config::JIG_COMPILE_CHECK => Jig::COMPILE_CHECK_MTIME
 );
+
+
+
+$evaluate = function ($values) {
+
+    foreach ($values as $key => $value) {
+        $$key = $value;
+    }
+
+    return [
+        'phpfpm.fullsocketpath' => "${'phpfpm.socket.directory'}/php-fpm-imagickdemos-${'release.version'}.sock"
+    ];
+};
+
+
+$dev = [
+        /*
+    Config::LIBRATO_STATSSOURCENAME => 'phpimagick.test',
+    //Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_ALWAYS, COMPILE_CHECK_MTIME COMPILE_CHECK_EXISTS
+    Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_MTIME,
+
+    Config::DOMAIN_CANONICAL => 'phpimagick.test',
+    Config::DOMAIN_CDN_PATTERN => 'cdn%s.phpimagick.test',
+    Config::DOMAIN_CDN_TOTAL => 1,
+
+    //Config::CACHING_SETTING => Caching::CACHING_REVALIDATE,
+    Config::CACHING_SETTING => LastModifiedStrategy::CACHING_TIME,
+    Config::SCRIPT_VERSION => date("ymdhis"),
+    Config::SCRIPT_PACKING => true, 
+    */
+];
+
+$live = [
+        /*
+    Config::LIBRATO_STATSSOURCENAME => 'phpimagick.com',
+    Config::JIG_COMPILE_CHECK => \Jig\Jig::COMPILE_CHECK_EXISTS,
+    
+    Config::DOMAIN_CANONICAL => 'phpimagick.com',
+    Config::DOMAIN_CDN_PATTERN => 'cdn%s.phpimagick.com',
+    Config::DOMAIN_CDN_TOTAL => 5,
+    Config::CACHING_SETTING => LastModifiedStrategy::CACHING_TIME,
+
+    Config::SCRIPT_VERSION => date("ymdhis"),
+    Config::SCRIPT_PACKING => true,
+    
+    */
+];

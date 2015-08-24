@@ -70,13 +70,13 @@ server {
         deny all;
         fastcgi_param  QUERY_STRING       \$query_string;
         include       ${'imagick.root.directory'}/data/conf/fastcgi.conf;
-        fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
+        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
     }
 
     location  / {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
-        fastcgi_pass   unix:${'phpfpm.socket'}/php-fpm-imagick.sock;
+        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
         include       ${'imagick.root.directory'}/data/conf/fastcgi.conf;
     }
 }

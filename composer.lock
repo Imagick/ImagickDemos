@@ -1181,8 +1181,14 @@
             "version": "0.0.4",
             "source": {
                 "type": "git",
-                "url": "http://www.github.com/danack/caching",
-                "reference": "2062a9e72bf2bef6425552a3f71466916b1214cb"
+                "url": "https://github.com/Danack/Caching.git",
+                "reference": "cdd0c2a8eacfb3af9badbb62d020910414bfb941"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/Caching/zipball/cdd0c2a8eacfb3af9badbb62d020910414bfb941",
+                "reference": "cdd0c2a8eacfb3af9badbb62d020910414bfb941",
+                "shasum": ""
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.5",

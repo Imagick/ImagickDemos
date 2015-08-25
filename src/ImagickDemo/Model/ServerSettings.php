@@ -4,7 +4,7 @@
 namespace ImagickDemo\Model;
 
 use ImagickDemo\Config;
-use Room11\Caching;
+use Room11\Caching\LastModifiedStrategy;
 use Jig\Jig;
 
 class ServerSettings
@@ -54,7 +54,7 @@ class ServerSettings
     {
         $settings = [
             'JIG_COMPILE_CHECK' => Jig::COMPILE_CHECK_EXISTS,
-            'CACHING_SETTING' => Caching::CACHING_TIME,
+            'CACHING_SETTING' => LastModifiedStrategy::CACHING_TIME,
             'LIBRATO_STATSSOURCENAME' => null,
         ];
 

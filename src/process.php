@@ -5,7 +5,7 @@ define('COMPOSER_OPCACHE_OPTIMIZE', true);
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__ . '/../src/appFunctions.php';
-require __DIR__ . "/../vendor/danack/Tier/src/Tier/tierFunctions.php";
+require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
 
 use Auryn\InjectionException;
 use Tier\Tier;

@@ -8,7 +8,7 @@ fi
 
 echo "environment is ${environment}";
 
-source /etc/profile.d/imagickdemos.sh
+source /etc/profile.d/env_imagickdemos.sh
 
 if [ "${environment}" != "centos_guest" ]; then
     [ -z "${imagickdemos_github_access_token}" ] && echo "Need to set imagickdemos_github_access_token" && exit 1;

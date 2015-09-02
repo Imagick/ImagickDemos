@@ -4,7 +4,7 @@ set -eux -o pipefail
 shopt -s failglob
 
 # Generate the env settings file
-php bin/cli.php genEnvSettings live /etc/profile.d/imagickdemos.sh
+php bin/cli.php genEnvSettings live /etc/profile.d/env_imagickdemos.sh
 
 # reload it.
 #set +u

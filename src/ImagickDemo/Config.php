@@ -45,6 +45,27 @@ class Config
     const SCRIPT_VERSION = 'script.version';
     const SCRIPT_PACKING = 'script.packing';
     
+    private $values = [];
+    
+    
+    public function __construct()
+    {
+        $envSetting = require_once __DIR__."/../../envSetting.php";
+        $config = require_once __DIR__."/../../data/appConfig.php";
+
+        foreach ($config as $envKey => $values) {
+            if (array_key_exists($envKey, $envSetting)) {
+                foreach ($values as $key => $value) {
+                    $this->values[$key] = $value;
+                }
+            }
+        }
+        
+//        var_dump($this->values);
+//        exit(0);
+    }
+    
+    
     public static function getConfigNames()
     {
         $reflClass = new \ReflectionClass(__CLASS__);
@@ -64,13 +85,28 @@ class Config
 
         return $value;
     }
+    
+    
+    public function getValue($key)
+    {
+//        $key = str_replace('.', "_", $key);
+//        $key = 'imagickdemos_'.$key;
+        
 
+        if (array_key_exists($key, $this->values) === false) {
+            throw new \Exception("Missing config of $key");
+        }
+
+        return $this->values[$key];
+    }
+
+    
     public function createLibrato()
     {
         return\ImagickDemo\Config\Librato::make(
-            self::getEnv(self::LIBRATO_KEY),
-            self::getEnv(self::LIBRATO_USERNAME),
-            self::getEnv(self::LIBRATO_STATSSOURCENAME)
+            $this->getEnv(self::LIBRATO_KEY),
+            $this->getEnv(self::LIBRATO_USERNAME),
+            $this->getValue(self::LIBRATO_STATSSOURCENAME)
         );
     }
 
@@ -80,7 +116,7 @@ class Config
             "../templates/",
             "../var/compile/",
             'tpl',
-            $this->getEnv(self::JIG_COMPILE_CHECK)
+            $this->getValue(self::JIG_COMPILE_CHECK)
         );
 
         return $jigConfig;
@@ -97,7 +133,7 @@ class Config
 
     public function createCaching()
     {
-        $cacheSetting = self::getEnv(Config::CACHING_SETTING);
+        $cacheSetting = $this->getValue(Config::CACHING_SETTING);
         switch ($cacheSetting) {
             case LastModifiedStrategy::CACHING_DISABLED: {
                 return new CachingDisabled();
@@ -124,7 +160,7 @@ class Config
     
     public function createScriptInclude(ScriptVersion $scriptVersion)
     {
-        $value = self::getEnv(self::SCRIPT_PACKING);
+        $value = $this->getValue(self::SCRIPT_PACKING);
         
         if ($value) {
             return new \ScriptServer\Service\ScriptIncludePacked($scriptVersion);

@@ -35,6 +35,10 @@ catch (\Exception $e) {
     exit(0);
 }
 
+
+
+
+
 try {
     // Create the first Tier that needs to be run.
     $tier = new Tier('routeRequest');

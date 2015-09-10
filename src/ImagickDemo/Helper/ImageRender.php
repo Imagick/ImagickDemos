@@ -83,8 +83,6 @@ class ImageRender
         $js = $this->getOriginalImageJS();
 
         $imageURL = $this->imgURL;
-        
-//
 
         $string = <<< HTML
 
@@ -144,7 +142,8 @@ HTML;
  <span 
     class='asyncImage' 
     data-statusuri='%s'
-    data-imageuri='%s'>
+    data-imageuri='%s'
+    data-enabled='%s'>
 HTML;
 
         $this->output .= sprintf(

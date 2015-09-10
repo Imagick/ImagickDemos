@@ -111,7 +111,6 @@ var AsyncImage = {
 
     _init: function() {
         this.imageURI = $(this.element).data('imageuri');
-        this.enabled = $(this.element).data('enabled');
         this.statusElement = $(this.element).find('.asyncImageStatus');
         this.asyncSpinner = $(this.element).find('.asyncSpinner');
 
@@ -122,8 +121,12 @@ var AsyncImage = {
             return;
         }
 
-        if (!JSON.parse(("" + this.enabled).toLowerCase())) {
-            return;
+        var enabledData = $(this.element).data('enabled');
+        if (enabledData) {
+            var enabled = ("" + enabledData).toLowerCase();
+            if (enabled != "true") {
+                return;
+            }
         }
 
         //Create the proxy once, to avoid leaving them hanging around

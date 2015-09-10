@@ -33,15 +33,14 @@ var AsyncImage = {
             }
         }
 
-        return 0;
-        //return 1000;
+        return 250; //Do we care about spamming the server?
     },
 
     asyncStatusUpdate: function () {
         var timeElapsed = this.getTicks() - this.startTime;
         var secondsElapsed = timeElapsed / 1000;
         if (secondsElapsed > 60) {
-            var text = "Yeah, I think it's broken. Maybe report an issue? Or the background image processor is just taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page.";
+            var text = "Yeah, I think it's broken. Maybe report an issue? Or the background image processor is just taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page. Or you could go for walk, stretch your legs a bit and get a tiny bit of exercise ";
             this.statusElement.text(text);
             return false;
         }
@@ -116,8 +115,6 @@ var AsyncImage = {
         this.statusElement = $(this.element).find('.asyncImageStatus');
         this.asyncSpinner = $(this.element).find('.asyncSpinner');
 
-        this.imageElement = $(this.element).find('.asyncImageStatus');
-
         $(this.element).find('.exampleImage').off('error');
         $(this.element).find('.exampleImage').on('error', $.proxy(this, 'imageError'));
         
@@ -129,9 +126,17 @@ var AsyncImage = {
             return;
         }
 
+        //Create the proxy once, to avoid leaving them hanging around
         this.callback = $.proxy(this, 'checkImageStatus');
         this.first = true;
         this.startTime = this.getTicks();
+
+        //Has a load error already occurred before this widget was 
+        //intialised.
+        var loadError = $(this.element).find('.wtfmate').data('loadError');
+        if (loadError) {
+            setTimeout(this.callback, 0);
+        }
     } 
 };
 

@@ -83,10 +83,29 @@ class ImageRender
         $js = $this->getOriginalImageJS();
 
         $imageURL = $this->imgURL;
+        
+//
+
+        $string = <<< HTML
+
+<script type='text/javascript'>        
+    function imageLoadError(element) {
+        element.dataset.loadError = "true";
+    }
+</script>
+
+
+<div class='row imageShown'>
+   <img 
+    src='%s' 
+    id='exampleImage'
+    class='img-responsive exampleImage wtfmate' 
+    %s 
+    onerror='imageLoadError(this);' />
+HTML;
+ 
         $this->output .= sprintf(
-            "<div class='row imageShown'>
-                <img src='%s' id='exampleImage' class='img-responsive exampleImage wtfmate  ' %s />
-            ",
+            $string,
             $imageURL,
             $js
         );
@@ -120,9 +139,18 @@ class ImageRender
         if ($this->useAsyncLoading) {
             $enabled = 'true';
         }
-        
+
+        $string = <<< HTML
+ <span 
+    class='asyncImage' 
+    data-statusuri='%s'
+    data-imageuri='%s'
+    data-enabled='%s''>
+HTML;
+
+
         $this->output .= sprintf(
-            "<span class='asyncImage' data-statusuri='%s' data-imageuri='%s' data-enabled='%s'>",
+            $string,
             addslashes($this->statusURL),
             addslashes($this->imgURL),
             $enabled

@@ -50,8 +50,13 @@ class Config
     
     public function __construct()
     {
-        $envSetting = require_once __DIR__."/../../envSetting.php";
-        $config = require_once __DIR__."/../../data/appConfig.php";
+        static $envSetting = false;
+        static $config = false;
+
+        if ($envSetting == false) {
+            $envSetting = require __DIR__."/../../envSetting.php";
+            $config = require __DIR__."/../../data/appConfig.php";
+        }
 
         foreach ($config as $envKey => $values) {
             if (array_key_exists($envKey, $envSetting)) {
@@ -60,11 +65,28 @@ class Config
                 }
             }
         }
-        
-//        var_dump($this->values);
-//        exit(0);
     }
     
+    
+    public function getSetting($name)
+    {
+        $envSettings = [
+        self::LIBRATO_KEY,
+        self::LIBRATO_USERNAME,
+        self::AWS_SERVICES_KEY,
+        self::AWS_SERVICES_SECRET,
+        self::FLICKR_KEY,
+        self::FLICKR_SECRET,
+        self::GITHUB_ACCESS_TOKEN,
+        self::GITHUB_REPO_NAME,
+            ];
+    
+        if (array_key_exists($name, $envSettings)) {
+            return $this->getEnv($name);
+        }
+        
+        return $this->getValue($name);
+    }
     
     public static function getConfigNames()
     {
@@ -80,7 +102,7 @@ class Config
         $value = getenv($key);
 
         if ($value === null || $value === false) {
-            throw new \Exception("Missing config of $key");
+            throw new \Exception("Missing env value of $key");
         }
 
         return $value;
@@ -89,10 +111,6 @@ class Config
     
     public function getValue($key)
     {
-//        $key = str_replace('.', "_", $key);
-//        $key = 'imagickdemos_'.$key;
-        
-
         if (array_key_exists($key, $this->values) === false) {
             throw new \Exception("Missing config of $key");
         }

@@ -781,6 +781,13 @@ class CategoryInfo
         ],
         'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
         //'colorspaceLinearity' => ['colorspaceLinearity', \ImagickDemo\Control\NullControl::class],
+        
+        'diffMarking' => [
+            'diffMarking',
+            \ImagickDemo\Control\NullControl::class,
+            'name' => "Difference marking"
+        ],
+        
         'edgeExtend' => [
             'edgeExtend',
             \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class,

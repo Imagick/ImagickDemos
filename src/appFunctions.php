@@ -17,6 +17,7 @@ use Room11\HTTP\Body\DataBody;
 use Room11\HTTP\Body\EmptyBody;
 use Room11\HTTP\Body\HtmlBody;
 use Room11\HTTP\Body\TextBody;
+
 use Tier\InjectionParams;
 use Tier\ResponseBody\CachingFileResponseFactory;
 use Tier\Tier;
@@ -548,31 +549,31 @@ function routesFunction(\FastRoute\RouteCollector $r)
     
 }
 
-
-/**
- * @param callable $imageCallable
- * @return \ImagickDemo\Response\ImageResponse
- * @throws \Exception
- */
-function createImageResponse($filename, callable $imageCallable)
-{
-    global $imageType;
-    ob_start();
-    $imageCallable();
-
-    if ($imageType == null) {
-        ob_end_clean();
-        throw new \Exception("imageType not set, can't set image content type correctly.");
-    }
-    $imageData = ob_get_contents();
-
-    ob_end_clean();
-    
-    var_dump("adssd");
-    exit(0);
-    
-    return new \ImagickDemo\Response\ImageResponse($filename, "image/".$imageType, $imageData);
-}
+//
+///**
+// * @param callable $imageCallable
+// * @return \ImagickDemo\Response\ImageResponse
+// * @throws \Exception
+// */
+//function createImageResponse($filename, callable $imageCallable)
+//{
+//    global $imageType;
+//    ob_start();
+//    $imageCallable();
+//
+//    if ($imageType == null) {
+//        ob_end_clean();
+//        throw new \Exception("imageType not set, can't set image content type correctly.");
+//    }
+//    $imageData = ob_get_contents();
+//
+//    ob_end_clean();
+//    
+//    var_dump("adssd");
+//    exit(0);
+//    
+//    return new \ImagickDemo\Response\ImageResponse($filename, "image/".$imageType, $imageData);
+//}
 
 
 /**
@@ -640,10 +641,6 @@ function renderImageAsFileResponse(
  */
 function directImageFunction($filename, $imageFunction, \Auryn\Injector $injector)
 {
-    
-    var_dump("asdsd");
-    exit(0);
-    
     $imageCallable = function () use ($imageFunction, $injector) {
             return $injector->execute($imageFunction);
     };
@@ -706,10 +703,10 @@ function getTemplatRenderCallable($templateFilename)
     return $fn;
 }
     
-function createTemplateResponse(Jig\JigBase $template)
-{
-    return new \ImagickDemo\Response\TemplateResponse($template);
-}
+//function createTemplateResponse(Jig\JigBase $template)
+//{
+//    return new \ImagickDemo\Response\TemplateResponse($template);
+//}
     
 /**
  * @param JigBase $template
@@ -805,8 +802,8 @@ function directCustomImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector
     $imageData = ob_get_contents();
 
     ob_end_clean();
-
-    return new ImageResponse($filename, "image/".$imageType, $imageData);
+    
+    return new DataBody($filename, $imageData, "image/".$imageType);
 }
 
 function createImageTask(
@@ -843,7 +840,7 @@ function createImageTask(
         $response->addHeader($key, $value);
     }
 
-    $response->setStatus(202);
+    $response->setStatus(420);
 
     return new TextBody("Image is generating.");
 }
@@ -863,16 +860,16 @@ function serve405ErrorPage(Response $response)
 }
 
 
-function createHTTPRequest()
-{
-    return new \Intahwebz\Routing\HTTPRequest(
-        $_SERVER,
-        $_GET,
-        $_POST,
-        $_FILES,
-        $_COOKIE
-    );
-}
+//function createHTTPRequest()
+//{
+//    return new \Intahwebz\Routing\HTTPRequest(
+//        $_SERVER,
+//        $_GET,
+//        $_POST,
+//        $_FILES,
+//        $_COOKIE
+//    );
+//}
 
 function routeJSInclude($url)
 {

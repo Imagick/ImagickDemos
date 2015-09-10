@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cceef21060fb3de30263bca67cf2203e",
+    "hash": "0f1b03ef0215b78325316a5c8b225c19",
     "packages": [
         {
             "name": "amphp/amp",
@@ -341,16 +341,16 @@
         },
         {
             "name": "danack/tier",
-            "version": "0.0.3",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Tier.git",
-                "reference": "ac6a7c002e31ebd0146690ea6bf511865e126db1"
+                "reference": "f4f156dc6ff0877b38bb47b9ffc175ea4f8bc2dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Tier/zipball/ac6a7c002e31ebd0146690ea6bf511865e126db1",
-                "reference": "ac6a7c002e31ebd0146690ea6bf511865e126db1",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/f4f156dc6ff0877b38bb47b9ffc175ea4f8bc2dc",
+                "reference": "f4f156dc6ff0877b38bb47b9ffc175ea4f8bc2dc",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +358,9 @@
             },
             "require-dev": {
                 "mockery/mockery": "0.9.1",
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "3.7.*",
+                "room11/caching": "^0.0.4",
+                "room11/http": "^0.0.3"
             },
             "type": "library",
             "autoload": {
@@ -384,7 +386,7 @@
                 "di",
                 "example"
             ],
-            "time": "2015-08-22 13:09:36"
+            "time": "2015-09-04 13:47:39"
         },
         {
             "name": "daverandom/libdns",
@@ -555,83 +557,6 @@
                 "library"
             ],
             "time": "2014-06-08 21:02:03"
-        },
-        {
-            "name": "intahwebz/mb_extra",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/mb_extra.git",
-                "reference": "4a8d7792c8cc1f9bbfd4d90b717f6352e50fbf28"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/mb_extra/zipball/4a8d7792c8cc1f9bbfd4d90b717f6352e50fbf28",
-                "reference": "4a8d7792c8cc1f9bbfd4d90b717f6352e50fbf28",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~3.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Intahwebz": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dan Ackroyd",
-                    "email": "Danack@basereality.com",
-                    "homepage": "http://www.basereality.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A collection of PHP multi-byte string functions that are not present in the mb_string extension.",
-            "keywords": [
-                "mb_string",
-                "php",
-                "utf-8",
-                "utf8"
-            ],
-            "time": "2013-10-11 20:18:32"
-        },
-        {
-            "name": "intahwebz/routing",
-            "version": "0.9.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/intahwebz-routing.git",
-                "reference": "fa125ddb0f0a982894fdba24c865202bdbdf5dc9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/intahwebz-routing/zipball/fa125ddb0f0a982894fdba24c865202bdbdf5dc9",
-                "reference": "fa125ddb0f0a982894fdba24c865202bdbdf5dc9",
-                "shasum": ""
-            },
-            "require": {
-                "intahwebz/core": ">=0.2.4",
-                "intahwebz/mb_extra": "*"
-            },
-            "require-dev": {
-                "intahwebz/jig": "dev-master",
-                "phpunit/phpunit": "3.7.*",
-                "rdlowrey/auryn": "dev-PluginExperiment2",
-                "zendframework/zend-permissions-acl": ">=2.1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Intahwebz": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "time": "2015-03-03 13:12:16"
         },
         {
             "name": "intahwebz/weaver",
@@ -1065,16 +990,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "v1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/auryn.git",
-                "reference": "70744560af9fea36f5c7f930b8cadc4586ff1944"
+                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/70744560af9fea36f5c7f930b8cadc4586ff1944",
-                "reference": "70744560af9fea36f5c7f930b8cadc4586ff1944",
+                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/f57eaf665a601dbe061c8b1426d84f58c003e6a8",
+                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8",
                 "shasum": ""
             },
             "require": {
@@ -1122,7 +1047,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2015-08-12 02:24:20"
+            "time": "2015-08-26 16:31:48"
         },
         {
             "name": "rdlowrey/nbsock",

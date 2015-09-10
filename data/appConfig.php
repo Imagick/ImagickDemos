@@ -16,6 +16,11 @@ $dev[Config::JIG_COMPILE_CHECK] = 'COMPILE_CHECK_MTIME';
 $dev[Config::SCRIPT_PACKING] = false;
 $dev[Config::CACHING_SETTING] = 'caching.revalidate';
 
+
+$dev[Config::JIG_COMPILE_CHECK] = 'COMPILE_CHECK_EXISTS';
+$dev[Config::SCRIPT_PACKING] = true;
+$dev[Config::CACHING_SETTING] = 'caching.revalidate';
+
 $config['live'] = $live;
 $config['dev'] = $dev;
 

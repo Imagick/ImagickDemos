@@ -36,6 +36,43 @@ function header($string, $replace = true, $http_response_code = null)
 }
 
 
+function diffMarking()
+{
+    $image1 = new Imagick(__DIR__."/compare1.jpg");
+    $image2 = new Imagick(__DIR__."/compare2.jpg");
+
+    $image1->compositeImage($image2, \Imagick::COMPOSITE_DIFFERENCE, 0, 0);
+
+    $overlay = clone $image1;
+    $overlay->negateImage(false);
+    $overlay->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
+    $overlay->transformImageColorSpace(\Imagick::COLORSPACE_GRAY);
+
+    $overlay->statisticImage(\Imagick::STATISTIC_MINIMUM, 20, 2);
+    $overlay->statisticImage(\Imagick::STATISTIC_MINIMUM, 2, 20);
+    $overlay->statisticImage(\Imagick::STATISTIC_GRADIENT, 4, 4);
+
+    $red = new Imagick();
+    $red->newPseudoImage(
+        $overlay->getImageWidth(),
+        $overlay->getImageHeight(),
+        'xc:red'
+    );
+
+    $red->compositeImage($overlay, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+
+    $withOutline = clone $image2;
+    $withOutline->compositeImage($red, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    $outputGif = new Imagick();
+    $outputGif->addImage($image2);
+    $outputGif->addImage($withOutline);
+
+    $outputGif = $outputGif->deconstructImages();
+    $outputGif->setImageFormat('gif');
+    header("Content-Type: image/gif");
+    echo $outputGif->getImagesBlob();
+}
     
     
 //Example Tutorial::fxAnalyzeImage

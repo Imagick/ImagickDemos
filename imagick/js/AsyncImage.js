@@ -61,23 +61,34 @@ var AsyncImage = {
     checkImageStatus: function (asyncLoad) {
 
         var errorCallback = function(jqXHR, textStatus, errorThrown) {
+            
+            if (jqXHR.status == 420) {
+                var continueProcessing = this.asyncStatusUpdate();
+                if (continueProcessing) {
+                    var delay = this.getAsyncDelay();
+                    setTimeout(this.callback, delay);
+                }
+                return;
+            }
+
             this.statusElement.text("Image generation failed with status code '" + jqXHR.status + "'");
         };
 
         var successCallback = function(data, textStatus, jqXHR) {
-            if (jqXHR.status == 200) {
-                $(this.element).find('.exampleImage').attr('src', this.imageURI);
-                this.statusElement.text("");
-                $(this.element).find('.asyncImageHidden').removeClass('asyncImageHidden');
-                $(this.element).find('.asyncLoading').css('display', 'none');
-                return;
+            var d = new Date();
+            var newSrc;
+            
+            var n = this.imageURI.indexOf("?");
+            if (n == -1) {
+                newSrc = this.imageURI + "?time=" + d.getTime();
             }
-  
-            var continueProcessing = this.asyncStatusUpdate();
-            if (continueProcessing) {
-                var delay = this.getAsyncDelay();
-                setTimeout(this.callback, delay);
+            else {
+                newSrc = this.imageURI + "&time=" + d.getTime();
             }
+            
+            $(this.element).find('.wtfmate').attr('src', newSrc); 
+            $(this.element).find('.imageShown').toggle(true);
+            $(this.element).find('.asyncShown').toggle(false);
         };
 
         $.ajax({
@@ -89,6 +100,13 @@ var AsyncImage = {
         });
     },
 
+    imageError: function(event, xhr) {
+        $(this.element).find('.imageShown').toggle(false);
+        $(this.element).find('.asyncShown').toggle(true);
+
+        setTimeout(this.callback, 0);
+    },
+    
     _create: function() {
     },
 
@@ -98,6 +116,11 @@ var AsyncImage = {
         this.statusElement = $(this.element).find('.asyncImageStatus');
         this.asyncSpinner = $(this.element).find('.asyncSpinner');
 
+        this.imageElement = $(this.element).find('.asyncImageStatus');
+
+        $(this.element).find('.exampleImage').off('error');
+        $(this.element).find('.exampleImage').on('error', $.proxy(this, 'imageError'));
+        
         if (!this.imageURI) {
             return;
         }
@@ -109,8 +132,6 @@ var AsyncImage = {
         this.callback = $.proxy(this, 'checkImageStatus');
         this.first = true;
         this.startTime = this.getTicks();
-        
-        setTimeout(this.callback, 0);
     } 
 };
 

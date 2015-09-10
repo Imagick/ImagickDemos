@@ -251,7 +251,7 @@ class SiteChecker {
                 substr($response->getBody(), 0, 200)
             );
 
-            if ($status != 200 && $status != 202) {
+            if ($status != 200 && $status != 420 && $status != 202) {
                 echo "Status is not ok for ".$urlToCheck->getUrl()."\n";
                 $this->errors++;
                 return null;
@@ -392,12 +392,12 @@ class SiteChecker {
 
 $site = "http://imagick.test";
 $site = "http://phpimagick.com";
-$site = "http://phpimagick.test";
+//$site = "http://phpimagick.test";
 
 $reactor = Amp\getReactor();
 $client = new ArtaxClient();
 $client->setOption(\Amp\Artax\Client::OP_MS_CONNECT_TIMEOUT, 2500);
-$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 4);
+$client->setOption(ArtaxClient::OP_HOST_CONNECTION_LIMIT, 2);
 
 $siteChecker = new SiteChecker($site, $client);
 

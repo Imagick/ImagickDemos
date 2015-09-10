@@ -21,5 +21,4 @@ apc.shm_size="64M"
 END;
 
 
-
 return $config;

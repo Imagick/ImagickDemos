@@ -32,6 +32,8 @@ slowlog = ${'php.log.directory'}/slow.\$pool.log
 
 request_terminate_timeout=500
 
+catch_workers_output = yes
+
 pm = dynamic
 
 pm.max_children = 20

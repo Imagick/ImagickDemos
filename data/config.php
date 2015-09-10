@@ -4,6 +4,8 @@
 
 use \ImagickDemo\Config;
 
+$socketDir = '/var/run/php-fpm';
+
 $default = [
     //global/default variables go here.
     'nginx.sendFile' => 'off',
@@ -25,10 +27,11 @@ $centos = [
     'phpfpm.images.maxmemory' => '48M',
     'phpfpm.user' => 'intahwebz',
     'phpfpm.group' => 'www-data',
-    'phpfpm.socket.directory' => '/var/run/php-fpm',
+    'phpfpm.socket.directory' => $socketDir,
     'phpfpm.conf.directory' => '/etc/php-fpm.d',
     'phpfpm.pid.directory' => '/var/run/php-fpm',
-    
+    'phpfpm.fullsocketpath' => $socketDir."/php-fpm-imagickdemos-".basename(dirname(__DIR__)).".sock",
+
     'php.conf.directory' => '/etc/php',
     'php.log.directory' => '/var/log/php',
     'php.errorlog.directory' => '/var/log/php',
@@ -41,16 +44,6 @@ $centos = [
 ];
 
 $centos_guest = $centos;
-
-$evaluate = function ($values) {
-    foreach ($values as $key => $value) {
-        $$key = $value;
-    }
-
-    return [
-        'phpfpm.fullsocketpath' => "${'phpfpm.socket.directory'}/php-fpm-imagickdemos-${'release.version'}.sock"
-    ];
-};
 
 $dev = [
    

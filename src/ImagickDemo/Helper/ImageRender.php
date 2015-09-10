@@ -80,29 +80,21 @@ class ImageRender
      */
     private function addImage()
     {
-        $hiddenClass = '';
-        if ($this->useAsyncLoading) {
-            $hiddenClass = 'asyncImageHidden';
-        }
-
         $js = $this->getOriginalImageJS();
 
         $imageURL = $this->imgURL;
-        
-        if ($this->useAsyncLoading) {
-            $imageURL = "/images/loading.gif";
-        }
-
         $this->output .= sprintf(
-            "<div class='row %s'>
-                <img src='%s' id='exampleImage' class='img-responsive exampleImage' %s />
+            "<div class='row imageShown'>
+                <img src='%s' id='exampleImage' class='img-responsive exampleImage wtfmate  ' %s />
             ",
-            $hiddenClass,
             $imageURL,
             $js
         );
 
+        $this->output .= "<span class='imageShown'>";
         $this->addOriginalText();
+        $this->output .= "</span>";
+        
         $this->output .= "</div>";
     }
 
@@ -112,9 +104,9 @@ class ImageRender
     private function addAsyncLoading()
     {
         if ($this->useAsyncLoading) {
-            $this->output .= "<span class='asyncLoading'>";
-            $this->output .= "<span class='asyncImageStatus'>Async image loading...</span> <br/>";
-            $this->output .= "<img class='asyncSpinner' style='display: none' src='/images/loading.gif'/> <br/>";
+            $this->output .= "<span class='asyncLoading asyncShown' style='display: none'>";
+            $this->output .= "<span class='asyncImageStatus' >Async image loading...</span> <br/>";
+            $this->output .= "<img class='asyncSpinner' src='/images/loading.gif'/> <br/>";
             $this->output .= "</span>";
         }
     }

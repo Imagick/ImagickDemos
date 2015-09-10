@@ -19,6 +19,8 @@ echo "" >> ./envSetting.php
 echo "\$envSetting = [];" >> ./envSetting.php
 echo "\$envSetting['${envSetting}'] = true;" >> ./envSetting.php
 echo "" >> ./envSetting.php
+echo "return \$envSetting;" >> ./envSetting.php
+echo "" >> ./envSetting.php
 
 su imagickdemos -c "./scripts/deployAsUser.sh ${environment}"
 

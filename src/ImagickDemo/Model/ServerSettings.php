@@ -66,10 +66,12 @@ class ServerSettings
         $output .= "<th>Conf setting</th>";
         $output .= "<th>Value</th>";
         $output .= "</thead>";
+        
+        $config = new Config();
 
         $output .= "<body>";
         foreach ($settings as $setting => $expectedValue) {
-            $value = Config::getEnv(constant("ImagickDemo\\Config::$setting"));
+            $value = $config->getSetting(constant("ImagickDemo\\Config::$setting"));
 
             $class = 'good';
             if ($expectedValue === null) {

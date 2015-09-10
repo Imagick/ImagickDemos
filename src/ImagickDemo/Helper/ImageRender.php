@@ -144,10 +144,8 @@ HTML;
  <span 
     class='asyncImage' 
     data-statusuri='%s'
-    data-imageuri='%s'
-    data-enabled='%s''>
+    data-imageuri='%s'>
 HTML;
-
 
         $this->output .= sprintf(
             $string,

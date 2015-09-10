@@ -40,7 +40,7 @@ var AsyncImage = {
         var timeElapsed = this.getTicks() - this.startTime;
         var secondsElapsed = timeElapsed / 1000;
         if (secondsElapsed > 60) {
-            var text = "Yeah, I think it's broken. Maybe report an issue? Or the background image processor is just taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page. Or you could go for walk, stretch your legs a bit and get a tiny bit of exercise ";
+            var text = "Yeah, I think it's broken. Maybe report an issue? Or the background image processor is just taking a really long time to generate the image. Maybe come back in a few minutes and refresh the page. Or you could go for walk, stretch your legs a bit and get a bit of exercise ";
             this.statusElement.text(text);
             return false;
         }

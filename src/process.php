@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', 'on');
+ini_set('display_errors', 'off');
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
 
 use Tier\Tier;
@@ -30,6 +30,7 @@ $tier = new Tier('routeRequest');
 $app = new TierApp($tier, $injectionParams);
 $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
 $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
+
 
 // Run it
 $app->execute($request);

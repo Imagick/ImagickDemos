@@ -33,7 +33,6 @@ $injectionParams->addToInjector($injector);
 
 chdir(realpath(__DIR__).'/../imagick');
 
-
 try {
     $input = $parsedCommand->getInput();
     foreach ($parsedCommand->getParams() as $key => $value) {
@@ -75,6 +74,15 @@ function createApplication()
     $envWriteCommand->setDescription("Write an env setting bash script.");
     $envWriteCommand->addArgument('env', InputArgument::REQUIRED, 'Which environment the settings should be generated for.');
     $envWriteCommand->addArgument('filename', InputArgument::REQUIRED, 'The file name that the env settings should be written to.');
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     $clearRedisCommand = new Command('clearRedis', 'ImagickDemo\Queue\ImagickTaskQueue::clearStatusQueue');
     $clearRedisCommand->setDescription("Clear the imagick task queue.");

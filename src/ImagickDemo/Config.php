@@ -22,13 +22,6 @@ class Config
     //Server container
     const AWS_SERVICES_KEY = 'aws.services.key';
     const AWS_SERVICES_SECRET = 'aws.services.secret';
-
-    const AMAZON_EC2_MACHINEIMAGENAME = 'amazon.ec2.machine_image_name';
-    const AMAZON_EC2_INSTANCE_TYPE = 'amazon.ec2.instance_type';
-
-    const AMAZON_EC2_VPC = 'amazon.ec2.vpc';
-    const AMAZON_EC2_SECURITY_GROUP = 'amazon.ec2.security_group';
-    const AMAZON_EC2_SSH_KEY_PAIR_NAME = 'amazon.ec2.ssh_key_pair_name';
     
     const LIBRATO_KEY = 'librato.key';
     const LIBRATO_USERNAME = 'librato.username';
@@ -51,12 +44,9 @@ class Config
     public function __construct()
     {
         static $envSetting = false;
-        static $config = false;
-
-        if ($envSetting == false) {
-            $envSetting = require __DIR__."/../../envSetting.php";
-            $config = require __DIR__."/../../data/appConfig.php";
-        }
+        
+        $config = getAppEnv();
+        $keys = getAppKeys();
 
         foreach ($config as $envKey => $values) {
             if (array_key_exists($envKey, $envSetting)) {
@@ -71,15 +61,15 @@ class Config
     public function getSetting($name)
     {
         $envSettings = [
-        self::LIBRATO_KEY,
-        self::LIBRATO_USERNAME,
-        self::AWS_SERVICES_KEY,
-        self::AWS_SERVICES_SECRET,
-        self::FLICKR_KEY,
-        self::FLICKR_SECRET,
-        self::GITHUB_ACCESS_TOKEN,
-        self::GITHUB_REPO_NAME,
-            ];
+            self::LIBRATO_KEY,
+            self::LIBRATO_USERNAME,
+            self::AWS_SERVICES_KEY,
+            self::AWS_SERVICES_SECRET,
+            self::FLICKR_KEY,
+            self::FLICKR_SECRET,
+            self::GITHUB_ACCESS_TOKEN,
+            self::GITHUB_REPO_NAME,
+        ];
     
         if (array_key_exists($name, $envSettings)) {
             return $this->getEnv($name);

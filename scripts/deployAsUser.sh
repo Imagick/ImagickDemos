@@ -1,6 +1,6 @@
 set -eux -o pipefail
 
-environment="centos_guest"
+environment="centos_guest,dev"
 
 if [ "$#" -ge 1 ]; then
     environment=$1
@@ -32,6 +32,8 @@ vendor/bin/configurate -p data/config.php data/conf/imagick.nginx.conf.php autog
 vendor/bin/configurate -p data/config.php data/conf/imagick.php-fpm.conf.php autogen/imagick.php-fpm.conf $environment
 vendor/bin/configurate -p data/config.php data/conf/imagick-demos.php.ini.php autogen/imagick-demos.php.ini $environment
 vendor/bin/configurate -p data/config.php data/conf/addImagickConfig.sh.php autogen/addImagickConfig.sh $environment
+
+vendor/bin/genenv -p data/config.php data/envRequired.php autogen/appEnv.php $environment
 
 vendor/bin/fpmconv autogen/imagick-demos.php.ini autogen/imagick-demos.php.fpm.ini 
 

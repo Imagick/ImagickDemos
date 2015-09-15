@@ -57,13 +57,13 @@ $aliases = [
 $delegates = [
     'ImagickDemo\Control' => 'createControl',
     'ImagickDemo\Example' => 'createExample',
-    'ImagickDemo\Config\Librato' => ['ImagickDemo\Config', 'createLibrato'],
-    'Jig\JigConfig' => ['ImagickDemo\Config', 'createJigConfig'],
+    'ImagickDemo\Config\Librato' => 'createLibrato',
+    'Jig\JigConfig' => 'createJigConfig',
     'Predis\Client' => 'createRedisClient',
-    'Room11\Caching\LastModifiedStrategy' => ['ImagickDemo\Config', 'createCaching'],
-    'ScriptServer\Value\ScriptVersion' => ['ImagickDemo\Config', 'createScriptVersion'],
-    'ScriptServer\Service\ScriptInclude' => ['ImagickDemo\Config', 'createScriptInclude'],
-    'Tier\Domain' => ['ImagickDemo\Config', 'createDomain'],
+    'Room11\Caching\LastModifiedStrategy' => 'createCaching',
+    'ScriptServer\Value\ScriptVersion' => 'createScriptVersion',
+    'ScriptServer\Service\ScriptInclude' => 'createScriptInclude',
+    'Tier\Domain' => 'createDomain',
 ];
 
 $params = [

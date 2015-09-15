@@ -17,125 +17,20 @@ use Room11\HTTP\Body\DataBody;
 use Room11\HTTP\Body\EmptyBody;
 use Room11\HTTP\Body\HtmlBody;
 use Room11\HTTP\Body\TextBody;
-
 use Tier\InjectionParams;
 use Tier\ResponseBody\CachingFileResponseFactory;
 use Tier\Tier;
+use Room11\Caching\LastModifiedStrategy;
+use Room11\Caching\LastModified\Disabled as CachingDisabled;
+use Room11\Caching\LastModified\Revalidate as CachingRevalidate;
+use Room11\Caching\LastModified\Time as CachingTime;
+use ScriptServer\Value\ScriptVersion;
+use ImagickDemo\Config;
 
 //yolo - We use a global to allow us to do a hack to make all the code examples
 //appear to use the standard 'header' function, but also capture the content type 
 //of the image
 $imageType = null;
-
-function exceptionHandler(Exception $ex)
-{
-    //TODO - need to ob_end_clean as many times as required because
-    //otherwise partial content gets sent to the client.
-
-    if (headers_sent() == false) {
-        header("HTTP/1.0 500 Internal Server Error", true, 500);
-    }
-    else {
-        //Exception after headers sent
-    }
-
-    while ($ex) {
-        echo "Exception " . get_class($ex) . ': ' . $ex->getMessage()."<br/>";
-
-        foreach ($ex->getTrace() as $tracePart) {
-            if (isset($tracePart['file']) && isset($tracePart['line'])) {
-                echo $tracePart['file'] . " " . $tracePart['line'] . "<br/>";
-            }
-            else if (isset($tracePart["function"])) {
-                echo $tracePart["function"] . "<br/>";
-            }
-            else {
-                var_dump($tracePart);
-            }
-        }
-        $ex = $ex->getPrevious();
-        if ($ex) {
-            echo "Previously ";
-        }
-    };
-}
-
-function errorHandler($errno, $errstr, $errfile, $errline)
-{
-    if (error_reporting() == 0) {
-        return true;
-    }
-    if ($errno == E_DEPRECATED) {
-        //lol don't care.
-        return true;
-    }
-
-    $errorNames = [
-        E_ERROR => "E_ERROR",
-        E_WARNING => "E_WARNING",
-        E_PARSE => "E_PARSE",
-        E_NOTICE => "E_NOTICE",
-        E_CORE_ERROR => "E_CORE_ERROR",
-        E_CORE_WARNING => "E_CORE_WARNING",
-        E_COMPILE_ERROR => "E_COMPILE_ERROR",
-        E_COMPILE_WARNING => "E_COMPILE_WARNING",
-        E_USER_ERROR => "E_USER_ERROR",
-        E_USER_WARNING => "E_USER_WARNING",
-        E_USER_NOTICE => "E_USER_NOTICE",
-        E_STRICT => "E_STRICT",
-        E_RECOVERABLE_ERROR => "E_RECOVERABLE_ERROR",
-        E_DEPRECATED => "E_DEPRECATED",
-        E_USER_DEPRECATED => "E_USER_DEPRECATED",
-    ];
-    
-    $errorType = "Error type $errno";
-
-    if (array_key_exists($errno, $errorNames)) {
-        $errorType = $errorNames[$errno];
-    }
-
-    $message =  "$errorType: [$errno] $errstr in file $errfile on line $errline";
-
-    throw new \LogicException($message);
-}
-
-
-function fatalErrorShutdownHandler()
-{
-    $fatals = [
-        E_ERROR,
-        E_PARSE,
-        E_USER_ERROR,
-        E_CORE_ERROR,
-        E_CORE_WARNING,
-        E_COMPILE_ERROR,
-        E_COMPILE_WARNING
-    ];
-    $lastError = error_get_last();
-
-    if ($lastError && in_array($lastError['type'], $fatals)) {
-//        if (headers_sent()) {
-//            return;
-//        }
-        header_remove();
-        header("HTTP/1.0 500 Internal Server Error");
-        
-        extract($lastError);
-        $errorMessage = sprintf("Fatal error: %s in %s on line %d", $message, $file, $line);
-
-        error_log($errorMessage);
-        $msg = "Oops! Something went terribly wrong :(";
-
-        //$msg = "<pre style=\"color:red;\">{$msg}</pre>";
-        $msg = sprintf(
-            "<pre style=\"color:red;\">%s</pre>",
-            $errorMessage
-        );
-
-        echo "<html><body><h1>500 Internal Server Error</h1><hr/>{$msg}</body></html>";
-    }
-}
-
 
 function getImageCacheFilename(PageInfo $pageInfo, $params)
 {
@@ -200,9 +95,6 @@ function createSessionManager(RedisDriver $redisDriver)
 function prepareJigConverter(JigConverter $jigConverter, $injector)
 {
     $jigConverter->addDefaultHelper('Jig\TemplateHelper\DebugHelper');
-    
-    
-
 }
 
 function createControl(PageInfo $pageInfo, Injector $injector)
@@ -270,8 +162,6 @@ function routeRequest()
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
 
-        //var_dump($handler);
-        
         $fn = function () use ($vars) {
             setupCategoryExample($vars);
         };
@@ -296,12 +186,6 @@ function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
     
     $original = $request->getVariable('original', false);
     if ($original) {
-        //TODO - these are not cached.
-        
-        //TODO - Bug waiting for pull https://github.com/rdlowrey/Auryn/pull/104
-        //means we can't execute directly.
-        //return $injector->execute(['ImagickDemo\Example', 'renderOriginalImage']);
-        
         $instance = $injector->make('ImagickDemo\Example');
         return $injector->execute([$instance, 'renderOriginalImage']);
     }
@@ -534,46 +418,13 @@ function routesFunction(\FastRoute\RouteCollector $r)
 
     $r->addRoute('GET', '/info', ['ImagickDemo\Controller\ServerInfo', 'createResponse']);
     $r->addRoute('GET', '/queueinfo', ['ImagickDemo\Controller\QueueInfo', 'createResponse']);
-    
     $r->addRoute('GET', '/queuedelete', ['ImagickDemo\Controller\QueueInfo', 'deleteQueue']);
     $r->addRoute('GET', '/opinfo', ['ImagickDemo\Controller\ServerInfo', 'renderOPCacheInfo']);
     $r->addRoute('GET', '/settingsCheck', ['ImagickDemo\Controller\ServerInfo', 'serverSettings']);
-    
-
     $r->addRoute('GET', '/', ['ImagickDemo\Controller\Page', 'renderTitlePage']);
-    
     $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
     $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
-    
-    
-    
 }
-
-//
-///**
-// * @param callable $imageCallable
-// * @return \ImagickDemo\Response\ImageResponse
-// * @throws \Exception
-// */
-//function createImageResponse($filename, callable $imageCallable)
-//{
-//    global $imageType;
-//    ob_start();
-//    $imageCallable();
-//
-//    if ($imageType == null) {
-//        ob_end_clean();
-//        throw new \Exception("imageType not set, can't set image content type correctly.");
-//    }
-//    $imageData = ob_get_contents();
-//
-//    ob_end_clean();
-//    
-//    var_dump("adssd");
-//    exit(0);
-//    
-//    return new \ImagickDemo\Response\ImageResponse($filename, "image/".$imageType, $imageData);
-//}
 
 
 /**
@@ -633,21 +484,6 @@ function renderImageAsFileResponse(
 }
 
 
-/**
- * @param $imageFunction
- * @param \Auryn\Injector $injector
- * @return \ImagickDemo\Response\ImageResponse
- * @throws \Exception
- */
-function directImageFunction($filename, $imageFunction, \Auryn\Injector $injector)
-{
-    $imageCallable = function () use ($imageFunction, $injector) {
-            return $injector->execute($imageFunction);
-    };
-
-    return createImageResponse($filename, $imageCallable);
-}
-
 function renderImageURL(
     $taskQueueIsActive,
     $imgURL,
@@ -702,11 +538,6 @@ function getTemplatRenderCallable($templateFilename)
 
     return $fn;
 }
-    
-//function createTemplateResponse(Jig\JigBase $template)
-//{
-//    return new \ImagickDemo\Response\TemplateResponse($template);
-//}
     
 /**
  * @param JigBase $template
@@ -859,18 +690,6 @@ function serve405ErrorPage(Response $response)
     return new TextBody('Method not allowed for route.');
 }
 
-
-//function createHTTPRequest()
-//{
-//    return new \Intahwebz\Routing\HTTPRequest(
-//        $_SERVER,
-//        $_GET,
-//        $_POST,
-//        $_FILES,
-//        $_COOKIE
-//    );
-//}
-
 function routeJSInclude($url)
 {
     return "/js/".$url;
@@ -913,4 +732,77 @@ function getExceptionText(\Exception $e)
     $fullText .= "</pre></p>";
 
     return $fullText;
+}
+
+
+    
+function createLibrato(Config $config)
+{
+    return\ImagickDemo\Config\Librato::make(
+        $config->getKey(Config::LIBRATO_KEY),
+        $config->getKey(Config::LIBRATO_USERNAME),
+        $config->getKey(Config::LIBRATO_STATSSOURCENAME)
+    );
+}
+
+function createJigConfig(Config $config)
+{
+    $jigConfig = new \Jig\JigConfig(
+        "../templates/",
+        "../var/compile/",
+        'tpl',
+        $config->getKey(Config::JIG_COMPILE_CHECK)
+    );
+
+    return $jigConfig;
+}
+
+function createDomain(Config $config)
+{
+    return new \Tier\Domain(
+        $config->getKey(Config::DOMAIN_CANONICAL),
+        $config->getKey(Config::DOMAIN_CDN_PATTERN),
+        $config->getKey(Config::DOMAIN_CDN_TOTAL)
+    );
+}
+
+function createCaching(Config $config)
+{
+    $cacheSetting = $config->getKey(Config::CACHING_SETTING);
+
+    switch ($cacheSetting) {
+        case LastModifiedStrategy::CACHING_DISABLED: {
+            return new CachingDisabled();
+        }
+        case LastModifiedStrategy::CACHING_REVALIDATE: {
+            return new CachingRevalidate(3600 * 2, 3600);
+        }
+        case LastModifiedStrategy::CACHING_TIME: {
+            return new CachingTime(3600 * 10, 3600);
+        }
+        default: {
+            throw new TierException("Unknown caching setting '$cacheSetting'.");
+        }
+    }
+}
+
+function createScriptVersion(Config $config)
+{
+    $value = $config->getKey(Config::SCRIPT_VERSION);
+    return new \ScriptServer\Value\ScriptVersion(
+        $value
+    );
+}
+
+function createScriptInclude(Config $config, ScriptVersion $scriptVersion)
+{
+    $value = $config->getKey(Config::SCRIPT_PACKING);
+
+    if ($value) {
+        return new \ScriptServer\Service\ScriptIncludePacked($scriptVersion);
+    }
+        
+    return new \ScriptServer\Service\ScriptIncludeIndividual(
+        $scriptVersion
+    );
 }

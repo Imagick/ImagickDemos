@@ -7,6 +7,7 @@ use Danack\Console\Input\InputArgument;
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../src/appFunctions.php';
+require __DIR__.'/../src/cliFunctions.php';
 require __DIR__ . "/../vendor/danack/tier/src/Tier/tierFunctions.php";
 
 register_shutdown_function('fatalErrorShutdownHandler');

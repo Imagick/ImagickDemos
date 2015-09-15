@@ -80,6 +80,7 @@
         <exclude-pattern>Tutorial/smoothSpiderGraph.php</exclude-pattern>
         <exclude-pattern>src/appFunctions.php</exclude-pattern>
         <exclude-pattern>src/process.php</exclude-pattern>
+        <exclude-pattern>ImagickDemo/Config.php</exclude-pattern>
         <exclude-pattern>tool/*</exclude-pattern>
         <exclude-pattern>bin/*</exclude-pattern>
     </rule>

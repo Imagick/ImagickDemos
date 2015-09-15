@@ -71,7 +71,7 @@ class ServerSettings
 
         $output .= "<body>";
         foreach ($settings as $setting => $expectedValue) {
-            $value = $config->getSetting(constant("ImagickDemo\\Config::$setting"));
+            $value = $config->getKey(constant("ImagickDemo\\Config::$setting"));
 
             $class = 'good';
             if ($expectedValue === null) {

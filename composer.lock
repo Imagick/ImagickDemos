@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f1b03ef0215b78325316a5c8b225c19",
+    "hash": "fde9308dd4b1762e44748bde8c806697",
     "packages": [
         {
             "name": "amphp/amp",
@@ -465,16 +465,16 @@
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.2.7",
+            "version": "0.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "39bda6596fe8a8341fe71bb4ef40725535b5298e"
+                "reference": "ac3a233efec6c74c9da58c759abe7517cf43b29d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/39bda6596fe8a8341fe71bb4ef40725535b5298e",
-                "reference": "39bda6596fe8a8341fe71bb4ef40725535b5298e",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/ac3a233efec6c74c9da58c759abe7517cf43b29d",
+                "reference": "ac3a233efec6c74c9da58c759abe7517cf43b29d",
                 "shasum": ""
             },
             "require": {
@@ -487,6 +487,7 @@
             },
             "bin": [
                 "bin/configurate",
+                "bin/genenv",
                 "bin/fpmconv"
             ],
             "type": "library",
@@ -513,7 +514,7 @@
                 "tool",
                 "utf-8"
             ],
-            "time": "2015-08-24 16:02:11"
+            "time": "2015-09-15 17:28:49"
         },
         {
             "name": "intahwebz/core",

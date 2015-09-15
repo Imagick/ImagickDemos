@@ -13,6 +13,10 @@ $default = [
     'mysql.collation' => 'utf8mb4_unicode_ci',
 ];
 
+
+$default[Config::SCRIPT_VERSION] = date('jmyhis');
+
+
 $centos = [
     'nginx.log.directory' => '/var/log/nginx',
     'nginx.root.directory' => '/usr/share/nginx',
@@ -51,11 +55,22 @@ $live[Config::JIG_COMPILE_CHECK] = 'COMPILE_CHECK_EXISTS';
 $live[Config::SCRIPT_PACKING] = true;
 $live[Config::CACHING_SETTING] = 'caching.time';
 
+$live[Config::DOMAIN_CANONICAL] = 'phpimagick.com';
+$live[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.test';
+$live[Config::DOMAIN_CDN_TOTAL] = 1;
+
+
+
 $dev = [];
 $dev[Config::LIBRATO_STATSSOURCENAME] = 'phpimagick.test';
 $dev[Config::JIG_COMPILE_CHECK] = 'COMPILE_CHECK_MTIME';
 $dev[Config::SCRIPT_PACKING] = false;
 $dev[Config::CACHING_SETTING] = 'caching.revalidate';
+
+$dev[Config::DOMAIN_CANONICAL] = 'phpimagick.test';
+$dev[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.test';
+$dev[Config::DOMAIN_CDN_TOTAL] = 1;
+
 
 //$dev[Config::JIG_COMPILE_CHECK] = 'COMPILE_CHECK_EXISTS';
 //$dev[Config::SCRIPT_PACKING] = true;

@@ -20,9 +20,10 @@ server {
 
     listen 80;
     listen 8080;
-    server_name imagick.test phpimagick.com www.phpimagick.com test.phpimagick.com phpimagick.test phpimagick.local;
+    server_name phpimagick.com www.phpimagick.com test.phpimagick.com phpimagick.test;
 
-    access_log  ${'nginx.log.directory'}/imagick.access.log;
+
+    access_log  ${'nginx.log.directory'}/imagick.access.log requestTime;    
     error_log  ${'nginx.log.directory'}/imagick.error.log;
 
     root ${'imagick.root.directory'}/imagick;

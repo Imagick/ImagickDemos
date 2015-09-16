@@ -60,7 +60,6 @@ $live[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.test';
 $live[Config::DOMAIN_CDN_TOTAL] = 1;
 
 
-
 $dev = [];
 $dev[Config::LIBRATO_STATSSOURCENAME] = 'phpimagick.test';
 $dev[Config::JIG_COMPILE_CHECK] = 'COMPILE_CHECK_MTIME';

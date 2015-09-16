@@ -1,4 +1,5 @@
 [
     "librato.key",
-    "librato.username"
+    "librato.username",
+    "github.access_token"
 ]

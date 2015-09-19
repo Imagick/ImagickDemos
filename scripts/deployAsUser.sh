@@ -10,6 +10,7 @@ echo "environment is ${environment}";
 
 
 if [ "${environment}" != "centos_guest" ]; then
+    imagickdemos_github_access_token=`php bin/info.php "github.access_token"`
     [ -z "${imagickdemos_github_access_token}" ] && echo "Need to set imagickdemos_github_access_token" && exit 1;
     composer config -g github-oauth.github.com ${imagickdemos_github_access_token}
     #Run Composer install to get all the dependencies.

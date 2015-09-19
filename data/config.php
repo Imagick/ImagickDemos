@@ -25,7 +25,7 @@ $centos = [
     'nginx.user' => 'nginx',
     'nginx.sendFile' => 'on',
     
-    'imagick.root.directory' => dirname(__DIR__), //'/home/imagickdemos/current',
+    'imagick.root.directory' => dirname(__DIR__),
     
     'phpfpm.www.maxmemory' => '16M',
     'phpfpm.images.maxmemory' => '48M',

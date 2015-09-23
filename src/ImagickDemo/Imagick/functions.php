@@ -552,33 +552,27 @@ function despeckleImage($imagePath)
 function drawImage()
 {
     $strokeColor = 'black';
-    $fillColor = 'salmon';
-    $backgroundColor = 'lightblue';
-    
+    $fillColor = 'plum1';
+
     $draw = new \ImagickDraw();
 
     $draw->setStrokeOpacity(1);
     $draw->setStrokeColor($strokeColor);
-    $draw->setStrokeWidth(4);
+    $draw->setStrokeWidth(1.2);
+    $draw->setFont("../fonts/Arial.ttf");
+    $draw->setFontSize(64);
 
     $draw->setFillColor($fillColor);
 
-    $points = [
-        ['x' => 40 * 5, 'y' => 10 * 5],
-        ['x' => 20 * 5, 'y' => 20 * 5],
-        ['x' => 70 * 5, 'y' => 50 * 5],
-        ['x' => 60 * 5, 'y' => 15 * 5],
-    ];
+    $draw->rotate(-12);
+    $draw->annotation(140, 380, "c'est ne pas \nune Lorikeet!");
 
-    $draw->polygon($points);
-
-    $image = new \Imagick();
-    $image->newImage(500, 300, $backgroundColor);
-    $image->setImageFormat("png");
-    $image->drawImage($draw);
+    $imagick = new \Imagick(realpath("../imagick/images/lories/IMG_1599_480.jpg"));
+    $imagick->setImageFormat("png");
+    $imagick->drawImage($draw);
 
     header("Content-Type: image/png");
-    echo $image->getImageBlob();
+    echo $imagick->getImageBlob();
 }
 //Example end
 

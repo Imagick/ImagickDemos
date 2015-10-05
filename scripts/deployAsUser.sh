@@ -8,7 +8,6 @@ fi
 
 echo "environment is ${environment}";
 
-
 if [ "${environment}" != "centos_guest" ]; then
     imagickdemos_github_access_token=`php bin/info.php "github.access_token"`
     [ -z "${imagickdemos_github_access_token}" ] && echo "Need to set imagickdemos_github_access_token" && exit 1;
@@ -17,29 +16,29 @@ if [ "${environment}" != "centos_guest" ]; then
     php -d allow_url_fopen=1 /usr/sbin/composer install --no-interaction --prefer-dist
 fi
 
-#need to make dir?
-mkdir -p ./var/cache/less
-
-mkdir -p autogen
 
 #Generate the config files for nginx, etc.
-vendor/bin/configurate -p data/config.php data/conf/imageTaskRunner.conf.php autogen/imageTaskRunner.conf $environment
-vendor/bin/configurate -p data/config.php data/conf/libratoStats.conf.php autogen/libratoStats.conf $environment
-vendor/bin/configurate -p data/config.php data/conf/imagick.nginx.conf.php autogen/imagick.nginx.conf $environment
-vendor/bin/configurate -p data/config.php data/conf/imagick.php-fpm.conf.php autogen/imagick.php-fpm.conf $environment
-vendor/bin/configurate -p data/config.php data/conf/imagick-demos.php.ini.php autogen/imagick-demos.php.ini $environment
-vendor/bin/configurate -p data/config.php data/conf/addImagickConfig.sh.php autogen/addImagickConfig.sh $environment
+mkdir -p autogen
+vendor/bin/configurate -p data/config.php data/config_template/imageGenerator.conf.php autogen/imageGenerator.conf $environment
+vendor/bin/configurate -p data/config.php data/config_template/statsUploader.conf.php autogen/statsUploader.conf $environment
+vendor/bin/configurate -p data/config.php data/config_template/nginx.conf.php autogen/nginx.conf $environment
+vendor/bin/configurate -p data/config.php data/config_template/php-fpm.conf.php autogen/php-fpm.conf $environment
+vendor/bin/configurate -p data/config.php data/config_template/php.ini.php autogen/php.ini $environment
+vendor/bin/configurate -p data/config.php data/config_template/addConfig.sh.php autogen/addConfig.sh $environment
 
+#generate the config for the appliction
 vendor/bin/genenv -p data/config.php data/envRequired.php autogen/appEnv.php $environment
 
+#convert the php ini file to php-fpm format
 vendor/bin/fpmconv autogen/imagick-demos.php.ini autogen/imagick-demos.php.fpm.ini 
 
 #Generate some code.
 php ./tool/weaveControls.php
+
 #Generate the CSS
+mkdir -p ./var/cache/less
 php ./tool/compileLess.php
 
 php bin/cli.php clearRedis
-
 
 #todo - make everything other than var be not writable 

@@ -17,11 +17,10 @@ do
     echo "\$envSetting['${element}'] = true;" >> ./envSetting.php
 done
 
-
 echo "" >> ./envSetting.php
 echo "return \$envSetting;" >> ./envSetting.php
 echo "" >> ./envSetting.php
 
 su imagickdemos -c "./scripts/deployAsUser.sh ${environment}"
 
-sh ./autogen/addImagickConfig.sh
+sh ./autogen/addConfig.sh

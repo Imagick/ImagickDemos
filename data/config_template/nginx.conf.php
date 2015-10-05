@@ -23,10 +23,10 @@ server {
     server_name phpimagick.com www.phpimagick.com test.phpimagick.com phpimagick.test;
 
 
-    access_log  ${'nginx.log.directory'}/imagick.access.log requestTime;    
-    error_log  ${'nginx.log.directory'}/imagick.error.log;
+    access_log  ${'nginx_log_directory'}/imagick.access.log requestTime;    
+    error_log  ${'nginx_log_directory'}/imagick.error.log;
 
-    root ${'imagick.root.directory'}/imagick;
+    root ${'imagick_root_directory'}/imagick;
 
     client_max_body_size 1m;
     
@@ -70,15 +70,15 @@ server {
         allow 127.0.0.1;
         deny all;
         fastcgi_param  QUERY_STRING       \$query_string;
-        include       ${'imagick.root.directory'}/data/conf/fastcgi.conf;
-        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
+        include       ${'imagick_root_directory'}/data/config_template/fastcgi.conf;
+        fastcgi_pass   unix:${'phpfpm_fullsocketpath'};
     }
 
     location  / {
         try_files \$uri /index.php =404;
         fastcgi_param  QUERY_STRING  \$query_string;
-        fastcgi_pass   unix:${'phpfpm.fullsocketpath'};
-        include       ${'imagick.root.directory'}/data/conf/fastcgi.conf;
+        fastcgi_pass   unix:${'phpfpm_fullsocketpath'};
+        include       ${'imagick_root_directory'}/data/config_template/fastcgi.conf;
     }
 }
 

@@ -30,7 +30,7 @@ vendor/bin/configurate -p data/config.php data/config_template/addConfig.sh.php 
 vendor/bin/genenv -p data/config.php data/envRequired.php autogen/appEnv.php $environment
 
 #convert the php ini file to php-fpm format
-vendor/bin/fpmconv autogen/imagick-demos.php.ini autogen/imagick-demos.php.fpm.ini 
+vendor/bin/fpmconv autogen/php.ini autogen/php.fpm.ini 
 
 #Generate some code.
 php ./tool/weaveControls.php

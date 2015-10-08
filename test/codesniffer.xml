@@ -83,6 +83,7 @@
         <exclude-pattern>ImagickDemo/Config.php</exclude-pattern>
         <exclude-pattern>tool/*</exclude-pattern>
         <exclude-pattern>bin/*</exclude-pattern>
+        <exclude-pattern>imagick-demos/src/index.php</exclude-pattern>
     </rule>
 
 </ruleset>

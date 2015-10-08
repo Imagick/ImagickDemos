@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fde9308dd4b1762e44748bde8c806697",
+    "hash": "a5384ddd95f28598229851bdcb8eabdd",
     "packages": [
         {
             "name": "amphp/amp",
@@ -341,16 +341,16 @@
         },
         {
             "name": "danack/tier",
-            "version": "0.1.1",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Tier.git",
-                "reference": "f4f156dc6ff0877b38bb47b9ffc175ea4f8bc2dc"
+                "reference": "51a6af4ff25cc9fd0e8393ff76df09683e62b28c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Tier/zipball/f4f156dc6ff0877b38bb47b9ffc175ea4f8bc2dc",
-                "reference": "f4f156dc6ff0877b38bb47b9ffc175ea4f8bc2dc",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/51a6af4ff25cc9fd0e8393ff76df09683e62b28c",
+                "reference": "51a6af4ff25cc9fd0e8393ff76df09683e62b28c",
                 "shasum": ""
             },
             "require": {
@@ -386,7 +386,7 @@
                 "di",
                 "example"
             ],
-            "time": "2015-09-04 13:47:39"
+            "time": "2015-10-08 21:24:09"
         },
         {
             "name": "daverandom/libdns",
@@ -465,16 +465,16 @@
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.2.8",
+            "version": "0.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "ac3a233efec6c74c9da58c759abe7517cf43b29d"
+                "reference": "2812ad69c933cb9fa438c4b5fa842b15fb3e4e52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/ac3a233efec6c74c9da58c759abe7517cf43b29d",
-                "reference": "ac3a233efec6c74c9da58c759abe7517cf43b29d",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/2812ad69c933cb9fa438c4b5fa842b15fb3e4e52",
+                "reference": "2812ad69c933cb9fa438c4b5fa842b15fb3e4e52",
                 "shasum": ""
             },
             "require": {
@@ -510,11 +510,13 @@
             "description": "Generates config files from PHP based config files and PHP and JSON data files.",
             "keywords": [
                 "config",
+                "configuration",
+                "environment",
                 "php",
                 "tool",
                 "utf-8"
             ],
-            "time": "2015-09-15 17:28:49"
+            "time": "2015-10-06 21:13:22"
         },
         {
             "name": "intahwebz/core",

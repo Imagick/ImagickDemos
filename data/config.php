@@ -7,8 +7,10 @@ use Room11\Caching\LastModifiedStrategy;
 
 $socketDir = '/var/run/php-fpm';
 
+$app_name = 'imagickdemos';
+
 $default = [
-    'app_name' => 'imagickdemos',
+    'app_name' => $app_name,
     'nginx_sendFile' => 'off',
     'mysql_charset' => 'utf8mb4',
     'mysql_collation' => 'utf8mb4_unicode_ci',
@@ -34,7 +36,7 @@ $centos = [
     'phpfpm_socket_directory' => $socketDir,
     'phpfpm_conf_directory' => '/etc/php-fpm.d',
     'phpfpm_pid_directory' => '/var/run/php-fpm',
-    'phpfpm_fullsocketpath' => $socketDir."/php-fpm-imagickdemos-".basename(dirname(__DIR__)).".sock",
+    'phpfpm_fullsocketpath' => $socketDir."/php-fpm-".$app_name."-".basename(dirname(__DIR__)).".sock",
 
     'php_conf_directory' => '/etc/php',
     'php_log_directory' => '/var/log/php',

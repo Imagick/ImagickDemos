@@ -53,7 +53,7 @@ security.limit_extensions = .php
 
 clear_env = false
 
-include = ${'imagick_root_directory'}/autogen/imagick-demos.php.fpm.ini
+include = ${'imagick_root_directory'}/autogen/php.fpm.ini
 
 END;
 

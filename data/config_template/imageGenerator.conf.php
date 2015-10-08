@@ -5,7 +5,7 @@ $config = <<< END
 
 [program:imageTaskRunner]
 directory=${'imagick_root_directory'}
-command=bash ./scripts/process/imageRunner.sh
+command=php bin/cli.php imageRunner
 process_name=%(program_name)s_%(process_num)d
 numprocs=2
 autostart=true

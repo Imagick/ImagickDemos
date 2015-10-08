@@ -107,8 +107,6 @@ class ImagickTaskRunner
                 echo "Exception running the task: " . $e->getMessage();
                 $this->taskQueue->errorTask($task, get_class($e).": ".$e->getMessage());
             }
-            
-            
         }
         echo "\nImagickTaskRunner exiting\n";
     }
@@ -162,7 +160,7 @@ class ImagickTaskRunner
 
         try {
             $result = renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
-            echo "file written";
+            echo "file written: $filename \n";
         }
         catch (InjectionException $ie) {
             echo "InjectionException calling image function: ".var_export($imageFunction, true)."\n";

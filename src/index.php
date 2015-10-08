@@ -28,6 +28,7 @@ $tier = new Tier('routeRequest');
 
 // Create the Tier application
 $app = new TierApp($tier, $injectionParams);
+$app->setStandardExceptionHandlers();
 $app->addPreCallable(['ImagickDemo\AppTimer', 'timerStart']);
 $app->addPostCallable(['ImagickDemo\AppTimer', 'timerEnd']);
 

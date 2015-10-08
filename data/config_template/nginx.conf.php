@@ -2,6 +2,7 @@
 
 $config = <<< END
 
+
 server {
 
     gzip  on;
@@ -81,6 +82,7 @@ server {
         include       ${'imagick_root_directory'}/data/config_template/fastcgi.conf;
     }
 }
+
 
 END;
 

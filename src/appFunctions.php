@@ -440,8 +440,6 @@ function renderImageAsFileResponse(
     \Auryn\Injector $injector,
     $params
 ) {
-    
-    var_dump($imageFunction);
 
     try {
         ob_start();
@@ -449,7 +447,6 @@ function renderImageAsFileResponse(
         global $imageType;
 
         $injector->execute($imageFunction, $params);
-
 
         if ($imageType == null) {
             ob_end_clean();

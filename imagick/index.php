@@ -1,3 +1,3 @@
 <?php
 
-require "../src/process.php";
+require "../src/index.php";

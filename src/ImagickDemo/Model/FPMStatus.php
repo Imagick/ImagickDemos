@@ -5,7 +5,7 @@ namespace ImagickDemo\Model;
 
 use Amp\Artax\Client;
 use Arya\TextBody;
-
+use ImagickDemo\Config;
 use Tier\Domain;
 
 class FPMStatus
@@ -13,29 +13,31 @@ class FPMStatus
     /**
      * @var Domain
      */
-    private $domain;
+    private $internalDomainName;
     
     
-    public function __construct(Domain $domain)
+    public function __construct(Config $config)
     {
-        $this->domain = $domain;
+        $this->internalDomainName = $config->getKey(Config::DOMAIN_INTERNAL);
     }
     
     public function render()
     {
         $startOBLevel = ob_get_level();
+
+        $url = sprintf(
+            "http://%s/www-status?full&json",
+            $this->internalDomainName
+        );
+
+        
         try {
             ob_start();
 
             $reactor = \Amp\getReactor();
             $client = new Client($reactor);
-            $url = sprintf(
-                "http://%s/www-status?full&json",
-                $this->domain->getCanonicalDomain()
-            );
 
             $promise = $client->request($url);
-
             $response = \Amp\wait($promise);
 
             $headers = [
@@ -142,7 +144,7 @@ class FPMStatus
             while (ob_get_level() > $startOBLevel) {
                 ob_end_clean();
             }
-            return "Error fetch FPM status: ".$e->getMessage();
+            return "Error fetching FPM status from `$url`. Error is: ".$e->getMessage();
         }
     }
 }

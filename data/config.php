@@ -69,8 +69,12 @@ $dev[Config::SCRIPT_PACKING] = false;
 $live[Config::DOMAIN_CANONICAL] = 'phpimagick.com';
 $dev[Config::DOMAIN_CANONICAL] = 'phpimagick.test';
 
-$live[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.test';
+$live[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.com';
 $dev[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.test';
+
+$live[Config::DOMAIN_INTERNAL] = 'internal.phpimagick.com';
+$dev[Config::DOMAIN_INTERNAL] = 'internal.phpimagick.test';
+
 
 $live[Config::DOMAIN_CDN_TOTAL] = 1;
 $dev[Config::DOMAIN_CDN_TOTAL] = 1;

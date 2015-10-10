@@ -21,7 +21,7 @@ server {
 
     listen 80;
     listen 8080;
-    server_name phpimagick.com www.phpimagick.com test.phpimagick.com phpimagick.test;
+    server_name phpimagick.com www.phpimagick.com test.phpimagick.com phpimagick.test internal.phpimagick.com internal.phpimagick.test;
 
 
     access_log  ${'nginx_log_directory'}/imagick.access.log requestTime;    

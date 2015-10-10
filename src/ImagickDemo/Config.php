@@ -26,11 +26,15 @@ class Config
     const DOMAIN_CANONICAL = 'domain.canonical';
     const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
     const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
+    const DOMAIN_INTERNAL = 'domain.internal';
 
     const CACHING_SETTING = 'caching.setting';
     
     const SCRIPT_VERSION = 'script.version';
     const SCRIPT_PACKING = 'script.packing';
+    
+    const ENVIRONMENT = 'environment';
+    
 
     private $values = [];
 

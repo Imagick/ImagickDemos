@@ -35,8 +35,9 @@ abstract class ValueElement implements ControlElement
         }
 
         $value = $variableMap->getVariable($this->getVariableName(), $value);
+        $value = $this->filterValue($value);
 
-        if (($value !== false) && (strlen(trim($value) != 0))) {
+        if (($value !== false) && strlen(trim($value)) != 0) {
             if ($value < $this->getMin()) {
                 $value = $this->getMin();
             }

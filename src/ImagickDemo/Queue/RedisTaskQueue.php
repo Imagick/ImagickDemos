@@ -222,8 +222,8 @@ class RedisTaskQueue implements TaskQueue
         $serializedTask = $this->redisClient->get($this->taskListKey.$taskKey);
 
         if (!$serializedTask) {
-            $this->setStatus($taskKey, TaskQueue::STATE_ERROR);
-            throw new \Exception("Failed to find expected task " . $taskKey);
+            $data = var_export($serializedTask, true);
+            throw new \Exception("Failed to find expected task ".$taskKey.". Data returned was ".$data);
         }
 
         $task = @unserialize($serializedTask);

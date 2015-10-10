@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a5384ddd95f28598229851bdcb8eabdd",
+    "hash": "3161a8335981fbe72f0688c94651405d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -465,16 +465,16 @@
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.2.9",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "2812ad69c933cb9fa438c4b5fa842b15fb3e4e52"
+                "reference": "c603dd11c7d0c3ecf40c7c1476ea1efd042af291"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/2812ad69c933cb9fa438c4b5fa842b15fb3e4e52",
-                "reference": "2812ad69c933cb9fa438c4b5fa842b15fb3e4e52",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/c603dd11c7d0c3ecf40c7c1476ea1efd042af291",
+                "reference": "c603dd11c7d0c3ecf40c7c1476ea1efd042af291",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +516,7 @@
                 "tool",
                 "utf-8"
             ],
-            "time": "2015-10-06 21:13:22"
+            "time": "2015-10-10 18:26:43"
         },
         {
             "name": "intahwebz/core",

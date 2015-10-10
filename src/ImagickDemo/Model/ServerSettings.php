@@ -53,9 +53,10 @@ class ServerSettings
     public function renderConfSettings()
     {
         $settings = [
-            'JIG_COMPILE_CHECK' => Jig::COMPILE_CHECK_EXISTS,
-            'CACHING_SETTING' => LastModifiedStrategy::CACHING_TIME,
-            'LIBRATO_STATSSOURCENAME' => null,
+            Config::JIG_COMPILE_CHECK => Jig::COMPILE_CHECK_EXISTS,
+            Config::CACHING_SETTING => LastModifiedStrategy::CACHING_TIME,
+            Config::LIBRATO_STATSSOURCENAME => null,
+            'environment' => null,
         ];
 
         $output = "";
@@ -71,7 +72,7 @@ class ServerSettings
 
         $output .= "<body>";
         foreach ($settings as $setting => $expectedValue) {
-            $value = $config->getKey(constant("ImagickDemo\\Config::$setting"));
+            $value = $config->getKey($setting);
 
             $class = 'good';
             if ($expectedValue === null) {

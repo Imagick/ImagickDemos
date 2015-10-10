@@ -74,3 +74,10 @@ $dev[Config::DOMAIN_CDN_PATTERN] = 'phpimagick.test';
 
 $live[Config::DOMAIN_CDN_TOTAL] = 1;
 $dev[Config::DOMAIN_CDN_TOTAL] = 1;
+
+
+$evaluate = function ($config, $environment) {
+    return [
+        'environment' => $environment,
+    ];
+};

@@ -13,6 +13,7 @@ $env = [
     
     Config::SCRIPT_VERSION,
     Config::SCRIPT_PACKING,
+    'environment'
 ];
 
 return $env;

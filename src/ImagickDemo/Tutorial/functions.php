@@ -35,11 +35,11 @@ function header($string, $replace = true, $http_response_code = null)
     }
 }
 
-
+//Example Tutorial::diffMarking
 function diffMarking()
 {
-    $image1 = new Imagick(__DIR__."/compare1.jpg");
-    $image2 = new Imagick(__DIR__."/compare2.jpg");
+    $image1 = new Imagick(__DIR__."/../../../imagick/images/compare1.png");
+    $image2 = new Imagick(__DIR__."/../../../imagick/images/compare2.png");
 
     $image1->compositeImage($image2, \Imagick::COMPOSITE_DIFFERENCE, 0, 0);
 
@@ -73,8 +73,8 @@ function diffMarking()
     header("Content-Type: image/gif");
     echo $outputGif->getImagesBlob();
 }
-    
-    
+//Example end
+
 //Example Tutorial::fxAnalyzeImage
 // Analyzes a one pixel wide image to make it easy to see what the
 // gradient is doing

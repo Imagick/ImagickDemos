@@ -933,7 +933,7 @@ class DocHelper {
     ),
     'drawimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"drawImage";s:5:"lines";s:649:"function drawImage()
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"drawImage";s:5:"lines";s:645:"function drawImage()
 {
     $strokeColor = \'black\';
     $fillColor = \'plum1\';
@@ -943,7 +943,7 @@ class DocHelper {
     $draw->setStrokeOpacity(1);
     $draw->setStrokeColor($strokeColor);
     $draw->setStrokeWidth(1.2);
-    $draw->setFont("../fonts/Arial.ttf");    
+    $draw->setFont("../fonts/Arial.ttf");
     $draw->setFontSize(64);
 
     $draw->setFillColor($fillColor);
@@ -6292,6 +6292,47 @@ function renderFontEffect()
     echo $canvas->getImageBlob();
 }
 ";s:11:"description";s:27:"Make some nice looking text";s:9:"startLine";i:5;s:7:"endLine";i:103;}',
+    ),
+    'diffmarking' => 
+    array (
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:11:"diffMarking";s:5:"lines";s:1264:"function diffMarking()
+{
+    $image1 = new Imagick(__DIR__."/../../../imagick/images/compare1.png");
+    $image2 = new Imagick(__DIR__."/../../../imagick/images/compare2.png");
+
+    $image1->compositeImage($image2, \\Imagick::COMPOSITE_DIFFERENCE, 0, 0);
+
+    $overlay = clone $image1;
+    $overlay->negateImage(false);
+    $overlay->setImageAlphaChannel(\\Imagick::ALPHACHANNEL_DEACTIVATE);
+    $overlay->transformImageColorSpace(\\Imagick::COLORSPACE_GRAY);
+
+    $overlay->statisticImage(\\Imagick::STATISTIC_MINIMUM, 20, 2);
+    $overlay->statisticImage(\\Imagick::STATISTIC_MINIMUM, 2, 20);
+    $overlay->statisticImage(\\Imagick::STATISTIC_GRADIENT, 4, 4);
+
+    $red = new Imagick();
+    $red->newPseudoImage(
+        $overlay->getImageWidth(),
+        $overlay->getImageHeight(),
+        \'xc:red\'
+    );
+
+    $red->compositeImage($overlay, \\Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+
+    $withOutline = clone $image2;
+    $withOutline->compositeImage($red, \\Imagick::COMPOSITE_ATOP, 0, 0);
+
+    $outputGif = new Imagick();
+    $outputGif->addImage($image2);
+    $outputGif->addImage($withOutline);
+
+    $outputGif = $outputGif->deconstructImages();
+    $outputGif->setImageFormat(\'gif\');
+    header("Content-Type: image/gif");
+    echo $outputGif->getImagesBlob();
+}
+";s:11:"description";s:0:"";s:9:"startLine";i:38;s:7:"endLine";i:76;}',
     ),
     'fxanalyzeimage' => 
     array (

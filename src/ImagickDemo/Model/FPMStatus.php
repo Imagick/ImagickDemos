@@ -132,7 +132,6 @@ class FPMStatus
 
             echo "</table>";
             echo "<br/>";
-            echo "<a href='http://127.0.0.1:9002'>SupervisorD</a>";
 
             $output = ob_get_contents();
 

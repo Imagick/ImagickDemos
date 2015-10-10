@@ -15,6 +15,7 @@ class ServerSettings
             'opcache.enable' => true,
             'opcache.validate_timestamps' => false,
             'opcache.file_update_protection' => false,
+            'opcache.enable_file_override' => false,
         ];
 
         $output = "";

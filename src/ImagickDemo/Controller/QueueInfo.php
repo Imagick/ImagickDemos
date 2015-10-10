@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Controller;
 
-use Arya\TextBody;
+use Room11\HTTP\Body\TextBody;
 use ImagickDemo\Queue\ImagickTaskQueue;
 use Tier\InjectionParams;
 

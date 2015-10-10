@@ -23,6 +23,7 @@ class FPMStatus
     
     public function render()
     {
+        $startOBLevel = ob_get_level();
         try {
             ob_start();
 
@@ -138,7 +139,7 @@ class FPMStatus
             return $output;
         }
         catch (\Exception $e) {
-            while (ob_get_level() > 0) {
+            while (ob_get_level() > $startOBLevel) {
                 ob_end_clean();
             }
             return "Error fetch FPM status: ".$e->getMessage();

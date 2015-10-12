@@ -735,7 +735,7 @@ function getExceptionText(\Exception $e)
     
 function createLibrato(Config $config)
 {
-    return\ImagickDemo\Config\Librato::make(
+    return \ImagickDemo\Config\Librato::make(
         $config->getKey(Config::LIBRATO_KEY),
         $config->getKey(Config::LIBRATO_USERNAME),
         $config->getKey(Config::LIBRATO_STATSSOURCENAME)

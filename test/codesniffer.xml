@@ -14,6 +14,9 @@
 
     <!-- These will be removed when we switch to tier fully. -->
     <exclude-pattern>*ImagickDemo/Response/*</exclude-pattern>
+    
+    <!-- This is a stub file and deliberately not CS compliant -->
+    <exclude-pattern>*doc/Imagick.php</exclude-pattern>
 
     <rule ref="PSR2">
         <!-- Need to find a way to turn this off for text, before re-enabling -->

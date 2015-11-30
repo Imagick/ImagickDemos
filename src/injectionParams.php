@@ -27,6 +27,7 @@ $shares = [
     'Room11\HTTP\Response',
 ];
 
+// A set of definitions for some classes
 $defines = [
     'Tier\Path\AutogenPath'       => [':path' => __DIR__."/../autogen/"],
     'Intahwebz\DataPath'          => [':path' => __DIR__."/../data/"],
@@ -36,7 +37,6 @@ $defines = [
     'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../imagick/'],
     'FileFilter\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
 ];
-
 
 // Alias interfaces (or classes) to the actual types that should be used 
 // where they are required. 
@@ -66,9 +66,11 @@ $delegates = [
     'Tier\Domain' => 'createDomain',
 ];
 
+// Avoiding defining injection params by name is good.
 $params = [
 ];
 
+// Some objects need to be prepared after the are created.
 $prepares = [
     'Jig\Converter\JigConverter' => 'prepareJigConverter',
     'Jig\Jig' => 'prepareJig',

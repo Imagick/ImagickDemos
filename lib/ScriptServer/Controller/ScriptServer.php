@@ -6,8 +6,6 @@ use Tier\ResponseBody\FileResponseIM as FileResponse;
 use Tier\Path\WebRootPath;
 use Tier\ResponseBody\FileResponseCreator;
 use FilePacker\FilePacker;
-//use Arya\Request;
-//use Arya\Response;
 
 use Room11\HTTP\Request;
 use Room11\HTTP\Response;

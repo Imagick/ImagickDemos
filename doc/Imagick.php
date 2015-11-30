@@ -3159,6 +3159,7 @@ class Imagick implements Iterator, Traversable {
 
 	/**
 	 * @param $key
+	 * @return string
 	 */
 	public function getimageattribute ($key) {}
 

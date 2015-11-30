@@ -16,7 +16,7 @@ class Gamma extends ValueElement
 
     protected function getMin()
     {
-        return 0;
+        return 0.01;
     }
 
     protected function getMax()

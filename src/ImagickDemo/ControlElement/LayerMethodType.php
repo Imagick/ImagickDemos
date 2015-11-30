@@ -38,7 +38,7 @@ class LayerMethodType extends OptionKeyElement
             \Imagick::LAYERMETHOD_MERGE => "Merge",
             \Imagick::LAYERMETHOD_FLATTEN => "Flatten",
             \Imagick::LAYERMETHOD_MOSAIC => "Mosaic",
-            \Imagick::LAYERMETHOD_TRIMBOUNDS => "Trim bounds",
+            //\Imagick::LAYERMETHOD_TRIMBOUNDS => "Trim bounds",
         ];
     }
 

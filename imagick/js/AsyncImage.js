@@ -85,7 +85,7 @@ var AsyncImage = {
                 newSrc = this.imageURI + "&time=" + d.getTime();
             }
             
-            $(this.element).find('.wtfmate').attr('src', newSrc); 
+            $(this.element).find('.imageStatus').attr('src', newSrc); 
             $(this.element).find('.imageShown').toggle(true);
             $(this.element).find('.asyncShown').toggle(false);
         };
@@ -100,10 +100,13 @@ var AsyncImage = {
     },
 
     imageError: function(event, xhr) {
+        this.imageErrorTweakHTML();
+        setTimeout(this.callback, 0);
+    },
+    
+    imageErrorTweakHTML: function() {
         $(this.element).find('.imageShown').toggle(false);
         $(this.element).find('.asyncShown').toggle(true);
-
-        setTimeout(this.callback, 0);
     },
     
     _create: function() {
@@ -114,12 +117,13 @@ var AsyncImage = {
         this.statusElement = $(this.element).find('.asyncImageStatus');
         this.asyncSpinner = $(this.element).find('.asyncSpinner');
 
-        $(this.element).find('.exampleImage').off('error');
-        $(this.element).find('.exampleImage').on('error', $.proxy(this, 'imageError'));
-        
+
         if (!this.imageURI) {
             return;
         }
+        
+        $(this.element).find('.exampleImage').off('error');
+        $(this.element).find('.exampleImage').on('error', $.proxy(this, 'imageError'));
 
         var enabledData = $(this.element).data('enabled');
         if (enabledData) {
@@ -136,8 +140,9 @@ var AsyncImage = {
 
         //Has a load error already occurred before this widget was 
         //intialised.
-        var loadError = $(this.element).find('.wtfmate').data('loadError');
-        if (loadError) {
+        var status = $(this.element).find('.imageStatus').data('status');
+        if (status == "loadError") {
+            this.imageErrorTweakHTML();
             setTimeout(this.callback, 0);
         }
     } 
@@ -146,5 +151,6 @@ var AsyncImage = {
 $.widget("phpimagick.asyncImage", AsyncImage); // create the widget
 
 function initAsyncImage(selector){
+
     $(selector).asyncImage({});
 }

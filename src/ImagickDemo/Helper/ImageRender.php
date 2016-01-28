@@ -88,7 +88,7 @@ class ImageRender
 
 <script type='text/javascript'>        
     function imageLoadError(element) {
-        element.dataset.loadError = "true";
+        element.dataset.status = "loadError";
     }
 </script>
 
@@ -97,7 +97,8 @@ class ImageRender
    <img 
     src='%s' 
     id='exampleImage'
-    class='img-responsive exampleImage wtfmate' 
+    data-status="unknown"
+    class='img-responsive exampleImage imageStatus' 
     %s 
     onerror='imageLoadError(this);' />
 HTML;

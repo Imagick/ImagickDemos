@@ -12,7 +12,7 @@ class ScriptIncludePacked extends ScriptInclude
     public function __construct(
         ScriptVersion $scriptVersion
     ) {
-        $this->scriptVersion = $scriptVersion;
+        $this->scriptVersion = $scriptVersion->getValue();
     }
 
     public function linkJS()
@@ -23,7 +23,7 @@ class ScriptIncludePacked extends ScriptInclude
             return "";
         }
 
-        $url = $this->scriptVersion->getValue();
+        $url = $this->scriptVersion;
         $output = "<script type='text/javascript'>\n";
 
         foreach ($this->includeJSArray as $includeJS) {
@@ -68,7 +68,7 @@ class ScriptIncludePacked extends ScriptInclude
             "<link rel='stylesheet' type='text/css' %s href='/css/%s?%s' />\n",
             $mediaString,
             $fileList,
-            $this->scriptVersion->getValue()
+            $this->scriptVersion
         );
 
         return $output;

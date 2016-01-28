@@ -13,7 +13,7 @@ class ScriptIncludeIndividual extends ScriptInclude
     
     public function __construct(ScriptVersion $scriptVersion)
     {
-        $this->scriptVersion = $scriptVersion;
+        $this->scriptVersion = $scriptVersion->getValue();
     }
     
     public function linkJS()
@@ -24,7 +24,7 @@ class ScriptIncludeIndividual extends ScriptInclude
             $output .= sprintf(
                 "<script type='text/javascript' src='/js/%s.js?version=%s'></script>\n",
                 $includeJS,
-                $this->scriptVersion->getValue()
+                $this->scriptVersion
             );
         }
 
@@ -49,7 +49,7 @@ class ScriptIncludeIndividual extends ScriptInclude
                 "<link rel='stylesheet' type='text/css' %s href='/css/%s.css?%s' />\n",
                 $mediaString,
                 $cssFile->file,
-                $this->scriptVersion->getValue()
+                $this->scriptVersion
             );
         }
 

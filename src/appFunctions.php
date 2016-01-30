@@ -556,6 +556,8 @@ function createImageTask(
     $params
 ) {
     $job = $variableMap->getVariable('job', false);
+    
+    $text = "Image is still generating.";
     if ($job === false) {
         if ($taskQueue->isActive() == false) {
             //Queue isn't active - don't bother queueing a task
@@ -568,11 +570,14 @@ function createImageTask(
             $customImage,
             $request->getUri()->getPath()
         );
-        $taskQueue->addTask($task);
-    }
-
-    if ($variableMap->getVariable('noredirect') == true) {
-        return new \ImagickDemo\Response\ErrorResponse(503, "image still processing $job is ".$job);
+        $added = $taskQueue->addTask($task);
+        
+        if ($added === true) {
+            $text = "Image added to task list";
+        }
+        else {
+            $text = "Image task $added already present.";
+        }
     }
 
     $caching = new \Room11\Caching\LastModified\Disabled();
@@ -580,7 +585,7 @@ function createImageTask(
         $headersSet->addHeader($key, $value);
     }
 
-    return new TextBody("Image is generating.", 420);
+    return new TextBody($text, 420);
 }
 
 function serve404ErrorPage()

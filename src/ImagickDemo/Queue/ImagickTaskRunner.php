@@ -52,6 +52,7 @@ class ImagickTaskRunner
     public function run()
     {
         echo "ImagickTaskRunner started\n";
+        \Imagick::setResourceLimit(\Imagick::RESOURCETYPE_TIME, 60);
         /** @noinspection PhpUndefinedMethodInspection */
         \ImagickDemo\Imagick\functions::load();
         \ImagickDemo\ImagickDraw\functions::load();
@@ -60,12 +61,29 @@ class ImagickTaskRunner
         \ImagickDemo\ImagickPixelIterator\functions::load();
         \ImagickDemo\Tutorial\functions::load();
 
-        $maxRunTime = 60; // one minute
-        $maxRunTime *= 60; // 1hour
+// ImageMagick has a 'non-optimal' way of measuring time passed
+// https://github.com/ImageMagick/ImageMagick/issues/113
+// Currently it does not appear possible to have both protection
+//        $maxRunTime = 60; // one minute
+//        $maxRunTime *= 60; // 1hour
+//
+//        // Each image generated hurries up the restart by 50 seconds
+//        // for a max of 72 images generated per run
+//        $taskPseudoTime = 50;
+// End rant
+        
+        //Start remove this when time limit can be controlled better
+        $maxRunTime = \Imagick::getResourceLimit(\Imagick::RESOURCETYPE_TIME); // one minute
+        if ($maxRunTime <= 10) {
+            $maxRunTime = 45;
+        }
 
-        // Each image generated hurries up the restart by 50 seconds
-        // for a max of 72 images generated per run
-        $taskPseudoTime = 50;
+        // Each image generated hurries up the restart by 2 seconds
+        // for a max of 30 images generated per run
+        $taskPseudoTime = 2;
+        //End remove this when time limit can be controlled better
+
+        
         $endTime = time() + $maxRunTime;
         $count = 0;
 

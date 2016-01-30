@@ -261,24 +261,27 @@ class RedisTaskQueue implements TaskQueue
      */
     public function addTask(Task $task)
     {
+        $taskKey = $task->getKey();
+        $taskSpecificKey = $this->taskListKey.$taskKey;
+
         $serialized = serialize($task);
         $existingStatus = $this->getStatus($task);
 
         if ($existingStatus) {
             //TODO - what should happen here?
-
-            return null;
+            return $taskSpecificKey;
         }
 
-        $taskKey = $task->getKey();
         $this->redisClient->set(
-            $this->taskListKey.$taskKey,
+            $taskSpecificKey,
             $serialized,
             'EX',
             self::TASK_TTL
         );
         $this->redisClient->rpush($this->announceListKey, $taskKey);
         $this->setStatus($task, TaskQueue::STATE_INITIAL);
+        
+        return true;
     }
 
     /**

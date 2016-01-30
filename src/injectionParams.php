@@ -24,7 +24,7 @@ $shares = [
     'Tier\Path\ExternalLibPath',
     'Tier\Path\YuiCompressorPath',
     'Tier\Path\WebRootPath',
-    'Room11\HTTP\Response',
+    'Room11\HTTP\HeadersSet',
 ];
 
 // A set of definitions for some classes
@@ -41,30 +41,39 @@ $defines = [
 // Alias interfaces (or classes) to the actual types that should be used 
 // where they are required. 
 $aliases = [
+    'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
     //'Intahwebz\Request' => 'Intahwebz\Routing\HTTPRequest',
     'ImagickDemo\DocHelper' => 'ImagickDemo\DocHelperDisplay',
     'ImagickDemo\Framework\VariableMap' => 'ImagickDemo\Framework\RequestVariableMap',
+    'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
     'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
     'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
-    'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
-    'Room11\HTTP\Request' => 'Room11\HTTP\Request\Request',
-    'Room11\HTTP\Response' => 'Room11\HTTP\Response\Response',
+    'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\RequestHeaders\HTTPRequestHeaders',
+    'Room11\HTTP\RequestRouting' => 'Room11\HTTP\RequestRouting\PSR7RequestRouting',
+    'Room11\HTTP\VariableMap' => 'Room11\HTTP\VariableMap\PSR7VariableMap',
+    'ScriptHelper\ScriptVersion' => 'ScriptHelper\ScriptVersion\DateScriptVersion',
+    'ScriptHelper\ScriptURLGenerator' => 'ScriptHelper\ScriptURLGenerator\StandardScriptURLGenerator',
+    'Zend\Diactoros\Response\EmitterInterface' => 'Zend\Diactoros\Response\SapiEmitter',
 ];
 
 
 // Delegate the creation of types to callables.
 $delegates = [
+    'FastRoute\Dispatcher' => 'createDispatcher',
     'ImagickDemo\Control' => 'createControl',
     'ImagickDemo\Example' => 'createExample',
     'ImagickDemo\Config\Librato' => 'createLibrato',
     'Jig\JigConfig' => 'createJigConfig',
     'Predis\Client' => 'createRedisClient',
+    
     'Room11\Caching\LastModifiedStrategy' => 'createCaching',
     'ScriptServer\Value\ScriptVersion' => 'createScriptVersion',
-    'ScriptServer\Service\ScriptInclude' => 'createScriptInclude',
+    '\ScriptHelper\ScriptInclude' => 'createScriptInclude',
     'Tier\Domain' => 'createDomain',
 ];
+
+
 
 // Avoiding defining injection params by name is good.
 $params = [
@@ -72,7 +81,7 @@ $params = [
 
 // Some objects need to be prepared after the are created.
 $prepares = [
-    'Jig\Converter\JigConverter' => 'prepareJigConverter',
+
     'Jig\Jig' => 'prepareJig',
 ];
 

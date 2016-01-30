@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 class setIteratorIndex extends \ImagickDemo\Example
 {

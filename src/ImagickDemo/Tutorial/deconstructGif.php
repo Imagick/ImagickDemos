@@ -3,7 +3,7 @@
 namespace ImagickDemo\Tutorial;
 
 use Imagick;
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 //Example Tutorial::deconstructGif Make a simple gif with lots of frames.
 function makeSimpleGif($deconstruct)

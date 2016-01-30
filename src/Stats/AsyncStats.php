@@ -2,8 +2,8 @@
 
 namespace Stats;
 
-use Predis\Client as RedisClient;
 use ImagickDemo\Config\Librato as LibratoConfig;
+use Predis\Client as RedisClient;
 
 class AsyncStats
 {

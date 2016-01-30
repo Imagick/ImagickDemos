@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 abstract class OptionKeyElement implements ControlElement
 {

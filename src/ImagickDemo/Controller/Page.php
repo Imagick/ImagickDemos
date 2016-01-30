@@ -4,6 +4,7 @@ namespace ImagickDemo\Controller;
 
 use Tier\InjectionParams;
 
+use Tier\Tier;
 use Tier\JigBridge\TierJig;
 
 class Page
@@ -14,10 +15,11 @@ class Page
      */
     public function renderTitlePage(TierJig $tierJig)
     {
-        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
+        $injectionParams = new InjectionParams();
+        //$injectionParams->defineParam('pageTitle', "Imagick demos");
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
 
-        return $tierJig->createTemplateTier('title', $injectionParams);
+        return $tierJig->createJigExecutable('title', $injectionParams);
     }
 
     /**
@@ -28,10 +30,11 @@ class Page
      */
     public function renderExamplePage()
     {
-        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
+        $injectionParams = new InjectionParams();
+        $injectionParams->defineParam('pageTitle', "Imagick demos");
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return createRenderTemplateTier('example', $injectionParams);
+        return Tier::renderTemplateExecutable('example', $injectionParams);
     }
 
     /**
@@ -41,9 +44,10 @@ class Page
      */
     public function renderCategoryIndex()
     {
-        $injectionParams = InjectionParams::fromParams(['pageTitle' => "Imagick demos"]);
+        $injectionParams = new InjectionParams();
+        $injectionParams->defineParam('pageTitle', "Imagick demos");
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return createRenderTemplateTier('categoryIndex', $injectionParams);
+        return Tier::renderTemplateExecutable('categoryIndex', $injectionParams);
     }
 }

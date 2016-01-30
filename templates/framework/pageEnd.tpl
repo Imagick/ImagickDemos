@@ -2,26 +2,25 @@
 </body>
 
 
-{inject name='scriptInclude' type='ScriptServer\Service\ScriptInclude'}
+{inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
 
 
 
-{$scriptInclude->addJS("jquery-1.11.0.min")}
-{$scriptInclude->addJS("jquery-ui-1.10.0.custom.min")}
-{$scriptInclude->addJS("colpick")}
-{$scriptInclude->addJS("jquery.fastLiveFilter")}
-{$scriptInclude->addJS("syntaxhighlighter/xregexp")}
-{$scriptInclude->addJS("syntaxhighlighter/shCore")}
-{$scriptInclude->addJS("syntaxhighlighter/shBrushPhp")}
-{$scriptInclude->addJS("syntaxhighlighter/shBrushJScript")}
-{$scriptInclude->addJS("AsyncImage")}
-{$scriptInclude->addJS("jQuery/jquery.tablesorter")}
-{$scriptInclude->addJS("jQuery/jquery.tablesorter.parser-metric")}
+{$scriptInclude->addJSFile("jquery-1.11.0.min")}
+{$scriptInclude->addJSFile("jquery-ui-1.10.0.custom.min")}
+{$scriptInclude->addJSFile("colpick")}
+{$scriptInclude->addJSFile("jquery.fastLiveFilter")}
+{$scriptInclude->addJSFile("syntaxhighlighter/xregexp")}
+{$scriptInclude->addJSFile("syntaxhighlighter/shCore")}
+{$scriptInclude->addJSFile("syntaxhighlighter/shBrushPhp")}
+{$scriptInclude->addJSFile("syntaxhighlighter/shBrushJScript")}
+{$scriptInclude->addJSFile("AsyncImage")}
+{$scriptInclude->addJSFile("jQuery/jquery.tablesorter")}
+{$scriptInclude->addJSFile("jQuery/jquery.tablesorter.parser-metric")}
 
 
 
-
-{$scriptInclude->linkJS() | nofilter}
+{$scriptInclude->renderJSLinks() | nofilter}
 
 {* Yui compressor is currently breaking this, and it's already minified.*}
 <script src="/js/bootstrap.min.js"></script>

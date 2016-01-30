@@ -5,6 +5,7 @@ namespace ImagickDemo\Controller;
 use Room11\HTTP\Body\TextBody;
 use ImagickDemo\Queue\ImagickTaskQueue;
 use Tier\InjectionParams;
+use Tier\Tier;
 
 class QueueInfo
 {
@@ -18,6 +19,6 @@ class QueueInfo
 
     public function createResponse()
     {
-        return createRenderTemplateTier('admin/queueInfo');
+        return Tier::renderTemplateExecutable('admin/queueInfo');
     }
 }

@@ -80,9 +80,15 @@ f4 - Constant vertical offset, default 0.5";
      */
     public function render()
     {
-        $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
-
-        return $output;
+        //return $this->renderImageURL();
+        
+        return $this->renderCustomImageURL();
+        
+//        $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
+//        
+//        return "This is being used?";
+//
+//        return $output;
     }
 
     /**

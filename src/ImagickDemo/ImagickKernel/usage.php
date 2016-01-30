@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 class usage extends \ImagickDemo\Example
 {

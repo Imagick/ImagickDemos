@@ -1,31 +1,24 @@
 <?php
 
-
-use Room11\HTTP\Request;
-use Room11\HTTP\Response;
-use Room11\HTTP\Body;
 use Auryn\Injector;
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\Body;
+use Room11\HTTP\VariableMap;
+use Room11\HTTP\HeadersSet;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryInfo;
 use ImagickDemo\Queue\ImagickTaskQueue;
-use Jig\Converter\JigConverter;
+use ImagickDemo\Config;
 use Jig\Jig;
-use Jig\JigConfig;
 use Predis\Client as RedisClient;
-use Room11\HTTP\Body\DataBody;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Room11\HTTP\Body\BlobBody;
 use Room11\HTTP\Body\EmptyBody;
-use Room11\HTTP\Body\HtmlBody;
 use Room11\HTTP\Body\TextBody;
-use Tier\InjectionParams;
-use Tier\ResponseBody\CachingFileResponseFactory;
-use Tier\Tier;
 use Room11\Caching\LastModifiedStrategy;
 use Room11\Caching\LastModified\Disabled as CachingDisabled;
 use Room11\Caching\LastModified\Revalidate as CachingRevalidate;
 use Room11\Caching\LastModified\Time as CachingTime;
-use ScriptServer\Value\ScriptVersion;
-use ImagickDemo\Config;
+use Tier\Body\CachingFileBodyFactory;
 
 //yolo - We use a global to allow us to do a hack to make all the code examples
 //appear to use the standard 'header' function, but also capture the content type 
@@ -92,11 +85,6 @@ function createSessionManager(RedisDriver $redisDriver)
     return $sessionManager;
 }
 
-function prepareJigConverter(JigConverter $jigConverter, $injector)
-{
-    $jigConverter->addDefaultHelper('Jig\TemplateHelper\DebugHelper');
-}
-
 function createControl(PageInfo $pageInfo, Injector $injector)
 {
     list($controlClassname, $params) = CategoryInfo::getDIInfo($pageInfo);
@@ -122,63 +110,21 @@ function createExample(PageInfo $pageInfo, Injector $injector)
 }
 
 
-function setupCategoryExample($vars)
+function setupCategoryExample(\Tier\JigBridge\RouteInfo $routeInfo)
 {
-    if (array_key_exists('category', $vars)) {
+    if (array_key_exists('category', $routeInfo->params)) {
         //This is actually only needed for image requests
-        $className = sprintf('ImagickDemo\%s\functions', $vars['category']);
+        $className = sprintf('ImagickDemo\%s\functions', $routeInfo->params ['category']);
         $className::load();
     }
 }
 
-/**
- * @param \Auryn\Injector $injector
- * @param $routesFunction
- * @return \ImagickDemo\Response\Response|StandardHTTPResponse|null
- */
-function routeRequest()
+function createDispatcher()
 {
-    $dispatcher = \FastRoute\simpleDispatcher('routesFunction');
-    $httpMethod = 'GET';
-    $uri = '/';
-
-    if (array_key_exists('REQUEST_URI', $_SERVER)) {
-        $uri = $_SERVER['REQUEST_URI'];
-    }
+    $dispatcher = FastRoute\simpleDispatcher('routesFunction');
     
-    ///$uri = '/image/Imagick/adaptiveResizeImage';
-
-    $path = $uri;
-    $queryPosition = strpos($path, '?');
-    if ($queryPosition !== false) {
-        $path = substr($path, 0, $queryPosition);
-    }
-
-    $routeInfo = $dispatcher->dispatch($httpMethod, $path);
-
-    $dispatcherResult = $routeInfo[0];
-    
-    if ($dispatcherResult == \FastRoute\Dispatcher::FOUND) {
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-
-        $fn = function () use ($vars) {
-            setupCategoryExample($vars);
-        };
-
-        $params = InjectionParams::fromParams($vars);
-
-        return new Tier($handler, $params, $fn);
-    }
-    else if ($dispatcherResult == \FastRoute\Dispatcher::NOT_FOUND) {
-        //return new StandardHTTPResponse(404, $uri, "Route not found");
-        return new Tier('serve404ErrorPage');
-    }
-
-    //TODO - need to embed allowedMethods....theoretically.
-    return new Tier('serve405ErrorPage');
+    return $dispatcher;
 }
-
 
 function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
 {
@@ -196,8 +142,7 @@ function originalImage(\Intahwebz\Request $request, \Auryn\Injector $injector)
 function cachedImageCallable(
     PageInfo $pageInfo,
     Request $request,
-    Response $response,
-    CachingFileResponseFactory $fileResponseFactory,
+    CachingFileBodyFactory $fileBodyFactory,
     $params
 ) {
     $filename = getImageCacheFilename($pageInfo, $params);
@@ -222,13 +167,11 @@ function cachedImageCallable(
     if ($request->hasHeader('HTTP_IF_MODIFIED_SINCE')) {
         $lastModifiedTime = filemtime($filenameFound);
         if (strtotime($request->getHeader('HTTP_IF_MODIFIED_SINCE')) >= $lastModifiedTime) {
-            $response->setStatus(304);
-            return new EmptyBody();
+            return new EmptyBody(304);
         }
     }
-    
-    
-    return $fileResponseFactory->create($filenameFound, $contentType);
+
+    return $fileBodyFactory->create($filenameFound, $contentType);
 }
 
 
@@ -422,8 +365,9 @@ function routesFunction(\FastRoute\RouteCollector $r)
     $r->addRoute('GET', '/opinfo', ['ImagickDemo\Controller\ServerInfo', 'renderOPCacheInfo']);
     $r->addRoute('GET', '/settingsCheck', ['ImagickDemo\Controller\ServerInfo', 'serverSettings']);
     $r->addRoute('GET', '/', ['ImagickDemo\Controller\Page', 'renderTitlePage']);
-    $r->addRoute('GET', "/css/{cssInclude}", ['ScriptServer\Controller\ScriptServer', 'getPackedCSS']);
-    $r->addRoute('GET', '/js/{jsInclude}', ['ScriptServer\Controller\ScriptServer', 'getPackedJavascript']);
+    
+    $r->addRoute('GET', "/css/{commaSeparatedFilenames}", ['ScriptHelper\Controller\ScriptServer', 'serveCSS']);
+    $r->addRoute('GET', '/js/{commaSeparatedFilenames}', ['ScriptHelper\Controller\ScriptServer', 'serveJavascript']);
 }
 
 
@@ -525,53 +469,10 @@ function renderKernelTable($matrix)
 }
 
 
-function getTemplatRenderCallable($templateFilename)
-{
-    $fn = function (JigConfig $jigConfig) use ($templateFilename) {
-        $className = $jigConfig->getFullClassname($templateFilename);
-
-        return [$className, 'render'];
-    };
-
-    return $fn;
-}
-    
-/**
- * @param JigBase $template
- * @return HtmlBody
- * @throws Exception
- * @throws \Jig\JigException
- */
-function createHtmlBody(\Jig\JigBase $template)
-{
-    $text = $template->render();
-
-    return new HtmlBody($text);
-}
-
-    
-function createRenderTemplateTier($templateName, InjectionParams $injectionParams = null)
-{
-    $fn = function (Jig $jig) use ($injectionParams, $templateName) {
-        if ($injectionParams == null) {
-            $injectionParams = InjectionParams::fromParams([]);
-        }
-
-        $className = $jig->getTemplateCompiledClassname($templateName);
-        $jig->checkTemplateCompiled($templateName);
-        $injectionParams->alias('Jig\JigBase', $className);
-
-        return new Tier('createHtmlBody', $injectionParams);
-    };
-
-    return new Tier($fn);
-}
-
 function prepareJig(Jig $jigRender, $injector)
 {
     $jigRender->addDefaultPlugin('ImagickDemo\JigPlugin\ImagickPlugin');
 }
-
 
     
 function createRedisClient()
@@ -586,8 +487,13 @@ function createRedisClient()
     return new \Predis\Client($redisParameters, $redisOptions);
 }
 
-function directImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $params)
-{
+function directImageCallable(
+    PageInfo $pageInfo,
+    \Auryn\Injector $injector,
+    \Tier\JigBridge\RouteInfo $routeInfo,
+    $params
+) {
+    setupCategoryExample($routeInfo);
     $imageFunction = CategoryInfo::getImageFunctionName($pageInfo);
     $filename = getImageCacheFilename(
         $pageInfo,
@@ -607,11 +513,17 @@ function directImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $par
 
     ob_end_clean();
 
-    return new DataBody($filename, $imageData, "image/".$imageType);
+    return new BlobBody($filename, $imageData, "image/".$imageType);
 }
     
-function directCustomImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector, $params)
-{
+function directCustomImageCallable(
+    PageInfo $pageInfo,
+    \Tier\JigBridge\RouteInfo $routeInfo,
+    \Auryn\Injector $injector,
+    $params
+) {
+    setupCategoryExample($routeInfo);
+    
     $imageFunction = CategoryInfo::getCustomImageFunctionName($pageInfo);
     $filename = getImageCacheFilename(
         $pageInfo,
@@ -631,7 +543,7 @@ function directCustomImageCallable(PageInfo $pageInfo, \Auryn\Injector $injector
 
     ob_end_clean();
     
-    return new DataBody($filename, $imageData, "image/".$imageType);
+    return new BlobBody($filename, $imageData, "image/".$imageType);
 }
 
 function createImageTask(
@@ -639,7 +551,7 @@ function createImageTask(
     ImagickTaskQueue $taskQueue,
     PageInfo $pageInfo,
     Request $request,
-    Response $response,
+    HeadersSet $headersSet,
     $customImage,
     $params
 ) {
@@ -654,7 +566,7 @@ function createImageTask(
             $pageInfo,
             $params,
             $customImage,
-            $request->getPath()
+            $request->getUri()->getPath()
         );
         $taskQueue->addTask($task);
     }
@@ -665,26 +577,20 @@ function createImageTask(
 
     $caching = new \Room11\Caching\LastModified\Disabled();
     foreach ($caching->getHeaders(time()) as $key => $value) {
-        $response->addHeader($key, $value);
+        $headersSet->addHeader($key, $value);
     }
 
-    $response->setStatus(420);
-
-    return new TextBody("Image is generating.");
+    return new TextBody("Image is generating.", 420);
 }
 
-function serve404ErrorPage(Response $response)
+function serve404ErrorPage()
 {
-    $response->setStatus(404);
-
-    return new TextBody('Route not found.');
+    return new TextBody('Route not found.', 404);
 }
 
-function serve405ErrorPage(Response $response)
+function serve405ErrorPage()
 {
-    $response->setStatus(404);
-
-    return new TextBody('Method not allowed for route.');
+    return new TextBody('Method not allowed for route.', 405);
 }
 
 function routeJSInclude($url)
@@ -744,10 +650,10 @@ function createLibrato(Config $config)
 
 function createJigConfig(Config $config)
 {
+    
     $jigConfig = new \Jig\JigConfig(
-        "../templates/",
-        "../var/compile/",
-        'tpl',
+        new \Jig\JigTemplatePath("../templates/"),
+        new \Jig\JigCompilePath("../var/compile/"),
         $config->getKey(Config::JIG_COMPILE_CHECK)
     );
 
@@ -791,15 +697,16 @@ function createScriptVersion(Config $config)
     );
 }
 
-function createScriptInclude(Config $config, ScriptVersion $scriptVersion)
-{
-    $value = $config->getKey(Config::SCRIPT_PACKING);
+function createScriptInclude(
+    Config $config,
+    \ScriptHelper\ScriptURLGenerator $scriptURLGenerator
+) {
+    $packScript = $config->getKey(Config::SCRIPT_PACKING);
 
-    if ($value) {
-        return new \ScriptServer\Service\ScriptIncludePacked($scriptVersion);
+    if ($packScript) {
+        return new \ScriptHelper\ScriptInclude\ScriptIncludePacked($scriptURLGenerator);
     }
-        
-    return new \ScriptServer\Service\ScriptIncludeIndividual(
-        $scriptVersion
-    );
+    else {
+        return new \ScriptHelper\ScriptInclude\ScriptIncludeIndividual($scriptURLGenerator);
+    }
 }

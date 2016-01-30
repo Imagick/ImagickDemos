@@ -8,8 +8,9 @@ use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Example;
 use ImagickDemo\Control;
 use Tier\InjectionParams;
-use Tier\Tier;
-use Tier\ResponseBody\CachingFileResponseFactory;
+use Tier\Executable;
+
+use Tier\Body\CachingFileBodyFactory;
 
 use Arya\JsonBody;
 
@@ -55,15 +56,14 @@ class Image
     {
         $this->pageInfo = $pageInfo;
     }
-    
-    
+
     public function getOriginalImage(
         Example $example,
-        CachingFileResponseFactory $fileResponseFactory
+        CachingFileBodyFactory $fileBodyFactory
     ) {
         $filename = $example->getOriginalFilename();
 
-        return $fileResponseFactory->create($filename, "image/jpg");
+        return $fileBodyFactory->create($filename, "image/jpg");
     }
     
     /**
@@ -124,9 +124,9 @@ class Image
         );
 
         $tiers = [];
-        $tiers[] = new Tier('cachedImageCallable', $injectionParams);
-        $tiers[] = new Tier('createImageTask');
-        $tiers[] = new Tier('directCustomImageCallable');
+        $tiers[] = new Executable('cachedImageCallable', $injectionParams);
+        $tiers[] = new Executable('createImageTask');
+        $tiers[] = new Executable('directCustomImageCallable');
 
         return $tiers;
     }
@@ -142,10 +142,11 @@ class Image
                 'customImage' => false
             )
         );
+        
         $tiers = [];
-        $tiers[] = new Tier('cachedImageCallable', $injectionParams);
-        $tiers[] = new Tier('createImageTask');
-        $tiers[] = new Tier('directImageCallable');
+        $tiers[] = new Executable('cachedImageCallable', $injectionParams);
+        $tiers[] = new Executable('createImageTask');
+        $tiers[] = new Executable('directImageCallable');
 
         return $tiers;
     }

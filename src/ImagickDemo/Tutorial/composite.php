@@ -3,7 +3,7 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Control\CompositeExampleControl;
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 //function compositeImageExample()
 //{

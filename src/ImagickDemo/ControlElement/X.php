@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 class X extends ValueElement
 {

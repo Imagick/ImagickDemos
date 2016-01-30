@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 use ImagickDemo\Imagick\Control\samplingFactors as samplingFactorsControl;
 
 class setSamplingFactors extends \ImagickDemo\Example

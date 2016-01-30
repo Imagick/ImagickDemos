@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\ControlElement;
 
+use Room11\HTTP\VariableMap;
+
 //TODO - rename this to imagePath
 
 class Image extends \ImagickDemo\ControlElement\OptionValueElement
@@ -35,7 +37,6 @@ class Image extends \ImagickDemo\ControlElement\OptionValueElement
 
     public function getImagePath()
     {
-        $this->getParams();
         return $this->getOptionKey();
     }
 }

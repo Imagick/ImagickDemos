@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 function getAverageColorString(\Imagick $imagick)
 {

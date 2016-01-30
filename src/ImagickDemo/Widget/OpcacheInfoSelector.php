@@ -3,7 +3,7 @@
 
 namespace ImagickDemo\Widget;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 class OpcacheInfoSelector
 {

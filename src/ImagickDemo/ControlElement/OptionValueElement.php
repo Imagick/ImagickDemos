@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ControlElement;
 
-use ImagickDemo\Framework\VariableMap;
+use Room11\HTTP\VariableMap;
 
 abstract class OptionValueElement implements ControlElement
 {
@@ -23,9 +23,16 @@ abstract class OptionValueElement implements ControlElement
         $newValue = $variableMap->getVariable($this->getVariableName(), $value);
 
         $options = $this->getOptions();
+        
+        foreach ($options as $optionKey => $optionValue) {
+            if ($value === $optionValue) {
+                $this->key = $optionKey;
+                $this->value = $value;
+            }
+        }
 
         $needle = array_search($newValue, $options);
-        if ($needle !== null) {
+        if ($needle !== false) {
             $this->key = $needle;
             $this->value = $newValue;
         }
@@ -38,6 +45,7 @@ abstract class OptionValueElement implements ControlElement
 
     protected function getOptionKey()
     {
+
         return $this->key;
     }
 
@@ -65,7 +73,6 @@ abstract class OptionValueElement implements ControlElement
      */
     public function renderFormElement()
     {
-
         $select = '';
 
         foreach ($this->getOptions() as $key => $value) {

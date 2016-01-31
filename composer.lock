@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6fae972a4a3163e5c1fe0661d4ec77d5",
+    "hash": "b884f558e1e11bd4beb1de00aeb9cd76",
     "packages": [
         {
             "name": "amphp/amp",
@@ -264,6 +264,48 @@
                 "zf2"
             ],
             "time": "2014-09-15 22:26:39"
+        },
+        {
+            "name": "danack/filefilter",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Danack/FileFilter.git",
+                "reference": "974977862f45296dcbba223931ad1ae5d8e1b3eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Danack/FileFilter/zipball/974977862f45296dcbba223931ad1ae5d8e1b3eb",
+                "reference": "974977862f45296dcbba223931ad1ae5d8e1b3eb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.6",
+                "rdlowrey/auryn": "^1.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FileFilter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danack",
+                    "email": "Danack@basereality.com"
+                }
+            ],
+            "description": "A set of transforming file filters.",
+            "time": "2015-12-17 14:25:28"
         },
         {
             "name": "danack/jig",

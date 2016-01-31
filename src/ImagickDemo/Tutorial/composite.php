@@ -109,7 +109,6 @@ END;
 
     public function renderCustomImageURL($extraParams = [], $originalImageURL = null)
     {
-    //function renderCustomImageURL($extraParams = []) {
         return sprintf(
             "<img src='%s' />",
             $this->compositeExampleControl->getCustomImageURL($extraParams)

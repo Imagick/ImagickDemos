@@ -1,9 +1,8 @@
 <?php
 
-
 namespace ImagickDemo\Queue;
 
-use ImagickDemo\Framework\ArrayVariableMap;
+use Room11\HTTP\VariableMap\ArrayVariableMap;
 use Auryn\InjectionException;
 use ImagickDemo\Navigation\CategoryInfo;
 
@@ -168,7 +167,7 @@ class ImagickTaskRunner
         }
 
         $variableMap = new ArrayVariableMap($params);
-        $injector->alias('ImagickDemo\Framework\VariableMap', get_class($variableMap));
+        $injector->alias('Room11\HTTP\VariableMap', get_class($variableMap));
         $injector->share($variableMap);
 
         if ($task->isCustomImage()) {

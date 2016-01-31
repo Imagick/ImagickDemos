@@ -915,14 +915,14 @@ function gaussianBlurImage($imagePath, $radius, $sigma, $channel)
 //Example end
 
 
-//Example Imagick::getImageGeometry
+
 function getImageGeometry($imagePath)
 {
     $imagick = new \Imagick(realpath($imagePath));
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
-//Example end
+
 
 //Example Imagick::getPixelIterator
 function getPixelIterator($imagePath)

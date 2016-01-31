@@ -4,20 +4,22 @@ namespace ImagickDemo\Controller;
 
 use Tier\InjectionParams;
 
+use Tier\Tier;
+
 class ServerInfo
 {
     public function renderOPCacheInfo()
     {
-        return createRenderTemplateTier('admin/opcacheInfo');
+        return Tier::getRenderTemplateTier('admin/opcacheInfo');
     }
 
     public function serverSettings()
     {
-        return createRenderTemplateTier('admin/serverSettings');
+        return Tier::getRenderTemplateTier('admin/serverSettings');
     }
 
     public function createResponse()
     {
-        return createRenderTemplateTier('admin/fpmStatus');
+        return Tier::getRenderTemplateTier('admin/fpmStatus');
     }
 }

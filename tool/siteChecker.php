@@ -223,6 +223,13 @@ class SiteChecker {
     function fetchURL(URLToCheck $urlToCheck) {
         $this->count++;
         $fullURL = $this->siteURL.$urlToCheck->getUrl();
+        
+        if (strpos($fullURL, '/queueinfo') !== false) {
+            return null;
+        }
+        
+        
+        
         if ($this->count % 10 == 0) {
             echo "\n";
         }
@@ -275,6 +282,13 @@ class SiteChecker {
                 case ('text/html'): {
                     $body = $response->getBody();
                     $this->analyzeBody($urlToCheck, $body);
+                    break;
+                }
+                
+                case ('text/plain'): {
+//                    $body = $response->getBody();
+//                    throw new \Exception("site checker should be run with background processing disabled:  ". $urlToCheck->getUrl() . " ". $urlToCheck->getReferrer()  . " " .substr($body, 0, 300));
+                    return null;
                     break;
                 }
 
@@ -391,8 +405,9 @@ class SiteChecker {
 }
 
 $site = "http://imagick.test";
-$site = "http://phpimagick.com";
-//$site = "http://phpimagick.test";
+//$site = "http://phpimagick.com";
+
+$site = "http://phpimagick.test";
 
 $reactor = Amp\getReactor();
 $client = new ArtaxClient();

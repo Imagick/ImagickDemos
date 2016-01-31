@@ -27,8 +27,7 @@ require __DIR__."/../vendor/intahwebz/core/src/Intahwebz/Functions.php";
 $injectionParams = require_once "injectionParams.php";
 
 if (strcasecmp(PHP_SAPI, 'cli') == 0) {
-    $request = new CLIRequest('/image/Tutorial/edgeExtend?imagePath=Lorikeet&virtualPixel=5', 'phpimagick.com');
-    //$request = new CLIRequest('/customImage/Imagick/functionImage?imagickFunction=renderImageSinusoid&firstTerm=0.1234&secondTerm=0&thirdTerm=0&fourthTerm=0&time=1453990118846', 'phpimagick.com');
+    $request = new CLIRequest('/Imagick/getImageGeometry', 'phpimagick.com');
 }
 else {
     $request = Tier::createRequestFromGlobals();

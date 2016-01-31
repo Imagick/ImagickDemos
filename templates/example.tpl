@@ -103,10 +103,9 @@
                 {$navBar->renderIssueLink() | nofilter}
             </div>
         </div>
-    </div>
-
-    {include file='framework/pageFooter'}
-    
+    </div>    
 </div>
+
+{include file='framework/pageFooter'}
 
 {include file='framework/pageEnd'}

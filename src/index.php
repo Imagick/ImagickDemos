@@ -44,9 +44,8 @@ $app->createStandardExceptionResolver();
 $app->addExpectedProduct('Room11\HTTP\Body');
 
 $app->addBeforeGenerateBodyExecutable($routeRequest);
-// $app->addInitialExecutable(new Executable(['ImagickDemo\AppTimer', 'timerStart']));
-// $app->addAfterSendExecutable(new Executable(['ImagickDemo\AppTimer', 'timerEnd']));
-
+$app->addInitialExecutable(['ImagickDemo\AppTimer', 'timerStart']);
+$app->addAfterSendExecutable(['ImagickDemo\AppTimer', 'timerEnd']);
 $app->addSendExecutable(new Executable(['Tier\Tier', 'sendBodyResponse']));
 
 // Run it

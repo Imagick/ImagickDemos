@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b884f558e1e11bd4beb1de00aeb9cd76",
+    "hash": "228b4fa2f9b7e4626eae90ad61752767",
     "packages": [
         {
             "name": "amphp/amp",
@@ -426,16 +426,16 @@
         },
         {
             "name": "danack/tier",
-            "version": "0.3.3",
+            "version": "0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Tier.git",
-                "reference": "21dfcb2d67b52ee8692fba17652b694ff67f9c06"
+                "reference": "829398986d18c06d5deb85808004f6ae76f005d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Tier/zipball/21dfcb2d67b52ee8692fba17652b694ff67f9c06",
-                "reference": "21dfcb2d67b52ee8692fba17652b694ff67f9c06",
+                "url": "https://api.github.com/repos/Danack/Tier/zipball/829398986d18c06d5deb85808004f6ae76f005d7",
+                "reference": "829398986d18c06d5deb85808004f6ae76f005d7",
                 "shasum": ""
             },
             "require": {
@@ -475,7 +475,7 @@
                 "di",
                 "example"
             ],
-            "time": "2016-01-30 17:32:02"
+            "time": "2016-01-31 17:01:29"
         },
         {
             "name": "daverandom/libdns",

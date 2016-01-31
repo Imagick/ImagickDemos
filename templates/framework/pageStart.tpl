@@ -21,8 +21,7 @@
     {$scriptInclude->addCSSFile("syntaxhighlighter/shThemePHPStormLight")}
 
     {$scriptInclude->renderCSSLinks() | nofilter}
-    
-    
+
     <style>
         .filter-table .quick { margin-left: 0.5em; font-size: 40px; text-decoration: none; }
         .fitler-table .quick:hover { text-decoration: underline; }

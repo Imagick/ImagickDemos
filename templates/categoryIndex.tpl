@@ -57,8 +57,8 @@
             </div>
         </div>
     </div>
-
-    {include file='framework/pageFooter'}
 </div>
+
+{include file='framework/pageFooter'}
 
 {include file='framework/pageEnd'}

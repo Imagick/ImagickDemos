@@ -61,34 +61,44 @@ class ImagickTaskRunner
         \ImagickDemo\ImagickPixelIterator\functions::load();
         \ImagickDemo\Tutorial\functions::load();
 
-// ImageMagick has a 'non-optimal' way of measuring time passed
-// https://github.com/ImageMagick/ImageMagick/issues/113
-// Currently it does not appear possible to have both protection
-//        $maxRunTime = 60; // one minute
-//        $maxRunTime *= 60; // 1hour
-//
-//        // Each image generated hurries up the restart by 50 seconds
-//        // for a max of 72 images generated per run
-//        $taskPseudoTime = 50;
-// End rant
+        $resetTimeResourceLimit = false;
         
-        //Start remove this when time limit can be controlled better
-        $maxRunTime = \Imagick::getResourceLimit(\Imagick::RESOURCETYPE_TIME); // one minute
-        if ($maxRunTime <= 10) {
-            $maxRunTime = 45;
+        if (false) {
+        // ImageMagick has a 'non-optimal' way of measuring time passed
+        // https://github.com/ImageMagick/ImageMagick/issues/113
+        // Currently it does not appear possible to have both protection
+            $maxRunTime = 60; // one minute
+            $maxRunTime *= 60; // 1hour
+    
+            // Each image generated hurries up the restart by 50 seconds
+            // for a max of 72 images generated per run
+            $taskPseudoTime = 50;
+            $resetTimeResourceLimit = true;
+        // End rant
+        }
+        else {
+            //Start remove this when time limit can be controlled better
+            $maxRunTime = \Imagick::getResourceLimit(\Imagick::RESOURCETYPE_TIME); // one minute
+            if ($maxRunTime <= 10) {
+                $maxRunTime = 45;
+            }
+
+            // Each image generated hurries up the restart by 2 seconds
+            // for a max of 30 images generated per run
+            $taskPseudoTime = 2;
+            //End remove this when time limit can be controlled better
         }
 
-        // Each image generated hurries up the restart by 2 seconds
-        // for a max of 30 images generated per run
-        $taskPseudoTime = 2;
-        //End remove this when time limit can be controlled better
-
-        
         $endTime = time() + $maxRunTime;
         $count = 0;
 
         while (time() < $endTime) {
+            if ($resetTimeResourceLimit === true) {
+                \Imagick::setResourceLimit(\Imagick::RESOURCETYPE_TIME, 45);
+            }
+
             $task = $this->taskQueue->waitToAssignTask();
+
             if (!$task) {
                 echo ".";
                 $count = $count + 1;

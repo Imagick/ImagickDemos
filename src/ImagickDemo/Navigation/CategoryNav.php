@@ -207,7 +207,7 @@ END;
     {
         $output = <<< END
 <div class='smallPadding navSpacer searchContainer' role='search'   >
-    <input type="text" class='searchBox' id='searchInput' placeholder="Search..." name="query" value="" />
+    <input type="search" class='searchBox' id='searchInput' placeholder="Search..." name="query" value="" />
 </div>
 
 <div class='smallPadding navSpacer' id='searchResultNone' style='display: none; padding-top: 15px'>

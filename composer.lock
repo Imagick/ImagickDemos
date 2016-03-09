@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "228b4fa2f9b7e4626eae90ad61752767",
+    "hash": "1914643d9a5949a4659f69ddde1c2b84",
     "packages": [
         {
             "name": "amphp/amp",
@@ -309,16 +309,16 @@
         },
         {
             "name": "danack/jig",
-            "version": "0.21.0",
+            "version": "0.21.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Jig.git",
-                "reference": "74f2e2fd182a675c9ecc88304999959c22a6955a"
+                "reference": "b11106bc7d634add9873bf246eda1dadb059ed7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Jig/zipball/74f2e2fd182a675c9ecc88304999959c22a6955a",
-                "reference": "74f2e2fd182a675c9ecc88304999959c22a6955a",
+                "url": "https://api.github.com/repos/Danack/Jig/zipball/b11106bc7d634add9873bf246eda1dadb059ed7a",
+                "reference": "b11106bc7d634add9873bf246eda1dadb059ed7a",
                 "shasum": ""
             },
             "require": {
@@ -356,7 +356,7 @@
                 "template",
                 "view"
             ],
-            "time": "2016-01-26 20:42:56"
+            "time": "2016-02-07 13:16:27"
         },
         {
             "name": "danack/scripthelper",
@@ -1093,16 +1093,16 @@
         },
         {
             "name": "rdlowrey/auryn",
-            "version": "1.1.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rdlowrey/auryn.git",
-                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8"
+                "reference": "2fdd89dfbbb9a98de7361981df6d802a9a38e0a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/f57eaf665a601dbe061c8b1426d84f58c003e6a8",
-                "reference": "f57eaf665a601dbe061c8b1426d84f58c003e6a8",
+                "url": "https://api.github.com/repos/rdlowrey/auryn/zipball/2fdd89dfbbb9a98de7361981df6d802a9a38e0a5",
+                "reference": "2fdd89dfbbb9a98de7361981df6d802a9a38e0a5",
                 "shasum": ""
             },
             "require": {
@@ -1150,7 +1150,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2015-08-26 16:31:48"
+            "time": "2016-03-07 22:58:51"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1251,16 +1251,16 @@
         },
         {
             "name": "room11/http",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/HTTP.git",
-                "reference": "073cac67a33d0cb855e99b31917310bee83bc2fb"
+                "reference": "573a87d2280cb85a1a918af9e695d38034298252"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/HTTP/zipball/073cac67a33d0cb855e99b31917310bee83bc2fb",
-                "reference": "073cac67a33d0cb855e99b31917310bee83bc2fb",
+                "url": "https://api.github.com/repos/Danack/HTTP/zipball/573a87d2280cb85a1a918af9e695d38034298252",
+                "reference": "573a87d2280cb85a1a918af9e695d38034298252",
                 "shasum": ""
             },
             "require-dev": {
@@ -1292,7 +1292,7 @@
                 "interface",
                 "room11"
             ],
-            "time": "2016-01-21 13:47:23"
+            "time": "2016-02-08 23:25:35"
         },
         {
             "name": "zendframework/zend-diactoros",

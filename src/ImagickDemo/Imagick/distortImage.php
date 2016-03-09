@@ -25,8 +25,7 @@ class distortImage extends \ImagickDemo\Example
 
     public function render()
     {
-        return $this->renderImageURL();
-        //return sprintf("<img src='%s' class='img-responsive' />", $this->control->getCustomImageURL());
+        return $this->renderCustomImageURL();
     }
 
     public function renderCustomImage()

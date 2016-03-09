@@ -9,7 +9,7 @@
 
     "require":{
         "amphp/artax": "1.0.0-rc6",
-        "rdlowrey/auryn": "^1.0.2",
+        "rdlowrey/auryn": "^1.3.0",
         "danack/console": "^2.6.0",
         "danack/filefilter": "^0.0.1",
         "danack/jig": "^0.21.0",

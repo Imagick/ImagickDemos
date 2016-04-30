@@ -226,8 +226,13 @@ $controls = [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\ReduceNoise',
     ],
-
     
+    
+    'ImagickDemo\Control\RemapImageControl' => [
+        'ImagickDemo\ControlElement\Image',
+        'ImagickDemo\ControlElement\DitherMethod',
+    ],
+
     'ImagickDemo\Imagick\Control\resizeImage' => [
         'ImagickDemo\ControlElement\Image',
         'ImagickDemo\ControlElement\FilterType',
@@ -644,8 +649,9 @@ $controls = [
     
     'ImagickDemo\Imagick\Control\posterizeControl' => [
         'ImagickDemo\ControlElement\Image',
-        'ImagickDemo\ControlElement\PosterizeType',
-        'ImagickDemo\ControlElement\NumberLevels'
+        //'ImagickDemo\ControlElement\PosterizeType',
+        'ImagickDemo\ControlElement\NumberLevels',
+        'ImagickDemo\ControlElement\Dither',
     ],
 
     'ImagickDemo\Imagick\Control\samplingFactors' => [

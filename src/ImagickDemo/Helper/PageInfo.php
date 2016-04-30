@@ -58,4 +58,24 @@ class PageInfo
             $this->title = "PHP Imagick - ".$category;
         }
     }
+
+    /**
+     * Gets a simple name to use a filename for 'content-disposition'
+     * aka what the file gets saved as, when you hit file save.
+     * @param $params
+     * @return string
+     */
+    public function getSimpleName($params)
+    {
+        $category = $this->getCategory();
+        $example = $this->getExample();
+
+        $name = $category.'_'.$example;
+        if (!empty($params)) {
+            $name .= '_'.md5(json_encode($params));
+        }
+
+        return $name;
+    }
+    
 }

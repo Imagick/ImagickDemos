@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\ImagickKernel;
 
+use ImagickDemo\Display;
+
 class getMatrix extends \ImagickDemo\Example
 {
     public function renderDescription()
@@ -18,7 +20,7 @@ class getMatrix extends \ImagickDemo\Example
             "2,3.5"
         );
         $matrix = $kernel->getMatrix();
-        $output .= renderKernelTable($matrix);
+        $output .= Display::renderKernelTable($matrix);
 
         $output .= "Or as an image: " . $this->renderCustomImageURL();
 

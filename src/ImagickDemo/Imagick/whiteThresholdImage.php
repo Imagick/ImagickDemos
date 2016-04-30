@@ -4,7 +4,15 @@ namespace ImagickDemo\Imagick;
 
 class whiteThresholdImage extends \ImagickDemo\Example
 {
-    use OriginalImageFile;
+    function getOriginalImage()
+    {
+        return $this->control->getOriginalURL();
+    }
+
+    function getOriginalFilename()
+    {
+        return $this->control->getImagePath();
+    }
 
     public function render()
     {

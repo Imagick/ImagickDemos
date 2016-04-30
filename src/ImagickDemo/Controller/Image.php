@@ -2,17 +2,22 @@
 
 namespace ImagickDemo\Controller;
 
+use Arya\JsonBody;
+use ImagickDemo\App;
+use ImagickDemo\ImageCachePath;
 use ImagickDemo\Response\JsonResponse;
-
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Example;
+use ImagickDemo\ImageGenerator;
 use ImagickDemo\Control;
 use Tier\InjectionParams;
 use Tier\Executable;
-
 use Tier\Body\CachingFileBodyFactory;
 
-use Arya\JsonBody;
+function getKnownExtensions()
+{
+    return ['gif', 'jpg', 'png', 'webp'];
+}
 
 /**
  * Used to generate a list function calls for testing offline
@@ -62,8 +67,8 @@ class Image
         CachingFileBodyFactory $fileBodyFactory
     ) {
         $filename = $example->getOriginalFilename();
-
-        return $fileBodyFactory->create($filename, "image/jpg");
+        
+        return $fileBodyFactory->create($filename, basename($filename), "image/jpg");
     }
     
     /**
@@ -76,6 +81,7 @@ class Image
      * @return JsonResponse
      */
     public function getImageJobStatus(
+        ImageCachePath $imageCachePath,
         PageInfo $pageInfo,
         Control $control,
         Example $exampleController
@@ -83,8 +89,7 @@ class Image
         $data = [];
         $customImageParams = $exampleController->getCustomImageParams();
         $fullParams = $control->getFullParams($customImageParams);
-
-        $filename = getImageCacheFilename($pageInfo, $fullParams);
+        $filename = $imageCachePath->getImageCacheFilename($pageInfo, $fullParams);
 
         $data['filename'] = $filename;
         $data['finished'] = false;
@@ -124,16 +129,17 @@ class Image
         );
 
         $tiers = [];
-        $tiers[] = new Executable('cachedImageCallable', $injectionParams);
-        $tiers[] = new Executable('createImageTask');
-        $tiers[] = new Executable('directCustomImageCallable');
+        $tiers[] = new Executable('ImagickDemo\ImageGenerator::cachedImageCallable', $injectionParams);
+        $tiers[] = new Executable('ImagickDemo\ImageGenerator::createImageTask');
+        $tiers[] = new Executable('ImagickDemo\ImageGenerator::directCustomImageCallable');
 
         return $tiers;
     }
 
 
-    public function getImageResponse(\ImagickDemo\Control $control)
-    {
+    public function getImageResponse(
+        \ImagickDemo\Control $control
+    ) {
         $params = $control->getFullParams([]);
         $params['customImage'] = false;
         $injectionParams = InjectionParams::fromParams(
@@ -143,10 +149,12 @@ class Image
             )
         );
         
+
+        
         $tiers = [];
-        $tiers[] = new Executable('cachedImageCallable', $injectionParams);
-        $tiers[] = new Executable('createImageTask');
-        $tiers[] = new Executable('directImageCallable');
+        $tiers[] = new Executable('ImagickDemo\ImageGenerator::cachedImageCallable', $injectionParams);
+        $tiers[] = new Executable('ImagickDemo\ImageGenerator::createImageTask');
+        $tiers[] = new Executable('ImagickDemo\ImageGenerator::directImageCallable');
 
         return $tiers;
     }

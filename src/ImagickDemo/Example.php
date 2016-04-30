@@ -88,9 +88,9 @@ abstract class Example
             return null;
         }
 
-        $output = getPanelStart($smaller, 'textPanelSpacing');
+        $output = Display::getPanelStart($smaller, 'textPanelSpacing');
         $output .= $description;
-        $output .= getPanelEnd();
+        $output .= Display::getPanelEnd();
         
         return $output;
     }

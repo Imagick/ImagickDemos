@@ -15,7 +15,7 @@
         "danack/jig": "^0.21.0",
         "danack/scripthelper": "^0.0.3",
         "danack/syntaxhighlighter": "~3.1.0",
-        "danack/tier": "0.3.4",
+        "danack/tier": "dev-master",
         "fluentdom/fluentdom": "v4.1.3",
         "intahwebz/weaver": "~0.4.5",
         "intahwebz/configurator": "^0.3.0",

@@ -2,13 +2,16 @@
 
 namespace ImagickDemo\Queue;
 
-use Room11\HTTP\VariableMap\ArrayVariableMap;
 use Auryn\InjectionException;
+use ImagickDemo\App;
+use ImagickDemo\ImageCachePath;
 use ImagickDemo\Navigation\CategoryInfo;
+use Room11\HTTP\VariableMap\ArrayVariableMap;
+use Tier\Executable;
+use Tier\TierApp;
 
 class ImagickTaskRunner
 {
-
     /**
      * @var \Auryn\Injector
      */
@@ -30,6 +33,8 @@ class ImagickTaskRunner
 
     private $asyncStats;
 
+    private $endTime;
+
     /**
      * @param ImagickTaskQueue $taskQueue
      * @param \Auryn\Injector $injector
@@ -38,34 +43,22 @@ class ImagickTaskRunner
     public function __construct(
         ImagickTaskQueue $taskQueue,
         \Auryn\Injector $injector,
-        \Stats\AsyncStats $asyncStats
+        \Stats\AsyncStats $asyncStats,
+        ImageCachePath $imageCachePath
     ) {
         $this->taskQueue = $taskQueue;
         $this->injector = $injector;
         $this->asyncStats = $asyncStats;
+        $this->imageCachePath = $imageCachePath;
+        $this->endTime = $this->calculateEndTime();
     }
 
-    /**
-     *
-     */
-    public function run()
+    private function calculateEndTime()
     {
-        echo "ImagickTaskRunner started\n";
-        \Imagick::setResourceLimit(\Imagick::RESOURCETYPE_TIME, 60);
-        /** @noinspection PhpUndefinedMethodInspection */
-        \ImagickDemo\Imagick\functions::load();
-        \ImagickDemo\ImagickDraw\functions::load();
-        \ImagickDemo\ImagickPixel\functions::load();
-        \ImagickDemo\ImagickKernel\functions::load();
-        \ImagickDemo\ImagickPixelIterator\functions::load();
-        \ImagickDemo\Tutorial\functions::load();
-
-        $resetTimeResourceLimit = false;
-        
         if (false) {
-        // ImageMagick has a 'non-optimal' way of measuring time passed
-        // https://github.com/ImageMagick/ImageMagick/issues/113
-        // Currently it does not appear possible to have both protection
+            // ImageMagick has a 'non-optimal' way of measuring time passed
+            // https://github.com/ImageMagick/ImageMagick/issues/113
+            // Currently it does not appear possible to have both protection
             $maxRunTime = 60; // one minute
             $maxRunTime *= 60; // 1hour
     
@@ -81,76 +74,119 @@ class ImagickTaskRunner
             if ($maxRunTime <= 10) {
                 $maxRunTime = 45;
             }
-
-            // Each image generated hurries up the restart by 2 seconds
-            // for a max of 30 images generated per run
-            $taskPseudoTime = 2;
-            //End remove this when time limit can be controlled better
         }
-
-        $endTime = time() + $maxRunTime;
-        $count = 0;
-
-        while (time() < $endTime) {
-            if ($resetTimeResourceLimit === true) {
-                \Imagick::setResourceLimit(\Imagick::RESOURCETYPE_TIME, 45);
-            }
-
-            $task = $this->taskQueue->waitToAssignTask();
-
-            if (!$task) {
-                echo ".";
-                $count = $count + 1;
-                if (($count % 20) == 0) {
-                    echo "\n";
-                }
-                //Sleep for 1/10th of a second
-                usleep(100000);
-                continue;
-            }
-
-            echo "A task! "."\n";
-
-            $endTime -= $taskPseudoTime;
-
-            try {
-                $startTime = microtime(true);
-                $this->execute($task);
-                $time = microtime(true) - $startTime;
-                $this->asyncStats->recordTime(self::EVENT_IMAGE_GENERATED, $time);
-                echo "Task complete\n";
-                $this->taskQueue->completeTask($task);
-            }
-            catch (\ImagickException $ie) {
-                echo "ImagickException running the task: " . $ie->getMessage();
-                $this->taskQueue->errorTask($task, get_class($ie).": ".$ie->getMessage());
-            }
-            catch (\Auryn\BadArgumentException $bae) {
-                //Log failed job
-                echo "BadArgumentException running the task: " . $bae->getMessage();
-                $this->taskQueue->errorTask($task, get_class($bae).": ".$bae->getMessage());
-            }
-            catch (\Exception $e) {
-                echo "Exception running the task: " . $e->getMessage();
-                $this->taskQueue->errorTask($task, get_class($e).": ".$e->getMessage());
-            }
+        
+        $maxRunTime = 10;
+        
+        return time() + $maxRunTime;
+    }
+    
+    public function timeoutCheck()
+    {
+        echo "timeout check\n";
+        if (time() < $this->endTime) {
+            return TierApp::PROCESS_CONTINUE;
         }
-        echo "\nImagickTaskRunner exiting\n";
+        echo "time to go\n";
+
+        return TierApp::PROCESS_END_LOOPING;
     }
 
     /**
-     * @param ImagickTask $task
-     * @throws \Exception
+     *
      */
+    public function run()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        \ImagickDemo\Imagick\functions::load();
+        \ImagickDemo\ImagickDraw\functions::load();
+        \ImagickDemo\ImagickPixel\functions::load();
+        \ImagickDemo\ImagickKernel\functions::load();
+        \ImagickDemo\ImagickPixelIterator\functions::load();
+        \ImagickDemo\Tutorial\functions::load();
+
+        $executableList = [];
+
+        $imageGenerateExecutable = new Executable([$this, 'actuallyRun']);
+        $imageGenerateExecutable->setTierNumber(\Tier\TierCLIApp::TIER_LOOP);
+        $imageGenerateExecutable->setAllowedToReturnNull(true);
+        $executableList[] = $imageGenerateExecutable;
+        
+        $timeoutExecutable = new Executable([$this, 'timeoutCheck']);
+        $timeoutExecutable->setTierNumber(\Tier\TierCLIApp::TIER_LOOP);
+        $executableList[] = $timeoutExecutable;
+
+        return $executableList;
+    }
+    
+    public static function tickTock()
+    {
+        static $count = 0;
+        echo ".";
+        $count += 1;
+        if (($count % 20) == 0) {
+            echo "\n";
+        }
+        $count = 0;
+    }
+    
+    /**
+     *
+     */
+    public function actuallyRun()
+    {
+        echo "ImagickTaskRunner::actuallyRun\n";
+        try {
+            echo "Waiting for task "."\n";
+            $task = $this->taskQueue->waitToAssignTask();
+        }
+        catch (QueueException $qe) {
+            echo "QueueException running the task: ".$qe->getMessage()."\n";
+            return;
+        }
+
+        if (!$task) {
+            self::tickTock();
+            usleep(100000); //Sleep for 1/10th of a second
+            return;
+        }
+
+        echo "A task!\n";
+
+        try {
+            $startTime = microtime(true);
+            $this->execute($task);
+            $time = microtime(true) - $startTime;
+            $this->asyncStats->recordTime(self::EVENT_IMAGE_GENERATED, $time);
+            echo "Task complete\n";
+            $this->taskQueue->completeTask($task);
+        }
+        catch (\ImagickException $ie) {
+            echo "ImagickException running the task: " . $ie->getMessage();
+            $this->taskQueue->errorTask($task, get_class($ie).": ".$ie->getMessage());
+         //   var_dump($ie->getTrace());
+        }
+        catch (\Auryn\BadArgumentException $bae) {
+            //Log failed job
+            echo "BadArgumentException running the task: " . $bae->getMessage();
+            $this->taskQueue->errorTask($task, get_class($bae).": ".$bae->getMessage());
+        }
+        catch (\Exception $e) {
+            echo "Exception running the task: " . $e->getMessage();
+            $this->taskQueue->errorTask($task, get_class($e).": ".$e->getMessage());
+            //var_dump($e->getTrace());
+        }
+    }
+
+
     private function execute(ImagickTask $task)
     {
         $pageInfo = $task->getPageInfo();
         $params = $task->getParams();
-        $filename = $task->getFilename();
+        $filename = $this->imageCachePath->getImageCacheFilename($pageInfo, $params);
         $imageTypes = ['jpg', 'gif', 'png'];
 
         echo "file base name is $filename\n";
-        
         foreach ($imageTypes as $imageType) {
             $fullFilename = $filename . "." . $imageType;
             if (file_exists($fullFilename) == true) {
@@ -186,7 +222,7 @@ class ImagickTaskRunner
         var_dump($imageFunction);
 
         try {
-            $result = renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
+            $result = App::renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);
             echo "file written: $filename \n";
         }
         catch (InjectionException $ie) {
@@ -194,32 +230,42 @@ class ImagickTaskRunner
             echo "Details: ".$ie->getMessage()."\n";
         }
     }
-/*
-
-<?php
-
-declare(ticks = 1); // how often to check for signals
-function sig_handler($signo){ // this function will process sent signals
- if ($signo == SIGTERM || $signo == SIGHUP || $signo == SIGINT){
- print "\tGrandchild : "
- .getmypid()
- . " I got signal $signo and will exit!\n";
-// If this were something important we might do data cleanup here
-  exit();
- }
 }
 
-// These define the signal handling
-pcntl_signal(SIGTERM, "sig_handler");
-pcntl_signal(SIGHUP,  "sig_handler");
-pcntl_signal(SIGINT, "sig_handler");
+//function sig_handler($signal_number) { // this function will process sent signals
+//    if ($signal_number == SIGTERM || 
+//        $signal_number == SIGHUP || 
+//        $signal_number == SIGINT) {
+//        echo "Exiting due to signal: $signal_number\n";
+//        exit();
+//    }
+//    
+//    echo "Ignoring signal: $signal_number\n";
+//}
 
-print "Grandchild : ".getmypid()."\n";
-sleep(15);
-print "\tGrandchild : " . getmypid() . " exiting\n";
-exit();
-
-
-
-*/
-}
+//        $sig_handler = function ($signal_number) { // this function will process sent signals
+//            
+//            $exitSignals = [
+//                SIGABRT, // Someone called abort()
+//                SIGQUIT, // External interrupt, usually initiated by the user
+//                SIGTSTP, // CTRL+Z
+//                SIGTERM, // Parent process has terminated
+//                SIGHUP, // Hangup detected on controlling terminal or death of controlling process.
+//                SIGINT, // Interrupt from keyboard.
+//            ];
+//            
+//            if (in_array($signal_number, $exitSignals) == true) {
+//                echo "Exiting due to signal: $signal_number\n";
+//                exit();
+//            }
+//
+//            echo "Ignoring signal: $signal_number\n";
+//        };
+//
+//        // These define the signal handling
+//        pcntl_signal(SIGABRT, $sig_handler);
+//        pcntl_signal(SIGQUIT,  $sig_handler);
+//        pcntl_signal(SIGTSTP, $sig_handler);
+//        pcntl_signal(SIGTERM, $sig_handler);
+//        pcntl_signal(SIGHUP,  $sig_handler);
+//        pcntl_signal(SIGINT, $sig_handler);

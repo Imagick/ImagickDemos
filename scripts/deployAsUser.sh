@@ -27,6 +27,9 @@ vendor/bin/configurate -p data/config.php data/config_template/php-fpm.conf.php 
 vendor/bin/configurate -p data/config.php data/config_template/php.ini.php autogen/php.ini $environment
 vendor/bin/configurate -p data/config.php data/config_template/addConfig.sh.php autogen/addConfig.sh $environment
 
+vendor/bin/configurate -p data/config.php data/config_template/letsencrypt.config.ini.php autogen/letsencrypt.config.ini $environment
+vendor/bin/configurate -p data/config.php data/config_template/letsencrypt.nginx.conf.php autogen/letsencrypt.nginx.conf $environment
+
 #generate the config for the appliction
 vendor/bin/genenv -p data/config.php data/envRequired.php autogen/appEnv.php $environment
 

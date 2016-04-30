@@ -18,10 +18,10 @@ class ControlComposite implements \ImagickDemo\Control
         $activeCategory = $pageInfo->getCategory();
         $activeExample = $pageInfo->getExample();
 
-        $this->imageBaseURL = getImageURL($activeCategory, $activeExample);
-        $this->orignalImageBaseURL = getOriginalImageURL($activeCategory, $activeExample);
-        $this->customImageBaseURL = getCustomImageURL($activeCategory, $activeExample);
-        $this->imageStatusBaseURL = getImageStatusURL($activeCategory, $activeExample);
+        $this->imageBaseURL = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+        $this->orignalImageBaseURL = \ImagickDemo\Route::getOriginalImageURL($activeCategory, $activeExample);
+        $this->customImageBaseURL = \ImagickDemo\Route::getCustomImageURL($activeCategory, $activeExample);
+        $this->imageStatusBaseURL = \ImagickDemo\Route::getImageStatusURL($activeCategory, $activeExample);
         $this->taskQueue = $taskQueue;
     }
     
@@ -66,7 +66,7 @@ class ControlComposite implements \ImagickDemo\Control
      */
     public function renderImageURL($originalImageURL = null)
     {
-        return renderImageURL(
+        return \ImagickDemo\Route::renderImageURL(
             $this->taskQueue->isActive(),
             $this->getURL(),
             $originalImageURL,
@@ -81,7 +81,7 @@ class ControlComposite implements \ImagickDemo\Control
      */
     public function renderCustomImageURL($extraParams, $originalImageURL = null)
     {
-        return renderImageURL(
+        return \ImagickDemo\Route::renderImageURL(
             $this->taskQueue->isActive(),
             $this->getCustomImageURL($extraParams),
             $originalImageURL,

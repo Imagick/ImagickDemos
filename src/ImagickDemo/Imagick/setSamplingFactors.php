@@ -85,20 +85,20 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
         return "Set sampling factor";
     }
 
-    public function renderOriginalImage()
-    {
-        $imagick = new \Imagick(realpath("../imagick/images/FineDetail.png"));
-
-        $imagick->resizeImage(
-            $imagick->getImageWidth() * 4,
-            $imagick->getImageHeight() * 4,
-            \Imagick::FILTER_POINT,
-            1
-        );
-
-        \header('Content-Type: image/png');
-        echo $imagick->getImageBlob();
-    }
+//    public function renderOriginalImage()
+//    {
+//        $imagick = new \Imagick(realpath("../imagick/images/FineDetail.png"));
+//
+//        $imagick->resizeImage(
+//            $imagick->getImageWidth() * 4,
+//            $imagick->getImageHeight() * 4,
+//            \Imagick::FILTER_POINT,
+//            1
+//        );
+//
+//        \header('Content-Type: image/png');
+//        echo $imagick->getImageBlob();
+//    }
 
     /**
      * @return mixed

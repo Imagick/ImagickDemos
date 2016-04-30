@@ -3,6 +3,8 @@
 namespace ImagickDemo\Imagick;
 
 use Room11\HTTP\VariableMap;
+use ImagickDemo\Display;
+use Tier\Body\CachingFileBodyFactory;
 
 class morphology extends \ImagickDemo\Example
 {
@@ -34,8 +36,12 @@ class morphology extends \ImagickDemo\Example
         }
     }
 
-    public function __construct(\ImagickDemo\ImagickKernel\Control\usage $usageControl, VariableMap $variableMap)
-    {
+    public function __construct(
+        \ImagickDemo\ImagickKernel\Control\usage $usageControl,
+        CachingFileBodyFactory $fileResponseFactory,
+        VariableMap $variableMap
+    ) {
+        $this->fileResponseFactory = $fileResponseFactory;
         $this->usageControl = $usageControl;
         $this->morphologyType = $variableMap->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
         parent::__construct($usageControl);
@@ -73,29 +79,20 @@ class morphology extends \ImagickDemo\Example
 
     public function getOriginalImage()
     {
-        return $this->control->getCustomImageURL(['original' => true]);
+        return $this->control->getOriginalURL();
+    }
+
+    public function getOriginalFilename()
+    {
+        return "./images/character.png";
     }
 
     public function renderOriginalImage()
     {
-        $characterMethods = [
-            \Imagick::MORPHOLOGY_CONVOLVE,
-            \Imagick::MORPHOLOGY_ERODE_INTENSITY,
-            \Imagick::MORPHOLOGY_DILATE_INTENSITY,
-            \Imagick::MORPHOLOGY_OPEN_INTENSITY,
-            \Imagick::MORPHOLOGY_CLOSE_INTENSITY
-        ];
-
-        if (in_array($this->morphologyType, $characterMethods)) {
-            $imagick = new \Imagick(realpath("./images/character.png"));
-            header("Content-Type: image/png");
-            echo $imagick->getImageBlob();
-            return;
-        }
-
-        $canvas = $this->getCharacterOutline();
-        header("Content-Type: image/png");
-        echo $canvas->getImageBlob();
+        return $this->fileResponseFactory->create(
+            "./images/character.png",
+            "character.png", "image/png"
+        );
     }
 
     public function renderDescription()
@@ -112,7 +109,7 @@ class morphology extends \ImagickDemo\Example
                 break;
             }
             case (\Imagick::MORPHOLOGY_CORRELATE): {
-                $correlateTable = renderKernelTable(self::$correlateMatrix);
+                $correlateTable = Display::renderKernelTable(self::$correlateMatrix);
 
                 $output .= "Applies the kernel to the image with as a correlation (aka pattern matching) function. The kernel <br/>&nbsp;<br/>" . $correlateTable . " <br/> finds the top left edges in an image. The value '1' means the pixel there must be white, '-1' means the pixel must be black and false means we do not care what color that pixel has.";
                 break;
@@ -223,7 +220,6 @@ class morphology extends \ImagickDemo\Example
 
         return $this->renderCustomImageURL([], $this->getOriginalImage());
     }
-
 
     private function renderBlank()
     {

@@ -4,8 +4,16 @@ namespace ImagickDemo\Imagick;
 
 class waveImage extends \ImagickDemo\Example
 {
-    use OriginalImageFile;
+    function getOriginalImage()
+    {
+        return $this->control->getOriginalURL();
+    }
 
+    function getOriginalFilename()
+    {
+        return $this->control->getImagePath();
+    }
+    
     public function render()
     {
         return $this->renderImageURL();

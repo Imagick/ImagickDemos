@@ -3,6 +3,7 @@
 namespace ImagickDemo\Tutorial;
 
 use Imagick;
+use ImagickDemo\Image;
 
 class creatingGifs extends \ImagickDemo\Example
 {
@@ -25,6 +26,6 @@ class creatingGifs extends \ImagickDemo\Example
         $imagick->setcolorspace(\Imagick::COLORSPACE_GRAY);
         $imagick->newPseudoImage(10, 256, 'gradient:black-white');
         $imagick->evaluateimage(\Imagick::EVALUATE_POW, 0.5);
-        analyzeImage($imagick);
+        Image::analyzeImage($imagick);
     }
 }

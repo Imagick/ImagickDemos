@@ -127,7 +127,6 @@ class RedisTaskQueue implements TaskQueue
         $keyList = [];
         foreach ($iterator as $key) {
             $keyList[] = $key;
-            
         }
 
         if (!count($keyList)) {
@@ -210,7 +209,7 @@ class RedisTaskQueue implements TaskQueue
         // A two-element multi-bulk with the first element being the name of the key
         // where an element was popped and the second element being the value of
         // the popped element.
-        $redisData = $this->redisClient->blpop($this->announceListKey, 5);
+        $redisData = $this->redisClient->blpop($this->announceListKey, 1);
 
         //Pop timed out rather than got a task
         if ($redisData === null) {
@@ -223,7 +222,7 @@ class RedisTaskQueue implements TaskQueue
 
         if (!$serializedTask) {
             $data = var_export($serializedTask, true);
-            throw new \Exception("Failed to find expected task ".$taskKey.". Data returned was ".$data);
+            throw new QueueException("Failed to find expected task ".$taskKey.". Data returned was ".$data);
         }
 
         $task = @unserialize($serializedTask);

@@ -4,6 +4,7 @@ namespace ImagickDemo\ImagickKernel;
 
 use ImagickDemo\ImagickKernel\Control\fromBuiltIn as fromBuiltInControl;
 use ImagickDemo\ControlElement\KernelRender;
+use ImagickDemo\Display;
 
 class fromBuiltin extends \ImagickDemo\Example
 {
@@ -40,7 +41,7 @@ class fromBuiltin extends \ImagickDemo\Example
                     $this->builtInControl->getKernelThirdTerm()
                 );
 
-                return renderKernelTable($kernel->getMatrix());
+                return Display::renderKernelTable($kernel->getMatrix());
             }
         }
 

@@ -2,7 +2,7 @@
 
 $config = <<< END
 
-extension=imagick.so
+; extension=imagick.so
 default_charset = "utf-8";
 
 post_max_size = 10M

@@ -4,11 +4,14 @@ namespace ImagickDemo\Imagick;
 
 class deskewImage extends \ImagickDemo\Example
 {
-    public function renderDescription()
+    function getOriginalImage()
     {
-        $output = "Hint - look at the left edge of the left column. In the deskewed image it is vertical.";
+        return $this->control->getOriginalURL();
+    }
 
-        return $output;
+    function getOriginalFilename()
+    {
+        return "images/NYTimes-Page1-11-11-1918.jpg";
     }
 
     public function render()

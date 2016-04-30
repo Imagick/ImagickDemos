@@ -2,8 +2,10 @@
 
 namespace ImagickDemo\Queue;
 
+use ImagickDemo\App;
 use ImagickDemo\Control;
 use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\ImageCachePath;
 
 class ImagickTask implements Task
 {
@@ -115,7 +117,7 @@ class ImagickTask implements Task
 
     public function getFilename()
     {
-        return getImageCacheFilename(
+        return ImageCachePath::getImageCacheFilename(
             $this->pageInfo,
             $this->params
         );

@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\ImagickKernel;
 
+use ImagickDemo\Display;
+
 class separate extends \ImagickDemo\Example
 {
     public function renderDescription()
@@ -33,7 +35,7 @@ class separate extends \ImagickDemo\Example
         $count = 0;
         foreach ($kernelList as $kernel) {
             $output .= "<br/>Kernel $count<br/>";
-            $output .= renderKernelTable($kernel->getMatrix());
+            $output .= Display::renderKernelTable($kernel->getMatrix());
             $count++;
         }
 

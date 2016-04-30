@@ -4,6 +4,21 @@ namespace ImagickDemo\ImagickKernel;
 
 use ImagickDemo\ImagickKernel\Control\fromMatrixControl;
 use ImagickDemo\ControlElement\KernelRender;
+use ImagickDemo\App;
+use ImagickDemo\Display;
+
+function createFromMatrix()
+{
+    $matrix = [
+        [0.5, 0, 0.2],
+        [0, 1, 0],
+        [0.9, 0, false],
+    ];
+
+    $kernel = \ImagickKernel::fromMatrix($matrix);
+
+    return $kernel;
+}
 
 class fromMatrix extends \ImagickDemo\Example
 {
@@ -34,7 +49,7 @@ class fromMatrix extends \ImagickDemo\Example
             case (KernelRender::KERNEL_RENDER_VALUES): {
                 $kernel = createFromMatrix();
 
-                return renderKernelTable($kernel->getMatrix());
+                return Display::renderKernelTable($kernel->getMatrix());
             }
         }
 

@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Image;
+
 class functionImage extends \ImagickDemo\Example
 {
     private $polynomial = "FUNCTION_POLYNOMIAL 
@@ -134,7 +136,7 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->functionImage(\Imagick::FUNCTION_POLYNOMIAL, $arguments);
         $imagick->setimageformat('png');
 
-        analyzeImage($imagick, 512, 256);
+        Image::analyzeImage($imagick, 512, 256);
 //Example end
     }
 
@@ -166,7 +168,7 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->functionImage(\Imagick::FUNCTION_SINUSOID, $arguments);
         $imagick->setimageformat('png');
 
-        analyzeImage($imagick, 512, 256);
+        Image::analyzeImage($imagick, 512, 256);
 //Example end
     }
 
@@ -195,7 +197,7 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->functionImage(\Imagick::FUNCTION_ARCTAN, $arguments);
         $imagick->setimageformat('png');
 
-        analyzeImage($imagick, 512, 256);
+        Image::analyzeImage($imagick, 512, 256);
 //Example end
     }
 
@@ -225,7 +227,7 @@ f4 - Constant vertical offset, default 0.5";
         $imagick->functionImage(\Imagick::FUNCTION_ARCSIN, $arguments);
         $imagick->setimageformat('png');
 
-        analyzeImage($imagick, 512, 256);
+        Image::analyzeImage($imagick, 512, 256);
 //Example end
     }
 }

@@ -4,10 +4,10 @@ namespace ImagickDemo\Control;
 
 use ImagickDemo\Queue\ImagickTaskQueue;
 use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\Route;
 
 class NullControl implements \ImagickDemo\Control
 {
-
     private $activeCategory;
     private $activeExample;
     
@@ -34,7 +34,7 @@ class NullControl implements \ImagickDemo\Control
      */
     public function renderImageURL($originalImageURL = null)
     {
-        return renderImageURL(
+        return Route::renderImageURL(
             $this->taskQueue->isActive(),
             $this->getURL(),
             $originalImageURL,
@@ -49,7 +49,7 @@ class NullControl implements \ImagickDemo\Control
      */
     public function renderCustomImageURL($extraParams)
     {
-        return renderImageURL(
+        return Route::renderImageURL(
             $this->taskQueue->isActive(),
             $this->getCustomImageURL($extraParams),
             false,
@@ -78,7 +78,7 @@ class NullControl implements \ImagickDemo\Control
 
     public function getURL()
     {
-        return getImageURL($this->activeCategory, $this->activeExample);
+        return Route::getImageURL($this->activeCategory, $this->activeExample);
     }
 
     public function getCustomImageURL(array $extraParams = array())
@@ -91,12 +91,12 @@ class NullControl implements \ImagickDemo\Control
             $separator = '&';
         }
 
-        return getCustomImageURL($this->activeCategory, $this->activeExample).$paramString;
+        return Route::getCustomImageURL($this->activeCategory, $this->activeExample).$paramString;
     }
 
     public function getImageStatusURL($extraParams = [])
     {
-        $path =  getImageStatusURL($this->activeCategory, $this->activeExample);
+        $path =  Route::getImageStatusURL($this->activeCategory, $this->activeExample);
 
         return $path.'?'.http_build_query($extraParams);
     }

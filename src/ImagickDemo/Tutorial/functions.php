@@ -241,7 +241,7 @@ function backgroundMasking()
 
     // We want the mask to go from full opaque to fully transparent quite quickly to
     // avoid having too many semi-transparent pixels. sigmoidalContrastImage does this
-    // for us. Values to use where determined empirically.
+    // for us. Values to use were determined empirically.
     $contrast = 15;
     $midpoint = 0.7 * \Imagick::getQuantum();
     $mask->sigmoidalContrastImage(true, $contrast, $midpoint);

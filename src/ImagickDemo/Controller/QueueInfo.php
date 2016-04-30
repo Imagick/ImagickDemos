@@ -6,6 +6,7 @@ use Room11\HTTP\Body\TextBody;
 use ImagickDemo\Queue\ImagickTaskQueue;
 use Tier\InjectionParams;
 use Tier\Tier;
+use Tier\Bridge\JigExecutable;
 
 class QueueInfo
 {
@@ -19,6 +20,6 @@ class QueueInfo
 
     public function createResponse()
     {
-        return Tier::renderTemplateExecutable('admin/queueInfo');
+        return JigExecutable::create('admin/queueInfo');
     }
 }

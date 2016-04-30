@@ -3,23 +3,22 @@
 namespace ImagickDemo\Controller;
 
 use Tier\InjectionParams;
-
-use Tier\Tier;
+use Tier\Bridge\JigExecutable;
 
 class ServerInfo
 {
     public function renderOPCacheInfo()
     {
-        return Tier::getRenderTemplateTier('admin/opcacheInfo');
+        return JigExecutable::create('admin/opcacheInfo');
     }
 
     public function serverSettings()
     {
-        return Tier::getRenderTemplateTier('admin/serverSettings');
+        return JigExecutable::create('admin/serverSettings');
     }
 
     public function createResponse()
     {
-        return Tier::getRenderTemplateTier('admin/fpmStatus');
+        return JigExecutable::create('admin/fpmStatus');
     }
 }

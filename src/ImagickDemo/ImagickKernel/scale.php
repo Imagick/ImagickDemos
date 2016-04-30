@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\ImagickKernel;
 
+use ImagickDemo\Display;
+
 class scale extends \ImagickDemo\Example
 {
     public function renderDescription()
@@ -33,18 +35,18 @@ NORMALIZE_KERNEL_CORRELATE
         $kernelClone = clone $kernel;
 
         $output .= "Start kernel<br/>";
-        $output .= renderKernelTable($kernel->getMatrix());
+        $output .= Display::renderKernelTable($kernel->getMatrix());
 
 
         $output .= "Scaling with NORMALIZE_KERNEL_VALUE. The  <br/>";
         $kernel->scale(2, \Imagick::NORMALIZE_KERNEL_VALUE);
-        $output .= renderKernelTable($kernel->getMatrix());
+        $output .= Display::renderKernelTable($kernel->getMatrix());
 
 
         $kernel = clone $kernelClone;
         $output .= "Scaling by percent<br/>";
         $kernel->scale(2, \Imagick::NORMALIZE_KERNEL_PERCENT);
-        $output .= renderKernelTable($kernel->getMatrix());
+        $output .= Display::renderKernelTable($kernel->getMatrix());
 
 
         $matrix2 = [
@@ -56,7 +58,7 @@ NORMALIZE_KERNEL_CORRELATE
         $kernel = \ImagickKernel::fromMatrix($matrix2);
         $output .= "Scaling by correlate<br/>";
         $kernel->scale(1, \Imagick::NORMALIZE_KERNEL_CORRELATE);
-        $output .= renderKernelTable($kernel->getMatrix());
+        $output .= Display::renderKernelTable($kernel->getMatrix());
 
 
         return $output;

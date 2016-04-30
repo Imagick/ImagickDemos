@@ -22,11 +22,11 @@ class DocHelperDisplay extends DocHelper
             return null;
         }
 
-        $output = getPanelStart($smaller, 'textPanelSpacing');
+        $output = Display::getPanelStart($smaller, 'textPanelSpacing');
         $output .= "<i>";
         $output .= htmlentities($description);
         $output .= "</i>";
-        $output .= getPanelEnd();
+        $output .= Display::getPanelEnd();
         
         return $output;
     }
@@ -74,7 +74,6 @@ class DocHelperDisplay extends DocHelper
 
             $output .= "</tbody></table>";
         }
-
 
         return $output;
     }
@@ -152,7 +151,6 @@ class DocHelperDisplay extends DocHelper
 
         return $output;
     }
-    
 
     public function showExamplesAsXML()
     {
@@ -216,7 +214,7 @@ class DocHelperDisplay extends DocHelper
             $output .= "</pre></div>";
             $count++;
 
-            $output .= getPanelEnd();
+            $output .= Display::getPanelEnd();
         }
 
         return $output;
@@ -303,7 +301,7 @@ class DocHelperDisplay extends DocHelper
             $output .=  "</pre></div>";
             $count++;
 
-            $output .= getPanelEnd();
+            $output .= Display::getPanelEnd();
         }
 
         return $output;

@@ -68,7 +68,6 @@ class QueueInfo
                 $error['uri'],
                 $error['uri']
             );
-
         }
 
         echo "</table>";

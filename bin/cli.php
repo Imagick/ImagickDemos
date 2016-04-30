@@ -1,89 +1,54 @@
 <?php
 
-use Danack\Console\Application;
-use Danack\Console\Output\BufferedOutput;
-use Danack\Console\Command\Command;
-use Danack\Console\Input\InputArgument;
+use Auryn\Injector;
+use Tier\TierCLIApp;
+use Tier\CLIFunction;
 
-require __DIR__.'/../vendor/autoload.php';
-require __DIR__.'/../src/appFunctions.php';
-require __DIR__.'/../src/cliFunctions.php';
+ini_set('display_errors', 'on');
 
-register_shutdown_function('fatalErrorShutdownHandler');
-set_exception_handler('exceptionHandler');
-set_error_handler('errorHandler');
+require_once(__DIR__.'/../vendor/autoload.php');
 
-//Figure out what Command was requested.
-try {
-    $application = createApplication();
-    $parsedCommand = $application->parseCommandLine();
-}
-catch (\Exception $e) {
-    //@TODO change to just catch parseException when that's implemented
-    $output = new BufferedOutput();
-    $application->renderException($e, $output);
-    echo $output->fetch();
-    exit(-1);
-}
+CLIFunction::setupErrorHandlers();
 
-$injector = new \Auryn\Injector();
-$injectionParams = require __DIR__."/../src/injectionParams.php";
+// We're on the CLI - let errors be seen.
+// ini_set('display_errors', 'off');
 
-$injectionParams->addToInjector($injector);
+require_once __DIR__.'/../../clavis.php';
 
+$injector = new Injector();
+
+$standardInjectionParams = require __DIR__."/../src/injectionParams.php";
+/** @var $injectionParams \Tier\InjectionParams */
+$standardInjectionParams->addToInjector($injector);
+
+$cliInjectionParams = require __DIR__."/cliInjectionParams.php";
+
+
+// To make the example code be simple, they all assume the application's
+// current directory is the root of the project
 chdir(realpath(__DIR__).'/../imagick');
 
-try {
-    $input = $parsedCommand->getInput();
-    foreach ($parsedCommand->getParams() as $key => $value) {
-        $injector->defineParam($key, $value);
-    }
-    $injector->execute($parsedCommand->getCallable());
-}
-catch (Auryn\InjectionException $ie) {
-    echo "Injection exception: ".$ie->getMessage()."\n";
-    echo "Dependency chain is:\n";
-    foreach ($ie->getDependencyChain() as $dependency) {
-        echo "    $dependency\n";
-    }
-    
-    echo $ie->getTraceAsString();
-}
-catch (\Exception $e) {
-    echo "Unexpected exception of type ".get_class($e)." running imagick-demos: ".$e->getMessage().PHP_EOL;
-    echo $e->getTraceAsString();
-    exit(-2);
-}
+/** @var $cliInjectionParams \Tier\InjectionParams */
+$cliInjectionParams->addToInjector($injector);
 
-/**
- * Creates a console application with all of the commands attached.
- * @return Application
- */
-function createApplication()
-{
-    $statsCommand = new Command('statsRunner', 'Stats\SimpleStats::run');
-    $statsCommand->setDescription("Run the stats collector and send the results to Librato.");
+$injector->alias('Danack\Console\Application', 'ImagickDemo\ConsoleApplication');
 
-    $taskCommand = new Command('imageRunner', 'ImagickDemo\Queue\ImagickTaskRunner::run');
-    $taskCommand->setDescription("Pull image request jobs off the queue and generated the images.");
+$exceptionResolver = TierCLIApp::createStandardExceptionResolver();
 
-    $clearCacheCommand = new Command('clearCache', 'ImagickDemo\Config\APCCacheEnvReader::clearCache');
-    $clearCacheCommand->setDescription("Clear the apc cache.");
+//$exceptionResolver->addExceptionHandler(
+//    'ServerContainer\UserErrorMessageException',
+//    ['ServerContainer\App', 'handleUserErrorMessageException']
+//);
+//
+//$exceptionResolver->addExceptionHandler(
+//    'ServerContainer\ServerContainerException',
+//    ['ServerContainer\App', 'handleServerContainerException']
+//);
 
-    $envWriteCommand = new Command('genEnvSettings', 'ImagickDemo\Config\EnvConfWriter::writeEnvFile');
-    $envWriteCommand->setDescription("Write an env setting bash script.");
-    $envWriteCommand->addArgument('env', InputArgument::REQUIRED, 'Which environment the settings should be generated for.');
-    $envWriteCommand->addArgument('filename', InputArgument::REQUIRED, 'The file name that the env settings should be written to.');
+$tierApp = new TierCLIApp(
+    $injector,
+    $exceptionResolver
+);
 
-    $clearRedisCommand = new Command('clearRedis', 'ImagickDemo\Queue\ImagickTaskQueue::clearStatusQueue');
-    $clearRedisCommand->setDescription("Clear the imagick task queue.");
-
-    $console = new Application("ImagickDemos", "1.0.0");
-    $console->add($statsCommand);
-    $console->add($taskCommand);
-    $console->add($clearCacheCommand);
-    $console->add($clearRedisCommand);
-    $console->add($envWriteCommand);
-
-    return $console;
-}
+$tierApp->addInitialExecutable('Tier\Bridge\ConsoleRouter::routeCommand');
+$tierApp->execute();

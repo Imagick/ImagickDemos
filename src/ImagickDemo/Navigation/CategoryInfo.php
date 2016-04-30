@@ -470,7 +470,10 @@ class CategoryInfo
         //'readImageFile',
         'recolorImage' => ['recolorImage', \ImagickDemo\Control\ImageControl::class],
         'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Imagick\Control\reduceNoiseImage::class],
-        //'remapImage' => ['remapImage', \ImagickDemo\Control\ImageControl::class],
+        'remapImage' => [
+            'remapImage',
+            \ImagickDemo\Control\RemapImageControl::class
+        ],
         //'removeImage',
         //'removeImageProfile',
         //'render',

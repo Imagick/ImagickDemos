@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Display;
+
 class identifyFormat extends \ImagickDemo\Example
 {
     /**
@@ -25,7 +27,7 @@ class identifyFormat extends \ImagickDemo\Example
 
         $output .= "<br/>";
         $output .= "For this image:<br/>";
-        $output .= renderImgTag('/images/artifact/mask.png');
+        $output .= Display::renderImgTag('/images/artifact/mask.png');
 
         return $output;
     }

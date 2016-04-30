@@ -4,8 +4,9 @@ namespace ImagickDemo\Controller;
 
 use Tier\InjectionParams;
 
-use Tier\Tier;
-use Tier\JigBridge\TierJig;
+use Tier\Bridge\TierJig;
+use Tier\Bridge\JigExecutable;
+
 
 class Page
 {
@@ -34,7 +35,7 @@ class Page
         $injectionParams->defineParam('pageTitle', "Imagick demos");
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return Tier::renderTemplateExecutable('example', $injectionParams);
+        return JigExecutable::create('example', $injectionParams);
     }
 
     /**
@@ -48,6 +49,6 @@ class Page
         $injectionParams->defineParam('pageTitle', "Imagick demos");
         $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return Tier::renderTemplateExecutable('categoryIndex', $injectionParams);
+        return JigExecutable::create('categoryIndex', $injectionParams);
     }
 }

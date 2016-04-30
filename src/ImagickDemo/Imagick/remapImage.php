@@ -4,7 +4,16 @@ namespace ImagickDemo\Imagick;
 
 class remapImage extends \ImagickDemo\Example
 {
-    use OriginalImageFile;
+    function getOriginalImage()
+    {
+        return $this->control->getOriginalURL();
+    }
+
+    function getOriginalFilename()
+    {
+        return $this->control->getImagePath();
+    }
+    
 
     public function renderDescription()
     {

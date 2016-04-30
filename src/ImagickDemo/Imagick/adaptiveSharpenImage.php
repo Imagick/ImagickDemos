@@ -4,7 +4,7 @@ namespace ImagickDemo\Imagick;
 
 class adaptiveSharpenImage extends \ImagickDemo\Example
 {
-    use OriginalImageFile;
+        function getOriginalImage()     {         return $this->control->getOriginalURL();     }      function getOriginalFilename()     {         return $this->control->getImagePath();     }
 
     public function render()
     {

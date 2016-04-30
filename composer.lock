@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aedf5adec545a31a053decb2cf6371c7",
+    "hash": "ee017254f3b2802b14dc4feff9055d15",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1252,16 +1252,16 @@
         },
         {
             "name": "room11/http",
-            "version": "0.1.2",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/HTTP.git",
-                "reference": "573a87d2280cb85a1a918af9e695d38034298252"
+                "reference": "c4e19668b21de0c00bfaa1e0d1a18175764fd966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/HTTP/zipball/573a87d2280cb85a1a918af9e695d38034298252",
-                "reference": "573a87d2280cb85a1a918af9e695d38034298252",
+                "url": "https://api.github.com/repos/Danack/HTTP/zipball/c4e19668b21de0c00bfaa1e0d1a18175764fd966",
+                "reference": "c4e19668b21de0c00bfaa1e0d1a18175764fd966",
                 "shasum": ""
             },
             "require-dev": {
@@ -1293,7 +1293,7 @@
                 "interface",
                 "room11"
             ],
-            "time": "2016-02-08 23:25:35"
+            "time": "2016-04-06 22:59:17"
         },
         {
             "name": "zendframework/zend-diactoros",

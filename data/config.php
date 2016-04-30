@@ -80,6 +80,10 @@ $live[Config::DOMAIN_CDN_TOTAL] = 1;
 $dev[Config::DOMAIN_CDN_TOTAL] = 1;
 
 
+
+$debug[Config::CACHING_SETTING] = LastModifiedStrategy::CACHING_TIME;
+
+
 $evaluate = function ($config, $environment) {
     return [
         'environment' => $environment,

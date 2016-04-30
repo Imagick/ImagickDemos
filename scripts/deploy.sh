@@ -1,7 +1,7 @@
 
 set -eux -o pipefail
 
-environment="centos_guest,dev"
+environment="centos_guest,dev,debug"
 
 if [ "$#" -ge 1 ]; then
     environment=$1

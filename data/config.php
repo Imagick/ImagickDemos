@@ -82,7 +82,7 @@ $dev[Config::DOMAIN_CDN_TOTAL] = 1;
 
 
 $debug[Config::CACHING_SETTING] = LastModifiedStrategy::CACHING_TIME;
-
+$debug[Config::SCRIPT_PACKING] = true;
 
 $evaluate = function ($config, $environment) {
     return [

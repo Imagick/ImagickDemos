@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ee017254f3b2802b14dc4feff9055d15",
+    "hash": "8fa5bb87c71931e7b32d39df3aeffeb1",
     "packages": [
         {
             "name": "amphp/amp",
@@ -360,21 +360,24 @@
         },
         {
             "name": "danack/scripthelper",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/ScriptHelper.git",
-                "reference": "5720c17f99a2ab1a7556726e856ddcd26a845b16"
+                "reference": "fd69a8ec3cbdd1d668621963cffb96fa61d459b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/ScriptHelper/zipball/5720c17f99a2ab1a7556726e856ddcd26a845b16",
-                "reference": "5720c17f99a2ab1a7556726e856ddcd26a845b16",
+                "url": "https://api.github.com/repos/Danack/ScriptHelper/zipball/fd69a8ec3cbdd1d668621963cffb96fa61d459b1",
+                "reference": "fd69a8ec3cbdd1d668621963cffb96fa61d459b1",
                 "shasum": ""
             },
             "require-dev": {
+                "danack/tier": "dev-master",
                 "phpunit/phpunit": "4.6.6",
-                "rdlowrey/auryn": "^1.0.2"
+                "rdlowrey/auryn": "^1.0.2",
+                "room11/caching": "^0.0.4",
+                "room11/http": "^0.2.1"
             },
             "type": "library",
             "extra": {
@@ -398,7 +401,7 @@
                 }
             ],
             "description": "A library that helps add JS and CSS scripts to web pages, and then serve the requested scripts.",
-            "time": "2016-01-18 12:41:17"
+            "time": "2016-05-01 11:46:13"
         },
         {
             "name": "danack/syntaxhighlighter",

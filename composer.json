@@ -13,7 +13,7 @@
         "danack/console": "^2.6.0",
         "danack/filefilter": "^0.0.1",
         "danack/jig": "^0.21.0",
-        "danack/scripthelper": "^0.0.3",
+        "danack/scripthelper": "^0.0.4",
         "danack/syntaxhighlighter": "~3.1.0",
         "danack/tier": "dev-master",
         "fluentdom/fluentdom": "v4.1.3",

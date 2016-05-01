@@ -38,6 +38,7 @@ $shares = [
     new \Tier\Path\ExternalLibPath(__DIR__.'/../lib/'),
     new \Tier\Path\WebRootPath(__DIR__.'/../imagick/'),
     new \FileFilter\YuiCompressorPath("/usr/lib/yuicompressor.jar"),
+    new \ScriptHelper\ScriptPath(__DIR__.'/../imagick/'),
 ];
 
 // A set of definitions for some classes

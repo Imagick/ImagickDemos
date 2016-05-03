@@ -228,6 +228,7 @@ class ImagickTaskRunner
         catch (InjectionException $ie) {
             echo "InjectionException calling image function: ".var_export($imageFunction, true)."\n";
             echo "Details: ".$ie->getMessage()."\n";
+            var_dump($ie->getDependencyChain());
         }
     }
 }

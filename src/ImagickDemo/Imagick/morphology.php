@@ -38,10 +38,9 @@ class morphology extends \ImagickDemo\Example
 
     public function __construct(
         \ImagickDemo\ImagickKernel\Control\usage $usageControl,
-        CachingFileBodyFactory $fileResponseFactory,
         VariableMap $variableMap
     ) {
-        $this->fileResponseFactory = $fileResponseFactory;
+        //$this->fileResponseFactory = $fileResponseFactory;
         $this->usageControl = $usageControl;
         $this->morphologyType = $variableMap->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
         parent::__construct($usageControl);
@@ -87,13 +86,13 @@ class morphology extends \ImagickDemo\Example
         return "./images/character.png";
     }
 
-    public function renderOriginalImage()
-    {
-        return $this->fileResponseFactory->create(
-            "./images/character.png",
-            "character.png", "image/png"
-        );
-    }
+//    public function renderOriginalImage()
+//    {
+//        return $this->fileResponseFactory->create(
+//            "./images/character.png",
+//            "character.png", "image/png"
+//        );
+//    }
 
     public function renderDescription()
     {

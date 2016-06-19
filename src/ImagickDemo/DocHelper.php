@@ -2029,12 +2029,12 @@ function importImagePixels()
     ),
     'remapimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"remapImage";s:5:"lines";s:347:"function remapImage($imagePath, $ditherMethod)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"remapImage";s:5:"lines";s:388:"function remapImage($imagePath, $ditherMethod)
 {
     $imagick = new \\Imagick(realpath($imagePath));
     $imagick2 = new \\Imagick(realpath("images/VGA_palette_with_black_borders.png"));
-    $imagick->remapImage($imagick2, $ditherMethod);
-    //$imagick->setImageDepth(8);
+    $palette = new \\Imagick(realpath("images/NetscapeWebSafeColours.gif"));
+    $imagick->remapImage($palette, $ditherMethod);
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
@@ -2878,7 +2878,7 @@ function setImageBias($bias)
         $imagick->morphology(\\Imagick::MORPHOLOGY_CONVOLVE, 2, $kernel);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
-";s:11:"description";s:8:"Convolve";s:9:"startLine";i:233;s:7:"endLine";i:239;}',
+";s:11:"description";s:8:"Convolve";s:9:"startLine";i:232;s:7:"endLine";i:238;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:411:"
         // Top-left pixel must be black
         // Bottom right pixel must be white
@@ -2890,72 +2890,72 @@ function setImageBias($bias)
         $imagick->morphology(\\Imagick::MORPHOLOGY_CORRELATE, 1, $kernel);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
-";s:11:"description";s:9:"Correlate";s:9:"startLine";i:245;s:7:"endLine";i:257;}',
+";s:11:"description";s:9:"Correlate";s:9:"startLine";i:244;s:7:"endLine";i:256;}',
       2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:276:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_ERODE, 2, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:5:"Erode";s:9:"startLine";i:263;s:7:"endLine";i:269;}',
+";s:11:"description";s:5:"Erode";s:9:"startLine";i:262;s:7:"endLine";i:268;}',
       3 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"        $canvas = $this->getCharacter();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "1");
         $canvas->morphology(\\Imagick::MORPHOLOGY_ERODE_INTENSITY, 2, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:15:"Erode Intensity";s:9:"startLine";i:274;s:7:"endLine";i:280;}',
+";s:11:"description";s:15:"Erode Intensity";s:9:"startLine";i:273;s:7:"endLine";i:279;}',
       4 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:277:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_DILATE, 4, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:6:"Dilate";s:9:"startLine";i:285;s:7:"endLine";i:291;}',
+";s:11:"description";s:6:"Dilate";s:9:"startLine";i:284;s:7:"endLine";i:290;}',
       5 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:280:"        $canvas = $this->getCharacter();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "1");
         $canvas->morphology(\\Imagick::MORPHOLOGY_DILATE_INTENSITY, 4, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:16:"Dilate intensity";s:9:"startLine";i:296;s:7:"endLine";i:302;}',
+";s:11:"description";s:16:"Dilate intensity";s:9:"startLine";i:295;s:7:"endLine";i:301;}',
       6 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_CHEBYSHEV, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
         $canvas->autoLevelImage();
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:30:"Distance with Chebyshev kernel";s:9:"startLine";i:308;s:7:"endLine";i:315;}',
+";s:11:"description";s:30:"Distance with Chebyshev kernel";s:9:"startLine";i:307;s:7:"endLine";i:314;}',
       7 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_MANHATTAN, "5");
         $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
         $canvas->autoLevelImage();
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:30:"Distance with Manhattan kernel";s:9:"startLine";i:320;s:7:"endLine";i:327;}',
+";s:11:"description";s:30:"Distance with Manhattan kernel";s:9:"startLine";i:319;s:7:"endLine";i:326;}',
       8 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGONAL, "5");
         $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
         $canvas->autoLevelImage();
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:31:"Distance with ocatagonal kernel";s:9:"startLine";i:332;s:7:"endLine";i:339;}',
+";s:11:"description";s:31:"Distance with ocatagonal kernel";s:9:"startLine";i:331;s:7:"endLine";i:338;}',
       9 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:316:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_EUCLIDEAN, "4");
         $canvas->morphology(\\Imagick::MORPHOLOGY_DISTANCE, 3, $kernel);
         $canvas->autoLevelImage();
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:30:"Distance with Euclidean kernel";s:9:"startLine";i:344;s:7:"endLine";i:351;}',
+";s:11:"description";s:30:"Distance with Euclidean kernel";s:9:"startLine";i:343;s:7:"endLine";i:350;}',
       10 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:275:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:4:"Edge";s:9:"startLine";i:356;s:7:"endLine";i:362;}',
+";s:11:"description";s:4:"Edge";s:9:"startLine";i:355;s:7:"endLine";i:361;}',
       11 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:486:"        // As a result you will see that \'Open\' smoothed the outline, by rounding off any sharp points, and remove any parts that is smaller than the shape used. It will also disconnect or \'open\' any thin bridges.
         $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
         $canvas->morphology(\\Imagick::MORPHOLOGY_OPEN, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:4:"Open";s:9:"startLine";i:367;s:7:"endLine";i:374;}',
+";s:11:"description";s:4:"Open";s:9:"startLine";i:366;s:7:"endLine";i:373;}',
       12 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:490:"        // As a result you will see that \'Open\' smoothed the outline, by rounding off any sharp points, and remove any parts that is smaller than the shape used. It will also disconnect or \'open\' any thin bridges.
 
         $canvas = $this->getCharacter();
@@ -2963,52 +2963,52 @@ function setImageBias($bias)
         $canvas->morphology(\\Imagick::MORPHOLOGY_OPEN_INTENSITY, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:14:"Open intensity";s:9:"startLine";i:380;s:7:"endLine";i:388;}',
+";s:11:"description";s:14:"Open intensity";s:9:"startLine";i:379;s:7:"endLine";i:387;}',
       13 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:480:"        //The basic use of the \'Close\' method is to reduce or remove any \'holes\' or \'gaps\' about the size of the kernel \'Structure Element\'. That is \'close\' parts of the background that are about that size.
         $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
         $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:5:"Close";s:9:"startLine";i:393;s:7:"endLine";i:400;}',
+";s:11:"description";s:5:"Close";s:9:"startLine";i:392;s:7:"endLine";i:399;}',
       14 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:483:"        //The basic use of the \'Close\' method is to reduce or remove any \'holes\' or \'gaps\' about the size of the kernel \'Structure Element\'. That is \'close\' parts of the background that are about that size.
         $canvas = $this->getCharacter();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "6");
         $canvas->morphology(\\Imagick::MORPHOLOGY_CLOSE_INTENSITY, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:15:"Close Intensity";s:9:"startLine";i:405;s:7:"endLine";i:412;}',
+";s:11:"description";s:15:"Close Intensity";s:9:"startLine";i:404;s:7:"endLine";i:411;}',
       15 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:277:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_SMOOTH, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:6:"Smooth";s:9:"startLine";i:418;s:7:"endLine";i:424;}',
+";s:11:"description";s:6:"Smooth";s:9:"startLine";i:417;s:7:"endLine";i:423;}',
       16 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:278:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE_IN, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:7:"Edge in";s:9:"startLine";i:429;s:7:"endLine";i:435;}',
+";s:11:"description";s:7:"Edge in";s:9:"startLine";i:428;s:7:"endLine";i:434;}',
       17 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_OCTAGON, "3");
         $canvas->morphology(\\Imagick::MORPHOLOGY_EDGE_OUT, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:8:"Edge out";s:9:"startLine";i:440;s:7:"endLine";i:446;}',
+";s:11:"description";s:8:"Edge out";s:9:"startLine";i:439;s:7:"endLine";i:445;}',
       18 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:275:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "5");
         $canvas->morphology(\\Imagick::MORPHOLOGY_TOP_HAT, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:227:"The \'TopHat\' method, or more specifically \'White Top Hat\', returns the pixels that were removed by a Opening of the shape, that is the pixels that were removed to round off the points, and the connecting bridged between shapes.";s:9:"startLine";i:451;s:7:"endLine";i:457;}',
+";s:11:"description";s:227:"The \'TopHat\' method, or more specifically \'White Top Hat\', returns the pixels that were removed by a Opening of the shape, that is the pixels that were removed to round off the points, and the connecting bridged between shapes.";s:9:"startLine";i:450;s:7:"endLine";i:456;}',
       19 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:279:"
         $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "5");
         $canvas->morphology(\\Imagick::MORPHOLOGY_BOTTOM_HAT, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:198:"The \'BottomHat\' method, also known as \'Black TopHat\' is the pixels that a Closing of the shape adds to the image. That is the the pixels that were used to fill in the \'holes\', \'gaps\', and \'bridges\'.";s:9:"startLine";i:463;s:7:"endLine";i:470;}',
+";s:11:"description";s:198:"The \'BottomHat\' method, also known as \'Black TopHat\' is the pixels that a Closing of the shape adds to the image. That is the the pixels that were used to fill in the \'holes\', \'gaps\', and \'bridges\'.";s:9:"startLine";i:462;s:7:"endLine";i:469;}',
       20 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:412:"        $canvas = $this->getCharacterOutline();
         //This finds all the pixels with 3 pixels of the right edge
         $matrix = [[1, false, false, 0]];
@@ -3019,7 +3019,7 @@ function setImageBias($bias)
         $canvas->morphology(\\Imagick::MORPHOLOGY_HIT_AND_MISS, 1, $kernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:12:"Hit and Miss";s:9:"startLine";i:476;s:7:"endLine";i:487;}',
+";s:11:"description";s:12:"Hit and Miss";s:9:"startLine";i:475;s:7:"endLine";i:486;}',
       21 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:409:"        $canvas = $this->getCharacterOutline();
         $leftEdgeKernel = \\ImagickKernel::fromMatrix([[0, 1]], [1, 0]);
         $rightEdgeKernel = \\ImagickKernel::fromMatrix([[1, 0]], [0, 0]);
@@ -3028,7 +3028,7 @@ function setImageBias($bias)
         $canvas->morphology(\\Imagick::MORPHOLOGY_THINNING, 3, $leftEdgeKernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:8:"Thinning";s:9:"startLine";i:493;s:7:"endLine";i:502;}',
+";s:11:"description";s:8:"Thinning";s:9:"startLine";i:492;s:7:"endLine";i:501;}',
       22 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:408:"        $canvas = $this->getCharacterOutline();
         $leftEdgeKernel = \\ImagickKernel::fromMatrix([[0, 1]], [1, 0]);
         $rightEdgeKernel = \\ImagickKernel::fromMatrix([[1, 0]], [0, 0]);
@@ -3037,7 +3037,7 @@ function setImageBias($bias)
         $canvas->morphology(\\Imagick::MORPHOLOGY_THICKEN, 3, $leftEdgeKernel);
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:7:"Thicken";s:9:"startLine";i:507;s:7:"endLine";i:516;}',
+";s:11:"description";s:7:"Thicken";s:9:"startLine";i:506;s:7:"endLine";i:515;}',
       23 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:646:"        $canvas = $this->getCharacterOutline();
         $diamondKernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DIAMOND, "1");
         $convexKernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_CONVEX_HULL, "");
@@ -3050,14 +3050,14 @@ function setImageBias($bias)
 
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:31:"Thick to generate a convex hull";s:9:"startLine";i:521;s:7:"endLine";i:534;}',
+";s:11:"description";s:31:"Thick to generate a convex hull";s:9:"startLine";i:520;s:7:"endLine";i:533;}',
       24 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:312:"        $canvas = $this->getCharacterOutline();
         $kernel = \\ImagickKernel::fromBuiltIn(\\Imagick::KERNEL_DISK, "2");
         $canvas->morphology(\\Imagick::MORPHOLOGY_ITERATIVE, 3, $kernel);
         $canvas->autoLevelImage();
         header("Content-Type: image/png");
         echo $canvas->getImageBlob();
-";s:11:"description";s:20:"Iterative morphology";s:9:"startLine";i:539;s:7:"endLine";i:546;}',
+";s:11:"description";s:20:"Iterative morphology";s:9:"startLine";i:538;s:7:"endLine";i:545;}',
       25 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"morphology";s:5:"lines";s:814:"    private function getCharacterOutline()
     {
 
@@ -3089,7 +3089,7 @@ function setImageBias($bias)
 
         return $canvas;
     }
-";s:11:"description";s:41:"Helper functon to get an image silhouette";s:9:"startLine";i:557;s:7:"endLine";i:589;}',
+";s:11:"description";s:41:"Helper functon to get an image silhouette";s:9:"startLine";i:556;s:7:"endLine";i:588;}',
     ),
     'quantum' => 
     array (
@@ -5474,15 +5474,22 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'getcolorcount' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:13:"getColorCount";s:5:"lines";s:300:"        $output = "I have pretty much no idea what this function is meant " .
-            "to do...if you know I\'d love to hear.<br/>";
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:12:"ImagickPixel";s:12:"functionName";s:13:"getColorCount";s:5:"lines";s:508:"        $imagick = new \\Imagick();
+        $imagick->newPseudoImage(640, 480, "magick:logo");
+        $histogramElements = $imagick->getImageHistogram();
+        $lastColor = array_pop($histogramElements);
+        $color = $lastColor->getColor();
 
-        $color = new \\ImagickPixel(\'red\');
-        $colorInfo = $color->getColorCount();
-        $output .= var_export($colorInfo, true);
-
-        return $output;
-";s:11:"description";s:0:"";s:9:"startLine";i:10;s:7:"endLine";i:19;}',
+        $output = sprintf(
+            "ColorCount last pixel = %d\\nColor is R %d G %d B %d",
+            $lastColor->getColorCount(),
+            $color[\'r\'],
+            $color[\'g\'],
+            $color[\'b\']
+        );
+        
+        return nl2br($output);
+";s:11:"description";s:0:"";s:9:"startLine";i:15;s:7:"endLine";i:31;}',
     ),
     'getcolorvalue' => 
     array (

@@ -31,3 +31,7 @@
 </head>
 
 <body>
+
+{tagManagerInHead() | nofilter}
+{tagManagerInBodyStart() | nofilter}
+{analytics() | nofilter}

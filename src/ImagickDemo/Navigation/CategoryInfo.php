@@ -834,6 +834,11 @@ class CategoryInfo
         ],
         'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],
         'logoTshirt' => ['logoTshirt', \ImagickDemo\Control\NullControl::class],
+//        'multiLineWrap' => [
+//            'multiLineWrap',
+//            \ImagickDemo\Control\NullControl::class,
+//            'name' => "Multi-line wrap"
+//        ],
         'psychedelicFont' => ['psychedelicFont', \ImagickDemo\Control\NullControl::class],
         'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
 

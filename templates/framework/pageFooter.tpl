@@ -1,3 +1,6 @@
+
+
+
 <footer class="footer hidden-xs hidden-sm">
   <div class="clearfix"></div>
   <div class="row-fluid">

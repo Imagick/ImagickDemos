@@ -59,10 +59,11 @@
         </div>
     </div>
     
+    
+    
     <div class="row  visible-lg">
         <div class="col-md-2 navPanel" >
         </div>
-
         <div class="col-md-10 columnAdjust">
             <div class='row'>
                  <div class='col-md-10 visible-md visible-lg contentPanel'>
@@ -75,7 +76,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    
+    <div class="row  visible-lg">
+        <div class="col-md-2 navPanel" >
+        </div>
+        <div class="col-md-10 columnAdjust" id="afterTitle">
+        </div>
+    </div>
 
+    <div class="row  visible-lg">
+        <div class="col-md-2 navPanel" >
+        </div>
+        <div class="col-md-10 columnAdjust">
             <div class="row">
                 <div class="col-md-{$remaining} " style="padding-top: 2px;">
                     <div class="row">
@@ -87,7 +101,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 
 {include file='framework/pageFooter'}

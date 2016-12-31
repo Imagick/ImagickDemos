@@ -42,7 +42,7 @@ $httpIinjectionParams->addToInjector($injector);
 if (strcasecmp(PHP_SAPI, 'cli') == 0) {
     // We only reach CLI here when we are testing, so hard-coded to test particular
     // route.
-    $request = new CLIRequest('/image/Imagick/deskewImage', 'phpimagick.com');
+    $request = new CLIRequest('/customImage/Tutorial/multiLineWrap?time=1465769442452', 'phpimagick.com');
 }
 else {
     $request = HTTPFunction::createRequestFromGlobals();

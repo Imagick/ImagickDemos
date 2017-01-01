@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-2560334673780653",
+        enable_page_level_ads: true
+      });
+    </script>
+
     {inject name='pageTitleObj' type='ImagickDemo\Helper\PageInfo'}
     {inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
     
@@ -27,11 +35,11 @@
         .fitler-table .quick:hover { text-decoration: underline; }
         td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
     </style>
-    
+    {tagManagerInHead() | nofilter}
 </head>
 
 <body>
 
-{tagManagerInHead() | nofilter}
+
 {tagManagerInBodyStart() | nofilter}
 {analytics() | nofilter}

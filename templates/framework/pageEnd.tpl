@@ -28,9 +28,6 @@
 <script src="/js/jquery.filtertable.min.js"></script>
 
 
-
-
-
 <script type="text/javascript">
     
     //http://colpick.com/plugin - I love you color picker

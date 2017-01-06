@@ -94,6 +94,11 @@
             <div class="row">
                 <div class="col-md-12">
                     {$banner->render() | nofilter}
+                    
+                    <div class='row' style="margin-left: auto; margin-right: auto; width: 728px">
+                        {adSlotLeaderBoard() | nofilter}
+                    </div>
+                    
                 </div>
             </div>
         </div>

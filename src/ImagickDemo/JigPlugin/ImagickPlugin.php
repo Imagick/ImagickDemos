@@ -13,6 +13,8 @@ class ImagickPlugin implements Plugin
         'tagManagerInHead',
         'tagManagerInBodyStart',
         'analytics',
+        'adSlotLeaderBoard',
+        'responsiveAdSlot'
     ];
 
     public static function getFunctionList()
@@ -185,6 +187,50 @@ HTML;
   ga('send', 'pageview');
 
 </script>
+HTML;
+
+        return $HTML;
+    }
+
+    /**
+     * 
+     * 728 x 90
+     * Leaderboard
+     */
+    function adSlotLeaderBoard()
+    {
+        $HTML = <<< HTML
+        
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- TestLeaderboardText -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-2560334673780653"
+     data-ad-slot="1471701929"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+HTML;
+
+        return $HTML;
+    }
+    
+    
+    
+    function responsiveAdSlot()
+    {
+        $HTML = <<< HTML
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- TestResponsiveText -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2560334673780653"
+     data-ad-slot="8315154322"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 HTML;
 
         return $HTML;

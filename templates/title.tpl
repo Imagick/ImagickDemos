@@ -58,15 +58,16 @@
             </div>
         </div>
     </div>
-    
-    
-    <div class="row visible-md">
-        <div class="col-md-12 ">
-            <div class='row' style="margin-left: auto; margin-right: auto; width: 728px">
-                {adSlotLeaderBoard() | nofilter}
-            </div>
-        </div>
-    </div>
+
+
+    {*<div class="row visible-md"> *}
+    {*<div class="col-md-12 ">*}
+    {*  <div class='row' style="margin-left: auto; margin-right: auto; width: 728px">*}
+                {* adSlotLeaderBoard() | nofilter *}
+    {*      </div>*}
+    {*  </div>*}
+    {*</div>*}
+
     
     
     
@@ -111,25 +112,6 @@
             </div>
         </div>
     </div>
-    
-    <div class="row visible-lg">
-        <div class="col-md-2 navPanel" >
-        </div>
-        <div class="col-md-10 columnAdjust">
-            <div class="row">
-                <div class="col-md-{$remaining} " style="padding-top: 2px;">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class='row' style="margin-left: auto; margin-right: auto; width: 728px">
-                                {adSlotLeaderBoard() | nofilter}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 {include file='framework/pageFooter'}

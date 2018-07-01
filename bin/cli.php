@@ -26,7 +26,7 @@ $cliInjectionParams = require __DIR__."/cliInjectionParams.php";
 
 // To make the example code be simple, they all assume the application's
 // current directory is the root of the project
-chdir(realpath(__DIR__).'/../imagick');
+chdir(realpath(__DIR__).'/../public');
 
 /** @var $cliInjectionParams \Tier\InjectionParams */
 $cliInjectionParams->addToInjector($injector);

@@ -36,9 +36,9 @@ $shares = [
     new \Intahwebz\StoragePath(__DIR__."/../var/"),
     new \Tier\Path\CachePath(__DIR__.'/../var/cache/'),
     new \Tier\Path\ExternalLibPath(__DIR__.'/../lib/'),
-    new \Tier\Path\WebRootPath(__DIR__.'/../imagick/'),
+    new \Tier\Path\WebRootPath(__DIR__.'/../public/'),
     new \FileFilter\YuiCompressorPath("/usr/lib/yuicompressor.jar"),
-    new \ScriptHelper\ScriptPath(__DIR__.'/../imagick/'),
+    new \ScriptHelper\ScriptPath(__DIR__.'/../public/'),
 ];
 
 // A set of definitions for some classes

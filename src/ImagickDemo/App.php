@@ -106,9 +106,11 @@ class App
     }
     
         
-    public static function createRedisClient()
+    public static function createRedisClient(Config $config)
     {
         $redisParameters = array(
+            'host'     => 'redis',
+            'password' => $config->getKey(Config::REDIS_PASSWORD),
             'connection_timeout' => 30,
             'read_write_timeout' => 30,
         );

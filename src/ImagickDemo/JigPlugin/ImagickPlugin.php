@@ -10,11 +10,11 @@ class ImagickPlugin implements Plugin
     static private $functionList = [
         'var_dump',
         'peakMemory',
-        'tagManagerInHead',
-        'tagManagerInBodyStart',
-        'analytics',
-        'adSlotLeaderBoard',
-        'responsiveAdSlot'
+//        'tagManagerInHead',
+//        'tagManagerInBodyStart',
+//        'analytics',
+//        'adSlotLeaderBoard',
+//        'responsiveAdSlot'
     ];
 
     public static function getFunctionList()

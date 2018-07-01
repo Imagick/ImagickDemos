@@ -24,7 +24,7 @@ require __DIR__."/../vendor/intahwebz/core/src/Intahwebz/Functions.php";
 
 // To make the example code be simple, they all assume the application's
 // current directory is the root of the project
-chdir(realpath(__DIR__).'/../imagick');
+chdir(realpath(__DIR__).'/../public');
 
 
 $injector = new Injector();

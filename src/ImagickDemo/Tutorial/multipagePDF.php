@@ -3,8 +3,8 @@
 $combined = null;
 
 $images = [
-    '../../../imagick/images/Biter_500.jpg',
-    '../../../imagick/images/Source1.png',
+    '../../../public/images/Biter_500.jpg',
+    '../../../public/images/Source1.png',
 ];
 
 foreach ($images as $image) {

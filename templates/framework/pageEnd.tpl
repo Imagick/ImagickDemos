@@ -4,23 +4,31 @@
 
 {inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
 
+{* $scriptInclude->addJSFile("jquery-1.11.0.min") *}
+{* $scriptInclude->addJSFile("jquery-ui-1.10.0.custom.min") *}
+{* $scriptInclude->addJSFile("colpick") *}
+{* $scriptInclude->addJSFile("jquery.fastLiveFilter") *}
+{* $scriptInclude->addJSFile("syntaxhighlighter/xregexp") *}
+{* $scriptInclude->addJSFile("syntaxhighlighter/shCore") *}
+{* $scriptInclude->addJSFile("syntaxhighlighter/shBrushPhp") *}
+{* $scriptInclude->addJSFile("syntaxhighlighter/shBrushJScript") *}
+{* $scriptInclude->addJSFile("AsyncImage") *}
+{* $scriptInclude->addJSFile("jQuery/jquery.tablesorter") *}
+{* $scriptInclude->addJSFile("jQuery/jquery.tablesorter.parser-metric") *}
+{* $scriptInclude->renderJSLinks() | nofilter *}
 
 
-{$scriptInclude->addJSFile("jquery-1.11.0.min")}
-{$scriptInclude->addJSFile("jquery-ui-1.10.0.custom.min")}
-{$scriptInclude->addJSFile("colpick")}
-{$scriptInclude->addJSFile("jquery.fastLiveFilter")}
-{$scriptInclude->addJSFile("syntaxhighlighter/xregexp")}
-{$scriptInclude->addJSFile("syntaxhighlighter/shCore")}
-{$scriptInclude->addJSFile("syntaxhighlighter/shBrushPhp")}
-{$scriptInclude->addJSFile("syntaxhighlighter/shBrushJScript")}
-{$scriptInclude->addJSFile("AsyncImage")}
-{$scriptInclude->addJSFile("jQuery/jquery.tablesorter")}
-{$scriptInclude->addJSFile("jQuery/jquery.tablesorter.parser-metric")}
-
-
-
-{$scriptInclude->renderJSLinks() | nofilter}
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="/js/colpick.js"></script>
+<script src="/js/jquery.fastLiveFilter.js"></script>
+<script src="/js/syntaxhighlighter/xregexp.js"></script>
+<script src="/js/syntaxhighlighter/shCore.js"></script>
+<script src="/js/syntaxhighlighter/shBrushPhp.js"></script>
+<script src="/js/syntaxhighlighter/shBrushJScript.js"></script>
+<script src="/js/AsyncImage.js"></script>
+<script src="/js/jQuery/jquery.tablesorter.js"></script>
+<script src="/js/jQuery/jquery.tablesorter.parser-metric.js"></script>
 
 {* Yui compressor is currently breaking this, and it's already minified.*}
 <script src="/js/bootstrap.min.js"></script>

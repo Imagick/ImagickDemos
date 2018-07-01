@@ -77,7 +77,7 @@ END;
 
     public function getJpg()
     {
-        //imagick-demos/imagick/images/lories/IMG_2561_480.jpg
+        //imagick-demos/public/images/lories/IMG_2561_480.jpg
         $imagick = new \Imagick(realpath("images/lories/IMG_2561_480.jpg"));
         $imagick->setimagecompressionquality(90);
         
@@ -111,7 +111,7 @@ END;
 
     public function renderImage()
     {
-        $imagick = new \Imagick(realpath("imagick/images/Biter_500.jpg"));
+        $imagick = new \Imagick(realpath("public/images/Biter_500.jpg"));
         //$imagick->setOption('jpeg:extent', '20kb');
         //$imagick->setcompressionquality(30);
         $imagick->setimagecompressionquality(30);

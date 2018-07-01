@@ -56,7 +56,7 @@ class debugImage extends \ImagickDemo\Example
      */
     public function renderImage()
     {
-        $imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
+        $imagick = new \Imagick(realpath("../public/images/Biter_500.jpg"));
         $imagick->setGravity(\Imagick::GRAVITY_SOUTHEAST);
         $imagick->cropImage(400, 300, 0, 0);
 

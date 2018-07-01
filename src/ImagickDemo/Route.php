@@ -90,6 +90,9 @@ class Route
             "/customImage/$categories/{example:[a-zA-Z]*}",
             ['ImagickDemo\Controller\Image', 'getCustomImageResponse']
         );
+
+
+        $r->addRoute('GET', '/notes', ['ImagickDemo\Controller\Notes', 'getNotesPage']);
     
         $r->addRoute('GET', '/info', ['ImagickDemo\Controller\ServerInfo', 'createResponse']);
         $r->addRoute('GET', '/queueinfo', ['ImagickDemo\Controller\QueueInfo', 'createResponse']);

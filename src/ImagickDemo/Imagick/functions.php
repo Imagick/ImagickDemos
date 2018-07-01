@@ -150,12 +150,12 @@ function appendImages()
 {
     $images = [
         [
-            "../imagick/images/lories/IMG_1599_480.jpg",
-            "../imagick/images/lories/IMG_2561_480.jpg"
+            "../public/images/lories/IMG_1599_480.jpg",
+            "../public/images/lories/IMG_2561_480.jpg"
         ],
         [
-            "../imagick/images/lories/IMG_2837_480.jpg",
-            "../imagick/images/lories/IMG_4023_480.jpg"
+            "../public/images/lories/IMG_2837_480.jpg",
+            "../public/images/lories/IMG_4023_480.jpg"
         ]
     ];
     
@@ -299,10 +299,10 @@ function clipImage($imagePath)
 function coalesceImages()
 {
     $imagePaths = [
-        "../imagick/images/lories/IMG_1599_480.jpg",
-        "../imagick/images/lories/IMG_2561_480.jpg",
-        "../imagick/images/lories/IMG_2837_480.jpg",
-        "../imagick/images/lories/IMG_4023_480.jpg",
+        "../public/images/lories/IMG_1599_480.jpg",
+        "../public/images/lories/IMG_2561_480.jpg",
+        "../public/images/lories/IMG_2837_480.jpg",
+        "../public/images/lories/IMG_4023_480.jpg",
     ];
 
     $canvas = new Imagick();
@@ -569,7 +569,7 @@ function drawImage()
     $draw->rotate(-12);
     $draw->annotation(140, 380, "c'est ne pas \nune Lorikeet!");
 
-    $imagick = new \Imagick(realpath("../imagick/images/lories/IMG_1599_480.jpg"));
+    $imagick = new \Imagick(realpath("../public/images/lories/IMG_1599_480.jpg"));
     $imagick->setImageFormat("png");
     $imagick->drawImage($draw);
 
@@ -1223,19 +1223,19 @@ function medianFilterImage($radius, $imagePath)
 function mergeImageLayers($layerMethodType)
 {
     //$imagick = new \Imagick(realpath("images/LayerTest.psd"));
-    //$imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
-    $imagick = new \Imagick(realpath("../imagick/images/redDiscAlpha.png"));
+    //$imagick = new \Imagick(realpath("../public/images/Biter_500.jpg"));
+    $imagick = new \Imagick(realpath("../public/images/redDiscAlpha.png"));
     
     
 //    
 //    $imagick = new \Imagick();
-    $blueDisc = new \Imagick(realpath("../imagick/images/blueDiscAlpha.png"));
+    $blueDisc = new \Imagick(realpath("../public/images/blueDiscAlpha.png"));
     $imagick->addImage($blueDisc);
 //    
 
 //    $imagick->addImage($whiteDisc);
     
-    $greenDisc = new \Imagick(realpath("../imagick/images/greenDiscAlpha.png"));
+    $greenDisc = new \Imagick(realpath("../public/images/greenDiscAlpha.png"));
     $imagick->addImage($greenDisc);
     $imagick->setImageFormat('png');
 
@@ -1276,9 +1276,9 @@ function montageImage($montageType)
     $imagick->newimage($mosaicWidth, $mosaicHeight, 'red');
 
     $images = [
-        "../imagick/images/Biter_500.jpg",
-        "../imagick/images/SydneyPeople_400.jpg",
-        "../imagick/images/Skyline_400.jpg",
+        "../public/images/Biter_500.jpg",
+        "../public/images/SydneyPeople_400.jpg",
+        "../public/images/Skyline_400.jpg",
     ];
 
     $count = 0;
@@ -1313,9 +1313,9 @@ function morphImages()
     $images = [
         //"../imagick/images/lories/IMG_1599_480.jpg",
         //"../imagick/images/lories/IMG_2837_480.jpg",
-        "../imagick/images/lories/IMG_1599_480.jpg",
-        "../imagick/images/lories/6E6F9109_480.jpg",
-        "../imagick/images/lories/IMG_2561_480.jpg",
+        "../public/images/lories/IMG_1599_480.jpg",
+        "../public/images/lories/6E6F9109_480.jpg",
+        "../public/images/lories/IMG_2561_480.jpg",
     ];
 
     $imagick = new \Imagick(realpath($images[count($images) - 1]));
@@ -1345,9 +1345,9 @@ function mosaicImages()
     $imagick->newimage($mosaicWidth, $mosaicHeight, 'red');
 
     $images = [
-        "../imagick/images/Biter_500.jpg",
-        "../imagick/images/SydneyPeople_400.jpg",
-        "../imagick/images/Skyline_400.jpg",
+        "../public/images/Biter_500.jpg",
+        "../public/images/SydneyPeople_400.jpg",
+        "../public/images/Skyline_400.jpg",
     ];
 
     $positions = [
@@ -1522,7 +1522,7 @@ function quantizeImages($numberColors, $colorSpace, $treeDepth, $dither)
     set_time_limit(120);        //This takes a long time
     ini_set('memory_limit', '128M'); //And uses a lot of memory
     
-    $imagePathPattern = "../imagick/images/spiderGif";
+    $imagePathPattern = "../public/images/spiderGif";
     $fileIterator = new \GlobIterator(realpath($imagePathPattern).'/*.png');
 
     $imagick = new \Imagick();
@@ -2069,7 +2069,7 @@ function setIteratorIndex($firstLayer)
 //Example Imagick::setSamplingFactors
 function setSamplingFactors($imagePath)
 {
-    $imagePath = "../imagick/images/FineDetail.png";
+    $imagePath = "../public/images/FineDetail.png";
     $imagick = new \Imagick(realpath($imagePath));
     $imagick->setImageFormat('jpg');
     $imagick->setSamplingFactors(array('2x2', '1x1', '1x1'));

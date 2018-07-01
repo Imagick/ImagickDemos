@@ -12,7 +12,7 @@ class stripImage extends \ImagickDemo\Example
     public function render()
     {
 //Example Imagick::stripImage
-        $imagick = new \Imagick(realpath("../imagick/images/Biter_500.jpg"));
+        $imagick = new \Imagick(realpath("../public/images/Biter_500.jpg"));
         $bytes = $imagick->getImageBlob();
         echo "Image byte size before stripping: " . strlen($bytes) . "<br/>";
         $imagick->stripImage();

@@ -24,7 +24,7 @@ class addNoiseImage extends \ImagickDemo\Example
         NOISE_POISSON = 6;
         NOISE_RANDOM = 7;  <br/>";
 
-        return $output;
+        return nl2br($output);
     }
 
     public function render()

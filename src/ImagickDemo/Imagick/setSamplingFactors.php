@@ -62,7 +62,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
      */
     public function getOriginalImagePath()
     {
-        return "../imagick/images/FineDetail.png";
+        return "../public/images/FineDetail.png";
     }
 
     public function getOriginalImageResponse()
@@ -87,7 +87,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
 
 //    public function renderOriginalImage()
 //    {
-//        $imagick = new \Imagick(realpath("../imagick/images/FineDetail.png"));
+//        $imagick = new \Imagick(realpath("../public/images/FineDetail.png"));
 //
 //        $imagick->resizeImage(
 //            $imagick->getImageWidth() * 4,
@@ -105,7 +105,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
      */
     public function render()
     {
-        $imagePath = "../imagick/images/FineDetail.png";
+        $imagePath = "../public/images/FineDetail.png";
         $imagick = new \Imagick(realpath($imagePath));
 
         $imagick->setImageFormat('jpg');

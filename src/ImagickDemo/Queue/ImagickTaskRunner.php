@@ -76,7 +76,7 @@ class ImagickTaskRunner
             }
         }
         
-        $maxRunTime = 10;
+        $maxRunTime = 30;
         
         return time() + $maxRunTime;
     }
@@ -85,6 +85,7 @@ class ImagickTaskRunner
     {
         echo "timeout check\n";
         if (time() < $this->endTime) {
+            echo "Continue running:\n";
             return TierApp::PROCESS_CONTINUE;
         }
         echo "time to go\n";

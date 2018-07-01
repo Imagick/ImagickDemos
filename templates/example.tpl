@@ -88,19 +88,6 @@
             {$example->renderDescriptionPanel(true) | nofilter}
             {$docHelper->showParametersPanel() | nofilter}
             {$docHelper->showExamples() | nofilter}
-
-            {inject name='banner' type='ImagickDemo\Banners\Banner'}
-
-            <div class="row">
-                <div class="col-md-12">
-                    {$banner->render() | nofilter}
-                    
-                    <div class='row' style="margin-left: auto; margin-right: auto; width: 728px">
-                        {adSlotLeaderBoard() | nofilter}
-                    </div>
-                    
-                </div>
-            </div>
         </div>
 
         <div class="row visible-xs visible-sm">

@@ -28,6 +28,8 @@ class Config
     const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
     const DOMAIN_INTERNAL = 'domain.internal';
 
+    const REDIS_PASSWORD = 'redis.password';
+
     const CACHING_SETTING = 'caching.setting';
     
     const SCRIPT_VERSION = 'script.version';

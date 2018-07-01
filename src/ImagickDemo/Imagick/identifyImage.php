@@ -6,7 +6,7 @@ class identifyImage extends \ImagickDemo\Example
 {
     public function render()
     {
-        $path = realpath(__DIR__."/../../../imagick/images/fnord.png");
+        $path = realpath(__DIR__."/../../../public/images/fnord.png");
         
         $imagick = new \Imagick($path);
         $identifyInfo = $imagick->identifyimage(true);

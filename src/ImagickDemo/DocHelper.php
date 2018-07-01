@@ -9982,7 +9982,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     array (
       'functionName' => 'addNoiseImage',
       'description' => 'Adds random noise to the image.',
-      'methodDescription' => 'Adds random noise to the image',
+      'methodDescription' => 'Adds random noise to the image ',
       'returnType' => 'true on success, false on error;',
       'classname' => 'imagick',
       'method' => 'addnoiseimage.xml',

@@ -38,8 +38,8 @@ function header($string, $replace = true, $http_response_code = null)
 //Example Tutorial::diffMarking
 function diffMarking()
 {
-    $image1 = new Imagick(__DIR__."/../../../imagick/images/compare1.png");
-    $image2 = new Imagick(__DIR__."/../../../imagick/images/compare2.png");
+    $image1 = new Imagick(__DIR__."/../../../public/images/compare1.png");
+    $image2 = new Imagick(__DIR__."/../../../public/images/compare2.png");
 
     $image1->compositeImage($image2, \Imagick::COMPOSITE_DIFFERENCE, 0, 0);
 
@@ -447,13 +447,17 @@ function edgeExtend($virtualPixelType, $imagePath)
     //Make the image be the desired width.
     $imagick->sampleimage($desiredWidth, $imagick->getImageHeight());
 
-    //Now scale, rotate, translate (aka affine project) it
-    //to be how you want
-    $points = array(//The x scaling factor is 0.5 when the desired width is double
-        //the source width
-        ($originalWidth / $desiredWidth), 0, //Don't scale vertically
-        0, 1, //Offset the image so that it's in the centre
-        ($desiredWidth - $originalWidth) / 2, 0);
+    // Now scale, rotate, translate (aka affine project) it
+    // to be how you want
+    $points = array(
+        // The x scaling factor is 0.5 when the desired width is double
+        // the source width
+        ($originalWidth / $desiredWidth),
+        0, // Don't scale vertically
+        0, 1,
+        // Offset the image so that it's in the centre
+        ($desiredWidth - $originalWidth) / 2, 0
+    );
 
     $imagick->distortImage(\Imagick::DISTORTION_AFFINEPROJECTION, $points, false);
 

@@ -36,6 +36,7 @@ services:
     image: imagick_php_worker:latest
     depends_on:
       - redis
+      - imagick_php_backend
     volumes:
       - .:/var/www
       - ../clavis.php:/var/clavis.php

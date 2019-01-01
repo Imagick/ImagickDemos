@@ -10,15 +10,16 @@ services:
   imagick_php_backend_debug:
     build: docker/php_backend_debug
     image: imagick_php_backend_debug:latest
+    depends_on:
+      - imagick_php_backend
     volumes:
       - .:/var/www
     restart: always
   redis:
     image: redis:4.0.6
-    ports:
-      - "6379:6379"
     volumes:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    restart: always
   web_server:
     build: docker/web_server
     image: imagick_web_server:latest
@@ -29,14 +30,12 @@ services:
     volumes:
       - .:/var/www
       - ./docker/web_server/config:/etc/config
-    ports:
-      - "80:8000"
     restart: always
   workers:
-    build: docker/worker
+    build: docker/background_worker
     image: imagick_php_worker:latest
     depends_on:
-     - redis
+      - redis
     volumes:
       - .:/var/www
       - ../clavis.php:/var/clavis.php

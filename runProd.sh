@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
 
-docker-compose -d -f docker-compose.yml -f docker-compose.prod.yml up
+docker-compose build
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+
 

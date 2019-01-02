@@ -57,8 +57,14 @@ class HomePageExample extends \ImagickDemo\Example
 
     <p>If you find any issues with this site, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
      </p>     
+
+
+    <p><b>2nd Jan 2019</b> - phpimagick has been moved to a new containerised hosting environment. If you see any issues, they are probably related to that, so please let me know by opening an issue. 
+    
+  </p>
+
 END;
- 
+
         return $output;
     }
 

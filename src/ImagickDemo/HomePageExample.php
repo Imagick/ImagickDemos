@@ -61,7 +61,7 @@ class HomePageExample extends \ImagickDemo\Example
 
     <p><b>2nd Jan 2019</b> - phpimagick has been moved to a new containerised hosting environment. If you see any issues, they are probably related to that, so please let me know by opening an issue.</p>
 
-  <p><b>6th Jan 2019</b> - phpimagick is now being deployed by CI tools. </p>
+  <p><b>7th Jan 2019</b> - phpimagick is now being deployed by CI tools.</p>
 
 END;
 

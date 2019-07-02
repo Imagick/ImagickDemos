@@ -48,6 +48,10 @@ class OPCacheInfo
     {
         $status = opcache_get_status();
 
+        if ($status === false) {
+            return "opcache_get_status() returned false. Is OPCache running?";
+        }
+
         $scriptInfoArray = array();
 
         foreach ($status['scripts'] as $scriptInfo) {

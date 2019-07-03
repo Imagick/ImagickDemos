@@ -3,4 +3,6 @@ services:
   web_server:
     ports:
       - "8000:8000"
-
+  imagick_php_backend:
+    environment:
+      - ENV_DESCRIPTION=default,prod

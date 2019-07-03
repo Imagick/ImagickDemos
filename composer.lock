@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "8fa5bb87c71931e7b32d39df3aeffeb1",
+    "content-hash": "ea449418c5db9ff9229d414117b2efa7",
     "packages": [
         {
             "name": "amphp/amp",
@@ -63,7 +63,7 @@
                 "non-blocking",
                 "promise"
             ],
-            "time": "2015-01-22 01:16:07"
+            "time": "2015-01-22T01:16:07+00:00"
         },
         {
             "name": "amphp/artax",
@@ -116,7 +116,7 @@
                 "parallel",
                 "rest"
             ],
-            "time": "2015-01-05 19:28:04"
+            "time": "2015-01-05T19:28:04+00:00"
         },
         {
             "name": "amphp/dns",
@@ -169,7 +169,7 @@
                 "dns",
                 "resolve"
             ],
-            "time": "2015-02-17 20:34:12"
+            "time": "2015-02-17T20:34:12+00:00"
         },
         {
             "name": "danack/console",
@@ -229,7 +229,7 @@
                 "cli",
                 "console"
             ],
-            "time": "2015-01-23 14:07:48"
+            "time": "2015-01-23T14:07:48+00:00"
         },
         {
             "name": "danack/danack-code",
@@ -263,7 +263,7 @@
                 "code",
                 "zf2"
             ],
-            "time": "2014-09-15 22:26:39"
+            "time": "2014-09-15T22:26:39+00:00"
         },
         {
             "name": "danack/filefilter",
@@ -305,7 +305,7 @@
                 }
             ],
             "description": "A set of transforming file filters.",
-            "time": "2015-12-17 14:25:28"
+            "time": "2015-12-17T14:25:28+00:00"
         },
         {
             "name": "danack/jig",
@@ -356,7 +356,7 @@
                 "template",
                 "view"
             ],
-            "time": "2016-02-07 13:16:27"
+            "time": "2016-02-07T13:16:27+00:00"
         },
         {
             "name": "danack/scripthelper",
@@ -401,7 +401,7 @@
                 }
             ],
             "description": "A library that helps add JS and CSS scripts to web pages, and then serve the requested scripts.",
-            "time": "2016-05-01 11:46:13"
+            "time": "2016-05-01T11:46:13+00:00"
         },
         {
             "name": "danack/syntaxhighlighter",
@@ -425,7 +425,7 @@
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "description": "The syntaxhighlighter made less crazy..",
-            "time": "2014-11-09 14:09:46"
+            "time": "2014-11-09T14:09:46+00:00"
         },
         {
             "name": "danack/tier",
@@ -479,7 +479,7 @@
                 "di",
                 "example"
             ],
-            "time": "2016-04-22 10:20:05"
+            "time": "2016-04-22T10:20:05+00:00"
         },
         {
             "name": "daverandom/libdns",
@@ -512,7 +512,7 @@
             "keywords": [
                 "dns"
             ],
-            "time": "2013-11-28 15:57:15"
+            "time": "2013-11-28T15:57:15+00:00"
         },
         {
             "name": "fluentdom/fluentdom",
@@ -554,29 +554,32 @@
                 "jquery",
                 "xml"
             ],
-            "time": "2014-05-30 10:19:52"
+            "time": "2014-05-30T10:19:52+00:00"
         },
         {
             "name": "intahwebz/configurator",
-            "version": "0.3.2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Configurator.git",
-                "reference": "dfd888b951689ae1d7c1c2ba6ee92b0864b92322"
+                "reference": "bcfc46c7171fbe4d4751dbbfd7211dc05c395983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/Configurator/zipball/dfd888b951689ae1d7c1c2ba6ee92b0864b92322",
-                "reference": "dfd888b951689ae1d7c1c2ba6ee92b0864b92322",
+                "url": "https://api.github.com/repos/Danack/Configurator/zipball/bcfc46c7171fbe4d4751dbbfd7211dc05c395983",
+                "reference": "bcfc46c7171fbe4d4751dbbfd7211dc05c395983",
                 "shasum": ""
             },
             "require": {
                 "danack/console": "^2.6.1",
+                "php": "^5.4 || ^7.0",
                 "rdlowrey/auryn": "^1.0.2"
             },
             "require-dev": {
                 "mikey179/vfsstream": "^1.4.0",
-                "phpunit/phpunit": "4.4.5"
+                "phpunit/phpunit": "4.4.5",
+                "squizlabs/php_codesniffer": "^2.0.0",
+                "symfony/yaml": "^2.8.2"
             },
             "bin": [
                 "bin/configurate",
@@ -600,7 +603,7 @@
                     "homepage": "http://www.basereality.com"
                 }
             ],
-            "description": "Generates config files from PHP based config files and PHP and JSON data files.",
+            "description": "Generates config files from PHP, JSON and Yaml data files.",
             "keywords": [
                 "config",
                 "configuration",
@@ -609,7 +612,8 @@
                 "tool",
                 "utf-8"
             ],
-            "time": "2016-01-21 00:47:22"
+            "abandoned": "danack/configurator",
+            "time": "2016-03-18T18:31:17+00:00"
         },
         {
             "name": "intahwebz/core",
@@ -652,7 +656,7 @@
                 "intahwebz",
                 "library"
             ],
-            "time": "2014-06-08 21:02:03"
+            "time": "2014-06-08T21:02:03+00:00"
         },
         {
             "name": "intahwebz/weaver",
@@ -707,7 +711,7 @@
                 "lazyloader",
                 "weaving"
             ],
-            "time": "2014-11-06 17:55:11"
+            "time": "2014-11-06T17:55:11+00:00"
         },
         {
             "name": "leafo/lessphp",
@@ -748,7 +752,7 @@
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
             "homepage": "http://leafo.net/lessphp/",
-            "time": "2013-08-09 17:09:19"
+            "time": "2013-08-09T17:09:19+00:00"
         },
         {
             "name": "leafo/scssphp",
@@ -803,7 +807,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2014-08-12 22:41:53"
+            "time": "2014-08-12T22:41:53+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -849,7 +853,7 @@
                 "source": "https://github.com/nikic/FastRoute/tree/v0.3.0",
                 "issues": "https://github.com/nikic/FastRoute/issues"
             },
-            "time": "2014-11-26 18:36:25"
+            "time": "2014-11-26T18:36:25+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -894,7 +898,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2014-07-23 18:24:17"
+            "time": "2014-07-23T18:24:17+00:00"
         },
         {
             "name": "oyejorge/less.php",
@@ -953,7 +957,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-07-13 20:34:18"
+            "time": "2015-07-13T20:34:18+00:00"
         },
         {
             "name": "predis/predis",
@@ -1006,7 +1010,7 @@
                 "issues": "https://github.com/nrk/predis/issues",
                 "source": "https://github.com/nrk/predis/tree/v1.0.3"
             },
-            "time": "2015-07-30 18:34:15"
+            "time": "2015-07-30T18:34:15+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1055,7 +1059,7 @@
                 "request",
                 "response"
             ],
-            "time": "2015-05-04 20:22:00"
+            "time": "2015-05-04T20:22:00+00:00"
         },
         {
             "name": "psr/log",
@@ -1093,7 +1097,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2012-12-21T11:40:51+00:00"
         },
         {
             "name": "rdlowrey/auryn",
@@ -1154,7 +1158,7 @@
                 "dic",
                 "ioc"
             ],
-            "time": "2016-03-14 20:10:19"
+            "time": "2016-03-14T20:10:19+00:00"
         },
         {
             "name": "rdlowrey/nbsock",
@@ -1206,7 +1210,8 @@
                 "tcp",
                 "tls"
             ],
-            "time": "2014-12-08 17:19:17"
+            "abandoned": "amphp/socket",
+            "time": "2014-12-08T17:19:17+00:00"
         },
         {
             "name": "room11/caching",
@@ -1251,7 +1256,7 @@
                 "interface",
                 "room11"
             ],
-            "time": "2015-08-22 20:09:34"
+            "time": "2015-08-22T20:09:34+00:00"
         },
         {
             "name": "room11/http",
@@ -1296,7 +1301,7 @@
                 "interface",
                 "room11"
             ],
-            "time": "2016-04-06 22:59:17"
+            "time": "2016-04-06T22:59:17+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -1346,7 +1351,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2016-03-17 18:02:05"
+            "time": "2016-03-17T18:02:05+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -1390,7 +1395,7 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2015-06-03 14:05:37"
+            "time": "2015-06-03T14:05:37+00:00"
         }
     ],
     "packages-dev": [
@@ -1430,7 +1435,7 @@
                 "BSD"
             ],
             "homepage": "http://vfs.bovigo.org/",
-            "time": "2014-09-14 10:18:53"
+            "time": "2014-09-14T10:18:53+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1508,7 +1513,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2016-04-03 22:58:34"
+            "time": "2016-04-03T22:58:34+00:00"
         }
     ],
     "aliases": [

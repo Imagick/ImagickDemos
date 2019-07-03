@@ -9,3 +9,6 @@ services:
   workers:
     ports:
       - "8080:8080"
+  imagick_php_backend:
+    environment:
+      - ENV_DESCRIPTION=default,local

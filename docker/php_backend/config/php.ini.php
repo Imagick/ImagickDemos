@@ -1,17 +1,16 @@
+<?php
+
+
+
+$config = <<< END
+
+
+
 [PHP]
-
-;;;;;;;;;;;;;;;;;;;
-; About php.ini   ;
-;;;;;;;;;;;;;;;;;;;
-; PHP's initialization file, generally called php.ini, is responsible for
-; configuring many of the aspects of PHP's behavior.
-
-
 
 ; Enable the PHP scripting language engine under Apache.
 ; http://php.net/engine
 engine = On
-
 
 ; Production Value: Off
 ; http://php.net/short-open-tag
@@ -21,12 +20,6 @@ short_open_tag = Off
 ; http://php.net/precision
 precision = 14
 
-
-; Note: This directive is hardcoded to Off for the CLI SAPI
-; Default Value: Off
-; Development Value: 4096
-; Production Value: 4096
-; http://php.net/output-buffering
 output_buffering = 4096
 
 
@@ -37,17 +30,8 @@ zlib.output_compression = Off
 ; Note: This directive is hardcoded to On for the CLI SAPI
 implicit_flush = Off
 
-; The unserialize callback function will be called (with the undefined class'
-; name as parameter), if the unserializer finds an undefined class
-; which should be instantiated. A warning appears if the specified function is
-; not defined, or if the function doesn't include/implement the missing class.
-; So only set this entry, if you really want to implement such a
-; callback-function.
 unserialize_callback_func =
 
-; When floats & doubles are serialized store serialize_precision significant
-; digits after the floating point. The default value ensures that when floats
-; are decoded with unserialize, the data will remain the same.
 serialize_precision = 17
 
 ; open_basedir, if set, limits all file operations to the defined directory
@@ -56,14 +40,7 @@ serialize_precision = 17
 ; http://php.net/open-basedir
 ;open_basedir =
 
-; This directive allows you to disable certain functions for security reasons.
-; It receives a comma-delimited list of function names.
-; http://php.net/disable-functions
 disable_functions =
-
-; This directive allows you to disable certain classes for security reasons.
-; It receives a comma-delimited list of class names.
-; http://php.net/disable-classes
 disable_classes =
 
 ; Enables or disables the circular reference collector.
@@ -74,11 +51,7 @@ zend.enable_gc = On
 ; Miscellaneous ;
 ;;;;;;;;;;;;;;;;;
 
-; Decides whether PHP may expose the fact that it is installed on the server
-; (e.g. by adding its signature to the Web server header).  It is no security
-; threat in any way, but it makes it possible to determine whether you use PHP
-; on your server or not.
-; http://php.net/expose-php
+
 expose_php = Off
 
 ;;;;;;;;;;;;;;;;;;;
@@ -187,13 +160,7 @@ report_memleaks = On
 ; This setting is on by default.
 ;report_zend_debug = 0
 
-; Store the last error/warning message in $php_errormsg (boolean). Setting this value
-; to On can assist in debugging and is appropriate for development servers. It should
-; however be disabled on production servers.
-; Default Value: Off
-; Development Value: On
-; Production Value: Off
-; http://php.net/track-errors
+
 track_errors = Off
 
 ; Turn off normal error reporting and emit XML-RPC error XML
@@ -203,56 +170,9 @@ track_errors = Off
 ; An XML-RPC faultCode
 ;xmlrpc_error_number = 0
 
-; When PHP displays or logs an error, it has the capability of formatting the
-; error message as HTML for easier reading. This directive controls whether
-; the error message is formatted as HTML or not.
-; Note: This directive is hardcoded to Off for the CLI SAPI
-; Default Value: On
-; Development Value: On
-; Production value: On
-; http://php.net/html-errors
+
 html_errors = off
 
-; If html_errors is set to On *and* docref_root is not empty, then PHP
-; produces clickable error messages that direct to a page describing the error
-; or function causing the error in detail.
-; You can download a copy of the PHP manual from http://php.net/docs
-; and change docref_root to the base URL of your local copy including the
-; leading '/'. You must also specify the file extension being used including
-; the dot. PHP's default behavior is to leave these settings empty, in which
-; case no links to documentation are generated.
-; Note: Never use this feature for production boxes.
-; http://php.net/docref-root
-; Examples
-;docref_root = "/phpmanual/"
-
-; http://php.net/docref-ext
-;docref_ext = .html
-
-; String to output before an error message. PHP's default behavior is to leave
-; this setting blank.
-; http://php.net/error-prepend-string
-; Example:
-;error_prepend_string = "<span style='color: #ff0000'>"
-
-; String to output after an error message. PHP's default behavior is to leave
-; this setting blank.
-; http://php.net/error-append-string
-; Example:
-;error_append_string = "</span>"
-
-; Log errors to specified file. PHP's default behavior is to leave this value
-; empty.
-; http://php.net/error-log
-; Example:
-;error_log = php_errors.log
-; Log errors to syslog (Event Log on Windows).
-;error_log = syslog
-
-;windows.show_crt_warning
-; Default value: 0
-; Development value: 0
-; Production value: 0
 
 ;;;;;;;;;;;;;;;;;
 ; Data Handling ;
@@ -271,35 +191,14 @@ html_errors = off
 ; Example:
 ;arg_separator.input = ";&"
 
-; This directive determines which super global arrays are registered when PHP
-; starts up. G,P,C,E & S are abbreviations for the following respective super
-; globals: GET, POST, COOKIE, ENV and SERVER. There is a performance penalty
-; paid for the registration of these arrays and because ENV is not as commonly
-; used as the others, ENV is not recommended on productions servers. You
-; can still get access to the environment variables through getenv() should you
-; need to.
-; Default Value: "EGPCS"
-; Development Value: "GPCS"
-; Production Value: "GPCS";
-; http://php.net/variables-order
+
 variables_order = "GPCS"
 
-; This directive determines which super global data (G,P & C) should be
-; registered into the super global array REQUEST. If so, it also determines
-; the order in which that data is registered. The values for this directive
-; are specified in the same manner as the variables_order directive,
-; EXCEPT one. Leaving this value empty will cause PHP to use the value set
-; in the variables_order directive. It does not mean it will leave the super
-; globals array REQUEST empty.
-; Default Value: None
-; Development Value: "GP"
-; Production Value: "GP"
-; http://php.net/request-order
 request_order = "GP"
 
-; This directive determines whether PHP registers $argv & $argc each time it
-; runs. $argv contains an array of all the arguments passed to PHP when a script
-; is invoked. $argc contains an integer representing the number of arguments
+; This directive determines whether PHP registers \$argv & \$argc each time it
+; runs. \$argv contains an array of all the arguments passed to PHP when a script
+; is invoked. \$argc contains an integer representing the number of arguments
 ; that were passed when the script was invoked. These arrays are extremely
 ; useful when running scripts from the command line. When this directive is
 ; enabled, registering these variables consumes CPU cycles and memory each time
@@ -322,8 +221,8 @@ auto_globals_jit = On
 
 ; Whether PHP will read the POST data.
 ; This option is enabled by default.
-; Most likely, you won't want to disable this option globally. It causes $_POST
-; and $_FILES to always be empty; the only way you will be able to read the
+; Most likely, you won't want to disable this option globally. It causes \$_POST
+; and \$_FILES to always be empty; the only way you will be able to read the
 ; POST data will be through the php://input stream wrapper. This can be useful
 ; to proxy requests or to process the POST data in a memory efficient fashion.
 ; http://php.net/enable-post-data-reading
@@ -401,13 +300,6 @@ user_dir =
 enable_dl = Off
 
 
-; cgi.check_shebang_line controls whether CGI PHP checks for line starting with #!
-; (shebang) at the top of the running script. This line might be needed if the
-; script support running both as stand-alone script and via PHP CGI<. PHP in CGI
-; mode skips this line and ignores its content if this directive is turned on.
-; http://php.net/cgi.check-shebang-line
-;cgi.check_shebang_line=1
-
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;
 ;;;;;;;;;;;;;;;;
@@ -440,14 +332,7 @@ allow_url_fopen = On
 ; http://php.net/allow-url-include
 allow_url_include = Off
 
-; Define the anonymous ftp password (your email address). PHP's default setting
-; for this is empty.
-; http://php.net/from
-;from="john@doe.com"
 
-; Define the User-Agent string. PHP's default setting for this is empty.
-; http://php.net/user-agent
-;user_agent="PHP"
 
 ; Default timeout for socket based streams (seconds)
 ; http://php.net/default-socket-timeout
@@ -515,8 +400,8 @@ cli_server.color = On
 ; This directive allows you to produce PHP errors when some error
 ; happens within intl functions. The value is the level of the error produced.
 ; Default is 0, which does not produce any errors.
-;intl.error_level = E_WARNING
-;intl.use_exceptions = 0
+intl.error_level = E_WARNING
+intl.use_exceptions = 1
 
 [sqlite3]
 ;sqlite3.extension_dir =
@@ -563,112 +448,14 @@ pdo_mysql.default_socket=
 
 ;phar.cache_list =
 
-[mail function]
-; For Win32 only.
-; http://php.net/smtp
-SMTP = localhost
-; http://php.net/smtp-port
-smtp_port = 25
 
-; For Win32 only.
-; http://php.net/sendmail-from
-;sendmail_from = me@example.com
-
-; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
-; http://php.net/sendmail-path
-;sendmail_path =
-
-; Force the addition of the specified parameters to be passed as extra parameters
-; to the sendmail binary. These parameters will always replace the value of
-; the 5th parameter to mail().
-;mail.force_extra_parameters =
-
-; Add X-PHP-Originating-Script: that will include uid of the script followed by the filename
-mail.add_x_header = On
-
-; The path to a log file that will log all mail() calls. Log entries include
-; the full path of the script, line number, To address and headers.
-;mail.log =
-; Log mail to syslog (Event Log on Windows).
-;mail.log = syslog
 
 [SQL]
 ; http://php.net/sql.safe-mode
 sql.safe_mode = Off
 
-[ODBC]
-; http://php.net/odbc.default-db
-;odbc.default_db    =  Not yet implemented
 
-; http://php.net/odbc.default-user
-;odbc.default_user  =  Not yet implemented
 
-; http://php.net/odbc.default-pw
-;odbc.default_pw    =  Not yet implemented
-
-; Controls the ODBC cursor model.
-; Default: SQL_CURSOR_STATIC (default).
-;odbc.default_cursortype
-
-; Allow or prevent persistent links.
-; http://php.net/odbc.allow-persistent
-odbc.allow_persistent = On
-
-; Check that a connection is still valid before reuse.
-; http://php.net/odbc.check-persistent
-odbc.check_persistent = On
-
-; Maximum number of persistent links.  -1 means no limit.
-; http://php.net/odbc.max-persistent
-odbc.max_persistent = -1
-
-; Maximum number of links (persistent + non-persistent).  -1 means no limit.
-; http://php.net/odbc.max-links
-odbc.max_links = -1
-
-; Handling of LONG fields.  Returns number of bytes to variables.  0 means
-; passthru.
-; http://php.net/odbc.defaultlrl
-odbc.defaultlrl = 4096
-
-; Handling of binary data.  0 means passthru, 1 return as is, 2 convert to char.
-; See the documentation on odbc_binmode and odbc_longreadlen for an explanation
-; of odbc.defaultlrl and odbc.defaultbinmode
-; http://php.net/odbc.defaultbinmode
-odbc.defaultbinmode = 1
-
-;birdstep.max_links = -1
-
-[Interbase]
-; Allow or prevent persistent links.
-ibase.allow_persistent = 1
-
-; Maximum number of persistent links.  -1 means no limit.
-ibase.max_persistent = -1
-
-; Maximum number of links (persistent + non-persistent).  -1 means no limit.
-ibase.max_links = -1
-
-; Default database name for ibase_connect().
-;ibase.default_db =
-
-; Default username for ibase_connect().
-;ibase.default_user =
-
-; Default password for ibase_connect().
-;ibase.default_password =
-
-; Default charset for ibase_connect().
-;ibase.default_charset =
-
-; Default timestamp format.
-ibase.timestampformat = "%Y-%m-%d %H:%M:%S"
-
-; Default date format.
-ibase.dateformat = "%Y-%m-%d"
-
-; Default time format.
-ibase.timeformat = "%H:%M:%S"
 
 [MySQLi]
 
@@ -693,7 +480,7 @@ mysqli.max_links = -1
 mysqli.cache_size = 2000
 
 ; Default port number for mysqli_connect().  If unset, mysqli_connect() will use
-; the $MYSQL_TCP_PORT or the mysql-tcp entry in /etc/services or the
+; the \$MYSQL_TCP_PORT or the mysql-tcp entry in /etc/services or the
 ; compile-time value defined MYSQL_PORT (in that order).  Win32 will only look
 ; at MYSQL_PORT.
 ; http://php.net/mysqli.default-port
@@ -766,230 +553,15 @@ mysqlnd.collect_memory_statistics = Off
 ;mysqlnd.sha256_server_public_key =
 
 
-[PostgreSQL]
-; Allow or prevent persistent links.
-; http://php.net/pgsql.allow-persistent
-pgsql.allow_persistent = On
-
-; Detect broken persistent links always with pg_pconnect().
-; Auto reset feature requires a little overheads.
-; http://php.net/pgsql.auto-reset-persistent
-pgsql.auto_reset_persistent = Off
-
-; Maximum number of persistent links.  -1 means no limit.
-; http://php.net/pgsql.max-persistent
-pgsql.max_persistent = -1
-
-; Maximum number of links (persistent+non persistent).  -1 means no limit.
-; http://php.net/pgsql.max-links
-pgsql.max_links = -1
-
-; Ignore PostgreSQL backends Notice message or not.
-; Notice message logging require a little overheads.
-; http://php.net/pgsql.ignore-notice
-pgsql.ignore_notice = 0
-
-; Log PostgreSQL backends Notice message or not.
-; Unless pgsql.ignore_notice=0, module cannot log notice message.
-; http://php.net/pgsql.log-notice
-pgsql.log_notice = 0
 
 [bcmath]
 ; Number of decimal digits for all bcmath functions.
 ; http://php.net/bcmath.scale
 bcmath.scale = 0
 
-[browscap]
-; http://php.net/browscap
-;browscap = extra/browscap.ini
 
-[Session]
-; Handler used to store/retrieve data.
-; http://php.net/session.save-handler
-; session.save_handler = files
-;session.save_handler = redis
 
-; Argument passed to save_handler.  In the case of files, this is the path
-; where data files are stored. Note: Windows users have to change this
-; variable in order to use PHP's session functions.
-;
-; The path can be defined as:
-;
-;     session.save_path = "N;/path"
-;
-; where N is an integer.  Instead of storing all the session files in
-; /path, what this will do is use subdirectories N-levels deep, and
-; store the session data in those directories.  This is useful if
-; your OS has problems with many files in one directory, and is
-; a more efficient layout for servers that handle many sessions.
-;
-; NOTE 1: PHP will not create this directory structure automatically.
-;         You can use the script in the ext/session dir for that purpose.
-; NOTE 2: See the section on garbage collection below if you choose to
-;         use subdirectories for session storage
-;
-; The file storage module creates files using mode 600 by default.
-; You can change that by using
-;
-;     session.save_path = "N;MODE;/path"
-;
-; where MODE is the octal representation of the mode. Note that this
-; does not overwrite the process's umask.
-; http://php.net/session.save-path
-;session.save_path = "/var/lib/php/sessions"
-; session.save_path = "/var/www/var/session"
-;session.save_path = "tcp://redis:6379?auth=WfunSEPArNXnB4sh"
 
-; Whether to use strict session mode.
-; Strict session mode does not accept uninitialized session ID and regenerate
-; session ID if browser sends uninitialized session ID. Strict mode protects
-; applications from session fixation via session adoption vulnerability. It is
-; disabled by default for maximum compatibility, but enabling it is encouraged.
-; https://wiki.php.net/rfc/strict_sessions
-session.use_strict_mode = 0
-
-; Whether to use cookies.
-; http://php.net/session.use-cookies
-session.use_cookies = 1
-
-; http://php.net/session.cookie-secure
-;session.cookie_secure =
-
-; This option forces PHP to fetch and use a cookie for storing and maintaining
-; the session id. We encourage this operation as it's very helpful in combating
-; session hijacking when not specifying and managing your own session id. It is
-; not the be-all and end-all of session hijacking defense, but it's a good start.
-; http://php.net/session.use-only-cookies
-session.use_only_cookies = 1
-
-; Name of the session (used as cookie name).
-; http://php.net/session.name
-session.name = PHPSESSID
-
-; Initialize session on request startup.
-; http://php.net/session.auto-start
-session.auto_start = 0
-
-; Lifetime in seconds of cookie or, if 0, until browser is restarted.
-; http://php.net/session.cookie-lifetime
-session.cookie_lifetime = 0
-
-; The path for which the cookie is valid.
-; http://php.net/session.cookie-path
-session.cookie_path = /
-
-; The domain for which the cookie is valid.
-; http://php.net/session.cookie-domain
-session.cookie_domain =
-
-; Whether or not to add the httpOnly flag to the cookie, which makes it inaccessible to browser scripting languages such as JavaScript.
-; http://php.net/session.cookie-httponly
-session.cookie_httponly =
-
-; Handler used to serialize data.  php is the standard serializer of PHP.
-; http://php.net/session.serialize-handler
-session.serialize_handler = php
-
-; Defines the probability that the 'garbage collection' process is started
-; on every session initialization. The probability is calculated by using
-; gc_probability/gc_divisor. Where session.gc_probability is the numerator
-; and gc_divisor is the denominator in the equation. Setting this value to 1
-; when the session.gc_divisor value is 100 will give you approximately a 1% chance
-; the gc will run on any give request.
-; Default Value: 1
-; Development Value: 1
-; Production Value: 1
-; http://php.net/session.gc-probability
-session.gc_probability = 0
-
-; Defines the probability that the 'garbage collection' process is started on every
-; session initialization. The probability is calculated by using the following equation:
-; gc_probability/gc_divisor. Where session.gc_probability is the numerator and
-; session.gc_divisor is the denominator in the equation. Setting this value to 1
-; when the session.gc_divisor value is 100 will give you approximately a 1% chance
-; the gc will run on any give request. Increasing this value to 1000 will give you
-; a 0.1% chance the gc will run on any give request. For high volume production servers,
-; this is a more efficient approach.
-; Default Value: 100
-; Development Value: 1000
-; Production Value: 1000
-; http://php.net/session.gc-divisor
-session.gc_divisor = 1000
-
-; After this number of seconds, stored data will be seen as 'garbage' and
-; cleaned up by the garbage collection process.
-; http://php.net/session.gc-maxlifetime
-session.gc_maxlifetime = 1440
-
-; NOTE: If you are using the subdirectory option for storing session files
-;       (see session.save_path above), then garbage collection does *not*
-;       happen automatically.  You will need to do your own garbage
-;       collection through a shell script, cron entry, or some other method.
-;       For example, the following script would is the equivalent of
-;       setting session.gc_maxlifetime to 1440 (1440 seconds = 24 minutes):
-;          find /path/to/sessions -cmin +24 -type f | xargs rm
-
-; Check HTTP Referer to invalidate externally stored URLs containing ids.
-; HTTP_REFERER has to contain this substring for the session to be
-; considered as valid.
-; http://php.net/session.referer-check
-session.referer_check =
-
-; How many bytes to read from the file.
-; http://php.net/session.entropy-length
-;session.entropy_length = 32
-
-; Specified here to create the session id.
-; http://php.net/session.entropy-file
-; Defaults to /dev/urandom
-; On systems that don't have /dev/urandom but do have /dev/arandom, this will default to /dev/arandom
-; If neither are found at compile time, the default is no entropy file.
-; On windows, setting the entropy_length setting will activate the
-; Windows random source (using the CryptoAPI)
-;session.entropy_file = /dev/urandom
-
-; Set to {nocache,private,public,} to determine HTTP caching aspects
-; or leave this empty to avoid sending anti-caching headers.
-; http://php.net/session.cache-limiter
-session.cache_limiter = nocache
-
-; Document expires after n minutes.
-; http://php.net/session.cache-expire
-session.cache_expire = 180
-
-; trans sid support is disabled by default.
-; Use of trans sid may risk your users' security.
-; Use this option with caution.
-; - User may send URL contains active session ID
-;   to other person via. email/irc/etc.
-; - URL that contains active session ID may be stored
-;   in publicly accessible computer.
-; - User may access your site with the same session ID
-;   always using URL stored in browser's history or bookmarks.
-; http://php.net/session.use-trans-sid
-session.use_trans_sid = 0
-
-; Select a hash function for use in generating session ids.
-; Possible Values
-;   0  (MD5 128 bits)
-;   1  (SHA-1 160 bits)
-; This option may also be set to the name of any hash function supported by
-; the hash extension. A list of available hashes is returned by the hash_algos()
-; function.
-; http://php.net/session.hash-function
-session.hash_function = 0
-
-; Define how many bits are stored in each character when converting
-; the binary hash data to something readable.
-; Possible values:
-;   4  (4 bits: 0-9, a-f)
-;   5  (5 bits: 0-9, a-v)
-;   6  (6 bits: 0-9, a-z, A-Z, "-", ",")
-; Default Value: 4
-; Development Value: 5
-; Production Value: 5
-; http://php.net/session.hash-bits-per-character
-session.hash_bits_per_character = 5
 
 ; The URL rewriter will look for URLs in a defined set of HTML tags.
 ; form/fieldset are special; if you include them here, the rewriter will
@@ -1002,54 +574,7 @@ session.hash_bits_per_character = 5
 ; http://php.net/url-rewriter.tags
 url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 
-; Enable upload progress tracking in $_SESSION
-; Default Value: On
-; Development Value: On
-; Production Value: On
-; http://php.net/session.upload-progress.enabled
-;session.upload_progress.enabled = On
 
-; Cleanup the progress information as soon as all POST data has been read
-; (i.e. upload completed).
-; Default Value: On
-; Development Value: On
-; Production Value: On
-; http://php.net/session.upload-progress.cleanup
-;session.upload_progress.cleanup = On
-
-; A prefix used for the upload progress key in $_SESSION
-; Default Value: "upload_progress_"
-; Development Value: "upload_progress_"
-; Production Value: "upload_progress_"
-; http://php.net/session.upload-progress.prefix
-;session.upload_progress.prefix = "upload_progress_"
-
-; The index name (concatenated with the prefix) in $_SESSION
-; containing the upload progress information
-; Default Value: "PHP_SESSION_UPLOAD_PROGRESS"
-; Development Value: "PHP_SESSION_UPLOAD_PROGRESS"
-; Production Value: "PHP_SESSION_UPLOAD_PROGRESS"
-; http://php.net/session.upload-progress.name
-;session.upload_progress.name = "PHP_SESSION_UPLOAD_PROGRESS"
-
-; How frequently the upload progress should be updated.
-; Given either in percentages (per-file), or in bytes
-; Default Value: "1%"
-; Development Value: "1%"
-; Production Value: "1%"
-; http://php.net/session.upload-progress.freq
-;session.upload_progress.freq =  "1%"
-
-; The minimum delay between updates, in seconds
-; Default Value: 1
-; Development Value: 1
-; Production Value: 1
-; http://php.net/session.upload-progress.min-freq
-;session.upload_progress.min_freq = "1"
-
-; Only write session data when session data is changed. Enabled by default.
-; http://php.net/session.lazy-write
-;session.lazy_write = On
 
 [Assertion]
 ; Switch whether to compile assertions at all (to have no overhead at run-time)
@@ -1063,64 +588,9 @@ url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 ; http://php.net/zend.assertions
 zend.assertions = -1
 
-; Assert(expr); active by default.
-; http://php.net/assert.active
-;assert.active = On
-
-; Throw an AssertationException on failed assertions
-; http://php.net/assert.exception
-;assert.exception = On
-
-; Issue a PHP warning for each failed assertion. (Overridden by assert.exception if active)
-; http://php.net/assert.warning
-;assert.warning = On
-
-; Don't bail out by default.
-; http://php.net/assert.bail
-;assert.bail = Off
-
-; User-function to be called if an assertion fails.
-; http://php.net/assert.callback
-;assert.callback = 0
-
-; Eval the expression with current error_reporting().  Set to true if you want
-; error_reporting(0) around the eval().
-; http://php.net/assert.quiet-eval
-;assert.quiet_eval = 0
 
 
 
-
-[gd]
-; Tell the jpeg decode to ignore warnings and try to create
-; a gd image. The warning will then be displayed as notices
-; disabled by default
-; http://php.net/gd.jpeg-ignore-warning
-;gd.jpeg_ignore_warning = 0
-
-[exif]
-; Exif UNICODE user comments are handled as UCS-2BE/UCS-2LE and JIS as JIS.
-; With mbstring support this will automatically be converted into the encoding
-; given by corresponding encode setting. When empty mbstring.internal_encoding
-; is used. For the decode settings you can distinguish between motorola and
-; intel byte order. A decode setting cannot be empty.
-; http://php.net/exif.encode-unicode
-;exif.encode_unicode = ISO-8859-15
-
-; http://php.net/exif.decode-unicode-motorola
-;exif.decode_unicode_motorola = UCS-2BE
-
-; http://php.net/exif.decode-unicode-intel
-;exif.decode_unicode_intel    = UCS-2LE
-
-; http://php.net/exif.encode-jis
-;exif.encode_jis =
-
-; http://php.net/exif.decode-jis-motorola
-;exif.decode_jis_motorola = JIS
-
-; http://php.net/exif.decode-jis-intel
-;exif.decode_jis_intel    = JIS
 
 [Tidy]
 ; The path to a default tidy configuration file to use when using tidy
@@ -1133,22 +603,7 @@ zend.assertions = -1
 ; http://php.net/tidy.clean-output
 tidy.clean_output = Off
 
-[soap]
-; Enables or disables WSDL caching feature.
-; http://php.net/soap.wsdl-cache-enabled
-soap.wsdl_cache_enabled=1
 
-; Sets the directory name where SOAP extension will put cache files.
-; http://php.net/soap.wsdl-cache-dir
-soap.wsdl_cache_dir="/tmp"
-
-; (time to live) Sets the number of second while cached file will be used
-; instead of original one.
-; http://php.net/soap.wsdl-cache-ttl
-soap.wsdl_cache_ttl=86400
-
-; Sets the size of the cache limit. (Max. number of WSDL files to cache)
-soap.wsdl_cache_limit = 5
 
 [sysvshm]
 ; A default size of the shared memory segment
@@ -1174,7 +629,7 @@ ldap.max_links = -1
 
 [opcache]
 ; Determines if Zend OPCache is enabled
-opcache.enable=0
+opcache.enable=${'opcache.enabled'}
 
 ; Determines if Zend OPCache is enabled for the CLI version of PHP
 ;opcache.enable_cli=0
@@ -1326,3 +781,8 @@ opcache.revalidate_freq=2
 ; Local Variables:
 ; tab-width: 4
 ; End:
+
+
+END;
+
+return $config;

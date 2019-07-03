@@ -1,3 +1,9 @@
+<?php
+
+
+
+$config = <<< END
+
 [global]
 ; Pid file
 ; Note: the default prefix is /var
@@ -114,7 +120,7 @@ daemonize = no
 
 
 ; Start a new pool named 'www'.
-; the variable $pool can be used in any directive and will be replaced by the
+; the variable \$pool can be used in any directive and will be replaced by the
 ; pool name ('www' here)
 [www]
 
@@ -130,7 +136,7 @@ daemonize = no
 ; When not set, the global prefix (or /usr) applies instead.
 ; Note: This directive can also be relative to the global prefix.
 ; Default Value: none
-;prefix = /path/to/pools/$pool
+;prefix = /path/to/pools/\$pool
 
 ; Unix user/group of processes
 ; Note: The user is mandatory. If the group is not set, the default user's group
@@ -367,7 +373,7 @@ pm.max_requests = 500
 
 ; The access log file
 ; Default: not set
-;access.log = log/$pool.access.log
+;access.log = log/\$pool.access.log
 
 ; The access log format.
 ; The following syntax is allowed
@@ -384,7 +390,7 @@ pm.max_requests = 500
 ;      - %{mili}d
 ;      - %{microseconds}d
 ;      - %{micro}d
-;  %e: an environment variable (same as $_ENV or $_SERVER)
+;  %e: an environment variable (same as \$_ENV or \$_SERVER)
 ;      it must be associated with embraces to specify the name of the env
 ;      variable. Some exemples:
 ;      - server specifics like: %{REQUEST_METHOD}e or %{SERVER_PROTOCOL}e
@@ -431,7 +437,7 @@ pm.max_requests = 500
 ; The log file for slow requests
 ; Default Value: not set
 ; Note: slowlog is mandatory if request_slowlog_timeout is set
-;slowlog = log/$pool.log.slow
+;slowlog = log/\$pool.log.slow
 
 ; The timeout for serving a single request after which a PHP backtrace will be
 ; dumped to the 'slowlog' file. A value of '0s' means 'off'.
@@ -457,7 +463,7 @@ pm.max_requests = 500
 
 ; Chroot to this directory at the start. This value must be defined as an
 ; absolute path. When this value is not set, chroot is not used.
-; Note: you can prefix with '$prefix' to chroot to the pool prefix or one
+; Note: you can prefix with '\$prefix' to chroot to the pool prefix or one
 ; of its subdirectories. If the pool prefix is not set, the global prefix
 ; will be used instead.
 ; Note: chrooting is a great security feature and should be used whenever
@@ -483,7 +489,7 @@ catch_workers_output = yes
 ; by clearing the environment in workers before env vars specified in this
 ; pool configuration are added.
 ; Setting to "no" will make all environment variables available to PHP code
-; via getenv(), $_ENV and $_SERVER.
+; via getenv(), \$_ENV and \$_SERVER.
 ; Default Value: yes
 ;clear_env = no
 
@@ -495,10 +501,10 @@ catch_workers_output = yes
 ; Default Value: .php
 security.limit_extensions = .php .php3 .php4 .php5 .php7
 
-; Pass environment variables like LD_LIBRARY_PATH. All $VARIABLEs are taken from
+; Pass environment variables like LD_LIBRARY_PATH. All \$VARIABLEs are taken from
 ; the current environment.
 ; Default Value: clean env
-;env[HOSTNAME] = $HOSTNAME
+;env[HOSTNAME] = \$HOSTNAME
 ;env[PATH] = /usr/local/bin:/usr/bin:/bin
 ;env[TMP] = /tmp
 ;env[TMPDIR] = /tmp
@@ -528,3 +534,8 @@ security.limit_extensions = .php .php3 .php4 .php5 .php7
 ;php_admin_value[error_log] = /var/log/fpm-php.www.log
 ;php_admin_flag[log_errors] = on
 ;php_admin_value[memory_limit] = 32M
+
+END;
+
+
+return $config;

@@ -23,11 +23,6 @@ WORKDIR /var/www
 # Set up configuration volumes
 RUN mkdir -p /etc/config
 
-# Used by Jenkins to package code in to container
-# COPY web /var/www
-
 # CMD ["/usr/sbin/php-fpm7.2", "--nodaemonize", "--fpm-config=/etc/config/fpm.conf", "-c", "/etc/config/php.ini"]
 
-CMD sh /var/www/docker/php_backend/run.sh
-
-
+CMD sh /var/www/docker/php_backend/entrypoint.sh

@@ -7,7 +7,7 @@ RUN mkdir -p /var/log/supervisor
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY statsUploader.conf /etc/supervisor/conf.d/statsUploader.conf
+# COPY dead/statsUploader.conf /etc/supervisor/conf.d/statsUploader.conf
 COPY imageGenerator.conf /etc/supervisor/conf.d/imageGenerator.conf
 
 # CMD tail -f README.md

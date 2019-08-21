@@ -48,6 +48,9 @@ else {
     $request = HTTPFunction::createRequestFromGlobals();
 }
 
+ini_set("serialize_precision", "-1");
+ini_set("precision", 10);
+
 // Create the first Tier that needs to be run.
 $routeRequest = new Executable(['Tier\Bridge\FastRouter', 'routeRequest']);
 
@@ -57,9 +60,9 @@ $app->createStandardExceptionResolver();
 
 // Make the body that is generated be shared by TierApp
 $app->addExpectedProduct('Room11\HTTP\Body');
-$app->addInitialExecutable(['ImagickDemo\AppTimer', 'timerStart']);
+//$app->addInitialExecutable(['ImagickDemo\AppTimer', 'timerStart']);
 $app->addGenerateBodyExecutable($routeRequest);
-$app->addAfterSendExecutable(['ImagickDemo\AppTimer', 'timerEnd']);
+//$app->addAfterSendExecutable(['ImagickDemo\AppTimer', 'timerEnd']);
 $app->addSendExecutable(new Executable(['Tier\HTTPFunction', 'sendBodyResponse']));
 
 // Run it

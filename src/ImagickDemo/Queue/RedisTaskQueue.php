@@ -209,8 +209,8 @@ class RedisTaskQueue implements TaskQueue
         // A two-element multi-bulk with the first element being the name of the key
         // where an element was popped and the second element being the value of
         // the popped element.
-        set_time_limit(90);
-        $redisData = $this->redisClient->blpop($this->announceListKey, 60);
+//        set_time_limit(90);
+        $redisData = $this->redisClient->blpop($this->announceListKey, 10);
 
         //Pop timed out rather than got a task
         if ($redisData === null) {

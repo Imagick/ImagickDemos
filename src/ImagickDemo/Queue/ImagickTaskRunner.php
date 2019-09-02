@@ -83,12 +83,12 @@ class ImagickTaskRunner
     
     public function timeoutCheck()
     {
-        echo "timeout check\n";
+//        echo "timeout check\n";
         if (time() < $this->endTime) {
-            echo "Continue running:\n";
+//            echo "Continue running:\n";
             return TierApp::PROCESS_CONTINUE;
         }
-        echo "time to go\n";
+//        echo "time to go\n";
 
         return TierApp::PROCESS_END_LOOPING;
     }
@@ -136,9 +136,9 @@ class ImagickTaskRunner
      */
     public function actuallyRun()
     {
-        echo "ImagickTaskRunner::actuallyRun\n";
+//        echo "ImagickTaskRunner::actuallyRun\n";
         try {
-            echo "Waiting for task "."\n";
+//            echo "Waiting for task "."\n";
             $task = $this->taskQueue->waitToAssignTask();
         }
         catch (QueueException $qe) {

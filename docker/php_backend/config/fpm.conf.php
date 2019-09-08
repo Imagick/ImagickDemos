@@ -534,6 +534,7 @@ security.limit_extensions = .php .php3 .php4 .php5 .php7
 ;php_admin_value[error_log] = /var/log/fpm-php.www.log
 ;php_admin_flag[log_errors] = on
 ;php_admin_value[memory_limit] = 32M
+php_admin_value[fastcgi.logging] = off
 
 END;
 

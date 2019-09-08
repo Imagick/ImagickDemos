@@ -3,6 +3,8 @@ services:
   imagick_php_backend:
     build: docker/php_backend
     image: imagick_php_backend:latest
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_phpfpm"}]'
     volumes:
       - .:/var/www
       - ../clavis.php:/var/clavis.php
@@ -12,11 +14,15 @@ services:
     image: imagick_php_backend_debug:latest
     depends_on:
       - imagick_php_backend
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_phpfpm_debug"}]'
     volumes:
       - .:/var/www
     restart: always
   redis:
     image: redis:4.0.6
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "redis", "service": "phpimagick_redis"}]'
     volumes:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: always
@@ -27,6 +33,8 @@ services:
     depends_on:
       - imagick_php_backend
       - imagick_php_backend_debug
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "nginx", "service": "phpimagick_nginx"}]'
     volumes:
       - .:/var/www
       - ./docker/web_server/config:/etc/config
@@ -37,6 +45,8 @@ services:
     depends_on:
       - redis
       - imagick_php_backend
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_supervisord"}]'
     volumes:
       - .:/var/www
       - ../clavis.php:/var/clavis.php

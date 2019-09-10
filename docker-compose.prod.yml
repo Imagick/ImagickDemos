@@ -8,4 +8,4 @@ services:
       - ENV_DESCRIPTION=default,prod
   redis:
     ports:
-      - "6379:6379"
+      - "6381:6379"

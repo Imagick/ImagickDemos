@@ -6,3 +6,6 @@ services:
   imagick_php_backend:
     environment:
       - ENV_DESCRIPTION=default,prod
+  redis:
+    ports:
+      - "6379:6379"

@@ -27,6 +27,4 @@ Compiling Image Magick from source is almost certainly the best way to install i
     make install
 
 
-
-
 * It's not actually a framework, it's just an application bootstrap...the difference is that it doesn't support plugins, but does allow a response time

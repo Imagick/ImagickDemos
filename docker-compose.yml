@@ -19,6 +19,15 @@ services:
     volumes:
       - .:/var/www
     restart: always
+  installer:
+    build: docker/installer
+    environment:
+      - COMPOSER_CACHE_DIR=/var/app/var/cache/composer
+      - COMPOSER_ALLOW_SUPERUSER=1
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_installer"}]'
+    volumes:
+      - .:/var/www
   redis:
     image: redis:4.0.6
     labels:

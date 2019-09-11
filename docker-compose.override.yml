@@ -6,6 +6,8 @@ services:
   web_server:
     ports:
       - "80:8000"
+    depends_on:
+      - imagick_php_backend_debug
   workers:
     ports:
       - "8080:8080"

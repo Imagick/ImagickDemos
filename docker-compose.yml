@@ -32,7 +32,6 @@ services:
     command: ["/usr/sbin/nginx", "-c", "/etc/config/nginx.conf"]
     depends_on:
       - imagick_php_backend
-      - imagick_php_backend_debug
     labels:
       com.datadoghq.ad.logs: '[{"source": "nginx", "service": "phpimagick_nginx"}]'
     volumes:

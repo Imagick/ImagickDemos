@@ -1,17 +1,17 @@
-{inject name='nav' type='ImagickDemo\Navigation\Nav'}
-{inject name='navBar' type='ImagickDemo\NavigationBar'}
+{% set nav = inject('ImagickDemo\\Navigation\\Nav') %}
+{% set navBar = inject('ImagickDemo\\NavigationBar') %}
 
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container visible-lg">
         <nav class="navbar-default " role="navigation">
             <ul class="nav navbar-nav menuBackground">
-                {$navBar->render() | nofilter}
+                {{ navBar.render() | raw }}
             </ul>
         </nav>
 
         <nav class="navbar-default pull-right" role="navigation">
             <ul class="nav navbar-nav menuBackground">
-                 {$navBar->renderRight() | nofilter}
+                 {{ navBar.renderRight() | raw }}
             </ul>
         </nav>   
     </div>
@@ -20,18 +20,16 @@
     <div class="container visible-md" >
         <nav class="navbar-default " role="navigation">
             <ul class="nav navbar-nav menuBackground">
-                {$navBar->render() | nofilter}
-                {$navBar->renderRight() | nofilter}
+                {{ navBar.render() | raw }}
+                {{ navBar.renderRight() | raw }}
             </ul>
         </nav>   
     </div>
-    
-    
 
     <div class="container visible-xs visible-sm">
         <ul class="nav navbar-nav menuBackground">
-        {$navBar->renderSelect() | nofilter}
-        {$nav->renderSelect() | nofilter}
+        {{ navBar.renderSelect() | raw }}
+        {{ nav.renderSelect() | raw }}
         </ul>
     </div>
 </header>

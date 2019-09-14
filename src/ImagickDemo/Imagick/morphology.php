@@ -4,7 +4,6 @@ namespace ImagickDemo\Imagick;
 
 use Room11\HTTP\VariableMap;
 use ImagickDemo\Display;
-use Tier\Body\CachingFileBodyFactory;
 
 class morphology extends \ImagickDemo\Example
 {

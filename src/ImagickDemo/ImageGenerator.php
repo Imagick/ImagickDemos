@@ -15,8 +15,10 @@ use Predis\Client as RedisClient;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Room11\HTTP\Body\BlobBody;
 use Room11\HTTP\Body\TextBody;
-use Tier\Body\CachingFileBodyFactory;
-use Tier\Bridge\RouteParams;
+
+use SlimAuryn\Response\ImageResponse;
+use SlimAuryn\RouteParams;
+use SlimAuryn\Response\TextResponse;
 
 class ImageGenerator
 {
@@ -30,7 +32,6 @@ class ImageGenerator
         ImagickTaskQueue $taskQueue,
         PageInfo $pageInfo,
         Request $request,
-        HeadersSet $headersSet,
         $customImage,
         $params
     ) {
@@ -40,9 +41,9 @@ class ImageGenerator
         if ($job === false) {
             if ($taskQueue->isActive() == false) {
                 //Queue isn't active - don't bother queueing a task
-                return false;
+                return null;
             }
-    
+
             $task = new \ImagickDemo\Queue\ImagickTask(
                 $pageInfo,
                 $params,
@@ -58,13 +59,19 @@ class ImageGenerator
                 $text = "Image task $added already present.";
             }
         }
-    
+
+        $headers = [];
+
         $caching = new \Room11\Caching\LastModified\Disabled();
         foreach ($caching->getHeaders(time()) as $key => $value) {
-            $headersSet->addHeader($key, $value);
+            $headers[$key] = $value;
         }
-    
-        return new TextBody($text, 420);
+
+        return new TextResponse(
+            $text,
+            $headers,
+            420
+        );
     }
 
     
@@ -90,7 +97,15 @@ class ImageGenerator
 
         $simpleNameWithExtension = $pageInfo->getSimpleName($params).'.'.$imageType;
 
-        return new BlobBody($simpleNameWithExtension, $imageData, "image/".$imageType);
+        return new ImageResponse(
+            $imageData,
+            "image/" . $imageType,
+            [
+                'Content-Length'      => (string)strlen($imageData),
+                'Content-Disposition' => 'filename=' . $simpleNameWithExtension,
+                'Content-Type'        => "image/" . $imageType,
+            ]
+        );
     }
 
     public function directCustomImageCallable(
@@ -118,12 +133,19 @@ class ImageGenerator
         
         $simpleNameWithExtension = $pageInfo->getSimpleName($params).'.'.$imageType;
 
-        return new BlobBody($simpleNameWithExtension, $imageData, "image/".$imageType);
+        return new ImageResponse(
+            $imageData,
+            "image/" . $imageType,
+            [
+                'Content-Length'      => (string)strlen($imageData),
+                'Content-Disposition' => 'filename=' . $simpleNameWithExtension,
+                'Content-Type'        => "image/" . $imageType,
+            ]
+        );
     }
     
     public function cachedImageCallable(
         PageInfo $pageInfo,
-        CachingFileBodyFactory $fileBodyFactory,
         $params
     ) {
         $filename = $this->imageCachePath->getImageCacheFilename($pageInfo, $params);
@@ -143,11 +165,21 @@ class ImageGenerator
         }
     
         if ($filenameFound == false || $extension == null) {
-            return false;
+            return null;
         }
 
         $simpleNameWithExtension = $pageInfo->getSimpleName($params).'.'.$extension;
-    
-        return $fileBodyFactory->create($filenameFound, $simpleNameWithExtension, $contentType);
+
+        $imageData = file_get_contents($filenameFound);
+
+        return new ImageResponse(
+            $imageData,
+            'foo',
+            [
+                'Content-Length'      => (string)strlen($imageData),
+                'Content-Disposition' => 'filename=' . $simpleNameWithExtension,
+                'Content-Type'        => $contentType,
+            ]
+        );
     }
 }

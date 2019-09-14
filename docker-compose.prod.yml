@@ -1,11 +1,14 @@
 version: "3"
 services:
-  web_server:
-    ports:
-      - "8000:8000"
   imagick_php_backend:
+    environment:
+      - ENV_DESCRIPTION=default,prod
+  installer:
     environment:
       - ENV_DESCRIPTION=default,prod
   redis:
     ports:
       - "6381:6379"
+  web_server:
+    ports:
+      - "8000:8000"

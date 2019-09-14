@@ -2,17 +2,17 @@
 
 namespace ImagickDemo\Controller;
 
-use Arya\JsonBody;
+use \SlimAuryn\Response\JsonResponse;
+use Auryn\Injector;
 use ImagickDemo\App;
 use ImagickDemo\ImageCachePath;
-use ImagickDemo\Response\JsonResponse;
+//use ImagickDemo\Response\JsonResponse;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Example;
 use ImagickDemo\ImageGenerator;
 use ImagickDemo\Control;
-use Tier\InjectionParams;
-use Tier\Executable;
-use Tier\Body\CachingFileBodyFactory;
+use SlimAuryn\Response\FileResponse;
+use SlimAuryn\Response\ImageResponse;
 
 function getKnownExtensions()
 {
@@ -62,13 +62,14 @@ class Image
         $this->pageInfo = $pageInfo;
     }
 
-    public function getOriginalImage(
-        Example $example,
-        CachingFileBodyFactory $fileBodyFactory
-    ) {
+    public function getOriginalImage(Example $example)
+    {
         $filename = $example->getOriginalFilename();
-        
-        return $fileBodyFactory->create($filename, basename($filename), "image/jpg");
+
+        return new ImageResponse(
+            file_get_contents($filename),
+            ImageResponse::TYPE_JPG
+        );
     }
     
     /**
@@ -102,7 +103,8 @@ class Image
             }
         }
 
-        return new JsonBody($data);
+        return new \SlimAuryn\Response\JsonResponse($data);
+//        return new JsonBody($data);
     }
 
     /**
@@ -115,47 +117,50 @@ class Image
      */
     public function getCustomImageResponse(
         Example $exampleController,
-        Control $control
+        Control $control,
+        Injector $injector,
+        $category
     ) {
-        $params = $control->getFullParams($exampleController->getCustomImageParams());
-        $defaultCustomParams = array('customImage' => true);
-        $params = array_merge($defaultCustomParams, $params);
+        $params = $control->getFullParams([]);
+        $params['customImage'] = true;
+        $injector->defineParam('customImage', true);
+        $injector->defineParam('params', $params);
 
-        $injectionParams = InjectionParams::fromParams(
-            array (
-                'params' => $params,
-                'customImage' => true
-            )
-        );
+        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
+        if ($result !== null) {
+            return $result;
+        }
 
-        $tiers = [];
-        $tiers[] = new Executable('ImagickDemo\ImageGenerator::cachedImageCallable', $injectionParams);
-        $tiers[] = new Executable('ImagickDemo\ImageGenerator::createImageTask');
-        $tiers[] = new Executable('ImagickDemo\ImageGenerator::directCustomImageCallable');
+        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
+        if ($result !== null) {
+            return $result;
+        }
 
-        return $tiers;
+        return $injector->execute('ImagickDemo\ImageGenerator::directCustomImageCallable');
     }
 
 
     public function getImageResponse(
-        \ImagickDemo\Control $control
+        \ImagickDemo\Control $control,
+        Injector $injector,
+        $category
     ) {
         $params = $control->getFullParams([]);
         $params['customImage'] = false;
-        $injectionParams = InjectionParams::fromParams(
-            array (
-                'params' => $params,
-                'customImage' => false
-            )
-        );
-        
 
-        
-        $tiers = [];
-        $tiers[] = new Executable('ImagickDemo\ImageGenerator::cachedImageCallable', $injectionParams);
-        $tiers[] = new Executable('ImagickDemo\ImageGenerator::createImageTask');
-        $tiers[] = new Executable('ImagickDemo\ImageGenerator::directImageCallable');
+        $injector->defineParam('customImage', false);
+        $injector->defineParam('params', $params);
 
-        return $tiers;
+        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
+        if ($result !== null) {
+            return $result;
+        }
+
+        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
+        if ($result !== null) {
+            return $result;
+        }
+
+        return $injector->execute('ImagickDemo\ImageGenerator::directImageCallable');
     }
 }

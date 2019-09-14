@@ -17,3 +17,6 @@ envSetting.php
 public/bugTests
 docker/php_backend/config/fpm.conf
 docker/php_backend/config/php.ini
+/autoconf.php
+/config.php
+/config_prod.php

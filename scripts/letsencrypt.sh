@@ -1,1 +1,0 @@
-letsencrypt-auto --config cli.ini

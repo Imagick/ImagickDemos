@@ -2,53 +2,43 @@
 
 namespace ImagickDemo\Controller;
 
-use Tier\InjectionParams;
-
-use Tier\Bridge\TierJig;
-use Tier\Bridge\JigExecutable;
-
+use SlimAuryn\Response\TwigResponse;
 
 class Page
 {
-    /**
-     * @internal param \Auryn\Injector $injector
-     * @return TextResponse
-     */
-    public function renderTitlePage(TierJig $tierJig)
-    {
-        $injectionParams = new InjectionParams();
-        //$injectionParams->defineParam('pageTitle', "Imagick demos");
-        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
 
-        return $tierJig->createJigExecutable('title', $injectionParams);
+    public function renderTitlePage()
+    {
+//        $injectionParams = new InjectionParams();
+//        //$injectionParams->defineParam('pageTitle', "Imagick demos");
+//        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\NullNav');
+//
+//        return $tierJig->createJigExecutable('title', $injectionParams);
+
+
+        return new TwigResponse('title.html');
+
     }
 
-    /**
-     * @internal param \Auryn\Injector $injector
-     * @internal param $category
-     * @internal param $example
-     * @return TextResponse
-     */
     public function renderExamplePage()
     {
-        $injectionParams = new InjectionParams();
-        $injectionParams->defineParam('pageTitle', "Imagick demos");
-        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
+//        $injectionParams = new InjectionParams();
+//        $injectionParams->defineParam('pageTitle', "Imagick demos");
+//        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
+//
+//        return JigExecutable::create('example', $injectionParams);
 
-        return JigExecutable::create('example', $injectionParams);
+        return new TwigResponse('example.html', ['pageTitle' => "Imagick demos"]);
     }
 
-    /**
-     * @internal param \Auryn\Injector $injector
-     * @internal param $category
-     * @return TextResponse
-     */
+
     public function renderCategoryIndex()
     {
-        $injectionParams = new InjectionParams();
-        $injectionParams->defineParam('pageTitle', "Imagick demos");
-        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
+//        $injectionParams = new InjectionParams();
+//        $injectionParams->defineParam('pageTitle', "Imagick demos");
+//        $injectionParams->alias('ImagickDemo\Navigation\Nav', 'ImagickDemo\Navigation\CategoryNav');
 
-        return JigExecutable::create('categoryIndex', $injectionParams);
+        return new TwigResponse('categoryIndex.html', ['pageTitle' => "Imagick demos"]);
+
     }
 }

@@ -2,20 +2,7 @@
 </body>
 
 
-{inject name='scriptInclude' type='ScriptHelper\ScriptInclude'}
 
-{* $scriptInclude->addJSFile("jquery-1.11.0.min") *}
-{* $scriptInclude->addJSFile("jquery-ui-1.10.0.custom.min") *}
-{* $scriptInclude->addJSFile("colpick") *}
-{* $scriptInclude->addJSFile("jquery.fastLiveFilter") *}
-{* $scriptInclude->addJSFile("syntaxhighlighter/xregexp") *}
-{* $scriptInclude->addJSFile("syntaxhighlighter/shCore") *}
-{* $scriptInclude->addJSFile("syntaxhighlighter/shBrushPhp") *}
-{* $scriptInclude->addJSFile("syntaxhighlighter/shBrushJScript") *}
-{* $scriptInclude->addJSFile("AsyncImage") *}
-{* $scriptInclude->addJSFile("jQuery/jquery.tablesorter") *}
-{* $scriptInclude->addJSFile("jQuery/jquery.tablesorter.parser-metric") *}
-{* $scriptInclude->renderJSLinks() | nofilter *}
 
 
 <script src="/js/jquery-1.11.0.min.js"></script>
@@ -30,7 +17,7 @@
 <script src="/js/jQuery/jquery.tablesorter.js"></script>
 <script src="/js/jQuery/jquery.tablesorter.parser-metric.js"></script>
 
-{* Yui compressor is currently breaking this, and it's already minified.*}
+{# Yui compressor is currently breaking this, and it's already minified. #}
 <script src="/js/bootstrap.min.js"></script>
 
 <script src="/js/jquery.filtertable.min.js"></script>
@@ -72,10 +59,10 @@
     addColorSelector("#gradientStartColorSelector", "#gradientStartColor");
     addColorSelector("#gradientEndColorSelector", "#gradientEndColor");
     addColorSelector("#replacementColorSelector", "#replacementColor");
-    addColorSelector("#thresholdColorSelector", "#thresholdColor"); 
-    
+    addColorSelector("#thresholdColorSelector", "#thresholdColor");
 
-    {literal}
+
+    {% verbatim %}
     var params = {
         links: {
             raw: 'Raw text',
@@ -187,7 +174,7 @@
     //    alert("pageshow?");
     //});
 
-    {/literal}
+    {% endverbatim %}
 </script>
 
 </html>

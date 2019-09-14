@@ -7,8 +7,6 @@ use ImagickDemo\App;
 use ImagickDemo\ImageCachePath;
 use ImagickDemo\Navigation\CategoryInfo;
 use Room11\HTTP\VariableMap\ArrayVariableMap;
-use Tier\Executable;
-use Tier\TierApp;
 
 class ImagickTaskRunner
 {
@@ -80,18 +78,6 @@ class ImagickTaskRunner
         
         return time() + $maxRunTime;
     }
-    
-    public function timeoutCheck()
-    {
-//        echo "timeout check\n";
-        if (time() < $this->endTime) {
-//            echo "Continue running:\n";
-            return TierApp::PROCESS_CONTINUE;
-        }
-//        echo "time to go\n";
-
-        return TierApp::PROCESS_END_LOOPING;
-    }
 
     /**
      *
@@ -106,18 +92,12 @@ class ImagickTaskRunner
         \ImagickDemo\ImagickPixelIterator\functions::load();
         \ImagickDemo\Tutorial\functions::load();
 
-        $executableList = [];
-
-        $imageGenerateExecutable = new Executable([$this, 'actuallyRun']);
-        $imageGenerateExecutable->setTierNumber(\Tier\TierCLIApp::TIER_LOOP);
-        $imageGenerateExecutable->setAllowedToReturnNull(true);
-        $executableList[] = $imageGenerateExecutable;
-        
-        $timeoutExecutable = new Executable([$this, 'timeoutCheck']);
-        $timeoutExecutable->setTierNumber(\Tier\TierCLIApp::TIER_LOOP);
-        $executableList[] = $timeoutExecutable;
-
-        return $executableList;
+        continuallyExecuteCallable(
+            [$this, 'actuallyRun'],
+            0,
+            1,
+            600
+        );
     }
     
     public static function tickTock()
@@ -165,11 +145,12 @@ class ImagickTaskRunner
         catch (\ImagickException $ie) {
             echo "ImagickException running the task: " . $ie->getMessage();
             $this->taskQueue->errorTask($task, get_class($ie).": ".$ie->getMessage());
-         //   var_dump($ie->getTrace());
+//            var_dump($ie->getTrace());
+            echo getExceptionText($ie);
         }
-        catch (\Auryn\BadArgumentException $bae) {
+        catch (\Auryn\InjectorException $bae) {
             //Log failed job
-            echo "BadArgumentException running the task: " . $bae->getMessage();
+            echo "InjectorException running the task: " . $bae->getMessage();
             $this->taskQueue->errorTask($task, get_class($bae).": ".$bae->getMessage());
         }
         catch (\Exception $e) {
@@ -186,6 +167,8 @@ class ImagickTaskRunner
         $params = $task->getParams();
         $filename = $this->imageCachePath->getImageCacheFilename($pageInfo, $params);
         $imageTypes = ['jpg', 'gif', 'png'];
+
+//        var_dump($params, $filename);
 
         echo "file base name is $filename\n";
         foreach ($imageTypes as $imageType) {
@@ -233,41 +216,3 @@ class ImagickTaskRunner
         }
     }
 }
-
-//function sig_handler($signal_number) { // this function will process sent signals
-//    if ($signal_number == SIGTERM || 
-//        $signal_number == SIGHUP || 
-//        $signal_number == SIGINT) {
-//        echo "Exiting due to signal: $signal_number\n";
-//        exit();
-//    }
-//    
-//    echo "Ignoring signal: $signal_number\n";
-//}
-
-//        $sig_handler = function ($signal_number) { // this function will process sent signals
-//            
-//            $exitSignals = [
-//                SIGABRT, // Someone called abort()
-//                SIGQUIT, // External interrupt, usually initiated by the user
-//                SIGTSTP, // CTRL+Z
-//                SIGTERM, // Parent process has terminated
-//                SIGHUP, // Hangup detected on controlling terminal or death of controlling process.
-//                SIGINT, // Interrupt from keyboard.
-//            ];
-//            
-//            if (in_array($signal_number, $exitSignals) == true) {
-//                echo "Exiting due to signal: $signal_number\n";
-//                exit();
-//            }
-//
-//            echo "Ignoring signal: $signal_number\n";
-//        };
-//
-//        // These define the signal handling
-//        pcntl_signal(SIGABRT, $sig_handler);
-//        pcntl_signal(SIGQUIT,  $sig_handler);
-//        pcntl_signal(SIGTSTP, $sig_handler);
-//        pcntl_signal(SIGTERM, $sig_handler);
-//        pcntl_signal(SIGHUP,  $sig_handler);
-//        pcntl_signal(SIGINT, $sig_handler);

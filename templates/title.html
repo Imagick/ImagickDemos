@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block top_nav_bar %}
+    {% include 'framework/topNavBar.html' %}
+{% endblock %}
+
 {% block page_body %}
 
 {% set pageTitleObj = inject('ImagickDemo\\Helper\\PageInfo') %}

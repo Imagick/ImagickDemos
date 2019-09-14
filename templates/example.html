@@ -1,6 +1,11 @@
 
 {% extends 'base.html' %}
 
+{% block top_nav_bar %}
+    {% include 'framework/topNavBarForCategory.html' %}
+{% endblock %}
+
+
 {% block page_body %}
 
 {% set control = inject('ImagickDemo\\Control') %}

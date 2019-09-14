@@ -59,8 +59,6 @@ class HomePageExample extends \ImagickDemo\Example
      </p>     
 
 
-    <p><b>14th Sept 2019</b> - apologies for the time, I accidentally upgraded to Slim and Twig.</p>
-
 END;
 
         return $output;

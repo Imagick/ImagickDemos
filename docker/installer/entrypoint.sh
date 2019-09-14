@@ -25,13 +25,13 @@ php composer.phar install
 # php cli.php seed:initial
 
 
-##Generate some code.
-#php ./tool/weaveControls.php
-#
-##Generate the CSS
-#mkdir -p ./var/cache/less
+#Generate some code.
+php ./tool/weaveControls.php
+
+#Generate the CSS
+# mkdir -p ./var/cache/less
 #php ./tool/compileLess.php
-#
-#php cli.php clearRedis
+
+php cli.php clearRedis
 
 echo "Installer is finished, site should be available."

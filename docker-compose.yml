@@ -46,15 +46,14 @@ services:
       - .:/var/www
       - ./docker/web_server/config:/etc/config
     restart: always
-#  workers:
-#    build: docker/background_worker
-#    image: imagick_php_worker:latest
-#    depends_on:
-#      - redis
-#      - imagick_php_backend
-#    labels:
-#      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_supervisord"}]'
-#    volumes:
-#      - .:/var/www
-#      - ../clavis.php:/var/clavis.php
-#    restart: always
+  workers:
+    build: docker/background_worker
+    image: imagick_php_worker:latest
+    depends_on:
+      - redis
+      - imagick_php_backend
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_supervisord"}]'
+    volumes:
+      - .:/var/www
+    restart: always

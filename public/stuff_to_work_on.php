@@ -54,6 +54,11 @@ class WorkItem
 
 
 
+$rfcItemsToWorkOn[] = new WorkItem(
+    'Union Types v2',
+    'Proposal for the addition of union types T1|T2|.... There has been a <a href=\'https://wiki.php.net/rfc/union_types\'>previous proposal</a> on this topic, which has been declined.',
+    'https://github.com/php/php-rfcs/pull/1'
+);
 
 
 
@@ -61,16 +66,16 @@ class WorkItem
 
 
 
-$rfcsToWorkOn = [];
+$internalItemsToWorkOn = [];
 
 
-$rfcsToWorkOn[] = new WorkItem(
+$internalItemsToWorkOn[] = new WorkItem(
     'Resource to object conversion in extensions',
     'The \'resource\' type was needed before PHP had classes to represent non-trivial types. However since PHP now has classes, it would be good to replace the resource types used internally.',
     'https://github.com/php-pecl/ProjectCoordination/blob/master/change_resource_to_specific_type.md'
 );
 
-$rfcsToWorkOn[] = new WorkItem(
+$internalItemsToWorkOn[] = new WorkItem(
     'Annotate internal function types',
     'We now have the capabilty to add type information to PHP core functions. The work is not difficult, but there is a large amount of it.',
     'https://github.com/php-pecl/ProjectCoordination/blob/master/annotate_internal_function_types.md'
@@ -91,8 +96,13 @@ $bugsToWorkOn[] = new WorkItem(
     'https://github.com/php/php-src/pull/4288'
 );
 
+
+
+
+
 $work = [
-    'Internal stuff to work on' => $rfcsToWorkOn,
+    'RFCs to work on' => $rfcItemsToWorkOn,
+    'Internal stuff to work on' => $internalItemsToWorkOn,
     'Infrastructure stuff to work on' => $infrastructureChanges,
     'Bugs to work on' => $bugsToWorkOn
 ];
@@ -105,7 +115,7 @@ This page is an experiment that attempts to make it much easier for people to fi
 </p>
 
 <p>
-Due to it being an experiment, it's currently deployed on my own server. PR's accepted at <a href="https://github.com/imagick/imagick">https://github.com/imagick/imagick</a>.
+Due to it being an experiment, it's currently deployed on my own server. PR's accepted at <a href="https://github.com/imagick/imagick">https://github.com/imagick/imagick</a> for the file <a href="https://github.com/Danack/Imagick-demos/blob/master/public/stuff_to_work_on.php">https://github.com/Danack/Imagick-demos/blob/master/public/stuff_to_work_on.php</a>.
 </p>
 HTML;
 

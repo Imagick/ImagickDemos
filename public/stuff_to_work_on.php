@@ -104,7 +104,7 @@ $internalItemsToWorkOn[] = new WorkItem(
 $internalItemsToWorkOn[] = new WorkItem(
     'ext/imap - Imap Extension - Reboot',
     'The IMAP extension, while used across many open projects, performs poorly when compared to userspace implementations like Horde/Imap_Client. The library on which it is based (c-client) is unmaintained since 2011. And, there are a ton of bugs. We need to formulate a plan to either (a) accept the performance/features for what they are and just fix bugs or (b) reboot the extension from the ground up. Help wanted to steer and implement.',
-    'https://github.com/php/php-src/tree/master/sapi/fuzzer',
+    'https://github.com/php/php-src/tree/master/ext/imap',
     'bishop@php.net'
 );
 

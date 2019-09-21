@@ -2263,7 +2263,7 @@ function subImageMatch($imagePath)
 
     $comparison->setImageFormat('png');
     header("Content-Type: image/png");
-    echo $imagick->getImageBlob();
+    echo $comparison->getImageBlob();
 }
 //Example end
 

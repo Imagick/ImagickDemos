@@ -3,8 +3,9 @@
 namespace ImagickDemo\Tutorial {
 
 use Imagick;
-    
-class functions
+    use function ImagickDemo\Imagick\newPseudoImage;
+
+    class functions
 {
     public static function load()
     {
@@ -474,6 +475,96 @@ function edgeExtend($virtualPixelType, $imagePath)
 //    "tx" => 0,
 //    "ty" => 0,
 //);
+}
+//Example end
+
+//Example Tutorial::gradientReflection
+function eyeColourResolution()
+{
+    // \Imagick::CHANNEL_RED;//, CHANNEL_GREEN, CHANNEL_BLUE
+//    COLORSPACE_HSL
+//    \Imagick::COLORSPACE_SRGB
+//    COLORSPACE_CMY
+
+
+
+    $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
+    $width = $imagick->getImageWidth();
+    $height = $imagick->getImageHeight();
+
+    $blackCanvas =  new Imagick();
+    $blackCanvas->newPseudoImage(
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        "canvas:black"
+    );
+
+    $blackImage1 = clone $blackCanvas;
+    $blackImage1->separateImageChannel(1);
+
+    $blackImage2 = clone $blackCanvas;
+    $blackImage2->separateImageChannel(1);
+
+    $channels = [];
+
+    $channel1 = clone $imagick;
+    $channel1->separateImageChannel(1);
+
+    $channel2 = clone $imagick;
+    $channel2->separateImageChannel(2);
+
+    $channel3 = clone $imagick;
+    $channel3->separateImageChannel(3);
+
+    // Imagick::combineImages
+    $composite = new Imagick();
+
+    $composite->newPseudoImage(
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        "canvas:black"
+    );
+
+    $scale = 3;
+
+    $channel1->resizeimage(
+        $width / $scale,
+        $height / $scale,
+        Imagick::FILTER_LANCZOS,
+        1.0
+    );
+    $channel1->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
+
+    $channel2->resizeimage(
+        $width / $scale,
+        $height / $scale,
+        Imagick::FILTER_LANCZOS,
+        1.0
+    );
+    $channel2->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
+
+
+    $channel3->resizeImage(
+        $width / 10,
+        $height / 10,
+        Imagick::FILTER_LANCZOS,
+        1.0
+    );
+    $channel3->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
+
+//    $composite->compositeImage($channel1, Imagick::COMPOSITE_ADD, 0, 0, Imagick::CHANNEL_RED);
+//    $composite->compositeImage($channel2, Imagick::COMPOSITE_ADD, 0, 0, Imagick::CHANNEL_GREEN);
+//    $composite->compositeImage($channel3, Imagick::COMPOSITE_ADD, 0, 0, Imagick::CHANNEL_BLUE);
+
+    $composite->compositeImage($channel1, Imagick::COMPOSITE_COPYRED, 0, 0);
+    $composite->compositeImage($channel2, Imagick::COMPOSITE_COPYGREEN, 0, 0);
+    $composite->compositeImage($channel3, Imagick::COMPOSITE_COPYBLUE, 0, 0);
+
+
+    $composite->setImageFormat('jpg');
+
+    header("Content-Type: image/jpg");
+    echo $composite->getImageBlob();
 }
 //Example end
 

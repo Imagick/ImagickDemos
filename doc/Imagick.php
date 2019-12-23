@@ -1918,7 +1918,7 @@ class Imagick implements Iterator, Traversable {
 	 */
 	public function setlastiterator () {}
 
-	public function resetiterator () {}
+	public function c () {}
 
 	/**
 	 * (PECL imagick 2.0.0)<br/>

@@ -803,6 +803,12 @@ class CategoryInfo
             \ImagickDemo\Control\FXAnalyzeControl::class
         ],
 
+
+        'eyeColorResolution' => [
+            'EyeColourResolution',
+            \ImagickDemo\Control\ReactControls::class
+        ],
+
         //'creatingGifs' => ['creatingGifs', \ImagickDemo\Control\NullControl::class],
         'deconstructGif' => ['deconstructGif', \ImagickDemo\Control\NullControl::class],
 

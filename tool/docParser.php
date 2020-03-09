@@ -394,20 +394,37 @@ class DocParser {
 
 function getDoc($fullURL, $classname, $method) {
 
-    $client = new \Artax\Client;
-    $request = new \Artax\Request;
+//    $client = new \Artax\Client;
+//    $request = new \Artax\Request;
     
-    $client->setOption('transfertimeout', 25);
+//    $client->setOption('transfertimeout', 25);
 
     echo "$fullURL \n";
-    $request->setUri($fullURL);
-    $request->setHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8');
+//    $request->setUri($fullURL);
+//    $request->setHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8');
+//
+//    $request->setHeader('Accept-Encoding', 'gzip,deflate,sdch');
+//    $request->setHeader('Accept-Language', 'en-US,en;q=0.8');
+//    $request->setHeader('Host', 'svn.php.net');
+//    $request->setHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36');
 
-    $request->setHeader('Accept-Encoding', 'gzip,deflate,sdch');
-    $request->setHeader('Accept-Language', 'en-US,en;q=0.8');
-    $request->setHeader('Host', 'svn.php.net');
-    $request->setHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36');
 
+    $headers = [
+        'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Encoding' => 'gzip,deflate,sdch',
+        'Accept-Language' => 'en-US,en;q=0.8',
+        'Host' => 'svn.php.net',
+        'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36',
+    ];
+
+
+    [$statusCode, $body, $headersReceived] = fetchUri(
+        $fullURL,
+        'GET',
+        $queryParams = [],
+        $body = null,
+        $headers
+    );
 
     
 
@@ -422,27 +439,32 @@ function getDoc($fullURL, $classname, $method) {
     
     
     
-    $response = $client->request($request);
+//    $response = $client->request($request);
     
-    if ($response->getStatus() != 200) {
+//    if ($response->getStatus() != 200) {
+    if ($statusCode != 200) {
         echo "Failed to read URL";
-        echo $response->getBody();
+//        echo $response->getBody();
+        echo $body;
 
         return null;
     }
 
-    $contentTypeHeaders = $response->getHeader('Content-Type');
+//    $contentTypeHeaders = $response->getHeader('Content-Type');
+//    $contentTypeHeaders = $response->getHeader('Content-Type');
+//    var_dump($headersReceived);
+//    exit(0);
 
-    if (array_key_exists(0, $contentTypeHeaders) == false) {
-        throw new Exception("Content-type header not set.");
-    }
-
-    $contentType = $contentTypeHeaders[0];
-    $colonPosition = strpos($contentType, ';');
-
-    if ($colonPosition !== false) {
-        $contentType = substr($contentType, 0, $colonPosition);
-    }
+//    if (array_key_exists(0, $contentTypeHeaders) == false) {
+//        throw new Exception("Content-type header not set.");
+//    }
+//
+//    $contentType = $contentTypeHeaders[0];
+//    $colonPosition = strpos($contentType, ';');
+//
+//    if ($colonPosition !== false) {
+//        $contentType = substr($contentType, 0, $colonPosition);
+//    }
 
 //    if ($contentType !== 'text/html') {
 //        echo "Unknown content type $contentType";
@@ -489,7 +511,7 @@ function getDoc($fullURL, $classname, $method) {
     
     ];
 
-    $body = $response->getBody();
+//    $body = $response->getBody();
 
     $body = str_replace(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
@@ -1087,6 +1109,9 @@ $urlList = [
 
 function writeManualEntry(ManualEntry $manualEntry, $filename) {
     $output = var_export($manualEntry->toArray(), true);
+
+    $dirname = dirname($filename);
+    @mkdir($dirname, 0755, true);
     file_put_contents($filename, $output);
 }
 

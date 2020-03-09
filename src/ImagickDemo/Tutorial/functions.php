@@ -499,8 +499,7 @@ function edgeExtend($virtualPixelType, $imagePath)
 //    $blackImage1 = clone $blackCanvas;
 //    $blackImage1->separateImageChannel(1);
 
-//Example Tutorial::eyeColourResolution
-
+//Example Tutorial::eyeColorResolution
 function downSampleImage(Imagick $imagick, int $channel_1_sample)
 {
     $width = $imagick->getImageWidth();
@@ -580,6 +579,7 @@ function eyeColourResolution(
     downSampleImage($channel2, $channel_2_sample);
     downSampleImage($channel3, $channel_3_sample);
 
+    // Copy the individual channels into the canvas.
     $canvas->compositeImage($channel1, Imagick::COMPOSITE_COPYRED, 0, 0);
     $canvas->compositeImage($channel1, Imagick::COMPOSITE_COPYRED, $width, 0);
 
@@ -599,8 +599,7 @@ function eyeColourResolution(
         1
     );
 
-
-    // output the image.
+    // Output the image.
     $canvas->setImageFormat('jpg');
     header("Content-Type: image/jpg");
     echo $canvas->getImageBlob();

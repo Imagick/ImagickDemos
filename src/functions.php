@@ -385,3 +385,43 @@ function convertToValue($value)
         null
     ];
 }
+
+
+/**
+ * Fetch data and return statusCode, body and headers
+ */
+function fetchUri(string $uri, string $method, array $queryParams = [], string $body = null, array $headers = [])
+{
+    $query = http_build_query($queryParams);
+    $curl = curl_init();
+
+    curl_setopt($curl, CURLOPT_URL, $uri . $query);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+
+    $allHeaders = [];
+
+    if ($body !== null) {
+        $allHeaders[] = 'Content-Type: application/json';
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $body);
+    }
+
+
+    foreach ($headers as $header) {
+        $allHeaders[] = $header;
+    }
+
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $allHeaders);
+
+    $headers = [];
+    $handleHeaderLine = function ($curl, $headerLine) use (&$headers) {
+        $headers[] = $headerLine;
+        return strlen($headerLine);
+    };
+    curl_setopt($curl, CURLOPT_HEADERFUNCTION, $handleHeaderLine);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $body = curl_exec($curl);
+    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    return [$statusCode, $body, $headers];
+}

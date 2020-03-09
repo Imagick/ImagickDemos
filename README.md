@@ -2,8 +2,7 @@
 ## Imagick-demos
 
 An example of all the Imagick functions. Or at least most of them. The site is hosted at http://phpimagick.com/
-
-This application uses [Tier](http://www.github.com/danack/tier) as it's 'framework'*. 
+ 
 
 ## PHPStorm stub file
 
@@ -25,6 +24,3 @@ Compiling Image Magick from source is almost certainly the best way to install i
 
     ./configure --enable-hdri --with-quantum-depth=32
     make install
-
-
-* It's not actually a framework, it's just an application bootstrap...the difference is that it doesn't support plugins, but does allow a response time

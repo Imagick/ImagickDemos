@@ -30,7 +30,8 @@
         "room11/caching": "^0.0.4",
         "room11/http": "^0.2.1",
         "danack/var-map": "^0.6.0",
-        "twig/twig": "^2.11"
+        "twig/twig": "^2.11",
+      "ext-curl": "*"
     },
     "autoload": {
         "files": ["src/functions.php"],

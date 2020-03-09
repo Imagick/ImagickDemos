@@ -836,7 +836,15 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5)
     ),
     'eyecolorresolution' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:18:"eyeColorResolution";s:5:"lines";s:3444:"function downSampleImage(Imagick $imagick, int $channel_1_sample)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:18:"eyeColorResolution";s:5:"lines";s:4058:"
+/**
+ * Downsamples an image to be a lower resolution, while keeping the same canvas dimensions.
+ * aka combines the pixels into \'blockier\' pixels.
+ *
+ * @param Imagick $imagick The image to use
+ * @param int $pixel_sample_rate dimensions of the pixel blocks.
+ */
+function downSampleImage(Imagick $imagick, int $pixel_sample_rate)
 {
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();
@@ -844,34 +852,42 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5)
     // For each of the channels, downsample to reduce the image information
     // then resize back the the original image size.
     $imagick->resizeimage(
-        $width / $channel_1_sample,
-        $height / $channel_1_sample,
+        $width / $pixel_sample_rate,
+        $height / $pixel_sample_rate,
         Imagick::FILTER_LANCZOS,
         1.0
     );
     $imagick->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
 }
 
+/**
+ * Takes an image, converts to a new colorspace, separates the image
+ * into into individual color channels, downsamples the
+ * individual channels, then recombines the image to RGB color space.
+ *
+ * @param int $channel_1_sample
+ * @param int $channel_2_sample
+ * @param int $channel_3_sample
+ * @param int $colorspace Which colorspace to do the downsampling in.
+ * @param string $imagepath Which image to use.
+ */
 function eyeColourResolution(
     int $channel_1_sample,
     int $channel_2_sample,
     int $channel_3_sample,
     int $colorspace,
-    string $imagepath,
-    bool $smaller
+    string $imagepath
 ) {
     // Create the source image and get the dimension of it.
     $imagick = new \\Imagick(realpath($imagepath));
 
-    if ($smaller) {
-        // Make the image smaller to make easier to compare channels.
-        $imagick->resizeimage(
-            $imagick->getImageWidth() / 2,
-            $imagick->getImageHeight() / 2,
-            Imagick::FILTER_LANCZOS,
-            1
-        );
-    }
+    // Make the image smaller to make easier to compare channels.
+    $imagick->resizeimage(
+        $imagick->getImageWidth() / 2,
+        $imagick->getImageHeight() / 2,
+        Imagick::FILTER_LANCZOS,
+        1
+    );
 
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();
@@ -940,7 +956,7 @@ function eyeColourResolution(
     header("Content-Type: image/jpg");
     echo $canvas->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:502;s:7:"endLine";i:607;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:502;s:7:"endLine";i:623;}',
     ),
     'gradientreflection' => 
     array (
@@ -979,7 +995,7 @@ function eyeColourResolution(
     header(\'Content-Type: image/png\');
     echo $canvas;
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:610;s:7:"endLine";i:646;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:626;s:7:"endLine";i:662;}',
     ),
     'psychedelicfont' => 
     array (
@@ -1014,7 +1030,7 @@ function eyeColourResolution(
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:649;s:7:"endLine";i:681;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:665;s:7:"endLine";i:697;}',
     ),
     'psychedelicfontgif' => 
     array (
@@ -1069,7 +1085,7 @@ function eyeColourResolution(
     header("Content-Type: image/gif");
     echo $aniGif->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:684;s:7:"endLine";i:736;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:700;s:7:"endLine";i:752;}',
     ),
     'whirlygif' => 
     array (
@@ -1244,7 +1260,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     header("Content-Type: image/gif");
     echo $aniGif->getImagesBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:739;s:7:"endLine";i:911;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:755;s:7:"endLine";i:927;}',
     ),
     'svgexample' => 
     array (
@@ -1274,7 +1290,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     header("Content-Type: image/jpg");
     echo $image->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:913;s:7:"endLine";i:940;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:929;s:7:"endLine";i:956;}',
     ),
     'screenembed' => 
     array (
@@ -1305,7 +1321,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:943;s:7:"endLine";i:971;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:959;s:7:"endLine";i:987;}',
     ),
     'levelizeimage' => 
     array (
@@ -1326,7 +1342,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:974;s:7:"endLine";i:992;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:990;s:7:"endLine";i:1008;}',
     ),
     'imagegeometryreset' => 
     array (
@@ -1358,7 +1374,7 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     header("Content-Type: image/png");
     echo $textOnly->getimageblob();
 }
-";s:11:"description";s:0:"";s:9:"startLine";i:994;s:7:"endLine";i:1023;}',
+";s:11:"description";s:0:"";s:9:"startLine";i:1010;s:7:"endLine";i:1039;}',
     ),
     'composite' => 
     array (

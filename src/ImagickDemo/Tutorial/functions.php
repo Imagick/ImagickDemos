@@ -500,7 +500,15 @@ function edgeExtend($virtualPixelType, $imagePath)
 //    $blackImage1->separateImageChannel(1);
 
 //Example Tutorial::eyeColorResolution
-function downSampleImage(Imagick $imagick, int $channel_1_sample)
+
+/**
+ * Downsamples an image to be a lower resolution, while keeping the same canvas dimensions.
+ * aka combines the pixels into 'blockier' pixels.
+ *
+ * @param Imagick $imagick The image to use
+ * @param int $pixel_sample_rate dimensions of the pixel blocks.
+ */
+function downSampleImage(Imagick $imagick, int $pixel_sample_rate)
 {
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();
@@ -508,34 +516,42 @@ function downSampleImage(Imagick $imagick, int $channel_1_sample)
     // For each of the channels, downsample to reduce the image information
     // then resize back the the original image size.
     $imagick->resizeimage(
-        $width / $channel_1_sample,
-        $height / $channel_1_sample,
+        $width / $pixel_sample_rate,
+        $height / $pixel_sample_rate,
         Imagick::FILTER_LANCZOS,
         1.0
     );
     $imagick->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
 }
 
+/**
+ * Takes an image, converts to a new colorspace, separates the image
+ * into into individual color channels, downsamples the
+ * individual channels, then recombines the image to RGB color space.
+ *
+ * @param int $channel_1_sample
+ * @param int $channel_2_sample
+ * @param int $channel_3_sample
+ * @param int $colorspace Which colorspace to do the downsampling in.
+ * @param string $imagepath Which image to use.
+ */
 function eyeColourResolution(
     int $channel_1_sample,
     int $channel_2_sample,
     int $channel_3_sample,
     int $colorspace,
-    string $imagepath,
-    bool $smaller
+    string $imagepath
 ) {
     // Create the source image and get the dimension of it.
     $imagick = new \Imagick(realpath($imagepath));
 
-    if ($smaller) {
-        // Make the image smaller to make easier to compare channels.
-        $imagick->resizeimage(
-            $imagick->getImageWidth() / 2,
-            $imagick->getImageHeight() / 2,
-            Imagick::FILTER_LANCZOS,
-            1
-        );
-    }
+    // Make the image smaller to make easier to compare channels.
+    $imagick->resizeimage(
+        $imagick->getImageWidth() / 2,
+        $imagick->getImageHeight() / 2,
+        Imagick::FILTER_LANCZOS,
+        1
+    );
 
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();

@@ -29,11 +29,11 @@ The way that your brain perceives the photons that enter your eyeball is optimiz
 
 
 <p>
-You can't tell if two colors <a href="https://en.wikipedia.org/wiki/Checker_shadow_illusion">are the same or different</a>.
+You can't tell if two colors <a href="https://en.wikipedia.org/wiki/Checker_shadow_illusion" target="_blank" rel="noopener noreferrer">are the same or different</a>.
 
-You perceive movement <a href="https://en.wikipedia.org/wiki/Grid_illusion">where there is none</a>.
+You perceive movement <a href="https://en.wikipedia.org/wiki/Grid_illusion" target="_blank" rel="noopener noreferrer">where there is none</a>.
 
-Your brain gets bored of seeing pink and <a href="https://en.wikipedia.org/wiki/Lilac_chaser">decides that green is far more interesting</a>. Aka your visual perception of the world is <a href="https://en.wikipedia.org/wiki/List_of_optical_illusions"> full of bugs</a>.
+Your brain gets bored of seeing pink and <a href="https://en.wikipedia.org/wiki/Lilac_chaser" target="_blank" rel="noopener noreferrer">decides that green is far more interesting</a>. Aka your visual perception of the world is <a href="https://en.wikipedia.org/wiki/List_of_optical_illusions" target="_blank" rel="noopener noreferrer"> full of bugs</a>.
 </p>
 
 <p>

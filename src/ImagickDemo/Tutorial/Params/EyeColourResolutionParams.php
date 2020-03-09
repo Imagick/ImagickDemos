@@ -201,12 +201,12 @@ class EyeColourResolutionParams
     {
         return [
             'channel_1_sample' => [
-                new GetIntOrDefault(2),
+                new GetIntOrDefault(1),
                 new MinIntValue(1),
                 new MaxIntValue(40),
             ],
             'channel_2_sample' => [
-                new GetIntOrDefault(2),
+                new GetIntOrDefault(8),
                 new MinIntValue(1),
                 new MaxIntValue(40),
             ],

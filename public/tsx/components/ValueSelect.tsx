@@ -1,20 +1,28 @@
-import * as React from "react";
+import { h, Component } from 'preact';
+import {Select, SelectProps} from "./Select";
 
-import Select from "react-select";
-
-export interface ValueSelectProps {
-    name: string;
-    options: Array<{ value: string, label: string }>;
-}
-
-
-export class ValueSelect extends React.Component<ValueSelectProps, {}> {
+export class ValueSelect extends Component<SelectProps, {}> {
     render() {
-        console.log(this.props.options);
+        let defaultValue = this.props.options[0];
+
+        if (this.props.defaultValue !== undefined) {
+            defaultValue = this.props.defaultValue;
+        }
+        else if (this.props.default !== undefined) {
+            defaultValue = {
+                label: "" + this.props.default,
+                value: "" + this.props.default
+            };
+        }
+
         return <span>
-            ValueSelect: {this.props.name}
-            <Select options={this.props.options}
-             defaultValue={this.props.options[0]}/>
+            {this.props.name}:
+            <Select
+                name={this.props.name}
+                options={this.props.options}
+                defaultValue={defaultValue}
+                updateFn={this.props.updateFn}
+            />
         </span>;
     }
 }

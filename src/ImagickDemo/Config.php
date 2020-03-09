@@ -54,7 +54,7 @@ class Config
 //        $this->values = array_merge($this->values, getAppKeys());
     }
 
-    private function getKey($key)
+    public function getKey($key)
     {
         if (array_key_exists($key, $this->values) == false) {
             throw new \Exception("Missing config value of $key");

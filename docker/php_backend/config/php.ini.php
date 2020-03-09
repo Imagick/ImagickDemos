@@ -687,7 +687,7 @@ opcache.revalidate_freq=2
 ; Each OPcache blacklist file is a text file that holds the names of files
 ; that should not be accelerated. The file format is to add each filename
 ; to a new line. The filename may be a full path or just a file prefix
-; (i.e., /var/www/x  blacklists all the files and directories in /var/www
+; (i.e., /var/app/x  blacklists all the files and directories in /var/app
 ; that start with 'x'). Line starting with a ; are ignored (comments).
 ;opcache.blacklist_filename=
 

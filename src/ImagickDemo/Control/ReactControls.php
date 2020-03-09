@@ -4,10 +4,12 @@
 namespace ImagickDemo\Control;
 
 use ImagickDemo\Control;
+use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
+use VarMap\VarMap;
+
 
 class ReactControls implements Control
 {
-
     private $imageBaseURL = null;
 
     private $orignalImageBaseURL = null;
@@ -18,9 +20,12 @@ class ReactControls implements Control
 
     private $taskQueue = null;
 
+    private $eyeColourResolutionParams;
+
     public function __construct(
         \ImagickDemo\Helper\PageInfo $pageInfo,
-        \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
+        \ImagickDemo\Queue\ImagickTaskQueue $taskQueue,
+        VarMap $varMap
     ) {
         $activeCategory = $pageInfo->getCategory();
         $activeExample = $pageInfo->getExample();
@@ -31,22 +36,36 @@ class ReactControls implements Control
         $this->imageStatusBaseURL = \ImagickDemo\Route::getImageStatusURL($activeCategory, $activeExample);
         $this->taskQueue = $taskQueue;
 
+        $this->eyeColourResolutionParams = EyeColourResolutionParams::createFromVarMap($varMap);
     }
+
+
 
     public function renderForm()
     {
-        return "React form goes here.";
+        [$error, $value] = convertToValue($this->eyeColourResolutionParams);
+
+        if ($error !== null) {
+            // what to do here
+            return "oh dear, the form failed to render correctly: " . $error;
+        }
+
+        $output = sprintf(
+            "<div id='controlPanel' data-params_json='%s'></div>",
+            json_encode_safe($value)
+        );
+
+        return $output;
     }
 
     public function getParams()
     {
-        // throw new \Exception("TODO: Implement getParams() method.");
-        return [];
+        return $this->eyeColourResolutionParams->getAllParams();
     }
 
     public function getInjectionParams()
     {
-        return [];
+        return $this->eyeColourResolutionParams->getAllParams();
     }
 
     public function getFullParams(array $extraParams = [])

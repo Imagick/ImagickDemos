@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react",
+    "jsxFactory": "h",
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "./build/",
@@ -10,6 +11,7 @@
     "target": "es5"
   },
   "include": [
-    "./public/tsx/**/**/*"
+    "./public/tsx/**/**/*.tsx",
+    "./public/tsx/**/**/*.ts"
   ]
 }

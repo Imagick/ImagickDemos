@@ -54,9 +54,9 @@ class ServerSettings
     public function renderConfSettings()
     {
         $settings = [
-            Config::JIG_COMPILE_CHECK => Jig::COMPILE_CHECK_EXISTS,
-            Config::CACHING_SETTING => LastModifiedStrategy::CACHING_TIME,
-            Config::LIBRATO_STATSSOURCENAME => null,
+//            Config::JIG_COMPILE_CHECK => Jig::COMPILE_CHECK_EXISTS,
+//            Config::CACHING_SETTING => LastModifiedStrategy::CACHING_TIME,
+//            Config::LIBRATO_STATSSOURCENAME => null,
             'environment' => null,
         ];
 

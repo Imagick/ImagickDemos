@@ -10,20 +10,14 @@ $HTML = <<< HTML
         <title>Hello React!</title>
     </head>
     <body>
-            <div id="content"></div>
+        <div id="controlPanel"></div>
 
-        <!-- Dependencies -->
-<!--        <script src="./node_modules/react/umd/react.development.js"></script>-->
-<!--        <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>-->
-
-        <!-- Main -->
-        <script src="./dist/js/vendor.bundle.js"></script>
+        <div id="imagePanel"></div>
         <script src="./dist/js/app.bundle.js"></script>
     </body>
 </html>
 HTML;
 
-echo "hello.";
-
+echo "This is a react test page.";
 
 echo $HTML;

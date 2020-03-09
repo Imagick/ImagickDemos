@@ -20,8 +20,8 @@ RUN  apt-get update -qq \
     php7.2-intl php7.2-redis php7.2-zip unzip
 
 # Make the default directory you
-WORKDIR /var/www
+WORKDIR /var/app
 
 #CMD tail -f README.md
 
-CMD sh /var/www/docker/installer/entrypoint.sh
+CMD sh /var/app/docker/installer/entrypoint.sh

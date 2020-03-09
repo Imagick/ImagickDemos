@@ -475,7 +475,7 @@ pm.max_requests = 500
 ; Chdir to this directory at the start.
 ; Note: relative path can be used.
 ; Default Value: current directory or / when chroot
-;chdir = /var/www
+;chdir = /var/app
 
 ; Redirect worker stdout and stderr into main error log. If not set, stdout and
 ; stderr will be redirected to /dev/null according to FastCGI specs.

@@ -315,3 +315,73 @@ function peak_memory($real_usage = false)
 {
     return number_format(memory_get_peak_usage($real_usage));
 }
+
+
+/**
+ * @param $value
+ *
+ * @return array{string, null}|array{null, mixed}
+ */
+function convertToValue($value)
+{
+    if (is_scalar($value) === true) {
+        return [
+            null,
+            $value
+        ];
+    }
+    if ($value === null) {
+        return [
+            null,
+            null
+        ];
+    }
+
+    $callable = [$value, 'toArray'];
+    if (is_object($value) === true && is_callable($callable)) {
+        return [
+            null,
+            $callable()
+        ];
+    }
+    if (is_object($value) === true) {
+        if ($value instanceof \DateTime) {
+            // Format as Atom time with microseconds
+            return [
+                null,
+                $value->format("Y-m-d\TH:i:s.uP")
+            ];
+        }
+    }
+
+    if (is_array($value) === true) {
+        $values = [];
+        foreach ($value as $key => $entry) {
+            $values[$key] = convertToValue($entry);
+        }
+
+        return [
+            null,
+            $values
+        ];
+    }
+
+    if (is_object($value) === true) {
+        return [
+            sprintf(
+                "Unsupported type [%s] of class [%s] for toArray.",
+                gettype($value),
+                get_class($value)
+            ),
+            null
+        ];
+    }
+
+    return [
+        sprintf(
+            "Unsupported type [%s] for toArray.",
+            gettype($value)
+        ),
+        null
+    ];
+}

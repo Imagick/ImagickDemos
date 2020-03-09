@@ -1,16 +1,15 @@
-{include file='framework/pageStart'}
-{include file='framework/topNavBar'}
-
+{% include 'framework/pageStart.html' %}
+{% include 'framework/topNavBar.html' %}
 
 <div class='container'>
     <div class="row">
         <div class="col-md-12">
-            {inject name='serverSettings' type='ImagickDemo\Model\ServerSettings'}
-            {$serverSettings->render() | nofilter}
+            {% set serverSettings = inject('ImagickDemo\\Model\\ServerSettings') %}
+            {{ serverSettings.render() | raw }}
         </div>
     </div>
 
-    {include file='framework/pageFooter'}
+    {% include 'framework/pageFooter.html' %}
 </div>
 
-{include file='framework/pageEnd'}
+{% include 'framework/pageEnd.html' %}

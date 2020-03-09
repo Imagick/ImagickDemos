@@ -53,25 +53,12 @@ if (function_exists('injectionParams') == false) {
 // Alias interfaces (or classes) to the actual types that should be used 
 // where they are required. 
         $aliases = [
-//    'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
-//    //'Intahwebz\Request' => 'Intahwebz\Routing\HTTPRequest',
-//    'ImagickDemo\DocHelper' => 'ImagickDemo\DocHelperDisplay',
-//    'ImagickDemo\Framework\VariableMap' => 'ImagickDemo\Framework\RequestVariableMap',
-//    'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
-//    //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
-//    'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
-//    'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
-
-
-            //'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
-            //'Intahwebz\Request' => 'Intahwebz\Routing\HTTPRequest',
             'ImagickDemo\DocHelper' => 'ImagickDemo\DocHelperDisplay',
-            //'ImagickDemo\Framework\VariableMap' => 'ImagickDemo\Framework\RequestVariableMap',
             'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
-            //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');
             'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
             'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',
 
+            \VarMap\VarMap::class => \VarMap\Psr7VarMap::class,
 
             'Room11\HTTP\RequestHeaders' => 'Room11\HTTP\RequestHeaders\HTTPRequestHeaders',
             'Room11\HTTP\RequestRouting' => 'Room11\HTTP\RequestRouting\PSR7RequestRouting',
@@ -86,7 +73,7 @@ if (function_exists('injectionParams') == false) {
 // Delegate the creation of types to callables.
         $delegates = [
             \SlimAuryn\Routes::class => 'createRoutesForApp',
-//            'FastRoute\Dispatcher' => 'ImagickDemo\App::createDispatcher',
+//            'FastRoute\Dispatcher' => 'ImagickDemo\ControlPanel::createDispatcher',
 //    'ImagickDemo\Control' => 'createControl',
 //    'ImagickDemo\Example' => 'createExample',
 //    'ImagickDemo\Config\Librato' => 'createLibrato',
@@ -97,12 +84,12 @@ if (function_exists('injectionParams') == false) {
             'ScriptServer\Value\ScriptVersion' => 'ImagickDemo\App::createScriptVersion',
             '\ScriptHelper\ScriptInclude' => 'ImagickDemo\App::createScriptInclude',
 
-    //    'Tier\Domain' => 'ImagickDemo\App::createDomain',
+    //    'Tier\Domain' => 'ImagickDemo\ControlPanel::createDomain',
             \Twig\Environment::class => 'createTwigForSite',
             //'FastRoute\Dispatcher' => 'createDispatcher',
             'ImagickDemo\Control' => 'ImagickDemo\App::createControl',
             'ImagickDemo\Example' => 'ImagickDemo\App::createExample',
-//    'ImagickDemo\Config\Librato' => 'ImagickDemo\App::createLibrato',
+//    'ImagickDemo\Config\Librato' => 'ImagickDemo\ControlPanel::createLibrato',
             'Jig\JigConfig' => 'ImagickDemo\App::createJigConfig',
             'Predis\Client' => 'ImagickDemo\App::createRedisClient',
 

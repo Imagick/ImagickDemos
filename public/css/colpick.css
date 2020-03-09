@@ -265,7 +265,7 @@ colpick Color Picker / colpick.com
 	cursor: pointer;
 }
 
-/*full layout with no submit button*/
+/*full layout with no triggerSetImageParams button*/
 .colpick_full_ns  .colpick_submit, .colpick_full_ns .colpick_current_color{
 	display:none;
 }
@@ -306,7 +306,7 @@ colpick Color Picker / colpick.com
 	border-left:none;
 }
 
-/*rgbhex layout, no submit button*/
+/*rgbhex layout, no triggerSetImageParams button*/
 .colpick_rgbhex_ns  .colpick_submit, .colpick_rgbhex_ns .colpick_current_color{
 	display:none;
 }
@@ -365,7 +365,7 @@ colpick Color Picker / colpick.com
 	line-height: 25px;
 }
 
-/*hex layout, no submit button*/
+/*hex layout, no triggerSetImageParams button*/
 .colpick_hex_ns  .colpick_submit, .colpick_hex_ns .colpick_current_color {
 	display:none;
 }

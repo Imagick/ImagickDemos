@@ -124,7 +124,7 @@
 
     $el[val](data[state] || this.options[state])
 
-    // push to event loop to allow forms to submit
+    // push to event loop to allow forms to triggerSetImageParams
     setTimeout($.proxy(function () {
       if (state == 'loadingText') {
         this.isLoading = true

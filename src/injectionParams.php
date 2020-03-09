@@ -70,14 +70,14 @@ $delegates = [
     //'FastRoute\Dispatcher' => 'createDispatcher',
     'ImagickDemo\Control' => 'ImagickDemo\App::createControl',
     'ImagickDemo\Example' => 'ImagickDemo\App::createExample',
-//    'ImagickDemo\Config\Librato' => 'ImagickDemo\App::createLibrato',
+//    'ImagickDemo\Config\Librato' => 'ImagickDemo\ControlPanel::createLibrato',
     'Jig\JigConfig' => 'ImagickDemo\App::createJigConfig',
     'Predis\Client' => 'ImagickDemo\App::createRedisClient',
     
     //'Room11\Caching\LastModifiedStrategy' => 'createCaching',
     //'ScriptServer\Value\ScriptVersion' => 'createScriptVersion',
     //'ScriptHelper\ScriptInclude' => 'createScriptInclude',
-//    'Tier\Domain' => 'ImagickDemo\App::createDomain',
+//    'Tier\Domain' => 'ImagickDemo\ControlPanel::createDomain',
 ];
 
 

@@ -326,12 +326,12 @@ For usage and examples: colpick.com/plugin
 						//Set the tpl's ID and get the HTML
 						var cal = $(tpl).attr('id', id);
 						//Add class according to layout
-						cal.addClass('colpick_'+options.layout+(options.submit?'':' colpick_'+options.layout+'_ns'));
+						cal.addClass('colpick_'+options.layout+(options.triggerSetImageParams?'':' colpick_'+options.layout+'_ns'));
 						//Add class if the color scheme is not default
 						if(options.colorScheme != 'light') {
 							cal.addClass('colpick_'+options.colorScheme);
 						}
-						//Setup submit button
+						//Setup triggerSetImageParams button
 						cal.find('div.colpick_submit').html(options.submitText).click(clickSubmit);
 						//Setup input fields
 						options.fields = cal.find('input').change(change).blur(blur).focus(focus);

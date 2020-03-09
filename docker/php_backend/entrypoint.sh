@@ -30,7 +30,7 @@ php vendor/bin/configurate \
 
 /usr/sbin/php-fpm7.2 \
   --nodaemonize \
-  --fpm-config=/var/www/docker/php_backend/config/fpm.conf \
-  -c /var/www/docker/php_backend/config/php.ini
+  --fpm-config=/var/app/docker/php_backend/config/fpm.conf \
+  -c /var/app/docker/php_backend/config/php.ini
 
 exit $?

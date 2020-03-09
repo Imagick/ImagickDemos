@@ -104,7 +104,7 @@ class ControlComposite implements \ImagickDemo\Control
         $output .= "
             <div class='row inputSubmitRow'>
                 <div class='col-sm-5 col-sm-offset-7'>
-                    <button type='submit' class='btn btn-default'>Update</button>
+                    <button type='triggerSetImageParams' class='btn btn-default'>Update</button>
                 </div>
             </div>
         </div>

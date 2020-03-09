@@ -1,22 +1,27 @@
-{include file='framework/pageStart'}
-{include file='framework/topNavBar'}
+{% include 'framework/pageStart.html' %}
+{% include 'framework/topNavBar.html' %}
+
+
     
 <div class='container'>
     <div class="row">
         <div class="col-md-12">
-            {inject name='opCacheInfoWidget' type='ImagickDemo\Widget\OpcacheInfoSelector'}
-            {$opCacheInfoWidget->render() | nofilter}
+            {% set opCacheInfoWidget = inject('ImagickDemo\\Widget\\OpcacheInfoSelector') %}
+            {{ opCacheInfoWidget.render() | raw }}
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-12">
-            {inject name='opCacheInfo' type='ImagickDemo\Model\OPCacheInfo'}
-            {$opCacheInfo->render() | nofilter}
+
+
+            {% set opCacheInfo = inject('ImagickDemo\\Model\\OPCacheInfo') %}
+            {{ opCacheInfo.render() | raw }}
         </div>
     </div>
 
-    {include file='framework/pageFooter'}
+
+    {% include 'framework/pageFooter.html' %}
 </div>
 
-{include file='framework/pageEnd'}
+{% include 'framework/pageEnd.html' %}

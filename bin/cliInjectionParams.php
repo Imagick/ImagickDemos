@@ -16,10 +16,10 @@ $aliases = [
 
 // Delegate the creation of types to callables.
 $delegates = [
-    //'ArtaxServiceBuilder\Oauth2Token' => 'ServerContainer\App::getOauthToken',
+    //'ArtaxServiceBuilder\Oauth2Token' => 'ServerContainer\ControlPanel::getOauthToken',
     //'Amp\Reactor' => 'Amp\getReactor',
-    //'ServerContainer\Tool\EC2Manager' => 'ServerContainer\App::createEC2Manager',
-    //'ServerContainer\Tool\KillEC2TestInstances' => 'ServerContainer\App::createKillEC2TestInstances'
+    //'ServerContainer\Tool\EC2Manager' => 'ServerContainer\ControlPanel::createEC2Manager',
+    //'ServerContainer\Tool\KillEC2TestInstances' => 'ServerContainer\ControlPanel::createKillEC2TestInstances'
 ];
 
 

@@ -151,6 +151,5 @@ var AsyncImage = {
 $.widget("phpimagick.asyncImage", AsyncImage); // create the widget
 
 function initAsyncImage(selector){
-
     $(selector).asyncImage({});
 }

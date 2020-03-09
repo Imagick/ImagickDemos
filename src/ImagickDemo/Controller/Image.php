@@ -151,15 +151,15 @@ class Image
         $injector->defineParam('customImage', false);
         $injector->defineParam('params', $params);
 
-        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
-        if ($result !== null) {
-            return $result;
-        }
-
-        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
-        if ($result !== null) {
-            return $result;
-        }
+//        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
+//        if ($result !== null) {
+//            return $result;
+//        }
+//
+//        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
+//        if ($result !== null) {
+//            return $result;
+//        }
 
         return $injector->execute('ImagickDemo\ImageGenerator::directImageCallable');
     }

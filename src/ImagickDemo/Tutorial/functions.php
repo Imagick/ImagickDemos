@@ -478,93 +478,132 @@ function edgeExtend($virtualPixelType, $imagePath)
 }
 //Example end
 
-//Example Tutorial::gradientReflection
-function eyeColourResolution()
+
+//    $blackCanvas =  new Imagick();
+//    $blackCanvas->newPseudoImage(
+//        $imagick->getImageWidth(),
+//        $imagick->getImageHeight(),
+//        "canvas:black"
+//    );
+
+
+
+//    $grayCanvas =  new Imagick();
+//    $grayCanvas->newPseudoImage(
+//        $width,
+//        $height,
+//        "canvas:" . $neutralColor
+//    );
+
+
+//    $blackImage1 = clone $blackCanvas;
+//    $blackImage1->separateImageChannel(1);
+
+//Example Tutorial::eyeColourResolution
+
+function downSampleImage(Imagick $imagick, int $channel_1_sample)
 {
-    // \Imagick::CHANNEL_RED;//, CHANNEL_GREEN, CHANNEL_BLUE
-//    COLORSPACE_HSL
-//    \Imagick::COLORSPACE_SRGB
-//    COLORSPACE_CMY
-
-
-
-    $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();
 
-    $blackCanvas =  new Imagick();
-    $blackCanvas->newPseudoImage(
-        $imagick->getImageWidth(),
-        $imagick->getImageHeight(),
-        "canvas:black"
+    // For each of the channels, downsample to reduce the image information
+    // then resize back the the original image size.
+    $imagick->resizeimage(
+        $width / $channel_1_sample,
+        $height / $channel_1_sample,
+        Imagick::FILTER_LANCZOS,
+        1.0
     );
+    $imagick->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
+}
 
-    $blackImage1 = clone $blackCanvas;
-    $blackImage1->separateImageChannel(1);
+function eyeColourResolution(
+    int $channel_1_sample,
+    int $channel_2_sample,
+    int $channel_3_sample,
+    int $colorspace,
+    string $imagepath,
+    bool $smaller
+) {
+    // Create the source image and get the dimension of it.
+    $imagick = new \Imagick(realpath($imagepath));
 
-    $blackImage2 = clone $blackCanvas;
-    $blackImage2->separateImageChannel(1);
+    if ($smaller) {
+        // Make the image smaller to make easier to compare channels.
+        $imagick->resizeimage(
+            $imagick->getImageWidth() / 2,
+            $imagick->getImageHeight() / 2,
+            Imagick::FILTER_LANCZOS,
+            1
+        );
+    }
 
-    $channels = [];
+    $width = $imagick->getImageWidth();
+    $height = $imagick->getImageHeight();
 
+    // Transform the image to the color space that we're going to separate
+    // the channel in.
+    $imagick->transformImageColorspace($colorspace);
+
+    // Separate the 3 channels to individual images.
     $channel1 = clone $imagick;
     $channel1->separateImageChannel(1);
-
     $channel2 = clone $imagick;
     $channel2->separateImageChannel(2);
-
     $channel3 = clone $imagick;
     $channel3->separateImageChannel(3);
 
-    // Imagick::combineImages
-    $composite = new Imagick();
+    // For technical reasons, the neutral color should be black for
+    // some colour spaces where 0 = no signal, and gray for color spaces
+    // where 0.5 = no signal
+    if ($colorspace === Imagick::COLORSPACE_RGB) {
+        $neutralColor = 'black';
+    }
+    else {
+        $neutralColor = 'gray';
+    }
 
-    $composite->newPseudoImage(
-        $imagick->getImageWidth(),
-        $imagick->getImageHeight(),
-        "canvas:black"
+    // Create an empty canvas that we will use to recombine the separate images.
+    $canvas = new Imagick();
+    $canvas->newPseudoImage(
+        $imagick->getImageWidth() * 2,
+        $imagick->getImageHeight() * 2,
+        "canvas:" . $neutralColor
     );
 
-    $scale = 3;
+    // Make the canvas image be the correct color space to copy the individual channels
+    // back correctly.
+    $canvas->transformImageColorspace($colorspace);
 
-    $channel1->resizeimage(
-        $width / $scale,
-        $height / $scale,
-        Imagick::FILTER_LANCZOS,
-        1.0
+    // Downsample the individual channels
+    downSampleImage($channel1, $channel_1_sample);
+    downSampleImage($channel2, $channel_2_sample);
+    downSampleImage($channel3, $channel_3_sample);
+
+    $canvas->compositeImage($channel1, Imagick::COMPOSITE_COPYRED, 0, 0);
+    $canvas->compositeImage($channel1, Imagick::COMPOSITE_COPYRED, $width, 0);
+
+    $canvas->compositeImage($channel2, Imagick::COMPOSITE_COPYGREEN, 0, 0);
+    $canvas->compositeImage($channel2, Imagick::COMPOSITE_COPYGREEN, 0, $height);
+
+    $canvas->compositeImage($channel3, Imagick::COMPOSITE_COPYBLUE, 0, 0);
+    $canvas->compositeImage($channel3, Imagick::COMPOSITE_COPYBLUE, $width, $height);
+
+    // Convert the final image back to RGB for display
+    $canvas->transformImageColorspace(Imagick::COLORSPACE_RGB);
+
+    $canvas->resizeimage(
+        $canvas->getImageWidth() * 2,
+        $canvas->getImageHeight() * 2,
+        Imagick::FILTER_POINT,
+        1
     );
-    $channel1->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
-
-    $channel2->resizeimage(
-        $width / $scale,
-        $height / $scale,
-        Imagick::FILTER_LANCZOS,
-        1.0
-    );
-    $channel2->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
 
 
-    $channel3->resizeImage(
-        $width / 10,
-        $height / 10,
-        Imagick::FILTER_LANCZOS,
-        1.0
-    );
-    $channel3->resizeImage($width, $height, Imagick::FILTER_POINT, 1.0);
-
-//    $composite->compositeImage($channel1, Imagick::COMPOSITE_ADD, 0, 0, Imagick::CHANNEL_RED);
-//    $composite->compositeImage($channel2, Imagick::COMPOSITE_ADD, 0, 0, Imagick::CHANNEL_GREEN);
-//    $composite->compositeImage($channel3, Imagick::COMPOSITE_ADD, 0, 0, Imagick::CHANNEL_BLUE);
-
-    $composite->compositeImage($channel1, Imagick::COMPOSITE_COPYRED, 0, 0);
-    $composite->compositeImage($channel2, Imagick::COMPOSITE_COPYGREEN, 0, 0);
-    $composite->compositeImage($channel3, Imagick::COMPOSITE_COPYBLUE, 0, 0);
-
-
-    $composite->setImageFormat('jpg');
-
+    // output the image.
+    $canvas->setImageFormat('jpg');
     header("Content-Type: image/jpg");
-    echo $composite->getImageBlob();
+    echo $canvas->getImageBlob();
 }
 //Example end
 

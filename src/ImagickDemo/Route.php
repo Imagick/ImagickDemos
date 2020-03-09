@@ -5,6 +5,11 @@ namespace ImagickDemo;
 
 class Route
 {
+    public static function getPageURL($activeCategory, $activeExample)
+    {
+        return '/' . $activeCategory.'/'.$activeExample;
+    }
+
     public static function getImageURL($activeCategory, $activeExample)
     {
         return '/image/'.$activeCategory.'/'.$activeExample;
@@ -24,8 +29,7 @@ class Route
     {
         return '/imageStatus/'.$activeCategory.'/'.$activeExample;
     }
-    
-    
+
     public static function renderImageURL(
         $taskQueueIsActive,
         $imgURL,

@@ -6,7 +6,7 @@ services:
     labels:
       com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_phpfpm"}]'
     volumes:
-      - .:/var/www
+      - .:/var/app
     restart: always
   imagick_php_backend_debug:
     build: docker/php_backend_debug
@@ -16,7 +16,7 @@ services:
     labels:
       com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_phpfpm_debug"}]'
     volumes:
-      - .:/var/www
+      - .:/var/app
     restart: always
   installer:
     build: docker/installer
@@ -26,7 +26,7 @@ services:
     labels:
       com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_installer"}]'
     volumes:
-      - .:/var/www
+      - .:/var/app
   npm:
     build: docker/npm
     #environment:
@@ -54,7 +54,7 @@ services:
     labels:
       com.datadoghq.ad.logs: '[{"source": "nginx", "service": "phpimagick_nginx"}]'
     volumes:
-      - .:/var/www
+      - .:/var/app
       - ./docker/web_server/config:/etc/config
     restart: always
   workers:
@@ -66,5 +66,5 @@ services:
     labels:
       com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_supervisord"}]'
     volumes:
-      - .:/var/www
+      - .:/var/app
     restart: always

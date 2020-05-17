@@ -852,6 +852,14 @@ class CategoryInfo
         'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
         'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
         'imageGeometryReset' => ['imageGeometryReset', \ImagickDemo\Control\NullControl::class],
+
+
+        'HumanFeelings' => [
+            'HumanFeelings',
+            NullControl::class,
+            'name' => 'Human feelings'
+        ],
+
     ];
 
 //        public static $examples = [

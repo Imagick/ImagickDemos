@@ -6,7 +6,14 @@ class transparentPaintImage extends \ImagickDemo\Example
 {
     public function getOriginalImage()
     {
-        return $this->control->getURL() . '&original=true';
+//        return $this->control->getURL() . '&original=true';
+
+        return $this->control->getOriginalURL();
+    }
+
+    function getOriginalFilename()
+    {
+        return realpath("images/BlueScreen.jpg");
     }
 
 //    public function renderOriginalImage()

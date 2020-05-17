@@ -39,7 +39,7 @@ const image_path_options = [
 
 function getDefaultState(initialControlParams: object): AppState {
 
-    let default_state = {
+    return {
         // @ts-ignore: blah blah
         colorspace: initialControlParams.colorspace || "RGB",
         // @ts-ignore: blah blah
@@ -53,8 +53,6 @@ function getDefaultState(initialControlParams: object): AppState {
         // @ts-ignore: blah blah
         isProcessing: false
     };
-
-    return default_state;
 }
 
 export class ControlPanel extends Component<AppProps, AppState> {

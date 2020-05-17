@@ -22,3 +22,5 @@ docker/php_backend/config/php.ini
 /config_prod.php
 .cache
 node_modules
+.idea
+man

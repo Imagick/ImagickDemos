@@ -1674,7 +1674,6 @@ function reduceNoiseImage($imagePath, $reduceNoise)
 function remapImage($imagePath, $ditherMethod)
 {
     $imagick = new \Imagick(realpath($imagePath));
-    $imagick2 = new \Imagick(realpath("images/VGA_palette_with_black_borders.png"));
     $palette = new \Imagick(realpath("images/NetscapeWebSafeColours.gif"));
     $imagick->remapImage($palette, $ditherMethod);
     header("Content-Type: image/png");

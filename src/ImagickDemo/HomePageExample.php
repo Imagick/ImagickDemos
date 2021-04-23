@@ -58,7 +58,7 @@ This site is an attempt to provide a working example of every function in the <a
 <p>If you find any issues with this site, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
 </p>     
 
-<p>9th March 2020 - New tutorial to demonstrate <a href="/Tutorial/eyeColorResolution">eye color resolution</a>.
+<p>Domain registrar transfer is in progress - if stuff gets weird.....wait a bit and see if it sorts itself out.
 </p>
 
 END;

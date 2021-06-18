@@ -9,8 +9,9 @@ use SlimAuryn\ExceptionMiddleware;
 use SlimAuryn\Routes;
 use Room11\HTTP\Request\CLIRequest;
 
-require_once realpath(__DIR__).'/../vendor/autoload.php';
-require_once realpath(__DIR__).'/factories.php';
+require_once realpath(__DIR__) . '/../vendor/autoload.php';
+require_once realpath(__DIR__) . '/factories.php';
+require_once realpath(__DIR__) . '/site_html.php';
 
 ini_set('display_errors', 'off');
 
@@ -29,16 +30,8 @@ $httpIinjectionParams = injectionParams();
 /** @var $httpIinjectionParams \ImagickDemo\InjectionParams */
 $httpIinjectionParams->addToInjector($injector);
 
-//foreach ($_SERVER as $key => $value) {
-//
-//    echo "$key : $value <br/>";
-//}
-//
-//exit(0);
-
 ini_set("serialize_precision", "-1");
 ini_set("precision", 10);
-
 
 set_error_handler('saneErrorHandler');
 

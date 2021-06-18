@@ -18,10 +18,12 @@ class CategoryNav implements Nav
      */
     public function renderNav($horizontal = false)
     {
-        echo "<div class='contentPanel navContainer' >";
-            echo $this->renderSearchBox();
-            echo $this->renderVertical();
-        echo "</div>";
+        $html = "<div class='contentPanel navContainer' >";
+        $html .= $this->renderSearchBox();
+        $html .= $this->renderVertical();
+        $html .=  "</div>";
+
+        return $html;
     }
     
         /**
@@ -129,7 +131,7 @@ class CategoryNav implements Nav
         $nextName = $this->getNextName();
 
         if ($nextName) {
-            echo "<a href='/".$this->pageInfo->getCategory()."/".$nextName."'>
+            return "<a href='/".$this->pageInfo->getCategory()."/".$nextName."'>
             <button type='button' class='btn btn-primary'>
             ".$nextName." <span class='glyphicon  glyphicon-arrow-right'></span>
             </button>
@@ -147,14 +149,13 @@ class CategoryNav implements Nav
         $nextName = $this->getNextName();
 
         if ($nextName) {
-            echo "<a href='/".$this->pageInfo->getCategory()."/".$nextName."'>
+            return "<a href='/".$this->pageInfo->getCategory()."/".$nextName."'>
             ".$nextName." <span class='glyphicon  glyphicon-arrow-right'></span>
             </a>";
         }
 
         return "";
     }
-
    
     /**
      *

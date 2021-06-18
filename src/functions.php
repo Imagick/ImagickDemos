@@ -425,3 +425,15 @@ function fetchUri(string $uri, string $method, array $queryParams = [], string $
 
     return [$statusCode, $body, $headers];
 }
+
+
+
+// Define a function that writes a string into the response object.
+function convertStringToHtmlResponse(
+    string $result,
+    \Psr\Http\Message\ResponseInterface $response
+): \Psr\Http\Message\ResponseInterface {
+    $response = $response->withHeader('Content-Type', 'text/html');
+    $response->getBody()->write($result);
+    return $response;
+}

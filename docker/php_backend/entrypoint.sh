@@ -24,9 +24,8 @@ php vendor/bin/configurate \
     docker/php_backend/config/php.ini \
     $ENV_TO_USE
 
-
-
-
+# clear redis here not in installer
+php cli.php clearRedis
 
 /usr/sbin/php-fpm7.2 \
   --nodaemonize \

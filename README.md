@@ -2,6 +2,8 @@
 ## Imagick-demos
 
 An example of all the Imagick functions. Or at least most of them. The site is hosted at http://phpimagick.com/
+
+This is currently being refactored to be easier to maintain and add examples to.
  
 
 ## PHPStorm stub file

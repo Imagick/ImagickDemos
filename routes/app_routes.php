@@ -17,22 +17,32 @@ $categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|I
 return [
 
     [
+        "/{category:Tutorial}",
+        'GET',
+        ['ImagickDemo\Controller\Page', 'renderCategoryIndexMoreSane']
+    ],
+    [
+    "/{category:Tutorial}/{example:eyeColorResolution}",
+        'GET',
+        ['ImagickDemo\Controller\Page', 'renderExamplePageMoreSane']
+    ],
+    [
         "/$categories",
         'GET',
-        ['ImagickDemo\Controller\Page', 'renderCategoryIndex']
+        ['ImagickDemo\Controller\Page', 'renderCategoryIndexMoreSane']
     ],
 
     [
         "/imagick",
         'GET',
-        ['ImagickDemo\Controller\Page', 'renderCategoryIndex']
+        ['ImagickDemo\Controller\Page', 'renderCategoryIndexMoreSane']
     ],
 
     //Category + example
     [
         "/$categories/{example:[a-zA-Z]+}",
         'GET',
-        ['ImagickDemo\Controller\Page', 'renderExamplePage']
+        ['ImagickDemo\Controller\Page', 'renderExamplePageMoreSane']
     ],
 
     //Images
@@ -75,10 +85,7 @@ return [
     ["/css/{commaSeparatedFilenames}", 'GET', ['ScriptHelper\Controller\ScriptServer', 'serveCSS']],
     ['/js/{commaSeparatedFilenames}', 'GET', ['ScriptHelper\Controller\ScriptServer', 'serveJavascript']],
 
-    ['/wat', 'GET', 'Osf\AppControlaler\Pages::index'],
-    ['/wat/', 'GET', 'Osf\AppControasddaller\Pages::index'],
-
-    ['/', 'GET', ['ImagickDemo\Controller\Page', 'renderTitlePage']],
+    ['/', 'GET', ['ImagickDemo\Controller\Page', 'renderTitlePageMoreSane']],
 
 //    // TODO - actually make a 404 page
 //    ['/{any:.*}', 'GET', 'Osf\AppController\Pages::index'],

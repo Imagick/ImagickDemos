@@ -33,6 +33,6 @@ php ./tool/weaveControls.php
 # mkdir -p ./var/cache/less
 #php ./tool/compileLess.php
 
-php cli.php clearRedis
+# php cli.php clearRedis
 
 echo "Installer is finished, site should be available."

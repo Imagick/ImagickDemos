@@ -146,93 +146,26 @@ class ImagickPlugin implements Plugin
 
     public function tagManagerInHead() 
     {
-        // Paste this code as high in the <head> of the page as possible:
-        $HTML = <<< HTML
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TPG3RVN');</script>
-<!-- End Google Tag Manager -->
-
-HTML;
-
-        return $HTML;
+        throw new \Exception("nope");
     }
 
     public function tagManagerInBodyStart()
     {
-        //Additionally, paste this code immediately after the opening <body> tag:
-        $HTML = <<< HTML
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPG3RVN"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-HTML;
-        return $HTML;
+        throw new \Exception("nope");
     }
 
     public function analytics()
     {
-        $HTML = <<< HTML
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-32004535-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
-HTML;
-
-        return $HTML;
+        throw new \Exception("nope");
     }
 
-    /**
-     * 
-     * 728 x 90
-     * Leaderboard
-     */
     function adSlotLeaderBoard()
     {
-        $HTML = <<< HTML
-        
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- TestLeaderboardText -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-2560334673780653"
-     data-ad-slot="1471701929"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-HTML;
-
-        return $HTML;
+        throw new \Exception("nope");
     }
-    
-    
-    
+
     function responsiveAdSlot()
     {
-        $HTML = <<< HTML
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- TestResponsiveText -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2560334673780653"
-     data-ad-slot="8315154322"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-HTML;
-
-        return $HTML;
+        throw new \Exception("nope");
     }
 }

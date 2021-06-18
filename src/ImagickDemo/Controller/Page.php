@@ -2,31 +2,78 @@
 
 namespace ImagickDemo\Controller;
 
+use Auryn\Injector;
+use ImagickDemo\Navigation\CategoryInfo;
 use SlimAuryn\Response\TwigResponse;
 use VarMap\VarMap;
 
+use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\Navigation\CategoryNav;
+use ImagickDemo\NavigationBar;
+use ImagickDemo\Example;
+use SlimAuryn\RouteParams;
+use ImagickDemo\DocHelper;
+use ImagickDemo\Control;
+use ImagickDemo\Navigation\NullNav;
+
 class Page
 {
-    public function renderTitlePage()
-    {
-        return new TwigResponse('title.html');
+    public function renderTitlePageMoreSane(
+        PageInfo $pageInfo,
+        NavigationBar $navBar,
+        Example $example
+    ) {
+        $nav = new NullNav();
+        return renderTitlePage(
+            $pageInfo,
+            $nav,
+            $navBar,
+            $example
+        );
     }
 
-    public function renderExamplePage(VarMap $varMap)
-    {
-        $template = 'example.html';
+    public function renderCategoryIndexMoreSane(
+        PageInfo $pageInfo,
+        Example $example,
+        CategoryNav $nav,
+        NavigationBar $navBar
+    ) {
+        return renderCategoryIndexPage(
+            $pageInfo,
+            $example,
+            $nav,
+            $navBar
+        );
+    }
 
+    public function renderExamplePageMoreSane(
+        VarMap $varMap,
+        CategoryNav $categoryNav,
+        PageInfo $pageInfo,
+        NavigationBar $navigationBar,
+        Control $control,
+        Example $example,
+        DocHelper $docHelper
+    ) {
         if ($varMap->has('page') === true) {
             if ($varMap->get('page') === 'iframe') {
-                $template = 'example_bare.html';
+                return renderExampleBare(
+                    $pageInfo,
+                    $categoryNav,
+                    $navigationBar,
+                    $control,
+                    $example
+                );
             }
         }
 
-        return new TwigResponse($template, ['pageTitle' => "Imagick demos"]);
-    }
-
-    public function renderCategoryIndex()
-    {
-        return new TwigResponse('categoryIndex.html', ['pageTitle' => "Imagick demos"]);
+        return renderPageHtml(
+            $categoryNav,
+            $pageInfo,
+            $navigationBar,
+            $control,
+            $example,
+            $docHelper
+        );
     }
 }

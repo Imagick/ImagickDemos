@@ -3,7 +3,7 @@
 
     "license": "MIT",
     "require-dev": {
-        "mikey179/vfsStream": "1.4.0",
+        "mikey179/vfsstream": "1.4.0",
         "squizlabs/php_codesniffer": "^2.3.3"
     },
     "require": {
@@ -23,15 +23,12 @@
         "intahwebz/weaver": "~0.4.5",
         "intahwebz/configurator": "1.0.0",
         "nikic/fast-route": "^1.0",
-        "oyejorge/less.php": "v1.7.0.5",
         "predis/predis": "^1.0.1",
-        "leafo/lessphp": "0.4.0",
-        "leafo/scssphp": "0.1.1",
         "room11/caching": "^0.0.4",
         "room11/http": "^0.2.1",
         "danack/var-map": "^0.6.0",
         "twig/twig": "^2.11",
-      "ext-curl": "*"
+        "ext-curl": "*"
     },
     "autoload": {
         "files": ["src/functions.php"],

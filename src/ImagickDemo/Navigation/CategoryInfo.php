@@ -14,6 +14,7 @@ class CategoryInfo
         $exampleList = CategoryInfo::getCategoryList($pageInfo->getCategory());
         $currentExample = $pageInfo->getExample();
 
+
         foreach ($exampleList as $exampleName => $exampleDefinition) {
             if (strcasecmp($currentExample, $exampleName) === 0) {
                 return $exampleName;
@@ -87,7 +88,9 @@ class CategoryInfo
     {
         $category = $pageInfo->getCategory();
         $example = $pageInfo->getExample();
-        
+
+
+
         if ($category == null || $example == null) {
             return ['ImagickDemo\Control\NullControl', []];
         }

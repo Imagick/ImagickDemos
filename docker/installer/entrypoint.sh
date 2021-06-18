@@ -7,6 +7,7 @@ ENV_TO_USE=${ENV_DESCRIPTION:=default}
 
 echo "ENV_TO_USE is ${ENV_TO_USE}";
 
+# php composer.phar update
 php composer.phar install
 
 # Generate config settings used per environment

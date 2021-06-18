@@ -59,6 +59,7 @@ This site is an attempt to provide a working example of every function in the <a
 </p>     
 
 <p>
+Template system for this site was just changed to instead just use some functions...so stuff might be broken for a bit.
 </p>
 
 END;

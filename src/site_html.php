@@ -422,6 +422,9 @@ function renderTitlePage(
         $example
     );
 
+    $html .= renderPageFooter();
+    $html .= renderPageEndHtml();
+
     return $html;
 }
 

@@ -39,11 +39,12 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         delete params.time;
 
         let full_page_url = this.props.pageBaseUrl + "?" + createQueryString(params);
-        window.history.pushState(
-            params, // This needs to be restored on state pop?
-            '', // Leave blank, as unused.
-            full_page_url
-        );
+        console.log("history is disabled until controls are working.");
+        // window.history.pushState(
+        //     params, // This needs to be restored on state pop?
+        //     '', // Leave blank, as unused.
+        //     full_page_url
+        // );
     };
 
     componentWillMount() {

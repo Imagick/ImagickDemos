@@ -13,7 +13,7 @@
         "danack/console": "^2.6.0",
         "danack/filefilter": "^0.0.1",
         "danack/jig": "^0.21.0",
-        "danack/params": "^0.5.1",
+        "danack/params": "^0.7.0",
         "danack/scripthelper": "^0.0.4",
         "danack/syntaxhighlighter": "~3.1.0",
         "danack/slim-auryn-invoker": "2.2.0",

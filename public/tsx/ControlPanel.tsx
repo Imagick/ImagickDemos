@@ -3,10 +3,12 @@ import {NumberSelect} from "./components/NumberSelect";
 import {ValueSelect} from "./components/ValueSelect";
 
 import {triggerEvent, EventType, registerEvent, unregisterEvent} from "./events";
+import {SelectOption} from "./components/Select";
 
 export interface AppProps {
     name: string;
     initialControlParams: object;
+    controls: Array<object>;
 }
 
 type CallbackFunction = (event: any) => void;
@@ -55,6 +57,43 @@ function getDefaultState(initialControlParams: object): AppState {
     };
 }
 
+
+function map_api_name(api_param_name: string): string {
+
+    let known_map = {
+        channel_1_sample: "Channel 1",
+        channel_2_sample: "Channel 2",
+        channel_3_sample: "Channel 3",
+        colorspace: "Colorspace",
+    };
+
+    if (known_map.hasOwnProperty(api_param_name) === true) {
+        // @ts-ignore: blah blah
+        return known_map[api_param_name];
+    }
+
+    return api_param_name;
+}
+
+function makeOptionsFromEnum(options: Array<string>): Array<SelectOption>
+{
+    let options_map = [];
+
+    for(let i=0; i<options.length; i+=1) {
+        // @ts-ignore: blah blah
+
+        let next = {
+            value: options[i],
+            label: options[i]
+        };
+
+        options_map.push(next);
+    }
+
+    return options_map;
+}
+
+
 export class ControlPanel extends Component<AppProps, AppState> {
 
     restoreStateFn: Function;
@@ -88,6 +127,67 @@ export class ControlPanel extends Component<AppProps, AppState> {
         this.triggerSetImageParams();
     }
 
+
+    createControl(index: number, control_info: any) {
+        if (control_info.schema.type === undefined) {
+            throw Error("control_info.schema.type is undefined for " + control_info)
+        }
+
+        switch(control_info.schema.type) {
+
+            case "boolean": {
+                // console.log("make an boolean");
+                return <span></span>;
+            }
+
+            case "integer": {
+                return <div>
+                    <NumberSelect
+                        name={map_api_name(control_info.name)}
+                        min={control_info.schema.minimum}
+                        max={control_info.schema.maximum}
+                        default={control_info.schema.default}
+                        // @ts-ignore: I don't understand that error message.
+                        updateFn={(newValue) => {
+                            // @ts-ignore: I don't understand that error message.
+                            let obj = {};
+                            // @ts-ignore: I don't understand that error message.
+                            obj[control_info.name] = newValue;
+                            // @ts-ignore: I don't understand that error message.
+                            this.setState(obj);
+                        }}
+                    />
+                </div>
+            }
+
+            case "string": {
+                let options = makeOptionsFromEnum(control_info.schema.enum);
+
+                return <div>
+                    <ValueSelect
+                    name={map_api_name(control_info.name)}
+                    options={options}
+                    default={control_info.schema.default}
+                    updateFn={(newValue) => {
+                        // @ts-ignore: I don't understand that error message.
+                        let obj = {};
+                        // @ts-ignore: I don't understand that error message.
+                        obj[control_info.name] = newValue;
+                        // @ts-ignore: I don't understand that error message.
+                        this.setState(obj);
+                    }}
+                />
+                </div>
+            }
+
+            default: {
+                throw Error("Unknown control_info.schema.type is undefined for " + control_info.schema.type)
+            }
+        }
+
+        return <li key={index}>A '{control_info.schema.type}' should be here.</li>
+    }
+
     triggerSetImageParams() {
         this.setState({
             isProcessing: true
@@ -100,6 +200,9 @@ export class ControlPanel extends Component<AppProps, AppState> {
             channel_3_sample: this.state.channel_3_sample,
             imagepath: this.state.imagepath
         };
+
+        // console.log("params are: ");
+        // console.log(params);
 
         triggerEvent(EventType.set_image_params, params);
     }
@@ -114,7 +217,18 @@ export class ControlPanel extends Component<AppProps, AppState> {
         let info_percent_string = info_percent.toFixed();
         let processingBlock = <button onClick={() => this.triggerSetImageParams()}>Update</button>;
 
-        return  <div class='col-xs-12 contentPanel controlForm'>
+        let controls = [];
+        for (let i=0; i<props.controls.length; i+=1) {
+            let control = this.createControl(i, props.controls[i]);
+            controls.push(control);
+        }
+
+        let itemBlock = <div class='col-xs-12 contentPanel controlForm'>
+            {controls}
+            {processingBlock}
+        </div>;
+
+        let block = <div class='col-xs-12 contentPanel controlForm' key={"old"}>
             <NumberSelect
                 name="Channel 1"
                 min={1}
@@ -170,6 +284,10 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
             <b>Image</b> - which image to use.<br/>
         </div>;
+
+        return <span>
+            {itemBlock}
+        </span>;
     }
 }
 

@@ -13,23 +13,47 @@ function setupControlPanel() {
     let controlPanelElement = document.getElementById("controlPanel");
 
     if (controlPanelElement === null) {
-        // console.warn('controlPanel not present.');
+        console.warn('controlPanel not present.');
         return;
     }
 
-    let control_params = {};
+    let params = {};
     if (controlPanelElement.dataset.hasOwnProperty("params_json") === true) {
         let json = controlPanelElement.dataset.params_json;
-        control_params = JSON.parse(json);
+        params = JSON.parse(json);
+    }
+    else {
+        console.error("params_json not set, cannot create react controls");
+        return;
+    }
+
+    let controls = {};
+    if (controlPanelElement.dataset.hasOwnProperty("controls_json") === true) {
+        let json = controlPanelElement.dataset.controls_json;
+        controls = JSON.parse(json);
+    }
+    else {
+        console.error("controls_json not set, cannot create react controls");
+        return;
     }
 
     let controlProps = {
         name: "cool working",
-        initialControlParams: control_params
+        initialControlParams: params,
+        controls: controls
     };
 
+    // console.log("params are:");
+    // console.log(params);
+    //
+    // console.log("controls are:");
+    // console.log(controls);
+
+    // @ts-ignore: blah blah
     render(
+        // @ts-ignore: blah blah
         <ControlPanel {...controlProps} />,
+        // @ts-ignore: blah blah
         document.getElementById("controlPanel")
     );
 }

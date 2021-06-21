@@ -71,6 +71,7 @@ class ReactControls implements Control
     public function getFullParams(array $extraParams = [])
     {
         $params = $this->getInjectionParams();
+
         $params += $extraParams;
         return $params;
     }

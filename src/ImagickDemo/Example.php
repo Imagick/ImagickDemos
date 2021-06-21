@@ -19,6 +19,11 @@ abstract class Example
         return false;
     }
 
+    public function hasReactControls(): bool
+    {
+        return false;
+    }
+
     public function renderOriginalImage()
     {
         throw new \Exception("This shouldn't be reached - example missing renderOriginalImage method.");

@@ -4,8 +4,6 @@ set -e
 set -x
 
 
-
-
 ENV_TO_USE=${ENV_DESCRIPTION:=default}
 
 echo "ENV_TO_USE is ${ENV_TO_USE}";
@@ -27,7 +25,7 @@ php vendor/bin/configurate \
 # clear redis here not in installer
 php cli.php clearRedis
 
-/usr/sbin/php-fpm7.2 \
+/usr/sbin/php-fpm7.4 \
   --nodaemonize \
   --fpm-config=/var/app/docker/php_backend/config/fpm.conf \
   -c /var/app/docker/php_backend/config/php.ini

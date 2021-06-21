@@ -7,20 +7,27 @@ namespace ImagickDemo\Tutorial\Params;
 use Params\Create\CreateFromRequest;
 use Params\Create\CreateFromVarMap;
 use Params\Create\CreateOrErrorFromVarMap;
+use Params\ExtractRule\GetString;
+use Params\InputParameter;
+use Params\InputStorage\InputStorage;
 use Params\OpenApi\ParamDescription;
-use Params\FirstRule\GetStringOrDefault;
-use Params\FirstRule\GetBoolOrDefault;
+use Params\ExtractRule\GetBoolOrDefault;
+use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetStringOrDefault;
+use Params\ProcessedValues;
+use Params\ProcessRule\MaxIntValue;
+use Params\ProcessRule\MaxLength;
+use Params\ProcessRule\MinIntValue;
+use Params\ProcessRule\MinLength;
+use Params\ProcessRule\ProcessRule;
 use Params\ParamValues;
-use Params\SubsequentRule\MaxIntValue;
-use Params\SubsequentRule\MinIntValue;
 use Params\SafeAccess;
 use Params\ValidationResult;
 use VarMap\VarMap;
-use Params\FirstRule\GetIntOrDefault;
-use Params\SubsequentRule\Enum;
-use Params\SubsequentRule\EnumMap;
-use Params\SubsequentRule\SubsequentRule;
+use Params\ProcessRule\Enum;
+use Params\ProcessRule\EnumMap;
 use ImagickDemo\ToArray;
+use Params\InputParameterList;
 
 /**
  * @return array<string, int>
@@ -69,12 +76,11 @@ function getEyeColorSpaceStringFromValue(int $value)
 function getImagePathOptions()
 {
     $images = [
-        realpath(__DIR__ . "/../../../../public/images/Skyline_400.jpg") => 'Skyline',
-        realpath(__DIR__ . "/../../../../public/images/Biter_500.jpg") => 'Lorikeet',
-        realpath(__DIR__ . "/../../../../public/images/SydneyPeople_400.jpg") => 'People',
-        realpath(__DIR__ . "/../../../../public/images/LowContrast.jpg") => 'Low contrast',
+        'Skyline' => realpath(__DIR__ . "/../../../../public/images/Skyline_400.jpg"),
+        'Lorikeet' => realpath(__DIR__ . "/../../../../public/images/Biter_500.jpg"),
+        'People' => realpath(__DIR__ . "/../../../../public/images/SydneyPeople_400.jpg"),
+        'Low contrast' => realpath(__DIR__ . "/../../../../public/images/LowContrast.jpg"),
     ];
-
 
     return $images;
 }
@@ -93,25 +99,27 @@ function getImagePathForOption(string $selected_option)
         return $key;
     }
 
-    // ugh - bring on 7.3
+
     return array_key_first($imageOptions);
 }
 
 
-function getImagepathRules()
+function getImagepathInputParameter()
 {
-    return [
+    return new InputParameter(
+        'imagepath',
         new GetStringOrDefault('Lorikeet'),
-        new Enum(getImagePathOptions())
-    ];
+        new EnumMap(getImagePathOptions())
+    );
 }
 
-
-
-class SleepyRule implements SubsequentRule
+class SleepyRule implements ProcessRule
 {
-    public function process(string $name, $value, ParamValues $validator) : ValidationResult
-    {
+   public function process(
+        $value,
+        ProcessedValues $processedValues,
+        InputStorage $inputStorage
+    ): ValidationResult {
         if ($value === 'true') {
             return \Params\ValidationResult::finalValueResult(1);
         }
@@ -119,12 +127,12 @@ class SleepyRule implements SubsequentRule
         return \Params\ValidationResult::finalValueResult(0);
     }
 
-    public function updateParamDescription(ParamDescription $paramDescription) {
+    public function updateParamDescription(ParamDescription $paramDescription): void {
     }
 }
 
 
-class EyeColourResolutionParams
+class EyeColourResolutionParams implements InputParameterList
 {
     use SafeAccess;
     use CreateFromRequest;
@@ -174,7 +182,7 @@ class EyeColourResolutionParams
             'channel_2_sample' => $this->channel_2_sample,
             'channel_3_sample' => $this->channel_3_sample,
             'colorspace' => getEyeColorSpaceStringFromValue($this->colorspace),
-            'imagepath' => $this->imagepath,
+            'imagepath' => getImagePathForOption($this->imagepath),
             'smaller' => $this->smaller,
         ];
 
@@ -188,43 +196,54 @@ class EyeColourResolutionParams
             $params[$key] = $value;
         }
 
-        $params['imagepath'] = getImagePathForOption($this->imagepath);
+        //$params['imagepath'] = getImagePathForOption($this->imagepath);
 
         return $params;
     }
 
     /**
      * @param VarMap $variableMap
-     * @return array
+     * @return \Params\InputParameter[]
      */
-    public static function getRules()
+    public static function getInputParameterList(): array
     {
         return [
-            'channel_1_sample' => [
+            new InputParameter(
+                'channel_1_sample',
                 new GetIntOrDefault(1),
                 new MinIntValue(1),
                 new MaxIntValue(40),
-            ],
-            'channel_2_sample' => [
+            ),
+            new InputParameter(
+                'channel_2_sample',
                 new GetIntOrDefault(8),
                 new MinIntValue(1),
                 new MaxIntValue(40),
-            ],
-            'channel_3_sample' => [
+            ),
+            new InputParameter(
+                'channel_3_sample',
                 new GetIntOrDefault(2),
                 new MinIntValue(1),
                 new MaxIntValue(40),
-            ],
+            ),
 
-            'colorspace' => [
+            new InputParameter(
+                'colorspace',
                 new GetStringOrDefault('RGB'),
                 new EnumMap(getEyeColourSpaceOptions())
-            ],
-            'imagepath' => getImagepathRules(),
-            'smaller' => [
+            ),
+            'imagepath' => getImagepathInputParameter(),
+            new InputParameter(
+                'smaller',
                 new GetBoolOrDefault(true),
-            ],
+            ),
         ];
+    }
+
+    public function getReactControlInfo()
+    {
+        echo "dump json api here.";
+        exit(0);
     }
 
     /**
@@ -251,10 +270,7 @@ class EyeColourResolutionParams
         return $this->channel_3_sample;
     }
 
-    /**
-     * @return string
-     */
-    public function getColorSpace(): string
+    public function getColorSpace(): int
     {
         return $this->colorspace;
     }

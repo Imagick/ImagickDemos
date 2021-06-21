@@ -1,21 +1,19 @@
-FROM debian:9
+FROM debian:9-slim
 
 USER root
 
 RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y git \
-    mariadb-client wget curl \
+    mariadb-client wget curl unzip \
     ca-certificates lsb-release apt-transport-https gnupg
 
-# Install 3rd party PHP 7.2 packages
+# Install 3rd party PHP packages
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/php.list \
     && curl https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get update -qq \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y php7.2 php7.2-common php7.2-cli php7.2-fpm \
-    php7.2-mysql  php7.2-curl php7.2-xml php7.2-mbstring php7.2-imagick \
-    php7.2-intl php7.2-redis php7.2-zip
-
-# php7.2-memcached
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y php7.4 php7.4-common php7.4-cli php7.4-fpm \
+    php7.4-mysql  php7.4-curl php7.4-xml php7.4-mbstring php7.4-imagick \
+    php7.4-intl php7.4-redis php7.4-zip
 
 WORKDIR /var/app
 

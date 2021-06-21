@@ -9,6 +9,14 @@ services:
   redis:
     ports:
       - "6381:6379"
+#  npm_build:
+#    build: containers/js_dev_builder
+#    environment:
+#      # we don't set NODE_ENV as production, as that is for serving node requests, not building stuff.
+#      - PHP_WEB_BUGS_BASE_URL=https://api.jssadness.com
+#      - ENV_DESCRIPTION=default,prod
+#    volumes:
+#      - .:/var/app
   web_server:
     ports:
       - "8000:8000"

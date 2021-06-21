@@ -9,6 +9,9 @@ services:
   redis:
     ports:
       - "6379:6379"
+  js_dev_builder:
+    environment:
+      - PHP_WEB_BUGS_BASE_URL=http://local.api.jssadness.com
   web_server:
     ports:
       - "80:8000"

@@ -81,6 +81,13 @@ function renderExampleBodyHtml(
         $example_description .= "<br/>";
     }
 
+    if ($example->hasReactControls() === true) {
+        $form = $example->renderReactControls();
+    }
+    else {
+        $form = $control->renderForm();
+    }
+
 
 $html = <<< HTML
 <div class='container'>
@@ -134,7 +141,7 @@ $html = <<< HTML
                             {$example->render()}
                         </div>
                         <div class="col-sm-5 formHolder">
-                            {$control->renderForm()}
+                            {$form}
                         </div>
                     </div>
                 </div>

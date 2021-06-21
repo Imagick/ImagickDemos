@@ -3,16 +3,55 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
+use Params\OpenApi\OpenApiV300ParamDescription;
+use VarMap\VarMap;
 
 class EyeColourResolution extends \ImagickDemo\Example
 {
     /** @var \ImagickDemo\Helper\PageInfo */
     private $pageInfo;
 
-    public function __construct(PageInfo $pageInfo, \ImagickDemo\Control $control)
-    {
+    /** @var VarMap */
+    private $varMap;
+
+    public function __construct(
+        PageInfo $pageInfo,
+        \ImagickDemo\Control $control,
+        VarMap $varMap
+    ) {
         $this->pageInfo = $pageInfo;
+        $this->varMap = $varMap;
         parent::__construct($control);
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public function renderReactControls()
+    {
+        $eyeColourResolutionParams = EyeColourResolutionParams::createFromVarMap($this->varMap);
+
+        $paramDescription = OpenApiV300ParamDescription::createFromRules(
+            EyeColourResolutionParams::getInputParameterList()
+        );
+
+        [$error, $value] = convertToValue($eyeColourResolutionParams);
+
+        if ($error !== null) {
+            // what to do here
+            return "oh dear, the form failed to render correctly: " . $error;
+        }
+
+        $output = sprintf(
+            "<div id='controlPanel' data-params_json='%s' data-controls_json='%s'></div>",
+            json_encode_safe($value),
+            json_encode($paramDescription)
+        );
+
+        return $output;
     }
 
     public function renderDescription()

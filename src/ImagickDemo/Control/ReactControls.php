@@ -4,8 +4,11 @@
 namespace ImagickDemo\Control;
 
 use ImagickDemo\Control;
+use ImagickDemo\Navigation\CategoryInfo;
 use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
+use Params\InputParameterList;
 use VarMap\VarMap;
+use ImagickDemo\ReactParamType;
 
 
 class ReactControls implements Control
@@ -20,7 +23,7 @@ class ReactControls implements Control
 
     private $taskQueue = null;
 
-    private $eyeColourResolutionParams;
+    private InputParameterList $params;
 
     public function __construct(
         \ImagickDemo\Helper\PageInfo $pageInfo,
@@ -36,14 +39,18 @@ class ReactControls implements Control
         $this->imageStatusBaseURL = \ImagickDemo\Route::getImageStatusURL($activeCategory, $activeExample);
         $this->taskQueue = $taskQueue;
 
-        $this->eyeColourResolutionParams = EyeColourResolutionParams::createFromVarMap($varMap);
+        $exampleDef = CategoryInfo::getExampleDefinition($activeCategory, $activeExample);
+
+        $exampleName = "ImagickDemo\\" . $activeCategory . "\\" . $exampleDef[0];
+        /** @var ReactParamType $exampleName */
+        $paramType = $exampleName::getParamType();
+
+        $this->params = $paramType::createFromVarMap($varMap);
     }
-
-
 
     public function renderForm()
     {
-        [$error, $value] = convertToValue($this->eyeColourResolutionParams);
+        [$error, $value] = convertToValue($this->params);
 
         if ($error !== null) {
             // what to do here
@@ -60,12 +67,12 @@ class ReactControls implements Control
 
     public function getParams()
     {
-        return $this->eyeColourResolutionParams->getAllParams();
+        return $this->params->getAllParams();
     }
 
     public function getInjectionParams()
     {
-        return $this->eyeColourResolutionParams->getAllParams();
+        return $this->params->getAllParams();
     }
 
     public function getFullParams(array $extraParams = [])

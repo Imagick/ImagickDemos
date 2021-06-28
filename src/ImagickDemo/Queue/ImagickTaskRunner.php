@@ -145,7 +145,6 @@ class ImagickTaskRunner
         catch (\ImagickException $ie) {
             echo "ImagickException running the task: " . $ie->getMessage();
             $this->taskQueue->errorTask($task, get_class($ie).": ".$ie->getMessage());
-//            var_dump($ie->getTrace());
             echo getExceptionText($ie);
         }
         catch (\Auryn\InjectorException $bae) {
@@ -156,7 +155,6 @@ class ImagickTaskRunner
         catch (\Exception $e) {
             echo "Exception running the task: " . $e->getMessage();
             $this->taskQueue->errorTask($task, get_class($e).": ".$e->getMessage());
-            //var_dump($e->getTrace());
         }
     }
 
@@ -167,8 +165,6 @@ class ImagickTaskRunner
         $params = $task->getParams();
         $filename = $this->imageCachePath->getImageCacheFilename($pageInfo, $params);
         $imageTypes = ['jpg', 'gif', 'png'];
-
-//        var_dump($params, $filename);
 
         echo "file base name is $filename\n";
         foreach ($imageTypes as $imageType) {

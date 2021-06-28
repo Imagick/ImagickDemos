@@ -11,6 +11,7 @@ use Room11\HTTP\Request\CLIRequest;
 
 require_once realpath(__DIR__) . '/../vendor/autoload.php';
 require_once realpath(__DIR__) . '/factories.php';
+require_once realpath(__DIR__) . '/functions.php';
 require_once realpath(__DIR__) . '/site_html.php';
 
 ini_set('display_errors', 'off');

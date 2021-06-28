@@ -9,6 +9,14 @@ class affineTransformImage extends \ImagickDemo\Example
         return $output = "This appears to not be working.<br/>";
     }
 
+
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+
     public function render()
     {
         return $this->renderImageURL();

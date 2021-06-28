@@ -98,7 +98,14 @@ module.exports = {
         "alias": {
             "react": "preact/compat",
             "react-dom/test-utils": "preact/test-utils",
-            "react-dom": "preact/compat"
+            "react-dom": "preact/compat",
+
+            // 'react-dom': __dirname + '/node_modules/preact-compat',
+            'react-addons-css-transition-group': __dirname + '/node_modules/rc-css-transition-group',
+            'react-addons-shallow-compare': __dirname + '/node_modules/preact-shallow-compare',
+            'react-color': __dirname + '/node_modules/react-color',
+            // 'react': __dirname + '/node_modules/preact-compat',
+
         }
     },
     // // When importing a module whose path matches one of the following, just

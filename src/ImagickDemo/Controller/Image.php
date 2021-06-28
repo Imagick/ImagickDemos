@@ -4,15 +4,13 @@ namespace ImagickDemo\Controller;
 
 use \SlimAuryn\Response\JsonResponse;
 use Auryn\Injector;
-use ImagickDemo\App;
+
 use ImagickDemo\ImageCachePath;
-//use ImagickDemo\Response\JsonResponse;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Example;
-use ImagickDemo\ImageGenerator;
 use ImagickDemo\Control;
-use SlimAuryn\Response\FileResponse;
 use SlimAuryn\Response\ImageResponse;
+use ImagickDemo\Navigation\CategoryInfo;
 
 function getKnownExtensions()
 {
@@ -148,8 +146,44 @@ class Image
         $params = $control->getFullParams([]);
         $params['customImage'] = false;
 
+        $mappedParams = [
+            "background_color" => "backgroundColor",
+            "stroke_color" => "strokeColor",
+            "fill_color" => "fillColor",
+        ];
+
+        foreach ($mappedParams as $src => $dest) {
+            if (array_key_exists($src, $params) === true) {
+                $params[$dest] = $params[$src];
+            }
+        }
+
+        foreach ($params as $key => $value) {
+            $injector->defineParam($key, $value);
+        }
+//        exit(0);
+
         $injector->defineParam('customImage', false);
         $injector->defineParam('params', $params);
+
+//        array(7) {
+//            ["background_color"]=> string(18)           "rgb(225, 225, 225)"
+//            ["stroke_color"]=> string(12)"rgb(0, 0, 0)"
+//            ["fill_color"]=> string(11) "DodgerBlue2"
+//            ["customImage"]=> bool(false)
+//            ["backgroundColor"]=> string(18) "rgb(225, 225, 225)"
+//            ["strokeColor"]=> string(12) "rgb(0, 0, 0)"
+//            ["fillColor"]=> string(11) "DodgerBlue2"
+//        }
+//
+//        $fn = function ($strokeColor)
+//        {
+//            echo "strokeColor is $strokeColor";
+//        };
+//
+//        $injector->execute($fn);
+//        exit(0);
+
 
 //        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
 //        if ($result !== null) {

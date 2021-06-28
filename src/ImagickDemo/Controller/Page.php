@@ -73,7 +73,8 @@ class Page
             $navigationBar,
             $control,
             $example,
-            $docHelper
+            $docHelper,
+            $varMap
         );
     }
 }

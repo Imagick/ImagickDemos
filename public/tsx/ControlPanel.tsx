@@ -1,62 +1,80 @@
 import {h, Component} from "preact";
+import {useState} from 'preact/hooks';
 import {NumberSelect} from "./components/NumberSelect";
 import {ValueSelect} from "./components/ValueSelect";
-
 import {triggerEvent, EventType, registerEvent, unregisterEvent} from "./events";
 import {SelectOption} from "./components/Select";
+
+import {getNamedColorValue} from "./ImagickColors";
+// import {HexColorPicker} from "react-colorful";
+import {RgbaColorPicker, RgbaColor} from "react-colorful";
+import {colorValues} from "./color_convert";
+// import {RgbaColor} from "react-colorful/dist/types";
+
+// https://swagger.io/specification/#example-object
+
+enum OpenApiType {
+    string = "string",
+    boolean = "boolean",
+    integer = "integer",
+    enum = 'enum'
+}
+
+interface Schema {
+    default: string;
+    format: string;
+    minimum: (string|number|undefined);
+    maximum: (string|number|undefined);
+    enum: Array<string>|undefined;
+    type: OpenApiType;
+}
+
+interface ControlInfo {
+    schema: Schema;
+    name: string;
+    required: boolean;
+}
 
 export interface AppProps {
     name: string;
     initialControlParams: object;
-    controls: Array<object>;
+    controls: Array<ControlInfo>;
 }
 
-type CallbackFunction = (event: any) => void;
+type Controls = {
+    [key: string]: ControlInfo;
+};
+
+type Values = {
+    [key: string]: string|number;
+};
 
 interface AppState {
-    colorspace: string;
-    channel_1_sample: number;
-    channel_2_sample: number;
-    channel_3_sample: number;
     isProcessing: boolean;
-    imagepath: string;
+    controls: Controls; // TODO - move to props.
+    values: Values;
+    active_color: string|null; // the color being edited.
 }
-
-const color_space_options = [
-    {label: "RGB", value: "RGB"},
-    {label: "YIC", value: "YIC"},
-    {label: "YUV", value: "YUV"},
-    {label: "SRGB", value: "SRGB"},
-    {label: "HSB", value: "HSB"},
-    {label: "HSL", value: "HSL"},
-    {label: "CMY", value: "CMY"},
-];
-
-const image_path_options = [
-    {label: 'Skyline', value: 'Skyline'},
-    {label: 'Lorikeet', value: 'Lorikeet'},
-    {label: 'People', value: 'People'},
-    {label: 'Low contrast', value: 'Low contrast'},
-];
 
 function getDefaultState(initialControlParams: object): AppState {
 
-    return {
-        // @ts-ignore: blah blah
-        colorspace: initialControlParams.colorspace || "RGB",
-        // @ts-ignore: blah blah
-        channel_1_sample: initialControlParams.channel_1_sample || 4,
-        // @ts-ignore: blah blah
-        channel_2_sample: initialControlParams.channel_2_sample || 4,
-        // @ts-ignore: blah blah
-        channel_3_sample: initialControlParams.channel_3_sample || 16,
-        // @ts-ignore: blah blah
-        imagepath: initialControlParams.imagepath || 'Lorikeet',
-        // @ts-ignore: blah blah
-        isProcessing: false
+    let state: AppState = {
+        isProcessing: false,
+        controls: {},
+        values: {},
+        active_color: null
     };
-}
 
+    for (let name in initialControlParams) {
+        if (initialControlParams.hasOwnProperty(name) === true) {
+            // @ts-ignore: blah blah
+            state.values[name] = initialControlParams[name];
+        }
+    }
+
+    // @ts-ignore: blah blah
+    return state;
+}
 
 function map_api_name(api_param_name: string): string {
 
@@ -65,6 +83,9 @@ function map_api_name(api_param_name: string): string {
         channel_2_sample: "Channel 2",
         channel_3_sample: "Channel 3",
         colorspace: "Colorspace",
+        stroke_color: "Stroke color",
+        background_color: "Background color",
+        fill_color: "Fill color",
     };
 
     if (known_map.hasOwnProperty(api_param_name) === true) {
@@ -81,7 +102,6 @@ function makeOptionsFromEnum(options: Array<string>): Array<SelectOption>
 
     for(let i=0; i<options.length; i+=1) {
         // @ts-ignore: blah blah
-
         let next = {
             value: options[i],
             label: options[i]
@@ -127,63 +147,172 @@ export class ControlPanel extends Component<AppProps, AppState> {
         this.triggerSetImageParams();
     }
 
+    createNumberControl(control_info: ControlInfo) {
+        return <div>
+            <NumberSelect
+                name={map_api_name(control_info.name)}
+                // @ts-ignore: blah blah
+                min={control_info.schema.minimum}
+                // @ts-ignore: blah blah
+                max={control_info.schema.maximum}
+                // @ts-ignore: blah blah
+                default={control_info.schema.default}
+                // @ts-ignore: I don't understand that error message.
+                updateFn={(newValue) => {
+                    // @ts-ignore: I don't understand that error message.
 
-    createControl(index: number, control_info: any) {
+                    let new_values = this.state.values;
+                    new_values[control_info.name] = newValue;
+
+                    let obj = {
+                        values: new_values
+                    };
+
+                    this.setState(obj);
+                }}
+            />
+        </div>
+    }
+
+    setActiveColor(active_color: string) {
+        // console.log("Setting active color: " + active_color);
+        this.setState({active_color: active_color})
+    }
+
+    setColorFromPicker(color:RgbaColor) {
+
+        if (this.state.active_color === null) {
+            throw new Error("active_color is null, can't update color");
+        }
+
+        let current_values = this.state.values;
+
+        let new_color_string: string = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
+
+        if (color.a === 1) {
+            new_color_string= `rgb(${color.r}, ${color.g}, ${color.b})`;
+        }
+
+        current_values[this.state.active_color] = new_color_string;
+        this.setState({values: current_values});
+    }
+
+    createColorControl(control_info: ControlInfo) {
+        // @ts-ignore: blah blah blah
+        const style = {
+            width: "20px",
+            margin: "2px",
+            display: "inline-block",
+            // @ts-ignore: blah blah blah
+            "background-color": getNamedColorValue(this.state.values[control_info.name])
+        }
+
+        let color_picker = <span></span>;
+
+        if (this.state.active_color === control_info.name) {
+            // @ts-ignore: blah blah blah
+            let actual_color = getNamedColorValue(this.state.values[control_info.name]);
+
+            let color_array = colorValues(actual_color);
+
+            let color_rgba: RgbaColor = {
+                r: color_array.r,
+                g: color_array.g,
+                b: color_array.b,
+                a: 1
+            };
+
+            // @ts-ignore: blah blah blah
+            if (color_array.a !== undefined) {
+                // @ts-ignore: blah blah blah
+                color_rgba.a = color_array.a;
+            }
+
+            color_picker = <RgbaColorPicker
+                color={color_array}
+                onChange={(newColor => this.setColorFromPicker(newColor))} />
+        }
+
+        return <div>
+            {map_api_name(control_info.name)}
+
+            <span
+                style="display: inline-block; border: 1px solid #000; padding: 0px;"
+                // @ts-ignore: blah blah blah
+                onclick={() => this.setActiveColor(control_info.name)}
+            >
+                <span style={style}>
+                    &nbsp;
+                </span>
+            </span>
+
+            <input type="text" class="inputValue" value={
+                // @ts-ignore: blah blah blah
+                this.state.values[control_info.name]
+            }/>
+
+            {color_picker}
+        </div>;
+    }
+
+    createEnumControl(control_info: ControlInfo) {
+        let options = makeOptionsFromEnum(control_info.schema.enum);
+
+        return <div>
+            <ValueSelect
+                name={map_api_name(control_info.name)}
+                options={options}
+                default={control_info.schema.default}
+                updateFn={(newValue) => {
+                    // @ts-ignore: I don't understand that error message.
+                    let obj = {};
+                    // @ts-ignore: I don't understand that error message.
+                    obj[control_info.name] = newValue;
+                    // @ts-ignore: I don't understand that error message.
+                    this.setState(obj);
+                }}
+            />
+        </div>
+    }
+
+    createStringControl(control_info: ControlInfo) {
+        //console.log(control_info);
+
+        if (control_info.schema.format === 'color') {
+            return this.createColorControl(control_info);
+        }
+
+        if (control_info.schema.enum !== undefined) {
+            return this.createEnumControl(control_info);
+        }
+
+        console.log("Don't know how to render ");
+        console.log(control_info);
+
+        return <div>I don't know how to render this string.</div>
+    }
+
+    createControl(index: number, control_info: ControlInfo) {
         if (control_info.schema.type === undefined) {
             throw Error("control_info.schema.type is undefined for " + control_info)
         }
 
         switch(control_info.schema.type) {
-
-            case "boolean": {
-                // console.log("make an boolean");
-                return <span></span>;
+            case OpenApiType.boolean: {
+                console.log("make an boolean");
+                return <span>this should be a boolean</span>;
             }
 
-            case "integer": {
-                return <div>
-                    <NumberSelect
-                        name={map_api_name(control_info.name)}
-                        min={control_info.schema.minimum}
-                        max={control_info.schema.maximum}
-                        default={control_info.schema.default}
-                        // @ts-ignore: I don't understand that error message.
-                        updateFn={(newValue) => {
-                            // @ts-ignore: I don't understand that error message.
-                            let obj = {};
-                            // @ts-ignore: I don't understand that error message.
-                            obj[control_info.name] = newValue;
-                            // @ts-ignore: I don't understand that error message.
-                            this.setState(obj);
-                        }}
-                    />
-                </div>
+            case OpenApiType.integer: {
+                return this.createNumberControl(control_info);
             }
 
-            case "string": {
-                let options = makeOptionsFromEnum(control_info.schema.enum);
-
-                return <div>
-                    <ValueSelect
-                    name={map_api_name(control_info.name)}
-                    options={options}
-                    default={control_info.schema.default}
-                    updateFn={(newValue) => {
-                        // @ts-ignore: I don't understand that error message.
-                        let obj = {};
-                        // @ts-ignore: I don't understand that error message.
-                        obj[control_info.name] = newValue;
-                        // @ts-ignore: I don't understand that error message.
-                        this.setState(obj);
-                    }}
-                />
-                </div>
-            }
-
-            default: {
-                throw Error("Unknown control_info.schema.type is undefined for " + control_info.schema.type)
+            case OpenApiType.string: {
+                return this.createStringControl(control_info);
             }
         }
+
+        //throw Error("Unknown control_info.schema.type is undefined for " + control_info.schema.type)
 
         return <li key={index}>A '{control_info.schema.type}' should be here.</li>
     }
@@ -193,29 +322,24 @@ export class ControlPanel extends Component<AppProps, AppState> {
             isProcessing: true
         });
 
-        let params = {
-            colorspace:this.state.colorspace,
-            channel_1_sample: this.state.channel_1_sample,
-            channel_2_sample: this.state.channel_2_sample,
-            channel_3_sample: this.state.channel_3_sample,
-            imagepath: this.state.imagepath
-        };
+        // debugger;
+        // console.log("triggerSetImageParams are: ");
+        // console.log(this.state.controls);
 
-        // console.log("params are: ");
-        // console.log(params);
-
-        triggerEvent(EventType.set_image_params, params);
+        triggerEvent(EventType.set_image_params, this.state.values);
     }
 
     render(props: AppProps, state: AppState) {
-        let info_used =
-            ((1 / this.state.channel_1_sample) ** 2) +
-            ((1 / this.state.channel_2_sample) ** 2) +
-            ((1 / this.state.channel_3_sample) ** 2);
+        // let info_used =
+        //     ((1 / this.state.channel_1_sample) ** 2) +
+        //     ((1 / this.state.channel_2_sample) ** 2) +
+        //     ((1 / this.state.channel_3_sample) ** 2);
 
-        let info_percent = ((100 * info_used) / 3);
-        let info_percent_string = info_percent.toFixed();
-        let processingBlock = <button onClick={() => this.triggerSetImageParams()}>Update</button>;
+        // let info_percent = ((100 * info_used) / 3);
+        // let info_percent_string = info_percent.toFixed();
+        let processingBlock = <button onClick={() => {
+            this.triggerSetImageParams();
+        }}>Update</button>;
 
         let controls = [];
         for (let i=0; i<props.controls.length; i+=1) {
@@ -228,62 +352,62 @@ export class ControlPanel extends Component<AppProps, AppState> {
             {processingBlock}
         </div>;
 
-        let block = <div class='col-xs-12 contentPanel controlForm' key={"old"}>
-            <NumberSelect
-                name="Channel 1"
-                min={1}
-                max={20}
-                default={this.state.channel_1_sample}
-                updateFn={(channel_1_sample) => this.setState({channel_1_sample})}
-            />
-            <br/>
-
-            <NumberSelect
-                name="Channel 2"
-                min={1}
-                max={20}
-                default={this.state.channel_2_sample}
-                updateFn={(channel_2_sample) => this.setState({channel_2_sample})}
-            />
-            <br/>
-
-            <NumberSelect
-                name="Channel 3"
-                min={1}
-                max={20}
-                default={this.state.channel_3_sample}
-                updateFn={(channel_3_sample) => this.setState({channel_3_sample})}
-            />
-            <br/>
-            <ValueSelect
-                name="Color space"
-                options={color_space_options}
-                default={this.state.colorspace}
-                updateFn={(colorspace) => this.setState({colorspace})}
-            />
-            <br/>
-
-            <ValueSelect
-                name="Image"
-                options={image_path_options}
-                default={'Lorikeet'}
-                updateFn={(imagepath) => this.setState({imagepath})}
-            />
-            <br/>
-
-            Data size as % of original size: {info_percent_string}%
-            <br/>
-
-            {processingBlock}
-
-            <br/>
-
-            <b>Channel 1, Channel 2, Channel 3</b> - how many pixels should be combined into 1 pixel, for each channel. e.g. if for the RGB colorspace, this would be red, green and blue.<br/>
-
-<b>Color space</b> which colorspace to process the image in.<br/>
-
-            <b>Image</b> - which image to use.<br/>
-        </div>;
+//         let block = <div class='col-xs-12 contentPanel controlForm' key={"old"}>
+//             <NumberSelect
+//                 name="Channel 1"
+//                 min={1}
+//                 max={20}
+//                 default={this.state.channel_1_sample}
+//                 updateFn={(channel_1_sample) => this.setState({channel_1_sample})}
+//             />
+//             <br/>
+//
+//             <NumberSelect
+//                 name="Channel 2"
+//                 min={1}
+//                 max={20}
+//                 default={this.state.channel_2_sample}
+//                 updateFn={(channel_2_sample) => this.setState({channel_2_sample})}
+//             />
+//             <br/>
+//
+//             <NumberSelect
+//                 name="Channel 3"
+//                 min={1}
+//                 max={20}
+//                 default={this.state.channel_3_sample}
+//                 updateFn={(channel_3_sample) => this.setState({channel_3_sample})}
+//             />
+//             <br/>
+//             <ValueSelect
+//                 name="Color space"
+//                 options={color_space_options}
+//                 default={this.state.colorspace}
+//                 updateFn={(colorspace) => this.setState({colorspace})}
+//             />
+//             <br/>
+//
+//             <ValueSelect
+//                 name="Image"
+//                 options={image_path_options}
+//                 default={'Lorikeet'}
+//                 updateFn={(imagepath) => this.setState({imagepath})}
+//             />
+//             <br/>
+//
+//             Data size as % of original size: {info_percent_string}%
+//             <br/>
+//
+//             {processingBlock}
+//
+//             <br/>
+//
+//             <b>Channel 1, Channel 2, Channel 3</b> - how many pixels should be combined into 1 pixel, for each channel. e.g. if for the RGB colorspace, this would be red, green and blue.<br/>
+//
+// <b>Color space</b> which colorspace to process the image in.<br/>
+//
+//             <b>Image</b> - which image to use.<br/>
+//         </div>;
 
         return <span>
             {itemBlock}

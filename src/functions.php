@@ -2,6 +2,22 @@
 
 declare(strict_types = 1);
 
+use Params\Create\CreateFromRequest;
+use Params\Create\CreateFromVarMap;
+use Params\Create\CreateOrErrorFromVarMap;
+use Params\InputParameter;
+use Params\ExtractRule\GetBoolOrDefault;
+use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetStringOrDefault;
+use Params\ProcessRule\MaxIntValue;
+use Params\ProcessRule\MinIntValue;
+use Params\SafeAccess;
+use VarMap\VarMap;
+use Params\ProcessRule\EnumMap;
+use ImagickDemo\ToArray;
+use Params\InputParameterList;
+
+
 
 function purgeExceptionMessage(\Throwable $exception)
 {
@@ -81,7 +97,6 @@ function getExceptionStackAsArray(\Throwable $exception)
 
 function formatTraceLine(array $trace)
 {
-
     $location = '??';
     $function = 'unknown';
 
@@ -91,10 +106,6 @@ function formatTraceLine(array $trace)
     else if (isset($trace["file"])) {
         $location = $trace["file"] . ':??';
     }
-//    else {
-//        var_dump($trace);
-//        exit(0);
-//    }
 
     $baseDir = realpath(__DIR__ . '/../');
     if ($baseDir === false) {
@@ -437,3 +448,106 @@ function convertStringToHtmlResponse(
     $response->getBody()->write($result);
     return $response;
 }
+
+/**
+ * @return array<string, int>
+ */
+function getEyeColourSpaceOptions()
+{
+    $colorSpaceTypes = [
+        'RGB' => \Imagick::COLORSPACE_RGB,
+//        \Imagick::COLORSPACE_GRAY => 'Gray',
+//        \Imagick::COLORSPACE_TRANSPARENT => 'Transparent',
+//        \Imagick::COLORSPACE_OHTA => 'OHTA',
+//        \Imagick::COLORSPACE_LAB => 'LAB',
+//        \Imagick::COLORSPACE_XYZ => 'XYZ',
+//        \Imagick::COLORSPACE_YCBCR => 'YCBCR',
+//        \Imagick::COLORSPACE_YCC => 'YCC',
+        'YIC' => \Imagick::COLORSPACE_YIQ,
+//        \Imagick::COLORSPACE_YPBPR => 'YPBPR',
+        'YUV' => \Imagick::COLORSPACE_YUV,
+//        \Imagick::COLORSPACE_CMYK => 'CMYK',
+        'SRGB' => \Imagick::COLORSPACE_SRGB,
+        'HSB' => \Imagick::COLORSPACE_HSB,
+        'HSL' => \Imagick::COLORSPACE_HSL,
+//        \Imagick::COLORSPACE_HWB => 'HWB',
+//        \Imagick::COLORSPACE_REC601LUMA => 'REC601LUMA',
+//        \Imagick::COLORSPACE_REC709LUMA => 'REC709LUMA',
+//        \Imagick::COLORSPACE_LOG => 'LOG',
+        'CMY' => \Imagick::COLORSPACE_CMY,
+    ];
+
+    return $colorSpaceTypes;
+}
+
+
+function getEyeColorSpaceStringFromValue(int $value)
+{
+    $colorspaceOptions = getEyeColourSpaceOptions();
+
+    foreach ($colorspaceOptions as $string => $int) {
+        if ($value === $int) {
+            return $string;
+        }
+    }
+
+    throw new \Exception("Bad option for getEyeColorSpaceStringFromValue $value");
+}
+
+function getImagePathOptions()
+{
+    $images = [
+        'Skyline' => realpath(__DIR__ . "/../public/images/Skyline_400.jpg"),
+        'Lorikeet' => realpath(__DIR__ . "/../public/images/Biter_500.jpg"),
+        'People' => realpath(__DIR__ . "/../public/images/SydneyPeople_400.jpg"),
+        'Low contrast' => realpath(__DIR__ . "/../public/images/LowContrast.jpg"),
+    ];
+
+    return $images;
+}
+
+function getImagePathForOption(string $selected_option)
+{
+    $imageOptions = getImagePathOptions();
+
+    foreach ($imageOptions as $path => $option) {
+        if ($option === $selected_option) {
+            return $path;
+        }
+    }
+
+    foreach ($imageOptions as $key => $value) {
+        return $key;
+    }
+
+
+    return array_key_first($imageOptions);
+}
+
+
+function getImagepathInputParameter()
+{
+    return new InputParameter(
+        'imagepath',
+        new GetStringOrDefault('Lorikeet'),
+        new EnumMap(getImagePathOptions())
+    );
+}
+
+//class SleepyRule implements ProcessRule
+//{
+//   public function process(
+//        $value,
+//        ProcessedValues $processedValues,
+//        InputStorage $inputStorage
+//    ): ValidationResult {
+//        if ($value === 'true') {
+//            return \Params\ValidationResult::finalValueResult(1);
+//        }
+//
+//        return \Params\ValidationResult::finalValueResult(0);
+//    }
+//
+//    public function updateParamDescription(ParamDescription $paramDescription): void {
+//    }
+//}

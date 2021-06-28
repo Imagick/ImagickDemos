@@ -131,3 +131,21 @@ function setupImagePanel() {
     startEventProcessing();
 })();
 
+
+// https://github.com/omgovich/react-colorful#usage-with-preact
+//
+// react-colorful, like all other React + TS projects, can potentially cause issues in a Preact + TS application if you have the @types/react package installed, either as a direct dependency or a dependency of a dependency. For example, the Preact TS template comes with @types/enzyme which has @types/react as a dependency.
+//
+//     To fix this, create a declaration.d.ts file or add to your existing:
+//
+//     import React from "react";
+//
+// declare global {
+//     namespace React {
+//         interface ReactElement {
+//             nodeName: any;
+//             attributes: any;
+//             children: any;
+//         }
+//     }
+// }

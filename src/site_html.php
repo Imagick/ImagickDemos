@@ -9,6 +9,11 @@ use ImagickDemo\NavigationBar;
 use ImagickDemo\DocHelper;
 use ImagickDemo\Control;
 use ImagickDemo\Example;
+use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
+use Params\OpenApi\OpenApiV300ParamDescription;
+use VarMap\VarMap;
+use Params\InputParameterList;
+use Params\Create\CreateFromVarMap;
 
 function renderTopNavBarForCategory(
     Nav $nav,
@@ -54,12 +59,46 @@ HTML;
     return $html;
 }
 
+
+
+
+function renderReactControls(VarMap $varMap, string $param_type)
+{
+    if (is_subclass_of($param_type, InputParameterList::class, true) !== true) {
+        throw new \Exception("param_type $param_type needs to implement InputParameterList");
+    }
+
+    /** @var  InputParameterList&CreateFromVarMap $param_type */
+    $params = $param_type::createFromVarMap($varMap);
+
+    $paramDescription = OpenApiV300ParamDescription::createFromRules(
+        $param_type::getInputParameterList()
+    );
+
+    [$error, $value] = convertToValue($params);
+
+    if ($error !== null) {
+        // what to do here
+        return "oh dear, the form failed to render correctly: " . $error;
+    }
+
+    $output = sprintf(
+        "<div id='controlPanel' data-params_json='%s' data-controls_json='%s'></div>",
+        json_encode_safe($value),
+        json_encode($paramDescription)
+    );
+
+    return $output;
+}
+
+
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
     ImagickDemo\Example $example,
     DocHelper $docHelper,
     CategoryNav $nav,
-    NavigationBar $navBar
+    NavigationBar $navBar,
+    VarMap $varMap
 ) {
 
     $remaining = 12 - $example->getColumnRightOffset();
@@ -82,7 +121,7 @@ function renderExampleBodyHtml(
     }
 
     if ($example->hasReactControls() === true) {
-        $form = $example->renderReactControls();
+        $form = renderReactControls($varMap, $example->getParamType());
     }
     else {
         $form = $control->renderForm();
@@ -201,7 +240,8 @@ function renderPageHtml(
     NavigationBar $navigationBar,
     Control $control,
     Example $example,
-    DocHelper $docHelper
+    DocHelper $docHelper,
+    VarMap $varMap
 ): string  {
 
     $html = renderPageStartHtml($pageInfo);
@@ -216,7 +256,8 @@ function renderPageHtml(
         $example,
         $docHelper,
         $categoryNav,
-        $navigationBar
+        $navigationBar,
+        $varMap
     );
 
     $html .= renderPageFooter();

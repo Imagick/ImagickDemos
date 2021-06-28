@@ -1738,7 +1738,7 @@ sh.Highlighter.prototype = {
 		storeHighlighter(this);
 
 		// local params take precedence over defaults
-		this.params = merge(sh.defaults, params || {})
+		this.controls = merge(sh.defaults, params || {})
 
 		// process light mode
 		if (this.getParam('light') == true)

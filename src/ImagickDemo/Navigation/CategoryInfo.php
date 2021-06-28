@@ -648,7 +648,12 @@ class CategoryInfo
     ];
 
     public static $imagickDrawExamples = [
-        'affine' => ['affine', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        //'affine' => ['affine', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
+        'affine' => [
+            'affine',
+            \ImagickDemo\Control\ReactControls::class
+        ],
+
         'arc' => ['arc', \ImagickDemo\Control\ArcControl::class],
         'bezier' => ['bezier', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColor::class],
         'circle' => ['circle', \ImagickDemo\Control\CircleControl::class],

@@ -68,11 +68,10 @@ $aliases = [
 // Delegate the creation of types to callables.
 $delegates = [
     //'FastRoute\Dispatcher' => 'createDispatcher',
-    'ImagickDemo\Control' => 'ImagickDemo\App::createControl',
-    'ImagickDemo\Example' => 'ImagickDemo\App::createExample',
-    'Jig\JigConfig' => 'ImagickDemo\App::createJigConfig',
-    'Predis\Client' => 'ImagickDemo\App::createRedisClient',
-
+    'ImagickDemo\Control' => ['ImagickDemo\App', 'createControl'],
+    'ImagickDemo\Example' => ['ImagickDemo\App', 'createExample'],
+    'Jig\JigConfig' => ['ImagickDemo\App', 'createJigConfig'],
+    'Predis\Client' => ['ImagickDemo\App', 'createRedisClient'],
 ];
 
 

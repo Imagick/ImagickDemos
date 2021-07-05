@@ -25,7 +25,7 @@ php vendor/bin/configurate \
 # clear redis here not in installer
 php cli.php clearRedis
 
-/usr/sbin/php-fpm7.4 \
+/usr/sbin/php-fpm8.0 \
   --nodaemonize \
   --fpm-config=/var/app/docker/php_backend/config/fpm.conf \
   -c /var/app/docker/php_backend/config/php.ini

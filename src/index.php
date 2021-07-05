@@ -43,6 +43,8 @@ $injector->share($injector);
 
 
 try {
+
+
     $app = $injector->make(\Slim\App::class);
     $routes = $injector->make(Routes::class);
     $routes->setupRoutes($app);

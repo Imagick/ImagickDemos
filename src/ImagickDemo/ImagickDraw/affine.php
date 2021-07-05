@@ -5,25 +5,21 @@ namespace ImagickDemo\ImagickDraw;
 use ImagickDemo\Control;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\ImagickDraw\Params\AffineParams;
+use ImagickDemo\ImagickDraw\Params\ThreeColors;
 use VarMap\VarMap;
 use ImagickDemo\ReactParamType;
+use ImagickDemo\ImagickDraw\ReactThreeColorExample;
 
 class affine extends \ImagickDemo\Example
 {
-    /** @var \ImagickDemo\Helper\PageInfo */
-    private $pageInfo;
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
 
-    /** @var VarMap */
-    private $varMap;
-
-    public function __construct(
-        PageInfo $pageInfo,
-        Control $control,
-        VarMap $varMap
-    ) {
-        $this->pageInfo = $pageInfo;
-        $this->varMap = $varMap;
-        parent::__construct($control);
+    public static function getParamType(): string
+    {
+        return ThreeColors::class;
     }
 
     public function renderDescription()
@@ -34,44 +30,10 @@ class affine extends \ImagickDemo\Example
             rx - The amount to rotate the drawing for each unit in the x direction.
             ry - The amount to rotate the drawing for each unit in the y direction.
             tx - The amount to translate the drawing in the x direction.
-            ty - The amount to translate the drawing in the y direction.");
-
-
-        return $output;
-    }
-
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
-
-    public static function getParamType(): string
-    {
-        return AffineParams::class;
-    }
-
-    public function render()
-    {
-        $imageBaseUrl = $this->control->getURL();
-        $activeCategory = $this->pageInfo->getCategory();
-        $activeExample = $this->pageInfo->getExample();
-        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
-
-        return sprintf(
-            '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                ></div>',
-            $imageBaseUrl,
-            $pageBaseUrl
+            ty - The amount to translate the drawing in the y direction."
         );
-    }
-
-    public function renderOld()
-    {
-        $output = $this->renderImageURL();
 
         return $output;
     }
+
 }

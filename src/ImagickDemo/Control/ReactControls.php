@@ -23,7 +23,7 @@ class ReactControls implements Control
 
     private $taskQueue = null;
 
-    private InputParameterList $params;
+    private /* InputParameterList */ $params;
 
     public function __construct(
         \ImagickDemo\Helper\PageInfo $pageInfo,
@@ -45,7 +45,10 @@ class ReactControls implements Control
         /** @var ReactParamType $exampleName */
         $paramType = $exampleName::getParamType();
 
-        $this->params = $paramType::createFromVarMap($varMap);
+        $params = $paramType::createFromVarMap($varMap);
+
+
+        $this->params = $params;
     }
 
     public function renderForm()
@@ -67,11 +70,19 @@ class ReactControls implements Control
 
     public function getParams()
     {
+        if (method_exists($this->params, 'toArray') === true) {
+            return $this->params->toArray();
+        }
+
         return $this->params->getAllParams();
     }
 
     public function getInjectionParams()
     {
+        if (method_exists($this->params, 'toArray') === true) {
+            return $this->params->toArray();
+        }
+
         return $this->params->getAllParams();
     }
 

@@ -35,6 +35,14 @@ function createSlimAppForApp(
     // quality code.
     $container['foundHandler'] = $injector->make(\SlimAuryn\SlimAurynInvokerFactory::class);
 
+    $callableResolver = new \SlimAuryn\AurynCallableResolver(
+        new \Slim\CallableResolver($container),
+        $container
+    );
+
+    $container['callableResolver'] = $callableResolver;
+
+
     // TODO - this shouldn't be used in production.
     $container['errorHandler'] = $appErrorHandler;
 //  function ($container) use ($appErrorHandler) {

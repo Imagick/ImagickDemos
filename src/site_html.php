@@ -64,9 +64,9 @@ HTML;
 
 function renderReactControls(VarMap $varMap, string $param_type)
 {
-    if (is_subclass_of($param_type, InputParameterList::class, true) !== true) {
-        throw new \Exception("param_type $param_type needs to implement InputParameterList");
-    }
+//    if (is_subclass_of($param_type, InputParameterList::class, true) !== true) {
+//        throw new \Exception("param_type $param_type needs to implement InputParameterList");
+//    }
 
     /** @var  InputParameterList&CreateFromVarMap $param_type */
     $params = $param_type::createFromVarMap($varMap);
@@ -91,6 +91,24 @@ function renderReactControls(VarMap $varMap, string $param_type)
     return $output;
 }
 
+function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExample)
+{
+//    $imageBaseUrl = $this->control->getURL();
+//    $activeCategory = $this->pageInfo->getCategory();
+//    $activeExample = $this->pageInfo->getExample();
+    $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+
+    return sprintf(
+        '<div
+                id="imagePanel"
+                data-imageBaseUrl="%s"
+                data-pagebaseurl="%s"
+                ></div>',
+        $imageBaseUrl,
+        $pageBaseUrl
+    );
+}
+
 
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
@@ -98,7 +116,8 @@ function renderExampleBodyHtml(
     DocHelper $docHelper,
     CategoryNav $nav,
     NavigationBar $navBar,
-    VarMap $varMap
+    VarMap $varMap,
+    PageInfo $pageInfo
 ) {
 
     $remaining = 12 - $example->getColumnRightOffset();
@@ -122,9 +141,21 @@ function renderExampleBodyHtml(
 
     if ($example->hasReactControls() === true) {
         $form = renderReactControls($varMap, $example->getParamType());
+
+        $imageBaseUrl = $control->getURL();
+        $activeCategory = $pageInfo->getCategory();
+        $activeExample = $pageInfo->getExample();
+        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+
+        $exampleHtml = renderReactExampleImagePanel(
+            $imageBaseUrl,
+            $activeCategory,
+            $activeExample
+        );
     }
     else {
         $form = $control->renderForm();
+        $exampleHtml = $example->render();
     }
 
 
@@ -177,7 +208,7 @@ $html = <<< HTML
 
                     <div class="row">
                         <div class="col-md-7 col-xs-12 contentPanel">
-                            {$example->render()}
+                            {$exampleHtml}
                         </div>
                         <div class="col-sm-5 formHolder">
                             {$form}
@@ -257,7 +288,8 @@ function renderPageHtml(
         $docHelper,
         $categoryNav,
         $navigationBar,
-        $varMap
+        $varMap,
+        $pageInfo
     );
 
     $html .= renderPageFooter();

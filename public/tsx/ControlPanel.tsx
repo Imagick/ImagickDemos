@@ -81,15 +81,22 @@ function getDefaultState(initialControlParams: object): AppState {
 function map_api_name(api_param_name: string): string {
 
     let known_map = {
+        background_color: "Background color",
         channel_1_sample: "Channel 1",
         channel_2_sample: "Channel 2",
         channel_3_sample: "Channel 3",
         colorspace: "Colorspace",
+        endX: "End X",
+        endY: "End Y",
         fill_color: "Fill color",
-
-        background_color: "Background color",
+        fill_modified_color: "Fill color 2",
         paint_type: "Paint type",
+        startX: "Start X",
+        startY: "Start Y",
         stroke_color: "Stroke color",
+        text_under_color: "Text under color",
+        translate_x: "Translate X",
+        translate_y: "Translate Y"
     };
 
     if (known_map.hasOwnProperty(api_param_name) === true) {
@@ -153,8 +160,6 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
     createIntegerControl(control_info: ControlInfo) {
 
-        // "type": "integer",
-
         return <div>
             <Integer
                 name={map_api_name(control_info.name)}
@@ -163,27 +168,17 @@ export class ControlPanel extends Component<AppProps, AppState> {
                 // @ts-ignore: blah blah
                 max={control_info.schema.maximum}
                 // @ts-ignore: blah blah
-                default={control_info.schema.default}
+                value={this.state.values[control_info.name]}
                 // @ts-ignore: I don't understand that error message.
                 updateFn={(newValue) => {
                     // @ts-ignore: I don't understand that error message.
-
-                    let new_values = this.state.values;
-                    new_values[control_info.name] = newValue;
-
-                    let obj = {
-                        values: new_values
-                    };
-
-                    this.setState(obj);
+                    this.setCurrentValue(control_info.name, newValue);
                 }}
             />
         </div>
     }
 
     createNumberControl(control_info: ControlInfo) {
-
-        // "type": "integer",
 
         return <div>
             <Number
@@ -193,25 +188,15 @@ export class ControlPanel extends Component<AppProps, AppState> {
                 // @ts-ignore: blah blah
                 max={control_info.schema.maximum}
                 // @ts-ignore: blah blah
-                default={control_info.schema.default}
+                value={this.state.values[control_info.name]}
                 // @ts-ignore: I don't understand that error message.
                 updateFn={(newValue) => {
                     // @ts-ignore: I don't understand that error message.
-
-                    let new_values = this.state.values;
-                    new_values[control_info.name] = newValue;
-
-                    let obj = {
-                        values: new_values
-                    };
-
-                    this.setState(obj);
+                    this.setCurrentValue(control_info.name, newValue);
                 }}
             />
         </div>
     }
-
-
 
 
     setActiveColor(active_color: string) {
@@ -363,14 +348,8 @@ export class ControlPanel extends Component<AppProps, AppState> {
             isProcessing: true
         });
 
-        // debugger;
-        // console.log("triggerSetImageParams are: ");
-        // console.log(this.state.controls);
-
         triggerEvent(EventType.set_image_params, this.state.values);
     }
-
-
 
     render(props: AppProps, state: AppState) {
         // let info_used =

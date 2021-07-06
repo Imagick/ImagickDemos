@@ -2,8 +2,7 @@
 
 namespace ImagickDemo\Params;
 
-
-use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetStringOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
@@ -20,13 +19,8 @@ class TextDecoration implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault(\Imagick::DECORATION_UNDERLINE),
-            new EnumMap([
-                \Imagick::DECORATION_NO => 'None',
-                \Imagick::DECORATION_UNDERLINE => 'Underline',
-                \Imagick::DECORATION_OVERLINE => 'Overline',
-                \Imagick::DECORATION_LINETROUGH => 'Linethrough'
-            ])
+            new GetStringOrDefault('Underline'),
+            new EnumMap(getTextDecorationOptions())
         );
     }
 

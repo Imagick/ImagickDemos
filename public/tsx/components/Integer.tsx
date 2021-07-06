@@ -5,7 +5,7 @@ export interface IntegerProps {
     name: string;
     min: number;
     max: number;
-    default?: number;
+    value: number|string;
     updateFn?(newValue:any): void;
 }
 
@@ -18,9 +18,9 @@ export class Integer extends Component<IntegerProps, {}> {
             <input
                 type="number"
                 name={this.props.name}
-                value={this.props.default}
+                value={this.props.value}
                 // @ts-ignore: blah blah
-                updateFn={this.props.updateFn}
+                onchange={(event) => this.props.updateFn(event.target.value)}
             />
         </span>;
     }

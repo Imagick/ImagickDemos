@@ -5,13 +5,12 @@ export interface NumberProps {
     name: string;
     min: number;
     max: number;
-    default?: number;
+    value: number|string;
     updateFn?(newValue:any): void;
 }
 
 export class Number extends Component<NumberProps, {}> {
     render() {
-
         // <input type="text" pattern="\d*" />
         // <input type="number" value={this.state.value} onChange={this.onChange}/>
 
@@ -20,9 +19,9 @@ export class Number extends Component<NumberProps, {}> {
             <input
                 type="number" step="1"
                 name={this.props.name}
-                value={this.props.default}
+                value={this.props.value}
                 // @ts-ignore: blah blah
-                updateFn={this.props.updateFn}
+                onchange={(event) => this.props.updateFn(event.target.value)}
             />
         </span>;
     }

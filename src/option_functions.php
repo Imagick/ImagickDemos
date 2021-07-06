@@ -16,7 +16,7 @@ function getOptionFromOptions(string|int $option, array $values): string
         }
     }
 
-    throw new \Exception("Unknown option [$option]");
+    throw new \Exception("Unknown option [$option]" . json_encode($values));
 }
 
 
@@ -34,3 +34,16 @@ function getPaintTypeOptions(): array
     ];
 }
 
+
+/**
+ * @return array<string, int>
+ */
+function getTextDecorationOptions(): array
+{
+    return [
+        'None' => \Imagick::DECORATION_NO,
+        'Underline' =>  \Imagick::DECORATION_UNDERLINE,
+        'Overline' =>  \Imagick::DECORATION_OVERLINE,
+        'Linethrough' => \Imagick::DECORATION_LINETROUGH
+    ];
+}

@@ -153,6 +153,10 @@ class Image
             "fill_modified_color" => "fillModifiedColor",
             "paint_type" => "paintType",
             "stroke_color" => "strokeColor",
+            'text_decoration' => 'textDecoration',
+            "text_under_color" => "textUnderColor",
+            "translate_x" => "translateX",
+            "translate_y" => "translateY",
         ];
 
         foreach ($mappedParams as $src => $dest) {

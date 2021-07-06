@@ -728,13 +728,17 @@ class CategoryInfo
         'setStrokeWidth' => ['setStrokeWidth', \ImagickDemo\Control\ReactControls::class],
         'setTextAlignment' => ['setTextAlignment', \ImagickDemo\Control\ReactControls::class],
         'setTextAntialias' => ['setTextAntialias', \ImagickDemo\Control\ReactControls::class],
-        'setTextDecoration' => ['setTextDecoration', \ImagickDemo\Control\TextDecoration::class],
-        'setTextUnderColor' => ['setTextUnderColor', \ImagickDemo\Control\TextUnderControl::class],
+        'setTextDecoration' => ['setTextDecoration', \ImagickDemo\Control\ReactControls::class],
+        'setTextUnderColor' => ['setTextUnderColor', \ImagickDemo\Control\ReactControls::class],
         //'setVectorGraphics' => ['setVectorGraphics', \ImagickDemo\Control\NullControl::class],
         'setViewBox' => ['setViewBox', \ImagickDemo\Control\ReactControls::class],
         'skewX' => ['skewX', \ImagickDemo\Control\ReactControls::class],//\ImagickDemo\Control\SkewControl::class],
         'skewY' => ['skewY', \ImagickDemo\Control\ReactControls::class],//\ImagickDemo\Control\SkewControl::class],
-        'translate' => ['translate', \ImagickDemo\Control\TranslateControl::class],
+        'translate' => [
+            'translate',
+            \ImagickDemo\Control\ReactControls::class
+        //    \ImagickDemo\Control\TranslateControl::class
+        ],
     ];
 
 

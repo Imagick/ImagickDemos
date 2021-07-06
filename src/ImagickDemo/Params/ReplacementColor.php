@@ -7,6 +7,7 @@ use Room11\HTTP\VariableMap;
 
 Imagick Rgb color
 
+#[\Attribute]
 class ReplacementColor extends ColorElement
 {
     private $defaultColor = 'rgb(0, 0, 0)';

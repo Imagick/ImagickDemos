@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetIntOrDefault;
 use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
 
+#[\Attribute]
 class KernelType implements Param
 {
     public function __construct(

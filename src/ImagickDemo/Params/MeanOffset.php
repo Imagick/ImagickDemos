@@ -9,6 +9,7 @@ use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 use Params\ProcessRule\MinIntValue;
 
+#[\Attribute]
 class MeanOffset implements Param
 {
     public function __construct(

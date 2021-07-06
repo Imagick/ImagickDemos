@@ -9,6 +9,8 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\ImagickRgbColorRule;
 
+
+#[\Attribute]
 class ImagickColorParam implements Param
 {
     public function __construct(

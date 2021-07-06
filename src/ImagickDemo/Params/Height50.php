@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
  Height with default of 50 and 1, 100
 
+#[\Attribute]
 class Height50 extends ValueElement
 {
     protected function filterValue($value)

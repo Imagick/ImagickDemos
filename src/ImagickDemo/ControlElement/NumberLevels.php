@@ -31,7 +31,7 @@ class NumberLevels extends ValueElement
 
     protected function getDisplayName()
     {
-        return 'Number Levels';
+        return 'Integer Levels';
     }
 
     public function getNumberLevels()

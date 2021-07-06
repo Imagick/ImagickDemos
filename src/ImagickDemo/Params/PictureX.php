@@ -2,13 +2,12 @@
 
 namespace ImagickDemo\Params;
 
-use Room11\HTTP\VariableMap;
-
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class PictureX implements Param
 {
     public function __construct(

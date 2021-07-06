@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class RollX implements Param
 {
     public function __construct(

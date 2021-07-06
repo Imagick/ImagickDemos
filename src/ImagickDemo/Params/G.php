@@ -6,6 +6,7 @@ use Room11\HTTP\VariableMap;
 
 ComponentRangeInt default of 100
 
+#[\Attribute]
 class G extends ValueElement
 {
     private $defaultGreen;

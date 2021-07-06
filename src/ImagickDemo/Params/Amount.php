@@ -9,7 +9,7 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
-
+#[\Attribute]
 class Amount implements Param
 {
 

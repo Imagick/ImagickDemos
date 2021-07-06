@@ -7,6 +7,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class ShearY implements Param
 {
     public function __construct(

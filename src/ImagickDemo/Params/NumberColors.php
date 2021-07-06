@@ -7,6 +7,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class NumberColors implements Param
 {
     public function __construct(
@@ -52,7 +53,7 @@ class NumberColors implements Param
 //
 //    protected function getDisplayName()
 //    {
-//        return 'Number colors';
+//        return 'Integer colors';
 //    }
 //
 //    public function getNumberColors()

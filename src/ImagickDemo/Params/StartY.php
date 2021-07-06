@@ -7,6 +7,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class StartY implements Param
 {
     public function __construct(

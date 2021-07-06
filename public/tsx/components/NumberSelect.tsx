@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+    import { h, Component } from 'preact';
 
 // import Select from "react-select";
 import {Select, SelectOption} from "./Select";
@@ -40,6 +40,9 @@ export class NumberSelect extends Component<NumberSelectProps, {}> {
                 value: "" + this.props.default
             };
         }
+
+        // <input type="text" pattern="\d*" />
+        // <input type="number" value={this.state.value} onChange={this.onChange}/>
 
         return <span>
             {this.props.name}

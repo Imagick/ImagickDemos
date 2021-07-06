@@ -883,7 +883,7 @@ function wrapLinesWithCode(str, css)
 /**
  * Pads number with zeros until it's length is the same as given length.
  *
- * @param {Number} number	Number to pad.
+ * @param {Number} number	Integer to pad.
  * @param {Number} length	Max string length with.
  * @return {String}			Returns a string padded with proper amount of '0'.
  */
@@ -918,7 +918,7 @@ function processTabs(code, tabSize)
  * Replaces tabs with smart spaces.
  *
  * @param {String} code    Code to fix the tabs in.
- * @param {Number} tabSize Number of spaces in a column.
+ * @param {Number} tabSize Integer of spaces in a column.
  * @return {String}        Returns code with all tabs replaces with roper amount of spaces.
  */
 function processSmartTabs(code, tabSize)

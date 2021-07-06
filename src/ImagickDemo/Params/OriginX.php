@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class OriginX implements Param
 {
     public function __construct(

@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class UnsharpThreshold implements Param
 {
     public function __construct(

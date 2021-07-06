@@ -2,13 +2,13 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
+#[\Attribute]
 class KernelSecondTerm implements Param
 {
     public function __construct(

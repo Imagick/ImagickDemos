@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 UnitRange 0.2 default
 
+#[\Attribute]
 class SolarizeThreshold extends ValueElement
 {
     protected function filterValue($value)

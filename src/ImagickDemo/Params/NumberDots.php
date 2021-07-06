@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class NumberDots implements Param
 {
     public function __construct(
@@ -53,7 +54,7 @@ class NumberDots implements Param
 //
 //    protected function getDisplayName()
 //    {
-//        return 'Number of dots';
+//        return 'Integer of dots';
 //    }
 //
 //    public function getNumberDots()

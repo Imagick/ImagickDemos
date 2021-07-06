@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 // TODO - not needed - this is just an ImagickColor
 
+#[\Attribute]
 class BackgroundColor extends ColorElement
 {
     protected function getDefault()

@@ -2,6 +2,7 @@
 
 namespace ImagickDemo\Params;
 
+#[\Attribute]
 class ModulateBrightness extends ValueElement
 {
     protected function filterValue($value)

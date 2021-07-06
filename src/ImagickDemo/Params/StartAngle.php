@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 AngleRange default 0
 
+#[\Attribute]
 class StartAngle extends ValueElement
 {
     protected function filterValue($value)

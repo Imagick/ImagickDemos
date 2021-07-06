@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class NumberFrames implements Param
 {
     public function __construct(
@@ -53,7 +54,7 @@ class NumberFrames implements Param
 //
 //    protected function getDisplayName()
 //    {
-//        return 'Number of frames';
+//        return 'Integer of frames';
 //    }
 //
 //    public function getNumberFrames()

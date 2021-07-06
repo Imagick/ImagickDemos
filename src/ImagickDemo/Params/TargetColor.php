@@ -6,6 +6,7 @@ use Room11\HTTP\VariableMap;
 
 ImagickRgbColor
 
+#[\Attribute]
 class TargetColor extends ColorElement
 {
     private $defaultTargetColor;

@@ -8,10 +8,10 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
-class Skew implements Param
+#[\Attribute]
+class SkewAmount implements Param
 {
     public function __construct(
-        private int $default,
         private string $name
     ) {
     }

@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
 
+#[\Attribute]
 class LayerMethodType implements Param
 {
     public function __construct(

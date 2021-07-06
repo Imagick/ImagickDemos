@@ -8,7 +8,7 @@
 		// Contributed by Patrick Webster
 		// http://patrickwebster.blogspot.com/2009/04/javafx-brush-for-syntaxhighlighter.html
 		var datatypes =	'Boolean Byte Character Double Duration '
-						+ 'Float Integer Long Number Short String Void'
+						+ 'Float Integer Long Integer Short String Void'
 						;
 
 		var keywords = 'abstract after and as assert at before bind bound break catch class '

@@ -31,7 +31,7 @@ class NumberDots extends ValueElement
 
     protected function getDisplayName()
     {
-        return 'Number of dots';
+        return 'Integer of dots';
     }
 
     public function getNumberDots()

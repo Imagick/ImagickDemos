@@ -2,6 +2,7 @@
 
 namespace ImagickDemo\Params;
 
+#[\Attribute]
 class ArtifactExample extends OptionKeyElement
 {
     // TODO - I have no idea.

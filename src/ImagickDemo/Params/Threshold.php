@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 ComponentRangeFloat default of 0.5
 
+#[\Attribute]
 class Threshold extends ValueElement
 {
     protected function filterValue($value)

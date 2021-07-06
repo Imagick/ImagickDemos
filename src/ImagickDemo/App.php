@@ -179,7 +179,7 @@ class App
         foreach ($params as $name => $value) {
             $injector->defineParam($name, $value);
         }
-    
+
         $control = $injector->make($controlClassname);
         $params = $control->getFullParams();
         

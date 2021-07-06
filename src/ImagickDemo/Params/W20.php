@@ -7,6 +7,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class W20 implements Param
 {
     public function __construct(

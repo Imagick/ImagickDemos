@@ -34,6 +34,7 @@ class ReactControls implements Control
         $activeExample = $pageInfo->getExample();
 
         $this->imageBaseURL = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+
         $this->orignalImageBaseURL = \ImagickDemo\Route::getOriginalImageURL($activeCategory, $activeExample);
         $this->customImageBaseURL = \ImagickDemo\Route::getCustomImageURL($activeCategory, $activeExample);
         $this->imageStatusBaseURL = \ImagickDemo\Route::getImageStatusURL($activeCategory, $activeExample);

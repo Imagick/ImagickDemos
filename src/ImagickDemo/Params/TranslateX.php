@@ -9,7 +9,7 @@ use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
 // ugh - think this needs to default to empty string or null
-
+#[\Attribute]
 class TranslateX implements Param
 {
     public function __construct(

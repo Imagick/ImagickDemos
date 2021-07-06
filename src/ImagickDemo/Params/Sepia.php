@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class Sepia implements Param
 {
     public function __construct(

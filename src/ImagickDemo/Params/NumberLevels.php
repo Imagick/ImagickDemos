@@ -7,6 +7,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class NumberLevels implements Param
 {
     public function __construct(
@@ -52,7 +53,7 @@ class NumberLevels implements Param
 //
 //    protected function getDisplayName()
 //    {
-//        return 'Number Levels';
+//        return 'Integer Levels';
 //    }
 //
 //    public function getNumberLevels()

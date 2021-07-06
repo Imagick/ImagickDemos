@@ -5,7 +5,6 @@ export interface SelectOption {
     label: string;
 }
 
-
 export interface SelectProps {
     name: string;
     defaultValue?: SelectOption;
@@ -17,7 +16,6 @@ export interface SelectProps {
 function optionFn(selectOption: SelectOption) {
     return <option value={selectOption.value}>{selectOption.label}</option>;
 }
-
 
 function getOptionMapFn(defaultValue:SelectOption) {
 
@@ -37,7 +35,6 @@ function updateFnWrapper(event:any, updateFn:any) {
     let index = event.target.selectedIndex;
     let option = event.target.options[index];
     let value = option.value;
-
     updateFn(value);
 }
 
@@ -46,8 +43,10 @@ export class Select extends Component<SelectProps, {}> {
         let updateFn = this.props.updateFn || nothing;
         let optionFn = getOptionMapFn(this.props.defaultValue);
 
-        return <select onChange={(event) => updateFnWrapper(event, updateFn)}>
-            {this.props.options.map(optionFn)}
-        </select>;
+        return <span>
+            <select onChange={(event) => updateFnWrapper(event, updateFn)}>
+                {this.props.options.map(optionFn)}
+            </select>
+        </span>;
     }
 }

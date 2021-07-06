@@ -10,7 +10,7 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
-
+#[\Attribute]
 class ColorSpace implements Param
 {
     public function __construct(

@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 ImagickRGBColor default 'DeepPink2'
 
+#[\Attribute]
 class TextUnderColor extends ColorElement
 {
     protected function getDefault()

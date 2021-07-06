@@ -1,6 +1,6 @@
 import {h, Component} from "preact";
-import {useState} from 'preact/hooks';
-import {NumberSelect} from "./components/NumberSelect";
+import {Integer} from "./components/Integer";
+import {Number} from "./components/Number";
 import {ValueSelect} from "./components/ValueSelect";
 import {triggerEvent, EventType, registerEvent, unregisterEvent} from "./events";
 import {SelectOption} from "./components/Select";
@@ -14,10 +14,12 @@ import {colorValues} from "./color_convert";
 // https://swagger.io/specification/#example-object
 
 enum OpenApiType {
-    string = "string",
     boolean = "boolean",
     integer = "integer",
-    enum = 'enum'
+    enum = 'enum',
+    number = "number",
+    string = "string",
+
 }
 
 interface Schema {
@@ -83,9 +85,11 @@ function map_api_name(api_param_name: string): string {
         channel_2_sample: "Channel 2",
         channel_3_sample: "Channel 3",
         colorspace: "Colorspace",
-        stroke_color: "Stroke color",
-        background_color: "Background color",
         fill_color: "Fill color",
+
+        background_color: "Background color",
+        paint_type: "Paint type",
+        stroke_color: "Stroke color",
     };
 
     if (known_map.hasOwnProperty(api_param_name) === true) {
@@ -147,9 +151,12 @@ export class ControlPanel extends Component<AppProps, AppState> {
         this.triggerSetImageParams();
     }
 
-    createNumberControl(control_info: ControlInfo) {
+    createIntegerControl(control_info: ControlInfo) {
+
+        // "type": "integer",
+
         return <div>
-            <NumberSelect
+            <Integer
                 name={map_api_name(control_info.name)}
                 // @ts-ignore: blah blah
                 min={control_info.schema.minimum}
@@ -174,27 +181,62 @@ export class ControlPanel extends Component<AppProps, AppState> {
         </div>
     }
 
+    createNumberControl(control_info: ControlInfo) {
+
+        // "type": "integer",
+
+        return <div>
+            <Number
+                name={map_api_name(control_info.name)}
+                // @ts-ignore: blah blah
+                min={control_info.schema.minimum}
+                // @ts-ignore: blah blah
+                max={control_info.schema.maximum}
+                // @ts-ignore: blah blah
+                default={control_info.schema.default}
+                // @ts-ignore: I don't understand that error message.
+                updateFn={(newValue) => {
+                    // @ts-ignore: I don't understand that error message.
+
+                    let new_values = this.state.values;
+                    new_values[control_info.name] = newValue;
+
+                    let obj = {
+                        values: new_values
+                    };
+
+                    this.setState(obj);
+                }}
+            />
+        </div>
+    }
+
+
+
+
     setActiveColor(active_color: string) {
         // console.log("Setting active color: " + active_color);
         this.setState({active_color: active_color})
     }
 
-    setColorFromPicker(color:RgbaColor) {
+    // TODO - these var names
+    setCurrentValue(active_color: string, new_color_string: string) {
+        let current_values = this.state.values;
+        current_values[active_color] = new_color_string;
+        this.setState({values: current_values});
+    }
 
+    setColorFromPicker(color:RgbaColor) {
         if (this.state.active_color === null) {
             throw new Error("active_color is null, can't update color");
         }
-
-        let current_values = this.state.values;
 
         let new_color_string: string = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
 
         if (color.a === 1) {
             new_color_string= `rgb(${color.r}, ${color.g}, ${color.b})`;
         }
-
-        current_values[this.state.active_color] = new_color_string;
-        this.setState({values: current_values});
+        this.setCurrentValue(this.state.active_color, new_color_string);
     }
 
     createColorControl(control_info: ControlInfo) {
@@ -258,26 +300,21 @@ export class ControlPanel extends Component<AppProps, AppState> {
     createEnumControl(control_info: ControlInfo) {
         let options = makeOptionsFromEnum(control_info.schema.enum);
 
+        // TOdo - the current state needs to be passed in...?
+
         return <div>
             <ValueSelect
                 name={map_api_name(control_info.name)}
                 options={options}
                 default={control_info.schema.default}
                 updateFn={(newValue) => {
-                    // @ts-ignore: I don't understand that error message.
-                    let obj = {};
-                    // @ts-ignore: I don't understand that error message.
-                    obj[control_info.name] = newValue;
-                    // @ts-ignore: I don't understand that error message.
-                    this.setState(obj);
+                    this.setCurrentValue(control_info.name, newValue);
                 }}
             />
         </div>
     }
 
     createStringControl(control_info: ControlInfo) {
-        //console.log(control_info);
-
         if (control_info.schema.format === 'color') {
             return this.createColorControl(control_info);
         }
@@ -304,6 +341,10 @@ export class ControlPanel extends Component<AppProps, AppState> {
             }
 
             case OpenApiType.integer: {
+                return this.createIntegerControl(control_info);
+            }
+
+            case OpenApiType.number: {
                 return this.createNumberControl(control_info);
             }
 
@@ -329,6 +370,8 @@ export class ControlPanel extends Component<AppProps, AppState> {
         triggerEvent(EventType.set_image_params, this.state.values);
     }
 
+
+
     render(props: AppProps, state: AppState) {
         // let info_used =
         //     ((1 / this.state.channel_1_sample) ** 2) +
@@ -347,9 +390,14 @@ export class ControlPanel extends Component<AppProps, AppState> {
             controls.push(control);
         }
 
+        let debugBlock = <pre>
+            <code>{JSON.stringify(this.state.values, null, 2)}</code>
+        </pre>
+
         let itemBlock = <div class='col-xs-12 contentPanel controlForm'>
             {controls}
             {processingBlock}
+            {debugBlock}
         </div>;
 
 //         let block = <div class='col-xs-12 contentPanel controlForm' key={"old"}>

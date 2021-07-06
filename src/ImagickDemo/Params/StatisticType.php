@@ -7,6 +7,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
 
+#[\Attribute]
 class StatisticType implements Param
 {
     public function __construct(

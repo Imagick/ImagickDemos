@@ -7,7 +7,7 @@ use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
 
-
+#[\Attribute]
 class ChannelNumber implements Param
 {
     public function __construct(

@@ -9,7 +9,7 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
-
+#[\Attribute]
 class AdaptiveOffset implements Param
 {
     public function __construct(

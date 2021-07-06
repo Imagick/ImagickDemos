@@ -8,6 +8,8 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
+ComponentRangeInt
+#[\Attribute]
 class BlackPoint implements Param
 {
     public function __construct(

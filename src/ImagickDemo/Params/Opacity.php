@@ -3,7 +3,7 @@
 namespace ImagickDemo\Params;
 
 component range - default 100
-
+#[\Attribute]
 class Opacity extends ValueElement
 {
     protected function filterValue($value)

@@ -2,14 +2,13 @@
 
 namespace ImagickDemo\Params;
 
-
-
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 use Params\ProcessRule\MaxFloatValue;
 
+#[\Attribute]
 class Gamma implements Param
 {
     public function __construct(

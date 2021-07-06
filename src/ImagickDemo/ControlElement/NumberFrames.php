@@ -31,7 +31,7 @@ class NumberFrames extends ValueElement
 
     protected function getDisplayName()
     {
-        return 'Number of frames';
+        return 'Integer of frames';
     }
 
     public function getNumberFrames()

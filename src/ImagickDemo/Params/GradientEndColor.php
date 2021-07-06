@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 Imagick RGB color
 
+#[\Attribute]
 class GradientEndColor extends ColorElement
 {
     protected function getDefault()

@@ -9,6 +9,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class Saturation implements Param
 {
     public function __construct(

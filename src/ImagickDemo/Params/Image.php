@@ -4,15 +4,12 @@ namespace ImagickDemo\Params;
 
 use Room11\HTTP\VariableMap;
 
-
-//TODO - rename this to imagePath
-
-
 use Params\ExtractRule\GetStringOrDefault;
 use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
 
+#[\Attribute]
 class Image implements Param
 {
     public function __construct(

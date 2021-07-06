@@ -10,6 +10,7 @@ use Params\ProcessRule\RangeFloatValue;
 
 // ugh - think this needs to default to empty string or null
 
+#[\Attribute]
 class ThresholdAngle implements Param
 {
     public function __construct(

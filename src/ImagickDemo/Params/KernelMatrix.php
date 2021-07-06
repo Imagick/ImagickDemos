@@ -6,6 +6,7 @@ use Room11\HTTP\VariableMap;
 
 TODO - do later
 
+#[\Attribute]
 class KernelMatrix implements ControlElement
 {
     private $kernelMatrix = [

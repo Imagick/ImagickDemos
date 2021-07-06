@@ -10,6 +10,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
 
+#[\Attribute]
 class X implements Param
 {
     public function __construct(

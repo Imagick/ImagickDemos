@@ -31,7 +31,7 @@ class NumberColors extends ValueElement
 
     protected function getDisplayName()
     {
-        return 'Number colors';
+        return 'Integer colors';
     }
 
     public function getNumberColors()

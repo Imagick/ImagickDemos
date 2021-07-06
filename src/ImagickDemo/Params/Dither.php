@@ -8,6 +8,7 @@ use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
 
+#[\Attribute]
 class Dither implements Param
 {
     public function __construct(

@@ -75,11 +75,15 @@ function renderReactControls(VarMap $varMap, string $param_type)
         $param_type::getInputParameterList()
     );
 
-    [$error, $value] = convertToValue($params);
-
-    if ($error !== null) {
-        // what to do here
-        return "oh dear, the form failed to render correctly: " . $error;
+    if (method_exists($params, 'getValuesForForm') === true) {
+        $value = $params->getValuesForForm();
+    }
+    else {
+        [$error, $value] = convertToValue($params);
+        if ($error !== null) {
+            // what to do here
+            return "oh dear, the form failed to render correctly: " . $error;
+        }
     }
 
     $output = sprintf(
@@ -87,6 +91,16 @@ function renderReactControls(VarMap $varMap, string $param_type)
         json_encode_safe($value),
         json_encode($paramDescription)
     );
+
+    $output .= "<div style='border: 1px solid black'>";
+    $output .= "<h3>values</h3>";
+    $output .= nl2br(json_encode_safe($value, JSON_PRETTY_PRINT));
+
+//    $output .= var_export($params, true);
+
+    $output .= "<h3>controls</h3>";
+    $output .= nl2br(json_encode_safe($paramDescription, JSON_PRETTY_PRINT));
+    $output .= "</div>";
 
     return $output;
 }
@@ -142,10 +156,13 @@ function renderExampleBodyHtml(
     if ($example->hasReactControls() === true) {
         $form = renderReactControls($varMap, $example->getParamType());
 
-        $imageBaseUrl = $control->getURL();
+
         $activeCategory = $pageInfo->getCategory();
         $activeExample = $pageInfo->getExample();
-        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+//        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+        //        $imageBaseUrl = $control->getURL();
+        // What about custom images?
+        $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
 
         $exampleHtml = renderReactExampleImagePanel(
             $imageBaseUrl,

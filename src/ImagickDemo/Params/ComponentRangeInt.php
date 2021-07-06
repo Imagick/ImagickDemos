@@ -8,7 +8,7 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
-
+#[\Attribute]
 class ComponentRangeInt implements Param
 {
     public function __construct(

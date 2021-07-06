@@ -3,10 +3,15 @@
 namespace ImagickDemo\Params;
 
 use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetStringOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
 
+
+
+
+#[\Attribute]
 class PaintType implements Param
 {
     public function __construct(
@@ -18,14 +23,9 @@ class PaintType implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault(\Imagick::PAINT_FILLTOBORDER),
-            new EnumMap([
-                \Imagick::PAINT_POINT => "Point",
-                \Imagick::PAINT_REPLACE => "Replace",
-                \Imagick::PAINT_FLOODFILL => "Floodfill",
-                \Imagick::PAINT_FILLTOBORDER => "Fill to border",
-                \Imagick::PAINT_RESET => "Reset"
-            ])
+//            new GetIntOrDefault(\Imagick::PAINT_FILLTOBORDER),
+            new GetStringOrDefault("Fill to border"),
+            new EnumMap(getPaintTypeOptions())
         );
     }
 

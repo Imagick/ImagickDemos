@@ -159,7 +159,7 @@ XRegExp = XRegExp || (function (undef) {
  * @private
  * @param {Array} array Array to search.
  * @param {*} value Value to locate in the array.
- * @returns {Number} Last zero-based index at which the item is found, or -1.
+ * @returns {Integer} Last zero-based index at which the item is found, or -1.
  */
     function lastIndexOf(array, value) {
         var i = array.length;

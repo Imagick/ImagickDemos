@@ -6,8 +6,9 @@ import {FeelingsProps, HumanFeelingsPanel} from "./HumanFeelings";
 
 import {startEventProcessing} from "./events";
 
-
 import "./legacy.js";
+
+console.log("yay compiled");
 
 function setupControlPanel() {
     let controlPanelElement = document.getElementById("controlPanel");

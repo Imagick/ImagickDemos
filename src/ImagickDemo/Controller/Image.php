@@ -144,12 +144,15 @@ class Image
         $category
     ) {
         $params = $control->getFullParams([]);
+
         $params['customImage'] = false;
 
         $mappedParams = [
             "background_color" => "backgroundColor",
-            "stroke_color" => "strokeColor",
             "fill_color" => "fillColor",
+            "fill_modified_color" => "fillModifiedColor",
+            "paint_type" => "paintType",
+            "stroke_color" => "strokeColor",
         ];
 
         foreach ($mappedParams as $src => $dest) {
@@ -161,39 +164,9 @@ class Image
         foreach ($params as $key => $value) {
             $injector->defineParam($key, $value);
         }
-//        exit(0);
 
         $injector->defineParam('customImage', false);
         $injector->defineParam('params', $params);
-
-//        array(7) {
-//            ["background_color"]=> string(18)           "rgb(225, 225, 225)"
-//            ["stroke_color"]=> string(12)"rgb(0, 0, 0)"
-//            ["fill_color"]=> string(11) "DodgerBlue2"
-//            ["customImage"]=> bool(false)
-//            ["backgroundColor"]=> string(18) "rgb(225, 225, 225)"
-//            ["strokeColor"]=> string(12) "rgb(0, 0, 0)"
-//            ["fillColor"]=> string(11) "DodgerBlue2"
-//        }
-//
-//        $fn = function ($strokeColor)
-//        {
-//            echo "strokeColor is $strokeColor";
-//        };
-//
-//        $injector->execute($fn);
-//        exit(0);
-
-
-//        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
-//        if ($result !== null) {
-//            return $result;
-//        }
-//
-//        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
-//        if ($result !== null) {
-//            return $result;
-//        }
 
         return $injector->execute('ImagickDemo\ImageGenerator::directImageCallable');
     }

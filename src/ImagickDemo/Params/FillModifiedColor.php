@@ -4,6 +4,7 @@ namespace ImagickDemo\Params;
 
 This is an ImagickRgbColor
 
+#[\Attribute]
 class FillModifiedColor extends ColorElement
 {
     protected function getDefault()

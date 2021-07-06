@@ -2,13 +2,13 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
+#[\Attribute]
 class B implements Param
 {
     public function __construct(

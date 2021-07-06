@@ -10,6 +10,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class WhiteThreshold implements Param
 {
     public function __construct(

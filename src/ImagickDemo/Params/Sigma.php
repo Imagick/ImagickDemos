@@ -9,6 +9,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
+#[\Attribute]
 class Sigma implements Param
 {
     public function __construct(

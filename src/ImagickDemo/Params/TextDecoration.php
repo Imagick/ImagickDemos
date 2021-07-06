@@ -8,6 +8,7 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
 
+#[\Attribute]
 class TextDecoration implements Param
 {
     public function __construct(

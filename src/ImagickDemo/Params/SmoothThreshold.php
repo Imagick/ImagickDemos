@@ -9,6 +9,7 @@ use Params\ProcessRule\RangeFloatValue;
 
 ComponentRangeFloat
 
+#[\Attribute]
 class SmoothThreshold extends ValueElement
 {
     protected function filterValue($value)

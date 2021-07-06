@@ -7,6 +7,7 @@ use Room11\HTTP\VariableMap;
 
 UnitRange with default 0.1
 
+#[\Attribute]
 class Fuzz extends ValueElement
 {
     private $defaultFuzz;

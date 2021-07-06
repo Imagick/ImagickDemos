@@ -2,15 +2,12 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetStringOrDefault;
 use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
 
-
+#[\Attribute]
 class CanvasType implements Param
 {
     public function __construct(

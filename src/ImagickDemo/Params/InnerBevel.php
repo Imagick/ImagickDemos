@@ -8,6 +8,7 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
+#[\Attribute]
 class InnerBevel implements Param
 {
     public function __construct(

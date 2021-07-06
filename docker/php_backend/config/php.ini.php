@@ -430,7 +430,7 @@ intl.use_exceptions = 1
 ;pdo_odbc.db2_instance_name
 
 [Pdo_mysql]
-; If mysqlnd is used: Number of cache slots for the internal result set cache
+; If mysqlnd is used: Integer of cache slots for the internal result set cache
 ; http://php.net/pdo_mysql.cache_size
 pdo_mysql.cache_size = 2000
 
@@ -475,7 +475,7 @@ mysqli.allow_persistent = On
 ; http://php.net/mysqli.max-links
 mysqli.max_links = -1
 
-; If mysqlnd is used: Number of cache slots for the internal result set cache
+; If mysqlnd is used: Integer of cache slots for the internal result set cache
 ; http://php.net/mysqli.cache_size
 mysqli.cache_size = 2000
 
@@ -555,7 +555,7 @@ mysqlnd.collect_memory_statistics = Off
 
 
 [bcmath]
-; Number of decimal digits for all bcmath functions.
+; Integer of decimal digits for all bcmath functions.
 ; http://php.net/bcmath.scale
 bcmath.scale = 0
 

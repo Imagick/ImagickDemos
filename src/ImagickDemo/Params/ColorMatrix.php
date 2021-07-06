@@ -5,7 +5,7 @@ namespace ImagickDemo\Params;
 use Room11\HTTP\VariableMap;
 
 TODO - do last.
-
+#[\Attribute]
 class ColorMatrix implements ControlElement
 {
     private $colorMatrix = [

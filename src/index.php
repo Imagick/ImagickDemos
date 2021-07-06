@@ -13,6 +13,7 @@ require_once realpath(__DIR__) . '/../vendor/autoload.php';
 require_once realpath(__DIR__) . '/factories.php';
 require_once realpath(__DIR__) . '/functions.php';
 require_once realpath(__DIR__) . '/site_html.php';
+require_once realpath(__DIR__) . '/option_functions.php';
 
 ini_set('display_errors', 'off');
 

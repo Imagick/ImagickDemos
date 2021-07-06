@@ -2,12 +2,12 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
 
+#[\Attribute]
 class Raise implements Param
 {
     public function __construct(

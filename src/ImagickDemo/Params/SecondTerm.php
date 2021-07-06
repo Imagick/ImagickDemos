@@ -9,6 +9,7 @@ use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 
+#[\Attribute]
 class SecondTerm implements Param
 {
     public function __construct(

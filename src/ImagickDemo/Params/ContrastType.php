@@ -7,6 +7,7 @@ use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
 
+#[\Attribute]
 class ContrastType implements Param
 {
     public function __construct(

@@ -11,7 +11,8 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/vendor/autoload.php';
 //require __DIR__ . '/lib/factories.php';
-//require __DIR__ . '/lib/exception_mappers_cli.php';
+//require __DIR__ . '/lib/exception_mappers_cli.php'
+require_once realpath(__DIR__) . '/src/option_functions.php';;
 require __DIR__ . "/cli/cli_commands.php";
 require __DIR__ . "/src/exception_mappers_cli.php";
 

@@ -5,6 +5,7 @@ namespace ImagickDemo\Params;
 
 ImagickRGB color
 
+#[\Attribute]
 class ThresholdColor extends ColorElement
 {
     protected function getDefault()

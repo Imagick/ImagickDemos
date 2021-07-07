@@ -4,7 +4,7 @@ namespace ImagickDemo\ImagickDraw;
 
 use ImagickDemo\ImagickDraw\Params\ThreeColors;
 
-class pathCurveToQuadraticBezierAbsolute extends ImagickDrawExample
+class pathCurveToQuadraticBezierSmoothAbsolute extends ImagickDrawExample
 {
     public function getDescription()
     {

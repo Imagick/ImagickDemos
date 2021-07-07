@@ -669,7 +669,7 @@ class CategoryInfo
             'name' => "pathCurveToQuadratic BezierAbsolute",
         ],
         'pathCurveToQuadraticBezierSmoothAbsolute' => [
-            'pathCurveToQuadraticBezierSmoothAbsolute.php',
+            'pathCurveToQuadraticBezierSmoothAbsolute',
             \ImagickDemo\Control\ReactControls::class,
             'name' => 'pathCurveToQuadratic BezierSmoothAbsolute',
         ],

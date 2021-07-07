@@ -690,18 +690,34 @@ class CategoryInfo
             'polyline',
             \ImagickDemo\Control\ReactControls::class
         ],
-        'pop' => ['push', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'pop' => [
+            'push',
+            \ImagickDemo\Control\ReactControls::class
+            // \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class
+        ],
         'popClipPath' => ['setClipPath', \ImagickDemo\Control\ReactControls::class],
         'popPattern' => ['pushPattern', \ImagickDemo\Control\ReactControls::class],
         'popDefs' => ['popDefs', \ImagickDemo\Control\ReactControls::class],
-        'push' => ['push', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'push' => [
+            'push',
+            \ImagickDemo\Control\ReactControls::class
+            // \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class
+        ],
         'pushClipPath' => ['setClipPath', \ImagickDemo\Control\ReactControls::class],
         'pushPattern' => ['pushPattern', \ImagickDemo\Control\ReactControls::class],
         'rectangle' => ['rectangle', \ImagickDemo\Control\ReactControls::class],
         //'render' => ['render', \ImagickDemo\Control\ReactControls::class],
-        'rotate' => ['rotate', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'rotate' => [
+            'rotate',
+            \ImagickDemo\Control\ReactControls::class
+            //\ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class
+        ],
         'roundRectangle' => ['roundRectangle', \ImagickDemo\Control\RoundRectangleControl::class],
-        'scale' => ['scale', \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class],
+        'scale' => [
+            'scale',
+            \ImagickDemo\Control\ReactControls::class
+//            \ImagickDemo\Control\ControlCompositeBackgroundColorStrokeColorFillColorFillModifiedColor::class
+        ],
         'setClipPath' => ['setClipPath', \ImagickDemo\Control\ReactControls::class],
         'setClipRule' => ['setClipRule', \ImagickDemo\Control\ReactControls::class],
         'setClipUnits' => ['setClipUnits', \ImagickDemo\Control\ReactControls::class],

@@ -159,6 +159,9 @@ class Image
             "translate_y" => "translateY",
         ];
 
+//        var_dump($params);
+//        exit(0);
+
         foreach ($mappedParams as $src => $dest) {
             if (array_key_exists($src, $params) === true) {
                 $params[$dest] = $params[$src];

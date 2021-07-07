@@ -27,23 +27,8 @@ class TextUnderControls implements InputParameterList
         private string $stroke_color,
         #[ImagickColorParam('DodgerBlue2')]
         private string $fill_color,
-        #[TextDecoration()]
-        private string $text_decoration
+        #[ImagickColorParam('LightCoral')]
+        private string $text_under_color,
     ) {
     }
-
-//    public function getBackgroundColor(): string
-//    {
-//        return $this->background_color;
-//    }
-//
-//    public function getStrokeColor(): string
-//    {
-//        return $this->stroke_color;
-//    }
-//
-//    public function getFillColor(): string
-//    {
-//        return $this->fill_color;
-//    }
 }

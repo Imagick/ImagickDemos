@@ -92,15 +92,15 @@ function renderReactControls(VarMap $varMap, string $param_type)
         json_encode($paramDescription)
     );
 
-    $output .= "<div style='border: 1px solid black'>";
-    $output .= "<h3>values</h3>";
-    $output .= nl2br(json_encode_safe($value, JSON_PRETTY_PRINT));
-
-//    $output .= var_export($params, true);
-
-    $output .= "<h3>controls</h3>";
-    $output .= nl2br(json_encode_safe($paramDescription, JSON_PRETTY_PRINT));
-    $output .= "</div>";
+//    $output .= "<div style='border: 1px solid black'>";
+//    $output .= "<h3>values</h3>";
+//    $output .= nl2br(json_encode_safe($value, JSON_PRETTY_PRINT));
+//
+////    $output .= var_export($params, true);
+//
+//    $output .= "<h3>controls</h3>";
+//    $output .= nl2br(json_encode_safe($paramDescription, JSON_PRETTY_PRINT));
+//    $output .= "</div>";
 
     return $output;
 }

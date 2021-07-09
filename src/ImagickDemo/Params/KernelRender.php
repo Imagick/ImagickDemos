@@ -20,10 +20,7 @@ class KernelRender implements Param
         return new InputParameter(
             $this->name,
             new GetStringOrDefault('image'),
-            new EnumMap([
-                'image' => 'Image',
-                'values' => 'Values',
-            ])
+            new EnumMap(getKernelRenderOptions())
         );
     }
 

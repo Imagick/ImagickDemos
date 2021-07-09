@@ -14,7 +14,7 @@ class getColorValueQuantum extends \ImagickDemo\Example
         $colorBlue = $color->getColorValueQuantum(\Imagick::COLOR_BLUE);
         $colorAlpha = $color->getColorValueQuantum(\Imagick::COLOR_ALPHA);
 
-        printf(
+        return sprintf(
             "Red: %s Green: %s  Blue %s Alpha: %s",
             $colorRed,
             $colorGreen,

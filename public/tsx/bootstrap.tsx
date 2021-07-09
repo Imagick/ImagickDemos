@@ -8,8 +8,6 @@ import {startEventProcessing} from "./events";
 
 import "./legacy.js";
 
-console.log("yay compiled");
-
 function setupControlPanel() {
     let controlPanelElement = document.getElementById("controlPanel");
 
@@ -43,12 +41,6 @@ function setupControlPanel() {
         initialControlParams: params,
         controls: controls
     };
-
-    // console.log("params are:");
-    // console.log(params);
-    //
-    // console.log("controls are:");
-    // console.log(controls);
 
     // @ts-ignore: blah blah
     render(
@@ -118,7 +110,8 @@ function setupImagePanel() {
 
     let params:ImageProps = {
         imageBaseUrl: element.dataset.imagebaseurl,
-        pageBaseUrl: element.dataset.pagebaseurl
+        pageBaseUrl: element.dataset.pagebaseurl,
+        fullPageRefresh: true
     };
 
     render(<ImagePanel {...params} />, element);
@@ -131,22 +124,3 @@ function setupImagePanel() {
     setupHumanFeelingsControlPanel();
     startEventProcessing();
 })();
-
-
-// https://github.com/omgovich/react-colorful#usage-with-preact
-//
-// react-colorful, like all other React + TS projects, can potentially cause issues in a Preact + TS application if you have the @types/react package installed, either as a direct dependency or a dependency of a dependency. For example, the Preact TS template comes with @types/enzyme which has @types/react as a dependency.
-//
-//     To fix this, create a declaration.d.ts file or add to your existing:
-//
-//     import React from "react";
-//
-// declare global {
-//     namespace React {
-//         interface ReactElement {
-//             nodeName: any;
-//             attributes: any;
-//             children: any;
-//         }
-//     }
-// }

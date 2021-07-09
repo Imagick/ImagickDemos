@@ -53,7 +53,8 @@ class Page
         NavigationBar $navigationBar,
         Control $control,
         Example $example,
-        DocHelper $docHelper
+        DocHelper $docHelper,
+        \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
     ) {
         if ($varMap->has('page') === true) {
             if ($varMap->get('page') === 'iframe') {
@@ -74,7 +75,8 @@ class Page
             $control,
             $example,
             $docHelper,
-            $varMap
+            $varMap,
+            $taskQueue
         );
     }
 }

@@ -791,18 +791,25 @@ class CategoryInfo
         'syncIterator' => ['construct', \ImagickDemo\Control\ImageControl::class],
     ];
 
+
+
     public static $imagickKernelExamples = [
-        'addKernel'      => ['addKernel', \ImagickDemo\Control\ImageControl::class],
+        'addKernel'      => [
+            'addKernel',
+            \ImagickDemo\Control\ReactControls::class
+            //\ImagickDemo\Control\ImageControl::class
+        ],
         'addUnityKernel' => ['addUnityKernel', \ImagickDemo\Control\NullControl::class],
         'fromMatrix'     => [
             'fromMatrix',
-            \ImagickDemo\ImagickKernel\Control\fromMatrixControl::class
+            // \ImagickDemo\ImagickKernel\Control\fromMatrixControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         'fromBuiltin'    => [
             'fromBuiltin',
             \ImagickDemo\ImagickKernel\Control\fromBuiltIn::class
         ],
-        'getMatrix'      => ['getMatrix', \ImagickDemo\Control\NullControl::class],
+        'getMatrix'      => ['getMatrix', \ImagickDemo\Control\ReactControls::class],
         'scale'          => ['scale', \ImagickDemo\Control\NullControl::class],
         'separate'       => ['separate', \ImagickDemo\Control\NullControl::class],
         

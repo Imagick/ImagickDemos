@@ -21,7 +21,7 @@ class Image implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('renderImageSinusoid'),
+            new GetStringOrDefault('Lorikeet'),
             new EnumMap(getImagePathOptions())
         );
     }

@@ -5,6 +5,7 @@ import { registerEvent, unregisterEvent, EventType } from "./events";
 export interface ImageProps {
    pageBaseUrl: string;
    imageBaseUrl: string;
+   fullPageRefresh: boolean|null;
 }
 
 interface ImageState {
@@ -38,13 +39,23 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         // It is only part of the image params to cache bust.
         delete params.time;
 
-        let full_page_url = this.props.pageBaseUrl + "?" + createQueryString(params);
-        console.log("history is disabled until controls are working.");
-        // window.history.pushState(
-        //     params, // This needs to be restored on state pop?
-        //     '', // Leave blank, as unused.
-        //     full_page_url
-        // );
+        let full_page_url: string = this.props.pageBaseUrl + "?" + createQueryString(params);
+        if (this.props.fullPageRefresh === true) {
+            let current: string = window.location.href;
+
+            if (current.indexOf(full_page_url) === -1) {
+                window.location.href = full_page_url;
+            }
+            return;
+        }
+
+
+        // console.log("history is disabled until controls are working.");
+        window.history.pushState(
+            params, // This needs to be restored on state pop?
+            '', // Leave blank, as unused.
+            full_page_url
+        );
     };
 
     componentWillMount() {
@@ -73,6 +84,10 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
 
         // console.log("Full url is " + fullUrl);
         // <!-- fullUrl is {fullUrl} -->
+
+        if (this.props.fullPageRefresh === true) {
+            return <span></span>;
+        }
 
         // @ts-ignore: TS2322
         return <span>

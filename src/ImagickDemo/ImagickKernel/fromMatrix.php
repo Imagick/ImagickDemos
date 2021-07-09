@@ -2,23 +2,13 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-use ImagickDemo\ImagickKernel\Control\fromMatrixControl;
+
+use ImagickDemo\Control\ReactControls;
 use ImagickDemo\ControlElement\KernelRender;
-use ImagickDemo\App;
 use ImagickDemo\Display;
+use VarMap\VarMap;
+use ImagickDemo\ImagickKernel\Params\FromMatrixControl;
 
-function createFromMatrix()
-{
-    $matrix = [
-        [0.5, 0, 0.2],
-        [0, 1, 0],
-        [0.9, 0, false],
-    ];
-
-    $kernel = \ImagickKernel::fromMatrix($matrix);
-
-    return $kernel;
-}
 
 class fromMatrix extends \ImagickDemo\Example
 {
@@ -27,9 +17,10 @@ class fromMatrix extends \ImagickDemo\Example
      */
     private $fromMatrixControl;
 
-    public function __construct(fromMatrixControl $control)
+    public function __construct(VarMap $varMap)
     {
-        parent::__construct($control);
+        $control = fromMatrixControl::createFromVarMap($varMap);
+
         $this->fromMatrixControl = $control;
     }
 
@@ -38,21 +29,45 @@ class fromMatrix extends \ImagickDemo\Example
         return "Create a kernel from an 2d matrix of values. Each value should either be a float (if the element should be used) or 'false' if the element should be skipped.";
     }
 
-    public function render()
+    public function hasBespokeRender()
     {
-        switch ($this->fromMatrixControl->getKernelRender()) {
-            case (KernelRender::KERNEL_RENDER_IMAGE): {
-                return $this->renderImageURL();
-                break;
-            }
+        return true;
+    }
 
-            case (KernelRender::KERNEL_RENDER_VALUES): {
-                $kernel = createFromMatrix();
+    public function bespokeRender(ReactControls $reactControls)
+    {
+        $output = sprintf(
+            '<div
+                id="imagePanel"
+                data-imageBaseUrl="%s"
+                data-pagebaseurl="%s"
+                ></div>',
+            "/image/ImagickKernel/fromMatrix",
+            "/ImagickKernel/fromMatrix"
+        );
 
-                return Display::renderKernelTable($kernel->getMatrix());
-            }
+        // Well this is horrendous.
+        \ImagickDemo\ImagickKernel\functions::load();
+
+        if ($this->fromMatrixControl->getKernelRender() === "Values") {
+            $kernel = createFromMatrix();
+            $output .= Display::renderKernelTable($kernel->getMatrix());
+        }
+        else {
+            $output .= $reactControls->renderImageURL(false);
         }
 
-        return $this->renderImageURL();
+        return $output;
+
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return FromMatrixControl::class;
     }
 }

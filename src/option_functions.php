@@ -47,3 +47,32 @@ function getTextDecorationOptions(): array
         'Linethrough' => \Imagick::DECORATION_LINETROUGH
     ];
 }
+
+/**
+ * @return array<string, string>
+ */
+function getImagePathOptions()
+{
+    $images = [
+        'Skyline' => realpath(__DIR__ . "/../public/images/Skyline_400.jpg"),
+        'Lorikeet' => realpath(__DIR__ . "/../public/images/Biter_500.jpg"),
+        'People' => realpath(__DIR__ . "/../public/images/SydneyPeople_400.jpg"),
+        'Low contrast' => realpath(__DIR__ . "/../public/images/LowContrast.jpg"),
+    ];
+
+    return $images;
+}
+
+/**
+ * @return array<string, string>
+ */
+function getKernelRenderOptions()
+{
+    $images = [
+        'image' => 'Image',
+        'values' => 'Values',
+    ];
+
+    return $images;
+}
+

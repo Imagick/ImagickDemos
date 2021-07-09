@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use ImagickDemo\Control\ReactControls;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
 use ImagickDemo\Navigation\Nav;
@@ -107,9 +108,6 @@ function renderReactControls(VarMap $varMap, string $param_type)
 
 function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExample)
 {
-//    $imageBaseUrl = $this->control->getURL();
-//    $activeCategory = $this->pageInfo->getCategory();
-//    $activeExample = $this->pageInfo->getExample();
     $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
     return sprintf(
@@ -123,6 +121,20 @@ function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExa
     );
 }
 
+function renderReactExampleCustom($imageBaseUrl, $activeCategory, $activeExample)
+{
+    $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+
+    return sprintf(
+        '<div
+                id="imagePanel"
+                data-imageBaseUrl="%s"
+                data-pagebaseurl="%s"
+                ></div>',
+        $imageBaseUrl,
+        $pageBaseUrl
+    );
+}
 
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
@@ -131,7 +143,8 @@ function renderExampleBodyHtml(
     CategoryNav $nav,
     NavigationBar $navBar,
     VarMap $varMap,
-    PageInfo $pageInfo
+    PageInfo $pageInfo,
+    \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
 ) {
 
     $remaining = 12 - $example->getColumnRightOffset();
@@ -156,19 +169,30 @@ function renderExampleBodyHtml(
     if ($example->hasReactControls() === true) {
         $form = renderReactControls($varMap, $example->getParamType());
 
+        if (method_exists($example, 'hasBespokeRender') &&
+            $example->hasBespokeRender() ) {
 
-        $activeCategory = $pageInfo->getCategory();
-        $activeExample = $pageInfo->getExample();
-//        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
-        //        $imageBaseUrl = $control->getURL();
-        // What about custom images?
-        $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+            $reactControls = new ReactControls(
+                $pageInfo,
+                $taskQueue,
+                $varMap
+            );
 
-        $exampleHtml = renderReactExampleImagePanel(
-            $imageBaseUrl,
-            $activeCategory,
-            $activeExample
-        );
+            $exampleHtml = $example->bespokeRender($reactControls);
+        }
+        else {
+            $activeCategory = $pageInfo->getCategory();
+            $activeExample = $pageInfo->getExample();
+
+            // What about custom images?
+            $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+
+            $exampleHtml = renderReactExampleImagePanel(
+                $imageBaseUrl,
+                $activeCategory,
+                $activeExample
+            );
+        }
     }
     else {
         $form = $control->renderForm();
@@ -289,7 +313,8 @@ function renderPageHtml(
     Control $control,
     Example $example,
     DocHelper $docHelper,
-    VarMap $varMap
+    VarMap $varMap,
+    \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
 ): string  {
 
     $html = renderPageStartHtml($pageInfo);
@@ -306,7 +331,8 @@ function renderPageHtml(
         $categoryNav,
         $navigationBar,
         $varMap,
-        $pageInfo
+        $pageInfo,
+        $taskQueue
     );
 
     $html .= renderPageFooter();

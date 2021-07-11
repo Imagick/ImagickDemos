@@ -2,15 +2,13 @@
 
 namespace ImagickDemo\Controller;
 
-use \SlimAuryn\Response\JsonResponse;
 use Auryn\Injector;
-
-use ImagickDemo\ImageCachePath;
-use ImagickDemo\Helper\PageInfo;
-use ImagickDemo\Example;
 use ImagickDemo\Control;
+use ImagickDemo\Example;
+use ImagickDemo\Helper\PageInfo;
+use ImagickDemo\ImageCachePath;
 use SlimAuryn\Response\ImageResponse;
-use ImagickDemo\Navigation\CategoryInfo;
+use SlimAuryn\Response\JsonResponse;
 
 function getKnownExtensions()
 {
@@ -151,6 +149,11 @@ class Image
             "background_color" => "backgroundColor",
             "fill_color" => "fillColor",
             "fill_modified_color" => "fillModifiedColor",
+            'first_term' => 'kernelFirstTerm',
+            'second_term' => 'kernelSecondTerm',
+            'third_term' => 'kernelThirdTerm',
+            'kernel_type' => 'kernelType',
+            'kernel_render' => "kernelRender",
             "paint_type" => "paintType",
             "stroke_color" => "strokeColor",
             'text_decoration' => 'textDecoration',
@@ -158,9 +161,6 @@ class Image
             "translate_x" => "translateX",
             "translate_y" => "translateY",
         ];
-
-//        var_dump($params);
-//        exit(0);
 
         foreach ($mappedParams as $src => $dest) {
             if (array_key_exists($src, $params) === true) {

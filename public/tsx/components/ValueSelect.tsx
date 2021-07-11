@@ -16,7 +16,7 @@ export class ValueSelect extends Component<SelectProps, {}> {
         }
 
         return <span>
-            {this.props.name}:
+            {this.props.name}
             <Select
                 name={this.props.name}
                 options={this.props.options}

@@ -90,11 +90,16 @@ function map_api_name(api_param_name: string): string {
         endY: "End Y",
         fill_color: "Fill color",
         fill_modified_color: "Fill color 2",
+        first_term: "First term",
+        kernel_render: "Kernel render",
+        kernel_type: "Kernel type",
         paint_type: "Paint type",
+        second_term: "Second term",
         startX: "Start X",
         startY: "Start Y",
         stroke_color: "Stroke color",
         text_under_color: "Text under color",
+        third_term: "Third term",
         translate_x: "Translate X",
         translate_y: "Translate Y"
     };
@@ -179,6 +184,8 @@ export class ControlPanel extends Component<AppProps, AppState> {
     }
 
     createNumberControl(control_info: ControlInfo) {
+
+
 
         return <div>
             <Number
@@ -284,14 +291,13 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
     createEnumControl(control_info: ControlInfo) {
         let options = makeOptionsFromEnum(control_info.schema.enum);
-
-        // TOdo - the current state needs to be passed in...?
+        let default_value = this.state.values[control_info.name] ?? control_info.schema.default;
 
         return <div>
             <ValueSelect
                 name={map_api_name(control_info.name)}
                 options={options}
-                default={control_info.schema.default}
+                default={default_value}
                 updateFn={(newValue) => {
                     this.setCurrentValue(control_info.name, newValue);
                 }}

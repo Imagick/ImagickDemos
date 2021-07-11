@@ -2,21 +2,23 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-use ImagickDemo\ImagickKernel\Control\fromBuiltIn as fromBuiltInControl;
+//use ImagickDemo\ImagickKernel\Control\fromBuiltIn as fromBuiltInControl;
+use ImagickDemo\Control\ReactControls;
 use ImagickDemo\ControlElement\KernelRender;
 use ImagickDemo\Display;
+use ImagickDemo\ImagickKernel\Params\FromMatrixControl;
+use ImagickDemo\ImagickKernel\Params\FromBuiltInControl;
+use VarMap\VarMap;
 
 class fromBuiltin extends \ImagickDemo\Example
 {
-    /**
-     * @var fromBuiltInControl
-     */
-    private $builtInControl;
+    private FromBuiltInControl $fromBuiltInControl;
 
-    public function __construct(fromBuiltInControl $control)
+    public function __construct(VarMap $varMap)
     {
-        parent::__construct($control);
-        $this->builtInControl = $control;
+        $control = FromBuiltInControl::createFromVarMap($varMap);
+
+        $this->fromBuiltInControl = $control;
     }
 
     public function renderDescription()
@@ -25,26 +27,53 @@ class fromBuiltin extends \ImagickDemo\Example
     ";
     }
 
-    public function render()
+    public function bespokeRender(ReactControls $reactControls)
     {
-        switch ($this->builtInControl->getKernelRender()) {
-            case (KernelRender::KERNEL_RENDER_IMAGE): {
-                return $this->renderImageURL();
-                break;
-            }
+        $output = sprintf(
+            '<div
+                id="imagePanel"
+                data-imageBaseUrl="%s"
+                data-pagebaseurl="%s"
+                ></div>',
+            "/image/ImagickKernel/fromBuiltin",
+            "/ImagickKernel/fromBuiltin"
+        );
 
-            case (KernelRender::KERNEL_RENDER_VALUES): {
-                $kernel = createFromBuiltin(
-                    $this->builtInControl->getKernelType(),
-                    $this->builtInControl->getKernelFirstTerm(),
-                    $this->builtInControl->getKernelSecondTerm(),
-                    $this->builtInControl->getKernelThirdTerm()
-                );
+        // Well this is horrendous.
+        \ImagickDemo\ImagickKernel\functions::load();
 
-                return Display::renderKernelTable($kernel->getMatrix());
-            }
+        if ($this->fromBuiltInControl->getKernelRender() === "Values") {
+            $kernel = createFromBuiltin(
+                $this->fromBuiltInControl->getKernelType(),
+                $this->fromBuiltInControl->getFirstTerm(),
+                $this->fromBuiltInControl->getSecondTerm(),
+                $this->fromBuiltInControl->getThirdTerm()
+            );
+
+            $output .= Display::renderKernelTable($kernel->getMatrix());
+            return $output;
         }
 
-        return "Unknown render type.";
+        $url = "/image/ImagickKernel/fromBuiltin";
+        $url .= "?" . http_build_query($this->fromBuiltInControl->getValuesForForm());
+
+        $output .= "<img src='$url' alt='matrix from built in'/>";
+
+        return $output;
+    }
+
+    public function hasBespokeRender()
+    {
+        return true;
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return FromBuiltInControl::class;
     }
 }

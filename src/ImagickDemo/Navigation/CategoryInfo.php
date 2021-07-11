@@ -807,12 +807,12 @@ class CategoryInfo
         ],
         'fromBuiltin'    => [
             'fromBuiltin',
-            \ImagickDemo\ImagickKernel\Control\fromBuiltIn::class
+            \ImagickDemo\Control\ReactControls::class
+//            \ImagickDemo\ImagickKernel\Control\fromBuiltIn::class
         ],
         'getMatrix'      => ['getMatrix', \ImagickDemo\Control\ReactControls::class],
         'scale'          => ['scale', \ImagickDemo\Control\NullControl::class],
         'separate'       => ['separate', \ImagickDemo\Control\NullControl::class],
-        
     ];
 
 

@@ -5,8 +5,8 @@ namespace ImagickDemo\Params;
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
 
 #[\Attribute]
 class KernelSecondTerm implements Param
@@ -21,8 +21,8 @@ class KernelSecondTerm implements Param
         return new InputParameter(
             $this->name,
             new GetFloatOrDefault(0),
-            new MinIntValue(0),
-            new MaxIntValue(5),
+            new MinFloatValue(0),
+            new MaxFloatValue(5),
         );
     }
 

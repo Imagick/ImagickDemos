@@ -39,14 +39,14 @@ class composite extends \ImagickDemo\Example
 
     private TutorialCompositeParams $tutorialCompositeParams;
     
-//    private $type;
+    private VarMap $variableMap;
 
     public function __construct(
 //        CompositeExampleControl $compositeExampleControl,
         VarMap $variableMap
     ) {
-
         $this->tutorialCompositeParams = TutorialCompositeParams::createFromVarMap($variableMap);
+        $this->variableMap = $variableMap;
 //        $this->compositeExampleControl = $compositeExampleControl;
 //        $this->type = $variableMap->getVariable('type', self::SOURCE_1);
     }
@@ -82,7 +82,8 @@ class composite extends \ImagickDemo\Example
     /**
      * @return string
      */
-    public function render()
+//    public function render()
+    public function bespokeRender(/*ReactControls $reactControls*/)
     {
         $layout = <<< END
 
@@ -105,7 +106,13 @@ class composite extends \ImagickDemo\Example
 </div>
 END;
 
-        $output = sprintf(
+        $output = createReactImagePanel(
+            "/image/Tutorial/composite",
+            "/Tutorial/composite",
+            true
+        );
+
+        $output .= sprintf(
             $layout,
             $this->renderCustomImageURL(['type' => self::SOURCE_1]),
             $this->renderCustomImageURL(['type' => self::SOURCE_2]),
@@ -117,9 +124,15 @@ END;
 
     public function renderCustomImageURL($extraParams = [], $originalImageURL = null)
     {
+        $params = $this->tutorialCompositeParams->getValuesForForm();
+
+        foreach($extraParams as $key => $value) {
+            $params[$key] = $value;
+        }
+
         return sprintf(
             "<img src='%s' />",
-            $this->compositeExampleControl->getCustomImageURL($extraParams)
+            '/customImage/Tutorial/composite?' . http_build_query($params)
         );
     }
 
@@ -149,7 +162,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
             'CopyOpacity2' => '',
         ];
         
-        $customImage  = $this->compositeExampleControl->getCompositeExampleType();
+//        $customImage  = $this->compositeExampleControl->getCompositeExampleType();
+        $customImage = $this->tutorialCompositeParams->getCompositeExample();
 
         if (array_key_exists($customImage, $descriptions) == false) {
             return null;
@@ -161,10 +175,13 @@ What makes this useful is for overlaying lighting and shading effects that are l
     /**
      * @throws \Exception
      */
-//    public function renderCustomImage()
-    public function bespokeRender(ReactControls $reactControls)
+    public function renderCustomImage()
     {
-        $type = $this->type;
+        $composite_example_input = $this->tutorialCompositeParams->getCompositeExample();
+
+        $composite_example = getOptionFromOptions($composite_example_input, getTutorialCompositeOptions());
+//        var_dump($blah);
+//        exit(0);
         
         $methods = [
             'multiplyGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MULTIPLY],
@@ -183,16 +200,17 @@ What makes this useful is for overlaying lighting and shading effects that are l
             'CopyOpacity2' => ['getBiter', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_COPYOPACITY],
         ];
 
-        $customImage  = $this->compositeExampleControl->getCompositeExampleType();
 
-        if (array_key_exists($customImage, $methods) == false) {
-            throw new \Exception("Unknown composite method $customImage");
+        if (array_key_exists($composite_example, $methods) == false) {
+            throw new \Exception("Unknown composite method $composite_example");
         }
 
-        $methodInfo = $methods[$customImage];
+        $methodInfo = $methods[$composite_example];
         
         $firstImage = $this->{$methodInfo[0]}();
         $secondImage = $this->{$methodInfo[1]}();
+
+        $type = $this->variableMap->getWithDefault('type', self::SOURCE_1);
 
         switch ($type) {
             case (self::SOURCE_1): {

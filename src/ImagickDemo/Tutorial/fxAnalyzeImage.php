@@ -2,18 +2,30 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Control\FXAnalyzeControl;
+use ImagickDemo\Control\ReactControls;
+use ImagickDemo\Tutorial\Params\FXAnalyzeControls;
+use VarMap\VarMap;
 
 class fxAnalyzeImage extends \ImagickDemo\Example
 {
     private $type;
+
+    private FXAnalyzeControls $fx_analyze_control;
     
-    public function __construct(FXAnalyzeControl $fxAnalyzeControl)
+    public function __construct(VarMap $varMap)
     {
-        parent::__construct($fxAnalyzeControl);
-        $this->type = $fxAnalyzeControl->getCompositeExampleType();
+        $this->fx_analyze_control = FXAnalyzeControls::createFromVarMap($varMap);
     }
-    
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return FXAnalyzeControls::class;
+    }
     
     public function getCustomImageParams()
     {
@@ -36,9 +48,22 @@ END;
         return nl2br($output);
     }
 
-    public function render()
+    public function hasBespokeRender()
     {
-        return $this->renderCustomImageURL();
+        return true;
+    }
+
+    public function bespokeRender(ReactControls $reactControls)
+    {
+        $output = createReactImagePanel(
+            "/customImage/Tutorial/fxAnalyzeImage",
+            "/Tutorial/fxAnalyzeImage",
+            false
+        );
+
+        $output .= $reactControls->renderImageURL(false);
+
+        return $output;
     }
 
     public function renderCustomImage()
@@ -50,11 +75,16 @@ END;
             'example4' => 'example4',
         ];
 
-        if (array_key_exists($this->type, $methods) == false) {
+        // Well this is horrendous.
+        \ImagickDemo\Tutorial\functions::load();
+
+        $type = $this->fx_analyze_control->getFxAnalyzeOption();
+
+        if (array_key_exists($type, $methods) == false) {
             throw new \Exception("Unknown fxanalyze example ".$this->type);
         }
 
-        $method = $methods[$this->type];
+        $method = $methods[$type];
         $this->{$method}();
     }
 

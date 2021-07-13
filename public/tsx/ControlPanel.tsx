@@ -91,6 +91,7 @@ function map_api_name(api_param_name: string): string {
         fill_color: "Fill color",
         fill_modified_color: "Fill color 2",
         first_term: "First term",
+        fx_analyze_example: "FX Analyze example",
         kernel_render: "Kernel render",
         kernel_type: "Kernel type",
         paint_type: "Paint type",

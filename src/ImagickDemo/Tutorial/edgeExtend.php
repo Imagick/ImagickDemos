@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Tutorial;
 
+use ImagickDemo\Tutorial\Params\EdgeExtendControls;
+
 class edgeExtend extends \ImagickDemo\Example
 {
     public function renderDescription()
@@ -19,5 +21,15 @@ END;
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return EdgeExtendControls::class;
     }
 }

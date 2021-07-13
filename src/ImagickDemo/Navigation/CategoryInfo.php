@@ -820,7 +820,11 @@ class CategoryInfo
             NullControl::class,
             'name' => 'Background masking'
         ],
-        'composite' => ['composite', \ImagickDemo\Control\CompositeExampleControl::class ],
+        'composite' => [
+            'composite',
+//            \ImagickDemo\Control\CompositeExampleControl::class
+            \ImagickDemo\Control\ReactControls::class
+        ],
         //'colorspaceLinearity' => ['colorspaceLinearity', \ImagickDemo\Control\NullControl::class],
         
         'diffMarking' => [
@@ -831,14 +835,15 @@ class CategoryInfo
         
         'edgeExtend' => [
             'edgeExtend',
-            \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class,
+//            \ImagickDemo\Control\ControlCompositeImageVirtualPixel::class,
+            \ImagickDemo\Control\ReactControls::class,
             'name' => "Extending images"
-            
         ],
         //'compressImages' => ['compressImages', \ImagickDemo\Control\NullControl::class],
         'fxAnalyzeImage' => [
             'fxAnalyzeImage',
-            \ImagickDemo\Control\FXAnalyzeControl::class
+            \ImagickDemo\Control\ReactControls::class,
+//            \ImagickDemo\Control\FXAnalyzeControl::class
         ],
 
 

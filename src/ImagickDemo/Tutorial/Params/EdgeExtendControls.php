@@ -2,18 +2,19 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickKernel\Params;
+namespace ImagickDemo\Tutorial\Params;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\Params\Image;
-
+use ImagickDemo\Params\VirtualPixel;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-class ImageControl implements InputParameterList
+
+class EdgeExtendControls implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -22,7 +23,9 @@ class ImageControl implements InputParameterList
 
     public function __construct(
         #[Image()]
-        private string $imagePath
+        private string $imagePath,
+        #[VirtualPixel()]
+        private string $virtualPixelType,
     ) {
     }
 
@@ -30,6 +33,7 @@ class ImageControl implements InputParameterList
     {
         return [
             'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'virtual_pixel_type' => getOptionFromOptions($this->virtualPixelType, getVirtualPixelOptions()),
         ];
     }
 }

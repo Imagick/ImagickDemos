@@ -119,3 +119,56 @@ function getKernelTypes(): array
         // Imagick has fromMatrix which is far saner to use.
     ];
 }
+
+
+function getTutorialCompositeOptions()
+{
+    $listOfExamples = [
+        'multiplyGradients' => 'MULTIPLY',
+        'difference'        => 'DIFFERENCE',
+        'screenGradients'   => 'SCREEN',
+        'modulate'          => 'MODULATE',
+        'modulusAdd'        => 'MODULUS ADD',
+        'modulusSubstract'  => 'MODULUS SUBSTRACT',
+        'Dst_In'            => 'DSTIN',
+        'Dst_Out'           => 'DSTOUT',
+        'ATop'              => 'ATOP',
+        'Plus'              => 'PLUS',
+        'Minus'             => 'MINUS',
+        'divide'            => 'COLORDODGE enhance text',
+        'CopyOpacity'       => 'COPYOPACITY', //(Set transparency from gray-scale mask)
+        'CopyOpacity2'      => 'COPYOPACITY version 2', //(Set transparency from gray-scale mask)
+    ];
+
+    return $listOfExamples;
+}
+
+
+function getVirtualPixelOptions()
+{
+    return [
+        'Background color' => \Imagick::VIRTUALPIXELMETHOD_BACKGROUND,
+        'Constant' => \Imagick::VIRTUALPIXELMETHOD_CONSTANT,
+        'Edge' => \Imagick::VIRTUALPIXELMETHOD_EDGE,
+        'Mirror' => \Imagick::VIRTUALPIXELMETHOD_MIRROR,
+        'Tile' => \Imagick::VIRTUALPIXELMETHOD_TILE,
+        'Transparent' => \Imagick::VIRTUALPIXELMETHOD_TRANSPARENT,
+        'Mask' => \Imagick::VIRTUALPIXELMETHOD_MASK,
+        'Black' => \Imagick::VIRTUALPIXELMETHOD_BLACK,
+        'Gray' => \Imagick::VIRTUALPIXELMETHOD_GRAY,
+        'White' => \Imagick::VIRTUALPIXELMETHOD_WHITE,
+        'Horizontal tile' => \Imagick::VIRTUALPIXELMETHOD_HORIZONTALTILE,
+        'Vertical tile' => \Imagick::VIRTUALPIXELMETHOD_VERTICALTILE,
+    ];
+}
+
+
+function getFXAnalyzeOptions()
+{
+    return [
+        'Sinusoid' => 'example1',
+        'Linear gradient' => 'example2',
+        'Gamma gradient' => 'example3',
+        'Squished sinusoid' => 'example4',
+    ];
+}

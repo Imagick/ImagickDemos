@@ -3,7 +3,11 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Control\CompositeExampleControl;
+use ImagickDemo\Control\ReactControls;
+use ImagickDemo\ImagickKernel\Params\FromMatrixControl;
 use Room11\HTTP\VariableMap;
+use ImagickDemo\Tutorial\Params\TutorialCompositeParams;
+use VarMap\VarMap;
 
 //function compositeImageExample()
 //{
@@ -28,19 +32,23 @@ class composite extends \ImagickDemo\Example
     const SOURCE_2 = 'source2';
     const OUTPUT = 'output';
     
-    /**
-     * @var \ImagickDemo\Control\CompositeExampleControl
-     */
-    private $compositeExampleControl;
+//    /**
+//     * @var \ImagickDemo\Control\CompositeExampleControl
+//     */
+//    private $compositeExampleControl;
+
+    private TutorialCompositeParams $tutorialCompositeParams;
     
-    private $type;
+//    private $type;
 
     public function __construct(
-        CompositeExampleControl $compositeExampleControl,
-        VariableMap $variableMap
+//        CompositeExampleControl $compositeExampleControl,
+        VarMap $variableMap
     ) {
-        $this->compositeExampleControl = $compositeExampleControl;
-        $this->type = $variableMap->getVariable('type', self::SOURCE_1);
+
+        $this->tutorialCompositeParams = TutorialCompositeParams::createFromVarMap($variableMap);
+//        $this->compositeExampleControl = $compositeExampleControl;
+//        $this->type = $variableMap->getVariable('type', self::SOURCE_1);
     }
 
     public static function getExamples()
@@ -65,10 +73,10 @@ class composite extends \ImagickDemo\Example
         return $listOfExamples;
     }
 
-    public function getCustomImageParams()
-    {
-        return ['type' => $this->type];
-    }
+//    public function getCustomImageParams()
+//    {
+//        return ['type' => $this->type];
+//    }
     
 
     /**
@@ -153,7 +161,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
     /**
      * @throws \Exception
      */
-    public function renderCustomImage()
+//    public function renderCustomImage()
+    public function bespokeRender(ReactControls $reactControls)
     {
         $type = $this->type;
         
@@ -420,5 +429,21 @@ What makes this useful is for overlaying lighting and shading effects that are l
         $imagick->drawImage($draw);
 
         return $imagick;
+    }
+
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return TutorialCompositeParams::class;
+    }
+
+    public function hasBespokeRender()
+    {
+        return true;
     }
 }

@@ -29,14 +29,10 @@ class fromBuiltin extends \ImagickDemo\Example
 
     public function bespokeRender(ReactControls $reactControls)
     {
-        $output = sprintf(
-            '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                ></div>',
+        $output = createReactImagePanel(
             "/image/ImagickKernel/fromBuiltin",
-            "/ImagickKernel/fromBuiltin"
+            "/ImagickKernel/fromBuiltin",
+            true
         );
 
         // Well this is horrendous.

@@ -122,15 +122,16 @@ class Image
         $injector->defineParam('customImage', true);
         $injector->defineParam('params', $params);
 
-        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
-        if ($result !== null) {
-            return $result;
-        }
-
-        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
-        if ($result !== null) {
-            return $result;
-        }
+        // TODO - re-enable queueing image generation.
+//        $result = $injector->execute('ImagickDemo\ImageGenerator::cachedImageCallable');
+//        if ($result !== null) {
+//            return $result;
+//        }
+//
+//        $result = $injector->execute('ImagickDemo\ImageGenerator::createImageTask');
+//        if ($result !== null) {
+//            return $result;
+//        }
 
         return $injector->execute('ImagickDemo\ImageGenerator::directCustomImageCallable');
     }

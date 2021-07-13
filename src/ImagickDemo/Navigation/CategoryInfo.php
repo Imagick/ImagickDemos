@@ -802,13 +802,11 @@ class CategoryInfo
         'addUnityKernel' => ['addUnityKernel', \ImagickDemo\Control\NullControl::class],
         'fromMatrix'     => [
             'fromMatrix',
-            // \ImagickDemo\ImagickKernel\Control\fromMatrixControl::class
             \ImagickDemo\Control\ReactControls::class
         ],
         'fromBuiltin'    => [
             'fromBuiltin',
             \ImagickDemo\Control\ReactControls::class
-//            \ImagickDemo\ImagickKernel\Control\fromBuiltIn::class
         ],
         'getMatrix'      => ['getMatrix', \ImagickDemo\Control\ReactControls::class],
         'scale'          => ['scale', \ImagickDemo\Control\NullControl::class],

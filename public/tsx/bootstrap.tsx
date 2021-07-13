@@ -111,7 +111,7 @@ function setupImagePanel() {
     let params:ImageProps = {
         imageBaseUrl: element.dataset.imagebaseurl,
         pageBaseUrl: element.dataset.pagebaseurl,
-        fullPageRefresh: true
+        fullPageRefresh: (element.dataset.full_page_refresh == "true")
     };
 
     render(<ImagePanel {...params} />, element);

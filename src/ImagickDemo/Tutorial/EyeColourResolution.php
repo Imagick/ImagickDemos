@@ -120,14 +120,10 @@ END;
         $activeExample = $this->pageInfo->getExample();
         $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
-        return sprintf(
-            '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                ></div>',
+        return createReactImagePanel(
             $imageBaseUrl,
-            $pageBaseUrl
+            $pageBaseUrl,
+            false
         );
     }
 }

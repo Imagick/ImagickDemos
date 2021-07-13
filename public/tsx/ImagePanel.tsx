@@ -40,7 +40,6 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         delete params.time;
 
         let full_page_url: string = this.props.pageBaseUrl + "?" + createQueryString(params);
-        // debugger;
         if (this.props.fullPageRefresh === true) {
             let current: string = window.location.href;
 

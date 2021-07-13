@@ -110,29 +110,24 @@ function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExa
 {
     $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
-    return sprintf(
-        '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                ></div>',
+    return createReactImagePanel(
         $imageBaseUrl,
-        $pageBaseUrl
+        $pageBaseUrl,
+        false
     );
 }
 
 function renderReactExampleCustom($imageBaseUrl, $activeCategory, $activeExample)
 {
+    // todo - wat?
+    // $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+
     $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
-    return sprintf(
-        '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                ></div>',
+    return createReactImagePanel(
         $imageBaseUrl,
-        $pageBaseUrl
+        $pageBaseUrl,
+        false
     );
 }
 
@@ -649,3 +644,28 @@ HTML;
 
     return $html;
 }
+
+
+function createReactImagePanel(
+    string $imageBaseUrl,
+    string $pageBaseUrl,
+    bool $full_page_refresh
+): string {
+    $refreshString = 'false';
+    if ($full_page_refresh) {
+        $refreshString = 'true';
+    }
+
+    return sprintf(
+        '<div
+                id="imagePanel"
+                data-imageBaseUrl="%s"
+                data-pagebaseurl="%s"
+                data-full_page_refresh="%s"
+                ></div>',
+        $imageBaseUrl,
+        $pageBaseUrl,
+        $refreshString
+    );
+}
+

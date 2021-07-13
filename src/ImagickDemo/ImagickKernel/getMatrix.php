@@ -3,6 +3,7 @@
 namespace ImagickDemo\ImagickKernel;
 
 use ImagickDemo\Display;
+use ImagickDemo\ImagickKernel\Params\NullControl;
 
 class getMatrix extends \ImagickDemo\Example
 {
@@ -11,7 +12,12 @@ class getMatrix extends \ImagickDemo\Example
         return "Get the 2d matrix of values used in this kernel. The elements are either float for elements that are used or 'false' if the element should be skipped.";
     }
 
-    public function render()
+    public function hasBespokeRender()
+    {
+        return true;
+    }
+
+    public function bespokeRender()
     {
 //Example ImagickKernel::getMatrix
         $output = "The built-in kernel name 'ring' with parameters of '2,3.5':<br/>";
@@ -39,5 +45,15 @@ class getMatrix extends \ImagickDemo\Example
 
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return NullControl::class;
     }
 }

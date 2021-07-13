@@ -33,14 +33,10 @@ class fromMatrix extends \ImagickDemo\Example
 
     public function bespokeRender(ReactControls $reactControls)
     {
-        $output = sprintf(
-            '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                ></div>',
+        $output = createReactImagePanel(
             "/image/ImagickKernel/fromMatrix",
-            "/ImagickKernel/fromMatrix"
+            "/ImagickKernel/fromMatrix",
+            true
         );
 
         // Well this is horrendous.

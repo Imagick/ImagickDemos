@@ -866,20 +866,21 @@ class CategoryInfo
         'imagickComposite' => ['imagickComposite', \ImagickDemo\Control\NullControl::class],
         'imagickCompositeGen' => [
             'imagickCompositeGen',
-            \ImagickDemo\Control\blendComposite::class,
-
-            'defaultParams' => [
-                'contrast' => 10
-            ]
+            \ImagickDemo\Control\ReactControls::class
+//            \ImagickDemo\Control\blendComposite::class,
+//            'defaultParams' => [
+//                'contrast' => 10
+//            ]
         ],
         'listColors' => ['listColors', \ImagickDemo\Control\NullControl::class],
         'levelizeImage' => [
             'levelizeImage',
-            \ImagickDemo\Control\blackAndWhitePoint::class,
-            'defaultParams' => [
-                'blackPoint' => 50,
-                'whitePoint' => 100
-            ]
+            \ImagickDemo\Control\ReactControls::class
+//            \ImagickDemo\Control\blackAndWhitePoint::class,
+//            'defaultParams' => [
+//                'blackPoint' => 50,
+//                'whitePoint' => 100
+//            ]
         ],
         'layerPSD' => ['layerPSD', \ImagickDemo\Control\NullControl::class],
         'logoTshirt' => ['logoTshirt', \ImagickDemo\Control\NullControl::class],
@@ -891,7 +892,7 @@ class CategoryInfo
         'psychedelicFont' => ['psychedelicFont', \ImagickDemo\Control\NullControl::class],
         'psychedelicFontGif' => ['psychedelicFontGif', \ImagickDemo\Control\NullControl::class],
 
-        'whirlyGif' =>  ['whirlyGif', \ImagickDemo\Imagick\Control\loopGif::class],
+        'whirlyGif' =>  ['whirlyGif', \ImagickDemo\Control\ReactControls::class],
         'svgExample' => ['svgExample', \ImagickDemo\Control\NullControl::class],
         'screenEmbed' => ['screenEmbed', \ImagickDemo\Control\NullControl::class],
         'imageGeometryReset' => ['imageGeometryReset', \ImagickDemo\Control\NullControl::class],

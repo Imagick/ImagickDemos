@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Tutorial;
 
+use ImagickDemo\Tutorial\Params\WhirlyGifControls;
+
 class whirlyGif extends \ImagickDemo\Example
 {
     public function renderDescription()
@@ -17,5 +19,15 @@ Top-tip, you probably want 'Integer of dots' % 'Phase divider' to be zero.";
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return WhirlyGifControls::class;
     }
 }

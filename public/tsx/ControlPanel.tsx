@@ -82,6 +82,7 @@ function map_api_name(api_param_name: string): string {
 
     let known_map = {
         background_color: "Background color",
+        black_point: "Black point",
         channel_1_sample: "Channel 1",
         channel_2_sample: "Channel 2",
         channel_3_sample: "Channel 3",
@@ -102,7 +103,8 @@ function map_api_name(api_param_name: string): string {
         text_under_color: "Text under color",
         third_term: "Third term",
         translate_x: "Translate X",
-        translate_y: "Translate Y"
+        translate_y: "Translate Y",
+        white_point: "White point",
     };
 
     if (known_map.hasOwnProperty(api_param_name) === true) {

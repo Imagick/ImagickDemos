@@ -148,6 +148,7 @@ class Image
 
         $mappedParams = [
             "background_color" => "backgroundColor",
+            'black_point' => "blackPoint",
             "fill_color" => "fillColor",
             "fill_modified_color" => "fillModifiedColor",
             'first_term' => 'kernelFirstTerm',
@@ -161,6 +162,7 @@ class Image
             "text_under_color" => "textUnderColor",
             "translate_x" => "translateX",
             "translate_y" => "translateY",
+            'white_point' => "whitePoint",
         ];
 
         foreach ($mappedParams as $src => $dest) {

@@ -2,9 +2,11 @@
 
 namespace ImagickDemo\Tutorial;
 
+use ImagickDemo\Tutorial\Params\LevelizeImageControls;
+
 class levelizeImage extends \ImagickDemo\Example
 {
-    public function render()
+    public function renderDescription()
     {
         $output = <<< 'END'
 <p>The ImageMagick library has a <a href='http://www.imagemagick.org/Usage/color_mods/#level_plus'>Reversed 
@@ -13,30 +15,41 @@ is not usable in Imagick. However we can achive the same result by using the eva
 <p>
 
 So to do the equivalent of:
+</p>
 
 <pre>convert -size 300x300 gradient:black-white +level 50x100%</pre>
 <br/>
+<p>
 Or more generally:
-
+</p>
 <pre>
 convert -size 300x300 gradient:black-white +level ${blackPoint}x${whitePoint}%
 </pre>
 
+<p>
 You can use use Imagick::evaluateImage with a separate EVALUATE_POW, EVALUATE_MULTIPLY, EVALUATE_ADD
 
 </p>
 END;
-  
-        $output .= "<br/>";
-        $output .= $this->renderImageURL();
-
         return $output;
     }
+
+
     /**
      * @return \ImagickDemo\Control
      */
     public function getControl()
     {
         return $this->control;
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return LevelizeImageControls::class;
     }
 }

@@ -6,6 +6,18 @@ use Room11\HTTP\VariableMap;
 
 // This is a UnitRange with default 0.5
 
+use Params\ExtractRule\GetFloatOrDefault;
+use Params\InputParameter;
+use Params\Param;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
+
+// This is a UnitRange with default 0.5
+// This is a UnitRange with default 0.5
+// This is a UnitRange with default 0.5
+// This is a UnitRange with default 0.5
+// This is a UnitRange with default 0.5
+
 class BlendMidpoint extends ValueElement
 {
     private $default;

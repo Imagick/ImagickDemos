@@ -172,3 +172,12 @@ function getFXAnalyzeOptions()
         'Squished sinusoid' => 'example4',
     ];
 }
+
+function getBackgroundColorChoiceOptions()
+{
+    return [
+        "white" => "White",
+        "black" => "Black",
+        //"none" => "Transparent", //This needs webp to be nice.
+    ];
+}

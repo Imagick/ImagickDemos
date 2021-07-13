@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\ImagickPixelIterator;
 
+use ImagickDemo\ImagickKernel\Params\ImageControl;
+
 class getNextIteratorRow extends \ImagickDemo\Example
 {
     public function render()
@@ -10,5 +12,15 @@ class getNextIteratorRow extends \ImagickDemo\Example
         $output .= $this->renderImageURL();
 
         return $output;
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

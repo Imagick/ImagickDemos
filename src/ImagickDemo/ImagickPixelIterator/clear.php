@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\ImagickPixelIterator;
 
+use ImagickDemo\ImagickKernel\Params\ImageControl;
+
 class clear extends \ImagickDemo\Example
 {
 
@@ -13,5 +15,15 @@ class clear extends \ImagickDemo\Example
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

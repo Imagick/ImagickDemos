@@ -776,19 +776,19 @@ class CategoryInfo
 
 
     public static $imagickPixelIteratorExamples = [
-        'clear' => ['clear', \ImagickDemo\Control\ImageControl::class],
-        'construct' => ['construct', \ImagickDemo\Control\ImageControl::class],
+        'clear' => ['clear', \ImagickDemo\Control\ReactControls::class],
+        'construct' => ['construct', \ImagickDemo\Control\ReactControls::class],
         //'getCurrentIteratorRow',
         //'getIteratorRow' => 'setIteratorRow',
-        'getNextIteratorRow' => ['getNextIteratorRow', \ImagickDemo\Control\ImageControl::class ],
+        'getNextIteratorRow' => ['getNextIteratorRow', \ImagickDemo\Control\ReactControls::class ],
         //'getPreviousIteratorRow',
         //'newPixelIterator', deprecated
         //'newPixelRegionIterator', deprecated
-        'resetIterator' => ['resetIterator', \ImagickDemo\Control\ImageControl::class],
+        'resetIterator' => ['resetIterator', \ImagickDemo\Control\ReactControls::class],
         //'setIteratorFirstRow',
         //'setIteratorLastRow',
-        'setIteratorRow' => ['setIteratorRow', \ImagickDemo\Control\ImageControl::class],
-        'syncIterator' => ['construct', \ImagickDemo\Control\ImageControl::class],
+        'setIteratorRow' => ['setIteratorRow', \ImagickDemo\Control\ReactControls::class],
+        'syncIterator' => ['construct', \ImagickDemo\Control\ReactControls::class],
     ];
 
 

@@ -21,23 +21,8 @@ class Channel implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault(\Imagick::CHANNEL_ALL),
-            new EnumMap([
-                \Imagick::CHANNEL_RED => 'Red',
-                //\Imagick::CHANNEL_GRAY      => 'Gray',
-                //\Imagick::CHANNEL_CYAN      => 'Cyan',
-                \Imagick::CHANNEL_GREEN => 'Green',
-                //\Imagick::CHANNEL_MAGENTA   => 'Magenta',
-                \Imagick::CHANNEL_BLUE => 'Blue',
-                //\Imagick::CHANNEL_YELLOW    => 'Yellow',
-                \Imagick::CHANNEL_ALPHA => 'Alpha',
-                //\Imagick::CHANNEL_OPACITY   => 'Opacity',
-                //\Imagick::CHANNEL_MATTE     => 'Matte',
-                //\Imagick::CHANNEL_BLACK     => 'Black',
-                //\Imagick::CHANNEL_INDEX     => 'Index',
-                \Imagick::CHANNEL_ALL => 'All',
-                //\Imagick::CHANNEL_DEFAULT   => 'Default',
-            ])
+            new GetStringOrDefault('All'),
+            new EnumMap(getChannelOptions())
         );
     }
 

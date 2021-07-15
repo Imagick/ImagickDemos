@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\AddNoiseImageControl;
+
 class addNoiseImage extends \ImagickDemo\Example
 {
     function getOriginalImage()
@@ -31,4 +33,17 @@ class addNoiseImage extends \ImagickDemo\Example
     {
         return $this->renderImageURL();
     }
+
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return AddNoiseImageControl::class;
+    }
+
+
 }

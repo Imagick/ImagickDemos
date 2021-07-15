@@ -181,3 +181,47 @@ function getBackgroundColorChoiceOptions()
         //"none" => "Transparent", //This needs webp to be nice.
     ];
 }
+
+function getChannelOptions()
+{
+    return [
+        'Red' => \Imagick::CHANNEL_RED,
+        //\Imagick::CHANNEL_GRAY      => 'Gray',
+        //\Imagick::CHANNEL_CYAN      => 'Cyan',
+        'Green' => \Imagick::CHANNEL_GREEN,
+        //\Imagick::CHANNEL_MAGENTA   => 'Magenta',
+        'Blue' => \Imagick::CHANNEL_BLUE,
+        //\Imagick::CHANNEL_YELLOW    => 'Yellow',
+        'Alpha' => \Imagick::CHANNEL_ALPHA,
+        //\Imagick::CHANNEL_OPACITY   => 'Opacity',
+        //\Imagick::CHANNEL_MATTE     => 'Matte',
+        //\Imagick::CHANNEL_BLACK     => 'Black',
+        //\Imagick::CHANNEL_INDEX     => 'Index',
+        'All' => \Imagick::CHANNEL_ALL,
+        //\Imagick::CHANNEL_DEFAULT   => 'Default',
+    ];
+}
+
+
+
+function getEnabledOptions()
+{
+    return [
+        'Disabled' => 0,
+        'Enabled' => 1,
+    ];
+}
+
+
+function getNoiseOptions()
+{
+    return [
+        'Uniform'  => \Imagick::NOISE_UNIFORM,
+        'Gaussian'  => \Imagick::NOISE_GAUSSIAN,
+        'Multiplicative gaussian'  => \Imagick::NOISE_MULTIPLICATIVEGAUSSIAN,
+        'Impulse'  => \Imagick::NOISE_IMPULSE,
+        'Laplacian'  => \Imagick::NOISE_LAPLACIAN,
+        'Poisson'  => \Imagick::NOISE_POISSON,
+        'Random'  => \Imagick::NOISE_RANDOM,
+    ];
+}

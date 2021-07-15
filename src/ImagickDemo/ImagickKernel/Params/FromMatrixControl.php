@@ -41,6 +41,4 @@ class FromMatrixControl implements InputParameterList
     {
         return $this->kernel_render;
     }
-
-
 }

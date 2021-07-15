@@ -162,39 +162,39 @@ class CategoryInfo
     
     
     public static $imagickExamples = [
-        'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Imagick\Control\adaptiveBlurImage::class],
+        'adaptiveBlurImage' => ['adaptiveBlurImage', \ImagickDemo\Control\ReactControls::class],
 
-        'adaptiveResizeImage' => ['adaptiveResizeImage', \ImagickDemo\Imagick\Control\adaptiveResizeImage::class],
-        'adaptiveSharpenImage' => ['adaptiveSharpenImage', \ImagickDemo\Imagick\Control\adaptiveSharpenImage::class ],
+        'adaptiveResizeImage' => ['adaptiveResizeImage', \ImagickDemo\Control\ReactControls::class],
+        'adaptiveSharpenImage' => ['adaptiveSharpenImage', \ImagickDemo\Control\ReactControls::class ],
         'adaptiveThresholdImage' => [
             'adaptiveThresholdImage',
-            \ImagickDemo\Imagick\Control\adaptiveThresholdImage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'addImage',
-        'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Imagick\Control\addNoiseImage::class],
-        'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ImageControl::class], //Doesn't work?
+        'addNoiseImage' => ['addNoiseImage', \ImagickDemo\Control\ReactControls::class],
+        'affineTransformImage' => ['affineTransformImage', \ImagickDemo\Control\ReactControls::class], //Doesn't work?
         //'animateImages',
         'annotateImage' => [
             'annotateImage',
-            \ImagickDemo\Imagick\Control\annotateImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'fillColor' => 'rgb(232, 227, 232)'
             ],
         ],
 
         'appendImages' => ['appendImages', \ImagickDemo\Control\NullControl::class],
-        'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ImageControl::class],
-        'blackThresholdImage' => ['blackThresholdImage', \ImagickDemo\Imagick\Control\blackThresholdImage::class],
-        'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Imagick\Control\BlueShiftControl::class],
-        'blurImage' => ['blurImage', \ImagickDemo\Imagick\Control\BlurControl::class],
-        'borderImage' => ['borderImage', \ImagickDemo\Imagick\Control\borderImage::class],
-        'brightnessContrastImage' => ['brightnessContrastImage', \ImagickDemo\Imagick\Control\brightnessContrastImage::class],
+        'autoLevelImage' => ['autoLevelImage', \ImagickDemo\Control\ReactControls::class],
+        'blackThresholdImage' => ['blackThresholdImage', \ImagickDemo\Control\ReactControls::class],
+        'blueShiftImage' => ['blueShiftImage', \ImagickDemo\Control\ReactControls::class],
+        'blurImage' => ['blurImage', \ImagickDemo\Control\ReactControls::class],
+        'borderImage' => ['borderImage', \ImagickDemo\Control\ReactControls::class],
+        'brightnessContrastImage' => ['brightnessContrastImage', \ImagickDemo\Control\ReactControls::class],
 
         
-        'charcoalImage' => ['charcoalImage', \ImagickDemo\Imagick\Control\charcoalImage::class],
+        'charcoalImage' => ['charcoalImage', \ImagickDemo\Control\ReactControls::class],
         'chopImage' => [
             'chopImage',
-            \ImagickDemo\Imagick\Control\chopImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [ 'width' => 100 ]
         ],
         //'clear' - alias of destroy
@@ -204,25 +204,25 @@ class CategoryInfo
         
         //This isn't implemented yet.
         //'colorDecisionListImage' => ['colorDecisionListImage', \ImagickDemo\Control\ImageControl::class],
-        'colorizeImage' => ['colorizeImage', \ImagickDemo\Imagick\Control\colorizeImage::class],
+        'colorizeImage' => ['colorizeImage', \ImagickDemo\Control\ReactControls::class],
         'colorMatrixImage' => [
-            'colorMatrixImage', \ImagickDemo\Imagick\Control\colorMatrixImage::class
+            'colorMatrixImage', \ImagickDemo\Control\ReactControls::class
         ],
         //'combineImages',
         //'commentImage',
         //'compareImageChannels',
         //'compareImageLayers',
         //'compareImages',
-        'compositeImage' => ['compositeImage',\ImagickDemo\Control\ImageControl::class ],
+        'compositeImage' => ['compositeImage',\ImagickDemo\Control\ReactControls::class ],
         // CompositeLayers
         //__construct',
-        'contrastImage' => ['contrastImage', \ImagickDemo\Imagick\Control\contrastImage::class],
+        'contrastImage' => ['contrastImage', \ImagickDemo\Control\ReactControls::class],
         //'contrastStretchImage',
         'convolveImage' => [
             'convolveImage',
-            \ImagickDemo\Imagick\Control\convolveImage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
-        'cropImage' => ['cropImage', \ImagickDemo\Imagick\Control\cropImage::class],
+        'cropImage' => ['cropImage', \ImagickDemo\Control\ReactControls::class],
         //'cropThumbnailImage',
         //'current',
         //'cycleColormapImage',
@@ -234,36 +234,36 @@ class CategoryInfo
         //'decipherImage' - no1curr
         //'deconstructImages',
         //'deleteImageArtifact',
-        'deskewImage' => ['deskewImage', \ImagickDemo\Imagick\Control\deskewImage::class ],
-        'despeckleImage' => ['despeckleImage', \ImagickDemo\Control\ImageControl::class],
+        'deskewImage' => ['deskewImage', \ImagickDemo\Control\ReactControls::class ],
+        'despeckleImage' => ['despeckleImage', \ImagickDemo\Control\ReactControls::class],
         //'destroy',
         //'displayImage' - no1curr, X server,
         //'displayImages' - no1curr, X server,
-        'distortImage' => ['distortImage', \ImagickDemo\Control\ControlCompositeImageDistortionType::class],
+        'distortImage' => ['distortImage', \ImagickDemo\Control\ReactControls::class],
         'drawImage' => [
             'drawImage', \ImagickDemo\Control\NullControl::class
         ],
         'edgeImage' => [
             'edgeImage',
-            \ImagickDemo\Imagick\Control\edgeImage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         'embossImage' => [
             'embossImage',
-            \ImagickDemo\Imagick\Control\embossImage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'encipherImage' - no1curr
-        'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ImageControl::class],
-        'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ImageControl::class],
-        'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\EvaluateTypeControl::class],
-        'exportImagePixels' => ['exportImagePixels', \ImagickDemo\Control\ImageControl::class],
-        'extentImage' => ['extentImage',\ImagickDemo\Control\ImageControl::class],
-        'filter' => ['filter', \ImagickDemo\Control\ImageControl::class],
+        'enhanceImage' => ['enhanceImage', \ImagickDemo\Control\ReactControls::class],
+        'equalizeImage' => ['equalizeImage', \ImagickDemo\Control\ReactControls::class],
+        'evaluateImage' =>  ['evaluateImage', \ImagickDemo\Control\ReactControls::class],
+        'exportImagePixels' => ['exportImagePixels', \ImagickDemo\Control\ReactControls::class],
+        'extentImage' => ['extentImage',\ImagickDemo\Control\ReactControls::class],
+        'filter' => ['filter', \ImagickDemo\Control\ReactControls::class],
         //FrameImage
         'flattenImages' => ['flattenImages', \ImagickDemo\Control\NullControl::class],
-        'flipImage' => ['flipImage', \ImagickDemo\Control\ImageControl::class],
+        'flipImage' => ['flipImage', \ImagickDemo\Control\ReactControls::class],
         'floodFillPaintImage' => [
             'floodFillPaintImage',
-            \ImagickDemo\Imagick\Control\floodFillPaintImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'x' => 260,
                 'y' => 150,
@@ -272,13 +272,13 @@ class CategoryInfo
                 'targetColor' => 'rgb(245, 124, 24)'
             ]
         ],
-        'flopImage' => ['flopImage', \ImagickDemo\Control\ImageControl::class],
-        'forwardFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
-        'frameImage' => ['frameImage', \ImagickDemo\Imagick\Control\frameImage::class],
-        'functionImage' => ['functionImage', \ImagickDemo\Control\ImagickFunctionControl::class],
-        'fxImage' => ['fxImage', \ImagickDemo\Control\ImageControl::class],
-        'gammaImage' => ['gammaImage', \ImagickDemo\Imagick\Control\gammaImage::class],
-        'gaussianBlurImage' => ['gaussianBlurImage', \ImagickDemo\Imagick\Control\gaussianBlurImage::class],
+        'flopImage' => ['flopImage', \ImagickDemo\Control\ReactControls::class],
+        'forwardFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ReactControls::class],
+        'frameImage' => ['frameImage', \ImagickDemo\Control\ReactControls::class],
+        'functionImage' => ['functionImage', \ImagickDemo\Control\ReactControls::class],
+        'fxImage' => ['fxImage', \ImagickDemo\Control\ReactControls::class],
+        'gammaImage' => ['gammaImage', \ImagickDemo\Control\ReactControls::class],
+        'gaussianBlurImage' => ['gaussianBlurImage', \ImagickDemo\Control\ReactControls::class],
         //'getColorspace',
         //'getCompression',
         //'getCompressionQuality',
@@ -302,13 +302,13 @@ class CategoryInfo
         //'getImageChannelKurtosis',
         //'getImageChannelMean',
         //'getImageChannelRange',
-        'getImageChannelStatistics' => ['getImageChannelStatistics', \ImagickDemo\Control\ImageControl::class],
+        'getImageChannelStatistics' => ['getImageChannelStatistics', \ImagickDemo\Control\ReactControls::class],
         //'getImageClipMask',
         //'getImageColormapColor',
         //'getImageColors',
         //'getImageColorspace',
         //'getImageCompose',
-        'getImageCompression' => ['getImageCompression', \ImagickDemo\Control\ImageControl::class],
+        'getImageCompression' => ['getImageCompression', \ImagickDemo\Control\ReactControls::class],
         //'getCompressionQuality',
         //'getImageDelay',
         //'getImageDepth',
@@ -318,11 +318,11 @@ class CategoryInfo
         //'getImageFilename',
         //'getImageFormat',
         //'getImageGamma',
-        'getImageGeometry' => ['getImageGeometry', \ImagickDemo\Control\ImageControl::class],
+        'getImageGeometry' => ['getImageGeometry', \ImagickDemo\Control\ReactControls::class],
         //'getImageGravity',
         //'getImageGreenPrimary',
         //'getImageHeight',
-        'getImageHistogram' => ['getImageHistogram', \ImagickDemo\Control\ImageControl::class],
+        'getImageHistogram' => ['getImageHistogram', \ImagickDemo\Control\ReactControls::class],
         //'getImageIndex',
         //'getImageInterlaceScheme',
         //'getImageInterpolateMethod',
@@ -359,8 +359,8 @@ class CategoryInfo
         //'getOption',
         //'getPackageName',
         //'getPage',
-        'getPixelIterator' => ['getPixelIterator', \ImagickDemo\Control\ImageControl::class],
-        'getPixelRegionIterator' => ['getPixelRegionIterator', \ImagickDemo\Control\ImageControl::class],
+        'getPixelIterator' => ['getPixelIterator', \ImagickDemo\Control\ReactControls::class],
+        'getPixelRegionIterator' => ['getPixelRegionIterator', \ImagickDemo\Control\ReactControls::class],
         //'getPointSize',
         //'getQuantumDepth',
         //'getQuantumRange',
@@ -372,20 +372,20 @@ class CategoryInfo
         //'getSizeOffset',
         //'getVersion',
 
-        'haldClutImage' => ['haldClutImage', \ImagickDemo\Control\ImageControl::class],
+        'haldClutImage' => ['haldClutImage', \ImagickDemo\Control\ReactControls::class],
         //'hasNextImage',
         //'hasPreviousImage',
-        'identifyImage' => ['identifyImage', \ImagickDemo\Control\ImageControl::class],
+        'identifyImage' => ['identifyImage', \ImagickDemo\Control\ReactControls::class],
         'identifyFormat' => ['identifyFormat', \ImagickDemo\Control\NullControl::class],
         
         'inverseFourierTransformImage' => ['forwardFourierTransformImage', \ImagickDemo\Control\ImageControl::class],
-        'implodeImage'  => ['implodeImage', \ImagickDemo\Control\ImageControl::class],
+        'implodeImage'  => ['implodeImage', \ImagickDemo\Control\ReactControls::class],
         'importImagePixels' => ['importImagePixels', \ImagickDemo\Control\NullControl::class],
         //'labelImage' => basically does setImageProperty("label", $text)
         
         'levelImage' => [
             'levelImage',
-            \ImagickDemo\Control\blackAndWhitePoint::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'blackPoint' => 50,
                 'whitePoint' => 100
@@ -393,42 +393,42 @@ class CategoryInfo
         ],
         'linearStretchImage' => [
             'linearStretchImage',
-            \ImagickDemo\Control\linearStretchControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'liquidRescaleImage',
-        'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ImageControl::class],
+        'magnifyImage' => ['magnifyImage', \ImagickDemo\Control\ReactControls::class],
         //'mapImage' - deprecated
         //'matteFloodfillImage' - deprecated
-        'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ControlCompositeRadiusImage::class],
+        'medianFilterImage' => ['medianFilterImage', \ImagickDemo\Control\ReactControls::class],
 
-        'mergeImageLayers'  => ['mergeImageLayers', \ImagickDemo\Imagick\Control\mergeImageLayers::class],
+        'mergeImageLayers'  => ['mergeImageLayers', \ImagickDemo\Control\ReactControls::class],
         //'minifyImage', //MagickMinifyImage() is a convenience method that scales an image proportionally to one-half its original size
-        'modulateImage' => ['modulateImage', \ImagickDemo\Imagick\Control\modulateImage::class],
+        'modulateImage' => ['modulateImage', \ImagickDemo\Control\ReactControls::class],
         'montageImage'  => [
             'montageImage',
-            \ImagickDemo\ImagickKernel\Control\MontageTypeControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         'morphImages' => ['morphImages', \ImagickDemo\Control\NullControl::class],
         
         'morphology' => [
             'morphology',
-            \ImagickDemo\ImagickKernel\Control\usage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         
         'mosaicImages' => ['mosaicImages', \ImagickDemo\Control\NullControl::class],
-        'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Imagick\Control\motionBlurImage::class],
-        'negateImage' => ['negateImage', \ImagickDemo\Imagick\Control\negateImage::class],
+        'motionBlurImage' => ['motionBlurImage', \ImagickDemo\Control\ReactControls::class],
+        'negateImage' => ['negateImage', \ImagickDemo\Control\ReactControls::class],
         //'newImage',
-        'newPseudoImage' => ['newPseudoImage', \ImagickDemo\Imagick\Control\newPseudoImage::class],
+        'newPseudoImage' => ['newPseudoImage', \ImagickDemo\Control\ReactControls::class],
         //'nextImage',
         'normalizeImage' => [
             'normalizeImage',
-            \ImagickDemo\Imagick\Control\separateImageChannel::class
+            \ImagickDemo\Control\ReactControls::class
         ],
-        'oilPaintImage' => ['oilPaintImage', \ImagickDemo\Imagick\Control\oilPaintImage::class],
+        'oilPaintImage' => ['oilPaintImage', \ImagickDemo\Control\ReactControls::class],
         'opaquePaintImage' => [
             'opaquePaintImage',
-            \ImagickDemo\Imagick\Control\opaquePaintImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'color' => 'rgb(39, 194, 255)'
             ]
@@ -437,75 +437,75 @@ class CategoryInfo
         // OptimizeImageTransparency
         'orderedPosterizeImage' => [
             'orderedPosterizeImage',
-            \ImagickDemo\Imagick\Control\orderedPosterizeControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'paintOpaqueImage', //deprecated
         //'paintTransparentImage', //deprecated
-        'pingImage' => ['pingImage', \ImagickDemo\Control\ImageControl::class],
+        'pingImage' => ['pingImage', \ImagickDemo\Control\ReactControls::class],
         'Quantum'  => ['Quantum', \ImagickDemo\Control\NullControl::class],
         //'pingImageBlob',
         //'pingImageFile',
         'polaroidImage'  => ['polaroidImage', \ImagickDemo\Control\ImageControl::class],
         'posterizeImage' => [
             'posterizeImage',
-            \ImagickDemo\Imagick\Control\posterizeControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'previewImages',
         //'previousImage',
         //'profileImage',
-        'quantizeImage' => ['quantizeImage', \ImagickDemo\Imagick\Control\quantizeImage::class],
-        //'quantizeImages' => ['quantizeImages', \ImagickDemo\Imagick\Control\quantizeImage::class],
+        'quantizeImage' => ['quantizeImage', \ImagickDemo\Control\ReactControls::class],
+        //'quantizeImages' => ['quantizeImages', \ImagickDemo\Control\ReactControls::class],
         'queryFontMetrics'=> ['queryFontMetrics', \ImagickDemo\Control\NullControl::class],
         'queryFonts'=> ['queryFonts', \ImagickDemo\Control\NullControl::class],
         'queryFormats' => ['queryFormats', \ImagickDemo\Control\NullControl::class],
-        'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ImageControl::class],
+        'radialBlurImage' => ['radialBlurImage', \ImagickDemo\Control\ReactControls::class],
         'raiseImage' => [
             'raiseImage',
-            \ImagickDemo\Imagick\Control\raiseImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'width' => 15,
                 'height' => 15
             ]
         ],
-        'randomThresholdImage' => ['randomThresholdImage', \ImagickDemo\Imagick\Control\randomThresholdimage::class],
+        'randomThresholdImage' => ['randomThresholdImage', \ImagickDemo\Control\ReactControls::class],
         //'readImage',
         'readImageBlob'  => ['readImageBlob', \ImagickDemo\Control\NullControl::class],
         //'readImageFile',
         'recolorImage' => ['recolorImage', \ImagickDemo\Control\ImageControl::class],
-        'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Imagick\Control\reduceNoiseImage::class],
+        'reduceNoiseImage' => ['reduceNoiseImage', \ImagickDemo\Control\ReactControls::class],
         'remapImage' => [
             'remapImage',
-            \ImagickDemo\Control\RemapImageControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'removeImage',
         //'removeImageProfile',
         //'render',
-        'resampleImage' => ['resampleImage', \ImagickDemo\Control\ImageControl::class],
+        'resampleImage' => ['resampleImage', \ImagickDemo\Control\ReactControls::class],
         //'resetImagePage',
         'resizeImage' => [
             'resizeImage',
-            \ImagickDemo\Imagick\Control\resizeImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'width' => 200,
                 'height' => 200
             ]
         ],
-        'rollImage' => ['rollImage', \ImagickDemo\Imagick\Control\rollImage::class],
-        'rotateImage' => ['rotateImage', \ImagickDemo\Imagick\Control\rotateImage::class],
-        'rotationalBlurImage' => ['rotationalBlurImage', \ImagickDemo\Control\ImageControl::class],
-        'roundCorners' => ['roundCorners', \ImagickDemo\Control\ImageControl::class],
+        'rollImage' => ['rollImage', \ImagickDemo\Control\ReactControls::class],
+        'rotateImage' => ['rotateImage', \ImagickDemo\Control\ReactControls::class],
+        'rotationalBlurImage' => ['rotationalBlurImage', \ImagickDemo\Control\ReactControls::class],
+        'roundCorners' => ['roundCorners', \ImagickDemo\Control\ReactControls::class],
         //'sampleImage',
-        'scaleImage' => ['scaleImage', \ImagickDemo\Control\ImageControl::class],
-        'segmentImage' => ['segmentImage', \ImagickDemo\Imagick\Control\segmentImage::class],
-        'selectiveBlurImage' => ['selectiveBlurImage', \ImagickDemo\Control\SelectiveBlurImage::class ],
-        'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Imagick\Control\separateImageChannel::class],
-        'sepiaToneImage' => ['sepiaToneImage', \ImagickDemo\Imagick\Control\sepiaToneImage::class],
+        'scaleImage' => ['scaleImage', \ImagickDemo\Control\ReactControls::class],
+        'segmentImage' => ['segmentImage', \ImagickDemo\Control\ReactControls::class],
+        'selectiveBlurImage' => ['selectiveBlurImage', \ImagickDemo\Control\ReactControls::class ],
+        'separateImageChannel' => ['separateImageChannel', \ImagickDemo\Control\ReactControls::class],
+        'sepiaToneImage' => ['sepiaToneImage', \ImagickDemo\Control\ReactControls::class],
         //'setBackgroundColor',
         //'setColorspace',
         //'setCompression',
         'setCompressionQuality' => [
             'setCompressionQuality',
-            \ImagickDemo\Imagick\Control\imageQuality::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'setFilename',
         //'setFirstIterator',
@@ -521,22 +521,22 @@ class CategoryInfo
         //'setImageBackgroundColor',
         'setImageBias' => [
             'setImageBias',
-            \ImagickDemo\Imagick\Control\setImageBias::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'setImageBluePrimary',
         //'setImageBorderColor',
         //'setImageChannelDepth',
-        'setImageClipMask' => ['setImageClipMask', \ImagickDemo\Control\ImageControl::class],
+        'setImageClipMask' => ['setImageClipMask', \ImagickDemo\Control\ReactControls::class],
         //'setImageColormapColor',
         //'setImageColorspace',
         //'setImageCompose',
         //'setImageCompression',
         'setImageCompressionQuality' => [
             'setImageCompressionQuality',
-            \ImagickDemo\Imagick\Control\imageQuality::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'setImageDepth',
-        'setImageDelay' => ['setImageDelay', \ImagickDemo\Control\ImageControl::class],
+        'setImageDelay' => ['setImageDelay', \ImagickDemo\Control\ReactControls::class],
         //'setImageDispose',
         //'setImageExtent',
         //'setImageFilename',
@@ -551,15 +551,15 @@ class CategoryInfo
         //'setImageMatte',
         //'setImageMatteColor',
         //'setImageOpacity',
-        'setImageOrientation' => ['setImageOrientation', \ImagickDemo\Imagick\Control\setImageOrientation::class],
+        'setImageOrientation' => ['setImageOrientation', \ImagickDemo\Control\ReactControls::class],
         //'setImagePage',
         //'setImageProfile',
         //'setImageProperty',
         //'setImageRedPrimary',
         //'setImageRenderingIntent',
-        'setImageResolution' => ['setImageResolution', \ImagickDemo\Control\ImageControl::class ],
+        'setImageResolution' => ['setImageResolution', \ImagickDemo\Control\ReactControls::class ],
         //'setImageScene',
-        'setImageTicksPerSecond' => ['setImageTicksPerSecond', \ImagickDemo\Control\ImageControl::class ],
+        'setImageTicksPerSecond' => ['setImageTicksPerSecond', \ImagickDemo\Control\ReactControls::class ],
         //'setImageType',
         //'setImageUnits',
         //'setImageVirtualPixelMethod',
@@ -567,7 +567,7 @@ class CategoryInfo
         //'setInterlaceScheme',
         'setIteratorIndex' => ['setIteratorIndex', \ImagickDemo\Control\NullControl::class ],
         //'setLastIterator',
-        'setOption' => ['setOption', \ImagickDemo\Imagick\Control\setOption::class ],
+        'setOption' => ['setOption', \ImagickDemo\Control\ReactControls::class ],
         'setProgressMonitor' => ['setProgressMonitor', \ImagickDemo\Control\NullControl::class],
         //'setPage',
         //'setPointSize',
@@ -575,45 +575,45 @@ class CategoryInfo
         //'setResourceLimit',
         'setSamplingFactors' => [
             'setSamplingFactors',
-            \ImagickDemo\Imagick\Control\samplingFactors::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         //'setSize',
         //'setSizeOffset',
         //'setType',
-        'shadeImage' => ['shadeImage', \ImagickDemo\Control\ImageControl::class ],
-        'shadowImage' => ['shadowImage', \ImagickDemo\Control\ImageControl::class ],
-        'sharpenImage' => ['sharpenImage', \ImagickDemo\Imagick\Control\sharpenImage::class],
-        'shaveImage' => ['shaveImage', \ImagickDemo\Control\ImageControl::class],
-        'shearImage' => ['shearImage', \ImagickDemo\Imagick\Control\shearImage::class],
+        'shadeImage' => ['shadeImage', \ImagickDemo\Control\ReactControls::class ],
+        'shadowImage' => ['shadowImage', \ImagickDemo\Control\ReactControls::class ],
+        'sharpenImage' => ['sharpenImage', \ImagickDemo\Control\ReactControls::class],
+        'shaveImage' => ['shaveImage', \ImagickDemo\Control\ReactControls::class],
+        'shearImage' => ['shearImage', \ImagickDemo\Control\ReactControls::class],
         'sigmoidalContrastImage' => [
             'sigmoidalContrastImage',
-            \ImagickDemo\Imagick\Control\SigmoidalContrastControl::class
+            \ImagickDemo\Control\ReactControls::class
         ],
         'sketchImage' => [
             'sketchImage',
-            \ImagickDemo\Imagick\Control\sketchImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'sigma' => 15
             ]
         ],
-        'smushImages' => ['smushImages', \ImagickDemo\Control\ImageControl::class],
+        'smushImages' => ['smushImages', \ImagickDemo\Control\ReactControls::class],
         'stripImage' => ['stripImage', \ImagickDemo\Control\NullControl::class],
-        'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ControlCompositeImageSolarizeThreshold::class],
-        'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\SparseColorControl::class],
-        'spliceImage' => ['spliceImage', \ImagickDemo\Imagick\Control\spliceImage::class],
-        'spreadImage' => ['spreadImage', \ImagickDemo\Imagick\Control\spreadImage::class],
-        'statisticImage' => ['statisticImage', \ImagickDemo\Control\StatisticControl::class],
-        'subImageMatch' => ['subImageMatch', \ImagickDemo\Control\ImageControl::class],
-        'swirlImage' => ['swirlImage', \ImagickDemo\Control\ControlCompositeImageSwirl::class],
-        'textureImage' => ['textureImage', \ImagickDemo\Control\ImageControl::class],
+        'solarizeImage' => ['solarizeImage', \ImagickDemo\Control\ReactControls::class],
+        'sparseColorImage' => ['sparseColorImage', \ImagickDemo\Control\ReactControls::class],
+        'spliceImage' => ['spliceImage', \ImagickDemo\Control\ReactControls::class],
+        'spreadImage' => ['spreadImage', \ImagickDemo\Control\ReactControls::class],
+        'statisticImage' => ['statisticImage', \ImagickDemo\Control\ReactControls::class],
+        'subImageMatch' => ['subImageMatch', \ImagickDemo\Control\ReactControls::class],
+        'swirlImage' => ['swirlImage', \ImagickDemo\Control\ReactControls::class],
+        'textureImage' => ['textureImage', \ImagickDemo\Control\ReactControls::class],
         'thresholdImage' => [
             'thresholdImage',
-            \ImagickDemo\Imagick\Control\thresholdImage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
-        'thumbnailImage' => ['thumbnailImage', \ImagickDemo\Control\ImageControl::class],
+        'thumbnailImage' => ['thumbnailImage', \ImagickDemo\Control\ReactControls::class],
         'tintImage' => [
             'tintImage',
-            \ImagickDemo\Control\ControlCompositeRGBA::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'g' => 50
             ]
@@ -626,24 +626,24 @@ class CategoryInfo
                 'color' => 'rgb(39, 194, 255)'
             ]
         ],
-        'transposeImage' => ['transposeImage', \ImagickDemo\Control\ImageControl::class],
-        'transformImageColorspace' => ['transformImageColorspace', \ImagickDemo\Control\TransformColorSpaceControl::class],
+        'transposeImage' => ['transposeImage', \ImagickDemo\Control\ReactControls::class],
+        'transformImageColorspace' => ['transformImageColorspace', \ImagickDemo\Control\ReactControls::class],
 
-        'transverseImage' => ['transverseImage', \ImagickDemo\Control\ImageControl::class],
+        'transverseImage' => ['transverseImage', \ImagickDemo\Control\ReactControls::class],
         'trimImage' => [
             'trimImage',
-            \ImagickDemo\Imagick\Control\trimImage::class,
+            \ImagickDemo\Control\ReactControls::class,
             'defaultParams' => [
                 'color' => 'rgb(39, 194, 255)'
             ]
         ],
-        'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ImageControl::class],
-        'unsharpMaskImage' => ['unsharpMaskImage',\ImagickDemo\Control\ControlCompositeImageRadiusSigmaAmountUnsharpThresholdChannel::class ],
-        'vignetteImage' => ['vignetteImage', \ImagickDemo\Control\ControlCompositeImageBlackPointWhitePointXY::class],
-        'waveImage' => ['waveImage', \ImagickDemo\Imagick\Control\waveImage::class],
+        'uniqueImageColors' => ['uniqueImageColors', \ImagickDemo\Control\ReactControls::class],
+        'unsharpMaskImage' => ['unsharpMaskImage',\ImagickDemo\Control\ReactControls::class ],
+        'vignetteImage' => ['vignetteImage', \ImagickDemo\Control\ReactControls::class],
+        'waveImage' => ['waveImage', \ImagickDemo\Control\ReactControls::class],
         'whiteThresholdImage' => [
             'whiteThresholdImage',
-            \ImagickDemo\Imagick\Control\whiteThresholdImage::class
+            \ImagickDemo\Control\ReactControls::class
         ],
     ];
 

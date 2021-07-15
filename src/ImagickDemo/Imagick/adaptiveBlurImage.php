@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
+
 class adaptiveBlurImage extends \ImagickDemo\Example
 {
     function getOriginalImage()
@@ -22,5 +24,15 @@ class adaptiveBlurImage extends \ImagickDemo\Example
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return AdaptiveBlurImageControl::class;
     }
 }

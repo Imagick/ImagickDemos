@@ -22,13 +22,12 @@ class BestFit implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('1'),
-            new EnumMap([
-                0 => 'Disabled',
-                1 => 'Enabled',
-            ])
+            new GetStringOrDefault('Enabled'),
+            new EnumMap(getEnabledOptions())
         );
     }
+
+
 
 //class  extends OptionKeyElement
 //{

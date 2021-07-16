@@ -371,14 +371,23 @@ function colorFloodfillImage($imagePath)
 //Example end
 
 //Example Imagick::colorizeImage
-function colorizeImage($imagePath, $color, $opacity)
+function colorizeImage($imagePath, $color, $opacity_color)
 {
     $imagick = new \Imagick(realpath($imagePath));
-    $opacity = $opacity / 255.0;
-    $opacityColor = new \ImagickPixel("rgba(0, 0, 0, $opacity)");
-    $imagick->colorizeImage($color, $opacityColor);
+//    $opacity = $opacity / 255.0;
+    $imagick->colorizeImage($color, $opacity_color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
+
+//    $imagick = new \Imagick();
+//    $imagick->newPseudoImage(640, 480, "magick:logo");
+//    $imagick->colorizeImage($color, $opacityColor);
+//
+//    $imagick->setImageFormat('png');
+//    $imagick->writeImage(__DIR__ . "/colourize_new.png");
+
+
+
 }
 //Example end
 

@@ -151,6 +151,7 @@ class Image
             'background_color' => "backgroundColor",
             'best_fit' => "bestFit",
             'black_point' => "blackPoint",
+            'blue_shift' => "blueShift",
             'fill_color' => "fillColor",
             'fill_modified_color' => "fillModifiedColor",
             'first_term' => 'kernelFirstTerm',
@@ -159,12 +160,15 @@ class Image
             'noise_type' => 'noiseType',
             'paint_type' => "paintType",
             'second_term' => 'kernelSecondTerm',
+            'start_x' => 'startX',
+            'start_y' => 'startY',
             'stroke_color' => "strokeColor",
             'text_decoration' => 'textDecoration',
             'text_under_color' => "textUnderColor",
             'third_term' => 'kernelThirdTerm',
             'translate_x' => "translateX",
             'translate_y' => "translateY",
+            'threshold_color' => 'thresholdColor',
             'white_point' => "whitePoint",
         ];
 

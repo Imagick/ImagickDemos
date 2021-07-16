@@ -5,14 +5,14 @@ namespace ImagickDemo\Params;
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
 
 #[\Attribute]
 class ComponentRangeFloat implements Param
 {
     public function __construct(
-        private int $default,
+        private float $default,
         private string $name
     ) {
     }
@@ -22,43 +22,8 @@ class ComponentRangeFloat implements Param
         return new InputParameter(
             $this->name,
             new GetFloatOrDefault($this->default),
-            new MinIntValue(0),
-            new MaxIntValue(255),
+            new MinFloatValue(0),
+            new MaxFloatValue(255),
         );
     }
-
-//    protected function filterValue($value)
-//    {
-//        return intval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return 100;
-//    }
-//
-//    protected function getMin()
-//    {
-//        return 0;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 255;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'a';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'A';
-//    }
-//
-//    public function getA()
-//    {
-//        return $this->getValue();
-//    }
 }

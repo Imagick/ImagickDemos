@@ -21,15 +21,15 @@ class ImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
+        #[Image('image_path')]
+        private string $image_path,
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

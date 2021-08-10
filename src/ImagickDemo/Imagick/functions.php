@@ -47,9 +47,9 @@ function renderFile(CachingFileBodyFactory $fileResponseFactory, $filename, $dow
     
 
 //Example Imagick::adaptiveBlurImage
-function adaptiveBlurImage($imagePath, $radius, $sigma, $channel)
+function adaptiveBlurImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->adaptiveBlurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -57,9 +57,9 @@ function adaptiveBlurImage($imagePath, $radius, $sigma, $channel)
 //Example end
 
 //Example Imagick::adaptiveResizeImage
-function adaptiveResizeImage($imagePath, $width, $height, $bestFit)
+function adaptiveResizeImage($image_path, $width, $height, $bestFit)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->adaptiveResizeImage($width, $height, $bestFit);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -67,9 +67,9 @@ function adaptiveResizeImage($imagePath, $width, $height, $bestFit)
 //Example end
 
 //Example Imagick::adaptiveSharpenImage
-function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel)
+function adaptiveSharpenImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->adaptiveSharpenImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -77,9 +77,9 @@ function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel)
 //Example end
     
 //Example Imagick::adaptiveThresholdImage
-function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset)
+function adaptiveThresholdImage($image_path, $width, $height, $adaptiveOffset)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $adaptiveOffsetQuantum = intval($adaptiveOffset * \Imagick::getQuantum());
     $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffsetQuantum);
     header("Content-Type: image/jpg");
@@ -88,9 +88,9 @@ function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset)
 //Example end
 
 //Example Imagick::addNoiseImage
-function addNoiseImage($noiseType, $imagePath, $channel)
+function addNoiseImage($noiseType, $image_path, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->addNoiseImage($noiseType, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -99,9 +99,9 @@ function addNoiseImage($noiseType, $imagePath, $channel)
 
 
 //Example Imagick::affineTransformImage
-function affineTransformImage($imagePath)
+function affineTransformImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $draw = new \ImagickDraw();
 
     $angle = 40 ;
@@ -124,9 +124,9 @@ function affineTransformImage($imagePath)
 
 //TODO - add strokeWidth + fontSize control
 //Example Imagick::annotateImage
-function annotateImage($imagePath, $strokeColor, $fillColor)
+function annotateImage($image_path, $strokeColor, $fillColor)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $draw = new \ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -164,8 +164,8 @@ function appendImages()
     foreach ($images as $imageRow) {
         $rowImagick = new Imagick();
         $rowImagick->setBackgroundColor('gray');
-        foreach ($imageRow as $imagePath) {
-            $imagick = new Imagick(realpath($imagePath));
+        foreach ($imageRow as $image_path) {
+            $imagick = new Imagick(realpath($image_path));
             $imagick->setImageBackgroundColor("gray");
             $imagick->resizeimage(200, 200, \Imagick::FILTER_LANCZOS, 1.0, true);
             $rowImagick->addImage($imagick);
@@ -188,9 +188,9 @@ function appendImages()
 //Example end
 
 //Example Imagick::autoLevelImage
-function autoLevelImage($imagePath)
+function autoLevelImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->autoLevelImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -198,9 +198,9 @@ function autoLevelImage($imagePath)
 //Example end
 
 //Example Imagick::averageImages
-function averageImages($imagePath)
+function averageImages($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     //$imagick2 = new \Imagick(realpath("../images/TestImage2.jpg"));
     //$imagick->addImage($imagick2);
     //This kills PHP  - but the function is deprecated, so let's just ignore it
@@ -213,9 +213,9 @@ function averageImages($imagePath)
 //Example end
 
 //Example Imagick::blackThresholdImage
-function blackThresholdImage($imagePath, $thresholdColor)
+function blackThresholdImage($image_path, $thresholdColor)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->blackthresholdimage($thresholdColor);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -223,9 +223,9 @@ function blackThresholdImage($imagePath, $thresholdColor)
 //Example end
 
 //Example Imagick::blueShiftImage
-function blueShiftImage($imagePath, $blueShift)
+function blueShiftImage($image_path, $blueShift)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->blueShiftImage($blueShift);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -233,9 +233,9 @@ function blueShiftImage($imagePath, $blueShift)
 //Example end
 
 //Example Imagick::blurImage
-function blurImage($imagePath, $radius, $sigma, $channel)
+function blurImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->blurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -243,9 +243,9 @@ function blurImage($imagePath, $radius, $sigma, $channel)
 //Example end
 
 //Example Imagick::borderImage
-function borderImage($imagePath, $color, $width, $height)
+function borderImage($image_path, $color, $width, $height)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->borderImage($color, $width, $height);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -254,9 +254,9 @@ function borderImage($imagePath, $color, $width, $height)
 
 
 //Example Imagick::brightnessContrastImage
-function brightnessContrastImage($imagePath, $brightness, $contrast, $channel)
+function brightnessContrastImage($image_path, $brightness, $contrast, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->brightnessContrastImage($brightness, $contrast, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -264,9 +264,9 @@ function brightnessContrastImage($imagePath, $brightness, $contrast, $channel)
 //Example end
 
 //Example Imagick::charcoalImage
-function charcoalImage($imagePath, $radius, $sigma)
+function charcoalImage($image_path, $radius, $sigma)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->charcoalImage($radius, $sigma);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -274,9 +274,9 @@ function charcoalImage($imagePath, $radius, $sigma)
 //Example end
 
 //Example Imagick::chopImage
-function chopImage($imagePath, $startX, $startY, $width, $height)
+function chopImage($image_path, $startX, $startY, $width, $height)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->chopImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -284,9 +284,9 @@ function chopImage($imagePath, $startX, $startY, $width, $height)
 //Example end
 
 //Example Imagick::clipImage
-function clipImage($imagePath)
+function clipImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->clipImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -298,7 +298,7 @@ function clipImage($imagePath)
 //Example Imagick::coalesceImages
 function coalesceImages()
 {
-    $imagePaths = [
+    $image_paths = [
         "../public/images/lories/IMG_1599_480.jpg",
         "../public/images/lories/IMG_2561_480.jpg",
         "../public/images/lories/IMG_2837_480.jpg",
@@ -306,8 +306,8 @@ function coalesceImages()
     ];
 
     $canvas = new Imagick();
-    foreach ($imagePaths as $imagePath) {
-        $canvas->readImage(realpath($imagePath));
+    foreach ($image_paths as $image_path) {
+        $canvas->readImage(realpath($image_path));
         $canvas->setImageDelay(100);
     }
     $canvas->setImageFormat('gif');
@@ -327,7 +327,7 @@ function coalesceImages()
 
 
 //Example Imagick::colorDecisionListImage
-function colorDecisionListImage($imagePath)
+function colorDecisionListImage($image_path)
 {
 //    $colorList = '<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
 //    <ColorCorrection id="cc03345">
@@ -342,7 +342,7 @@ function colorDecisionListImage($imagePath)
 //    </ColorCorrection>
 //    </ColorCorrectionCollection>';
 
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imagick->colorDecisionListImage($imagick);
     
@@ -354,9 +354,9 @@ function colorDecisionListImage($imagePath)
 
 
 //Example Imagick::colorFloodfillImage
-function colorFloodfillImage($imagePath)
+function colorFloodfillImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $border = new \ImagickPixel('red');
     $flood = new \ImagickPixel('rgb(128, 32, 128)');
     @$imagick->colorFloodfillImage(
@@ -371,9 +371,9 @@ function colorFloodfillImage($imagePath)
 //Example end
 
 //Example Imagick::colorizeImage
-function colorizeImage($imagePath, $color, $opacity_color)
+function colorizeImage($image_path, $color, $opacity_color)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 //    $opacity = $opacity / 255.0;
     $imagick->colorizeImage($color, $opacity_color);
     header("Content-Type: image/jpg");
@@ -394,9 +394,9 @@ function colorizeImage($imagePath, $color, $opacity_color)
 
 //TODO - understand what a color matrix is...
 //Example Imagick::colorMatrixImage
-function colorMatrixImage($imagePath, $colorMatrix)
+function colorMatrixImage($image_path, $colorMatrix)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageOpacity(1);
 
     //A color matrix should look like:
@@ -463,7 +463,7 @@ function compositeImage()
 
 
 //Example Imagick::constituteImage
-function constituteImage($imagePath)
+function constituteImage($image_path)
 {
     $imagick = new \Imagick();
 
@@ -486,9 +486,9 @@ function constituteImage($imagePath)
 //Example end
     
 //Example Imagick::contrastImage
-function contrastImage($imagePath, $contrastType)
+function contrastImage($image_path, $contrastType)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     if ($contrastType != 2) {
         $imagick->contrastImage($contrastType);
     }
@@ -499,12 +499,12 @@ function contrastImage($imagePath, $contrastType)
 //Example end
 
 //Example Imagick::convolveImage
-function convolveImage($imagePath, $bias, $kernelMatrix)
+function convolveImage($image_path, $bias, $convolve_matrix)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     //$edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
     $imagick->setImageBias($bias * \Imagick::getQuantum());
-    $imagick->convolveImage($kernelMatrix);
+    $imagick->convolveImage($convolve_matrix);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -512,9 +512,9 @@ function convolveImage($imagePath, $bias, $kernelMatrix)
 
 
 //Example Imagick::cropImage
-function cropImage($imagePath, $startX, $startY, $width, $height)
+function cropImage($image_path, $startX, $startY, $width, $height)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->cropImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -550,9 +550,9 @@ function deskewImage($threshold)
 //Example end
 
 //Example Imagick::despeckleImage
-function despeckleImage($imagePath)
+function despeckleImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->despeckleImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -588,9 +588,9 @@ function drawImage()
 //Example end
 
 //Example Imagick::edgeImage
-function edgeImage($imagePath, $radius)
+function edgeImage($image_path, $radius)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->edgeImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -598,9 +598,9 @@ function edgeImage($imagePath, $radius)
 //Example end
 
 //Example Imagick::enhanceImage
-function enhanceImage($imagePath)
+function enhanceImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->enhanceImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -609,9 +609,9 @@ function enhanceImage($imagePath)
 
 
 //Example Imagick::embossImage
-function embossImage($imagePath, $radius, $sigma)
+function embossImage($image_path, $radius, $sigma)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->embossImage($radius, $sigma);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -619,9 +619,9 @@ function embossImage($imagePath, $radius, $sigma)
 //Example end
     
 //Example Imagick::equalizeImage
-function equalizeImage($imagePath)
+function equalizeImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->equalizeImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -630,14 +630,14 @@ function equalizeImage($imagePath)
 
 
 //Example Imagick::evaluateImage
-function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradientEndColor)
+function evaluateImage($evaluate_type, $first_term, $gradient_start_color, $gradient_end_color)
 {
     $imagick = new \Imagick();
     $size = 400;
     $imagick->newPseudoImage(
         $size,
         $size,
-        "gradient:$gradientStartColor-$gradientEndColor"
+        "gradient:$gradient_start_color-$gradient_end_color"
     );
     
     $quantumScaledTypes = [
@@ -672,14 +672,14 @@ function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradient
         \Imagick::EVALUATE_SINE,
     ];
 
-    if (in_array($evaluateType, $unscaledTypes)) {
-        $imagick->evaluateimage($evaluateType, $firstTerm);
+    if (in_array($evaluate_type, $unscaledTypes)) {
+        $imagick->evaluateimage($evaluate_type, $first_term);
     }
-    else if (in_array($evaluateType, $quantumScaledTypes)) {
-        $imagick->evaluateimage($evaluateType, $firstTerm * \Imagick::getQuantum());
+    else if (in_array($evaluate_type, $quantumScaledTypes)) {
+        $imagick->evaluateimage($evaluate_type, $first_term * \Imagick::getQuantum());
     }
     else {
-        throw new \Exception("Evaluation type $evaluateType is not listed as either scaled or unscaled");
+        throw new \Exception("Evaluation type $evaluate_type is not listed as either scaled or unscaled");
     }
 
     $imagick->setimageformat('png');
@@ -691,9 +691,9 @@ function evaluateImage($evaluateType, $firstTerm, $gradientStartColor, $gradient
 
 
 //Example Imagick::extentImage
-function extentImage($imagePath)
+function extentImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageBackgroundColor('orange');
     $imagick->extentImage(
         $imagick->getImageWidth(),
@@ -709,9 +709,9 @@ function extentImage($imagePath)
 
 
 //Example Imagick::exportImagePixels
-function exportImagePixels($imagePath)
+function exportImagePixels($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     for ($y=0; $y< $imagick->getImageHeight(); $y++) {
         $redPixels = $imagick->exportImagePixels(0, $y, $imagick->getImageWidth(), 1, "R", \Imagick::PIXEL_CHAR);
         
@@ -745,9 +745,9 @@ function flattenImages()
 //Example end
 
 //Example Imagick::filter
-function filter($imagePath)
+function filter($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $matrix = [
         [-1, 0, -1],
         [0,  5,  0],
@@ -768,9 +768,9 @@ function filter($imagePath)
     
 
 //Example Imagick::flipImage
-function flipImage($imagePath)
+function flipImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->flipImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -797,9 +797,9 @@ function floodFillPaintImage($fillColor, $fuzz, $targetColor, $x, $y, $inverse, 
 
 
 //Example Imagick::flopImage
-function flopImage($imagePath)
+function flopImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->flopImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -830,9 +830,9 @@ function createMask()
 }
 
 
-function forwardFourierTransformImage($imagePath)
+function forwardFourierTransformImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->resizeimage(512, 512, \Imagick::FILTER_LANCZOS, 1);
 
     $mask = createMask();
@@ -865,9 +865,9 @@ function forwardFourierTransformImage($imagePath)
 
 
 //Example Imagick::frameImage
-function frameImage($imagePath, $color, $width, $height, $innerBevel, $outerBevel)
+function frameImage($image_path, $color, $width, $height, $innerBevel, $outerBevel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $width = $width + $innerBevel + $outerBevel;
     $height = $height + $innerBevel + $outerBevel;
@@ -903,9 +903,9 @@ function fxImage()
 
 
 //Example Imagick::gammaImage
-function gammaImage($imagePath, $gamma, $channel)
+function gammaImage($image_path, $gamma, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->gammaImage($gamma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -914,9 +914,9 @@ function gammaImage($imagePath, $gamma, $channel)
 
 
 //Example Imagick::gaussianBlurImage
-function gaussianBlurImage($imagePath, $radius, $sigma, $channel)
+function gaussianBlurImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->gaussianBlurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -925,18 +925,18 @@ function gaussianBlurImage($imagePath, $radius, $sigma, $channel)
 
 
 
-function getImageGeometry($imagePath)
+function getImageGeometry($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
 
 
 //Example Imagick::getPixelIterator
-function getPixelIterator($imagePath)
+function getPixelIterator($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelIterator();
 
     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -980,7 +980,7 @@ function getColorStatistics($histogramElements, $colorChannel)
     return $colorStatistics;
 }
 
-function getImageHistogram($imagePath)
+function getImageHistogram($image_path)
 {
     $backgroundColor = 'black';
 
@@ -995,7 +995,7 @@ function getImageHistogram($imagePath)
     $histogramWidth = 256;
     $histogramHeight = 100; // the height for each RGB segment
 
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     //Resize the image to be small, otherwise PHP tends to run out of memory
     //This might lead to bad results for images that are pathologically 'pixelly'
     $imagick->adaptiveResizeImage(200, 200, true);
@@ -1045,9 +1045,9 @@ function getImageHistogram($imagePath)
 
 
 //Example Imagick::getPixelRegionIterator
-function getPixelRegionIterator($imagePath)
+function getPixelRegionIterator($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);
 
     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -1067,9 +1067,9 @@ function getPixelRegionIterator($imagePath)
 //Example end
 
 //Example Imagick::haldClutImage
-function haldClutImage($imagePath)
+function haldClutImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagickPalette = new \Imagick(realpath("images/hald/hald_8.png"));
     $imagickPalette->sepiatoneImage(55);
     $imagick->haldClutImage($imagickPalette);
@@ -1080,9 +1080,9 @@ function haldClutImage($imagePath)
 
 
 //Example Imagick::implodeImage
-function implodeImage($imagePath)
+function implodeImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->implodeImage(0.0001);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1168,9 +1168,9 @@ function importImagePixels()
 //Example end
 
 //Example Imagick::labelImage
-function labelImage($imagePath)
+function labelImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->labelImage("This is some text");
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1195,9 +1195,9 @@ function levelImage($blackPoint, $gamma, $whitePoint)
 
 
 //Example Imagick::linearStretchImage
-function linearStretchImage($imagePath, $blackThreshold, $whiteThreshold)
+function linearStretchImage($image_path, $blackThreshold, $whiteThreshold)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $pixels = $imagick->getImageWidth() * $imagick->getImageHeight();
     $imagick->linearStretchImage($blackThreshold * $pixels, $whiteThreshold * $pixels);
 
@@ -1208,9 +1208,9 @@ function linearStretchImage($imagePath, $blackThreshold, $whiteThreshold)
     
 
 //Example Imagick::magnifyImage
-function magnifyImage($imagePath)
+function magnifyImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->magnifyImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1219,9 +1219,9 @@ function magnifyImage($imagePath)
     
 
 //Example Imagick::medianFilterImage
-function medianFilterImage($radius, $imagePath)
+function medianFilterImage($radius, $image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     @$imagick->medianFilterImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1257,9 +1257,9 @@ function mergeImageLayers($layerMethodType)
     
     
 //Example Imagick::modulateImage
-function modulateImage($imagePath, $hue, $brightness, $saturation)
+function modulateImage($image_path, $hue, $brightness, $saturation)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->modulateImage($brightness, $saturation, $hue);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1398,9 +1398,9 @@ function mosaicImages()
 
 
 //Example Imagick::motionBlurImage
-function motionBlurImage($imagePath, $radius, $sigma, $angle, $channel)
+function motionBlurImage($image_path, $radius, $sigma, $angle, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->motionBlurImage($radius, $sigma, $angle, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1408,9 +1408,9 @@ function motionBlurImage($imagePath, $radius, $sigma, $angle, $channel)
 //Example end
 
 //Example Imagick::negateImage
-function negateImage($imagePath, $grayOnly, $channel)
+function negateImage($image_path, $grayOnly, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->negateImage($grayOnly, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1452,9 +1452,9 @@ function newPseudoImage($canvasType)
 
 
 //Example Imagick::normalizeImage
-function normalizeImage($imagePath, $channel)
+function normalizeImage($image_path, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $original = clone $imagick;
     $original->cropimage($original->getImageWidth() / 2, $original->getImageHeight(), 0, 0);
     $imagick->normalizeImage($channel);
@@ -1465,9 +1465,9 @@ function normalizeImage($imagePath, $channel)
 //Example end
 
 //Example Imagick::oilPaintImage
-function oilPaintImage($imagePath, $radius)
+function oilPaintImage($image_path, $radius)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->oilPaintImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1476,9 +1476,9 @@ function oilPaintImage($imagePath, $radius)
 
 
 //Example Imagick::orderedPosterizeImage
-function orderedPosterizeImage($imagePath, $orderedPosterizeType)
+function orderedPosterizeImage($image_path, $orderedPosterizeType)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->orderedPosterizeImage($orderedPosterizeType);
     $imagick->setImageFormat('png');
     
@@ -1510,9 +1510,9 @@ function opaquePaintImage($color, $replacementColor, $fuzz, $inverse)
 
 
 //Example Imagick::labelImage
-function polaroidImage($imagePath)
+function polaroidImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagickDraw = new \ImagickDraw();
     $imagick->polaroidImage($imagickDraw, 15);
     header("Content-Type: image/jpg");
@@ -1523,9 +1523,9 @@ function polaroidImage($imagePath)
 
 
 //Example Imagick::posterizeImage
-function posterizeImage($imagePath, $dither, $numberLevels)
+function posterizeImage($image_path, $dither, $numberLevels)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->posterizeImage($numberLevels, $dither);
     $imagick->setImageFormat('png');
     header("Content-Type: image/png");
@@ -1535,9 +1535,9 @@ function posterizeImage($imagePath, $dither, $numberLevels)
 
 
 //Example Imagick::quantizeImage
-function quantizeImage($imagePath, $numberColors, $colorSpace, $treeDepth, $dither)
+function quantizeImage($image_path, $numberColors, $colorSpace, $treeDepth, $dither)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->quantizeImage($numberColors, $colorSpace, $treeDepth, $dither, false);
     $imagick->setImageFormat('png');
     header("Content-Type: image/png");
@@ -1552,8 +1552,8 @@ function quantizeImages($numberColors, $colorSpace, $treeDepth, $dither)
     set_time_limit(120);        //This takes a long time
     ini_set('memory_limit', '128M'); //And uses a lot of memory
     
-    $imagePathPattern = "../public/images/spiderGif";
-    $fileIterator = new \GlobIterator(realpath($imagePathPattern).'/*.png');
+    $image_pathPattern = "../public/images/spiderGif";
+    $fileIterator = new \GlobIterator(realpath($image_pathPattern).'/*.png');
 
     $imagick = new \Imagick();
     $imagick->setFormat("gif");
@@ -1582,9 +1582,9 @@ function quantizeImages($numberColors, $colorSpace, $treeDepth, $dither)
     
 
 //Example Imagick::radialBlurImage
-function radialBlurImage($imagePath)
+function radialBlurImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->radialBlurImage(3);
     $imagick->radialBlurImage(5);
     $imagick->radialBlurImage(7);
@@ -1595,9 +1595,9 @@ function radialBlurImage($imagePath)
 
 
 //Example Imagick::raiseImage
-function raiseImage($imagePath, $width, $height, $x, $y, $raise)
+function raiseImage($image_path, $width, $height, $x, $y, $raise)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     //x and y do nothing?
     $imagick->raiseImage($width, $height, $x, $y, $raise);
@@ -1608,9 +1608,9 @@ function raiseImage($imagePath, $width, $height, $x, $y, $raise)
     
 
 //Example Imagick::randomThresholdimage
-function randomThresholdimage($imagePath, $lowThreshold, $highThreshold, $channel)
+function randomThresholdimage($image_path, $lowThreshold, $highThreshold, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imagick->randomThresholdimage(
         $lowThreshold * \Imagick::getQuantum(),
@@ -1649,9 +1649,9 @@ function readImageBlob()
 //Example end
 
 //Example Imagick::recolorImage
-function recolorImage($imagePath)
+function recolorImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $remapColor = [ 1, 0, 0,
         0, 0, 1,
         0, 1, 0,];
@@ -1670,9 +1670,9 @@ function recolorImage($imagePath)
 //Example end
 
 //Example Imagick::reduceNoiseImage
-function reduceNoiseImage($imagePath, $reduceNoise)
+function reduceNoiseImage($image_path, $reduceNoise)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     @$imagick->reduceNoiseImage($reduceNoise);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1680,9 +1680,9 @@ function reduceNoiseImage($imagePath, $reduceNoise)
 //Example end
     
 //Example Imagick::remapImage
-function remapImage($imagePath, $ditherMethod)
+function remapImage($image_path, $ditherMethod)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $palette = new \Imagick(realpath("images/NetscapeWebSafeColours.gif"));
     $imagick->remapImage($palette, $ditherMethod);
     header("Content-Type: image/png");
@@ -1691,9 +1691,9 @@ function remapImage($imagePath, $ditherMethod)
 //Example end
 
 //Example Imagick::resampleImage
-function resampleImage($imagePath)
+function resampleImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imagick->resampleImage(200, 200, \Imagick::FILTER_LANCZOS, 1);
     header("Content-Type: image/jpg");
@@ -1704,10 +1704,10 @@ function resampleImage($imagePath)
 
     
 //Example Imagick::resizeImage
-function resizeImage($imagePath, $width, $height, $filterType, $blur, $bestFit, $cropZoom)
+function resizeImage($image_path, $width, $height, $filterType, $blur, $bestFit, $cropZoom)
 {
     //The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imagick->resizeImage($width, $height, $filterType, $blur, $bestFit);
 
@@ -1739,9 +1739,9 @@ function resizeImage($imagePath, $width, $height, $filterType, $blur, $bestFit, 
     
     
 //Example Imagick::rollImage
-function rollImage($imagePath, $rollX, $rollY)
+function rollImage($image_path, $rollX, $rollY)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->rollimage($rollX, $rollY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1749,9 +1749,9 @@ function rollImage($imagePath, $rollX, $rollY)
 //Example end
 
 //Example Imagick::rotateImage
-function rotateImage($imagePath, $angle, $color, $crop)
+function rotateImage($image_path, $angle, $color, $crop)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     
     $originalWidth = $imagick->getImageWidth();
     $originalHeight = $imagick->getImageHeight();
@@ -1780,9 +1780,9 @@ function rotateImage($imagePath, $angle, $color, $crop)
 //Example end
 
 //Example Imagick::rotationalBlurImage
-function rotationalBlurImage($imagePath)
+function rotationalBlurImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->rotationalBlurImage(3);
     $imagick->rotationalBlurImage(5);
     $imagick->rotationalBlurImage(7);
@@ -1792,9 +1792,9 @@ function rotationalBlurImage($imagePath)
 //Example end
 
 //Example Imagick::roundCorners
-function roundCorners($imagePath)
+function roundCorners($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setBackgroundColor('red');
 
     $imagick->setbackgroundcolor('pink');
@@ -1819,9 +1819,9 @@ function roundCorners($imagePath)
 //Example end
 
 //Example Imagick::scaleImage
-function scaleImage($imagePath)
+function scaleImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->scaleImage(150, 150, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1830,9 +1830,9 @@ function scaleImage($imagePath)
 
 
 //Example Imagick::segmentImage
-function segmentImage($imagePath, $colorSpace, $clusterThreshold, $smoothThreshold)
+function segmentImage($image_path, $colorSpace, $clusterThreshold, $smoothThreshold)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->segmentImage($colorSpace, $clusterThreshold, $smoothThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1841,9 +1841,9 @@ function segmentImage($imagePath, $colorSpace, $clusterThreshold, $smoothThresho
 
 
 //Example Imagick::selectiveBlurImage
-function selectiveBlurImage($imagePath, $radius, $sigma, $threshold, $channel)
+function selectiveBlurImage($image_path, $radius, $sigma, $threshold, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->selectiveBlurImage($radius, $sigma, $threshold, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1852,9 +1852,9 @@ function selectiveBlurImage($imagePath, $radius, $sigma, $threshold, $channel)
 
 
 //Example Imagick::separateImageChannel
-function separateImageChannel($imagePath, $channel)
+function separateImageChannel($image_path, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->separateimagechannel($channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1864,9 +1864,9 @@ function separateImageChannel($imagePath, $channel)
 
 
 //Example Imagick::sepiaToneImage
-function sepiaToneImage($imagePath, $sepia)
+function sepiaToneImage($image_path, $sepia)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->sepiaToneImage($sepia);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1875,9 +1875,9 @@ function sepiaToneImage($imagePath, $sepia)
 
 
 //Example Imagick::setCompressionQuality
-function setCompressionQuality($imagePath, $quality)
+function setCompressionQuality($image_path, $quality)
 {
-    $backgroundImagick = new \Imagick(realpath($imagePath));
+    $backgroundImagick = new \Imagick(realpath($image_path));
     $imagick = new \Imagick();
     $imagick->setCompressionQuality($quality);
     $imagick->newPseudoImage(
@@ -1912,9 +1912,9 @@ function setImageArtifact()
 
 
 //Example Imagick::setImageCompressionQuality
-function setImageCompressionQuality($imagePath, $quality)
+function setImageCompressionQuality($image_path, $quality)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageCompressionQuality($quality);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1924,9 +1924,9 @@ function setImageCompressionQuality($imagePath, $quality)
 
 //Example Imagick::setImageOrientation
 //Doesn't appear to do anything
-function setImageOrientation($imagePath, $orientationType)
+function setImageOrientation($image_path, $orientationType)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageOrientation($orientationType);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -1958,10 +1958,10 @@ function setImageBias($bias)
 
 
 //Example Imagick::setImageClipMask
-function setImageClipMask($imagePath)
+function setImageClipMask($image_path)
 {
     $imagick = new \Imagick();
-    $imagick->readImage(realpath($imagePath));
+    $imagick->readImage(realpath($image_path));
 
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();
@@ -2016,9 +2016,9 @@ function setImageDelay()
 
 
 //Example Imagick::setImageResolution
-function setImageResolution($imagePath)
+function setImageResolution($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageResolution(50, 50);
     
     header("Content-Type: image/jpg");
@@ -2076,8 +2076,8 @@ function setIteratorIndex($firstLayer)
 
 
 ////
-//function setOption($imagePath) {
-//    $imagick = new \Imagick(realpath($imagePath));
+//function setOption($image_path) {
+//    $imagick = new \Imagick(realpath($image_path));
 //    $imagick->setImageFormat('jpg');
 //    $imagick->setOption('jpeg:extent', '20kb');
 //    
@@ -2096,10 +2096,10 @@ function setIteratorIndex($firstLayer)
     
     
 //Example Imagick::setSamplingFactors
-function setSamplingFactors($imagePath)
+function setSamplingFactors($image_path)
 {
-    $imagePath = "../public/images/FineDetail.png";
-    $imagick = new \Imagick(realpath($imagePath));
+    $image_path = "../public/images/FineDetail.png";
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageFormat('jpg');
     $imagick->setSamplingFactors(array('2x2', '1x1', '1x1'));
 
@@ -2122,9 +2122,9 @@ function setSamplingFactors($imagePath)
 //Example end
     
 //Example Imagick::shadeImage
-function shadeImage($imagePath)
+function shadeImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->shadeImage(true, 45, 20);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2132,9 +2132,9 @@ function shadeImage($imagePath)
 //Example end
 
 //Example Imagick::shadowImage
-function shadowImage($imagePath)
+function shadowImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->shadowImage(0.4, 10, 50, 5);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2143,9 +2143,9 @@ function shadowImage($imagePath)
 
     
 //Example Imagick::sharpenImage
-function sharpenImage($imagePath, $radius, $sigma, $channel)
+function sharpenImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->sharpenimage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2154,9 +2154,9 @@ function sharpenImage($imagePath, $radius, $sigma, $channel)
 
 
 //Example Imagick::shaveImage
-function shaveImage($imagePath)
+function shaveImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->shaveImage(100, 50);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2165,9 +2165,9 @@ function shaveImage($imagePath)
 
 
 //Example Imagick::shearimage
-function shearImage($imagePath, $color, $shearX, $shearY)
+function shearImage($image_path, $color, $shearX, $shearY)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->shearimage($color, $shearX, $shearY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2176,9 +2176,9 @@ function shearImage($imagePath, $color, $shearX, $shearY)
 
 
 //Example Imagick::sigmoidalContrastImage
-function sigmoidalContrastImage($imagePath, $sharpening, $midpoint, $sigmoidalContrast)
+function sigmoidalContrastImage($image_path, $sharpening, $midpoint, $sigmoidalContrast)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     //Need some stereo image to work with.
     $imagick->sigmoidalcontrastimage(
         $sharpening, //sharpen
@@ -2192,9 +2192,9 @@ function sigmoidalContrastImage($imagePath, $sharpening, $midpoint, $sigmoidalCo
 
 
 //Example Imagick::sketchimage
-function sketchImage($imagePath, $radius, $sigma, $angle)
+function sketchImage($image_path, $radius, $sigma, $angle)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->sketchimage($radius, $sigma, $angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2202,9 +2202,9 @@ function sketchImage($imagePath, $radius, $sigma, $angle)
 //Example end
     
 //Example Imagick::smushImages
-function smushImages($imagePath)
+function smushImages($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick2 = new \Imagick(realpath("images/coolGif.gif"));
 
     $imagick->addimage($imagick2);
@@ -2217,9 +2217,9 @@ function smushImages($imagePath)
 
 
 //Example Imagick::solarizeImage
-function solarizeImage($imagePath, $solarizeThreshold)
+function solarizeImage($image_path, $solarizeThreshold)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->solarizeImage($solarizeThreshold * \Imagick::getQuantum());
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2228,9 +2228,9 @@ function solarizeImage($imagePath, $solarizeThreshold)
 
 
 //Example Imagick::spliceImage
-function spliceImage($imagePath, $startX, $startY, $width, $height)
+function spliceImage($image_path, $startX, $startY, $width, $height)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->spliceImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2238,9 +2238,9 @@ function spliceImage($imagePath, $startX, $startY, $width, $height)
 //Example end
 
 //Example Imagick::spreadImage
-function spreadImage($imagePath, $radius)
+function spreadImage($image_path, $radius)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->spreadImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2249,9 +2249,9 @@ function spreadImage($imagePath, $radius)
 
 
 //Example Imagick::statisticImage
-function statisticImage($imagePath, $statisticType, $w20, $h20, $channel)
+function statisticImage($image_path, $statisticType, $w20, $h20, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imagick->statisticImage(
         $statisticType,
@@ -2267,9 +2267,9 @@ function statisticImage($imagePath, $statisticType, $w20, $h20, $channel)
 
 
 //Example Imagick::stereoImage
-function stereoImage($imagePath)
+function stereoImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     //TODO - Need some stereo image to work with.
     $imagick->stereoImage(true, 45, 20);
     header("Content-Type: image/jpg");
@@ -2279,9 +2279,9 @@ function stereoImage($imagePath)
 
 
 //Example Imagick::subImageMatch
-function subImageMatch($imagePath)
+function subImageMatch($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick2 = clone $imagick;
     $imagick2->cropimage(40, 40, 250, 110);
     $imagick2->vignetteimage(0, 1, 3, 3);
@@ -2299,9 +2299,9 @@ function subImageMatch($imagePath)
 
 
 //Example Imagick::swirlImage
-function swirlImage($imagePath, $swirl)
+function swirlImage($image_path, $swirl)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->swirlImage($swirl);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2309,12 +2309,12 @@ function swirlImage($imagePath, $swirl)
 //Example end
 
 //Example Imagick::textureImage
-function textureImage($imagePath)
+function textureImage($image_path)
 {
     $image = new \Imagick();
     $image->newImage(640, 480, new \ImagickPixel('pink'));
     $image->setImageFormat("jpg");
-    $texture = new \Imagick(realpath($imagePath));
+    $texture = new \Imagick(realpath($image_path));
     $texture->scaleimage($image->getimagewidth() / 4, $image->getimageheight() / 4);
     $image = $image->textureImage($texture);
     header("Content-Type: image/jpg");
@@ -2324,9 +2324,9 @@ function textureImage($imagePath)
 
 
 //Example Imagick::thresholdimage
-function thresholdimage($imagePath, $threshold, $channel)
+function thresholdimage($image_path, $threshold, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->thresholdimage($threshold * \Imagick::getQuantum(), $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2335,9 +2335,9 @@ function thresholdimage($imagePath, $threshold, $channel)
 
 
 //Example Imagick::thumbnailImage
-function thumbnailImage($imagePath)
+function thumbnailImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setbackgroundcolor('rgb(64, 64, 64)');
     $imagick->thumbnailImage(100, 100, true, true);
     header("Content-Type: image/jpg");
@@ -2376,9 +2376,9 @@ function tintImage($r, $g, $b, $a)
 
 
 //Example Imagick::transformimage
-function transformimage($imagePath)
+function transformimage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $newImage = $imagick->transformimage("400x600", "200x300");
     header("Content-Type: image/jpg");
     echo $newImage->getImageBlob();
@@ -2387,9 +2387,9 @@ function transformimage($imagePath)
 
 
 //Example Imagick::transformImageColorspace
-function transformImageColorspace($imagePath, $colorSpace, $channel)
+function transformImageColorspace($image_path, $colorSpace, $channel)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->transformimagecolorspace($colorSpace);
     $imagick->separateImageChannel($channel);
     header("Content-Type: image/jpg");
@@ -2430,9 +2430,9 @@ function transparentPaintImage($color, $alpha, $fuzz, $inverse)
 
 
 //Example Imagick::transposeImage
-function transposeImage($imagePath)
+function transposeImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->transposeImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2441,9 +2441,9 @@ function transposeImage($imagePath)
 
 
 //Example Imagick::transverseImage
-function transverseImage($imagePath)
+function transverseImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->transverseImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2465,9 +2465,9 @@ function trimImage($color, $fuzz)
 
 
 //Example Imagick::uniqueImageColors
-function uniqueImageColors($imagePath)
+function uniqueImageColors($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     //Reduce the image to 256 colours nicely.
     $imagick->quantizeImage(256, \Imagick::COLORSPACE_YIQ, 0, false, false);
     $imagick->uniqueImageColors();
@@ -2479,9 +2479,9 @@ function uniqueImageColors($imagePath)
 
 
 //Example Imagick::unsharpMaskImage
-function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThreshold)
+function unsharpMaskImage($image_path, $radius, $sigma, $amount, $unsharpThreshold)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->unsharpMaskImage($radius, $sigma, $amount, $unsharpThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2490,9 +2490,9 @@ function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThreshol
 
 
 //Example Imagick::vignetteImage
-function vignetteImage($imagePath, $blackPoint, $whitePoint, $x, $y)
+function vignetteImage($image_path, $blackPoint, $whitePoint, $x, $y)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->vignetteImage($blackPoint, $whitePoint, $x, $y);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2501,9 +2501,9 @@ function vignetteImage($imagePath, $blackPoint, $whitePoint, $x, $y)
 
 
 //Example Imagick::waveImage WaveImage can be quite slow
-function waveImage($imagePath, $amplitude, $length)
+function waveImage($image_path, $amplitude, $length)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->waveImage($amplitude, $length);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -2512,9 +2512,9 @@ function waveImage($imagePath, $amplitude, $length)
 
 
 //Example Imagick::whiteThresholdImage
-function whiteThresholdImage($imagePath, $color)
+function whiteThresholdImage($image_path, $color)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->whiteThresholdImage($color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

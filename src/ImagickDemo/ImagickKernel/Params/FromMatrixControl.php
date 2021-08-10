@@ -22,7 +22,7 @@ class FromMatrixControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[KernelRender()]
+        #[KernelRender('kernel_render')]
         private string $kernel_render
     ) {
     }

@@ -12,8 +12,29 @@ interface ImageState {
     imageParams: Object;
 }
 
+// Help wanted - make there be fewer ts-ignores...
 function createQueryString(params:Object): string {
+    //debugger;
     let queryString = Object.keys(params).map((key) => {
+        // @ts-ignore: TS2322
+        let parts = [];
+        // @ts-ignore: TS2322
+        if(Array.isArray(params[key])) {
+            // @ts-ignore: TS2322
+            for (let i = 0; i < params[key].length; i++) {
+                // @ts-ignore: TS2322
+                if (Array.isArray(params[key][i])) {
+                    // @ts-ignore: TS2322
+                    parts.push("[" + params[key][i].join(",") + "]")
+                }
+            }
+
+            // TODO - values are all floats, or uriencode them
+            // @ts-ignore: TS2322
+            // return encodeURIComponent(key) + '=' + "[" + params[key].join(',') + "]";
+            return encodeURIComponent(key) + '=' + "[" + parts.join(',') + "]";
+        }
+
         // @ts-ignore: TS2322
         return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
     }).join('&');
@@ -50,12 +71,12 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         }
 
 
-        // console.log("history is disabled until controls are working.");
-        window.history.pushState(
-            params, // This needs to be restored on state pop?
-            '', // Leave blank, as unused.
-            full_page_url
-        );
+        // // console.log("history is disabled until controls are working.");
+        // window.history.pushState(
+        //     params, // This needs to be restored on state pop?
+        //     '', // Leave blank, as unused.
+        //     full_page_url
+        // );
     };
 
     componentWillMount() {

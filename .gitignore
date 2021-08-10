@@ -24,3 +24,4 @@ docker/php_backend/config/php.ini
 node_modules
 .idea
 man
+bugReports

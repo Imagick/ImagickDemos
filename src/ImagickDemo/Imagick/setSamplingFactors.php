@@ -67,8 +67,8 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
 
     public function getOriginalImageResponse()
     {
-        $imagePath = $this->getOriginalImagePath();
-        $imagick = new \Imagick(realpath($imagePath));
+        $image_path = $this->getOriginalImagePath();
+        $imagick = new \Imagick(realpath($image_path));
         $imagick->resizeImage(
             $imagick->getImageWidth() * 4,
             $imagick->getImageHeight() * 4,
@@ -105,8 +105,8 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
      */
     public function render()
     {
-        $imagePath = "../public/images/FineDetail.png";
-        $imagick = new \Imagick(realpath($imagePath));
+        $image_path = "../public/images/FineDetail.png";
+        $imagick = new \Imagick(realpath($image_path));
 
         $imagick->setImageFormat('jpg');
         $originalSize = strlen($imagick->getImageBlob());

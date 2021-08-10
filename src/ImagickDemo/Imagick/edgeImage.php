@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\EdgeImageControl;
+
 class edgeImage extends \ImagickDemo\Example
 {
     function getOriginalImage()
@@ -18,4 +20,15 @@ class edgeImage extends \ImagickDemo\Example
     {
         return $this->renderImageURL();
     }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return EdgeImageControl::class;
+    }
+
 }

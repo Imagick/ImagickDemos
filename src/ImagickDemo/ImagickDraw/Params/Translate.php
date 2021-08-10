@@ -25,25 +25,25 @@ class Translate implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[ImagickColorParam('rgb(225, 225, 225)')]
+        #[ImagickColorParam('rgb(225, 225, 225)', 'background_color')]
         private string $background_color,
-        #[ImagickColorParam('rgb(0, 0, 0)')]
+        #[ImagickColorParam('rgb(0, 0, 0)', 'stroke_color')]
         private string $stroke_color,
-        #[ImagickColorParam('DodgerBlue2')]
+        #[ImagickColorParam('DodgerBlue2', 'fill_color')]
         private string $fill_color,
-        #[ImagickColorParam('LightCoral')]
+        #[ImagickColorParam('LightCoral', 'fill_modified_color')]
         private string $fill_modified_color,
-        #[StartX]
+        #[StartX('start_x')]
         private string $startX,
-        #[StartY]
+        #[StartY('start_y')]
         private string $startY,
-        #[EndX]
+        #[EndX('end_x')]
         private string $endX,
-        #[EndY]
+        #[EndY('end_y')]
         private string $endY,
-        #[TranslateX]
+        #[TranslateX('translate_x')]
         private string $translate_x,
-        #[TranslateY]
+        #[TranslateY('translate_y')]
         private string $translate_y
     ) {
     }

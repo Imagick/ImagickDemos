@@ -41,7 +41,7 @@ class EyeColourResolutionParams implements InputParameterList
     private $colorspace;
 
     /** @var string */
-    private $imagepath = 'huh';
+    private $image_path = 'huh';
 
     /** @var bool */
     private $smaller;
@@ -51,7 +51,7 @@ class EyeColourResolutionParams implements InputParameterList
         int $channel_2_sample,
         int $channel_3_sample,
         int $colorspace,
-        string $imagepath,
+        string $image_path,
         bool $smaller
     ) {
         $this->channel_1_sample = $channel_1_sample;
@@ -59,7 +59,7 @@ class EyeColourResolutionParams implements InputParameterList
         $this->channel_3_sample = $channel_3_sample;
 
         $this->colorspace = $colorspace;
-        $this->imagepath = $imagepath;
+        $this->image_path = $image_path;
         $this->smaller = $smaller;
     }
 
@@ -70,7 +70,7 @@ class EyeColourResolutionParams implements InputParameterList
             'channel_2_sample' => $this->channel_2_sample,
             'channel_3_sample' => $this->channel_3_sample,
             'colorspace' => getEyeColorSpaceStringFromValue($this->colorspace),
-            'imagepath' => getImagePathForOption($this->imagepath),
+            'imagepath' => getImagePathForOption($this->image_path),
             'smaller' => $this->smaller,
         ];
 
@@ -85,7 +85,7 @@ class EyeColourResolutionParams implements InputParameterList
         }
 
 
-        //$params['imagepath'] = getImagePathForOption($this->imagepath);
+        //$params['imagepath'] = getImagePathForOption($this->image_path);
 
         return $params;
     }
@@ -162,6 +162,6 @@ class EyeColourResolutionParams implements InputParameterList
      */
     public function getImagepath(): string
     {
-        return getImagePathForOption($this->imagepath);
+        return getImagePathForOption($this->image_path);
     }
 }

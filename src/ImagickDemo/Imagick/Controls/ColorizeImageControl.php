@@ -20,11 +20,11 @@ class ColorizeImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[ImagickColorParam('rgb(255, 255, 0)')]
+        #[Image('image_path')]
+        private string $image_path,
+        #[ImagickColorParam('rgb(255, 255, 0)', 'color')]
         private string $color,
-        #[ImagickColorParam('rgb(127, 127, 127)')]
+        #[ImagickColorParam('rgb(127, 127, 127)', 'opacity_color')]
         private string $opacity_color,
     ) {
     }
@@ -34,7 +34,7 @@ class ColorizeImageControl implements InputParameterList
         return [
             'color' => $this->color,
             'opacity_color' => $this->opacity_color,
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

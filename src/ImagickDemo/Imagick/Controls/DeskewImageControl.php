@@ -2,18 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickKernel\Params;
-
-use ImagickDemo\Params\ImagickColorParam;
-use ImagickDemo\Params\Image;
+namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
+use Params\SafeAccess;
+use ImagickDemo\Params\ComponentRangeFloat;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
 
-class ImageControl implements InputParameterList
+class DeskewImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -21,15 +19,15 @@ class ImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image('image_path')]
-        private string $image_path
+        #[ComponentRangeFloat(0.5, 'threshold')]
+        private string $threshold,
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
+            'threshold' => $this->threshold,
         ];
     }
 }

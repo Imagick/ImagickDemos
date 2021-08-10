@@ -6,14 +6,14 @@ namespace ImagickDemo\Params;
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
 
 #[\Attribute]
 class FirstTerm implements Param
 {
     public function __construct(
-        private int $default,
+        private float $default,
         private string $name
     ) {
     }
@@ -22,9 +22,9 @@ class FirstTerm implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(0.5),
-            new MinIntValue(-10000),
-            new MaxIntValue(10000),
+            new GetFloatOrDefault($this->default),
+            new MinFloatValue(-10000),
+            new MaxFloatValue(10000),
         );
     }
 

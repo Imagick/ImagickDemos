@@ -11,9 +11,7 @@ export interface NumberProps {
 
 export class Number extends Component<NumberProps, {}> {
 
-
     updateValue(value:string|number ) {
-
         if (this.props.min !== undefined) {
             if (value < this.props.min) {
                 value = this.props.min;
@@ -29,9 +27,6 @@ export class Number extends Component<NumberProps, {}> {
     }
 
     render() {
-        // <input type="text" pattern="\d*" />
-        // <input type="number" value={this.state.value} onChange={this.onChange}/>
-
         return <span>
             {this.props.name}
             <input

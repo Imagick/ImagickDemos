@@ -4,18 +4,18 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-use ImagickDemo\Params\ImagickColorParam;
+
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-use ImagickDemo\Params\Height;
-use ImagickDemo\Params\Width;
-use ImagickDemo\Params\BestFit;
+
+use ImagickDemo\Params\DistortionType;
 use ImagickDemo\Params\Image;
 
-class BorderImageControl implements InputParameterList
+
+class DistortImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,24 +23,28 @@ class BorderImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Width(50, 'width')]
-        private string $width,
-        #[Height(20, 'height')]
-        private string $height,
+        #[DistortionType('distortion_type')]
+        private string $distortion_type,
         #[Image('image_path')]
         private string $image_path,
-        #[ImagickColorParam('rgb(127, 127, 127)', 'color')]
-        private string $color,
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'width' => $this->width,
-            'height' => $this->height,
+            'distortion_type' => getOptionFromOptions($this->distortion_type, getDistortionOptions()),
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
-            'color' => $this->color,
         ];
+    }
+
+    public function getDistortionType(): string
+    {
+        return $this->distortion_type;
+    }
+
+    public function getImagePath(): string
+    {
+        return $this->image_path;
     }
 }

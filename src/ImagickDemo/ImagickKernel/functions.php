@@ -246,7 +246,7 @@ function renderKernel(ImagickKernel $imagickKernel)
 }
 
 //Example ImagickKernel::addKernel
-function addKernel($imagePath)
+function addKernel($image_path)
 {
     $matrix1 = [
         [-1, -1, -1],
@@ -264,7 +264,7 @@ function addKernel($imagePath)
     $kernel2 = ImagickKernel::fromMatrix($matrix2);
     $kernel1->addKernel($kernel2);
 
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->filter($kernel1);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -274,7 +274,7 @@ function addKernel($imagePath)
     
 
 //Example ImagickKernel::addUnityKernel
-function addUnityKernel($imagePath)
+function addUnityKernel($image_path)
 {
     $matrix = [
         [-1, 0, -1],
@@ -288,7 +288,7 @@ function addUnityKernel($imagePath)
     $kernel->addUnityKernel(0.5);
 
 
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->filter($kernel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

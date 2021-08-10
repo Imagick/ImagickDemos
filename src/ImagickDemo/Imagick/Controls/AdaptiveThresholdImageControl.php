@@ -23,13 +23,13 @@ class AdaptiveThresholdImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Width(50)]
+        #[Width(50, 'width')]
         private string $width,
-        #[Height()]
+        #[Height(20, 'height')]
         private string $height,
-        #[Image()]
-        private string $imagePath,
-        #[AdaptiveOffset()]
+        #[Image('image_path')]
+        private string $image_path,
+        #[AdaptiveOffset('adaptive_offset')]
         private string $adaptive_offset,
     ) {
     }
@@ -40,7 +40,7 @@ class AdaptiveThresholdImageControl implements InputParameterList
             'width' => $this->width,
             'height' => $this->height,
             'offset' => $this->adaptive_offset,
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

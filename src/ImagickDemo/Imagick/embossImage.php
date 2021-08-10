@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageRadiusSigmaControl;
+
 class embossImage extends \ImagickDemo\Example
 {
     function getOriginalImage()
@@ -17,5 +19,15 @@ class embossImage extends \ImagickDemo\Example
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageRadiusSigmaControl::class;
     }
 }

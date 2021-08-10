@@ -19,11 +19,11 @@ class ThreeColors implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[ImagickColorParam('rgb(225, 225, 225)')]
+        #[ImagickColorParam('rgb(225, 225, 225)', 'background_color')]
         private string $background_color,
-        #[ImagickColorParam('rgb(0, 0, 0)')]
+        #[ImagickColorParam('rgb(0, 0, 0)', 'stroke_color')]
         private string $stroke_color,
-        #[ImagickColorParam('DodgerBlue2')]
+        #[ImagickColorParam('DodgerBlue2', 'fill_color')]
         private string $fill_color
     ) {
     }

@@ -4,18 +4,23 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-use ImagickDemo\Params\Height;
-use ImagickDemo\Params\Width;
+use \ImagickDemo\Params\ResizeHeight;
+use \ImagickDemo\Params\ResizeWidth;
 use ImagickDemo\Params\BestFit;
 use ImagickDemo\Params\Image;
 
-class BorderImageControl implements InputParameterList
+use ImagickDemo\Params\Height;
+use ImagickDemo\Params\Width;
+use ImagickDemo\Params\StartX;
+use ImagickDemo\Params\StartY;
+
+
+class CropImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,14 +28,19 @@ class BorderImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Width(50, 'width')]
+        #[Width(250, 'width')]
         private string $width,
-        #[Height(20, 'height')]
+        #[Height(150, 'height')]
         private string $height,
+
+        #[StartX('start_x')]
+        private string $start_x,
+        #[StartY('start_y')]
+        private string $start_y,
+
         #[Image('image_path')]
         private string $image_path,
-        #[ImagickColorParam('rgb(127, 127, 127)', 'color')]
-        private string $color,
+
     ) {
     }
 
@@ -39,8 +49,9 @@ class BorderImageControl implements InputParameterList
         return [
             'width' => $this->width,
             'height' => $this->height,
+            'start_x' => $this->start_x,
+            'start_y' => $this->start_y,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
-            'color' => $this->color,
         ];
     }
 }

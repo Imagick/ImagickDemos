@@ -26,15 +26,15 @@ class ChopImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[StartX()]
+        #[Image('image_path')]
+        private string $image_path,
+        #[StartX('start_x')]
         private string $start_x,
-        #[StartY()]
+        #[StartY('start_y')]
         private string $start_y,
-        #[Width(100)]
+        #[Width(100, 'width')]
         private string $width,
-        #[Height()]
+        #[Height(20, 'height')]
         private string $height,
     ) {
     }
@@ -42,7 +42,7 @@ class ChopImageControl implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
             'start_x' => $this->start_x,
             'start_y' => $this->start_y,
             'width' => $this->width,

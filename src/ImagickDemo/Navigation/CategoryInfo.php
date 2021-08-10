@@ -213,7 +213,7 @@ class CategoryInfo
         //'compareImageChannels',
         //'compareImageLayers',
         //'compareImages',
-        'compositeImage' => ['compositeImage',\ImagickDemo\Control\ReactControls::class ],
+        'compositeImage' => ['compositeImage', \ImagickDemo\Control\NullControl::class ],
         // CompositeLayers
         //__construct',
         'contrastImage' => ['contrastImage', \ImagickDemo\Control\ReactControls::class],

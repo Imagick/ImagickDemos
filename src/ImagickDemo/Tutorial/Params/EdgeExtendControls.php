@@ -23,7 +23,7 @@ class EdgeExtendControls implements InputParameterList
 
     public function __construct(
         #[Image()]
-        private string $imagePath,
+        private string $image_path,
         #[VirtualPixel()]
         private string $virtualPixelType,
     ) {
@@ -32,7 +32,7 @@ class EdgeExtendControls implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
             'virtual_pixel_type' => getOptionFromOptions($this->virtualPixelType, getVirtualPixelOptions()),
         ];
     }

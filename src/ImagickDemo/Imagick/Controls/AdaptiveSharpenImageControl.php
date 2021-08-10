@@ -22,14 +22,14 @@ class AdaptiveSharpenImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius()]
+        #[Radius('radius')]
         private string $radius,
-        #[Sigma()]
+        #[Sigma('sigma')]
         private string $sigma,
-        #[Channel()]
+        #[Channel('channel')]
         private string $channel,
-        #[Image()]
-        private string $imagePath,
+        #[Image('image_path')]
+        private string $image_path,
     ) {
     }
 
@@ -39,7 +39,7 @@ class AdaptiveSharpenImageControl implements InputParameterList
             'radius' => $this->radius,
             'sigma' => $this->sigma,
             'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

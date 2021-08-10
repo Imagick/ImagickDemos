@@ -26,11 +26,11 @@ class AddNoiseImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[NoiseType()]
+        #[Image('image_path')]
+        private string $image_path,
+        #[NoiseType('noise_type')]
         private string $noise_type,
-        #[Channel()]
+        #[Channel('channel')]
         private string $channel,
     ) {
     }
@@ -40,7 +40,7 @@ class AddNoiseImageControl implements InputParameterList
         return [
             'noise_type' => getOptionFromOptions($this->noise_type, getNoiseOptions()),
             'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

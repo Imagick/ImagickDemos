@@ -53,8 +53,8 @@ class setOption extends \ImagickDemo\Example
 //Example Imagick::setOption
     public function renderJPG($extent)
     {
-        $imagePath = $this->control->getImagePath();
-        $imagick = new \Imagick(realpath($imagePath));
+        $image_path = $this->control->getImagePath();
+        $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('jpg');
         $imagick->setOption('jpeg:extent', $extent);
         header("Content-Type: image/jpg");
@@ -65,8 +65,8 @@ class setOption extends \ImagickDemo\Example
 //Example Imagick::setOption
     public function renderPNG($format)
     {
-        $imagePath = $this->control->getImagePath();
-        $imagick = new \Imagick(realpath($imagePath));
+        $image_path = $this->control->getImagePath();
+        $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('png');
         $imagick->setOption('png:format', $format);
         header("Content-Type: image/png");
@@ -83,8 +83,8 @@ class setOption extends \ImagickDemo\Example
 //Example Imagick::setOption
     public function renderCustomBitDepthPNG()
     {
-        $imagePath = $this->control->getImagePath();
-        $imagick = new \Imagick(realpath($imagePath));
+        $image_path = $this->control->getImagePath();
+        $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('png');
 
         $imagick->setOption('png:bit-depth', '16');
@@ -104,10 +104,10 @@ class setOption extends \ImagickDemo\Example
 
     public function renderBlackPoint()
     {
-        $imagePath = $this->control->getImagePath();
+        $image_path = $this->control->getImagePath();
         $imagick = new \Imagick();
         $imagick->setOption('black-point-compensation', 0.25 * \Imagick::getQuantum());
-        $imagick->readImage(realpath($imagePath));
+        $imagick->readImage(realpath($image_path));
         $imagick->setImageFormat('png');
 
         header("Content-Type: image/png");

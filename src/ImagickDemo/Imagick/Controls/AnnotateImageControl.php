@@ -21,11 +21,11 @@ class AnnotateImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[ImagickColorParam('rgb(0, 0, 0)')]
+        #[Image('image_path')]
+        private string $image_path,
+        #[ImagickColorParam('rgb(0, 0, 0)', 'stroke_color')]
         private string $stroke_color,
-        #[ImagickColorParam('white')]
+        #[ImagickColorParam('white', 'fill_color')]
         private string $fill_color,
     ) {
     }
@@ -35,7 +35,7 @@ class AnnotateImageControl implements InputParameterList
         return [
             'stroke_color' => $this->stroke_color,
             'fill_color' => $this->fill_color,
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

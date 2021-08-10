@@ -7,7 +7,7 @@ use ImagickDemo\Control\ImageControl;
 class getImageHistogram extends \ImagickDemo\Example
 {
 
-    protected $imagePath;
+    protected $image_path;
 
     /**
      * @var ImageControl

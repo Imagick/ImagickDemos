@@ -8,7 +8,6 @@ use ImagickDemo\ImagickDraw\Params\AffineParams;
 use ImagickDemo\ImagickDraw\Params\ThreeColors;
 use VarMap\VarMap;
 use ImagickDemo\ReactParamType;
-use ImagickDemo\ImagickDraw\ReactThreeColorExample;
 
 class affine extends \ImagickDemo\Example
 {

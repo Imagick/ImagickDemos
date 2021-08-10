@@ -228,6 +228,8 @@ class DocHelperDisplay extends DocHelper
             return "";
         }
 
+        return "example goes here.";
+
         $examples = $this->exampleEntries[$this->category][$this->example];
 
         $count = 1;

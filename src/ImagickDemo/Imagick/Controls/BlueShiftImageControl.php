@@ -21,9 +21,9 @@ class BlueShiftImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[ComponentRangeFloat(1.5)]
+        #[Image('image_path')]
+        private string $image_path,
+        #[ComponentRangeFloat(1.5, 'blue_shift')]
         private float $blue_shift
     ) {
     }
@@ -31,7 +31,8 @@ class BlueShiftImageControl implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
+            'blue_shift' => $this->blue_shift
         ];
     }
 }

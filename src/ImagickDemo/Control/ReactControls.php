@@ -7,6 +7,7 @@ use ImagickDemo\Control;
 use ImagickDemo\Navigation\CategoryInfo;
 use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
 use Params\InputParameterList;
+use VarMap\ArrayVarMap;
 use VarMap\VarMap;
 use ImagickDemo\ReactParamType;
 
@@ -46,8 +47,8 @@ class ReactControls implements Control
         /** @var ReactParamType $exampleName */
         $paramType = $exampleName::getParamType();
 
-        $params = $paramType::createFromVarMap($varMap);
-
+        $hackedVarMap = hackVarMap($varMap);
+        $params = $paramType::createFromVarMap($hackedVarMap);
 
         $this->params = $params;
     }

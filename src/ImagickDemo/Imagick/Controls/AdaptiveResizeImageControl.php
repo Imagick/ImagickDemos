@@ -22,13 +22,13 @@ class AdaptiveResizeImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[ResizeWidth()]
+        #[ResizeWidth('width')]
         private string $width,
-        #[ResizeHeight()]
+        #[ResizeHeight('height')]
         private string $height,
-        #[Image()]
-        private string $imagePath,
-        #[BestFit()]
+        #[Image('image_path')]
+        private string $image_path,
+        #[BestFit('best_fit')]
         private string $best_fit,
     ) {
     }
@@ -38,7 +38,7 @@ class AdaptiveResizeImageControl implements InputParameterList
         return [
             'width' => $this->width,
             'height' => $this->height,
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
             'best_fit' => getOptionFromOptions($this->best_fit, getEnabledOptions()),
         ];
     }

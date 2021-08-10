@@ -6,23 +6,28 @@ use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
+//use ImagickDemo\ExtractRule\GetKernelMatrixOrDefault;
+use Params\ExtractRule\GetKernelMatrixOrDefault;
 
 #[\Attribute]
-class Height implements Param
+class ConvolveMatrix implements Param
 {
     public function __construct(
-        private int $default,
         private string $name
     ) {
     }
 
     public function getInputParameter(): InputParameter
     {
+        $default = [
+            [-1, -1, -1],
+            [-1, 8, -1],
+            [-1, -1, -1],
+        ];
+
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault($this->default),
-            new RangeIntValue(1, 500),
+            new GetKernelMatrixOrDefault($default),
         );
     }
-
 }

@@ -34,7 +34,7 @@ function header($string, $replace = true, $http_response_code = null)
 }
 
 
-//$imagick = new \Imagick(realpath($imagePath));
+//$imagick = new \Imagick(realpath($image_path));
 //$imagick2 = clone $imagick;
 //$imageIterator1 = new \ImagickPixelIterator($imagick);
 //$imageIterator2 = new \ImagickPixelIterator($imagick2);
@@ -76,9 +76,9 @@ function header($string, $replace = true, $http_response_code = null)
 
 
 //Example ImagickPixelIterator::clear
-function clear($imagePath)
+function clear($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 250, 200);
 
     /* Loop through pixel rows */
@@ -104,9 +104,9 @@ function clear($imagePath)
 
 
 //Example ImagickPixelIterator::construct
-function construct($imagePath)
+function construct($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imageIterator = new \ImagickPixelIterator($imagick);
 
     /* Loop through pixel rows */
@@ -130,9 +130,9 @@ function construct($imagePath)
 
 
 //Example ImagickPixelIterator::getNextIteratorRow
-function getNextIteratorRow($imagePath)
+function getNextIteratorRow($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelIterator();
 
     $count = 0;
@@ -160,9 +160,9 @@ function getNextIteratorRow($imagePath)
 
 
 //Example ImagickPixelIterator::resetIterator
-function resetIterator($imagePath)
+function resetIterator($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imageIterator = $imagick->getPixelIterator();
 
@@ -204,9 +204,9 @@ function resetIterator($imagePath)
 
 
 //Example ImagickPixelIterator::setIteratorRow
-function setIteratorRow($imagePath)
+function setIteratorRow($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelRegionIterator(200, 100, 200, 200);
 
     for ($x = 0; $x < 20; $x++) {
@@ -302,9 +302,9 @@ class PixelStack
 }
 
 
-function syncIteratorImage($imagePath)
+function syncIteratorImage($image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
 
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
 

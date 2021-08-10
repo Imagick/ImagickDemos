@@ -22,9 +22,9 @@ class BlackThresholdImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[ImagickColorParam('rgb(127, 127, 127)')]
+        #[Image('image_path')]
+        private string $image_path,
+        #[ImagickColorParam('rgb(127, 127, 127)', 'threshold_color')]
         private string $threshold_color,
     ) {
     }
@@ -33,7 +33,7 @@ class BlackThresholdImageControl implements InputParameterList
     {
         return [
             'threshold_color' => $this->threshold_color,
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

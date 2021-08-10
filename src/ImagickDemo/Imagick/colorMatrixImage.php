@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ColorizeImageControl;
+
 class colorMatrixImage extends \ImagickDemo\Example
 {
     function getOriginalImage()
@@ -38,5 +40,10 @@ END;
     public function render()
     {
         return $this->renderImageURL('#0000ff');
+    }
+
+    public static function getParamType(): string
+    {
+        return ColorizeImageControl::class;
     }
 }

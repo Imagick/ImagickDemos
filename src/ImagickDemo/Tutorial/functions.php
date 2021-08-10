@@ -433,9 +433,9 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5)
 
 
 //Example Tutorial::edgeExtend
-function edgeExtend($virtualPixelType, $imagePath)
+function edgeExtend($virtualPixelType, $image_path)
 {
-    $imagick = new \Imagick(realpath($imagePath));
+    $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageVirtualPixelMethod($virtualPixelType);
 
     $imagick->scaleimage(400, 300, true);
@@ -533,17 +533,17 @@ function downSampleImage(Imagick $imagick, int $pixel_sample_rate)
  * @param int $channel_2_sample
  * @param int $channel_3_sample
  * @param int $colorspace Which colorspace to do the downsampling in.
- * @param string $imagepath Which image to use.
+ * @param string $image_path Which image to use.
  */
 function eyeColourResolution(
     int $channel_1_sample,
     int $channel_2_sample,
     int $channel_3_sample,
     int $colorspace,
-    string $imagepath
+    string $image_path
 ) {
     // Create the source image and get the dimension of it.
-    $imagick = new \Imagick(realpath($imagepath));
+    $imagick = new \Imagick(realpath($image_path));
 
     // Make the image smaller to make easier to compare channels.
     $imagick->resizeimage(

@@ -25,15 +25,15 @@ class FromBuiltInControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[KernelType()]
+        #[KernelType('kernel_type')]
         private string $kernel_type,
-        #[KernelFirstTerm()]
+        #[KernelFirstTerm('first_term')]
         private float $first_term,
-        #[KernelSecondTerm()]
+        #[KernelSecondTerm('second_term')]
         private float $second_term,
-        #[KernelThirdTerm()]
+        #[KernelThirdTerm('third_term')]
         private float $third_term,
-        #[KernelRender()]
+        #[KernelRender('kernel_render')]
         private string $kernel_render
     ) {
     }

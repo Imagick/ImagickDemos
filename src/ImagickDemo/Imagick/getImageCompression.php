@@ -4,7 +4,7 @@ namespace ImagickDemo\Imagick;
 
 class getImageCompression extends \ImagickDemo\Example
 {
-    private $imagePath;
+    private $image_path;
 
     private $compressionTypes = [
         \Imagick::COMPRESSION_NO => 'COMPRESSION_NO',
@@ -22,9 +22,9 @@ class getImageCompression extends \ImagickDemo\Example
         \Imagick::COMPRESSION_ZIP => 'COMPRESSION_ZIP',
     ];
 
-    public function __construct($imagePath)
+    public function __construct($image_path)
     {
-        $this->imagePath = $imagePath;
+        $this->image_path = $image_path;
     }
 
     public function renderDescription()
@@ -36,7 +36,7 @@ class getImageCompression extends \ImagickDemo\Example
 
     public function render()
     {
-        $imagick = new \Imagick(realpath($this->imagePath));
+        $imagick = new \Imagick(realpath($this->image_path));
         $typeString = "An unknown compression type";
         $compressionType = $imagick->getImageCompression();
 

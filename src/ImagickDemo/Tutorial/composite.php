@@ -12,8 +12,8 @@ use VarMap\VarMap;
 //function compositeImageExample()
 //{
 ////Example Tutorial::composite
-//    $imagick = new Imagick(realpath($imagePath1));
-//    $imagick2 = new Imagick(realpath($imagePath2));
+//    $imagick = new Imagick(realpath($image_path1));
+//    $imagick2 = new Imagick(realpath($image_path2));
 //    $imagick1->compositeImage($imagick2, $type, 0, 0);
 //    $imagick1->setImageFormat('png');
 //

@@ -69,8 +69,10 @@ function renderReactControls(VarMap $varMap, string $param_type)
 //        throw new \Exception("param_type $param_type needs to implement InputParameterList");
 //    }
 
+    $hackedVarMap = hackVarMap($varMap);
+
     /** @var  InputParameterList&CreateFromVarMap $param_type */
-    $params = $param_type::createFromVarMap($varMap);
+    $params = $param_type::createFromVarMap($hackedVarMap);
 
     $paramDescription = OpenApiV300ParamDescription::createFromRules(
         $param_type::getInputParameterList()
@@ -181,6 +183,10 @@ function renderExampleBodyHtml(
 
             // What about custom images?
             $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+
+            if ($example->hasCustomImage() === true) {
+                $imageBaseUrl = \ImagickDemo\Route::getCustomImageURL($activeCategory, $activeExample);
+            }
 
             $exampleHtml = renderReactExampleImagePanel(
                 $imageBaseUrl,

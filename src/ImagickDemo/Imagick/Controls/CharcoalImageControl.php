@@ -23,12 +23,12 @@ class CharcoalImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius()]
+        #[Radius('radius')]
         private string $radius,
-        #[Sigma()]
+        #[Sigma('sigma')]
         private string $sigma,
-        #[Image()]
-        private string $imagePath,
+        #[Image('image_path')]
+        private string $image_path,
     ) {
     }
 
@@ -37,7 +37,7 @@ class CharcoalImageControl implements InputParameterList
         return [
             'radius' => $this->radius,
             'sigma' => $this->sigma,
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 }

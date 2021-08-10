@@ -1,25 +1,24 @@
 import {h, Component} from "preact";
 import {Integer} from "./components/Integer";
+import {KernelMatrix} from "./components/KernelMatrix";
 import {Number} from "./components/Number";
 import {ValueSelect} from "./components/ValueSelect";
 import {triggerEvent, EventType, registerEvent, unregisterEvent} from "./events";
 import {SelectOption} from "./components/Select";
-
 import {getNamedColorValue} from "./ImagickColors";
-// import {HexColorPicker} from "react-colorful";
 import {RgbaColorPicker, RgbaColor} from "react-colorful";
 import {colorValues} from "./color_convert";
-// import {RgbaColor} from "react-colorful/dist/types";
+
 
 // https://swagger.io/specification/#example-object
 
 enum OpenApiType {
+    array = 'array',
     boolean = "boolean",
     integer = "integer",
     enum = 'enum',
     number = "number",
     string = "string",
-
 }
 
 interface Schema {
@@ -66,6 +65,9 @@ function getDefaultState(initialControlParams: object): AppState {
         values: {},
         active_color: null
     };
+
+    // console.log("initialControlParams");
+    // console.log(initialControlParams);
 
     for (let name in initialControlParams) {
         if (initialControlParams.hasOwnProperty(name) === true) {
@@ -188,7 +190,10 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
     createNumberControl(control_info: ControlInfo) {
 
-
+        // console.log("************");
+        // console.log(this.state.values);
+        // console.log(control_info);
+        // console.log("************");
 
         return <div>
             <Number
@@ -232,6 +237,18 @@ export class ControlPanel extends Component<AppProps, AppState> {
             new_color_string= `rgb(${color.r}, ${color.g}, ${color.b})`;
         }
         this.setCurrentValue(this.state.active_color, new_color_string);
+    }
+
+    setMatrixCurrentValue(name: string, row_index: number, column_index: number, new_value: string ) {
+        let current_values = this.state.values;
+
+        if (Array.isArray(current_values[name]) !== true) {
+            debugger;
+            throw new Error("Current value for " + name  + "is not an array");
+        }
+        // @ts-ignore: yeah, I know
+        current_values[name][row_index][column_index] = parseFloat(new_value);
+        this.setState({values: current_values});
     }
 
     createColorControl(control_info: ControlInfo) {
@@ -300,6 +317,7 @@ export class ControlPanel extends Component<AppProps, AppState> {
             <ValueSelect
                 name={map_api_name(control_info.name)}
                 options={options}
+                // @ts-ignore: blah blah blah
                 default={default_value}
                 updateFn={(newValue) => {
                     this.setCurrentValue(control_info.name, newValue);
@@ -323,6 +341,30 @@ export class ControlPanel extends Component<AppProps, AppState> {
         return <div>I don't know how to render this string.</div>
     }
 
+    createKernelMatrixControl(control_info: ControlInfo) {
+        let values = this.state.values[control_info.name] ?? control_info.schema.default;
+
+        let updateFn = (row_index: number, column_index: number, new_value:any) =>
+            this.setMatrixCurrentValue(
+                control_info.name,
+                row_index,
+                column_index,
+                new_value,
+            );
+
+
+        return <div>
+            <KernelMatrix
+                name={map_api_name(control_info.name)}
+                // @ts-ignore: TS2322
+                values={values}
+                // @ts-ignore: blah blah blah
+                updateFn={updateFn}
+            />
+        </div>
+
+    }
+
     createControl(index: number, control_info: ControlInfo) {
         if (control_info.schema.type === undefined) {
             throw Error("control_info.schema.type is undefined for " + control_info)
@@ -330,7 +372,7 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
         switch(control_info.schema.type) {
             case OpenApiType.boolean: {
-                console.log("make an boolean");
+                // console.log("make an boolean");
                 return <span>this should be a boolean</span>;
             }
 
@@ -344,6 +386,12 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
             case OpenApiType.string: {
                 return this.createStringControl(control_info);
+            }
+
+            case OpenApiType.array: {
+                if (control_info.schema.format === 'kernel_matrix') {
+                    return this.createKernelMatrixControl(control_info)
+                }
             }
         }
 

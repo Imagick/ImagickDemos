@@ -789,9 +789,9 @@ function imagickCompositeGen($contrast = 10, $blendMidpoint = 0.5)
     ),
     'edgeextend' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:10:"edgeExtend";s:5:"lines";s:1279:"function edgeExtend($virtualPixelType, $imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:10:"edgeExtend";s:5:"lines";s:1279:"function edgeExtend($virtualPixelType, $image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageVirtualPixelMethod($virtualPixelType);
 
     $imagick->scaleimage(400, 300, true);
@@ -869,17 +869,17 @@ function downSampleImage(Imagick $imagick, int $pixel_sample_rate)
  * @param int $channel_2_sample
  * @param int $channel_3_sample
  * @param int $colorspace Which colorspace to do the downsampling in.
- * @param string $imagepath Which image to use.
+ * @param string $image_path Which image to use.
  */
 function eyeColourResolution(
     int $channel_1_sample,
     int $channel_2_sample,
     int $channel_3_sample,
     int $colorspace,
-    string $imagepath
+    string $image_path
 ) {
     // Create the source image and get the dimension of it.
-    $imagick = new \\Imagick(realpath($imagepath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     // Make the image smaller to make easier to compare channels.
     $imagick->resizeimage(
@@ -1378,8 +1378,8 @@ function whirlyGif($numberDots, $numberFrames, $loopTime, $backgroundColor, $pha
     ),
     'composite' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:9:"composite";s:5:"lines";s:322:"//    $imagick = new Imagick(realpath($imagePath1));
-//    $imagick2 = new Imagick(realpath($imagePath2));
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:8:"Tutorial";s:12:"functionName";s:9:"composite";s:5:"lines";s:322:"//    $imagick = new Imagick(realpath($image_path1));
+//    $imagick2 = new Imagick(realpath($image_path2));
 //    $imagick1->compositeImage($imagick2, $type, 0, 0);
 //    $imagick1->setImageFormat(\'png\');
 //
@@ -1547,9 +1547,9 @@ function renderFontEffect()
   array (
     'clear' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:5:"clear";s:5:"lines";s:754:"function clear($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:5:"clear";s:5:"lines";s:754:"function clear($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 250, 200);
 
     /* Loop through pixel rows */
@@ -1575,9 +1575,9 @@ function renderFontEffect()
     ),
     'construct' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:9:"construct";s:5:"lines";s:715:"function construct($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:9:"construct";s:5:"lines";s:715:"function construct($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imageIterator = new \\ImagickPixelIterator($imagick);
 
     /* Loop through pixel rows */
@@ -1601,9 +1601,9 @@ function renderFontEffect()
     ),
     'getnextiteratorrow' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:18:"getNextIteratorRow";s:5:"lines";s:825:"function getNextIteratorRow($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:18:"getNextIteratorRow";s:5:"lines";s:825:"function getNextIteratorRow($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelIterator();
 
     $count = 0;
@@ -1631,9 +1631,9 @@ function renderFontEffect()
     ),
     'resetiterator' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:13:"resetIterator";s:5:"lines";s:1392:"function resetIterator($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:13:"resetIterator";s:5:"lines";s:1392:"function resetIterator($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imageIterator = $imagick->getPixelIterator();
 
@@ -1675,9 +1675,9 @@ function renderFontEffect()
     ),
     'setiteratorrow' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:14:"setIteratorRow";s:5:"lines";s:739:"function setIteratorRow($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:20:"ImagickPixelIterator";s:12:"functionName";s:14:"setIteratorRow";s:5:"lines";s:739:"function setIteratorRow($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelRegionIterator(200, 100, 200, 200);
 
     for ($x = 0; $x < 20; $x++) {
@@ -1773,9 +1773,9 @@ class PixelStack
 }
 
 
-function syncIteratorImage($imagePath)
+function syncIteratorImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imageIterator = $imagick->getPixelRegionIterator(125, 100, 275, 200);
 
@@ -3543,7 +3543,7 @@ function syncIteratorImage($imagePath)
   array (
     'addkernel' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:9:"addKernel";s:5:"lines";s:515:"function addKernel($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:9:"addKernel";s:5:"lines";s:515:"function addKernel($image_path)
 {
     $matrix1 = [
         [-1, -1, -1],
@@ -3561,7 +3561,7 @@ function syncIteratorImage($imagePath)
     $kernel2 = ImagickKernel::fromMatrix($matrix2);
     $kernel1->addKernel($kernel2);
 
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->filter($kernel1);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3571,7 +3571,7 @@ function syncIteratorImage($imagePath)
     ),
     'addunitykernel' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:14:"addUnityKernel";s:5:"lines";s:428:"function addUnityKernel($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:13:"ImagickKernel";s:12:"functionName";s:14:"addUnityKernel";s:5:"lines";s:428:"function addUnityKernel($image_path)
 {
     $matrix = [
         [-1, 0, -1],
@@ -3585,7 +3585,7 @@ function syncIteratorImage($imagePath)
     $kernel->addUnityKernel(0.5);
 
 
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->filter($kernel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3766,9 +3766,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
   array (
     'adaptiveblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"adaptiveBlurImage";s:5:"lines";s:255:"function adaptiveBlurImage($imagePath, $radius, $sigma, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"adaptiveBlurImage";s:5:"lines";s:255:"function adaptiveBlurImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->adaptiveBlurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3777,9 +3777,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'adaptiveresizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"adaptiveResizeImage";s:5:"lines";s:259:"function adaptiveResizeImage($imagePath, $width, $height, $bestFit)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"adaptiveResizeImage";s:5:"lines";s:259:"function adaptiveResizeImage($image_path, $width, $height, $bestFit)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->adaptiveResizeImage($width, $height, $bestFit);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3788,9 +3788,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'adaptivesharpenimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"adaptiveSharpenImage";s:5:"lines";s:261:"function adaptiveSharpenImage($imagePath, $radius, $sigma, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"adaptiveSharpenImage";s:5:"lines";s:261:"function adaptiveSharpenImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->adaptiveSharpenImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3799,9 +3799,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'adaptivethresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"adaptiveThresholdImage";s:5:"lines";s:365:"function adaptiveThresholdImage($imagePath, $width, $height, $adaptiveOffset)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"adaptiveThresholdImage";s:5:"lines";s:365:"function adaptiveThresholdImage($image_path, $width, $height, $adaptiveOffset)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $adaptiveOffsetQuantum = intval($adaptiveOffset * \\Imagick::getQuantum());
     $imagick->adaptiveThresholdImage($width, $height, $adaptiveOffsetQuantum);
     header("Content-Type: image/jpg");
@@ -3811,9 +3811,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'addnoiseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"addNoiseImage";s:5:"lines";s:237:"function addNoiseImage($noiseType, $imagePath, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"addNoiseImage";s:5:"lines";s:237:"function addNoiseImage($noiseType, $image_path, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->addNoiseImage($noiseType, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3822,9 +3822,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'affinetransformimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"affineTransformImage";s:5:"lines";s:468:"function affineTransformImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"affineTransformImage";s:5:"lines";s:468:"function affineTransformImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $draw = new \\ImagickDraw();
 
     $angle = 40 ;
@@ -3846,9 +3846,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'annotateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"annotateImage";s:5:"lines";s:572:"function annotateImage($imagePath, $strokeColor, $fillColor)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"annotateImage";s:5:"lines";s:572:"function annotateImage($image_path, $strokeColor, $fillColor)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $draw = new \\ImagickDraw();
     $draw->setStrokeColor($strokeColor);
@@ -3887,8 +3887,8 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     foreach ($images as $imageRow) {
         $rowImagick = new Imagick();
         $rowImagick->setBackgroundColor(\'gray\');
-        foreach ($imageRow as $imagePath) {
-            $imagick = new Imagick(realpath($imagePath));
+        foreach ($imageRow as $image_path) {
+            $imagick = new Imagick(realpath($image_path));
             $imagick->setImageBackgroundColor("gray");
             $imagick->resizeimage(200, 200, \\Imagick::FILTER_LANCZOS, 1.0, true);
             $rowImagick->addImage($imagick);
@@ -3912,9 +3912,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'autolevelimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"autoLevelImage";s:5:"lines";s:197:"function autoLevelImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"autoLevelImage";s:5:"lines";s:197:"function autoLevelImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->autoLevelImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3923,9 +3923,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'averageimages' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"averageImages";s:5:"lines";s:445:"function averageImages($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"averageImages";s:5:"lines";s:445:"function averageImages($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     //$imagick2 = new \\Imagick(realpath("../images/TestImage2.jpg"));
     //$imagick->addImage($imagick2);
     //This kills PHP  - but the function is deprecated, so let\'s just ignore it
@@ -3939,9 +3939,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'blackthresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"blackThresholdImage";s:5:"lines";s:239:"function blackThresholdImage($imagePath, $thresholdColor)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"blackThresholdImage";s:5:"lines";s:239:"function blackThresholdImage($image_path, $thresholdColor)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->blackthresholdimage($thresholdColor);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3950,9 +3950,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'blueshiftimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"blueShiftImage";s:5:"lines";s:219:"function blueShiftImage($imagePath, $blueShift)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"blueShiftImage";s:5:"lines";s:219:"function blueShiftImage($image_path, $blueShift)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->blueShiftImage($blueShift);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3961,9 +3961,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'blurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"blurImage";s:5:"lines";s:239:"function blurImage($imagePath, $radius, $sigma, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"blurImage";s:5:"lines";s:239:"function blurImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->blurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3972,9 +3972,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'borderimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"borderImage";s:5:"lines";s:239:"function borderImage($imagePath, $color, $width, $height)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"borderImage";s:5:"lines";s:239:"function borderImage($image_path, $color, $width, $height)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->borderImage($color, $width, $height);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3983,9 +3983,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'brightnesscontrastimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:23:"brightnessContrastImage";s:5:"lines";s:281:"function brightnessContrastImage($imagePath, $brightness, $contrast, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:23:"brightnessContrastImage";s:5:"lines";s:281:"function brightnessContrastImage($image_path, $brightness, $contrast, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->brightnessContrastImage($brightness, $contrast, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -3994,9 +3994,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'charcoalimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"charcoalImage";s:5:"lines";s:227:"function charcoalImage($imagePath, $radius, $sigma)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"charcoalImage";s:5:"lines";s:227:"function charcoalImage($image_path, $radius, $sigma)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->charcoalImage($radius, $sigma);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4005,9 +4005,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'chopimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"chopImage";s:5:"lines";s:255:"function chopImage($imagePath, $startX, $startY, $width, $height)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"chopImage";s:5:"lines";s:255:"function chopImage($image_path, $startX, $startY, $width, $height)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->chopImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4016,9 +4016,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'clipimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"clipImage";s:5:"lines";s:187:"function clipImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"clipImage";s:5:"lines";s:187:"function clipImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->clipImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4029,7 +4029,7 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"coalesceImages";s:5:"lines";s:761:"function coalesceImages()
 {
-    $imagePaths = [
+    $image_paths = [
         "../public/images/lories/IMG_1599_480.jpg",
         "../public/images/lories/IMG_2561_480.jpg",
         "../public/images/lories/IMG_2837_480.jpg",
@@ -4037,8 +4037,8 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ];
 
     $canvas = new Imagick();
-    foreach ($imagePaths as $imagePath) {
-        $canvas->readImage(realpath($imagePath));
+    foreach ($image_paths as $image_path) {
+        $canvas->readImage(realpath($image_path));
         $canvas->setImageDelay(100);
     }
     $canvas->setImageFormat(\'gif\');
@@ -4055,7 +4055,7 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'colordecisionlistimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"colorDecisionListImage";s:5:"lines";s:680:"function colorDecisionListImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"colorDecisionListImage";s:5:"lines";s:680:"function colorDecisionListImage($image_path)
 {
 //    $colorList = \'<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
 //    <ColorCorrection id="cc03345">
@@ -4070,7 +4070,7 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
 //    </ColorCorrection>
 //    </ColorCorrectionCollection>\';
 
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imagick->colorDecisionListImage($imagick);
     
@@ -4081,9 +4081,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'colorfloodfillimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"colorFloodfillImage";s:5:"lines";s:363:"function colorFloodfillImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"colorFloodfillImage";s:5:"lines";s:363:"function colorFloodfillImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $border = new \\ImagickPixel(\'red\');
     $flood = new \\ImagickPixel(\'rgb(128, 32, 128)\');
     @$imagick->colorFloodfillImage(
@@ -4099,9 +4099,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'colorizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"colorizeImage";s:5:"lines";s:333:"function colorizeImage($imagePath, $color, $opacity)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"colorizeImage";s:5:"lines";s:333:"function colorizeImage($image_path, $color, $opacity)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $opacity = $opacity / 255.0;
     $opacityColor = new \\ImagickPixel("rgba(0, 0, 0, $opacity)");
     $imagick->colorizeImage($color, $opacityColor);
@@ -4112,9 +4112,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'colormatriximage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"colorMatrixImage";s:5:"lines";s:956:"function colorMatrixImage($imagePath, $colorMatrix)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"colorMatrixImage";s:5:"lines";s:956:"function colorMatrixImage($image_path, $colorMatrix)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageOpacity(1);
 
     //A color matrix should look like:
@@ -4181,7 +4181,7 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'constituteimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"constituteImage";s:5:"lines";s:525:"function constituteImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"constituteImage";s:5:"lines";s:525:"function constituteImage($image_path)
 {
     $imagick = new \\Imagick();
 
@@ -4205,9 +4205,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'contrastimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"contrastImage";s:5:"lines";s:264:"function contrastImage($imagePath, $contrastType)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"contrastImage";s:5:"lines";s:264:"function contrastImage($image_path, $contrastType)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     if ($contrastType != 2) {
         $imagick->contrastImage($contrastType);
     }
@@ -4219,9 +4219,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'convolveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"convolveImage";s:5:"lines";s:355:"function convolveImage($imagePath, $bias, $kernelMatrix)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"convolveImage";s:5:"lines";s:355:"function convolveImage($image_path, $bias, $kernelMatrix)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     //$edgeFindingKernel = [-1, -1, -1, -1, 8, -1, -1, -1, -1,];
     $imagick->setImageBias($bias * \\Imagick::getQuantum());
     $imagick->convolveImage($kernelMatrix);
@@ -4232,9 +4232,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'cropimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"cropImage";s:5:"lines";s:255:"function cropImage($imagePath, $startX, $startY, $width, $height)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"cropImage";s:5:"lines";s:255:"function cropImage($image_path, $startX, $startY, $width, $height)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->cropImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4271,9 +4271,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'despeckleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"despeckleImage";s:5:"lines";s:197:"function despeckleImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"despeckleImage";s:5:"lines";s:197:"function despeckleImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->despeckleImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4311,9 +4311,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'edgeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"edgeImage";s:5:"lines";s:203:"function edgeImage($imagePath, $radius)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"edgeImage";s:5:"lines";s:203:"function edgeImage($image_path, $radius)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->edgeImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4322,9 +4322,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'enhanceimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"enhanceImage";s:5:"lines";s:193:"function enhanceImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"enhanceImage";s:5:"lines";s:193:"function enhanceImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->enhanceImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4333,9 +4333,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'embossimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"embossImage";s:5:"lines";s:223:"function embossImage($imagePath, $radius, $sigma)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"embossImage";s:5:"lines";s:223:"function embossImage($image_path, $radius, $sigma)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->embossImage($radius, $sigma);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4344,9 +4344,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'equalizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"equalizeImage";s:5:"lines";s:195:"function equalizeImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"equalizeImage";s:5:"lines";s:195:"function equalizeImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->equalizeImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4415,9 +4415,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'extentimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"extentImage";s:5:"lines";s:344:"function extentImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"extentImage";s:5:"lines";s:344:"function extentImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageBackgroundColor(\'orange\');
     $imagick->extentImage(
         $imagick->getImageWidth(),
@@ -4433,9 +4433,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'exportimagepixels' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"exportImagePixels";s:5:"lines";s:756:"function exportImagePixels($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"exportImagePixels";s:5:"lines";s:756:"function exportImagePixels($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     for ($y=0; $y< $imagick->getImageHeight(); $y++) {
         $redPixels = $imagick->exportImagePixels(0, $y, $imagick->getImageWidth(), 1, "R", \\Imagick::PIXEL_CHAR);
         
@@ -4470,9 +4470,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'filter' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:6:"filter";s:5:"lines";s:461:"function filter($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:6:"filter";s:5:"lines";s:461:"function filter($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $matrix = [
         [-1, 0, -1],
         [0,  5,  0],
@@ -4492,9 +4492,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'flipimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"flipImage";s:5:"lines";s:187:"function flipImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"flipImage";s:5:"lines";s:187:"function flipImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->flipImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4521,9 +4521,9 @@ function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelTh
     ),
     'flopimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"flopImage";s:5:"lines";s:187:"function flopImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"flopImage";s:5:"lines";s:187:"function flopImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->flopImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4555,9 +4555,9 @@ function createMask()
 }
 
 
-function forwardFourierTransformImage($imagePath)
+function forwardFourierTransformImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->resizeimage(512, 512, \\Imagick::FILTER_LANCZOS, 1);
 
     $mask = createMask();
@@ -4590,9 +4590,9 @@ function forwardFourierTransformImage($imagePath)
     ),
     'frameimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"frameImage";s:5:"lines";s:437:"function frameImage($imagePath, $color, $width, $height, $innerBevel, $outerBevel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"frameImage";s:5:"lines";s:437:"function frameImage($image_path, $color, $width, $height, $innerBevel, $outerBevel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $width = $width + $innerBevel + $outerBevel;
     $height = $height + $innerBevel + $outerBevel;
@@ -4627,9 +4627,9 @@ function forwardFourierTransformImage($imagePath)
     ),
     'gammaimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"gammaImage";s:5:"lines";s:223:"function gammaImage($imagePath, $gamma, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"gammaImage";s:5:"lines";s:223:"function gammaImage($image_path, $gamma, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->gammaImage($gamma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4638,9 +4638,9 @@ function forwardFourierTransformImage($imagePath)
     ),
     'gaussianblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"gaussianBlurImage";s:5:"lines";s:255:"function gaussianBlurImage($imagePath, $radius, $sigma, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"gaussianBlurImage";s:5:"lines";s:255:"function gaussianBlurImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->gaussianBlurImage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4649,9 +4649,9 @@ function forwardFourierTransformImage($imagePath)
     ),
     'getpixeliterator' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"getPixelIterator";s:5:"lines";s:745:"function getPixelIterator($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"getPixelIterator";s:5:"lines";s:745:"function getPixelIterator($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelIterator();
 
     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -4694,7 +4694,7 @@ function forwardFourierTransformImage($imagePath)
     return $colorStatistics;
 }
 
-function getImageHistogram($imagePath)
+function getImageHistogram($image_path)
 {
     $backgroundColor = \'black\';
 
@@ -4709,7 +4709,7 @@ function getImageHistogram($imagePath)
     $histogramWidth = 256;
     $histogramHeight = 100; // the height for each RGB segment
 
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     //Resize the image to be small, otherwise PHP tends to run out of memory
     //This might lead to bad results for images that are pathologically \'pixelly\'
     $imagick->adaptiveResizeImage(200, 200, true);
@@ -4759,9 +4759,9 @@ function getImageHistogram($imagePath)
     ),
     'getpixelregioniterator' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"getPixelRegionIterator";s:5:"lines";s:775:"function getPixelRegionIterator($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"getPixelRegionIterator";s:5:"lines";s:775:"function getPixelRegionIterator($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imageIterator = $imagick->getPixelRegionIterator(100, 100, 200, 200);
 
     /** @noinspection PhpUnusedLocalVariableInspection */
@@ -4782,9 +4782,9 @@ function getImageHistogram($imagePath)
     ),
     'haldclutimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"haldClutImage";s:5:"lines";s:323:"function haldClutImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"haldClutImage";s:5:"lines";s:323:"function haldClutImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagickPalette = new \\Imagick(realpath("images/hald/hald_8.png"));
     $imagickPalette->sepiatoneImage(55);
     $imagick->haldClutImage($imagickPalette);
@@ -4795,9 +4795,9 @@ function getImageHistogram($imagePath)
     ),
     'implodeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"implodeImage";s:5:"lines";s:200:"function implodeImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"implodeImage";s:5:"lines";s:200:"function implodeImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->implodeImage(0.0001);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4885,17 +4885,17 @@ function importImagePixels()
     ),
     'labelimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"labelImage";s:5:"lines";s:208:"function labelImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"labelImage";s:5:"lines";s:208:"function labelImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->labelImage("This is some text");
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
 ";s:11:"description";s:0:"";s:9:"startLine";i:1161;s:7:"endLine";i:1169;}',
-      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"labelImage";s:5:"lines";s:250:"function polaroidImage($imagePath)
+      1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"labelImage";s:5:"lines";s:250:"function polaroidImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagickDraw = new \\ImagickDraw();
     $imagick->polaroidImage($imagickDraw, 15);
     header("Content-Type: image/jpg");
@@ -4921,9 +4921,9 @@ function importImagePixels()
     ),
     'linearstretchimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"linearStretchImage";s:5:"lines";s:362:"function linearStretchImage($imagePath, $blackThreshold, $whiteThreshold)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"linearStretchImage";s:5:"lines";s:362:"function linearStretchImage($image_path, $blackThreshold, $whiteThreshold)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $pixels = $imagick->getImageWidth() * $imagick->getImageHeight();
     $imagick->linearStretchImage($blackThreshold * $pixels, $whiteThreshold * $pixels);
 
@@ -4934,9 +4934,9 @@ function importImagePixels()
     ),
     'magnifyimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"magnifyImage";s:5:"lines";s:193:"function magnifyImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"magnifyImage";s:5:"lines";s:193:"function magnifyImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->magnifyImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4945,9 +4945,9 @@ function importImagePixels()
     ),
     'medianfilterimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"medianFilterImage";s:5:"lines";s:220:"function medianFilterImage($radius, $imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"medianFilterImage";s:5:"lines";s:220:"function medianFilterImage($radius, $image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     @$imagick->medianFilterImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -4984,9 +4984,9 @@ function importImagePixels()
     ),
     'modulateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"modulateImage";s:5:"lines";s:257:"function modulateImage($imagePath, $hue, $brightness, $saturation)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"modulateImage";s:5:"lines";s:257:"function modulateImage($image_path, $hue, $brightness, $saturation)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->modulateImage($brightness, $saturation, $hue);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5127,9 +5127,9 @@ function importImagePixels()
     ),
     'motionblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"motionBlurImage";s:5:"lines";s:267:"function motionBlurImage($imagePath, $radius, $sigma, $angle, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"motionBlurImage";s:5:"lines";s:267:"function motionBlurImage($image_path, $radius, $sigma, $angle, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->motionBlurImage($radius, $sigma, $angle, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5138,9 +5138,9 @@ function importImagePixels()
     ),
     'negateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"negateImage";s:5:"lines";s:231:"function negateImage($imagePath, $grayOnly, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"negateImage";s:5:"lines";s:231:"function negateImage($image_path, $grayOnly, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->negateImage($grayOnly, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5182,9 +5182,9 @@ function newPseudoImage($canvasType)
     ),
     'normalizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"normalizeImage";s:5:"lines";s:413:"function normalizeImage($imagePath, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"normalizeImage";s:5:"lines";s:413:"function normalizeImage($image_path, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $original = clone $imagick;
     $original->cropimage($original->getImageWidth() / 2, $original->getImageHeight(), 0, 0);
     $imagick->normalizeImage($channel);
@@ -5196,9 +5196,9 @@ function newPseudoImage($canvasType)
     ),
     'oilpaintimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"oilPaintImage";s:5:"lines";s:211:"function oilPaintImage($imagePath, $radius)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"oilPaintImage";s:5:"lines";s:211:"function oilPaintImage($image_path, $radius)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->oilPaintImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5207,9 +5207,9 @@ function newPseudoImage($canvasType)
     ),
     'orderedposterizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:21:"orderedPosterizeImage";s:5:"lines";s:297:"function orderedPosterizeImage($imagePath, $orderedPosterizeType)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:21:"orderedPosterizeImage";s:5:"lines";s:297:"function orderedPosterizeImage($image_path, $orderedPosterizeType)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->orderedPosterizeImage($orderedPosterizeType);
     $imagick->setImageFormat(\'png\');
     
@@ -5240,9 +5240,9 @@ function newPseudoImage($canvasType)
     ),
     'posterizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"posterizeImage";s:5:"lines";s:280:"function posterizeImage($imagePath, $dither, $numberLevels)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"posterizeImage";s:5:"lines";s:280:"function posterizeImage($image_path, $dither, $numberLevels)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->posterizeImage($numberLevels, $dither);
     $imagick->setImageFormat(\'png\');
     header("Content-Type: image/png");
@@ -5252,9 +5252,9 @@ function newPseudoImage($canvasType)
     ),
     'quantizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"quantizeImage";s:5:"lines";s:335:"function quantizeImage($imagePath, $numberColors, $colorSpace, $treeDepth, $dither)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"quantizeImage";s:5:"lines";s:335:"function quantizeImage($image_path, $numberColors, $colorSpace, $treeDepth, $dither)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->quantizeImage($numberColors, $colorSpace, $treeDepth, $dither, false);
     $imagick->setImageFormat(\'png\');
     header("Content-Type: image/png");
@@ -5269,8 +5269,8 @@ function newPseudoImage($canvasType)
     set_time_limit(120);        //This takes a long time
     ini_set(\'memory_limit\', \'128M\'); //And uses a lot of memory
     
-    $imagePathPattern = "../public/images/spiderGif";
-    $fileIterator = new \\GlobIterator(realpath($imagePathPattern).\'/*.png\');
+    $image_pathPattern = "../public/images/spiderGif";
+    $fileIterator = new \\GlobIterator(realpath($image_pathPattern).\'/*.png\');
 
     $imagick = new \\Imagick();
     $imagick->setFormat("gif");
@@ -5297,9 +5297,9 @@ function newPseudoImage($canvasType)
     ),
     'radialblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"radialBlurImage";s:5:"lines";s:268:"function radialBlurImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"radialBlurImage";s:5:"lines";s:268:"function radialBlurImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->radialBlurImage(3);
     $imagick->radialBlurImage(5);
     $imagick->radialBlurImage(7);
@@ -5310,9 +5310,9 @@ function newPseudoImage($canvasType)
     ),
     'raiseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"raiseImage";s:5:"lines";s:280:"function raiseImage($imagePath, $width, $height, $x, $y, $raise)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"raiseImage";s:5:"lines";s:280:"function raiseImage($image_path, $width, $height, $x, $y, $raise)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     //x and y do nothing?
     $imagick->raiseImage($width, $height, $x, $y, $raise);
@@ -5323,9 +5323,9 @@ function newPseudoImage($canvasType)
     ),
     'randomthresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"randomThresholdimage";s:5:"lines";s:370:"function randomThresholdimage($imagePath, $lowThreshold, $highThreshold, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"randomThresholdimage";s:5:"lines";s:370:"function randomThresholdimage($image_path, $lowThreshold, $highThreshold, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imagick->randomThresholdimage(
         $lowThreshold * \\Imagick::getQuantum(),
@@ -5366,9 +5366,9 @@ function newPseudoImage($canvasType)
     ),
     'recolorimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"recolorImage";s:5:"lines";s:427:"function recolorImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"recolorImage";s:5:"lines";s:427:"function recolorImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $remapColor = [ 1, 0, 0,
         0, 0, 1,
         0, 1, 0,];
@@ -5388,9 +5388,9 @@ function newPseudoImage($canvasType)
     ),
     'reducenoiseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"reduceNoiseImage";s:5:"lines";s:228:"function reduceNoiseImage($imagePath, $reduceNoise)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"reduceNoiseImage";s:5:"lines";s:228:"function reduceNoiseImage($image_path, $reduceNoise)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     @$imagick->reduceNoiseImage($reduceNoise);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5399,9 +5399,9 @@ function newPseudoImage($canvasType)
     ),
     'remapimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"remapImage";s:5:"lines";s:303:"function remapImage($imagePath, $ditherMethod)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"remapImage";s:5:"lines";s:303:"function remapImage($image_path, $ditherMethod)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $palette = new \\Imagick(realpath("images/NetscapeWebSafeColours.gif"));
     $imagick->remapImage($palette, $ditherMethod);
     header("Content-Type: image/png");
@@ -5411,9 +5411,9 @@ function newPseudoImage($canvasType)
     ),
     'resampleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"resampleImage";s:5:"lines";s:233:"function resampleImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"resampleImage";s:5:"lines";s:233:"function resampleImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imagick->resampleImage(200, 200, \\Imagick::FILTER_LANCZOS, 1);
     header("Content-Type: image/jpg");
@@ -5423,10 +5423,10 @@ function newPseudoImage($canvasType)
     ),
     'resizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"resizeImage";s:5:"lines";s:854:"function resizeImage($imagePath, $width, $height, $filterType, $blur, $bestFit, $cropZoom)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"resizeImage";s:5:"lines";s:854:"function resizeImage($image_path, $width, $height, $filterType, $blur, $bestFit, $cropZoom)
 {
     //The blur factor where &gt; 1 is blurry, &lt; 1 is sharp.
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imagick->resizeImage($width, $height, $filterType, $blur, $bestFit);
 
@@ -5458,9 +5458,9 @@ function newPseudoImage($canvasType)
     ),
     'rollimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"rollImage";s:5:"lines";s:217:"function rollImage($imagePath, $rollX, $rollY)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"rollImage";s:5:"lines";s:217:"function rollImage($image_path, $rollX, $rollY)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->rollimage($rollX, $rollY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5469,9 +5469,9 @@ function newPseudoImage($canvasType)
     ),
     'rotateimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"rotateImage";s:5:"lines";s:739:"function rotateImage($imagePath, $angle, $color, $crop)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"rotateImage";s:5:"lines";s:739:"function rotateImage($image_path, $angle, $color, $crop)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     
     $originalWidth = $imagick->getImageWidth();
     $originalHeight = $imagick->getImageHeight();
@@ -5501,9 +5501,9 @@ function newPseudoImage($canvasType)
     ),
     'rotationalblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"rotationalBlurImage";s:5:"lines";s:284:"function rotationalBlurImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"rotationalBlurImage";s:5:"lines";s:284:"function rotationalBlurImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->rotationalBlurImage(3);
     $imagick->rotationalBlurImage(5);
     $imagick->rotationalBlurImage(7);
@@ -5514,9 +5514,9 @@ function newPseudoImage($canvasType)
     ),
     'roundcorners' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"roundCorners";s:5:"lines";s:511:"function roundCorners($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"roundCorners";s:5:"lines";s:511:"function roundCorners($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setBackgroundColor(\'red\');
 
     $imagick->setbackgroundcolor(\'pink\');
@@ -5542,9 +5542,9 @@ function newPseudoImage($canvasType)
     ),
     'scaleimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"scaleImage";s:5:"lines";s:203:"function scaleImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"scaleImage";s:5:"lines";s:203:"function scaleImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->scaleImage(150, 150, true);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5553,9 +5553,9 @@ function newPseudoImage($canvasType)
     ),
     'segmentimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"segmentImage";s:5:"lines";s:291:"function segmentImage($imagePath, $colorSpace, $clusterThreshold, $smoothThreshold)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"segmentImage";s:5:"lines";s:291:"function segmentImage($image_path, $colorSpace, $clusterThreshold, $smoothThreshold)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->segmentImage($colorSpace, $clusterThreshold, $smoothThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5564,9 +5564,9 @@ function newPseudoImage($canvasType)
     ),
     'selectiveblurimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"selectiveBlurImage";s:5:"lines";s:281:"function selectiveBlurImage($imagePath, $radius, $sigma, $threshold, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"selectiveBlurImage";s:5:"lines";s:281:"function selectiveBlurImage($image_path, $radius, $sigma, $threshold, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->selectiveBlurImage($radius, $sigma, $threshold, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5575,9 +5575,9 @@ function newPseudoImage($canvasType)
     ),
     'separateimagechannel' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"separateImageChannel";s:5:"lines";s:227:"function separateImageChannel($imagePath, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:20:"separateImageChannel";s:5:"lines";s:227:"function separateImageChannel($image_path, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->separateimagechannel($channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5586,9 +5586,9 @@ function newPseudoImage($canvasType)
     ),
     'sepiatoneimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"sepiaToneImage";s:5:"lines";s:211:"function sepiaToneImage($imagePath, $sepia)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"sepiaToneImage";s:5:"lines";s:211:"function sepiaToneImage($image_path, $sepia)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->sepiaToneImage($sepia);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5597,9 +5597,9 @@ function newPseudoImage($canvasType)
     ),
     'setcompressionquality' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:21:"setCompressionQuality";s:5:"lines";s:468:"function setCompressionQuality($imagePath, $quality)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:21:"setCompressionQuality";s:5:"lines";s:468:"function setCompressionQuality($image_path, $quality)
 {
-    $backgroundImagick = new \\Imagick(realpath($imagePath));
+    $backgroundImagick = new \\Imagick(realpath($image_path));
     $imagick = new \\Imagick();
     $imagick->setCompressionQuality($quality);
     $imagick->newPseudoImage(
@@ -5633,9 +5633,9 @@ function newPseudoImage($canvasType)
     ),
     'setimagecompressionquality' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:26:"setImageCompressionQuality";s:5:"lines";s:239:"function setImageCompressionQuality($imagePath, $quality)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:26:"setImageCompressionQuality";s:5:"lines";s:239:"function setImageCompressionQuality($image_path, $quality)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageCompressionQuality($quality);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5645,9 +5645,9 @@ function newPseudoImage($canvasType)
     'setimageorientation' => 
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"setImageOrientation";s:5:"lines";s:273:"//Doesn\'t appear to do anything
-function setImageOrientation($imagePath, $orientationType)
+function setImageOrientation($image_path, $orientationType)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageOrientation($orientationType);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5679,10 +5679,10 @@ function setImageBias($bias)
     ),
     'setimageclipmask' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setImageClipMask";s:5:"lines";s:751:"function setImageClipMask($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"setImageClipMask";s:5:"lines";s:751:"function setImageClipMask($image_path)
 {
     $imagick = new \\Imagick();
-    $imagick->readImage(realpath($imagePath));
+    $imagick->readImage(realpath($image_path));
 
     $width = $imagick->getImageWidth();
     $height = $imagick->getImageHeight();
@@ -5737,9 +5737,9 @@ function setImageBias($bias)
     ),
     'setimageresolution' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"setImageResolution";s:5:"lines";s:216:"function setImageResolution($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"setImageResolution";s:5:"lines";s:216:"function setImageResolution($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageResolution(50, 50);
     
     header("Content-Type: image/jpg");
@@ -5797,10 +5797,10 @@ function setImageBias($bias)
     ),
     'setsamplingfactors' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"setSamplingFactors";s:5:"lines";s:599:"function setSamplingFactors($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:18:"setSamplingFactors";s:5:"lines";s:599:"function setSamplingFactors($image_path)
 {
-    $imagePath = "../public/images/FineDetail.png";
-    $imagick = new \\Imagick(realpath($imagePath));
+    $image_path = "../public/images/FineDetail.png";
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setImageFormat(\'jpg\');
     $imagick->setSamplingFactors(array(\'2x2\', \'1x1\', \'1x1\'));
 
@@ -5824,9 +5824,9 @@ function setImageBias($bias)
     ),
     'shadeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shadeImage";s:5:"lines";s:201:"function shadeImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shadeImage";s:5:"lines";s:201:"function shadeImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->shadeImage(true, 45, 20);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5835,9 +5835,9 @@ function setImageBias($bias)
     ),
     'shadowimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"shadowImage";s:5:"lines";s:205:"function shadowImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"shadowImage";s:5:"lines";s:205:"function shadowImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->shadowImage(0.4, 10, 50, 5);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5846,9 +5846,9 @@ function setImageBias($bias)
     ),
     'sharpenimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"sharpenImage";s:5:"lines";s:245:"function sharpenImage($imagePath, $radius, $sigma, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"sharpenImage";s:5:"lines";s:245:"function sharpenImage($image_path, $radius, $sigma, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->sharpenimage($radius, $sigma, $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5857,9 +5857,9 @@ function setImageBias($bias)
     ),
     'shaveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shaveImage";s:5:"lines";s:196:"function shaveImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shaveImage";s:5:"lines";s:196:"function shaveImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->shaveImage(100, 50);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5868,9 +5868,9 @@ function setImageBias($bias)
     ),
     'shearimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shearimage";s:5:"lines";s:239:"function shearImage($imagePath, $color, $shearX, $shearY)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"shearimage";s:5:"lines";s:239:"function shearImage($image_path, $color, $shearX, $shearY)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->shearimage($color, $shearX, $shearY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5879,9 +5879,9 @@ function setImageBias($bias)
     ),
     'sigmoidalcontrastimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"sigmoidalContrastImage";s:5:"lines";s:407:"function sigmoidalContrastImage($imagePath, $sharpening, $midpoint, $sigmoidalContrast)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:22:"sigmoidalContrastImage";s:5:"lines";s:407:"function sigmoidalContrastImage($image_path, $sharpening, $midpoint, $sigmoidalContrast)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     //Need some stereo image to work with.
     $imagick->sigmoidalcontrastimage(
         $sharpening, //sharpen
@@ -5895,9 +5895,9 @@ function setImageBias($bias)
     ),
     'sketchimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"sketchimage";s:5:"lines";s:239:"function sketchImage($imagePath, $radius, $sigma, $angle)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"sketchimage";s:5:"lines";s:239:"function sketchImage($image_path, $radius, $sigma, $angle)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->sketchimage($radius, $sigma, $angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5906,9 +5906,9 @@ function setImageBias($bias)
     ),
     'smushimages' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"smushImages";s:5:"lines";s:346:"function smushImages($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"smushImages";s:5:"lines";s:346:"function smushImages($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick2 = new \\Imagick(realpath("images/coolGif.gif"));
 
     $imagick->addimage($imagick2);
@@ -5921,9 +5921,9 @@ function setImageBias($bias)
     ),
     'solarizeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"solarizeImage";s:5:"lines";s:258:"function solarizeImage($imagePath, $solarizeThreshold)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"solarizeImage";s:5:"lines";s:258:"function solarizeImage($image_path, $solarizeThreshold)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->solarizeImage($solarizeThreshold * \\Imagick::getQuantum());
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5932,9 +5932,9 @@ function setImageBias($bias)
     ),
     'spliceimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"spliceImage";s:5:"lines";s:259:"function spliceImage($imagePath, $startX, $startY, $width, $height)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"spliceImage";s:5:"lines";s:259:"function spliceImage($image_path, $startX, $startY, $width, $height)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->spliceImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5943,9 +5943,9 @@ function setImageBias($bias)
     ),
     'spreadimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"spreadImage";s:5:"lines";s:207:"function spreadImage($imagePath, $radius)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"spreadImage";s:5:"lines";s:207:"function spreadImage($image_path, $radius)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->spreadImage($radius);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -5954,9 +5954,9 @@ function setImageBias($bias)
     ),
     'statisticimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"statisticImage";s:5:"lines";s:311:"function statisticImage($imagePath, $statisticType, $w20, $h20, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"statisticImage";s:5:"lines";s:311:"function statisticImage($image_path, $statisticType, $w20, $h20, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
 
     $imagick->statisticImage(
         $statisticType,
@@ -5972,9 +5972,9 @@ function setImageBias($bias)
     ),
     'stereoimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"stereoImage";s:5:"lines";s:253:"function stereoImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:11:"stereoImage";s:5:"lines";s:253:"function stereoImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     //TODO - Need some stereo image to work with.
     $imagick->stereoImage(true, 45, 20);
     header("Content-Type: image/jpg");
@@ -5984,9 +5984,9 @@ function setImageBias($bias)
     ),
     'subimagematch' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"subImageMatch";s:5:"lines";s:453:"function subImageMatch($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"subImageMatch";s:5:"lines";s:453:"function subImageMatch($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick2 = clone $imagick;
     $imagick2->cropimage(40, 40, 250, 110);
     $imagick2->vignetteimage(0, 1, 3, 3);
@@ -6003,9 +6003,9 @@ function setImageBias($bias)
     ),
     'swirlimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"swirlImage";s:5:"lines";s:203:"function swirlImage($imagePath, $swirl)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:10:"swirlImage";s:5:"lines";s:203:"function swirlImage($image_path, $swirl)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->swirlImage($swirl);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6014,12 +6014,12 @@ function setImageBias($bias)
     ),
     'textureimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"textureImage";s:5:"lines";s:398:"function textureImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:12:"textureImage";s:5:"lines";s:398:"function textureImage($image_path)
 {
     $image = new \\Imagick();
     $image->newImage(640, 480, new \\ImagickPixel(\'pink\'));
     $image->setImageFormat("jpg");
-    $texture = new \\Imagick(realpath($imagePath));
+    $texture = new \\Imagick(realpath($image_path));
     $texture->scaleimage($image->getimagewidth() / 4, $image->getimageheight() / 4);
     $image = $image->textureImage($texture);
     header("Content-Type: image/jpg");
@@ -6029,9 +6029,9 @@ function setImageBias($bias)
     ),
     'thresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"thresholdimage";s:5:"lines";s:264:"function thresholdimage($imagePath, $threshold, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"thresholdimage";s:5:"lines";s:264:"function thresholdimage($image_path, $threshold, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->thresholdimage($threshold * \\Imagick::getQuantum(), $channel);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6040,9 +6040,9 @@ function setImageBias($bias)
     ),
     'thumbnailimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"thumbnailImage";s:5:"lines";s:270:"function thumbnailImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"thumbnailImage";s:5:"lines";s:270:"function thumbnailImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->setbackgroundcolor(\'rgb(64, 64, 64)\');
     $imagick->thumbnailImage(100, 100, true, true);
     header("Content-Type: image/jpg");
@@ -6081,9 +6081,9 @@ function setImageBias($bias)
     ),
     'transformimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"transformimage";s:5:"lines";s:230:"function transformimage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"transformimage";s:5:"lines";s:230:"function transformimage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $newImage = $imagick->transformimage("400x600", "200x300");
     header("Content-Type: image/jpg");
     echo $newImage->getImageBlob();
@@ -6092,9 +6092,9 @@ function setImageBias($bias)
     ),
     'transformimagecolorspace' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:24:"transformImageColorspace";s:5:"lines";s:297:"function transformImageColorspace($imagePath, $colorSpace, $channel)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:24:"transformImageColorspace";s:5:"lines";s:297:"function transformImageColorspace($image_path, $colorSpace, $channel)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->transformimagecolorspace($colorSpace);
     $imagick->separateImageChannel($channel);
     header("Content-Type: image/jpg");
@@ -6135,9 +6135,9 @@ function setImageBias($bias)
     ),
     'transposeimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"transposeImage";s:5:"lines";s:197:"function transposeImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:14:"transposeImage";s:5:"lines";s:197:"function transposeImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->transposeImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6146,9 +6146,9 @@ function setImageBias($bias)
     ),
     'transverseimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"transverseImage";s:5:"lines";s:199:"function transverseImage($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:15:"transverseImage";s:5:"lines";s:199:"function transverseImage($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->transverseImage();
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6170,9 +6170,9 @@ function setImageBias($bias)
     ),
     'uniqueimagecolors' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"uniqueImageColors";s:5:"lines";s:412:"function uniqueImageColors($imagePath)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:17:"uniqueImageColors";s:5:"lines";s:412:"function uniqueImageColors($image_path)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     //Reduce the image to 256 colours nicely.
     $imagick->quantizeImage(256, \\Imagick::COLORSPACE_YIQ, 0, false, false);
     $imagick->uniqueImageColors();
@@ -6184,9 +6184,9 @@ function setImageBias($bias)
     ),
     'unsharpmaskimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"unsharpMaskImage";s:5:"lines";s:289:"function unsharpMaskImage($imagePath, $radius, $sigma, $amount, $unsharpThreshold)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:16:"unsharpMaskImage";s:5:"lines";s:289:"function unsharpMaskImage($image_path, $radius, $sigma, $amount, $unsharpThreshold)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->unsharpMaskImage($radius, $sigma, $amount, $unsharpThreshold);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6195,9 +6195,9 @@ function setImageBias($bias)
     ),
     'vignetteimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"vignetteImage";s:5:"lines";s:261:"function vignetteImage($imagePath, $blackPoint, $whitePoint, $x, $y)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:13:"vignetteImage";s:5:"lines";s:261:"function vignetteImage($image_path, $blackPoint, $whitePoint, $x, $y)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->vignetteImage($blackPoint, $whitePoint, $x, $y);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6206,9 +6206,9 @@ function setImageBias($bias)
     ),
     'waveimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"waveImage";s:5:"lines";s:227:"function waveImage($imagePath, $amplitude, $length)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"waveImage";s:5:"lines";s:227:"function waveImage($image_path, $amplitude, $length)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->waveImage($amplitude, $length);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6217,9 +6217,9 @@ function setImageBias($bias)
     ),
     'whitethresholdimage' => 
     array (
-      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"whiteThresholdImage";s:5:"lines";s:221:"function whiteThresholdImage($imagePath, $color)
+      0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:19:"whiteThresholdImage";s:5:"lines";s:221:"function whiteThresholdImage($image_path, $color)
 {
-    $imagick = new \\Imagick(realpath($imagePath));
+    $imagick = new \\Imagick(realpath($image_path));
     $imagick->whiteThresholdImage($color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
@@ -6658,8 +6658,8 @@ function setImageBias($bias)
     array (
       0 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:335:"    public function renderJPG($extent)
     {
-        $imagePath = $this->control->getImagePath();
-        $imagick = new \\Imagick(realpath($imagePath));
+        $image_path = $this->control->getImagePath();
+        $imagick = new \\Imagick(realpath($image_path));
         $imagick->setImageFormat(\'jpg\');
         $imagick->setOption(\'jpeg:extent\', $extent);
         header("Content-Type: image/jpg");
@@ -6668,8 +6668,8 @@ function setImageBias($bias)
 ";s:11:"description";s:0:"";s:9:"startLine";i:53;s:7:"endLine";i:63;}',
       1 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:334:"    public function renderPNG($format)
     {
-        $imagePath = $this->control->getImagePath();
-        $imagick = new \\Imagick(realpath($imagePath));
+        $image_path = $this->control->getImagePath();
+        $imagick = new \\Imagick(realpath($image_path));
         $imagick->setImageFormat(\'png\');
         $imagick->setOption(\'png:format\', $format);
         header("Content-Type: image/png");
@@ -6678,8 +6678,8 @@ function setImageBias($bias)
 ";s:11:"description";s:0:"";s:9:"startLine";i:65;s:7:"endLine";i:75;}',
       2 => 'O:23:"ImagickDemo\\CodeExample":6:{s:8:"category";s:7:"Imagick";s:12:"functionName";s:9:"setOption";s:5:"lines";s:633:"    public function renderCustomBitDepthPNG()
     {
-        $imagePath = $this->control->getImagePath();
-        $imagick = new \\Imagick(realpath($imagePath));
+        $image_path = $this->control->getImagePath();
+        $imagick = new \\Imagick(realpath($image_path));
         $imagick->setImageFormat(\'png\');
 
         $imagick->setOption(\'png:bit-depth\', \'16\');

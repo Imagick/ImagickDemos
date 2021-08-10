@@ -12,12 +12,28 @@ use Params\ExtractRule\GetStringOrDefault;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
 use Params\SafeAccess;
+use VarMap\ArrayVarMap;
 use VarMap\VarMap;
 use Params\ProcessRule\EnumMap;
 use ImagickDemo\ToArray;
 use Params\InputParameterList;
 
+function hackVarMap($varMap)
+{
+    $params = $varMap->toArray();
 
+    $unwantedParams = ['q', 'time'];
+
+    foreach ($unwantedParams as $unwantedParam) {
+        if (array_key_exists($unwantedParam, $params) === true) {
+            unset($params[$unwantedParam]);
+        }
+    }
+
+    $hackedVarMap = new ArrayVarMap($params);
+
+    return $hackedVarMap;
+}
 
 function purgeExceptionMessage(\Throwable $exception)
 {
@@ -52,6 +68,7 @@ function getTextForException(\Throwable $exception)
             purgeExceptionMessage($currentException),
             formatLinesWithCount(getExceptionStackAsArray($currentException))
         );
+
 
         $currentException = $currentException->getPrevious();
     } while ($currentException !== null);
@@ -288,7 +305,16 @@ function getExceptionText(\Throwable $exception): string
     $text = "";
     do {
         $text .= get_class($exception) . ":" . $exception->getMessage() . "\n\n";
+
+        if ($exception instanceof Auryn\InjectionException) {
+            $text .= "DependencyChains is:\n";
+            foreach ($exception->getDependencyChain() as $item) {
+                $text .= "  " . $item . "\n";
+            }
+        }
+
         $text .= $exception->getTraceAsString();
+
 
         $exception = $exception->getPrevious();
     } while ($exception !== null);

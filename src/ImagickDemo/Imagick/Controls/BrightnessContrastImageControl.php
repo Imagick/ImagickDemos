@@ -23,13 +23,13 @@ class BrightnessContrastImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
-        private string $imagePath,
-        #[Brightness()]
+        #[Image('image_path')]
+        private string $image_path,
+        #[Brightness('brightness')]
         private string $brightness,
-        #[Contrast(-20)]
+        #[Contrast(-20, 'contrast')]
         private string $contrast,
-        #[Channel()]
+        #[Channel('channel')]
         private string $channel,
     ) {
     }
@@ -40,7 +40,7 @@ class BrightnessContrastImageControl implements InputParameterList
             'brightness' => $this->brightness,
             'contrast' => $this->contrast,
             'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
-            'image_path' => getOptionFromOptions($this->imagePath, getImagePathOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
 

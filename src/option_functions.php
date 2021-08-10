@@ -11,7 +11,7 @@ declare(strict_types = 1);
 function getOptionFromOptions(string|int $option, array $values): string
 {
     foreach ($values as $key => $value) {
-        if (strcmp($option, (string)$value) === 0) {
+        if (strcmp((string)$option, (string)$value) === 0) {
             return $key;
         }
     }
@@ -47,6 +47,63 @@ function getTextDecorationOptions(): array
         'Linethrough' => \Imagick::DECORATION_LINETROUGH
     ];
 }
+
+
+function getDistortionOptions()
+{
+    return [
+         'Affine' => \Imagick::DISTORTION_AFFINE,
+         'Affine projection' => \Imagick::DISTORTION_AFFINEPROJECTION,
+         'Scale rotate translate' => \Imagick::DISTORTION_SCALEROTATETRANSLATE,
+         'Perspective' => \Imagick::DISTORTION_PERSPECTIVE,
+         'Perspective Projection' => \Imagick::DISTORTION_PERSPECTIVEPROJECTION,
+         'Bilinear' => \Imagick::DISTORTION_BILINEAR,
+         'Bilinear reverse' => \Imagick::DISTORTION_BILINEARREVERSE,
+         'Polynomial' => \Imagick::DISTORTION_POLYNOMIAL,
+         'Arc' => \Imagick::DISTORTION_ARC,
+         'Polar' => \Imagick::DISTORTION_POLAR,
+         'Depolar' => \Imagick::DISTORTION_DEPOLAR,
+         'Cyclinder to plane' => \Imagick::DISTORTION_CYLINDER2PLANE,
+         'Plane to cylinder' => \Imagick::DISTORTION_PLANE2CYLINDER,
+         'Barrel' => \Imagick::DISTORTION_BARREL,
+         'Barrel inverse' => \Imagick::DISTORTION_BARRELINVERSE,
+         'Shepards' => \Imagick::DISTORTION_SHEPARDS,
+         "Resize" => \Imagick::DISTORTION_RESIZE,
+    ];
+}
+
+function getEvaluateOptions()
+{
+    return [
+         'Add' => \Imagick::EVALUATE_ADD,
+         'And' => \Imagick::EVALUATE_AND,
+         'Divide' => \Imagick::EVALUATE_DIVIDE,
+         'Leftshift' => \Imagick::EVALUATE_LEFTSHIFT,
+         'Max' => \Imagick::EVALUATE_MAX,
+         'Min' => \Imagick::EVALUATE_MIN,
+         'Multiply' => \Imagick::EVALUATE_MULTIPLY,
+         'Or' => \Imagick::EVALUATE_OR,
+         'Rightshift' => \Imagick::EVALUATE_RIGHTSHIFT,
+         'Set' => \Imagick::EVALUATE_SET,
+         'Subtract' => \Imagick::EVALUATE_SUBTRACT,
+         'Xor' => \Imagick::EVALUATE_XOR,
+         'Pow' => \Imagick::EVALUATE_POW,
+         'Log' => \Imagick::EVALUATE_LOG,
+         'Threshold' => \Imagick::EVALUATE_THRESHOLD,
+         'Threshold black' => \Imagick::EVALUATE_THRESHOLDBLACK,
+         'Threshold white' => \Imagick::EVALUATE_THRESHOLDWHITE,
+         'Gaussian noise' => \Imagick::EVALUATE_GAUSSIANNOISE,
+         'Impulse noise' => \Imagick::EVALUATE_IMPULSENOISE,
+         'Laplacian noise' => \Imagick::EVALUATE_LAPLACIANNOISE,
+         'Multiplicative noise' => \Imagick::EVALUATE_MULTIPLICATIVENOISE,
+         'Poisson noise' => \Imagick::EVALUATE_POISSONNOISE,
+         'Uniform noise' => \Imagick::EVALUATE_UNIFORMNOISE,
+         'Cosine' => \Imagick::EVALUATE_COSINE,
+         'Sine' => \Imagick::EVALUATE_SINE,
+         'Add modulus' => \Imagick::EVALUATE_ADDMODULUS,
+    ];
+}
+
 
 /**
  * @return array<string, string>
@@ -223,5 +280,15 @@ function getNoiseOptions()
         'Laplacian'  => \Imagick::NOISE_LAPLACIAN,
         'Poisson'  => \Imagick::NOISE_POISSON,
         'Random'  => \Imagick::NOISE_RANDOM,
+    ];
+}
+
+
+function getContrastOptions()
+{
+    return [
+        'Enabled - unsharpen' => 0,
+        'Enabled - sharpen' => 1,
+        'Disabled' => 2
     ];
 }

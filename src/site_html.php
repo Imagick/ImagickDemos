@@ -108,7 +108,7 @@ function renderReactControls(VarMap $varMap, string $param_type)
     return $output;
 }
 
-function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExample)
+function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExample/*, bool $needsFullPageRefresh */)
 {
     $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
@@ -191,7 +191,8 @@ function renderExampleBodyHtml(
             $exampleHtml = renderReactExampleImagePanel(
                 $imageBaseUrl,
                 $activeCategory,
-                $activeExample
+                $activeExample,
+                $example->needsFullPageRefresh()
             );
         }
     }

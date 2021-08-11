@@ -865,19 +865,25 @@ function forwardFourierTransformImage($image_path)
 
 
 //Example Imagick::frameImage
-function frameImage($image_path, $color, $width, $height, $innerBevel, $outerBevel)
-{
+function frameImage(
+    $image_path,
+    $color,
+    $width,
+    $height,
+    $inner_bevel,
+    $outer_bevel
+) {
     $imagick = new \Imagick(realpath($image_path));
 
-    $width = $width + $innerBevel + $outerBevel;
-    $height = $height + $innerBevel + $outerBevel;
+    $width = $width + $inner_bevel + $outer_bevel;
+    $height = $height + $inner_bevel + $outer_bevel;
 
     $imagick->frameimage(
         $color,
         $width,
         $height,
-        $innerBevel,
-        $outerBevel
+        $inner_bevel,
+        $outer_bevel
     );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

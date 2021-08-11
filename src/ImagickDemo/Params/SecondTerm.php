@@ -8,12 +8,16 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
+use Params\ExtractRule\GetStringOrDefault;
+use Params\ProcessRule\NullIfEmpty;
+use Params\ProcessRule\CastToFloat;
+use Params\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
 class SecondTerm implements Param
 {
     public function __construct(
-        private int $default,
+        private string $default,
         private string $name
     ) {
     }
@@ -22,46 +26,10 @@ class SecondTerm implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(0),
-            new MinIntValue(-1000),
-            new MaxIntValue(10000),
+            new GetStringOrDefault($this->default),
+            new NullIfEmpty(),
+            new CastToFloat(),
+            new RangeFloatValue(-1000, 10000)
         );
     }
-
-//class SecondTerm extends ValueElement
-//{
-//    protected function filterValue($value)
-//    {
-//        return floatval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return '';
-//    }
-//
-//    protected function getMin()
-//    {
-//        return -1000;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 10000;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'secondTerm';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'Second term';
-//    }
-//
-//    public function getSecondTerm()
-//    {
-//        return $this->getValue();
-//    }
 }

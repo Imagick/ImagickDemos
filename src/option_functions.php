@@ -104,6 +104,15 @@ function getEvaluateOptions()
     ];
 }
 
+function getFunctionImageOptions()
+{
+    return [
+         'Polynomial' => "renderImagePolynomial",
+         'Sinusoid' => "renderImageSinusoid",
+         "Arc sin" => "renderImageArcsin",
+         "Arc tan" => "renderImageArctan",
+    ];
+}
 
 /**
  * @return array<string, string>

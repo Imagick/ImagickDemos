@@ -2,10 +2,18 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Control\ReactControls;
+use ImagickDemo\Display;
 use ImagickDemo\Image;
+use ImagickDemo\Imagick\Controls\FunctionImageControl;
+use ImagickDemo\Control\ImagickFunctionControl;
+use VarMap\VarMap;
+use function ImagickDemo\ImagickKernel\createFromBuiltin;
 
 class functionImage extends \ImagickDemo\Example
 {
+    private FunctionImageControl $functionImageControl;
+
     private $polynomial = "FUNCTION_POLYNOMIAL 
 
 Each value will be used as a coefficient from the highest order to the lowest, to produce a polynomial with the number of terms given.
@@ -47,9 +55,15 @@ f4 - Constant vertical offset, default 0.5";
      */
     protected $control;
 
-    public function __construct(\ImagickDemo\Control\ImagickFunctionControl $control)
+    public function __construct(ImagickFunctionControl $control, VarMap $varMap)
     {
         $this->control = $control;
+        $this->functionImageControl = FunctionImageControl::createFromVarMap($varMap);
+    }
+
+    public function hasCustomImage(): bool
+    {
+        return true;
     }
 
     public function renderDescription()
@@ -63,7 +77,7 @@ f4 - Constant vertical offset, default 0.5";
 
         $output = "FunctionImage applies one of the following functions to an image: Polynomial, Sinusoid, Arctan, Arcsin to generate a gradient image with varying intensity. The image below shows the generated gradient, and an analysis of the image generated (the red line) to make it easier to see the gradient <br/>";
 
-        $functionType = $this->control->getFunctionType();
+        $functionType = $this->functionImageControl->getFunctionType();
 
         if (array_key_exists($functionType, $descriptions)) {
             $output .= nl2br($descriptions[$functionType]);
@@ -82,23 +96,42 @@ f4 - Constant vertical offset, default 0.5";
      */
     public function render()
     {
-        //return $this->renderImageURL();
-        
         return $this->renderCustomImageURL();
-        
-//        $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
-//        
-//        return "This is being used?";
-//
-//        return $output;
     }
+
+    public function bespokeRender(ReactControls $reactControls)
+    {
+        $output = createReactImagePanel(
+            "/customImage/Imagick/functionImage",
+            "/Imagick/functionImage",
+            true
+        );
+
+        // Well this is horrendous.
+        \ImagickDemo\ImagickKernel\functions::load();
+
+
+
+        $url = "/customImage/Imagick/functionImage";
+        $url .= "?" . http_build_query($this->functionImageControl->getValuesForForm());
+
+        $output .= "<img src='$url' alt='function image'/>";
+
+        return $output;
+    }
+
+    public function hasBespokeRender()
+    {
+        return true;
+    }
+
 
     /**
      *
      */
     public function renderCustomImage()
     {
-        $function = $this->control->getFunctionType();
+        $function = $this->functionImageControl->getFunctionType();
 
         if (method_exists($this, $function)) {
             call_user_func([$this, $function]);
@@ -149,12 +182,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->control->getFirstTerm(),
+            $this->functionImageControl->getFirstTerm(),
         );
 
-        $secondTerm = $this->control->getSecondTerm();
-        $thirdTerm = $this->control->getThirdTerm();
-        $fourthTerm = $this->control->getFourthTerm();
+        $secondTerm = $this->functionImageControl->getSecondTerm();
+        $thirdTerm = $this->functionImageControl->getThirdTerm();
+        $fourthTerm = $this->functionImageControl->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -229,5 +262,20 @@ f4 - Constant vertical offset, default 0.5";
 
         Image::analyzeImage($imagick, 512, 256);
 //Example end
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return FunctionImageControl::class;
+    }
+
+    public function needsFullPageRefresh(): bool
+    {
+        return true;
     }
 }

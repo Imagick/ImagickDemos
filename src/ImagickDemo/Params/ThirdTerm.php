@@ -6,12 +6,15 @@ use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
+use Params\ExtractRule\GetStringOrDefault;
+use Params\ProcessRule\NullIfEmpty;
+use Params\ProcessRule\CastToFloat;
 
-// ugh - think this needs to default to empty string or null
 #[\Attribute]
 class ThirdTerm implements Param
 {
     public function __construct(
+        private string $default,
         private string $name
     ) {
     }
@@ -20,45 +23,10 @@ class ThirdTerm implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(0),
+            new GetStringOrDefault($this->default),
+            new NullIfEmpty(),
+            new CastToFloat(),
             new RangeFloatValue(-1000, 10000)
         );
     }
-
-//class ThirdTerm extends ValueElement
-//{
-//    protected function filterValue($value)
-//    {
-//        return floatval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return '';
-//    }
-//
-//    protected function getMin()
-//    {
-//        return -1000;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 10000;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'thirdTerm';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'Third term';
-//    }
-//
-//    public function getThirdTerm()
-//    {
-//        return $this->getValue();
-//    }
 }

@@ -35,8 +35,12 @@ function createQueryString(params:Object): string {
             return encodeURIComponent(key) + '=' + "[" + parts.join(',') + "]";
         }
 
+        if (params[key] === null) {
+            return encodeURIComponent(key) + '=';
+        }
+
         // @ts-ignore: TS2322
-        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
+        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
     }).join('&');
 
     return queryString;

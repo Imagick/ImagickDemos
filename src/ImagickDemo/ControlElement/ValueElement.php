@@ -24,15 +24,15 @@ abstract class ValueElement implements ControlElement
     {
         $value = $this->getDefault();
 
-        if ($value !== false) {
-            if ($this->getDefault() > $this->getMax()) {
-                trigger_error("Default is bigger than max in " . get_class($this) . ", someone has dun goofed", E_USER_NOTICE);
-            }
-
-            if ($this->getDefault() < $this->getMin()) {
-                trigger_error("Default is smaller than min in " . get_class($this) . ", someone has dun goofed", E_USER_NOTICE);
-            }
-        }
+//        if ($value !== false) {
+//            if ($this->getDefault() > $this->getMax()) {
+//                trigger_error("Default is bigger than max in " . get_class($this) . ", someone has dun goofed", E_USER_NOTICE);
+//            }
+//
+//            if ($this->getDefault() < $this->getMin()) {
+//                trigger_error("Default is smaller than min in " . get_class($this) . ", someone has dun goofed", E_USER_NOTICE);
+//            }
+//        }
 
         $value = $variableMap->getVariable($this->getVariableName(), $value);
         $value = $this->filterValue($value);

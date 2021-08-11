@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageControl;
+
 class exportImagePixels extends \ImagickDemo\Example
 {
     function getOriginalImage()
@@ -17,5 +19,15 @@ class exportImagePixels extends \ImagickDemo\Example
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

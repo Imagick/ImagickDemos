@@ -7,12 +7,16 @@ use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\MaxIntValue;
 use Params\ProcessRule\MinIntValue;
+use Params\ProcessRule\RangeFloatValue;
+use Params\ExtractRule\GetStringOrDefault;
+use Params\ProcessRule\NullIfEmpty;
+use Params\ProcessRule\CastToFloat;
 
 #[\Attribute]
 class FourthTerm implements Param
 {
     public function __construct(
-        private int $default,
+        private string $default,
         private string $name
     ) {
     }
@@ -21,9 +25,10 @@ class FourthTerm implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(0),
-            new MinIntValue(-1000),
-            new MaxIntValue(1000),
+            new GetStringOrDefault($this->default),
+            new NullIfEmpty(),
+            new CastToFloat(),
+            new RangeFloatValue(-1000, 1000)
         );
     }
 

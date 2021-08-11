@@ -118,4 +118,9 @@ abstract class Example
 
         return "<a href='$url' target='_blank'>Source code on Github</a>";
     }
+
+    public function needsFullPageRefresh(): bool
+    {
+        return false;
+    }
 }

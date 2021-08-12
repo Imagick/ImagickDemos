@@ -1072,6 +1072,22 @@ function getPixelRegionIterator($image_path)
 }
 //Example end
 
+
+function getImageChannelStatistics($image_path)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    header("Content-Type: image/jpg");
+    echo $imagick->getImageBlob();
+}
+
+//function getImageCompression($image_path)
+//{
+//    $imagick = new \Imagick(realpath($image_path));
+//    header("Content-Type: image/jpg");
+//    echo $imagick->getImageBlob();
+//}
+
+
 //Example Imagick::haldClutImage
 function haldClutImage($image_path)
 {
@@ -2393,11 +2409,11 @@ function transformimage($image_path)
 
 
 //Example Imagick::transformImageColorspace
-function transformImageColorspace($image_path, $colorSpace, $channel)
+function transformImageColorspace($image_path, $colorSpace, $channel_number)
 {
     $imagick = new \Imagick(realpath($image_path));
     $imagick->transformimagecolorspace($colorSpace);
-    $imagick->separateImageChannel($channel);
+    $imagick->separateImageChannel($channel_number);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -2518,10 +2534,10 @@ function waveImage($image_path, $amplitude, $length)
 
 
 //Example Imagick::whiteThresholdImage
-function whiteThresholdImage($image_path, $color)
+function whiteThresholdImage($image_path, $threshold_color)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->whiteThresholdImage($color);
+    $imagick->whiteThresholdImage($threshold_color);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

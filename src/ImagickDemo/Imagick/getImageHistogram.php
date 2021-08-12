@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Control\ImageControl;
+use ImagickDemo\Imagick\Controls\ImageControl;
 
 class getImageHistogram extends \ImagickDemo\Example
 {
@@ -43,5 +43,15 @@ class getImageHistogram extends \ImagickDemo\Example
 
     public function renderImage()
     {
+    }
+
+    public function hasReactControls(): bool
+    {
+        return false;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

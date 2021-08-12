@@ -2,17 +2,30 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Control\ReactControls;
+use \ImagickDemo\Control\ImageControl as LegacyImageControl;
+use VarMap\VarMap;
+use ImagickDemo\Imagick\Controls\ImageControl;
+use function _HumbugBoxfd814575fcc2\RingCentral\Psr7\build_query;
+
+
 class getImageGeometry extends \ImagickDemo\Example
 {
     /**
      * @var \ImagickDemo\Control\ImageControl
      */
-    private $imageControl;
+    private $legacyImageControl;
 
-    public function __construct(\ImagickDemo\Control\ImageControl $imageControl)
-    {
-        $this->imageControl = $imageControl;
+    private ImageControl $imageControl;
+
+    public function __construct(
+        LegacyImageControl $imageControl,
+        VarMap $varMap
+    ) {
+        $this->legacyImageControl = $imageControl;
         parent::__construct($imageControl);
+
+        $this->imageControl = ImageControl::createFromVarMap($varMap);
     }
 
 
@@ -25,18 +38,58 @@ END;
         return nl2br($output);
     }
 
-    public function render()
+    public function renderImageURL()
     {
-        $output = "The values of getImageGeometry for the image below are:\n";
-        $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
+        $url = sprintf(
+            "<img src='/Imagick/getImageGeometry?%s",
+            http_build_query($this->imageControl->getValuesForForm())
+        );
+
+
+//        return \ImagickDemo\Route::renderImageURL(
+//            $this->taskQueue->isActive(),
+//            $this->getURL(),
+//            $originalImageURL,
+//            $this->getImageStatusURL()
+//        )
+
+        return $url;
+    }
+
+    public function bespokeRender(ReactControls $reactControls)
+    {
+        $output = createReactImagePanel(
+            "/customImage/Imagick/getImageGeometry",
+            "/Imagick/getImageGeometry",
+            true
+        );
+
+        $text = "The values of getImageGeometry for the image below are:\n";
 //Example Imagick::getImageGeometry
+        $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
         foreach ($imagick->getImageGeometry() as $key => $value) {
-            $output .= "$key : $value\n";
+            $text .= "$key : $value\n";
         }
 //Example end
-        $output = nl2br($output);
+        $output .= nl2br($text);
+
         $output .= $this->renderImageURL();
 
         return $output;
+    }
+
+    public function hasBespokeRender()
+    {
+        return true;
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

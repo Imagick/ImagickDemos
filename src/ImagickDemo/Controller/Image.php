@@ -152,6 +152,7 @@ class Image
             'best_fit' => "bestFit",
             'black_point' => "blackPoint",
             'blue_shift' => "blueShift",
+            "color_space" => "colorSpace",
             'fill_color' => "fillColor",
             'fill_modified_color' => "fillModifiedColor",
             'first_term' => 'kernelFirstTerm',
@@ -169,6 +170,7 @@ class Image
             'translate_x' => "translateX",
             'translate_y' => "translateY",
             'threshold_color' => 'thresholdColor',
+            'unsharp_threshold' => 'unsharpThreshold',
             'white_point' => "whitePoint",
         ];
 

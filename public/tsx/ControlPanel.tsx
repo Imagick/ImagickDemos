@@ -80,16 +80,25 @@ function getDefaultState(initialControlParams: object): AppState {
     return state;
 }
 
+/**
+ * Given an api parameter name, return a nicer user facing name,
+ * if one exists, otherwise just return the api parameter name.
+ * @param api_param_name
+ */
 function map_api_name(api_param_name: string): string {
 
     let known_map = {
+        amount: "Amount",
         background_color: "Background color",
         black_point: "Black point",
+        channel: "Channel",
+        channel_number: "Channel number",
         channel_1_sample: "Channel 1",
         channel_2_sample: "Channel 2",
         channel_3_sample: "Channel 3",
         color: "Color",
         colorspace: "Colorspace",
+        color_space: "Color space",
         endX: "End X",
         endY: "End Y",
         fill_color: "Fill color",
@@ -105,7 +114,9 @@ function map_api_name(api_param_name: string): string {
         kernel_type: "Kernel type",
         outer_bevel: "Outer bevel",
         paint_type: "Paint type",
+        radius: "Radius",
         second_term: "Second term",
+        sigma: "Sigma",
         startX: "Start X",
         startY: "Start Y",
         stroke_color: "Stroke color",
@@ -113,6 +124,7 @@ function map_api_name(api_param_name: string): string {
         third_term: "Third term",
         translate_x: "Translate X",
         translate_y: "Translate Y",
+        unsharp_threshold: 'Unsharp threshold',
         width: "Width",
         white_point: "White point",
     };

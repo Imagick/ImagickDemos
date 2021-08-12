@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use \ImagickDemo\Imagick\Controls\ImageControl;
+
 class getImageCompression extends \ImagickDemo\Example
 {
     private $image_path;
@@ -45,5 +47,15 @@ class getImageCompression extends \ImagickDemo\Example
         }
 
         return "Image compression is '" . $compressionType . "' " . $typeString;
+    }
+
+    public function hasReactControls(): bool
+    {
+        return false;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

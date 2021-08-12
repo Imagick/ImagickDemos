@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageControl;
+
 function dumpInfo(\Imagick $imagick)
 {
     $channels = [
@@ -82,10 +84,21 @@ class getImageChannelStatistics extends \ImagickDemo\Example
         echo $imagick->getimageblob();
     }
 
-    public function render()
+    public function renderDescription()
     {
         $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
 
-        echo dumpInfo($imagick);
+        return dumpInfo($imagick);
     }
+
+    public function hasReactControls(): bool
+    {
+        return false;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
+    }
+
 }

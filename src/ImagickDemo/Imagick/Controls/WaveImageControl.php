@@ -11,9 +11,11 @@ use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 use ImagickDemo\Params\Image;
+use ImagickDemo\Params\Radius;
+use ImagickDemo\Params\Amplitude;
+use ImagickDemo\Params\Length;
 
-
-class ImageControl implements InputParameterList
+class WaveImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -21,6 +23,10 @@ class ImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
+        #[Amplitude('amplitude')]
+        private string $amplitude,
+        #[Length('length')]
+        private string $length,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -29,15 +35,9 @@ class ImageControl implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
+            'amplitude' => $this->amplitude,
+            'length' => $this->length,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getImagePath(): string
-    {
-        return $this->image_path;
     }
 }

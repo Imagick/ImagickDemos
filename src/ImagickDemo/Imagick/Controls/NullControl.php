@@ -13,7 +13,7 @@ use Params\SafeAccess;
 use ImagickDemo\Params\Image;
 
 
-class ImageControl implements InputParameterList
+class NullControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -21,23 +21,6 @@ class ImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image('image_path')]
-        private string $image_path,
     ) {
-    }
-
-    public function getValuesForForm(): array
-    {
-        return [
-            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getImagePath(): string
-    {
-        return $this->image_path;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageControl;
+
+// TODO - migrate to custom control
 class fxImage extends \ImagickDemo\Example
 {
     public function renderDescription()
@@ -68,5 +71,16 @@ END;
         $newImage->setimageformat('jpg');
         header("Content-Type: image/jpg");
         echo $newImage;
+    }
+
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

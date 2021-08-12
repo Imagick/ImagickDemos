@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\TrimImageControl;
+
 class trimImage extends \ImagickDemo\Example
 {
     public function render()
@@ -11,5 +13,15 @@ class trimImage extends \ImagickDemo\Example
         $output .= $this->renderImageURL();
 
         return $output;
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
+    }
+
+    public static function getParamType(): string
+    {
+        return TrimImageControl::class;
     }
 }

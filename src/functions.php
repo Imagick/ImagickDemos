@@ -549,20 +549,42 @@ function getImagepathInputParameter()
     );
 }
 
-//class SleepyRule implements ProcessRule
-//{
-//   public function process(
-//        $value,
-//        ProcessedValues $processedValues,
-//        InputStorage $inputStorage
-//    ): ValidationResult {
-//        if ($value === 'true') {
-//            return \Params\ValidationResult::finalValueResult(1);
-//        }
-//
-//        return \Params\ValidationResult::finalValueResult(0);
-//    }
-//
-//    public function updateParamDescription(ParamDescription $paramDescription): void {
-//    }
-//}
+
+function getColorSpaceOptions()
+{
+    return [
+        'RGB' => \Imagick::COLORSPACE_RGB,
+        'Gray' => \Imagick::COLORSPACE_GRAY,
+        'Transparent' => \Imagick::COLORSPACE_TRANSPARENT,
+        'OHTA' => \Imagick::COLORSPACE_OHTA,
+        'LAB' => \Imagick::COLORSPACE_LAB,
+        'XYZ' => \Imagick::COLORSPACE_XYZ,
+        'YCBCR' => \Imagick::COLORSPACE_YCBCR,
+        'YCC' => \Imagick::COLORSPACE_YCC,
+        'YIC' => \Imagick::COLORSPACE_YIQ,
+        'YPBPR' => \Imagick::COLORSPACE_YPBPR,
+        'YUV' => \Imagick::COLORSPACE_YUV,
+        'CMYK' => \Imagick::COLORSPACE_CMYK,
+        'SRGB' => \Imagick::COLORSPACE_SRGB,
+        'HSB' => \Imagick::COLORSPACE_HSB,
+        'HSL' => \Imagick::COLORSPACE_HSL,
+        'HWB' => \Imagick::COLORSPACE_HWB,
+        'REC601LUMA' => \Imagick::COLORSPACE_REC601LUMA,
+        'REC709LUMA' => \Imagick::COLORSPACE_REC709LUMA,
+        'LOG' => \Imagick::COLORSPACE_LOG,
+        'CMY' => \Imagick::COLORSPACE_CMY,
+    ];
+}
+
+function getChannelNumberOptions()
+{
+    return [
+        // Stupid hack to avoid string being converted to int.
+        'Channel 1' => \Imagick::CHANNEL_RED,
+        'Channel 2' => \Imagick::CHANNEL_GREEN,
+        'Channel 3' => \Imagick::CHANNEL_BLUE,
+        'Alpha' => \Imagick::CHANNEL_ALPHA ,
+        'Black' => \Imagick::CHANNEL_BLACK ,
+    ];
+
+}

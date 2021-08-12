@@ -10,10 +10,12 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
+
+use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
+use ImagickDemo\Params\Gamma;
 
-
-class ImageControl implements InputParameterList
+class GammaImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -21,23 +23,21 @@ class ImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
+        #[Gamma('gamma')]
+        private string $gamma,
         #[Image('image_path')]
         private string $image_path,
+        #[Channel('channel')]
+        private string $channel
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
+            'gamma' => $this->gamma,
+            'channel' => getOptionFromOptions($this->channel, \getChannelOptions()),
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getImagePath(): string
-    {
-        return $this->image_path;
     }
 }

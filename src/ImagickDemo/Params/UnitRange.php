@@ -8,6 +8,7 @@ use Params\Param;
 use Params\ProcessRule\MaxFloatValue;
 use Params\ProcessRule\MinFloatValue;
 
+#[\Attribute]
 class UnitRange implements Param
 {
     public function __construct(

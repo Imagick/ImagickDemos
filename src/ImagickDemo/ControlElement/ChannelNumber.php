@@ -55,7 +55,6 @@ class ChannelNumber extends OptionKeyElement
             \Imagick::CHANNEL_BLUE => '3',
             \Imagick::CHANNEL_ALPHA => 'Alpha',
             \Imagick::CHANNEL_BLACK => 'Black',
-
         ];
 
         return $options;

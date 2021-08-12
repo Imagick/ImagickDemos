@@ -10,10 +10,12 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
+
+use \ImagickDemo\Params\ChannelNumber;
 use ImagickDemo\Params\Image;
+use ImagickDemo\Params\ColorSpace;
 
-
-class ImageControl implements InputParameterList
+class TransformImageColorspaceControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -21,6 +23,10 @@ class ImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
+        #[ChannelNumber('channel_number')]
+        private string $channel_number,
+        #[ColorSpace('color_space')]
+        private string $color_space,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -29,15 +35,9 @@ class ImageControl implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
+            'channel_number' => getOptionFromOptions($this->channel_number, getChannelNumberOptions()),
+            'color_space' => getOptionFromOptions($this->color_space, getColorSpaceOptions()),
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getImagePath(): string
-    {
-        return $this->image_path;
     }
 }

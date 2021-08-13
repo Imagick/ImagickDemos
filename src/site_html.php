@@ -65,10 +65,6 @@ HTML;
 
 function renderReactControls(VarMap $varMap, string $param_type)
 {
-//    if (is_subclass_of($param_type, InputParameterList::class, true) !== true) {
-//        throw new \Exception("param_type $param_type needs to implement InputParameterList");
-//    }
-
     $hackedVarMap = hackVarMap($varMap);
 
     /** @var  InputParameterList&CreateFromVarMap $param_type */
@@ -108,14 +104,20 @@ function renderReactControls(VarMap $varMap, string $param_type)
     return $output;
 }
 
-function renderReactExampleImagePanel($imageBaseUrl, $activeCategory, $activeExample/*, bool $needsFullPageRefresh */)
+function renderReactExampleImagePanel(
+    $imageBaseUrl,
+    $activeCategory,
+    $activeExample,
+    Example $example
+    /*, bool $needsFullPageRefresh */)
 {
     $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
     return createReactImagePanel(
         $imageBaseUrl,
         $pageBaseUrl,
-        false
+        false,
+        $example
     );
 }
 
@@ -192,7 +194,7 @@ function renderExampleBodyHtml(
                 $imageBaseUrl,
                 $activeCategory,
                 $activeExample,
-                $example->needsFullPageRefresh()
+                $example
             );
         }
     }
@@ -656,23 +658,27 @@ HTML;
 function createReactImagePanel(
     string $imageBaseUrl,
     string $pageBaseUrl,
-    bool $full_page_refresh
+    bool $full_page_refresh,
+    Example $example
 ): string {
     $refreshString = 'false';
     if ($full_page_refresh) {
         $refreshString = 'true';
     }
 
-    return sprintf(
-        '<div
-                id="imagePanel"
-                data-imageBaseUrl="%s"
-                data-pagebaseurl="%s"
-                data-full_page_refresh="%s"
-                ></div>',
-        $imageBaseUrl,
-        $pageBaseUrl,
-        $refreshString
-    );
+    $output = '<div id="imagePanel"';
+    $output .= sprintf(' data-imageBaseUrl="%s"', $imageBaseUrl);
+    $output .= sprintf(' data-pagebaseurl="%s"', $pageBaseUrl,);
+    $output .= sprintf(' data-full_page_refresh="%s"', $refreshString);
+
+
+    $original_image = $example->getOriginalImage();
+    if ($original_image !== false) {
+        $output .= sprintf(' data-original_image_url="%s"', $original_image);
+    }
+
+    $output .= "></div>";
+
+    return $output;
 }
 

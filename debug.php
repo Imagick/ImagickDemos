@@ -3,14 +3,18 @@
 declare(strict_types = 1);
 
 
-$users = [
-    ['uid' => 5],
-    ['uid' => 6],
-    []
-];
+class A {
 
-foreach ($users as ['uid' => $uid]) {
+    protected $foo = "I am class A";
 
-    // , or $uid = 1
-    echo "uid is " . $uid . "\n";
 }
+
+class B
+{
+    public $foo;
+}
+
+
+$b = new B();
+
+var_dump($b->foo);

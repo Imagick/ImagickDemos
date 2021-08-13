@@ -14,6 +14,7 @@ abstract class Example
         $this->control = $control;
     }
 
+
     public function getOriginalImage()
     {
         return false;

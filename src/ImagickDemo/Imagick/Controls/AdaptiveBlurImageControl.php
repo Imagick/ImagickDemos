@@ -44,4 +44,24 @@ class AdaptiveBlurImageControl implements InputParameterList
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
+
+    public function getRadius(): string
+    {
+        return $this->radius;
+    }
+
+    public function getSigma(): string
+    {
+        return $this->sigma;
+    }
+
+    public function getChannel(): string
+    {
+        return $this->channel;
+    }
+
+    public function getImagePath(): string
+    {
+        return $this->image_path;
+    }
 }

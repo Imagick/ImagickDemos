@@ -6,10 +6,12 @@ export interface ImageProps {
    pageBaseUrl: string;
    imageBaseUrl: string;
    fullPageRefresh: boolean|null;
+   original_image_url: string|null;
 }
 
 interface ImageState {
     imageParams: Object;
+    showing_original: boolean;
 }
 
 // Help wanted - make there be fewer ts-ignores...
@@ -35,7 +37,9 @@ function createQueryString(params:Object): string {
             return encodeURIComponent(key) + '=' + "[" + parts.join(',') + "]";
         }
 
+        // @ts-ignore: TS2322
         if (params[key] === null) {
+            // @ts-ignore: TS2322
             return encodeURIComponent(key) + '=';
         }
 
@@ -47,11 +51,13 @@ function createQueryString(params:Object): string {
 }
 
 export class ImagePanel extends Component<ImageProps, ImageState> {
+
     constructor(props: ImageProps, state: any) {
         super(props);
 
         this.state = {
-            imageParams: {}
+            imageParams: {},
+            showing_original: false
         };
     }
 
@@ -84,6 +90,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
     };
 
     componentWillMount() {
+        console.log("componentWillMount")
     }
 
     componentDidMount() {
@@ -96,6 +103,15 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         // need to register popstate
     }
 
+    mouseOver() {
+        console.log("mouse over");
+        this.setState({showing_original: true});
+    }
+    mouseOut() {
+        console.log("mouse out");
+        this.setState({showing_original: false});
+    }
+
     render(props: ImageProps, state: ImageState) {
 
         let imageParams = state.imageParams;
@@ -105,7 +121,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         imageParams.time = date.getTime();
 
         let queryString:string = createQueryString(imageParams);
-        let fullUrl = props.imageBaseUrl + "?" + queryString;
+        let img_url = props.imageBaseUrl + "?" + queryString;
 
         // console.log("Full url is " + fullUrl);
         // <!-- fullUrl is {fullUrl} -->
@@ -114,9 +130,25 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
             return <span></span>;
         }
 
+        let original_image_text = "";
+
+        if (this.props.original_image_url !== null) {
+            if (this.state.showing_original === true) {
+                original_image_text = "Touch/mouse out to see modified";
+            }
+            else {
+                original_image_text = "Touch/mouse over to see original";
+            }
+        }
+
+        if (this.state.showing_original === true) {
+            img_url = this.props.original_image_url;
+        }
+
         // @ts-ignore: TS2322
-        return <span>
-            <img src={fullUrl} class="img-responsive exampleImage imageStatus" />
+        return <span onmouseover={() => this.mouseOver()} onmouseout={() => this.mouseOut()}>
+            <img src={img_url} class="img-responsive exampleImage imageStatus" />
+            {original_image_text}
         </span>;
     }
 }

@@ -2,20 +2,11 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\ReactExample;
 use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
 
-class adaptiveBlurImage extends \ImagickDemo\Example
+class adaptiveBlurImage extends ReactExample
 {
-    function getOriginalImage()
-    {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
-    }
-
     public function renderTitle()
     {
         return "Adaptive blur image";

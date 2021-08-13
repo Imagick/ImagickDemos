@@ -108,10 +108,17 @@ function setupImagePanel() {
         return;
     }
 
+    let original_image_url = null;
+
+    if (element.dataset.hasOwnProperty("original_image_url") === true) {
+        original_image_url = element.dataset.original_image_url;
+    }
+
     let params:ImageProps = {
         imageBaseUrl: element.dataset.imagebaseurl,
         pageBaseUrl: element.dataset.pagebaseurl,
-        fullPageRefresh: (element.dataset.full_page_refresh == "true")
+        fullPageRefresh: (element.dataset.full_page_refresh == "true"),
+        original_image_url: original_image_url
     };
 
     render(<ImagePanel {...params} />, element);

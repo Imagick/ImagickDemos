@@ -488,7 +488,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/Params.git",
-                "reference": "349e6b6932c7b1a271352a1fd80efaf9eddabf07"
+                "reference": "6bbf046996864acc4d80c4a08182fcc7dfb98f32"
             },
             "require": {
                 "danack/json-safe": "^0.1.0",
@@ -528,7 +528,7 @@
                 "MIT"
             ],
             "description": "Converts user input into correctly typed parameters",
-            "time": "2021-08-09T21:02:16+00:00"
+            "time": "2021-08-16T15:25:57+00:00"
         },
         {
             "name": "danack/scripthelper",

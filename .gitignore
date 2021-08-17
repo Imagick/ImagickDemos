@@ -25,3 +25,4 @@ node_modules
 .idea
 man
 bugReports
+docker/php_backend/ImageMagick-7.1.0-4

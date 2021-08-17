@@ -3,18 +3,13 @@
 namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Example;
-use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
+use ImagickDemo\Imagick\Controls\NullControl;
 
-class adaptiveBlurImage extends Example
+class setImageMask extends Example
 {
-    public function hasOriginalImage()
-    {
-        return true;
-    }
-
     public function renderTitle()
     {
-        return "Adaptive blur image";
+        return "Set image mask";
     }
 
     public function render()
@@ -29,6 +24,6 @@ class adaptiveBlurImage extends Example
 
     public static function getParamType(): string
     {
-        return AdaptiveBlurImageControl::class;
+        return NullControl::class;
     }
 }

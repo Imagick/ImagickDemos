@@ -66,6 +66,12 @@ Template system for this site was just changed to instead just use some function
 
 END;
 
+        $output .= "Imagick version is " . phpversion("Imagick") . "<br/>";
+
+        $output .= "ImageMagick version info is:";
+
+        $output .= var_export(\Imagick::getVersion(), true);
+
         return $output;
     }
 

@@ -672,9 +672,12 @@ function createReactImagePanel(
     $output .= sprintf(' data-full_page_refresh="%s"', $refreshString);
 
 
-    $original_image = $example->getOriginalImage();
-    if ($original_image !== false) {
-        $output .= sprintf(' data-original_image_url="%s"', $original_image);
+    $original_image = $example->hasOriginalImage();
+    if ($original_image === true) {
+        $output .= ' data-has_original_image="true"';
+    }
+    else {
+        $output .= ' data-has_original_image="false"';
     }
 
     $output .= "></div>";

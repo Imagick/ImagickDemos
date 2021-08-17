@@ -3,8 +3,6 @@ services:
   imagick_php_backend:
     build: docker/php_backend
     image: imagick_php_backend:latest
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_phpfpm"}]'
     volumes:
       - .:/var/app
     restart: always
@@ -13,11 +11,15 @@ services:
     image: imagick_php_backend_debug:latest
     depends_on:
       - imagick_php_backend
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_phpfpm_debug"}]'
     volumes:
       - .:/var/app
     restart: always
+  imagick_php_base:
+    build: docker/imagick_php_base
+    image: imagick_php_base:latest
+    command: ["tail", "-f", "/var/app/docker/imagick_php_base/README.md"]
+    volumes:
+      - .:/var/app
   js_dev_builder:
     build: docker/js_dev_builder
     volumes:
@@ -31,8 +33,6 @@ services:
     environment:
       - COMPOSER_CACHE_DIR=/var/app/var/cache/composer
       - COMPOSER_ALLOW_SUPERUSER=1
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_installer"}]'
     volumes:
       - .:/var/app
 #  npm:

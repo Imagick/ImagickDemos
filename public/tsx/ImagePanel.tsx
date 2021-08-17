@@ -3,10 +3,10 @@ import { h, Component } from "preact";
 import { registerEvent, unregisterEvent, EventType } from "./events";
 
 export interface ImageProps {
-   pageBaseUrl: string;
-   imageBaseUrl: string;
-   fullPageRefresh: boolean|null;
-   original_image_url: string|null;
+    pageBaseUrl: string;
+    imageBaseUrl: string;
+    fullPageRefresh: boolean|null;
+    has_original_image: boolean;
 }
 
 interface ImageState {
@@ -16,7 +16,6 @@ interface ImageState {
 
 // Help wanted - make there be fewer ts-ignores...
 function createQueryString(params:Object): string {
-    //debugger;
     let queryString = Object.keys(params).map((key) => {
         // @ts-ignore: TS2322
         let parts = [];
@@ -48,6 +47,31 @@ function createQueryString(params:Object): string {
     }).join('&');
 
     return queryString;
+}
+
+function getOriginalImagePath(params: Object) {
+    console.log(params)
+
+    // @ts-ignore: image_path
+    if (params.image_path === undefined) {
+        console.log("control data doesn't contain image_path, can't get original path.");
+    }
+
+    let knownPaths = {
+        'Skyline': "/images/Skyline_400.jpg",
+        'Lorikeet': "/images/Biter_500.jpg",
+        'People': "/images/SydneyPeople_400.jpg",
+        'Low contrast': "/images/LowContrast.jpg",
+    };
+
+    // @ts-ignore: image_path
+    if (knownPaths[params.image_path] === undefined) {
+        // @ts-ignore: image_path
+        console.log(`image_path ${params.image_path}, isn't listed, can't get original image url.`);
+    }
+
+    // @ts-ignore: image_path
+    return knownPaths[params.image_path];
 }
 
 export class ImagePanel extends Component<ImageProps, ImageState> {
@@ -132,7 +156,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
 
         let original_image_text = "";
 
-        if (this.props.original_image_url !== null) {
+        if (this.props.has_original_image !== null) {
             if (this.state.showing_original === true) {
                 original_image_text = "Touch/mouse out to see modified";
             }
@@ -141,9 +165,9 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
             }
         }
 
-        if (this.state.showing_original === true) {
-            img_url = this.props.original_image_url;
-        }
+         if (this.state.showing_original === true) {
+             img_url = getOriginalImagePath(this.state.imageParams);
+         }
 
         // @ts-ignore: TS2322
         return <span onmouseover={() => this.mouseOver()} onmouseout={() => this.mouseOut()}>

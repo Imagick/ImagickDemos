@@ -549,6 +549,7 @@ class CategoryInfo
         //'setImageInterpolateMethod',
         //'setImageIterations',
         //'setImageMatte',
+        'setImageMask' => ['setImageMask', \ImagickDemo\Control\ReactControls::class],
         //'setImageMatteColor',
         //'setImageOpacity',
         'setImageOrientation' => ['setImageOrientation', \ImagickDemo\Control\ReactControls::class],

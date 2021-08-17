@@ -3,6 +3,7 @@
 namespace ImagickDemo\Imagick;
  
 use Imagick;
+use ImagickDraw;
 use Tier\Body\CachingFileBodyFactory;
 
 class functions
@@ -2034,6 +2035,69 @@ function setImageDelay()
     header("Content-Type: image/gif");
     echo $imagick2->getImagesBlob();
 }
+//Example end
+
+
+//Example Imagick::setImageMask
+function setImageMask()
+{
+    $canvas = new Imagick(__DIR__ . '/../../../public/images/trapezoid_image.png');
+
+    $mask = new Imagick();
+    $mask->newPseudoImage(
+        $canvas->getImageWidth(),
+        $canvas->getImageHeight(),
+        'xc:black'
+    );
+
+    $drawing = new ImagickDraw();
+    $drawing->setBorderColor('black');
+    $drawing->setFillColor('black');
+    $drawing->rectangle(0, 0, $mask->getImageWidth(), $mask->getImageHeight());
+
+    $drawing->setBorderColor('white');
+    $drawing->setFillColor('white');
+    $drawing->circle(
+        $mask->getImageWidth() / 2,
+        $mask->getImageHeight() / 2,
+        2 * $mask->getImageWidth() / 3,
+        $mask->getImageHeight() / 2,
+    );
+
+    $mask->drawImage($drawing);
+
+
+    // This would probably be more useful for users
+    // but shows the issue with PIXELMASK_COMPOSITE
+    // $mask->blurImage(10, 2);
+
+    $mask_types = array(
+        \Imagick::PIXELMASK_READ =>        "PIXELMASK_READ",
+        \Imagick::PIXELMASK_WRITE =>       "PIXELMASK_WRITE",
+        \Imagick::PIXELMASK_COMPOSITE =>   "PIXELMASK_COMPOSITE",
+    );
+
+    $channel_types = array(
+        \Imagick::CHANNEL_ALL => "CHANNEL_ALL",
+        \Imagick::CHANNEL_RED => "CHANNEL_RED",
+        \Imagick::CHANNEL_ALPHA => "CHANNEL_ALPHA",
+        \Imagick::CHANNEL_RGBA => "CHANNEL_RGBA",
+        \Imagick::CHANNEL_BLACK => "CHANNEL_BLACK",
+        \Imagick::CHANNEL_DEFAULT => "CHANNEL_DEFAULT",
+    );
+
+//    foreach ($channel_types as $channel_type => $channel_name) {
+//        foreach ($mask_types as $type => $type_name) {
+            $output = clone $canvas;
+            $output->setImageMask($mask, \Imagick::PIXELMASK_WRITE);
+            $output->blurImage(15, 4, \Imagick::CHANNEL_ALL);
+//        }
+//    }
+
+    header("Content-Type: image/jpg");
+    echo $output->getImageBlob();
+}
+
 //Example end
 
 

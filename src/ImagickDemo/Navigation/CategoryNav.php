@@ -18,7 +18,10 @@ class CategoryNav implements Nav
      */
     public function renderNav($horizontal = false)
     {
-        $html = "<div class='contentPanel navContainer' >";
+        $html = sprintf(
+            "<div class='contentPanel navContainer' id='navigationPanel' data-links_json='%s'>",
+            json_encode($this->getLinksData())
+        );
         $html .= $this->renderSearchBox();
         $html .= $this->renderVertical();
         $html .=  "</div>";
@@ -218,7 +221,32 @@ END;
 
         return $output;
     }
-    
+
+    public function getLinksData()
+    {
+        $links = [];
+
+        $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
+        foreach ($exampleList as $exampleName => $exampleDefinition) {
+
+            $link['url'] = sprintf(
+                '/%s/%s',
+                $this->pageInfo->getCategory(),
+                $exampleName,
+            );
+
+            $name = $exampleName;
+
+            if (isset($exampleDefinition['name'])) {
+                $name = $exampleDefinition['name'];
+            }
+            $link['description'] = $name;
+
+            $links[] = $link;
+        }
+
+        return $links;
+    }
     
     public function renderVertical()
     {

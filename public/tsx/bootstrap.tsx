@@ -2,6 +2,9 @@ import { h, render } from "preact";
 import { ControlPanel } from "./ControlPanel";
 import { FeelingsControlPanel } from "./FeelingsControlPanel";
 import { ImagePanel, ImageProps } from "./ImagePanel";
+
+import { NavigationPanel, NavigationProps } from "./NavigationPanel";
+
 import {FeelingsProps, HumanFeelingsPanel} from "./HumanFeelings";
 
 import {startEventProcessing} from "./events";
@@ -127,8 +130,35 @@ function setupImagePanel() {
     render(<ImagePanel {...params} />, element);
 }
 
+
+function setupNavigationPanel() {
+    let element = document.getElementById("navigationPanel");
+    if (element === null) {
+        console.warn('navigationPanel not present.');
+        return;
+    }
+
+    let links = [];
+
+    if (element.dataset.hasOwnProperty("links_json") === true) {
+        let json = element.dataset.links_json;
+        links = JSON.parse(json);
+    }
+
+    let params:NavigationProps = {
+        links: links,
+    };
+    // Clear the existing HTML
+    element.innerHTML = "";
+
+    render(<NavigationPanel {...params} />, element);
+}
+
+
+
 (function(){
     setupImagePanel();
+    setupNavigationPanel();
     setupControlPanel();
     setupHumanFeelings();
     setupHumanFeelingsControlPanel();

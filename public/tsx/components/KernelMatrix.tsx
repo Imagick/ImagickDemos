@@ -27,7 +27,7 @@ export class KernelMatrix extends Component<KernelMatrixProps, {}> {
               key={cell_index}
               type="text"
               step="1"
-              style="width: 30px"
+              style="width: 50px"
               value={value}
               // @ts-ignore: blah blah
               onchange={(event) => this.props.updateFn(row_index, cell_index, event.target.value) }

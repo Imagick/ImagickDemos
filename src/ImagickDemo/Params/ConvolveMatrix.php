@@ -9,6 +9,7 @@ use Params\ProcessRule\RangeIntValue;
 //use ImagickDemo\ExtractRule\GetKernelMatrixOrDefault;
 use Params\ExtractRule\GetKernelMatrixOrDefault;
 
+
 #[\Attribute]
 class ConvolveMatrix implements Param
 {

@@ -8,7 +8,7 @@ class affineTransformImage extends \ImagickDemo\Example
 {
     public function renderDescription()
     {
-        return $output = "This appears to not be working.<br/>";
+        return "TODO - write the description...<br/>";
     }
 
     public function hasReactControls(): bool

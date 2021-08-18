@@ -85,6 +85,7 @@ class ReactControls implements Control
             return $this->params->toArray();
         }
 
+
         return $this->params->getAllParams();
     }
 

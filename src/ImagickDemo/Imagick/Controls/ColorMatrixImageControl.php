@@ -9,13 +9,10 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-
-use ImagickDemo\Params\Width;
-use ImagickDemo\Params\Height;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\AdaptiveOffset;
+use ImagickDemo\Params\ColorMatrix;
 
-class AdaptiveThresholdImageControl implements InputParameterList
+class ColorMatrixImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,24 +20,37 @@ class AdaptiveThresholdImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Width(50, 'width')]
-        private string $width,
-        #[Height(20, 'height')]
-        private string $height,
+        #[ColorMatrix('color_matrix')]
+        private array $color_matrix,
         #[Image('image_path')]
         private string $image_path,
-        #[AdaptiveOffset('adaptive_offset')]
-        private string $adaptive_offset,
     ) {
+
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'width' => $this->width,
-            'height' => $this->height,
-            'adaptive_offset' => $this->adaptive_offset,
+            'color_matrix' => $this->color_matrix,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function getColorMatrix(): array
+    {
+        return $this->color_matrix;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagePath(): string
+    {
+        return $this->image_path;
+    }
+
+
 }

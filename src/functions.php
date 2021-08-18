@@ -394,7 +394,9 @@ function convertToValue($value)
     if (is_array($value) === true) {
         $values = [];
         foreach ($value as $key => $entry) {
-            $values[$key] = convertToValue($entry);
+            [$error, $value] = convertToValue($entry);
+            // TODO - why is error being ignored....
+            $values[$key] = $value;
         }
 
         return [

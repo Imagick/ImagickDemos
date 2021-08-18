@@ -6,6 +6,11 @@ use ImagickDemo\Imagick\Controls\ImageControl;
 
 class autoLevelImage extends \ImagickDemo\Example
 {
+    public function hasOriginalImage()
+    {
+        return true;
+    }
+
     function getOriginalImage()
     {
         return $this->control->getOriginalURL();

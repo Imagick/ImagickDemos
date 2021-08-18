@@ -2,10 +2,15 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Imagick\Controls\ColorizeImageControl;
+use ImagickDemo\Imagick\Controls\ColorMatrixImageControl;
 
 class colorMatrixImage extends \ImagickDemo\Example
 {
+//    public function hasOriginalImage()
+//    {
+//        return true;
+//    }
+
     function getOriginalImage()
     {
         return $this->control->getOriginalURL();
@@ -39,11 +44,16 @@ END;
 
     public function render()
     {
-        return $this->renderImageURL('#0000ff');
+        return $this->renderImageURL();
+    }
+
+    public function hasReactControls(): bool
+    {
+        return true;
     }
 
     public static function getParamType(): string
     {
-        return ColorizeImageControl::class;
+        return ColorMatrixImageControl::class;
     }
 }

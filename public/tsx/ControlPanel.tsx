@@ -66,9 +66,6 @@ function getDefaultState(initialControlParams: object): AppState {
         active_color: null
     };
 
-    // console.log("initialControlParams");
-    // console.log(initialControlParams);
-
     for (let name in initialControlParams) {
         if (initialControlParams.hasOwnProperty(name) === true) {
             // @ts-ignore: blah blah
@@ -99,6 +96,7 @@ function map_api_name(api_param_name: string): string {
         color: "Color",
         colorspace: "Colorspace",
         color_space: "Color space",
+        color_matrix: "Color matrix",
         endX: "End X",
         endY: "End Y",
         fill_color: "Fill color",
@@ -262,12 +260,35 @@ export class ControlPanel extends Component<AppProps, AppState> {
     setMatrixCurrentValue(name: string, row_index: number, column_index: number, new_value: string ) {
         let current_values = this.state.values;
 
+        let new_value_trimmed = new_value.trim()
+
+        if (new_value_trimmed.length === 0) {
+            new_value_trimmed = "0";
+        }
+
         if (Array.isArray(current_values[name]) !== true) {
             debugger;
             throw new Error("Current value for " + name  + "is not an array");
         }
+        let new_value_as_float = parseFloat(new_value_trimmed);
+
+        if (isNaN(new_value_as_float) === true) {
+            console.warn("Value [" + new_value + "] was NAN, changing to zero.");
+            new_value_as_float = 0;
+        }
+
+        let new_value_to_use = "" + new_value_as_float;
+
+        // when users are typing 0.5, they type '0', then '.', then '5'.
+        // but '0.' is parsed to '0' by parseFloat(), so the decimal point can't
+        // be entered...hack around it.
+        if ((new_value_as_float + ".") === new_value_trimmed) {
+            new_value_to_use = new_value_trimmed;
+        }
+
+
         // @ts-ignore: yeah, I know
-        current_values[name][row_index][column_index] = parseFloat(new_value);
+        current_values[name][row_index][column_index] = new_value_to_use;
         this.setState({values: current_values});
     }
 

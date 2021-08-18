@@ -128,11 +128,18 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
     }
 
     mouseOver() {
-        console.log("mouse over");
+        // console.log("mouse over");
+        if (this.props.has_original_image !== true) {
+            return;
+        }
+
         this.setState({showing_original: true});
     }
     mouseOut() {
-        console.log("mouse out");
+        // console.log("mouse out");
+        if (this.props.has_original_image !== true) {
+            return;
+        }
         this.setState({showing_original: false});
     }
 
@@ -156,7 +163,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
 
         let original_image_text = "";
 
-        if (this.props.has_original_image !== null) {
+        if (this.props.has_original_image !== false) {
             if (this.state.showing_original === true) {
                 original_image_text = "Touch/mouse out to see modified";
             }

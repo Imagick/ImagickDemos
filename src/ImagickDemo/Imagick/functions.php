@@ -395,10 +395,19 @@ function colorizeImage($image_path, $color, $opacity_color)
 
 //TODO - understand what a color matrix is...
 //Example Imagick::colorMatrixImage
-function colorMatrixImage($image_path, $colorMatrix)
+function colorMatrixImage($image_path, $color_matrix)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->setImageOpacity(1);
+    $imagick->setImageAlpha(1);
+
+    // Imagick expects the values to be in a flat (single dimension)
+    // array, but we have a 2d array, so flatten the values.
+    $color_matrix_values = [];
+    foreach ($color_matrix as $row => $values) {
+        foreach ($values as $value) {
+            $color_matrix_values[] = $value;
+        }
+    }
 
     //A color matrix should look like:
     //    $colorMatrix = [
@@ -420,7 +429,7 @@ function colorMatrixImage($image_path, $colorMatrix)
     $background->setImageFormat('png');
 
     $imagick->setImageFormat('png');
-    $imagick->colorMatrixImage($colorMatrix);
+    $imagick->colorMatrixImage($color_matrix_values);
     
     $background->compositeImage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
 

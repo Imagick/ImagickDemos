@@ -24,10 +24,6 @@ services:
     build: docker/js_dev_builder
     volumes:
       - .:/var/app
-#  sass_dev_builder:
-#    build: containers/sass_dev_builder
-#    volumes:
-#      - .:/var/app
   installer:
     build: docker/installer
     environment:
@@ -35,21 +31,8 @@ services:
       - COMPOSER_ALLOW_SUPERUSER=1
     volumes:
       - .:/var/app
-#  npm:
-#    build: docker/npm
-#    #environment:
-#    #  - COMPOSER_CACHE_DIR=/var/app/var/cache/composer
-#    #  - COMPOSER_ALLOW_SUPERUSER=1
-#    #labels:
-#    #  com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_installer"}]'
-#    ports:
-#      - 8888:8888
-#    volumes:
-#      - .:/var/app
   redis:
     image: redis:4.0.6
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "redis", "service": "phpimagick_redis"}]'
     volumes:
       - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: always
@@ -59,8 +42,6 @@ services:
     command: ["/usr/sbin/nginx", "-c", "/etc/config/nginx.conf"]
     depends_on:
       - imagick_php_backend
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "nginx", "service": "phpimagick_nginx"}]'
     volumes:
       - .:/var/app
       - ./docker/web_server/config:/etc/config
@@ -71,8 +52,6 @@ services:
     depends_on:
       - redis
       - imagick_php_backend
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "php", "service": "phpimagick_supervisord"}]'
     volumes:
       - .:/var/app
     restart: always

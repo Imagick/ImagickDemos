@@ -364,10 +364,10 @@ $html = <<< HTML
 
     <link rel='stylesheet' type='text/css' media='screen' href='/css/bootstrap.css' />
     <link rel='stylesheet' type='text/css' media='screen' href='/css/imagick.css' />
-    <link rel='stylesheet' type='text/css' media='screen' href='/css/colpick.css' />
-    <link rel='stylesheet' type='text/css' media='screen' href='/css/jquery/jQuery.tablesorter.css' />
-    <link rel='stylesheet' type='text/css' media='screen' href='/css/syntaxhighlighter/shCoreDefault.css' />
-    <link rel='stylesheet' type='text/css' media='screen' href='/css/syntaxhighlighter/shThemePHPStormLight.css' />
+<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/colpick.css' />-->
+<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/jquery/jQuery.tablesorter.css' />-->
+<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/syntaxhighlighter/shCoreDefault.css' />-->
+<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/syntaxhighlighter/shThemePHPStormLight.css' />-->
 
     <style>
         .filter-table .quick { margin-left: 0.5em; font-size: 40px; text-decoration: none; }

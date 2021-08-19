@@ -26,3 +26,11 @@ node_modules
 man
 bugReports
 docker/php_backend/ImageMagick-7.1.0-4
+docker/php_backend/imagick-master
+public/css/imagick.css.gz
+public/js/app.bundle.js
+public/js/app.bundle.js.gz
+public/js/app.bundle.js.map
+public/js/app.bundle.js.map.gz
+ImageMagick-7.1.0-4.tar.gz
+imagick-master.tar.gz

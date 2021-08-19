@@ -2,14 +2,9 @@ import { h, render } from "preact";
 import { ControlPanel } from "./ControlPanel";
 import { FeelingsControlPanel } from "./FeelingsControlPanel";
 import { ImagePanel, ImageProps } from "./ImagePanel";
-
 import { NavigationPanel, NavigationProps } from "./NavigationPanel";
-
 import {FeelingsProps, HumanFeelingsPanel} from "./HumanFeelings";
-
 import {startEventProcessing} from "./events";
-
-import "./legacy.js";
 
 function setupControlPanel() {
     let controlPanelElement = document.getElementById("controlPanel");

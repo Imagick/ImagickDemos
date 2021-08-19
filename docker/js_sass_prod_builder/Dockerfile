@@ -5,5 +5,5 @@ WORKDIR /var/app/app
 
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y git
 
-CMD sh /var/app/containers/js_sass_prod_builder/build_prod_assets.sh
+CMD sh /var/app/docker/js_sass_prod_builder/build_prod_assets.sh
 

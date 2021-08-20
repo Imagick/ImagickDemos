@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="phpunit_bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory>../src</directory>
+    </include>
+    <report>
+      <text outputFile="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>
+    </report>
+  </coverage>
+  <php>
+    </php>
+  <testsuites>
+    <testsuite name="PHPOpenDocs Test Suite">
+      <directory>../test/</directory>
+      <exclude>BaseTestCase.php</exclude>
+      <!-- This doens't seem to work-->
+    </testsuite>
+  </testsuites>
+  <groups>
+    <exclude>
+      <group>site_integration</group>
+      <group>external_integration</group>
+      <group>slow</group>
+    </exclude>
+  </groups>
+  <logging>
+    <!--        <log type="coverage-html" target="../tmp/coverage"-->
+    <!--             lowUpperBound="35" highLowerBound="70"/>-->
+    <!--        <log type="junit" target="../tmp/phpunit_junit.xml" />-->
+  </logging>
+</phpunit>

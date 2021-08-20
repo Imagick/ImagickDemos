@@ -10,11 +10,12 @@ use ImagickDemo\NavigationBar;
 use ImagickDemo\DocHelper;
 use ImagickDemo\Control;
 use ImagickDemo\Example;
-use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
 use Params\OpenApi\OpenApiV300ParamDescription;
 use VarMap\VarMap;
 use Params\InputParameterList;
 use Params\Create\CreateFromVarMap;
+use ImagickDemo\ExampleSourceFinder;
+use ImagickDemo\CodeExample;
 
 function renderTopNavBarForCategory(
     Nav $nav,
@@ -135,6 +136,71 @@ function renderReactExampleCustom($imageBaseUrl, $activeCategory, $activeExample
     );
 }
 
+/**
+ * @param CodeExample[] $examples
+ */
+function renderExamples(array $examples)
+{
+    if (count($examples) === 0) {
+        return "";
+    }
+
+    $output = '<div class="row"><div class="col-md-12 contentPanel">';
+
+    $count = 0;
+
+    foreach ($examples as $example) {
+
+        $count += 1;
+        $header = '';
+
+        if (count($examples) > 1) {
+            $description = trim($example->description);
+            if (strlen($description) > 0) {
+                $header = "// Example $count - " . $description;
+            }
+            else {
+                $header = "// Example $count";
+            }
+        }
+
+        $output .= "<pre>";
+        $output .= $header . "\n";
+        foreach ($example->lines as $line) {
+            $output .= $line;
+        }
+        $output .= "</pre>";
+    }
+
+    $output .= "</div></div>";
+
+    return $output;
+}
+
+
+/*
+
+            $uri = sprintf(
+                "https://github.com/Danack/Imagick-demos/tree/master/src/ImagickDemo/%s/functions.php",
+                $example->category
+            );
+
+            if ($example->startLine && $example->endLine) {
+                $uri .= sprintf(
+                    "#L%d-L%d",
+                    $example->startLine,
+                    $example->endLine
+                );
+            }
+            else if ($example->startLine) {
+                $uri .= sprintf(
+                    "#L%d",
+                    $example->startLine
+                );
+            }
+
+ */
+
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
     ImagickDemo\Example $example,
@@ -203,8 +269,14 @@ function renderExampleBodyHtml(
         $exampleHtml = $example->render();
     }
 
+    $exampleFinder = new ExampleSourceFinder();
 
-$html = <<< HTML
+    $code_examples = $exampleFinder->findExamples($activeCategory,$activeExample);
+
+    $wat = renderExamples($code_examples);
+
+
+    $html = <<< HTML
 <div class='container'>
     <div class="row hidden-xs hidden-md hidden-lg">
         <div class="col-xs-6">
@@ -265,7 +337,9 @@ $html = <<< HTML
             {$docHelper->showDescriptionPanel(true)}
             {$example->renderDescriptionPanel(true)}
             {$docHelper->showParametersPanel()}
-            {$docHelper->showExamples()}
+            
+            {$wat}
+            
         </div>
 
         <div class="row visible-xs visible-sm">
@@ -361,13 +435,8 @@ $html = <<< HTML
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <link rel='stylesheet' type='text/css' media='screen' href='/css/bootstrap.css' />
     <link rel='stylesheet' type='text/css' media='screen' href='/css/imagick.css' />
-<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/colpick.css' />-->
-<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/jquery/jQuery.tablesorter.css' />-->
-<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/syntaxhighlighter/shCoreDefault.css' />-->
-<!--    <link rel='stylesheet' type='text/css' media='screen' href='/css/syntaxhighlighter/shThemePHPStormLight.css' />-->
 
     <style>
         .filter-table .quick { margin-left: 0.5em; font-size: 40px; text-decoration: none; }
@@ -389,7 +458,7 @@ function renderPageEndHtml()
 $html = <<< HTML
     </body>
 
-<script src="/dist/js/app.bundle.js"></script>
+<script src="/js/app.bundle.js"></script>
 
 </html>
 

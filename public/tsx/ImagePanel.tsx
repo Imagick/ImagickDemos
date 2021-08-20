@@ -162,14 +162,17 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         }
 
         let original_image_text = "";
+        let view_modified = <span></span>;
 
-        if (this.props.has_original_image !== false) {
+        if (this.props.has_original_image === true) {
             if (this.state.showing_original === true) {
-                original_image_text = "Touch/mouse out to see modified";
+                original_image_text = "Touch/mouse out to see modified ";
             }
             else {
-                original_image_text = "Touch/mouse over to see original";
+                original_image_text = "Touch/mouse over to see original ";
             }
+
+            view_modified = <a href={img_url} target="_blank">View modified in new window.</a>
         }
 
          if (this.state.showing_original === true) {
@@ -180,6 +183,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         return <span onmouseover={() => this.mouseOver()} onmouseout={() => this.mouseOut()}>
             <img src={img_url} class="img-responsive exampleImage imageStatus" />
             {original_image_text}
+            {view_modified}
         </span>;
     }
 }

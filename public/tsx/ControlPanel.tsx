@@ -87,6 +87,7 @@ function map_api_name(api_param_name: string): string {
     let known_map = {
         amount: "Amount",
         background_color: "Background color",
+        best_fit: "Best fit",
         black_point: "Black point",
         bias: "Bias",
         channel: "Channel",

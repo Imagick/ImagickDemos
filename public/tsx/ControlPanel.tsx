@@ -100,6 +100,9 @@ function map_api_name(api_param_name: string): string {
         color_space: "Color space",
         color_matrix: "Color matrix",
         convolve_matrix: "Convolve matrix",
+        end_angle: "End angle",
+        end_x: "End X",
+        end_y: "End Y",
         endX: "End X",
         endY: "End Y",
         fill_color: "Fill color",
@@ -116,8 +119,13 @@ function map_api_name(api_param_name: string): string {
         outer_bevel: "Outer bevel",
         paint_type: "Paint type",
         radius: "Radius",
+        round_x: "Round x",
+        round_y: "Round y",
         second_term: "Second term",
         sigma: "Sigma",
+        start_angle: "Start angle",
+        start_x: "Start X",
+        start_y: "Start Y",
         startX: "Start X",
         startY: "Start Y",
         stroke_color: "Stroke color",
@@ -129,6 +137,11 @@ function map_api_name(api_param_name: string): string {
         width: "Width",
         white_point: "White point",
     };
+
+
+
+
+
 
     if (known_map.hasOwnProperty(api_param_name) === true) {
         // @ts-ignore: blah blah
@@ -470,9 +483,10 @@ export class ControlPanel extends Component<AppProps, AppState> {
             controls.push(control);
         }
 
-        let debugBlock = <pre>
-            <code>{JSON.stringify(this.state.values, null, 2)}</code>
-        </pre>
+        let debugBlock = <span></span>
+        // let debugBlock = <pre>
+        //     <code>{JSON.stringify(this.state.values, null, 2)}</code>
+        // </pre>
 
         let itemBlock = <div class='col-xs-12 contentPanel controlForm'>
             {controls}
@@ -480,56 +494,7 @@ export class ControlPanel extends Component<AppProps, AppState> {
             {debugBlock}
         </div>;
 
-//         let block = <div class='col-xs-12 contentPanel controlForm' key={"old"}>
-//             <NumberSelect
-//                 name="Channel 1"
-//                 min={1}
-//                 max={20}
-//                 default={this.state.channel_1_sample}
-//                 updateFn={(channel_1_sample) => this.setState({channel_1_sample})}
-//             />
-//             <br/>
-//
-//             <NumberSelect
-//                 name="Channel 2"
-//                 min={1}
-//                 max={20}
-//                 default={this.state.channel_2_sample}
-//                 updateFn={(channel_2_sample) => this.setState({channel_2_sample})}
-//             />
-//             <br/>
-//
-//             <NumberSelect
-//                 name="Channel 3"
-//                 min={1}
-//                 max={20}
-//                 default={this.state.channel_3_sample}
-//                 updateFn={(channel_3_sample) => this.setState({channel_3_sample})}
-//             />
-//             <br/>
-//             <ValueSelect
-//                 name="Color space"
-//                 options={color_space_options}
-//                 default={this.state.colorspace}
-//                 updateFn={(colorspace) => this.setState({colorspace})}
-//             />
-//             <br/>
-//
-//             <ValueSelect
-//                 name="Image"
-//                 options={image_path_options}
-//                 default={'Lorikeet'}
-//                 updateFn={(imagepath) => this.setState({imagepath})}
-//             />
-//             <br/>
-//
-//             Data size as % of original size: {info_percent_string}%
-//             <br/>
-//
-//             {processingBlock}
-//
-//             <br/>
-//
+
 //             <b>Channel 1, Channel 2, Channel 3</b> - how many pixels should be combined into 1 pixel, for each channel. e.g. if for the RGB colorspace, this would be red, green and blue.<br/>
 //
 // <b>Color space</b> which colorspace to process the image in.<br/>

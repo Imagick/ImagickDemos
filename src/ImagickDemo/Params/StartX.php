@@ -12,6 +12,7 @@ use Params\ProcessRule\RangeIntValue;
 class StartX implements Param
 {
     public function __construct(
+        private int $default,
         private string $name
     ) {
     }
@@ -20,7 +21,7 @@ class StartX implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault(50),
+            new GetIntOrDefault($this->default),
             new RangeIntValue(0, 250)
         );
     }

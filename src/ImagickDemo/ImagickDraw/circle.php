@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\ThreeColors;
+use ImagickDemo\ImagickDraw\Controls\CircleControls;
 
 class circle extends ImagickDrawExample
 {
@@ -18,6 +18,6 @@ class circle extends ImagickDrawExample
 
     public static function getParamType(): string
     {
-        return ThreeColors::class;
+        return CircleControls::class;
     }
 }

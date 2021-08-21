@@ -89,15 +89,17 @@ class CategoryInfo
         $category = $pageInfo->getCategory();
         $example = $pageInfo->getExample();
 
-
-
         if ($category == null || $example == null) {
             return ['ImagickDemo\Control\NullControl', []];
         }
         
         $exampleDefinition = self::getExampleDefinition($category, $example);
-        
-        $controlClass = $exampleDefinition[1];
+
+//        var_dump($exampleDefinition);
+//        exit(0);
+
+        $controlClass = \ImagickDemo\Control\ReactControls::class;
+//        $controlClass = $exampleDefinition[1];
         $params = [];
 
         if (array_key_exists('defaultParams', $exampleDefinition) == true) {

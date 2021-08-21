@@ -2,23 +2,23 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickDraw\Params;
+namespace ImagickDemo\ImagickDraw\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
-use ImagickDemo\Params\StartX;
-use ImagickDemo\Params\StartY;
-use ImagickDemo\Params\EndX;
-use ImagickDemo\Params\EndY;
-use ImagickDemo\Params\SkewAmount;
-
-
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-class Skew implements InputParameterList
+use ImagickDemo\Params\AngleRange;
+use ImagickDemo\Params\OriginX;
+use ImagickDemo\Params\OriginY;
+use ImagickDemo\Params\EndX;
+use ImagickDemo\Params\EndY;
+
+
+class CircleControls implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -32,18 +32,31 @@ class Skew implements InputParameterList
         private string $stroke_color,
         #[ImagickColorParam('DodgerBlue2', 'fill_color')]
         private string $fill_color,
-        #[ImagickColorParam('LightCoral', 'fill_modified_color')]
-        private string $fill_modified_color,
-        #[StartX(50, 'start_x')]
-        private string $startX,
-        #[StartY(50, 'start_y')]
-        private string $startY,
+
+        #[OriginX(250, 'origin_x')]
+        private float $origin_x,
+        #[OriginY(250, 'origin_y')]
+        private float $origin_y,
         #[EndX(400, 'end_x')]
-        private string $endX,
+        private float $end_x,
         #[EndY(400, 'end_y')]
-        private string $endY,
-        #[SkewAmount('skew')]
-        private string $skew
+        private float $end_y,
+
     ) {
+    }
+
+    public function getBackgroundColor(): string
+    {
+        return $this->background_color;
+    }
+
+    public function getStrokeColor(): string
+    {
+        return $this->stroke_color;
+    }
+
+    public function getFillColor(): string
+    {
+        return $this->fill_color;
     }
 }

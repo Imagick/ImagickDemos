@@ -30,7 +30,6 @@
         "ext-json": "*",
         "slim/slim": "3.7.0",
         "fluentdom/fluentdom": "v4.1.3",
-        "intahwebz/weaver": "~0.4.5",
         "nikic/fast-route": "^1.0",
         "predis/predis": "^1.0.1",
         "room11/caching": "^0.0.4",
@@ -42,12 +41,8 @@
     "autoload": {
         "files": ["src/functions.php"],
         "psr-0": {
-            "ImagickDemo": ["./src/", "./var/compile" ],
-            "Jig": ["./var/compile" ],
-            "Stats": ["./src/" ],
-            "FileFilter": ["./lib/" ],
-            "FilePacker": ["./lib/" ],
-            "ScriptServer": ["./lib/" ]
+            "ImagickDemo": ["./src/" ],
+            "Stats": ["./src/" ]
         }
     },
     "autoload-dev": {

@@ -37,9 +37,9 @@ class Translate implements InputParameterList
         private string $startX,
         #[StartY('start_y')]
         private string $startY,
-        #[EndX('end_x')]
+        #[EndX(400, 'end_x')]
         private string $endX,
-        #[EndY('end_y')]
+        #[EndY(400, 'end_y')]
         private string $endY,
         #[TranslateX('translate_x')]
         private string $translate_x,

@@ -106,11 +106,11 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
 
 
         // // console.log("history is disabled until controls are working.");
-        // window.history.pushState(
-        //     params, // This needs to be restored on state pop?
-        //     '', // Leave blank, as unused.
-        //     full_page_url
-        // );
+        window.history.pushState(
+            params, // This needs to be restored on state pop?
+            '', // Leave blank, as unused.
+            full_page_url
+        );
     };
 
     componentWillMount() {
@@ -153,9 +153,6 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
 
         let queryString:string = createQueryString(imageParams);
         let img_url = props.imageBaseUrl + "?" + queryString;
-
-        // console.log("Full url is " + fullUrl);
-        // <!-- fullUrl is {fullUrl} -->
 
         if (this.props.fullPageRefresh === true) {
             return <span></span>;

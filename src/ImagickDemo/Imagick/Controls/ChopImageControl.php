@@ -28,9 +28,9 @@ class ChopImageControl implements InputParameterList
     public function __construct(
         #[Image('image_path')]
         private string $image_path,
-        #[StartX('start_x')]
+        #[StartX(50, 'start_x')]
         private string $start_x,
-        #[StartY('start_y')]
+        #[StartY(50, 'start_y')]
         private string $start_y,
         #[Width(100, 'width')]
         private string $width,

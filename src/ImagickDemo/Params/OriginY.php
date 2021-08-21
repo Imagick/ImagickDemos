@@ -2,15 +2,16 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\RangeIntValue;
+use Params\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
 class OriginY implements Param
 {
     public function __construct(
+        private float $default,
         private string $name
     ) {
     }
@@ -19,8 +20,8 @@ class OriginY implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault(250),
-            new RangeIntValue(0, 500)
+            new GetFloatOrDefault($this->default),
+            new RangeFloatValue(0, 500)
         );
     }
 

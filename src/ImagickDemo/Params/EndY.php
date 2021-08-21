@@ -12,6 +12,7 @@ use Params\ProcessRule\MinIntValue;
 class EndY implements Param
 {
     public function __construct(
+        private int $default,
         private string $name
     ) {
     }
@@ -20,7 +21,7 @@ class EndY implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault(400),
+            new GetIntOrDefault($this->default),
             new MinIntValue(0),
             new MaxIntValue(500),
         );

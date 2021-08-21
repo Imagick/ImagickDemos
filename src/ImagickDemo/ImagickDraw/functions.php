@@ -242,7 +242,7 @@ function composite($strokeColor, $fillColor, $backgroundColor)
     $draw->setStrokeOpacity(1);
     $draw->setStrokeColor($strokeColor);
     $draw->setStrokeWidth(2);
-    $draw->setFont("../fonts/CANDY.TTF");
+    $draw->setFont(__DIR__ . "/../../../fonts/CANDY.TTF");
     $draw->setFontSize(140);
     $draw->rectangle(0, 0, 1000, 300);
     $draw->setFillColor('white');

@@ -33,9 +33,9 @@ class CropImageControl implements InputParameterList
         #[Height(150, 'height')]
         private string $height,
 
-        #[StartX('start_x')]
+        #[StartX(50, 'start_x')]
         private string $start_x,
-        #[StartY('start_y')]
+        #[StartY(50, 'start_y')]
         private string $start_y,
 
         #[Image('image_path')]

@@ -27,7 +27,7 @@ php composer.phar update
 
 
 #Generate some code.
-php ./tool/weaveControls.php
+# php ./tool/weaveControls.php
 
 #Generate the CSS
 # mkdir -p ./var/cache/less

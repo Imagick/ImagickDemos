@@ -25,41 +25,4 @@ class KernelSecondTerm implements Param
             new MaxFloatValue(5),
         );
     }
-
-//class KernelSecondTerm extends ValueElement
-//{
-//    protected function filterValue($value)
-//    {
-//        return floatval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return false;
-//    }
-//
-//    protected function getMin()
-//    {
-//        return 0;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 5;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'kernelSecondTerm';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'Second term';
-//    }
-//
-//    public function getKernelSecondTerm()
-//    {
-//        return $this->getValue();
-//    }
 }

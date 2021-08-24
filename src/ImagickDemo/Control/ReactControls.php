@@ -5,7 +5,7 @@ namespace ImagickDemo\Control;
 
 use ImagickDemo\Control;
 use ImagickDemo\Navigation\CategoryInfo;
-use ImagickDemo\Tutorial\Params\EyeColourResolutionParams;
+use ImagickDemo\Tutorial\Controls\EyeColourResolutionParams;
 use Params\InputParameterList;
 use VarMap\ArrayVarMap;
 use VarMap\VarMap;

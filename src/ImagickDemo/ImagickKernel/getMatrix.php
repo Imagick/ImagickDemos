@@ -3,7 +3,7 @@
 namespace ImagickDemo\ImagickKernel;
 
 use ImagickDemo\Display;
-use ImagickDemo\ImagickKernel\Params\NullControl;
+use ImagickDemo\ImagickKernel\Controls\NullControl;
 
 class getMatrix extends \ImagickDemo\Example
 {

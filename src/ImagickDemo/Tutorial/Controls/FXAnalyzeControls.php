@@ -2,19 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickKernel\Params;
+namespace ImagickDemo\Tutorial\Controls;
 
 
-use ImagickDemo\Params\Image;
-use ImagickDemo\Params\KernelRender;
-
+use ImagickDemo\Params\FXAnalyzeOption;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-class FromMatrixControl implements InputParameterList
+class FXAnalyzeControls implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -22,23 +20,23 @@ class FromMatrixControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[KernelRender('kernel_render')]
-        private string $kernel_render
+        #[FXAnalyzeOption()]
+        private string $fx_analyze_option
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'kernel_render' => getOptionFromOptions($this->kernel_render, getKernelRenderOptions()),
+            'fx_analyze_example' => getOptionFromOptions($this->fx_analyze_option, getFXAnalyzeOptions()),
         ];
     }
 
     /**
      * @return string
      */
-    public function getKernelRender(): string
+    public function getFxAnalyzeOption(): string
     {
-        return $this->kernel_render;
+        return $this->fx_analyze_option;
     }
 }

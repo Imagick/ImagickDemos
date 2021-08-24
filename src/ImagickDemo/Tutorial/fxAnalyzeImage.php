@@ -3,7 +3,7 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Control\ReactControls;
-use ImagickDemo\Tutorial\Params\FXAnalyzeControls;
+use ImagickDemo\Tutorial\Controls\FXAnalyzeControls;
 use VarMap\VarMap;
 
 class fxAnalyzeImage extends \ImagickDemo\Example

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\Tutorial\Params;
+namespace ImagickDemo\Tutorial\Controls;
 
 use ImagickDemo\Params\BackgroundColorChoice;
 use ImagickDemo\Params\LoopTime;

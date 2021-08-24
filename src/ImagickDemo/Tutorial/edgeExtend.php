@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Tutorial\Params\EdgeExtendControls;
+use ImagickDemo\Tutorial\Controls\EdgeExtendControls;
 
 class edgeExtend extends \ImagickDemo\Example
 {

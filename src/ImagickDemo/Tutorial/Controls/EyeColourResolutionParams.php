@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\Tutorial\Params;
+namespace ImagickDemo\Tutorial\Controls;
 
 use ImagickDemo\ReactParamType;
 use Params\Create\CreateFromRequest;

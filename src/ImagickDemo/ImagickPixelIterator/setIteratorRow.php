@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickPixelIterator;
 
-use ImagickDemo\ImagickKernel\Params\ImageControl;
+use ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class setIteratorRow extends \ImagickDemo\Example
 {

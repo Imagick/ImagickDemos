@@ -7,7 +7,7 @@ use ImagickDemo\Control\ReactControls;
 use ImagickDemo\ControlElement\KernelRender;
 use ImagickDemo\Display;
 use VarMap\VarMap;
-use ImagickDemo\ImagickKernel\Params\FromMatrixControl;
+use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
 
 
 class fromMatrix extends \ImagickDemo\Example

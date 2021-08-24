@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Tutorial\Params\WhirlyGifControls;
+use ImagickDemo\Tutorial\Controls\WhirlyGifControls;
 
 class whirlyGif extends \ImagickDemo\Example
 {

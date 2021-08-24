@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-use \ImagickDemo\ImagickKernel\Params\ImageControl;
+use \ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class addKernel extends \ImagickDemo\Example
 {

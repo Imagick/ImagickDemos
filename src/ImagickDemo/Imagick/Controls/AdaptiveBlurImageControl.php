@@ -16,7 +16,7 @@ use ImagickDemo\Params\Image;
 use ImagickDemo\Params\Radius;
 use ImagickDemo\Params\Sigma;
 
-class AdaptiveBlurImageControl implements InputParameterList
+class AdaptiveBlurImageControl
 {
     use SafeAccess;
     use CreateFromVarMap;

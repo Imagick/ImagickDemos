@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickKernel\Params;
+namespace ImagickDemo\ImagickKernel\Controls;
 
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;

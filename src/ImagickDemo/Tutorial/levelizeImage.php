@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Tutorial\Params\LevelizeImageControls;
+use ImagickDemo\Tutorial\Controls\LevelizeImageControls;
 
 class levelizeImage extends \ImagickDemo\Example
 {

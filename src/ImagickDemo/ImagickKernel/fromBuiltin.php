@@ -6,8 +6,8 @@ namespace ImagickDemo\ImagickKernel;
 use ImagickDemo\Control\ReactControls;
 use ImagickDemo\ControlElement\KernelRender;
 use ImagickDemo\Display;
-use ImagickDemo\ImagickKernel\Params\FromMatrixControl;
-use ImagickDemo\ImagickKernel\Params\FromBuiltInControl;
+use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
+use ImagickDemo\ImagickKernel\Controls\FromBuiltInControl;
 use VarMap\VarMap;
 
 class fromBuiltin extends \ImagickDemo\Example

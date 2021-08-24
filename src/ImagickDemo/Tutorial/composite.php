@@ -4,9 +4,9 @@ namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Control\CompositeExampleControl;
 use ImagickDemo\Control\ReactControls;
-use ImagickDemo\ImagickKernel\Params\FromMatrixControl;
+use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
 use Room11\HTTP\VariableMap;
-use ImagickDemo\Tutorial\Params\TutorialCompositeParams;
+use ImagickDemo\Tutorial\Controls\TutorialCompositeParams;
 use VarMap\VarMap;
 
 //function compositeImageExample()

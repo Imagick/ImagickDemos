@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Tutorial\Params\ImagickCompositeGenControls;
+use ImagickDemo\Tutorial\Controls\ImagickCompositeGenControls;
 
 class imagickCompositeGen extends \ImagickDemo\Example
 {

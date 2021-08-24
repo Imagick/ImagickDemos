@@ -91,10 +91,7 @@ class getImageChannelStatistics extends \ImagickDemo\Example
         return dumpInfo($imagick);
     }
 
-    public function hasReactControls(): bool
-    {
-        return false;
-    }
+
 
     public static function getParamType(): string
     {

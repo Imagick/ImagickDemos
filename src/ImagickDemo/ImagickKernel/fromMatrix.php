@@ -58,10 +58,7 @@ class fromMatrix extends \ImagickDemo\Example
         return true;
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

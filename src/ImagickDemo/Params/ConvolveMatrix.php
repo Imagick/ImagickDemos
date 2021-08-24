@@ -2,10 +2,9 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\RangeIntValue;
+
 //use ImagickDemo\ExtractRule\GetKernelMatrixOrDefault;
 use Params\ExtractRule\GetKernelMatrixOrDefault;
 

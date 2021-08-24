@@ -2,19 +2,11 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\Control;
-use ImagickDemo\Helper\PageInfo;
-use ImagickDemo\ImagickDraw\Controls\AffineParams;
 use ImagickDemo\ImagickDraw\Controls\ThreeColors;
-use VarMap\VarMap;
-use ImagickDemo\ReactParamType;
 
 class affine extends \ImagickDemo\Example
 {
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

@@ -2,8 +2,6 @@
 
 namespace ImagickDemo\Tutorial;
 
-use Imagick;
-
 class svgExample extends \ImagickDemo\Example
 {
     public function render()

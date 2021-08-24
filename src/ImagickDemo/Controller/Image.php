@@ -84,8 +84,8 @@ class Image
         Example $exampleController
     ) {
         $data = [];
-        $customImageParams = $exampleController->getCustomImageParams();
-        $fullParams = $control->getFullParams($customImageParams);
+//        $customImageParams = $exampleController->getCustomImageParams();
+        $fullParams = $control->getFullParams([]);
         $filename = $imageCachePath->getImageCacheFilename($pageInfo, $fullParams);
 
         $data['filename'] = $filename;
@@ -100,7 +100,6 @@ class Image
         }
 
         return new \SlimAuryn\Response\JsonResponse($data);
-//        return new JsonBody($data);
     }
 
     /**

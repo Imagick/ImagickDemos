@@ -4,7 +4,7 @@ namespace ImagickDemo\Imagick;
  
 use Imagick;
 use ImagickDraw;
-use Tier\Body\CachingFileBodyFactory;
+//use Tier\Body\CachingFileBodyFactory;
 
 class functions
 {
@@ -41,11 +41,11 @@ function header($string, $replace = true, $http_response_code = null)
 
 
     
-function renderFile(CachingFileBodyFactory $fileResponseFactory, $filename, $downloadFilename)
-{
-    return $fileResponseFactory->create($filename, $downloadFilename, "image/jpg");
-}
-    
+//function renderFile(CachingFileBodyFactory $fileResponseFactory, $filename, $downloadFilename)
+//{
+//    return $fileResponseFactory->create($filename, $downloadFilename, "image/jpg");
+//}
+//
 
 //Example Imagick::adaptiveBlurImage
 function adaptiveBlurImage($image_path, $radius, $sigma, $channel)

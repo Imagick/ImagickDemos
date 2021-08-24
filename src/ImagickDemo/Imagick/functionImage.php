@@ -3,12 +3,10 @@
 namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Control\ReactControls;
-use ImagickDemo\Display;
 use ImagickDemo\Image;
 use ImagickDemo\Imagick\Controls\FunctionImageControl;
 use ImagickDemo\Control\ImagickFunctionControl;
 use VarMap\VarMap;
-use function ImagickDemo\ImagickKernel\createFromBuiltin;
 
 class functionImage extends \ImagickDemo\Example
 {
@@ -264,10 +262,7 @@ f4 - Constant vertical offset, default 0.5";
 //Example end
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

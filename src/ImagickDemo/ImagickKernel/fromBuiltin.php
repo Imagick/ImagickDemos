@@ -6,7 +6,6 @@ namespace ImagickDemo\ImagickKernel;
 use ImagickDemo\Control\ReactControls;
 use ImagickDemo\ControlElement\KernelRender;
 use ImagickDemo\Display;
-use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
 use ImagickDemo\ImagickKernel\Controls\FromBuiltInControl;
 use VarMap\VarMap;
 
@@ -63,10 +62,7 @@ class fromBuiltin extends \ImagickDemo\Example
         return true;
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

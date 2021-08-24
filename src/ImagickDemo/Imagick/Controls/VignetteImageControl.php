@@ -11,7 +11,6 @@ use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
 use ImagickDemo\Params\ComponentRangeFloat;
 use ImagickDemo\Params\X;

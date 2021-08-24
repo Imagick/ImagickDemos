@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\ImagickDraw\Controls;
 
-use Params\Create\CreateFromRequest;
 use Params\Create\CreateFromVarMap;
-use Params\Create\CreateOrErrorFromVarMap;
 use Params\InputParameter;
 use Params\ExtractRule\GetStringOrDefault;
 use Params\SafeAccess;

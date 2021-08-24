@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Imagick\Controls\ImageControl;
 use ImagickDemo\Imagick\Controls\DistortImageControl;
 use VarMap\VarMap;
 
@@ -26,10 +25,7 @@ class distortImage extends \ImagickDemo\Example
         $this->distortImageControl = DistortImageControl::createFromVarMap($varMap);
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

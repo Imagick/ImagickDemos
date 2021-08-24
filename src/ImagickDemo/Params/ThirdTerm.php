@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;

@@ -11,10 +11,7 @@ class transverseImage extends \ImagickDemo\Example
         return $this->renderImageURL();
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

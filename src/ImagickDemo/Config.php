@@ -2,7 +2,6 @@
 
 namespace ImagickDemo;
 
-use Auryn\Injector;
 use Tier\TierException;
 
 class Config

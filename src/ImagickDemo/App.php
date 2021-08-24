@@ -4,26 +4,12 @@ namespace ImagickDemo;
 
 use Auryn\Injector;
 
-use ImagickDemo\Config;
-use ImagickDemo\ImageCachePath;
-use Room11\HTTP\Body;
-use Room11\HTTP\VariableMap;
-use Room11\HTTP\HeadersSet;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryInfo;
-use ImagickDemo\Queue\ImagickTaskQueue;
-use Jig\Jig;
-use Predis\Client as RedisClient;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Room11\HTTP\Body\BlobBody;
-use Room11\HTTP\Body\EmptyBody;
-use Room11\HTTP\Body\TextBody;
 use Room11\Caching\LastModifiedStrategy;
 use Room11\Caching\LastModified\Disabled as CachingDisabled;
 use Room11\Caching\LastModified\Revalidate as CachingRevalidate;
 use Room11\Caching\LastModified\Time as CachingTime;
-//use Tier\Body\CachingFileBodyFactory;
-//use Tier\Bridge\RouteParams;
 
 use SlimAuryn\RouteParams;
 
@@ -40,14 +26,6 @@ class App
 
     const ERROR_CAUGHT_BY_ERROR_HANDLER_API_MESSAGE = "This is caught in the AppErrorHandler";
 
-//    public static function createLibrato(Config $config)
-//    {
-//        return \ImagickDemo\Config\Librato::make(
-//            $config->getKey(Config::LIBRATO_KEY),
-//            $config->getKey(Config::LIBRATO_USERNAME),
-//            $config->getKey(Config::LIBRATO_STATSSOURCENAME)
-//        );
-//    }
 
     public static function createJigConfig(Config $config)
     {
@@ -59,18 +37,6 @@ class App
     
         return $jigConfig;
     }
-
-//    public static function createDomain(Config $config)
-//    {
-//        return new \Tier\Domain(
-//            $config->getDomainCanonical(Config::DOMAIN_CANONICAL),
-//            $config->getKey(Config::DOMAIN_CDN_PATTERN),
-//            $config->getKey(Config::DOMAIN_CDN_TOTAL)
-//        );
-//    }
-//
-
-
 
     public static function createCaching(Config $config)
     {
@@ -93,35 +59,6 @@ class App
         }
     }
 
-    public static function createScriptVersion(Config $config)
-    {
-        return new \ScriptServer\Value\ScriptVersion(
-            '1009170106023234'
-        );
-    }
-
-    public static function createScriptInclude(
-        Config $config,
-        \ScriptHelper\ScriptURLGenerator $scriptURLGenerator
-    ) {
-        // $packScript = $config->getKey(Config::SCRIPT_PACKING);
-        $packScript = false;
-    
-        if ($packScript) {
-            return new \ScriptHelper\ScriptInclude\ScriptIncludePacked($scriptURLGenerator);
-        }
-        else {
-            return new \ScriptHelper\ScriptInclude\ScriptIncludeIndividual($scriptURLGenerator);
-        }
-    }
-
-    
-    public static function prepareJig(Jig $jigRender, $injector)
-    {
-        $jigRender->addDefaultPlugin('ImagickDemo\JigPlugin\ImagickPlugin');
-    }
-    
-        
     public static function createRedisClient(Config $config)
     {
         $redisParameters = array(
@@ -137,42 +74,6 @@ class App
         return new \Predis\Client($redisParameters, $redisOptions);
     }
 
-
-//    public static function createRedisSessionDriver()
-//    {
-//        $redisConfig = array(
-//            "scheme" => "tcp",
-//            "host" => 'localhost',
-//            "port" => 6379
-//        );
-//
-//        $redisOptions = array(
-//            'profile' => '2.6',
-//            'prefix' => 'imagickdemo:',
-//        );
-//
-//        $redisClient = new RedisClient($redisConfig, $redisOptions);
-//        $redisDriver = new RedisDriver($redisClient);
-//
-//        return $redisDriver;
-//    }
-//
-//    public static function createSessionManager(RedisDriver $redisDriver)
-//    {
-//        $sessionConfig = new SessionConfig(
-//            'SessionTest',
-//            3600 * 10,
-//            60
-//        );
-//
-//        $sessionManager = new SessionManager(
-//            $sessionConfig,
-//            $redisDriver
-//        );
-//
-//        return $sessionManager;
-//    }
-    
     function createControl(PageInfo $pageInfo, Injector $injector)
     {
 //        list($controlClassname, $params) = CategoryInfo::getDIInfo($pageInfo);
@@ -209,13 +110,6 @@ class App
             $className::load();
         }
     }
-    
-//    public static function createDispatcher()
-//    {
-//        $dispatcher = \FastRoute\simpleDispatcher(['ImagickDemo\Route', 'routesFunction']);
-//
-//        return $dispatcher;
-//    }
 
     public static function cachingheader($string, $replace = true, $http_response_code = null)
     {

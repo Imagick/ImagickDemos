@@ -3,7 +3,6 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Helper\PageInfo;
-use ImagickDemo\Control;
 use ImagickDemo\Tutorial\Controls\EyeColourResolutionParams;
 use Params\OpenApi\OpenApiV300ParamDescription;
 use VarMap\VarMap;
@@ -27,10 +26,7 @@ class EyeColourResolution extends \ImagickDemo\Example implements ReactParamType
 //        parent::__construct($control);
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

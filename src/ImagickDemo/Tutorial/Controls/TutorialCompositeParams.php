@@ -8,10 +8,6 @@ declare(strict_types = 1);
 namespace ImagickDemo\Tutorial\Controls;
 
 
-use ImagickDemo\Params\Image;
-use ImagickDemo\Params\KernelRender;
-use ImagickDemo\Params\TutorialComposite;
-
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;

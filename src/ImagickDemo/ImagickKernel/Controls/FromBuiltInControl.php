@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace ImagickDemo\ImagickKernel\Controls;
 
 
-use ImagickDemo\Params\Image;
 use ImagickDemo\Params\KernelRender;
 use ImagickDemo\Params\KernelType;
 use ImagickDemo\Params\KernelFirstTerm;

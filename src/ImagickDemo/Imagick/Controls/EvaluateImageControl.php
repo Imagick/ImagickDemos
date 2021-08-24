@@ -11,11 +11,6 @@ use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-use ImagickDemo\Params\Channel;
-use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Radius;
-use ImagickDemo\Params\Sigma;
-use ImagickDemo\Params\NoiseType;
 use ImagickDemo\Params\EvaluateType;
 use ImagickDemo\Params\FirstTerm;
 

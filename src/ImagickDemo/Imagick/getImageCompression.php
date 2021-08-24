@@ -49,10 +49,7 @@ class getImageCompression extends \ImagickDemo\Example
         return "Image compression is '" . $compressionType . "' " . $typeString;
     }
 
-    public function hasReactControls(): bool
-    {
-        return false;
-    }
+
 
     public static function getParamType(): string
     {

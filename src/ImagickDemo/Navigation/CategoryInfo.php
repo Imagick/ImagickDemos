@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Navigation;
 
-use ImagickDemo\Control\NullControl;
 use ImagickDemo\Helper\PageInfo;
 
 class CategoryInfo

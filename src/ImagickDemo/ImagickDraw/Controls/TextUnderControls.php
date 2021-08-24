@@ -6,7 +6,6 @@ namespace ImagickDemo\ImagickDraw\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
-use ImagickDemo\Params\TextDecoration;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;

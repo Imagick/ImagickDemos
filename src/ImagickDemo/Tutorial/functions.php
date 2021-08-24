@@ -3,7 +3,6 @@
 namespace ImagickDemo\Tutorial {
 
 use Imagick;
-    use function ImagickDemo\Imagick\newPseudoImage;
 
     class functions
 {

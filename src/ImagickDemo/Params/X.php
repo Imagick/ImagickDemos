@@ -3,8 +3,6 @@
 
 namespace ImagickDemo\Params;
 
-use Room11\HTTP\VariableMap;
-
 use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;

@@ -11,7 +11,6 @@ use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Radius;
 use ImagickDemo\Params\Amplitude;
 use ImagickDemo\Params\Length;
 

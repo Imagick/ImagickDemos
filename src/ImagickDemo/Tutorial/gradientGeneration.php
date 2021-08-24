@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Tutorial;
 
-use Imagick;
 use ImagickDemo\Image;
 
 class gradientGeneration extends \ImagickDemo\Example

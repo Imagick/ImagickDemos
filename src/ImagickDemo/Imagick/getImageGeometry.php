@@ -6,7 +6,6 @@ use ImagickDemo\Control\ReactControls;
 use \ImagickDemo\Control\ImageControl as LegacyImageControl;
 use VarMap\VarMap;
 use ImagickDemo\Imagick\Controls\ImageControl;
-use function _HumbugBoxfd814575fcc2\RingCentral\Psr7\build_query;
 
 
 class getImageGeometry extends \ImagickDemo\Example
@@ -83,10 +82,7 @@ END;
         return true;
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

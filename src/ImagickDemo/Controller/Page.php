@@ -2,16 +2,12 @@
 
 namespace ImagickDemo\Controller;
 
-use Auryn\Injector;
-use ImagickDemo\Navigation\CategoryInfo;
-use SlimAuryn\Response\TwigResponse;
 use VarMap\VarMap;
 
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
 use ImagickDemo\NavigationBar;
 use ImagickDemo\Example;
-use SlimAuryn\RouteParams;
 use ImagickDemo\DocHelper;
 use ImagickDemo\Control;
 use ImagickDemo\Navigation\NullNav;

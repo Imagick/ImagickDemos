@@ -2,8 +2,6 @@
 
 namespace ImagickDemo;
 
-use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
-
 abstract class Example
 {
 //    /**
@@ -22,11 +20,6 @@ abstract class Example
     }
 
     public function getOriginalImage()
-    {
-        return false;
-    }
-
-    public function hasReactControls(): bool
     {
         return false;
     }

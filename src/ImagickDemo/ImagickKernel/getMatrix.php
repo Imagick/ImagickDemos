@@ -47,10 +47,7 @@ class getMatrix extends \ImagickDemo\Example
         echo $imagick->getImageBlob();
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

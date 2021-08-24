@@ -14,10 +14,7 @@ class syncIterator extends \ImagickDemo\Example
         return $output;
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

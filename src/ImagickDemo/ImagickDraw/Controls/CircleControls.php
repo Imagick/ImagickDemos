@@ -11,7 +11,6 @@ use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-use ImagickDemo\Params\AngleRange;
 use ImagickDemo\Params\OriginX;
 use ImagickDemo\Params\OriginY;
 use ImagickDemo\Params\EndX;

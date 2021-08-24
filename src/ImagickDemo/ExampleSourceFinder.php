@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace ImagickDemo;
 
-use ImagickDemo\CodeExample;
-
 class ExampleSourceFinder
 {
 

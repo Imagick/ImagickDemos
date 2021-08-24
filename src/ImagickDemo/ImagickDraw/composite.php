@@ -11,10 +11,7 @@ class composite extends ImagickDrawExample
         return "TODO - completely replace this with a non-file based example.";
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

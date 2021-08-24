@@ -3,7 +3,6 @@
 namespace ImagickDemo\Imagick;
 
 use Imagick;
-use ImagickDraw;
 
 class clutImage extends \ImagickDemo\Example
 {

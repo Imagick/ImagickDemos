@@ -116,6 +116,7 @@ function map_api_name(api_param_name: string): string {
         inner_bevel: "Inner bevel",
         kernel_render: "Kernel render",
         kernel_type: "Kernel type",
+        noise_type: "Noise type",
         outer_bevel: "Outer bevel",
         paint_type: "Paint type",
         radius: "Radius",

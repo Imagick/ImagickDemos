@@ -11,10 +11,7 @@ class setFontStyle extends ImagickDrawExample
         return "Fonts depend on ghostscript <br/>";
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

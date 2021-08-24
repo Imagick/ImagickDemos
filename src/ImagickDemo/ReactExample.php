@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace ImagickDemo;
 
 use ImagickDemo\Control\ImageControl as LegacyImageControl;
-use ImagickDemo\Imagick\Controls\ImageControl;
 use VarMap\VarMap;
 
 abstract class ReactExample extends Example

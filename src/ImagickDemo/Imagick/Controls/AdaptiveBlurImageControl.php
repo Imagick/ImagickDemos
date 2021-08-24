@@ -7,7 +7,6 @@ namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 

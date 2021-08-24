@@ -12,7 +12,6 @@ use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 use ImagickDemo\Params\Height;
 use ImagickDemo\Params\Width;
-use ImagickDemo\Params\BestFit;
 use ImagickDemo\Params\Image;
 
 class BorderImageControl implements InputParameterList

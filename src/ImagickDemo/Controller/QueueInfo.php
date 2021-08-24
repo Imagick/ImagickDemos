@@ -4,9 +4,6 @@ namespace ImagickDemo\Controller;
 
 use Room11\HTTP\Body\TextBody;
 use ImagickDemo\Queue\ImagickTaskQueue;
-use Tier\InjectionParams;
-use Tier\Tier;
-use Tier\Bridge\JigExecutable;
 
 class QueueInfo
 {

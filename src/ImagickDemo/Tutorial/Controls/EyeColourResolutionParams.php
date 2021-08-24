@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Tutorial\Controls;
 
-use ImagickDemo\ReactParamType;
 use Params\Create\CreateFromRequest;
 use Params\Create\CreateFromVarMap;
 use Params\Create\CreateOrErrorFromVarMap;

@@ -4,7 +4,6 @@
 namespace ImagickDemo\Model;
 
 use ImagickDemo\Config;
-use Room11\Caching\LastModifiedStrategy;
 use Jig\Jig;
 
 class ServerSettings

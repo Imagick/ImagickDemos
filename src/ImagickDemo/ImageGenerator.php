@@ -4,17 +4,11 @@
 namespace ImagickDemo;
 
 
-use Room11\HTTP\Body;
 use Room11\HTTP\VariableMap;
-use Room11\HTTP\HeadersSet;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryInfo;
 use ImagickDemo\Queue\ImagickTaskQueue;
-use ImagickDemo\Config;
-use Predis\Client as RedisClient;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Room11\HTTP\Body\BlobBody;
-use Room11\HTTP\Body\TextBody;
 
 use SlimAuryn\Response\ImageResponse;
 use SlimAuryn\RouteParams;

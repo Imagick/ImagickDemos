@@ -17,10 +17,7 @@ class fxAnalyzeImage extends \ImagickDemo\Example
         $this->fx_analyze_control = FXAnalyzeControls::createFromVarMap($varMap);
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
 use Params\ExtractRule\GetStringOrDefault;
 use Params\InputParameter;
 use Params\Param;

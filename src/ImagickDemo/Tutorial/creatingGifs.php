@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Tutorial;
 
-use Imagick;
 use ImagickDemo\Image;
 
 class creatingGifs extends \ImagickDemo\Example

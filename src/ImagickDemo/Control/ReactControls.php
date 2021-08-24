@@ -5,12 +5,8 @@ namespace ImagickDemo\Control;
 
 use ImagickDemo\Control;
 use ImagickDemo\Navigation\CategoryInfo;
-use ImagickDemo\Tutorial\Controls\EyeColourResolutionParams;
-use Params\InputParameterList;
-use VarMap\ArrayVarMap;
 use VarMap\VarMap;
 use ImagickDemo\ReactParamType;
-
 
 class ReactControls implements Control
 {
@@ -41,9 +37,9 @@ class ReactControls implements Control
         $this->imageStatusBaseURL = \ImagickDemo\Route::getImageStatusURL($activeCategory, $activeExample);
         $this->taskQueue = $taskQueue;
 
-        $exampleDef = CategoryInfo::getExampleToRun($activeCategory, $activeExample);
+        $exampleToRun = CategoryInfo::getExampleToRun($activeCategory, $activeExample);
 
-        $exampleName = "ImagickDemo\\" . $activeCategory . "\\" . $exampleDef;
+        $exampleName = "ImagickDemo\\" . $activeCategory . "\\" . $exampleToRun;
         /** @var ReactParamType $exampleName */
         $paramType = $exampleName::getParamType();
 

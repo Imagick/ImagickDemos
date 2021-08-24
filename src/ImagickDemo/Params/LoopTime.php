@@ -6,7 +6,6 @@ use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeIntValue;
-use Params\ProcessRule\MinIntValue;
 
 #[\Attribute]
 class LoopTime implements Param

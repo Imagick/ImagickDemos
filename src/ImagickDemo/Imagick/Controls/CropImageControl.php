@@ -9,9 +9,6 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-use \ImagickDemo\Params\ResizeHeight;
-use \ImagickDemo\Params\ResizeWidth;
-use ImagickDemo\Params\BestFit;
 use ImagickDemo\Params\Image;
 
 use ImagickDemo\Params\Height;

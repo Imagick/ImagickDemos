@@ -3,11 +3,8 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
 use Params\ExtractRule\GetStringOrDefault;
 use Params\ProcessRule\NullIfEmpty;
 use Params\ProcessRule\CastToFloat;

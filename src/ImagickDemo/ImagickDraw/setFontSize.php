@@ -11,10 +11,7 @@ class setFontSize extends ImagickDrawExample
         return "";
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

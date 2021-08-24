@@ -43,10 +43,7 @@ END;
         return $this->control;
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

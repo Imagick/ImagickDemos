@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\ImagickKernel\Controls;
 
-use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\Params\Image;
 
 use ImagickDemo\ToArray;

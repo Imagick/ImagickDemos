@@ -4,9 +4,9 @@
 namespace ImagickDemo\Model;
 
 use Amp\Artax\Client;
-use Arya\TextBody;
+
 use ImagickDemo\Config;
-use Tier\Domain;
+
 
 class FPMStatus
 {

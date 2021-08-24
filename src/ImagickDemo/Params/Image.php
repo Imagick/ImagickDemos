@@ -2,8 +2,6 @@
 
 namespace ImagickDemo\Params;
 
-use Room11\HTTP\VariableMap;
-
 use Params\ExtractRule\GetStringOrDefault;
 use Params\ProcessRule\EnumMap;
 use Params\InputParameter;

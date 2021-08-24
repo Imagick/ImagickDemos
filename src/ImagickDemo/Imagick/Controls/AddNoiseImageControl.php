@@ -12,8 +12,6 @@ use Params\SafeAccess;
 
 use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Radius;
-use ImagickDemo\Params\Sigma;
 use ImagickDemo\Params\NoiseType;
 
 

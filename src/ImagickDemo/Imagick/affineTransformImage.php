@@ -11,10 +11,7 @@ class affineTransformImage extends \ImagickDemo\Example
         return "TODO - write the description...<br/>";
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

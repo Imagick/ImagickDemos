@@ -21,10 +21,7 @@ Top-tip, you probably want 'Integer of dots' % 'Phase divider' to be zero.";
         return $this->renderImageURL();
     }
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

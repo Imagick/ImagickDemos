@@ -6,10 +6,7 @@ use ImagickDemo\ImagickDraw\Controls\MatteControl;
 
 class matte extends ImagickDrawExample
 {
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

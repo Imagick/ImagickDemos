@@ -9,7 +9,6 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-use ImagickDemo\Params\Image;
 use ImagickDemo\Params\FirstTerm;
 use ImagickDemo\Params\SecondTerm;
 use ImagickDemo\Params\ThirdTerm;

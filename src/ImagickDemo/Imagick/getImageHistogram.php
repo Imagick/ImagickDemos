@@ -45,10 +45,7 @@ class getImageHistogram extends \ImagickDemo\Example
     {
     }
 
-    public function hasReactControls(): bool
-    {
-        return false;
-    }
+
 
     public static function getParamType(): string
     {

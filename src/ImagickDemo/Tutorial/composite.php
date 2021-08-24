@@ -3,9 +3,6 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Control\CompositeExampleControl;
-use ImagickDemo\Control\ReactControls;
-use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
-use Room11\HTTP\VariableMap;
 use ImagickDemo\Tutorial\Controls\TutorialCompositeParams;
 use VarMap\VarMap;
 
@@ -450,10 +447,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
     }
 
 
-    public function hasReactControls(): bool
-    {
-        return true;
-    }
+
 
     public static function getParamType(): string
     {

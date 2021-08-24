@@ -9,6 +9,11 @@ class backgroundMasking extends \ImagickDemo\Example
         return "Background masking";
     }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
+
     public function getOriginalImage()
     {
         return "/imageOriginal/Tutorial/backgroundMasking";

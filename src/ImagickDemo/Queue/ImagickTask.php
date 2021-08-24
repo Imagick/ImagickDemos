@@ -2,8 +2,6 @@
 
 namespace ImagickDemo\Queue;
 
-use ImagickDemo\App;
-use ImagickDemo\Control;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\ImageCachePath;
 

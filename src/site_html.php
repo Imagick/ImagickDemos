@@ -231,7 +231,7 @@ function renderExampleBodyHtml(
         $example_description .= "<br/>";
     }
 
-    if ($example->hasReactControls() === true) {
+//    if ($example->hasReactControls() === true) {
         $form = renderReactControls($varMap, $example->getParamType());
 
         if (method_exists($example, 'hasBespokeRender') &&
@@ -263,11 +263,11 @@ function renderExampleBodyHtml(
                 $example
             );
         }
-    }
-    else {
-        $form = $control->renderForm();
-        $exampleHtml = $example->render();
-    }
+//    }
+//    else {
+//        $form = $control->renderForm();
+//        $exampleHtml = $example->render();
+//    }
 
     $exampleFinder = new ExampleSourceFinder();
 

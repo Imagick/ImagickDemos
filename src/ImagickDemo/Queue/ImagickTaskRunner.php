@@ -193,13 +193,14 @@ class ImagickTaskRunner
             $imageFunction = CategoryInfo::getImageFunctionName($pageInfo);
         }
         
-        $controlClassName = CategoryInfo::getControlClassName($pageInfo);
-        if ($controlClassName) {
-            $injector->alias('ImagickDemo\Control', $controlClassName);
-        }
+//        $controlClassName = CategoryInfo::getControlClassName($pageInfo);
+        $controlClassName = \ImagickDemo\Control\ReactControls::class;
+//        if ($controlClassName) {
+//            $injector->alias('ImagickDemo\Control', $controlClassName);
+//        }
 
-        echo "Image Function name is: \n";
-        var_dump($imageFunction);
+//        echo "Image Function name is: \n";
+//        var_dump($imageFunction);
 
         try {
             $result = App::renderImageAsFileResponse($imageFunction, $filename, $injector, $lowried);

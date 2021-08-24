@@ -20,12 +20,11 @@ class EyeColourResolution extends \ImagickDemo\Example implements ReactParamType
 
     public function __construct(
         PageInfo $pageInfo,
-        Control $control,
         VarMap $varMap
     ) {
         $this->pageInfo = $pageInfo;
         $this->varMap = $varMap;
-        parent::__construct($control);
+//        parent::__construct($control);
     }
 
     public function hasReactControls(): bool

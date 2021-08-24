@@ -41,9 +41,9 @@ class ReactControls implements Control
         $this->imageStatusBaseURL = \ImagickDemo\Route::getImageStatusURL($activeCategory, $activeExample);
         $this->taskQueue = $taskQueue;
 
-        $exampleDef = CategoryInfo::getExampleDefinition($activeCategory, $activeExample);
+        $exampleDef = CategoryInfo::getExampleToRun($activeCategory, $activeExample);
 
-        $exampleName = "ImagickDemo\\" . $activeCategory . "\\" . $exampleDef[0];
+        $exampleName = "ImagickDemo\\" . $activeCategory . "\\" . $exampleDef;
         /** @var ReactParamType $exampleName */
         $paramType = $exampleName::getParamType();
 

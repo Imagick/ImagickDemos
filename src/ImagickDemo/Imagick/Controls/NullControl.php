@@ -10,7 +10,6 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-use ImagickDemo\Params\Image;
 
 
 class NullControl implements InputParameterList

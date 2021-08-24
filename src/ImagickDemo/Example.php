@@ -2,17 +2,19 @@
 
 namespace ImagickDemo;
 
+use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
+
 abstract class Example
 {
-    /**
-     * @var Control
-     */
-    protected $control;
-
-    public function __construct(\ImagickDemo\Control $control)
-    {
-        $this->control = $control;
-    }
+//    /**
+//     * @var Control
+//     */
+//    protected $control;
+//
+//    public function __construct(\ImagickDemo\Control $control)
+//    {
+//        $this->control = $control;
+//    }
 
     public function hasOriginalImage()
     {
@@ -27,6 +29,11 @@ abstract class Example
     public function hasReactControls(): bool
     {
         return false;
+    }
+
+    public static function getParamType(): string
+    {
+        return \ImagickDemo\Imagick\Controls\NullControl::class;
     }
 
 

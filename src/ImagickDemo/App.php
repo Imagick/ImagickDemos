@@ -175,18 +175,20 @@ class App
     
     function createControl(PageInfo $pageInfo, Injector $injector)
     {
-        list($controlClassname, $params) = CategoryInfo::getDIInfo($pageInfo);
+//        list($controlClassname, $params) = CategoryInfo::getDIInfo($pageInfo);
+//        foreach ($params as $name => $value) {
+//            $injector->defineParam($name, $value);
+//        }
+
+        $controlClassname = \ImagickDemo\Control\ReactControls::class;
+
+        $control = $injector->make($controlClassname);
+        $params = $control->getFullParams();
+
         foreach ($params as $name => $value) {
             $injector->defineParam($name, $value);
         }
 
-        $control = $injector->make($controlClassname);
-        $params = $control->getFullParams();
-        
-        foreach ($params as $name => $value) {
-            $injector->defineParam($name, $value);
-        }
-        
         return $control;
     }
     

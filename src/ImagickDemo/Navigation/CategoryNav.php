@@ -54,7 +54,7 @@ class CategoryNav implements Nav
         
         $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
         
-        foreach ($exampleList as $exampleName => $exampleDefinition) {
+        foreach ($exampleList as $exampleName => $exampleToRun) {
             if (strcmp($current, $exampleName) === 0) {
                 if ($previous) {
                     return $previous;
@@ -75,7 +75,7 @@ class CategoryNav implements Nav
         $current = $this->pageInfo->getExample();
         $next = false;
         $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
-        foreach ($exampleList as $exampleName => $exampleDefinition) {
+        foreach ($exampleList as $exampleName => $exampleToRun) {
             if ($next == true) {
                 return $exampleName;
             }
@@ -227,7 +227,7 @@ END;
         $links = [];
 
         $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
-        foreach ($exampleList as $exampleName => $exampleDefinition) {
+        foreach ($exampleList as $exampleName => $exampleToRun) {
 
             $link['url'] = sprintf(
                 '/%s/%s',
@@ -237,9 +237,9 @@ END;
 
             $name = $exampleName;
 
-            if (isset($exampleDefinition['name'])) {
-                $name = $exampleDefinition['name'];
-            }
+//            if (isset($exampleDefinition['name'])) {
+//                $name = $exampleDefinition['name'];
+//            }
             $link['description'] = $name;
 
             $links[] = $link;
@@ -254,7 +254,7 @@ END;
         
         $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
         
-        foreach ($exampleList as $exampleName => $exampleDefinition) {
+        foreach ($exampleList as $exampleName => $exampleToRun) {
             $imagickExample = $exampleName;//$imagickExampleOption->getName();
             $active = '';
             $activeLink = '';
@@ -266,9 +266,9 @@ END;
 
             $name = $imagickExample;
 
-            if (isset($exampleDefinition['name'])) {
-                $name = $exampleDefinition['name'];
-            }
+//            if (isset($exampleDefinition['name'])) {
+//                $name = $exampleDefinition['name'];
+//            }
 
             $output .= "<li class='navSpacer $active'>";
             $output .= sprintf(

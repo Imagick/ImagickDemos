@@ -12,7 +12,6 @@ use Params\ProcessRule\MinIntValue;
 #[\Attribute]
 class Amount implements Param
 {
-
     public function __construct(
         private string $name
     ) {
@@ -27,40 +26,4 @@ class Amount implements Param
             new MaxIntValue(20),
         );
     }
-
-//
-//    protected function filterValue($value)
-//    {
-//        return floatval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return 5;
-//    }
-//
-//    protected function getMin()
-//    {
-//        return 0;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 20;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'amount';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'Amount';
-//    }
-//
-//    public function getAmount()
-//    {
-//        return $this->getValue();
-//    }
 }

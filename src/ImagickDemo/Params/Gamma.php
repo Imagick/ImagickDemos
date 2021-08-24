@@ -24,41 +24,4 @@ class Gamma implements Param
             new RangeFloatValue(0.01, 10),
         );
     }
-
-//class Gamma extends ValueElement
-//{
-//    protected function filterValue($value)
-//    {
-//        return floatval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return 2.2;
-//    }
-//
-//    protected function getMin()
-//    {
-//        return 0.01;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 10;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'gamma';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'Gamma';
-//    }
-//
-//    public function getGamma()
-//    {
-//        return $this->getValue();
-//    }
 }

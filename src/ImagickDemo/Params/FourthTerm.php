@@ -31,41 +31,4 @@ class FourthTerm implements Param
             new RangeFloatValue(-1000, 1000)
         );
     }
-
-//class FourthTerm extends ValueElement
-//{
-//    protected function filterValue($value)
-//    {
-//        return floatval($value);
-//    }
-//
-//    protected function getDefault()
-//    {
-//        return '';
-//    }
-//
-//    protected function getMin()
-//    {
-//        return -1000;
-//    }
-//
-//    protected function getMax()
-//    {
-//        return 10000;
-//    }
-//
-//    protected function getVariableName()
-//    {
-//        return 'fourthTerm';
-//    }
-//
-//    protected function getDisplayName()
-//    {
-//        return 'Fourth term';
-//    }
-//
-//    public function getFourthTerm()
-//    {
-//        return $this->getValue();
-//    }
 }

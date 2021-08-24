@@ -34,3 +34,4 @@ public/js/app.bundle.js.map
 public/js/app.bundle.js.map.gz
 ImageMagick-7.1.0-4.tar.gz
 imagick-master.tar.gz
+.phpunit.result.cache

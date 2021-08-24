@@ -24,5 +24,4 @@ class Height implements Param
             new RangeIntValue(1, 500),
         );
     }
-
 }

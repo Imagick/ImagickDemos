@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickDraw\Params;
+namespace ImagickDemo\ImagickDraw\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
@@ -11,7 +11,7 @@ use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-class ThreeColors implements InputParameterList
+class FourColors implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -24,22 +24,9 @@ class ThreeColors implements InputParameterList
         #[ImagickColorParam('rgb(0, 0, 0)', 'stroke_color')]
         private string $stroke_color,
         #[ImagickColorParam('DodgerBlue2', 'fill_color')]
-        private string $fill_color
+        private string $fill_color,
+        #[ImagickColorParam('LightCoral', 'fill_modified_color')]
+        private string $fill_modified_color,
     ) {
-    }
-
-    public function getBackgroundColor(): string
-    {
-        return $this->background_color;
-    }
-
-    public function getStrokeColor(): string
-    {
-        return $this->stroke_color;
-    }
-
-    public function getFillColor(): string
-    {
-        return $this->fill_color;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\MatteControl;
+use ImagickDemo\ImagickDraw\Controls\MatteControl;
 
 class matte extends ImagickDrawExample
 {

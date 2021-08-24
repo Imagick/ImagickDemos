@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\Skew;
+use ImagickDemo\ImagickDraw\Controls\Skew;
 
 class skewY extends ImagickDrawExample
 {

@@ -2,16 +2,18 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickDraw\Params;
+namespace ImagickDemo\ImagickDraw\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
+use ImagickDemo\Params\TextDecoration;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
+
 use Params\SafeAccess;
 
-class FourColors implements InputParameterList
+class TextUnderControls implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -25,8 +27,8 @@ class FourColors implements InputParameterList
         private string $stroke_color,
         #[ImagickColorParam('DodgerBlue2', 'fill_color')]
         private string $fill_color,
-        #[ImagickColorParam('LightCoral', 'fill_modified_color')]
-        private string $fill_modified_color,
+        #[ImagickColorParam('LightCoral', 'text_under_color')]
+        private string $text_under_color,
     ) {
     }
 }

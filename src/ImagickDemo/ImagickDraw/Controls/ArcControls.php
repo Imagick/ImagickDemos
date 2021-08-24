@@ -18,7 +18,7 @@ use ImagickDemo\Params\EndX;
 use ImagickDemo\Params\EndY;
 
 
-class ArcControls implements InputParameterList
+class ArcControls //implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;

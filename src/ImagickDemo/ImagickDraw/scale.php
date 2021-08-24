@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\FourColors;
+use ImagickDemo\ImagickDraw\Controls\FourColors;
 
 class scale extends ImagickDrawExample
 {

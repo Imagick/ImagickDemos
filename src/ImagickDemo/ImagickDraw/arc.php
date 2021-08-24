@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\ThreeColors;
+use ImagickDemo\ImagickDraw\Controls\ThreeColors;
 use ImagickDemo\ImagickDraw\Controls\ArcControls;
 
 class arc extends ImagickDrawExample

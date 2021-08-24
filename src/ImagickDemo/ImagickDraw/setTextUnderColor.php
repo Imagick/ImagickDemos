@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\TextUnderControls;
+use ImagickDemo\ImagickDraw\Controls\TextUnderControls;
 
 class setTextUnderColor extends ImagickDrawExample
 {

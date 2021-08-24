@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace ImagickDemo\ImagickDraw\Params;
+namespace ImagickDemo\ImagickDraw\Controls;
 
 use Params\Create\CreateFromRequest;
 use Params\Create\CreateFromVarMap;

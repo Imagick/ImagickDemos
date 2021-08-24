@@ -4,8 +4,8 @@ namespace ImagickDemo\ImagickDraw;
 
 use ImagickDemo\Control;
 use ImagickDemo\Helper\PageInfo;
-use ImagickDemo\ImagickDraw\Params\AffineParams;
-use ImagickDemo\ImagickDraw\Params\ThreeColors;
+use ImagickDemo\ImagickDraw\Controls\AffineParams;
+use ImagickDemo\ImagickDraw\Controls\ThreeColors;
 use VarMap\VarMap;
 use ImagickDemo\ReactParamType;
 

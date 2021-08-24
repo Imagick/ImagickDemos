@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\TextDecorationControls;
+use ImagickDemo\ImagickDraw\Controls\TextDecorationControls;
 
 class setTextDecoration extends ImagickDrawExample
 {

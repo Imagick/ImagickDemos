@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\ThreeColors;
+use ImagickDemo\ImagickDraw\Controls\ThreeColors;
 
 class setFillColor extends ImagickDrawExample
 {

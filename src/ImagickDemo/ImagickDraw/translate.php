@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\ImagickDraw;
 
-use ImagickDemo\ImagickDraw\Params\Translate as TranslateControl;
+use ImagickDemo\ImagickDraw\Controls\Translate as TranslateControl;
 
 class translate extends ImagickDrawExample
 {

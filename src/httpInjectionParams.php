@@ -53,7 +53,6 @@ if (function_exists('injectionParams') == false) {
 // Alias interfaces (or classes) to the actual types that should be used 
 // where they are required. 
         $aliases = [
-            'ImagickDemo\DocHelper' => 'ImagickDemo\DocHelperDisplay',
             'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
             'ImagickDemo\Banners\Banner' => 'ImagickDemo\Banners\NullBanner',
             'ImagickDemo\Navigation\Nav' => 'ImagickDemo\Navigation\NullNav',

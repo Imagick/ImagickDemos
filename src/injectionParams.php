@@ -51,7 +51,6 @@ $defines = [
 $aliases = [
     //'FilePacker\FilePacker' => 'FilePacker\YuiFilePacker',
     //'Intahwebz\Request' => 'Intahwebz\Routing\HTTPRequest',
-    'ImagickDemo\DocHelper' => 'ImagickDemo\DocHelperDisplay',
     //'ImagickDemo\Framework\VariableMap' => 'ImagickDemo\Framework\RequestVariableMap',
     'Jig\Escaper' => 'Jig\Bridge\ZendEscaperBridge',
     //$injector->alias('ImagickDemo\Banners\Banner', 'ImagickDemo\Banners\PHPStormBanner');

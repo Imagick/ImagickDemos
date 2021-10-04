@@ -9,6 +9,7 @@ use ImagickDemo\Navigation\Nav;
 use ImagickDemo\NavigationBar;
 use ImagickDemo\Control;
 use ImagickDemo\Example;
+use ImagickDemo\DocHelper;
 use Params\OpenApi\OpenApiV300ParamDescription;
 use VarMap\VarMap;
 use Params\InputParameterList;
@@ -203,6 +204,7 @@ function renderExamples(array $examples)
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
     ImagickDemo\Example $example,
+    DocHelper $docHelper,
     CategoryNav $nav,
     NavigationBar $navBar,
     VarMap $varMap,

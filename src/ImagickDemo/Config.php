@@ -2,7 +2,22 @@
 
 namespace ImagickDemo;
 
-use Tier\TierException;
+//use Tier\TierException;
+
+function getAppOptions()
+{
+    $options = [
+        'domain.canonical' => 'phpimagick.test',
+        'domain.cdn.pattern' => 'phpimagick.test',
+        'domain.cdn.total' => 1,
+        'domain.internal' => 'internal.phpimagick.com',
+        'redis.password' => 'rVBNDdJWA2Vx4n2Fh9ahRR2vTCLkT5tw',
+        'environment' => 'local',
+    ];
+
+
+    return $options;
+}
 
 class Config
 {

@@ -23,8 +23,8 @@ $shares = [
     'Predis\Client',
     'ScriptServer\Service\ScriptInclude',
     'Tier\Path\AutogenPath',
-    'Intahwebz\DataPath',
-    'Intahwebz\StoragePath',
+//    'Intahwebz\DataPath',
+//    'Intahwebz\StoragePath',
     'Tier\Path\CachePath',
     'Tier\Path\ExternalLibPath',
     'Tier\Path\YuiCompressorPath',
@@ -32,8 +32,8 @@ $shares = [
     'Room11\HTTP\HeadersSet',
     new \ImagickDemo\ImageCachePath(__DIR__."/../var/cache/imageCache"),
 //    new \Tier\Path\AutogenPath(__DIR__ . "/../autogen/"),
-    new \Intahwebz\DataPath(__DIR__."/../data/"),
-    new \Intahwebz\StoragePath(__DIR__."/../var/"),
+//    new \Intahwebz\DataPath(__DIR__."/../data/"),
+//    new \Intahwebz\StoragePath(__DIR__."/../var/"),
 //    new \Tier\Path\CachePath(__DIR__.'/../var/cache/'),
 //    new \Tier\Path\ExternalLibPath(__DIR__.'/../lib/'),
 //    new \Tier\Path\WebRootPath(__DIR__.'/../public/'),
@@ -81,7 +81,7 @@ $params = [
 
 // Some objects need to be prepared after the are created.
 $prepares = [
-    'Jig\Jig' => 'ImagickDemo\App::prepareJig',
+//    'Jig\Jig' => 'ImagickDemo\App::prepareJig',
 ];
 
 $injectionParams = new InjectionParams(

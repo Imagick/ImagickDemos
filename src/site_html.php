@@ -7,7 +7,6 @@ use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
 use ImagickDemo\Navigation\Nav;
 use ImagickDemo\NavigationBar;
-use ImagickDemo\DocHelper;
 use ImagickDemo\Control;
 use ImagickDemo\Example;
 use Params\OpenApi\OpenApiV300ParamDescription;
@@ -204,7 +203,6 @@ function renderExamples(array $examples)
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
     ImagickDemo\Example $example,
-    DocHelper $docHelper,
     CategoryNav $nav,
     NavigationBar $navBar,
     VarMap $varMap,
@@ -214,14 +212,14 @@ function renderExampleBodyHtml(
 
     $remaining = 12 - $example->getColumnRightOffset();
 
-    $doc_description = $docHelper->showDescription();
+//    $doc_description = $docHelper->showDescription();
 
-    if ($doc_description === null) {
-        $doc_description = "";
-    }
-    else {
-        $doc_description .= "<br/>";
-    }
+//    if ($doc_description === null) {
+//        $doc_description = "";
+//    }
+//    else {
+//        $doc_description .= "<br/>";
+//    }
 
     $example_description = $example->renderDescription();
     if ($example_description === null) {
@@ -314,8 +312,6 @@ function renderExampleBodyHtml(
                             </span>
                         </div>
                     </div>
-
-                    {$doc_description}
                     {$example_description}
                 </div>
             </div>
@@ -333,11 +329,7 @@ function renderExampleBodyHtml(
                     </div>
                 </div>
             </div>
-
-            {$docHelper->showDescriptionPanel(true)}
-            {$example->renderDescriptionPanel(true)}
-            {$docHelper->showParametersPanel()}
-            
+            {$example->renderDescriptionPanel(true)}            
             {$wat}
             
         </div>

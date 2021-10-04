@@ -29,24 +29,20 @@ class ImagickTaskRunner
      */
     private $taskQueue;
 
-    private $asyncStats;
 
     private $endTime;
 
     /**
      * @param ImagickTaskQueue $taskQueue
      * @param \Auryn\Injector $injector
-     * @param \Stats\AsyncStats $asyncStats
      */
     public function __construct(
         ImagickTaskQueue $taskQueue,
         \Auryn\Injector $injector,
-        \Stats\AsyncStats $asyncStats,
         ImageCachePath $imageCachePath
     ) {
         $this->taskQueue = $taskQueue;
         $this->injector = $injector;
-        $this->asyncStats = $asyncStats;
         $this->imageCachePath = $imageCachePath;
         $this->endTime = $this->calculateEndTime();
     }
@@ -138,7 +134,6 @@ class ImagickTaskRunner
             $startTime = microtime(true);
             $this->execute($task);
             $time = microtime(true) - $startTime;
-            $this->asyncStats->recordTime(self::EVENT_IMAGE_GENERATED, $time);
             echo "Task complete\n";
             $this->taskQueue->completeTask($task);
         }

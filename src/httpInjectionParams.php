@@ -80,8 +80,8 @@ if (function_exists('injectionParams') == false) {
 //    'Predis\Client' => 'createRedisClient',
 //    
             'Room11\Caching\LastModifiedStrategy' => 'ImagickDemo\App::createCaching',
-            'ScriptServer\Value\ScriptVersion' => 'ImagickDemo\App::createScriptVersion',
-            '\ScriptHelper\ScriptInclude' => 'ImagickDemo\App::createScriptInclude',
+//            'ScriptServer\Value\ScriptVersion' => 'ImagickDemo\App::createScriptVersion',
+//            '\ScriptHelper\ScriptInclude' => 'ImagickDemo\App::createScriptInclude',
 
     //    'Tier\Domain' => 'ImagickDemo\ControlPanel::createDomain',
             \Twig\Environment::class => 'createTwigForSite',
@@ -109,7 +109,7 @@ if (function_exists('injectionParams') == false) {
 
 // Some objects need to be prepared after the are created.
         $prepares = [
-            'Jig\Jig' => 'ImagickDemo\App::prepareJig',
+//            'Jig\Jig' => 'ImagickDemo\App::prepareJig',
         ];
 
         $injectionParams = new InjectionParams(

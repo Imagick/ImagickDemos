@@ -17,7 +17,7 @@ require_once realpath(__DIR__) . '/option_functions.php';
 
 ini_set('display_errors', 'off');
 
-require __DIR__."/../vendor/intahwebz/core/src/Intahwebz/Functions.php";
+//require __DIR__."/../vendor/intahwebz/core/src/Intahwebz/Functions.php";
 require "httpInjectionParams.php";
 
 // To make the example code be simple, they all assume the application's

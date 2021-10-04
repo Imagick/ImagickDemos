@@ -17,15 +17,16 @@ RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee -a /
 
 FROM builder AS imagick_builder
 RUN apt-get update -qq \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc\
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc make \
     libpng-dev libjpeg-dev ghostscript libxml2-dev  \
-    libtiff5-dev libwebp-dev make  \
+    libtiff5-dev libwebp-dev libfreetype6-dev  \
     strace valgrind vim
 
-# libonig-dev libssl-dev libcurl4-openssl-dev libfreetype6-dev
+# libonig-dev libssl-dev libcurl4-openssl-dev
 
 COPY install_imagemagick.sh /tmp/install_imagemagick.sh
 COPY install_imagick.sh /tmp/install_imagick.sh
+
 
 RUN sh /tmp/install_imagemagick.sh
 RUN sh /tmp/install_imagick.sh
@@ -57,10 +58,11 @@ COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickWand-7.Q16HDRI.pc /us
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickWand.pc /usr/local/lib/pkgconfig/MagickWand.pc
 
 
+COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libfreetype.so.6 /usr/lib/x86_64-linux-gnu/libfreetype.so.6
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libjbig.so.0 /usr/lib/x86_64-linux-gnu/libjbig.so.0
-COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libtiff.so.5 /usr/lib/x86_64-linux-gnu/libtiff.so.5
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libjpeg.so.62 /usr/lib/x86_64-linux-gnu/libjpeg.so.62
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libpng16.so.16 /usr/lib/x86_64-linux-gnu/libpng16.so.16
+COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libtiff.so.5 /usr/lib/x86_64-linux-gnu/libtiff.so.5
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libwebpmux.so.3 /usr/lib/x86_64-linux-gnu/libwebpmux.so.3
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libwebpdemux.so.2 /usr/lib/x86_64-linux-gnu/libwebpdemux.so.2
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libwebp.so.6 /usr/lib/x86_64-linux-gnu/libwebp.so.6
@@ -80,5 +82,11 @@ COPY --from=imagick_builder /usr/local/etc/ImageMagick-7/type-ghostscript.xml /u
 COPY --from=imagick_builder /usr/local/etc/ImageMagick-7/type-urw-base35.xml /usr/local/etc/ImageMagick-7/type-urw-base35.xml
 COPY --from=imagick_builder /usr/local/etc/ImageMagick-7/type-windows.xml /usr/local/etc/ImageMagick-7/type-windows.xml
 COPY --from=imagick_builder /usr/local/etc/ImageMagick-7/type.xml /usr/local/etc/ImageMagick-7/type.xml
+
+# Check that Imagick is loaded and working. It's better for
+# the container to fail to build, than for it to be built, but
+# not working.
+COPY check_imagick_working.php /tmp/check_imagick_working.php
+RUN php /tmp/check_imagick_working.php
 
 CMD echo "The PHP Imagick base image has been run."

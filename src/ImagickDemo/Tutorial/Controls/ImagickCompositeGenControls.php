@@ -22,9 +22,9 @@ class ImagickCompositeGenControls implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Contrast(10)]
+        #[Contrast(10, 'contrast')]
         private string $contrast,
-        #[UnitRange(0.5)]
+        #[UnitRange(0.5, 'blend_midpoint')]
         private string $blendMidpoint,
     ) {
     }

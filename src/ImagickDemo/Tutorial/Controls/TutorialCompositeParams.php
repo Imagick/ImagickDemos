@@ -22,7 +22,7 @@ class TutorialCompositeParams implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[\ImagickDemo\Params\TutorialComposite()]
+        #[\ImagickDemo\Params\TutorialComposite('composite_example')]
         private string $composite_example
     ) {
     }

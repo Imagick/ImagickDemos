@@ -9,4 +9,4 @@ RUN cd /var/app
 # Set up configuration volumes
 RUN mkdir -p /etc/config
 
-CMD sh /var/app/docker/php_backend/entrypoint.sh
+CMD sh /var/app/containers/php_backend/entrypoint.sh

@@ -75,7 +75,7 @@ END;
         return $output;
     }
 
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "PHP Imagick by example";
     }

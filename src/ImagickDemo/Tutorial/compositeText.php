@@ -4,6 +4,11 @@ namespace ImagickDemo\Tutorial;
 
 class compositeText extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Composite text";
+    }
+
     public function render()
     {
         return "";

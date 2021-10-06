@@ -86,21 +86,17 @@ function renderReactControls(VarMap $varMap, string $param_type)
         }
     }
 
+    if (count($value) === 0) {
+
+        return "<!-- Controls are empty, no need to show them. -->";
+    }
+
+
     $output = sprintf(
         "<div id='controlPanel' data-params_json='%s' data-controls_json='%s'></div>",
         json_encode_safe($value),
         json_encode($paramDescription)
     );
-
-//    $output .= "<div style='border: 1px solid black'>";
-//    $output .= "<h3>values</h3>";
-//    $output .= nl2br(json_encode_safe($value, JSON_PRETTY_PRINT));
-//
-////    $output .= var_export($params, true);
-//
-//    $output .= "<h3>controls</h3>";
-//    $output .= nl2br(json_encode_safe($paramDescription, JSON_PRETTY_PRINT));
-//    $output .= "</div>";
 
     return $output;
 }
@@ -231,47 +227,42 @@ function renderExampleBodyHtml(
         $example_description .= "<br/>";
     }
 
-//    if ($example->hasReactControls() === true) {
-        $form = renderReactControls($varMap, $example->getParamType());
+    $activeCategory = $pageInfo->getCategory();
+    $activeExample = $pageInfo->getExample();
 
-        if (method_exists($example, 'hasBespokeRender') &&
-            $example->hasBespokeRender() ) {
+    $form = renderReactControls($varMap, $example->getParamType());
 
-            $reactControls = new ReactControls(
-                $pageInfo,
-                $taskQueue,
-                $varMap
-            );
+    if (method_exists($example, 'hasBespokeRender') &&
+        $example->hasBespokeRender() ) {
 
-            $exampleHtml = $example->bespokeRender($reactControls);
+        $reactControls = new ReactControls(
+            $pageInfo,
+            $taskQueue,
+            $varMap
+        );
+
+        $exampleHtml = $example->bespokeRender($reactControls);
+    }
+    else {
+        // What about custom images?
+        $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+
+        if ($example->hasCustomImage() === true) {
+            $imageBaseUrl = \ImagickDemo\Route::getCustomImageURL($activeCategory, $activeExample);
         }
-        else {
-            $activeCategory = $pageInfo->getCategory();
-            $activeExample = $pageInfo->getExample();
 
-            // What about custom images?
-            $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
+        $exampleHtml = renderReactExampleImagePanel(
+            $imageBaseUrl,
+            $activeCategory,
+            $activeExample,
+            $example
+        );
+    }
 
-            if ($example->hasCustomImage() === true) {
-                $imageBaseUrl = \ImagickDemo\Route::getCustomImageURL($activeCategory, $activeExample);
-            }
-
-            $exampleHtml = renderReactExampleImagePanel(
-                $imageBaseUrl,
-                $activeCategory,
-                $activeExample,
-                $example
-            );
-        }
-//    }
-//    else {
-//        $form = $control->renderForm();
-//        $exampleHtml = $example->render();
-//    }
 
     $exampleFinder = new ExampleSourceFinder();
 
-    $code_examples = $exampleFinder->findExamples($activeCategory,$activeExample);
+    $code_examples = $exampleFinder->findExamples($activeCategory, $activeExample);
 
     $wat = renderExamples($code_examples);
 
@@ -569,30 +560,30 @@ function renderExampleBare(
 
 }
 
-function renderExampleBareInternal(
-    Control $control,
-    Example $example
-) {
-
-$html = <<< HTML
-<div class='container'>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-7 col-xs-12 contentPanel">
-                    {$example->render()}
-                </div>
-                <div class="col-sm-5 formHolder">
-                    {$control->renderForm()}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-HTML;
-
-    return $html;
-}
+//function renderExampleBareInternal(
+//    Control $control,
+//    Example $example
+//) {
+//
+//$html = <<< HTML
+//<div class='container'>
+//    <div class="row">
+//        <div class="col-md-12">
+//            <div class="row">
+//                <div class="col-md-7 col-xs-12 contentPanel">
+//                    {$example->render()}
+//                </div>
+//                <div class="col-sm-5 formHolder">
+//                    {$control->renderForm()}
+//                </div>
+//            </div>
+//        </div>
+//    </div>
+//</div>
+//HTML;
+//
+//    return $html;
+//}
 
 
 function renderTitlePage(

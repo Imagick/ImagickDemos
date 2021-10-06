@@ -4,6 +4,11 @@ namespace ImagickDemo\Tutorial;
 
 class imageGeometryReset extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Image geometry reset";
+    }
+
     public function renderDescription()
     {
         $text = <<< END

@@ -15,6 +15,11 @@ class gradientGeneration extends \ImagickDemo\Example
         return $output;
     }
 
+    public function renderTitle(): string
+    {
+        return "Gradient generation";
+    }
+
     public function getCustomImageParams()
     {
         return [];

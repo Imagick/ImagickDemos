@@ -15,6 +15,12 @@ END;
         return nl2br($output);
     }
 
+
+    public function renderTitle(): string
+    {
+        return "Gradient reflection";
+    }
+
     public function render()
     {
         return $this->renderImageURL();

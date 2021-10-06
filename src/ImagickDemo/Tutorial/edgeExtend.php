@@ -3,9 +3,15 @@
 namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Tutorial\Controls\EdgeExtendControls;
+use VarMap\VarMap;
 
 class edgeExtend extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Edge extend ";
+    }
+
     public function renderDescription()
     {
         $output = <<< END
@@ -22,8 +28,6 @@ END;
     {
         return $this->renderImageURL();
     }
-
-
 
     public static function getParamType(): string
     {

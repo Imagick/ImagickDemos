@@ -69,7 +69,7 @@ class EyeColourResolutionParams implements InputParameterList
             'channel_2_sample' => $this->channel_2_sample,
             'channel_3_sample' => $this->channel_3_sample,
             'colorspace' => getEyeColorSpaceStringFromValue($this->colorspace),
-            'imagepath' => getImagePathForOption($this->image_path),
+            'image_path' => getImagePathForOption($this->image_path),
             'smaller' => $this->smaller,
         ];
 

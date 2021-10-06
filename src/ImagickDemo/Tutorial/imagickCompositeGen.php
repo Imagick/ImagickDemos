@@ -7,9 +7,9 @@ use ImagickDemo\Tutorial\Controls\ImagickCompositeGenControls;
 class imagickCompositeGen extends \ImagickDemo\Example
 {
 
-    public function renderTitle()
+    public function renderTitle(): string
     {
-        return "";
+        return "Image composite cross-fade";
     }
 
     public function renderDescription()

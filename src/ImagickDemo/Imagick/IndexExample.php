@@ -4,7 +4,7 @@ namespace ImagickDemo\Imagick;
 
 class IndexExample extends \ImagickDemo\Example
 {
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "Imagick";
     }

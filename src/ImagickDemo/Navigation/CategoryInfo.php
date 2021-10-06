@@ -638,6 +638,6 @@ class CategoryInfo
         'svgExample' => 'svgExample',
         'screenEmbed' => 'screenEmbed',
         'imageGeometryReset' => 'imageGeometryReset',
-        'HumanFeelings' => 'HumanFeelings',
+        //'HumanFeelings' => 'HumanFeelings',
     ];
 }

@@ -12,7 +12,7 @@ class adaptiveBlurImage extends Example
         return true;
     }
 
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "Adaptive blur image";
     }

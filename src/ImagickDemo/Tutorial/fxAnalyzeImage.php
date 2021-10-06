@@ -17,6 +17,10 @@ class fxAnalyzeImage extends \ImagickDemo\Example
         $this->fx_analyze_control = FXAnalyzeControls::createFromVarMap($varMap);
     }
 
+    public function renderTitle(): string
+    {
+        return "FX analyze image";
+    }
 
 
     public static function getParamType(): string

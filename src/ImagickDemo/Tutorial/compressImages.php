@@ -4,6 +4,11 @@ namespace ImagickDemo\Tutorial;
 
 class compressImages extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Compress images";
+    }
+
     public function render()
     {
         return "Compression examples go here.";

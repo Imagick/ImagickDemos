@@ -4,6 +4,11 @@ namespace ImagickDemo\Tutorial;
 
 class psychedelicFontGif extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Psychedelic font animated";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

@@ -15,6 +15,11 @@ class HumanFeelings extends \ImagickDemo\Example
         parent::__construct($control);
     }
 
+    public function renderTitle(): string
+    {
+        return "Humans be weird yo'";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

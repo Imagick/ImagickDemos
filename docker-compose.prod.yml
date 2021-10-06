@@ -1,22 +1,26 @@
 version: "3"
 services:
-  imagick_php_backend:
-    environment:
-      - ENV_DESCRIPTION=default,prod
-  installer:
-    environment:
-      - ENV_DESCRIPTION=default,prod
-  redis:
-    ports:
-      - "6381:6379"
-  js_sass_prod_builder:
-    build: docker/js_sass_prod_builder
+  css_builder:
+
     environment:
       # we don't set NODE_ENV as production, as that is for serving node requests, not building stuff.
       # - PHP_WEB_BUGS_BASE_URL=https://api.jssadness.com
       - ENV_DESCRIPTION=default,prod
     volumes:
       - .:/var/app
+  imagick_php_backend:
+    environment:
+      - ENV_DESCRIPTION=default,prod
+  installer:
+    entrypoint: ["bash", "/var/app/containers/css_builder/build_prod_assets.sh"]
+    environment:
+      - ENV_DESCRIPTION=default,prod
+  js_builder:
+    environment:
+      - API_BASE_URL=https://phpimagick.com
+  redis:
+    ports:
+      - "6381:6379"
   web_server:
     ports:
       - "8000:8000"

@@ -15,6 +15,11 @@ class WordWrap
         $this->lines = $lines;
     }
 
+    public function renderTitle(): string
+    {
+        return "Word wrapping";
+    }
+
     public static function fromText(\Imagick $imagick, \ImagickDraw $draw, $text, $maxWidth)
     {
         $lineHeight = 0;

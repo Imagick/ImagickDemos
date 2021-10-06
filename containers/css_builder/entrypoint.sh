@@ -1,10 +1,10 @@
 
 cd /var/app/app
 
-echo "Updating/installing npm modules"
+# Update is done in the JS container currently.
+# echo "Updating/installing npm modules"
+# npm update
 
-npm update
-
-echo "Updated. Running sass builder"
+echo "Running sass builder"
 
 npm run sass:build:watch

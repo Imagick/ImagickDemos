@@ -30,6 +30,11 @@ class logoTshirt extends \ImagickDemo\Example
         $this->type = $variableMap->getVariable('type', 'simple');
     }
 
+    public function renderTitle(): string
+    {
+        return "Tshirt logo";
+    }
+
     public function getCustomImageParams()
     {
         return ['type' => $this->type];

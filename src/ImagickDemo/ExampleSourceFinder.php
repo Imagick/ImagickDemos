@@ -19,6 +19,11 @@ class ExampleSourceFinder
 
         $this->files = [
             realpath(__DIR__ . "/../../src/ImagickDemo/Imagick/functions.php"),
+            realpath(__DIR__ . "/../../src/ImagickDemo/ImagickDraw/functions.php"),
+            realpath(__DIR__ . "/../../src/ImagickDemo/ImagickKernel/functions.php"),
+            realpath(__DIR__ . "/../../src/ImagickDemo/ImagickPixel/functions.php"),
+            realpath(__DIR__ . "/../../src/ImagickDemo/ImagickPixelIterator/functions.php"),
+            realpath(__DIR__ . "/../../src/ImagickDemo/Tutorial/functions.php"),
             realpath(__DIR__ . "/../../src/ImagickDemo/Imagick/distortImage.php")
         ];
 

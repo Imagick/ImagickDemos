@@ -4,9 +4,9 @@ namespace ImagickDemo\Tutorial;
 
 class layerPSD extends \ImagickDemo\Example
 {
-    public function renderTitle()
+    public function renderTitle(): string
     {
-        return "";
+        return "PSD layers";
     }
 
     public function render()

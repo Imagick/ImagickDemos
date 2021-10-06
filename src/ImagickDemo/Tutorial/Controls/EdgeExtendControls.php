@@ -21,9 +21,9 @@ class EdgeExtendControls implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Image()]
+        #[Image('image_path')]
         private string $image_path,
-        #[VirtualPixel()]
+        #[VirtualPixel('virtual_pixel_type')]
         private string $virtualPixelType,
     ) {
     }
@@ -34,5 +34,21 @@ class EdgeExtendControls implements InputParameterList
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
             'virtual_pixel_type' => getOptionFromOptions($this->virtualPixelType, getVirtualPixelOptions()),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagePath(): string
+    {
+        return $this->image_path;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVirtualPixelType(): string
+    {
+        return $this->virtualPixelType;
     }
 }

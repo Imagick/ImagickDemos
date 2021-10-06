@@ -11,6 +11,11 @@ class functionImage extends \ImagickDemo\Example
         $this->control = $control;
     }
 
+    public function renderTitle(): string
+    {
+        return "Function image";
+    }
+
     public function render()
     {
         $output = $this->renderDescription();

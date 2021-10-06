@@ -6,6 +6,11 @@ use ImagickDemo\Tutorial\Controls\WhirlyGifControls;
 
 class whirlyGif extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Whirly gif generation";
+    }
+
     public function renderDescription()
     {
         $output = "

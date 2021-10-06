@@ -24,4 +24,4 @@ WORKDIR /var/app
 
 #CMD tail -f README.md
 
-CMD sh /var/app/docker/installer/entrypoint.sh
+CMD sh /var/app/containers/installer/entrypoint.sh

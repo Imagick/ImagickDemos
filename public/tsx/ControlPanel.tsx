@@ -88,6 +88,7 @@ function map_api_name(api_param_name: string): string {
         amount: "Amount",
         background_color: "Background color",
         best_fit: "Best fit",
+        blend_midpoint: "Blend midpoint",
         black_point: "Black point",
         bias: "Bias",
         channel: "Channel",
@@ -135,13 +136,10 @@ function map_api_name(api_param_name: string): string {
         translate_x: "Translate X",
         translate_y: "Translate Y",
         unsharp_threshold: 'Unsharp threshold',
+        virtual_pixel_type: 'Virtual pixel type',
         width: "Width",
         white_point: "White point",
     };
-
-
-
-
 
 
     if (known_map.hasOwnProperty(api_param_name) === true) {

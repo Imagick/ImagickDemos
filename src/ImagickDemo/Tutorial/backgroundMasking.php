@@ -4,7 +4,7 @@ namespace ImagickDemo\Tutorial;
 
 class backgroundMasking extends \ImagickDemo\Example
 {
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "Background masking";
     }

@@ -214,7 +214,7 @@ function getVirtualPixelOptions()
 {
     return [
         'Background color' => \Imagick::VIRTUALPIXELMETHOD_BACKGROUND,
-        'Constant' => \Imagick::VIRTUALPIXELMETHOD_CONSTANT,
+        // 'Constant' => \Imagick::VIRTUALPIXELMETHOD_CONSTANT, // IM 7 only
         'Edge' => \Imagick::VIRTUALPIXELMETHOD_EDGE,
         'Mirror' => \Imagick::VIRTUALPIXELMETHOD_MIRROR,
         'Tile' => \Imagick::VIRTUALPIXELMETHOD_TILE,
@@ -225,6 +225,10 @@ function getVirtualPixelOptions()
         'White' => \Imagick::VIRTUALPIXELMETHOD_WHITE,
         'Horizontal tile' => \Imagick::VIRTUALPIXELMETHOD_HORIZONTALTILE,
         'Vertical tile' => \Imagick::VIRTUALPIXELMETHOD_VERTICALTILE,
+        'Checker tile' => \Imagick::VIRTUALPIXELMETHOD_CHECKERTILE,
+        'Dither' => \Imagick::VIRTUALPIXELMETHOD_DITHER,
+        'Random' => \Imagick::VIRTUALPIXELMETHOD_RANDOM,
+
     ];
 }
 

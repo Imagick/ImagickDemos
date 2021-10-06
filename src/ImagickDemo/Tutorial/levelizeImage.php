@@ -6,6 +6,11 @@ use ImagickDemo\Tutorial\Controls\LevelizeImageControls;
 
 class levelizeImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Levelize image";
+    }
+
     public function renderDescription()
     {
         $output = <<< 'END'

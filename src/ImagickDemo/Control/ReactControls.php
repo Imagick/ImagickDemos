@@ -58,6 +58,13 @@ class ReactControls implements Control
             return "oh dear, the form failed to render correctly: " . $error;
         }
 
+        var_dump($value);
+        exit(0);
+
+        if (count($value) === 0) {
+            return "";
+        }
+
         $output = sprintf(
             "<div id='controlPanel' data-params_json='%s'></div>",
             json_encode_safe($value)

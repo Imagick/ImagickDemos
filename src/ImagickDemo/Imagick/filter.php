@@ -16,7 +16,7 @@ class filter extends \ImagickDemo\Example
         return $this->control->getImagePath();
     }
 
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "Filter";
     }

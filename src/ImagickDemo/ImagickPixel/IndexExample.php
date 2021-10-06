@@ -9,7 +9,7 @@ class IndexExample extends \ImagickDemo\Example
         return 2;
     }
 
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "ImagickPixel";
     }

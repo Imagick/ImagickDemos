@@ -54,6 +54,10 @@ class Page
     ) {
         if ($varMap->has('page') === true) {
             if ($varMap->get('page') === 'iframe') {
+
+                echo "Thought this code was dead.";
+                exit(0);
+
                 return renderExampleBare(
                     $pageInfo,
                     $categoryNav,

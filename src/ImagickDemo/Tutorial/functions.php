@@ -437,15 +437,18 @@ function edgeExtend($virtualPixelType, $image_path)
     $imagick = new \Imagick(realpath($image_path));
     $imagick->setImageVirtualPixelMethod($virtualPixelType);
 
-    $imagick->scaleimage(400, 300, true);
+    $imagick->scaleImage(400, 300, true);
 
-    $imagick->setbackgroundcolor('pink');
+    $imagick->setImageBackgroundColor('red');
    
     $desiredWidth = 600;
     $originalWidth = $imagick->getImageWidth();
 
+    $desiredHeight = 450;
+    $originalHeight = $imagick->getImageHeight();
+
     //Make the image be the desired width.
-    $imagick->sampleimage($desiredWidth, $imagick->getImageHeight());
+    $imagick->sampleimage($desiredWidth, $desiredHeight);//$imagick->getImageHeight());
 
     // Now scale, rotate, translate (aka affine project) it
     // to be how you want
@@ -453,10 +456,11 @@ function edgeExtend($virtualPixelType, $image_path)
         // The x scaling factor is 0.5 when the desired width is double
         // the source width
         ($originalWidth / $desiredWidth),
-        0, // Don't scale vertically
-        0, 1,
+        0, // ($originalHeight / $desiredHeight), //0 means don't scale vertically
+        0, ($originalHeight / $desiredHeight),
         // Offset the image so that it's in the centre
-        ($desiredWidth - $originalWidth) / 2, 0
+        ($desiredWidth - $originalWidth) / 2,
+        ($desiredHeight - $originalHeight) / 2,
     );
 
     $imagick->distortImage(\Imagick::DISTORTION_AFFINEPROJECTION, $points, false);

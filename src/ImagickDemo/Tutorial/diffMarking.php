@@ -4,7 +4,7 @@ namespace ImagickDemo\Tutorial;
 
 class diffMarking extends \ImagickDemo\Example
 {
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "Difference marking";
     }

@@ -104,6 +104,11 @@ function renderFontEffect()
 
 class fontEffect extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Font effect";
+    }
+
     public function renderDescription()
     {
         $output = "Font effects are cool.";

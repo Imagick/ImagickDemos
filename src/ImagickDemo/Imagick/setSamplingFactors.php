@@ -80,7 +80,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
         echo $imagick->getImageBlob();
     }
 
-    public function renderTitle()
+    public function renderTitle(): string
     {
         return "Set sampling factor";
     }

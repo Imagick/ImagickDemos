@@ -7,6 +7,10 @@ namespace ImagickDemo\Tutorial;
 
 class listColors extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Color list";
+    }
 
     public function renderDescription()
     {

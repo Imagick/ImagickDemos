@@ -4,15 +4,6 @@ namespace ImagickDemo;
 
 abstract class Example
 {
-//    /**
-//     * @var Control
-//     */
-//    protected $control;
-//
-//    public function __construct(\ImagickDemo\Control $control)
-//    {
-//        $this->control = $control;
-//    }
 
     public function hasOriginalImage()
     {
@@ -28,7 +19,6 @@ abstract class Example
     {
         return \ImagickDemo\Imagick\Controls\NullControl::class;
     }
-
 
     public function hasCustomImage(): bool
     {
@@ -53,10 +43,10 @@ abstract class Example
         throw new \Exception("This shouldn't be reached - example missing renderCustomImage method.");
     }
     
-    public function renderTitle()
-    {
-        return "Some title";//getClassName(get_class($this));
-    }
+    abstract public function renderTitle(): string;
+//    {
+//        return "Some title";//getClassName(get_class($this));
+//    }
 
     public function renderDescription()
     {

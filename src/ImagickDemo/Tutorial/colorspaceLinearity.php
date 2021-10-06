@@ -4,6 +4,11 @@ namespace ImagickDemo\Tutorial;
 
 class colorspaceLinearity extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Colorspace linearity";
+    }
+
     public function render()
     {
         $output = $this->renderDescription();

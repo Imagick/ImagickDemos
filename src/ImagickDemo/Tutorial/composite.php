@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Tutorial;
 
-use ImagickDemo\Control\CompositeExampleControl;
 use ImagickDemo\Tutorial\Controls\TutorialCompositeParams;
 use VarMap\VarMap;
 
@@ -28,24 +27,23 @@ class composite extends \ImagickDemo\Example
     const SOURCE_1 = 'source1';
     const SOURCE_2 = 'source2';
     const OUTPUT = 'output';
-    
-//    /**
-//     * @var \ImagickDemo\Control\CompositeExampleControl
-//     */
-//    private $compositeExampleControl;
 
     private TutorialCompositeParams $tutorialCompositeParams;
     
     private VarMap $variableMap;
 
     public function __construct(
-//        CompositeExampleControl $compositeExampleControl,
         VarMap $variableMap
     ) {
         $this->tutorialCompositeParams = TutorialCompositeParams::createFromVarMap($variableMap);
         $this->variableMap = $variableMap;
-//        $this->compositeExampleControl = $compositeExampleControl;
-//        $this->type = $variableMap->getVariable('type', self::SOURCE_1);
+    }
+
+    public function renderTitle(): string
+    {
+        $customImage = $this->tutorialCompositeParams->getCompositeExample();
+
+        return "Composite - " . $customImage;
     }
 
     public static function getExamples()
@@ -70,16 +68,9 @@ class composite extends \ImagickDemo\Example
         return $listOfExamples;
     }
 
-//    public function getCustomImageParams()
-//    {
-//        return ['type' => $this->type];
-//    }
-    
-
     /**
      * @return string
      */
-//    public function render()
     public function bespokeRender(/*ReactControls $reactControls*/)
     {
         $layout = <<< END
@@ -106,7 +97,8 @@ END;
         $output = createReactImagePanel(
             "/image/Tutorial/composite",
             "/Tutorial/composite",
-            true
+            true,
+            $this
         );
 
         $output .= sprintf(
@@ -159,7 +151,6 @@ What makes this useful is for overlaying lighting and shading effects that are l
             'CopyOpacity2' => '',
         ];
         
-//        $customImage  = $this->compositeExampleControl->getCompositeExampleType();
         $customImage = $this->tutorialCompositeParams->getCompositeExample();
 
         if (array_key_exists($customImage, $descriptions) == false) {
@@ -177,9 +168,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
         $composite_example_input = $this->tutorialCompositeParams->getCompositeExample();
 
         $composite_example = getOptionFromOptions($composite_example_input, getTutorialCompositeOptions());
-//        var_dump($blah);
-//        exit(0);
-        
+
         $methods = [
             'multiplyGradients' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_MULTIPLY],
             'difference' => ['gradientDown', 'gradientRight', \Imagick::COMPOSITE_DIFFERENCE],

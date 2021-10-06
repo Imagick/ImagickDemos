@@ -70,6 +70,12 @@ class deconstructGif extends \ImagickDemo\Example
         $this->deconstruct = $variableMap->getVariable('deconstruct', false);
     }
 
+    public function renderTitle(): string
+    {
+        return "Deconstruct gif";
+    }
+
+
     public function getCustomImageParams()
     {
         return ['deconstruct' => $this->deconstruct];

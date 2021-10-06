@@ -6,6 +6,11 @@ use ImagickDemo\Image;
 
 class creatingGifs extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Creating gifs";
+    }
+
     public function renderDescription()
     {
         return '';

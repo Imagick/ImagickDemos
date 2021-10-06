@@ -9,6 +9,11 @@ class imagickComposite extends \ImagickDemo\Example
         $this->control = $control;
     }
 
+    public function renderTitle(): string
+    {
+        return "Compositing images";
+    }
+
     /**
      * @return string
      */

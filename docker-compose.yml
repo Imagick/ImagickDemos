@@ -1,13 +1,17 @@
 version: "3"
 services:
+  css_builder:
+    build: containers/css_builder
+    volumes:
+      - .:/var/app
   imagick_php_backend:
-    build: docker/php_backend
+    build: containers/php_backend
     image: imagick_php_backend:latest
     volumes:
       - .:/var/app
     restart: always
   imagick_php_backend_debug:
-    build: docker/php_backend_debug
+    build: containers/php_backend_debug
     image: imagick_php_backend_debug:latest
     depends_on:
       - imagick_php_backend
@@ -15,17 +19,17 @@ services:
       - .:/var/app
     restart: always
   imagick_php_base:
-    build: docker/imagick_php_base
+    build: containers/imagick_php_base
     image: imagick_php_base:latest
-    command: ["tail", "-f", "/var/app/docker/imagick_php_base/README.md"]
+    command: ["tail", "-f", "/var/app/containers/imagick_php_base/README.md"]
     volumes:
       - .:/var/app
-  js_dev_builder:
-    build: docker/js_dev_builder
+  js_builder:
+    build: containers/js_builder
     volumes:
       - .:/var/app
   installer:
-    build: docker/installer
+    build: containers/installer
     environment:
       - COMPOSER_CACHE_DIR=/var/app/var/cache/composer
       - COMPOSER_ALLOW_SUPERUSER=1
@@ -34,20 +38,20 @@ services:
   redis:
     image: redis:4.0.6
     volumes:
-      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./containers/redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: always
   web_server:
-    build: docker/web_server
+    build: containers/web_server
     image: imagick_web_server:latest
     command: ["/usr/sbin/nginx", "-c", "/etc/config/nginx.conf"]
     depends_on:
       - imagick_php_backend
     volumes:
       - .:/var/app
-      - ./docker/web_server/config:/etc/config
+      - ./containers/web_server/config:/etc/config
     restart: always
   workers:
-    build: docker/background_worker
+    build: containers/background_worker
     image: imagick_php_worker:latest
     depends_on:
       - redis

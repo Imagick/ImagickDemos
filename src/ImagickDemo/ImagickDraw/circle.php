@@ -2,16 +2,15 @@
 
 namespace ImagickDemo\ImagickDraw;
 
+use ImagickDemo\Example;
 use ImagickDemo\ImagickDraw\Controls\CircleControls;
 
-class circle extends ImagickDrawExample
+class circle extends Example
 {
-    public function getDescription()
+    public function renderTitle(): string
     {
-        return "";
+        return "ImagickDraw::circle";
     }
-
-
 
     public static function getParamType(): string
     {

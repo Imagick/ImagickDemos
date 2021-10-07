@@ -11,6 +11,10 @@ class chopImage extends \ImagickDemo\Example
         return $this->renderImageURL();
     }
 
+    public function renderTitle(): string
+    {
+        return "Chop image";
+    }
 
 
     public static function getParamType(): string

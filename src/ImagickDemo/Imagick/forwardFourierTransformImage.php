@@ -6,12 +6,10 @@ use ImagickDemo\Imagick\Controls\ImageControl;
 
 class forwardFourierTransformImage extends \ImagickDemo\Example
 {
-    public function render()
+    public function renderTitle(): string
     {
-        return $this->renderImageURL();
+        return "Forward fourier transform image";
     }
-
-
 
     public static function getParamType(): string
     {

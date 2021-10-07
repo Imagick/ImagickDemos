@@ -6,6 +6,12 @@ use ImagickDemo\Display;
 
 class identifyFormat extends \ImagickDemo\Example
 {
+
+    public function renderTitle(): string
+    {
+        return "Identify format";
+    }
+
     /**
      * @return string
      */

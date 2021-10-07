@@ -18,6 +18,7 @@ $classes = [
 $excludeList = [];
 file_put_contents(__DIR__ . "/doc_fetching_errors.txt", "List of fetching errors\n=============\n");
 
+
 foreach ($classes as $class) {
     $class = strtolower($class);
     echo "Processing class: $class \n";
@@ -35,7 +36,7 @@ foreach ($classes as $class) {
         }
 
         $filename = sprintf(
-            __DIR__ . "/../doc/%s/%s.html",
+            __DIR__ . "/../doc/%s/%s.txt",
             $class,
             $methodName
         );
@@ -52,7 +53,7 @@ foreach ($classes as $class) {
 
         $written = file_put_contents($filename, $manual->getDescription());
         if ($written === false) {
-            echo "Failed to write file $filename";
+            echo "Failed to write file $filename\n";
             exit(-1);
         }
     }

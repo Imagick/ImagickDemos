@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class compositeImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Composite image";
+    }
+
     public function renderDescription()
     {
         $tutorialURL = '/Tutorial/composite';

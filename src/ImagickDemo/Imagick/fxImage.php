@@ -7,6 +7,11 @@ use ImagickDemo\Imagick\Controls\ImageControl;
 // TODO - migrate to custom control
 class fxImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "FX image";
+    }
+
     public function renderDescription()
     {
         $text = <<< END

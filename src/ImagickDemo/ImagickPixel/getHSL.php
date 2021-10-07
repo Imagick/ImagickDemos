@@ -4,6 +4,12 @@ namespace ImagickDemo\ImagickPixel;
 
 class getHSL extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "get HSL";
+    }
+
+
     public function render()
     {
 //Example ImagickPixel::getHSL

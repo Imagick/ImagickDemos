@@ -3,30 +3,25 @@
 namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Control\ReactControls;
-use \ImagickDemo\Control\ImageControl as LegacyImageControl;
 use VarMap\VarMap;
 use ImagickDemo\Imagick\Controls\ImageControl;
 
 
 class getImageGeometry extends \ImagickDemo\Example
 {
-    /**
-     * @var \ImagickDemo\Control\ImageControl
-     */
-    private $legacyImageControl;
 
     private ImageControl $imageControl;
 
     public function __construct(
-        LegacyImageControl $imageControl,
         VarMap $varMap
     ) {
-        $this->legacyImageControl = $imageControl;
-        parent::__construct($imageControl);
-
         $this->imageControl = ImageControl::createFromVarMap($varMap);
     }
 
+    public function renderTitle(): string
+    {
+        return "Get image geometry";
+    }
 
     public function renderDescription()
     {

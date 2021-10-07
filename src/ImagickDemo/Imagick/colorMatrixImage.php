@@ -6,19 +6,9 @@ use ImagickDemo\Imagick\Controls\ColorMatrixImageControl;
 
 class colorMatrixImage extends \ImagickDemo\Example
 {
-//    public function hasOriginalImage()
-//    {
-//        return true;
-//    }
-
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Color matrix image";
     }
 
     public function renderDescription()

@@ -6,14 +6,10 @@ use ImagickDemo\Imagick\Controls\EdgeImageControl;
 
 class edgeImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
-    {
-        return $this->control->getOriginalURL();
-    }
 
-    function getOriginalFilename()
+    public function renderTitle(): string
     {
-        return $this->control->getImagePath();
+        return "Edge image";
     }
 
     public function render()
@@ -21,11 +17,8 @@ class edgeImage extends \ImagickDemo\Example
         return $this->renderImageURL();
     }
 
-
-
     public static function getParamType(): string
     {
         return EdgeImageControl::class;
     }
-
 }

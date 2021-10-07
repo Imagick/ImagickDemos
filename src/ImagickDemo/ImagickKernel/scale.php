@@ -6,6 +6,13 @@ use ImagickDemo\Display;
 
 class scale extends \ImagickDemo\Example
 {
+
+    public function renderTitle(): string
+    {
+        return "scale";
+    }
+
+
     public function renderDescription()
     {
         return "Scales a kernel.

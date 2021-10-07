@@ -6,22 +6,15 @@ use ImagickDemo\Imagick\Controls\GammaImageControl;
 
 class gammaImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Gamma image";
     }
 
     public function render()
     {
         return $this->renderImageURL();
     }
-
-
 
     public static function getParamType(): string
     {

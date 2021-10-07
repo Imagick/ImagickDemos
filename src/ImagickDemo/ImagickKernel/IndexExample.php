@@ -4,6 +4,8 @@ namespace ImagickDemo\ImagickKernel;
 
 class IndexExample extends \ImagickDemo\Example
 {
+
+
     public function getColumnRightOffset()
     {
         return 2;

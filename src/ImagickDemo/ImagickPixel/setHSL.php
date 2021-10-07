@@ -4,9 +4,14 @@ namespace ImagickDemo\ImagickPixel;
 
 class setHSL extends \ImagickDemo\Example
 {
+
+    public function renderTitle(): string
+    {
+        return "set HSL";
+    }
+
     public function render()
     {
-
 //Example ImagickPixel::setHSL
 
         $output = "This example creates a red color, rotates the hue by 180 degrees and sets the new color.<br/>";

@@ -7,6 +7,11 @@ define('NL', '<br/>');
 
 class isPixelSimilar extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "is pixel similar";
+    }
+
     public function renderDescription()
     {
         return "<p>A distance of '1' is the maximum distance in the color space e.g. from 0, 0, 0 to 255, 255, 255 in RGB color space.</p> <p>The only difference between ImagickPixel::isSimilar and ImagickPixel::isPixelSimilar is that isSimilar needs to be scaled by the quantum value.</p>";

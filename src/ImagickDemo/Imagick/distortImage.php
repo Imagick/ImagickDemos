@@ -18,13 +18,15 @@ class distortImage extends \ImagickDemo\Example
     private DistortImageControl $distortImageControl;
 
     public function __construct(
-        \ImagickDemo\Control $control,
         VarMap $varMap
     ) {
-        $this->control = $control;
         $this->distortImageControl = DistortImageControl::createFromVarMap($varMap);
     }
 
+    public function renderTitle(): string
+    {
+        return "Distort image";
+    }
 
 
     public static function getParamType(): string

@@ -6,7 +6,10 @@ use ImagickDemo\ImagickDraw\Controls\ThreeColors;
 
 class affine extends \ImagickDemo\Example
 {
-
+    public function renderTitle(): string
+    {
+        return "ImagickDraw::affine";
+    }
 
     public static function getParamType(): string
     {
@@ -26,5 +29,4 @@ class affine extends \ImagickDemo\Example
 
         return $output;
     }
-
 }

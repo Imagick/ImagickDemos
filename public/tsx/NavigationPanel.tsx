@@ -8,6 +8,7 @@ interface Link {
 
 export interface NavigationProps {
     links: Array<Link>;
+    current_link: string|null;
 }
 
 interface NavigationState {
@@ -32,9 +33,20 @@ export class NavigationPanel extends Component<NavigationProps, NavigationState>
     }
 
     renderLink(link:Link, index:number) {
-        // $active
-        return <li class='navSpacer' key={index}>
-            <a class='smallPadding' href={link.url}>{link.description}</a>
+        let class_name = 'smallPadding';
+        let nav_space_class = 'navSpacer';
+
+        if (this.props.current_link === link.description) {
+            class_name = "smallPadding navActiveLink";
+            nav_space_class = "navActive navSpacer";
+
+        }
+
+        // hack to prevent container being force expanded
+        let desc = link.description.replace("QuadraticBezier", "Quadratic Bezier");
+
+        return <li class={nav_space_class} key={index}>
+            <a class={class_name} href={link.url}>{desc}</a>
         </li>
     }
 

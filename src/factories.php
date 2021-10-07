@@ -210,29 +210,5 @@ function createTwigForSite(\Auryn\Injector $injector)
         $twig->addFunction($function);
     }
 
-
-
-//    $function = new \Twig\TwigFunction(
-//        'getStripeCheckoutStartUrl',
-//        function (\Osf\Model\Project $project) use ($injector) {
-//            $routeInfo = $injector->make(\Osf\RouteInfo\StandardRouteInfo::class);
-//
-//            return $routeInfo->getStripeCheckoutStartUrl($project);
-//        },
-//        $rawParams
-//    );
-//    $twig->addFunction($function);
-
-//    $function = new \Twig\TwigFunction(
-//        'getInvoiceStartUrl',
-//        function (\Osf\Model\Project $project) use ($injector) {
-//            $routeInfo = $injector->make(\Osf\RouteInfo\StandardRouteInfo::class);
-//
-//            return $routeInfo->getInvoiceStartUrl($project);
-//        },
-//        $rawParams
-//    );
-//    $twig->addFunction($function);
-
     return $twig;
 }

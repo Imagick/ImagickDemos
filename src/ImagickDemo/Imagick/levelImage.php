@@ -4,6 +4,12 @@ namespace ImagickDemo\Imagick;
 
 class levelImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Level image";
+    }
+
+
     public function renderDescription()
     {
         $output = <<< END

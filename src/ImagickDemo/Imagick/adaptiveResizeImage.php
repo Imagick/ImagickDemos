@@ -11,7 +11,10 @@ class adaptiveResizeImage extends \ImagickDemo\Example
         return $this->renderImageURL();
     }
 
-
+    public function renderTitle(): string
+    {
+        return "Adaptive resize image";
+    }
 
     public static function getParamType(): string
     {

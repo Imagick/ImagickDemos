@@ -4,6 +4,12 @@ namespace ImagickDemo\ImagickPixel;
 
 class getColor extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Get color";
+    }
+
+
     public function render()
     {
         $output = "Create an ImagickPixel with the predefined color 'brown' and set the color to have an alpha of 25% <br/>";

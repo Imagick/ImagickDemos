@@ -6,9 +6,9 @@ use ImagickDemo\Imagick\Controls\DeskewImageControl;
 
 class deskewImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Deskew image";
     }
 
     function getOriginalFilename()

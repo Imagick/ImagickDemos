@@ -75,6 +75,11 @@ class morphology extends \ImagickDemo\Example
         ];
     }
 
+    public function renderTitle(): string
+    {
+        return "Morphology";
+    }
+
     public function getOriginalImage()
     {
         return $this->control->getOriginalURL();

@@ -134,14 +134,19 @@ function setupNavigationPanel() {
     }
 
     let links = [];
+    let current_link = null;
 
     if (element.dataset.hasOwnProperty("links_json") === true) {
         let json = element.dataset.links_json;
         links = JSON.parse(json);
     }
+    if (element.dataset.hasOwnProperty("current_link") === true) {
+        current_link = element.dataset.current_link;
+    }
 
     let params:NavigationProps = {
         links: links,
+        current_link: current_link
     };
     // Clear the existing HTML
     element.innerHTML = "";

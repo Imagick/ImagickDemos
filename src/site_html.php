@@ -87,7 +87,6 @@ function renderReactControls(VarMap $varMap, string $param_type)
     }
 
     if (count($value) === 0) {
-
         return "<!-- Controls are empty, no need to show them. -->";
     }
 
@@ -210,14 +209,7 @@ function renderExampleBodyHtml(
 
     $remaining = 12 - $example->getColumnRightOffset();
 
-//    $doc_description = $docHelper->showDescription();
-
-//    if ($doc_description === null) {
-//        $doc_description = "";
-//    }
-//    else {
-//        $doc_description .= "<br/>";
-//    }
+    $doc_description = $docHelper->showDescription($pageInfo);
 
     $example_description = $example->renderDescription();
     if ($example_description === null) {
@@ -259,13 +251,9 @@ function renderExampleBodyHtml(
         );
     }
 
-
     $exampleFinder = new ExampleSourceFinder();
-
     $code_examples = $exampleFinder->findExamples($activeCategory, $activeExample);
-
-    $wat = renderExamples($code_examples);
-
+    $examples_html = renderExamples($code_examples);
 
     $html = <<< HTML
 <div class='container'>
@@ -305,6 +293,7 @@ function renderExampleBodyHtml(
                             </span>
                         </div>
                     </div>
+                    {$doc_description}
                     {$example_description}
                 </div>
             </div>
@@ -323,7 +312,7 @@ function renderExampleBodyHtml(
                 </div>
             </div>
             {$example->renderDescriptionPanel(true)}            
-            {$wat}
+            {$examples_html}
             
         </div>
 

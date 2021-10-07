@@ -6,14 +6,9 @@ use ImagickDemo\Imagick\Controls\ImageControl;
 
 class despeckleImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Despeckle image";
     }
 
     public function render()

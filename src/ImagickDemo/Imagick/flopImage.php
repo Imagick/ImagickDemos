@@ -6,12 +6,11 @@ use ImagickDemo\Imagick\Controls\ImageControl;
 
 class flopImage extends \ImagickDemo\Example
 {
-    public function render()
+
+    public function renderTitle(): string
     {
-        return $this->renderImageURL();
+        return "Flop image";
     }
-
-
 
     public static function getParamType(): string
     {

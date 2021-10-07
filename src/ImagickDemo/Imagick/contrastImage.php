@@ -6,14 +6,9 @@ use ImagickDemo\Imagick\Controls\ContrastImageControl;
 
 class contrastImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Contrast image";
     }
 
     public function render()

@@ -3,6 +3,7 @@
 namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Imagick\Controls\ImageControl;
+use VarMap\VarMap;
 
 function dumpInfo(\Imagick $imagick)
 {
@@ -70,32 +71,39 @@ function dumpInfo(\Imagick $imagick)
 
 class getImageChannelStatistics extends \ImagickDemo\Example
 {
-    private $imageControl;
+    private ImageControl $imageControl;
 
-    public function __construct(\ImagickDemo\Control\ImageControl $imageControl)
+    public function __construct(VarMap $varMap)
     {
-        $this->imageControl = $imageControl;
+        $this->imageControl = ImageControl::createFromVarMap($varMap);
     }
+
+    public function renderTitle(): string
+    {
+        return "Get image channel statistics";
+    }
+
+//    public function hasCustomImage(): bool
+//    {
+//        return false;
+//    }
 
     public function renderImage()
     {
-        $imagick = new \Imagick(realpath("images/fnord.png"));
+        $imagick = new \Imagick($this->imageControl->getImagePath());
         header("Content-Type: image/png");
         echo $imagick->getimageblob();
     }
 
     public function renderDescription()
     {
-        $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
+        $imagick = new \Imagick($this->imageControl->getImagePath());
 
         return dumpInfo($imagick);
     }
-
-
 
     public static function getParamType(): string
     {
         return ImageControl::class;
     }
-
 }

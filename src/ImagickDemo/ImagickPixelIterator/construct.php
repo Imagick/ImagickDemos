@@ -6,6 +6,13 @@ use ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class construct extends \ImagickDemo\Example
 {
+
+    public function renderTitle(): string
+    {
+        return "construct";
+    }
+
+
     public function render()
     {
         $output = "<br/>";

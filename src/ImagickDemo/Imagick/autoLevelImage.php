@@ -11,15 +11,20 @@ class autoLevelImage extends \ImagickDemo\Example
         return true;
     }
 
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Auto-level image";
     }
 
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
-    }
+//    function getOriginalImage()
+//    {
+//        return $this->control->getOriginalURL();
+//    }
+//
+//    function getOriginalFilename()
+//    {
+//        return $this->control->getImagePath();
+//    }
 
     public function render()
     {

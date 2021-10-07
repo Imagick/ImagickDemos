@@ -6,6 +6,10 @@ use ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class clear extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Clear";
+    }
 
     public function renderDescription()
     {
@@ -16,8 +20,6 @@ class clear extends \ImagickDemo\Example
     {
         return $this->renderImageURL();
     }
-
-
 
     public static function getParamType(): string
     {

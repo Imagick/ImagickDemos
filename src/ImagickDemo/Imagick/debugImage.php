@@ -4,14 +4,9 @@ namespace ImagickDemo\Imagick;
 
 class debugImage extends \ImagickDemo\Example
 {
-    /**
-     * @var \ImagickDemo\Control\ImagickFunctionControl
-     */
-    protected $control;
-
-    public function __construct(\ImagickDemo\Control\ImagickFunctionControl $control)
+    public function renderTitle(): string
     {
-        $this->control = $control;
+        return "Debugging....";
     }
 
     public function renderDescription()

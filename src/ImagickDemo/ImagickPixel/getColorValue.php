@@ -4,6 +4,11 @@ namespace ImagickDemo\ImagickPixel;
 
 class getColorValue extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "get color value";
+    }
+
     public function render()
     {
 //Example ImagickPixel::getColorValue

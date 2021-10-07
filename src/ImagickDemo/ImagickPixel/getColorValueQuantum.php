@@ -4,6 +4,10 @@ namespace ImagickDemo\ImagickPixel;
 
 class getColorValueQuantum extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "get color value quantum";
+    }
 
     public function render()
     {

@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class identifyImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Identify image";
+    }
+
     public function render()
     {
         $path = realpath(__DIR__."/../../../public/images/fnord.png");

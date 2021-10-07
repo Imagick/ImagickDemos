@@ -2,10 +2,16 @@
 
 namespace ImagickDemo\ImagickDraw;
 
+use ImagickDemo\Example;
 use ImagickDemo\ImagickDraw\Controls\ThreeColors;
 
-class setStrokeOpacity extends ImagickDrawExample
+class setStrokeOpacity extends Example
 {
+    public function renderTitle(): string
+    {
+        return "ImagickDraw::setStrokeOpacity";
+    }
+
     public function getDescription()
     {
         return "";

@@ -2,16 +2,15 @@
 
 namespace ImagickDemo\ImagickDraw;
 
+use ImagickDemo\Example;
 use ImagickDemo\ImagickDraw\Controls\ThreeColors;
 
-class bezier extends ImagickDrawExample
+class bezier extends Example
 {
-    public function getDescription()
+    public function renderTitle(): string
     {
-        return "";
+        return "ImagickDraw::bezier";
     }
-
-
 
     public static function getParamType(): string
     {

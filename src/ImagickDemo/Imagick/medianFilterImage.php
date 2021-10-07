@@ -4,15 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class medianFilterImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Median filter image";
     }
 
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
-    }
 
     public function render()
     {

@@ -82,22 +82,6 @@ class CategoryInfo
         return [sprintf('ImagickDemo\%s\%s', $category, $function), 'renderCustomImage'];
     }
 
-//    public static function getDIInfo(PageInfo $pageInfo)
-//    {
-//        $category = $pageInfo->getCategory();
-//        $example = $pageInfo->getExample();
-//
-//        if ($category == null || $example == null) {
-//            return ['ImagickDemo\Control\NullControl', []];
-//        }
-//
-//        $controlClass = \ImagickDemo\Control\ReactControls::class;
-//
-//        $params = [];
-//
-//        return [$controlClass, $params];
-//    }
-
     public static function getExampleToRun($category, $example): string
     {
         $examples = self::getCategoryList($category);
@@ -135,20 +119,7 @@ class CategoryInfo
         throw new \Exception("Unknown category '$category'");
     }
 
-//    public static function findExample($category, $example)
-//    {
-//        $examples = self::getCategoryLgetExampleToRunist($category);
-//
-//        foreach ($examples as $exampleName => $exampleController) {
-//            if (strtolower($exampleName) == strtolower($example)) {
-//                return [$category, $exampleName];
-//            }
-//        }
-//
-//        throw new \Exception("Unknown example '$example' for category '$category'");
-//    }
-    
-    
+
     public static $imagickExamples = [
         'adaptiveBlurImage' => 'adaptiveBlurImage',
         'adaptiveResizeImage' => 'adaptiveResizeImage',

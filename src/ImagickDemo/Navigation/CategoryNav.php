@@ -16,11 +16,16 @@ class CategoryNav implements Nav
         /**
      * @param bool $horizontal
      */
-    public function renderNav($horizontal = false)
+    public function renderNav()
     {
         $html = sprintf(
-            "<div class='contentPanel navContainer' id='navigationPanel' data-links_json='%s'>",
-            json_encode($this->getLinksData())
+            "<div 
+              class='contentPanel navContainer' 
+              id='navigationPanel'
+              data-links_json='%s'
+              data-current_link='%s' >",
+            json_encode($this->getLinksData()),
+            $this->pageInfo->getExample()
         );
         $html .= $this->renderSearchBox();
         $html .= $this->renderVertical();
@@ -250,39 +255,43 @@ END;
     
     public function renderVertical()
     {
-        $output = "<ul class='nav nav-sidebar smallPadding' id='searchList'>";
-        
+        $output = "<!-- This is placeholder HTML to make the nav work when JS -->";
+        $output .= "<!-- is disabled in the browser. Check NavigationPanel.tsx -->";
+        $output .= "<ul class='nav nav-sidebar smallPadding' id='searchList'>";
         $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
         
         foreach ($exampleList as $exampleName => $exampleToRun) {
-            $imagickExample = $exampleName;//$imagickExampleOption->getName();
+            // Dumb hack to avoid forcing container wider
+
             $active = '';
             $activeLink = '';
             
-            if ($this->pageInfo->getExample() === $imagickExample) {
+            if ($this->pageInfo->getExample() === $exampleName) {
                 $active = 'navActive';
                 $activeLink = 'navActiveLink';
             }
 
-            $name = $imagickExample;
-
-//            if (isset($exampleDefinition['name'])) {
-//                $name = $exampleDefinition['name'];
-//            }
+            $name = str_replace(
+                "QuadraticBezier",
+                "Quadratic Bezier",
+                $exampleName
+            );
 
             $output .= "<li class='navSpacer $active'>";
+
             $output .= sprintf(
                 "<a class='smallPadding %s' href='/%s/%s'>%s</a>",
                 $activeLink,
                 $this->pageInfo->getCategory(),
-                $imagickExample,
+                $exampleName,
                 $name
             );
             $output .= "</li>";
         }
 
         $output .= "</ul>";
-        
+
+
         return $output;
     }
 }

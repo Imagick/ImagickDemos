@@ -25,6 +25,12 @@ class construct extends \ImagickDemo\Example
         "rgba(100%, 0%, 0%, 1.0)", //  the same, with an explicit alpha value
     );
 
+    public function renderTitle(): string
+    {
+        return "construct";
+    }
+
+
     public function render()
     {
         $output = "<table>";

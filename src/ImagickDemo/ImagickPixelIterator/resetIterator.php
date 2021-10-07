@@ -6,6 +6,11 @@ use ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class resetIterator extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Reset Iterator";
+    }
+
     public function render()
     {
         $output = "Reset a pixel iterator so that you can iterate over it again. <br/>";
@@ -13,8 +18,6 @@ class resetIterator extends \ImagickDemo\Example
 
         return $output;
     }
-
-
 
     public static function getParamType(): string
     {

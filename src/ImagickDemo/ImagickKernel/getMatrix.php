@@ -7,6 +7,12 @@ use ImagickDemo\ImagickKernel\Controls\NullControl;
 
 class getMatrix extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "get matrix";
+    }
+
+
     public function renderDescription()
     {
         return "Get the 2d matrix of values used in this kernel. The elements are either float for elements that are used or 'false' if the element should be skipped.";

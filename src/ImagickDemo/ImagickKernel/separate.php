@@ -6,6 +6,12 @@ use ImagickDemo\Display;
 
 class separate extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "separate";
+    }
+
+
     public function renderDescription()
     {
         return "Separates a linked set of kernels and returns an array of ImagickKernels.";

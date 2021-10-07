@@ -11,7 +11,10 @@ class affineTransformImage extends \ImagickDemo\Example
         return "TODO - write the description...<br/>";
     }
 
-
+    public function renderTitle(): string
+    {
+        return "Affine transform image";
+    }
 
     public static function getParamType(): string
     {

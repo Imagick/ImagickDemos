@@ -12,6 +12,13 @@ use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
 
 class fromMatrix extends \ImagickDemo\Example
 {
+
+    public function renderTitle(): string
+    {
+        return "ImagickKernel::fromMatrix";
+    }
+
+
     /**
      * @var fromMatrixControl
      */

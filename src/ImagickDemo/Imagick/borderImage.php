@@ -11,7 +11,10 @@ class borderImage extends \ImagickDemo\Example
         return $this->renderImageURL();
     }
 
-
+    public function renderTitle(): string
+    {
+        return "Border image";
+    }
 
     public static function getParamType(): string
     {

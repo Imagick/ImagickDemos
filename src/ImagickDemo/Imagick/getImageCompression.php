@@ -24,6 +24,11 @@ class getImageCompression extends \ImagickDemo\Example
         \Imagick::COMPRESSION_ZIP => 'COMPRESSION_ZIP',
     ];
 
+    public function renderTitle(): string
+    {
+        return "Get image compression";
+    }
+
     public function __construct($image_path)
     {
         $this->image_path = $image_path;

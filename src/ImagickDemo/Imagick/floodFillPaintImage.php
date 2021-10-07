@@ -4,17 +4,12 @@ namespace ImagickDemo\Imagick;
 
 class floodFillPaintImage extends \ImagickDemo\Example
 {
-    public function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getURL() . '&original=true';
+        return "Flood fill paint image";
     }
 
-    
-//    public function renderOriginalImage()
-//    {
-//        return \ImagickDemo\Imagick\renderFile(realpath("images/BlueScreen.jpg"), "BlueScreen.jpg");
-//    }
-    
+
     public function getOriginalFilename()
     {
         return realpath("images/BlueScreen.jpg");

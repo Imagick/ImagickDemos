@@ -19,6 +19,11 @@ class getImageHistogram extends \ImagickDemo\Example
         $this->control = $imageControl;
     }
 
+    public function renderTitle(): string
+    {
+        return "Get image histogram";
+    }
+
     public function getControl()
     {
         return $this->control;

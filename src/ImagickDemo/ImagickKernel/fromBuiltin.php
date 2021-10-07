@@ -2,9 +2,7 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-//use ImagickDemo\ImagickKernel\Control\fromBuiltIn as fromBuiltInControl;
 use ImagickDemo\Control\ReactControls;
-use ImagickDemo\ControlElement\KernelRender;
 use ImagickDemo\Display;
 use ImagickDemo\ImagickKernel\Controls\FromBuiltInControl;
 use VarMap\VarMap;
@@ -19,6 +17,12 @@ class fromBuiltin extends \ImagickDemo\Example
 
         $this->fromBuiltInControl = $control;
     }
+
+    public function renderTitle(): string
+    {
+        return "ImagickKernel::fromBuiltin";
+    }
+
 
     public function renderDescription()
     {

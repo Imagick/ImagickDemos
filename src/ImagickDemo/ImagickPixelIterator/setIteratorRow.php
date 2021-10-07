@@ -6,6 +6,11 @@ use ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class setIteratorRow extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Set iterator row";
+    }
+
     public function render()
     {
         $output = "<br/>";

@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class getCopyright extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Copyright display";
+    }
+
     public function render()
     {
         $output = '';

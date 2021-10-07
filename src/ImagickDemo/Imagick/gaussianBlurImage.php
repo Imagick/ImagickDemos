@@ -6,14 +6,9 @@ use ImagickDemo\Imagick\Controls\ImageRadiusSigmaChannelControl;
 
 class gaussianBlurImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Gaussian image";
     }
 
     public function render()

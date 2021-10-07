@@ -4,14 +4,9 @@ namespace ImagickDemo\Imagick;
 
 class linearStretchImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Linear stretch image";
     }
 
     public function renderDescription()

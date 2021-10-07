@@ -25,11 +25,11 @@ class FunctionImageControl implements InputParameterList
     public function __construct(
         #[FunctionType('function_type')]
         private string $function_type,
-        #[FirstTerm(0.5, 'first_term')]
+        #[FirstTerm(5, 'first_term')]
         private float $first_term,
-        #[SecondTerm('', 'second_term')]
+        #[SecondTerm('0.5', 'second_term')]
         private ?float $second_term,
-        #[ThirdTerm('', 'third_term')]
+        #[ThirdTerm('0.5', 'third_term')]
         private ?float $third_term,
         #[FourthTerm('', 'fourth_term')]
         private ?float $fourth_term

@@ -6,6 +6,11 @@ use ImagickDemo\Imagick\Controls\EvaluateImageControl;
 
 class evaluateImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Evaluate image";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

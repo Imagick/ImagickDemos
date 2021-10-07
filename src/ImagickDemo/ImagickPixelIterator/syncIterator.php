@@ -6,6 +6,13 @@ use ImagickDemo\ImagickKernel\Controls\ImageControl;
 
 class syncIterator extends \ImagickDemo\Example
 {
+
+    public function renderTitle(): string
+    {
+        return "Sync iterator";
+    }
+
+
     public function render()
     {
         $output = "<br/>";
@@ -13,8 +20,6 @@ class syncIterator extends \ImagickDemo\Example
 
         return $output;
     }
-
-
 
     public static function getParamType(): string
     {

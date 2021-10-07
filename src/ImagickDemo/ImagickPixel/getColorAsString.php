@@ -4,6 +4,10 @@ namespace ImagickDemo\ImagickPixel;
 
 class getColorAsString extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "get color as string";
+    }
 
     public function renderImageURL()
     {

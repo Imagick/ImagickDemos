@@ -2,11 +2,15 @@
 
 namespace ImagickDemo\ImagickDraw;
 
+use ImagickDemo\Example;
 use ImagickDemo\ImagickDraw\Controls\MatteControl;
 
-class matte extends ImagickDrawExample
+class matte extends Example
 {
-
+    public function renderTitle(): string
+    {
+        return "ImagickDraw::matte";
+    }
 
     public static function getParamType(): string
     {

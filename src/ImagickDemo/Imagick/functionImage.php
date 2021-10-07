@@ -5,7 +5,6 @@ namespace ImagickDemo\Imagick;
 use ImagickDemo\Control\ReactControls;
 use ImagickDemo\Image;
 use ImagickDemo\Imagick\Controls\FunctionImageControl;
-use ImagickDemo\Control\ImagickFunctionControl;
 use VarMap\VarMap;
 
 class functionImage extends \ImagickDemo\Example
@@ -48,14 +47,9 @@ f3 - Amplitude, default 1
 f4 - Constant vertical offset, default 0.5";
 
 
-    /**
-     * @var \ImagickDemo\Control\ImagickFunctionControl
-     */
-    protected $control;
-
-    public function __construct(ImagickFunctionControl $control, VarMap $varMap)
+    public function __construct(VarMap $varMap)
     {
-        $this->control = $control;
+
         $this->functionImageControl = FunctionImageControl::createFromVarMap($varMap);
     }
 

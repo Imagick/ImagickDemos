@@ -6,6 +6,11 @@ use Imagick;
 
 class clutImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "CLUT image";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

@@ -1,0 +1,3 @@
+Deciphers image that has been enciphered before. The image must be enciphered
+   using Imagick::encipherImage.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.9 or newer.

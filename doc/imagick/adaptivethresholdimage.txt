@@ -1,0 +1,4 @@
+Selects an individual threshold for each pixel based on the
+   range of intensity values in its local neighborhood.  This
+   allows for thresholding of an image whose global intensity
+   histogram doesn't contain distinctive peaks.

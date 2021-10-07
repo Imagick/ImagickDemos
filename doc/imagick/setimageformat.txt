@@ -1,0 +1,1 @@
+Sets the format of a particular image in a sequence.

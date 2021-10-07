@@ -1,0 +1,2 @@
+Sets the global colorspace value for the object.
+   This method is available if Imagick has been compiled against ImageMagick version 6.5.7 or newer.

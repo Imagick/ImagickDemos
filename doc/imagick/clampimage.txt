@@ -1,0 +1,1 @@
+Restricts the color range from 0 to the quantum depth.

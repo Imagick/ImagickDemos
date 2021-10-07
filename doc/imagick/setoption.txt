@@ -1,0 +1,1 @@
+Associates one or more options with the wand.

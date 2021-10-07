@@ -1,0 +1,7 @@
+Changes the size of an image to the given dimensions and removes any
+   associated profiles. The goal is to produce small, low cost thumbnail
+   images suited for display on the Web. 
+
+   If True; is given as a third parameter then columns and rows parameters
+   are used as maximums for each side. Both sides will be scaled down until
+   they match or are smaller than the parameter given for the side.

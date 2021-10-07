@@ -1,0 +1,1 @@
+Set a callback that will be called during the processing of the Imagick image.

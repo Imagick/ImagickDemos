@@ -1,0 +1,6 @@
+Sets object's font property. This method can be used for example to set font for 
+   caption: pseudo-format. The font needs to be configured in ImageMagick configuration
+   or a file by the name of font must exist. This method should
+   not be confused with ImagickDraw::setFont which sets the font
+   for a specific ImagickDraw object.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.7 or newer.

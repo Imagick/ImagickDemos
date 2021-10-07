@@ -1,0 +1,2 @@
+Enhances the contrast of a color image by adjusting the pixels
+   color to span the entire range of colors available.

@@ -1,0 +1,4 @@
+Imports pixels from an array into an image. The map is usually
+   'RGB'. This method imposes the following constraints for the parameters: amount of pixels
+   in the array must match width x height x length of the map.
+   This method is available if Imagick has been compiled against ImageMagick version 6.4.5 or newer.

@@ -1,0 +1,2 @@
+Returns an array representing the pattern of dashes and gaps used to
+   stroke paths.

@@ -1,0 +1,1 @@
+Returns the width and height as an associative array.

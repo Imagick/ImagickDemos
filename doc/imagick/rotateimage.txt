@@ -1,0 +1,3 @@
+Rotates an image the specified number of degrees. Empty
+   triangles left over from rotating the image are filled
+   with the background color.

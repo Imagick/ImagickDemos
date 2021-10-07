@@ -1,0 +1,2 @@
+Takes all images from the current image pointer to the end of the image list and smushs
+   them to each other top-to-bottom if the stack parameter is true, otherwise left-to-right.

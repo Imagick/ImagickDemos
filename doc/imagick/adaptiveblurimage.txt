@@ -1,0 +1,3 @@
+Adds an adaptive blur filter to image. The intensity of an adaptive blur
+   depends is dramatically decreased at edge of the image, whereas a standard
+   blur is uniform across the image. This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

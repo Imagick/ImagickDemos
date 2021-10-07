@@ -1,0 +1,3 @@
+Negates the colors in the reference image. The Grayscale
+   option means that only grayscale values within the image
+   are negated.

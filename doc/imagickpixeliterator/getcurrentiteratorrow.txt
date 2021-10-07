@@ -1,0 +1,1 @@
+Returns the current row as an array of ImagickPixel objects from the pixel iterator.

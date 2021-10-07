@@ -1,0 +1,1 @@
+Returns the font style used when annotating with text.

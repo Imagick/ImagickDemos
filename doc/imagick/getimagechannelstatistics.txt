@@ -1,0 +1,3 @@
+Returns statistics for each channel in the image.  The statistics include
+   the channel depth, its minima and maxima, the mean, and the standard
+   deviation.

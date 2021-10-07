@@ -1,0 +1,1 @@
+Returns the alignment applied when annotating with text.

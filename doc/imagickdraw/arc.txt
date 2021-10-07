@@ -1,0 +1,1 @@
+Draws an arc falling within a specified bounding rectangle on the image.

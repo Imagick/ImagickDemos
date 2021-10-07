@@ -1,0 +1,2 @@
+Returns the page geometry associated with the image in an array with the
+   keys "width", "height", "x", and "y".

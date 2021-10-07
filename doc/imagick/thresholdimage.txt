@@ -1,0 +1,2 @@
+Changes the value of individual pixels based on the intensity of each pixel
+   compared to threshold.  The result is a high-contrast, two color image.

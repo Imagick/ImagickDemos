@@ -1,0 +1,2 @@
+Associates a named clipping path with the image.  Only the areas drawn on
+   by the clipping path will be modified as long as it remains in effect.

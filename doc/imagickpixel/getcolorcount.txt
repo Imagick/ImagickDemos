@@ -1,0 +1,1 @@
+ImagickPixel::getColorCount appears to only work for ImagickPixel objects created through Imagick::getImageHistogram()

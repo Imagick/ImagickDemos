@@ -1,0 +1,1 @@
+Sets the width of the stroke used to draw object outlines.

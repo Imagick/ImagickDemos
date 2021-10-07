@@ -1,0 +1,4 @@
+Merges image layers into one. This method is useful when working with image
+   formats that use multiple layers such as PSD. The merging is controlled using
+   the layer_method which defines how the layers are merged.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.7 or newer.

@@ -1,0 +1,2 @@
+Adds blur filter to image. Optional third parameter to blur a specific
+   channel.

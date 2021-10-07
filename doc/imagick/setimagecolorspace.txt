@@ -1,0 +1,1 @@
+Sets the image colorspace. This method should be used when creating new images. To change the colorspace of an existing image, you should use Imagick::transformImageColorspace.

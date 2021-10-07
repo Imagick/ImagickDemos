@@ -1,0 +1,1 @@
+Is a convenience method that scales an image proportionally to one-half its original size

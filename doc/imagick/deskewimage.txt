@@ -1,0 +1,2 @@
+This method can be used to remove skew from for example scanned images where the paper
+   was not properly placed on the scanning surface. This method is available if Imagick has been compiled against ImageMagick version 6.4.5 or newer.

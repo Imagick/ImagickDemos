@@ -1,0 +1,3 @@
+Returns the normalized HSL color described by the ImagickPixel object,
+   with each of the three values as floating point numbers between 0.0
+   and 1.0.

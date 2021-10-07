@@ -1,0 +1,2 @@
+Creates a fixed size thumbnail by first scaling the image up or down and cropping a specified
+  area from the center.

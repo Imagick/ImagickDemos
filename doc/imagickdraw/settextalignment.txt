@@ -1,0 +1,1 @@
+Specifies a text alignment to be applied when annotating with text.

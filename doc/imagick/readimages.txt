@@ -1,0 +1,1 @@
+Reads image from an array of filenames. All the images are held in a single Imagick object.

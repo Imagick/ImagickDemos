@@ -1,0 +1,1 @@
+Extracts a region of the image.

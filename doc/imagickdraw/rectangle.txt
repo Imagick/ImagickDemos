@@ -1,0 +1,2 @@
+Draws a rectangle given two coordinates and using the current stroke,
+   stroke width, and fill settings.

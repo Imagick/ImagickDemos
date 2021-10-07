@@ -1,0 +1,1 @@
+Gets the image orientation. The return value is one of the orientation constants.

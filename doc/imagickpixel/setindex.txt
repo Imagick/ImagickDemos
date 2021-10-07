@@ -1,0 +1,1 @@
+Sets the colormap index of the pixel wand.

@@ -1,0 +1,3 @@
+Method morphs a set of images.  Both the image pixels and size
+   are linearly interpolated to give the appearance of a
+   meta-morphosis from one image to the next.

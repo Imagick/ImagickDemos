@@ -1,0 +1,2 @@
+Adjusts the scaling factor to apply in the horizontal and vertical
+   directions to the current coordinate space.

@@ -1,0 +1,4 @@
+Changes the color value of any pixel that matches target and is an
+   immediate neighbor. This method is a replacement for deprecated 
+   Imagick::paintFloodFillImage.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.8 or newer.

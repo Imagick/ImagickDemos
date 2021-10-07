@@ -1,0 +1,1 @@
+Returns an array containing a reconstructed image and the difference between images.

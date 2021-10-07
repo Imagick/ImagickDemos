@@ -1,0 +1,1 @@
+Sets the format of the Imagick object.

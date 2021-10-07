@@ -1,0 +1,1 @@
+Returns the virtual pixel method for the specified image.

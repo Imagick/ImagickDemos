@@ -1,0 +1,1 @@
+Returns the offset into the dash pattern to start the dash.

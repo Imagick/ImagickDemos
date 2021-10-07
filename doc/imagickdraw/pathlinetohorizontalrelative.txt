@@ -1,0 +1,3 @@
+Draws a horizontal line path from the current point to the target point
+   using relative coordinates.  The target point then becomes the new
+   current point.

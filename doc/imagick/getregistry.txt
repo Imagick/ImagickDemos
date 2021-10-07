@@ -1,0 +1,1 @@
+Get the StringRegistry entry for the named key or false if not set.

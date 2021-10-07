@@ -1,0 +1,1 @@
+Repeatedly tiles the texture image across and down the image canvas.

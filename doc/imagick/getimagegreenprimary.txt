@@ -1,0 +1,1 @@
+Returns the chromaticity green primary point. Returns an array with the keys "x" and "y".

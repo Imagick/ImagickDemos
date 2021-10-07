@@ -1,0 +1,2 @@
+Gets the range for one or more image channels.
+   This method is available if Imagick has been compiled against ImageMagick version 6.4.0 or newer.

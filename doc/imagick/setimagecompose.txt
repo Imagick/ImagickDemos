@@ -1,0 +1,3 @@
+Sets the image composite operator, useful for specifying how
+   to composite the image thumbnail when using the
+   Imagick::montageImage() method.

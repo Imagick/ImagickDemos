@@ -1,0 +1,3 @@
+Applies a color vector to each pixel in the image. The length of the vector
+   is 0 for black and white and at its maximum for the midtones. The vector
+   weighing function is f(x)=(1-(4.0*((x-0.5)*(x-0.5)))).

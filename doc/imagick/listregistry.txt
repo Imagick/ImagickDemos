@@ -1,0 +1,1 @@
+List all the registry settings. Returns an array of all the key/value pairs in the registry

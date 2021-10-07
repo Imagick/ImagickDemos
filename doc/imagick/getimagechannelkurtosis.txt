@@ -1,0 +1,1 @@
+Get the kurtosis and skewness of a specific channel. This method is available if Imagick has been compiled against ImageMagick version 6.4.9 or newer.

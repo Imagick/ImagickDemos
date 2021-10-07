@@ -1,0 +1,1 @@
+Returns the decoration applied when annotating with text.

@@ -1,0 +1,1 @@
+Clips along the first path from the 8BIM profile, if present.

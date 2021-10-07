@@ -1,0 +1,4 @@
+Gets the current gravity value of the
+   image. Unlike Imagick::getGravity, this method
+   returns the gravity defined for the current image sequence.
+   This method is available if Imagick has been compiled against ImageMagick version 6.4.4 or newer.

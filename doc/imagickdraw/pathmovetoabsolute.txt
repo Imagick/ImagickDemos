@@ -1,0 +1,2 @@
+Starts a new sub-path at the given coordinate using absolute coordinates.
+   The current point then becomes the specified coordinate.

@@ -1,0 +1,2 @@
+Discards all but one of any pixel color. 
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

@@ -1,0 +1,1 @@
+Gets the depth for a particular image channel.

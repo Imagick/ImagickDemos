@@ -1,0 +1,2 @@
+Draws a line path from the current point to the given coordinate using
+   relative coordinates. The coordinate then becomes the new current point.

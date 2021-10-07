@@ -1,0 +1,2 @@
+Returns the opacity used when drawing using the fill color or fill
+   texture.  Fully opaque is 1.0.

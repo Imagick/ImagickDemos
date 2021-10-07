@@ -1,0 +1,1 @@
+Applies a digital filter that improves the quality of a noisy image.

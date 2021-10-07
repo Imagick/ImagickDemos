@@ -1,0 +1,2 @@
+Scales an image to the desired dimensions with a
+   filter.

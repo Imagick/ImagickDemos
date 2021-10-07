@@ -1,0 +1,1 @@
+Rotational blurs an image.

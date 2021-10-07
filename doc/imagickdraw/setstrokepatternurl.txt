@@ -1,0 +1,1 @@
+Sets the pattern used for stroking object outlines.

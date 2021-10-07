@@ -1,0 +1,3 @@
+Sets the ImageMagick registry entry named key to value. This is most
+   useful for setting "temporary-path" which controls where ImageMagick
+   creates temporary images e.g. while processing PDFs.

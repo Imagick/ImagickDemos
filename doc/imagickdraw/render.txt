@@ -1,0 +1,1 @@
+Renders all preceding drawing commands onto the image.

@@ -1,0 +1,2 @@
+Replaces colors an image with those defined by replacement. The colors
+   are replaced with the closest possible color. This method is available if Imagick has been compiled against ImageMagick version 6.4.5 or newer.

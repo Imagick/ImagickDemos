@@ -1,0 +1,10 @@
+Draws an elliptical arc from the current point to (x, y) using absolute
+   coordinates. The size and orientation of the ellipse are defined by two
+   radii (rx, ry) and an xAxisRotation, which indicates how the ellipse as
+   a whole is rotated relative to the current coordinate system. The center
+   (cx, cy) of the ellipse is calculated automatically to satisfy the
+   constraints imposed by the other parameters. largeArcFlag and sweepFlag
+   contribute to the automatic calculations and help determine how the arc
+   is drawn. If large_arc_flag is True; then draw the larger of the available
+   arcs. If sweep_flag is true, then draw the arc matching a clock-wise
+   rotation.

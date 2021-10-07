@@ -1,0 +1,1 @@
+Draws a line on the image using the current stroke color, stroke opacity, and stroke width.

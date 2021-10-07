@@ -1,0 +1,1 @@
+Associates the next image in the image list with an Imagick object.

@@ -1,0 +1,2 @@
+Returns the interpolation method for the specified image. The method is one of 
+   the Imagick::INTERPOLATE_* constants.

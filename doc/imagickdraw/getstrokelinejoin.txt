@@ -1,0 +1,2 @@
+Returns the shape to be used at the corners of paths (or other vector
+   shapes) when they are stroked.

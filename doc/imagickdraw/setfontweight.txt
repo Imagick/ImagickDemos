@@ -1,0 +1,1 @@
+Sets the font weight to use when annotating with text.

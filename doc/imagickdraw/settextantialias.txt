@@ -1,0 +1,1 @@
+Controls whether text is antialiased. Text is antialiased by default.

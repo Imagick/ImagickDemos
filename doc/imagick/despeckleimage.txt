@@ -1,0 +1,1 @@
+Reduces the speckle noise in an image while preserving the edges of the original image.

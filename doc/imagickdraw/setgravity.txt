@@ -1,0 +1,1 @@
+Sets the text placement gravity to use when annotating with text.

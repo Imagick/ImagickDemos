@@ -1,0 +1,1 @@
+Sets the page geometry of the Imagick object.

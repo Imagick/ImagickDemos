@@ -1,0 +1,5 @@
+Compares each image the GIF disposed forms of the previous image
+   in the sequence.  From this it attempts to select the smallest
+   cropped image to replace each frame, while preserving the results
+   of the animation. 
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

@@ -1,0 +1,2 @@
+Identifies an image and returns the attributes.  Attributes include
+   the image width, height, size, and others.

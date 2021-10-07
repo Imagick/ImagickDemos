@@ -1,0 +1,2 @@
+Starts a clip path definition which is comprised of any number of drawing
+   commands and terminated by a ImagickDraw::popClipPath command.

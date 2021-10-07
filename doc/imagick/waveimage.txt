@@ -1,0 +1,2 @@
+Applies a wave filter to the image. 
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

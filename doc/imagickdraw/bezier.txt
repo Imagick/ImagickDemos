@@ -1,0 +1,1 @@
+Draws a bezier curve through a set of points on the image.

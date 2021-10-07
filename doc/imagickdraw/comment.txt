@@ -1,0 +1,1 @@
+Adds a comment to a vector output stream.

@@ -1,0 +1,4 @@
+This method scales the images using liquid rescaling method. This method
+   is an implementation of a technique called seam carving. In order for this
+   method to work as expected ImageMagick must be compiled with liblqr support.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.9 or newer.

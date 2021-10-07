@@ -1,0 +1,2 @@
+Destroys the Imagick object and frees all resources associated with it. 
+   This method is deprecated in favour of Imagick::clear.

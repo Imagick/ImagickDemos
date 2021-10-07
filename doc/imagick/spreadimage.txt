@@ -1,0 +1,2 @@
+Special effects method that randomly displaces each pixel in a block
+   defined by the radius parameter.

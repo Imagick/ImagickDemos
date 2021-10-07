@@ -1,0 +1,1 @@
+Resets the vector graphics.

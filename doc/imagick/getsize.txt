@@ -1,0 +1,1 @@
+Get the size in pixels associated with the Imagick object, previously set by Imagick::setSize.

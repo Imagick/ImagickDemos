@@ -1,0 +1,3 @@
+Adds a path element to the current path which closes the current subpath
+   by drawing a straight line from the current point to the current subpath's
+   most recent starting point (usually, the most recent moveto point).

@@ -1,0 +1,3 @@
+Sets the gravity property for the current image. This method can be used 
+   to set the gravity property for a single image sequence.
+   This method is available if Imagick has been compiled against ImageMagick version 6.4.4 or newer.

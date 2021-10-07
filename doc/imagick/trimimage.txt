@@ -1,0 +1,2 @@
+Remove edges that are the background color from the image. 
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

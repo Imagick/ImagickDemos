@@ -1,0 +1,1 @@
+Removes the named image profile and returns it.

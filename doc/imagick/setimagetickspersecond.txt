@@ -1,0 +1,1 @@
+Adjust the amount of time that a frame of an animated image is displayed for.

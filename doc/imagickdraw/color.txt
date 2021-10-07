@@ -1,0 +1,2 @@
+Draws color on image using the current fill color, starting at specified
+   position, and using specified paint method.

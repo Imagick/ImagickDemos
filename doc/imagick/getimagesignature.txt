@@ -1,0 +1,1 @@
+Generates an SHA-256 message digest for the image pixel stream.

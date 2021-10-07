@@ -1,0 +1,5 @@
+Clones the current ImagickDraw to create a new ImagickDraw, which is then
+   added to the ImagickDraw stack. The original drawing ImagickDraw(s) may be
+   returned to by invoking ImagickDraw::pop. The ImagickDraws are stored on a
+   ImagickDraw stack. For every Pop there must have already been an equivalent
+   Push.

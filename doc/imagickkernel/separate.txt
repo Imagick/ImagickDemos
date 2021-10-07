@@ -1,0 +1,1 @@
+Separates a linked set of kernels and returns an array of ImagickKernels.

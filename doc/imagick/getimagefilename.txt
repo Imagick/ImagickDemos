@@ -1,0 +1,1 @@
+Returns the filename of a particular image in a sequence.

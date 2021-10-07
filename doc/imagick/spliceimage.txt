@@ -1,0 +1,1 @@
+Splices a solid color into the image.

@@ -1,0 +1,1 @@
+Returns a value associated within the object for the specified key.

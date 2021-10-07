@@ -1,0 +1,1 @@
+Returns the color of a background rectangle to place under text annotations.

@@ -1,0 +1,3 @@
+Creates a horizontal mirror image by reflecting the pixels around the
+   central y-axis while rotating them 270-degrees.
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

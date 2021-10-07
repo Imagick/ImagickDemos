@@ -1,0 +1,6 @@
+Checks the distance between the color described by this ImagickPixel
+   object and that of the provided object, by plotting their RGB values
+   on the color cube. If the distance between the two points is less than
+   the fuzz value given, the colors are similar.
+   This method replaces ImagickPixel::isSimilar()
+   and correctly normalises the fuzz value to ImageMagick QuantumRange.

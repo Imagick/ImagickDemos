@@ -1,0 +1,3 @@
+Sets the URL to use as a fill pattern for filling objects. Only local URLs
+   ("#identifier") are supported at this time. These local URLs are normally
+   created by defining a named fill pattern with DrawPushPattern/DrawPopPattern.

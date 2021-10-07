@@ -1,0 +1,1 @@
+Sets the quantum value of a color element of the ImagickPixel.

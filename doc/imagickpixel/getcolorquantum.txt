@@ -1,0 +1,2 @@
+Returns the color of the pixel in an array as Quantum values. If ImageMagick was compiled
+   as HDRI these will be floats, otherwise they will be integers.

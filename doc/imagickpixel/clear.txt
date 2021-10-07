@@ -1,0 +1,2 @@
+Clears the ImagickPixel object, leaving it in a fresh state. This also
+   unsets any color associated with the object.

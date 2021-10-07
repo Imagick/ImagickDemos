@@ -1,0 +1,1 @@
+Returns the composite operator associated with the image.

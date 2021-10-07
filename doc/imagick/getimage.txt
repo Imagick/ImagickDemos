@@ -1,0 +1,1 @@
+Returns a new Imagick object with the current image sequence.

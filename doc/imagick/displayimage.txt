@@ -1,0 +1,1 @@
+This method displays an image on a X server.

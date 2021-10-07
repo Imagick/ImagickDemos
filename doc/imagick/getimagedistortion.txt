@@ -1,0 +1,2 @@
+Compares an image to a reconstructed image and returns the specified distortion
+   metric.

@@ -1,0 +1,2 @@
+Changes any pixel that matches color with the color defined by fill.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.8 or newer.

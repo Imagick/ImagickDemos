@@ -1,0 +1,1 @@
+Draws a point using the current stroke color and stroke thickness at the specified coordinates.

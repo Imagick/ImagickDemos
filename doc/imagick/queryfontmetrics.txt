@@ -1,0 +1,1 @@
+Returns a multi-dimensional array representing the font metrics.

@@ -1,0 +1,2 @@
+Shaves pixels from the image edges. It allocates the memory necessary for
+   the new Image structure and returns a pointer to the new image.

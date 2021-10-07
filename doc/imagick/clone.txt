@@ -1,0 +1,1 @@
+Makes an exact copy of the Imagick object.

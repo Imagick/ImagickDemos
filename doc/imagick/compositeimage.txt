@@ -1,0 +1,1 @@
+Composite one image onto another at the specified offset. Any extra arguments needed for the compose algorithm should passed to setImageArtifact with 'compose:args' as the first parameter and the data as the second parameter.

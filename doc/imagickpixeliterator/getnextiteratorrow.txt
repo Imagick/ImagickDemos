@@ -1,0 +1,1 @@
+Returns the next row as an array of pixel wands from the pixel iterator.

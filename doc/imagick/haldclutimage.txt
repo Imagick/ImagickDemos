@@ -1,0 +1,2 @@
+Replaces colors in the image using a Hald lookup table. Hald images can be created using 
+   HALD color coder.

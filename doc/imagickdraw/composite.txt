@@ -1,0 +1,2 @@
+Composites an image onto the current image, using the specified
+   composition operator, specified position, and at the specified size.

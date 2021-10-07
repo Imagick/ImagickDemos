@@ -1,0 +1,1 @@
+Offsets an image as defined by x and y.

@@ -1,0 +1,1 @@
+Applies a user supplied kernel to the image according to the given morphology method.

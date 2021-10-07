@@ -1,0 +1,2 @@
+Specifies the shape to be used at the end of open subpaths when they
+   are stroked.

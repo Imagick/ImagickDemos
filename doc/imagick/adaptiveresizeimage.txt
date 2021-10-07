@@ -1,0 +1,5 @@
+Adaptively resize image with data-dependent triangulation. Avoids
+   blurring across sharp color changes. Most useful when used to shrink
+   images slightly to a slightly smaller "web size"; may not look good
+   when a full-sized image is adaptively resized to a thumbnail.
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

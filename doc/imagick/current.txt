@@ -1,0 +1,1 @@
+Returns reference to the current imagick object with image pointer at the correct sequence.

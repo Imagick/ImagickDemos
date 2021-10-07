@@ -1,0 +1,1 @@
+Obtains the current clipping path ID.

@@ -1,0 +1,5 @@
+Shines a distant light on an image to create a three-dimensional effect.
+   You control the positioning of the light with azimuth and elevation;
+   azimuth is measured in degrees off the x axis and elevation is measured
+   in pixels above the Z axis.
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

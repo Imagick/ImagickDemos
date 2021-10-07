@@ -1,0 +1,3 @@
+Gets the image alpha channel value. The returned value is one of the 
+   alpha channel constants.
+   This method is available if Imagick has been compiled against ImageMagick version 6.4.0 or newer.

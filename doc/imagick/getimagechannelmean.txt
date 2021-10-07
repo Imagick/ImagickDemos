@@ -1,0 +1,1 @@
+Gets the mean and standard deviation of one or more image channels.

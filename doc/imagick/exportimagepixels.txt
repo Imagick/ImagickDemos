@@ -1,0 +1,3 @@
+Exports image pixels into an array. The map defines the ordering of the exported 
+   pixels. The size of the returned array is width * height * strlen(map).
+   This method is available if Imagick has been compiled against ImageMagick version 6.4.7 or newer.

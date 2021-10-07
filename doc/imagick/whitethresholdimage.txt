@@ -1,0 +1,2 @@
+Is like Imagick::ThresholdImage() but force all pixels above the threshold
+   into white while leaving all pixels below the threshold unchanged.

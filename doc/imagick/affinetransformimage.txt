@@ -1,0 +1,1 @@
+Transforms an image as dictated by the affine matrix.

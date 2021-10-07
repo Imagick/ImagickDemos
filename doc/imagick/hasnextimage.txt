@@ -1,0 +1,1 @@
+Returns True; if the object has more images when traversing the list in the forward direction.

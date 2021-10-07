@@ -1,0 +1,2 @@
+Returns the current text antialias setting, which determines whether text
+   is antialiased. Text is antialiased by default.

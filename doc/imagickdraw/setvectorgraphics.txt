@@ -1,0 +1,3 @@
+Sets the vector graphics associated with the specified ImagickDraw
+   object. Use this method with ImagickDraw::getVectorGraphics as a method
+   to persist the vector graphics state.

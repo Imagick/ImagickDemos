@@ -1,0 +1,1 @@
+Compares one or more images and returns the difference image.

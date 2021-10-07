@@ -1,0 +1,3 @@
+Writes all image frames into an open filehandle. This method can be used to write
+   animated gifs or other multiframe images into open filehandle.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.6 or newer.

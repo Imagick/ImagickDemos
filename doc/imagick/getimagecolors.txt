@@ -1,0 +1,1 @@
+Gets the number of unique colors in the image.

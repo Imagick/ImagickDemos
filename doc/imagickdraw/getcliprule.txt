@@ -1,0 +1,1 @@
+Returns the current polygon fill rule to be used by the clipping path.

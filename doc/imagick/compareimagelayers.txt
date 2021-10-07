@@ -1,0 +1,3 @@
+Compares each image with the next in a sequence and returns the
+   maximum bounding region of any pixel differences it discovers.
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

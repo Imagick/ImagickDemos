@@ -1,0 +1,1 @@
+Specifies the opacity of stroked object outlines.

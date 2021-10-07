@@ -1,0 +1,2 @@
+Is like Imagick::thresholdImage() but forces all pixels below the threshold
+   into black while leaving all pixels above the threshold unchanged.

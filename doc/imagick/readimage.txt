@@ -1,0 +1,1 @@
+Reads image from filename

@@ -1,0 +1,2 @@
+Paints pixels matching the target color transparent.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.8 or newer.

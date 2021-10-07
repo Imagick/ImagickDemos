@@ -1,0 +1,3 @@
+Tiles 9 thumbnails of the specified image with an image processing
+   operation applied at varying strengths.  This is helpful to quickly
+   pin-point an appropriate parameter for an image processing operation.

@@ -1,0 +1,3 @@
+Converts plain pixels to enciphered pixels. The image is not readable
+   until it has been deciphered using Imagick::decipherImage
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.9 or newer.

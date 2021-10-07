@@ -1,0 +1,1 @@
+Sets the color count associated with this color.

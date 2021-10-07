@@ -1,0 +1,1 @@
+Returns the fill rule used while drawing polygons.

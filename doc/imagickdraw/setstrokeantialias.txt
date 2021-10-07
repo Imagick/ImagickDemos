@@ -1,0 +1,4 @@
+Controls whether stroked outlines are antialiased. Stroked outlines are
+   antialiased by default.  When antialiasing is disabled stroked pixels are
+   thresholded to determine if the stroke color or underlying canvas color
+   should be used.

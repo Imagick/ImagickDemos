@@ -1,0 +1,8 @@
+ScaleKernelInfo() scales the given kernel list by the given amount, with or without
+   normalization of the sum of the kernel values (as per given flags).
+
+   The exact behaviour of this function depends on the normalization type being used
+   please see http://www.imagemagick.org/api/morphology.php#ScaleKernelInfo for details.
+
+   Flag should be one of Imagick::NORMALIZE_KERNEL_VALUE, Imagick::NORMALIZE_KERNEL_CORRELATE,
+   Imagick::NORMALIZE_KERNEL_PERCENT or not set.

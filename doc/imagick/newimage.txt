@@ -1,0 +1,1 @@
+Creates a new image and associates ImagickPixel value as background color

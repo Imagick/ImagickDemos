@@ -1,0 +1,1 @@
+Returns the image histogram as an array of ImagickPixel objects.

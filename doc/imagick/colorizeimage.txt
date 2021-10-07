@@ -1,0 +1,1 @@
+Blends the fill color with each pixel in the image.

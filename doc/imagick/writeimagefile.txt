@@ -1,0 +1,2 @@
+Writes the image sequence to an open filehandle. The handle must be opened with
+   for example fopen. This method is available if Imagick has been compiled against ImageMagick version 6.3.6 or newer.

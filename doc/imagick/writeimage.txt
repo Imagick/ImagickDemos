@@ -1,0 +1,3 @@
+Writes an image to the specified filename. If the filename parameter is NULL,
+   the image is written to the filename set by Imagick::readImage() or
+   Imagick::setImageFilename().

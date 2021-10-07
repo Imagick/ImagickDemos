@@ -1,0 +1,1 @@
+Returns a string which specifies the code set used for text annotations.

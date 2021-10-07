@@ -1,0 +1,1 @@
+Returns the specified resource's memory usage in megabytes.

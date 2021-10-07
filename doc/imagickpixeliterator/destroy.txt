@@ -1,0 +1,1 @@
+Deallocates resources associated with a PixelIterator.

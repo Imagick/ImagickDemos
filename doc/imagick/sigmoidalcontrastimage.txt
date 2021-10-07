@@ -1,0 +1,2 @@
+See also ImageMagick
+   v6 Examples - Image Transformations — Sigmoidal Non-linearity Contrast

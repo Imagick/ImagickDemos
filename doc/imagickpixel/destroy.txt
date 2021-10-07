@@ -1,0 +1,3 @@
+Deallocates any resources used by the ImagickPixel object, and unsets any
+   associated color. The object should not be used after the destroy function
+   has been called.

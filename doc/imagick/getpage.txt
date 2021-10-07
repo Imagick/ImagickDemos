@@ -1,0 +1,2 @@
+Returns the page geometry associated with the Imagick object in
+   an associative array with the keys "width", "height", "x", and "y".

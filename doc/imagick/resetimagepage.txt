@@ -1,0 +1,2 @@
+The page definition as a string. The string is in format WxH+x+y.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.6 or newer.

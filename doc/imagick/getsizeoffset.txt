@@ -1,0 +1,2 @@
+Returns the size offset associated with the Imagick object.
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

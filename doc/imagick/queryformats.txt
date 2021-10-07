@@ -1,0 +1,1 @@
+Returns formats supported by Imagick.

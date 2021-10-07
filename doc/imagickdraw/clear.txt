@@ -1,0 +1,2 @@
+Clears the ImagickDraw object of any accumulated commands, and resets the
+   settings it contains to their defaults.

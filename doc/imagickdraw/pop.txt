@@ -1,0 +1,4 @@
+Destroys the current ImagickDraw in the stack, and returns to the
+   previously pushed ImagickDraw. Multiple ImagickDraws may exist. It is an
+   error to attempt to pop more ImagickDraws than have been pushed, and it is
+   proper form to pop all ImagickDraws which have been pushed.

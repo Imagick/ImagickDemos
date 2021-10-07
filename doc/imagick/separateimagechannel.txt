@@ -1,0 +1,2 @@
+Separates a channel from the image and returns a grayscale image. A channel
+   is a particular color component of each pixel in the image.

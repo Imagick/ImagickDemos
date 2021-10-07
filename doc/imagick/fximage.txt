@@ -1,0 +1,2 @@
+Evaluate expression for each pixel in the image. Consult The Fx Special Effects Image
+   Operator for more information.

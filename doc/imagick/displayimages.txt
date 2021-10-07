@@ -1,0 +1,1 @@
+Displays an image or image sequence on a X server.

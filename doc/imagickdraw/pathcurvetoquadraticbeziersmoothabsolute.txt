@@ -1,0 +1,1 @@
+This function cannot be used to continue a cubic Bezier curve smoothly. It can only continue from a quadratic curve smoothly.

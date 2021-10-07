@@ -1,0 +1,2 @@
+Returns the index of the current active image within the Imagick object.
+   This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

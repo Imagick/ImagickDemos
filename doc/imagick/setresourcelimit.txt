@@ -1,0 +1,2 @@
+This method is used to modify the resource limits of the underlying ImageMagick
+   library.

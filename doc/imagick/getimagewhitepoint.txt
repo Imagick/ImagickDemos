@@ -1,0 +1,1 @@
+Returns the chromaticity white point as an associative array with the keys "x" and "y".

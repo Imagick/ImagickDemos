@@ -1,0 +1,3 @@
+Hides a digital watermark within the image. Recover the hidden watermark
+   later to prove that the authenticity of an image. Offset defines the start
+   position within the image to hide the watermark.

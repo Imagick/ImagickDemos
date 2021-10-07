@@ -1,0 +1,2 @@
+Sets the color described by the ImagickPixel object using normalized
+   values for hue, saturation and luminosity.

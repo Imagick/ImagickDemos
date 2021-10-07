@@ -1,0 +1,2 @@
+Adaptively sharpen the image by sharpening more intensely
+   near image edges and less intensely far from edges. This method is available if Imagick has been compiled against ImageMagick version 6.2.9 or newer.

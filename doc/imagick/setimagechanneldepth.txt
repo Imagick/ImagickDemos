@@ -1,0 +1,1 @@
+Sets the depth of a particular image channel.

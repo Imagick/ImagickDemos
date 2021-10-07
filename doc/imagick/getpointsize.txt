@@ -1,0 +1,2 @@
+Returns the objects point size property.
+   This method is available if Imagick has been compiled against ImageMagick version 6.3.7 or newer.

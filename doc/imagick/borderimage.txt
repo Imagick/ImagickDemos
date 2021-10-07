@@ -1,0 +1,1 @@
+Surrounds the image with a border of the color defined by the bordercolor ImagickPixel object.

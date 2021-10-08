@@ -11,7 +11,6 @@ class ConsoleApplication extends Application
 {
     /**
      * Creates a console application with all of the commands attached.
-     * @return ConsoleApplication
      */
     public function __construct()
     {
@@ -40,18 +39,4 @@ class ConsoleApplication extends Application
         $this->add($clearRedisCommand);
     }
 
-//    public static function getDeployCommand()
-//    {
-//        $deployCommand = new Command('deploy', ['ServerContainer\Deployer\Deployer', 'run']);
-//        $deployCommand->setDescription('Deploy an application.');
-//        $deployCommand->addArgument(
-//            'application',
-//            // This is optional so as to allow use to give the error message, instead
-//            // of the console app providing a rubbish one.
-//            InputArgument::OPTIONAL,
-//            "Which application should be deployed."
-//        );
-//        
-//        return $deployCommand;
-//    }
 }

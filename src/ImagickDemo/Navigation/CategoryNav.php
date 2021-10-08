@@ -57,7 +57,7 @@ class CategoryNav implements Nav
         $current = $this->pageInfo->getExample();
         $previous = null;
         
-        $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
+        $exampleList = getCategoryList($this->pageInfo->getCategory());
         
         foreach ($exampleList as $exampleName => $exampleToRun) {
             if (strcmp($current, $exampleName) === 0) {
@@ -79,7 +79,7 @@ class CategoryNav implements Nav
     {
         $current = $this->pageInfo->getExample();
         $next = false;
-        $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
+        $exampleList = getCategoryList($this->pageInfo->getCategory());
         foreach ($exampleList as $exampleName => $exampleToRun) {
             if ($next == true) {
                 return $exampleName;
@@ -187,7 +187,7 @@ class CategoryNav implements Nav
   <ul class="dropdown-menu" role="menu">
 END;
         
-        $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
+        $exampleList = getCategoryList($this->pageInfo->getCategory());
         
         foreach ($exampleList as $exampleName => $exampleDefinition) {
             //$output .= "<li><a href='$url'>$name</a></li>";
@@ -231,7 +231,7 @@ END;
     {
         $links = [];
 
-        $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
+        $exampleList = getCategoryList($this->pageInfo->getCategory());
         foreach ($exampleList as $exampleName => $exampleToRun) {
 
             $link['url'] = sprintf(
@@ -241,10 +241,6 @@ END;
             );
 
             $name = $exampleName;
-
-//            if (isset($exampleDefinition['name'])) {
-//                $name = $exampleDefinition['name'];
-//            }
             $link['description'] = $name;
 
             $links[] = $link;
@@ -258,7 +254,7 @@ END;
         $output = "<!-- This is placeholder HTML to make the nav work when JS -->";
         $output .= "<!-- is disabled in the browser. Check NavigationPanel.tsx -->";
         $output .= "<ul class='nav nav-sidebar smallPadding' id='searchList'>";
-        $exampleList = CategoryInfo::getCategoryList($this->pageInfo->getCategory());
+        $exampleList = getCategoryList($this->pageInfo->getCategory());
         
         foreach ($exampleList as $exampleName => $exampleToRun) {
             // Dumb hack to avoid forcing container wider

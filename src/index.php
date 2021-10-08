@@ -4,20 +4,16 @@ ini_set('display_errors', 'on');
 define('COMPOSER_OPCACHE_OPTIMIZE', true);
 
 use Auryn\Injector;
-use ImagickDemo\InjectionParams;
-use SlimAuryn\ExceptionMiddleware;
 use SlimAuryn\Routes;
-use Room11\HTTP\Request\CLIRequest;
 
-require_once realpath(__DIR__) . '/../vendor/autoload.php';
-require_once realpath(__DIR__) . '/factories.php';
-require_once realpath(__DIR__) . '/functions.php';
-require_once realpath(__DIR__) . '/site_html.php';
-require_once realpath(__DIR__) . '/option_functions.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/factories.php';
+require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/site_html.php';
+require_once __DIR__ . '/option_functions.php';
+require_once __DIR__ . "/example_list.php";
 
-ini_set('display_errors', 'off');
-
-//require __DIR__."/../vendor/intahwebz/core/src/Intahwebz/Functions.php";
+ini_set('display_errors', 'on');
 require "httpInjectionParams.php";
 
 // To make the example code be simple, they all assume the application's
@@ -44,8 +40,6 @@ $injector->share($injector);
 
 
 try {
-
-
     $app = $injector->make(\Slim\App::class);
     $routes = $injector->make(Routes::class);
     $routes->setupRoutes($app);

@@ -57,6 +57,10 @@ interface AppState {
     active_color: string|null; // the color being edited.
 }
 
+function capitalizeFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 function getDefaultState(initialControlParams: object): AppState {
 
     let state: AppState = {
@@ -141,13 +145,12 @@ function map_api_name(api_param_name: string): string {
         white_point: "White point",
     };
 
-
     if (known_map.hasOwnProperty(api_param_name) === true) {
         // @ts-ignore: blah blah
         return known_map[api_param_name];
     }
 
-    return api_param_name;
+    return capitalizeFirstLetter(api_param_name);
 }
 
 function makeOptionsFromEnum(options: Array<string>): Array<SelectOption>

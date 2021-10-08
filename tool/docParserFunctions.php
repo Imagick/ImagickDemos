@@ -25,9 +25,12 @@ function getUrl(string $fullURL)
 
     if ($statusCode != 200) {
         echo "Failed to read URL: " . $fullURL;
-        file_put_contents(__DIR__ . "/doc_fetching_errors.txt", "Failed to read URL: " . $fullURL, FILE_APPEND);
-//        echo $body;
-//        exit(-1);
+        file_put_contents(
+            __DIR__ . "/doc_fetching_errors.txt",
+            "Failed to read URL: " . $fullURL . "\n",
+            FILE_APPEND
+        );
+
         return null;
     }
 

@@ -56,13 +56,9 @@ This site is an attempt to provide a working example of every function in the <a
 </p>
 
 <p>If you find any issues with this site, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
-</p>     
-
-<p>
-Template system for this site was just changed to instead just use some functions...so stuff might be broken for a bit. 
 </p>
 
-<p>Oh, and I'm also in the process of migrating from jquery to React, so other things might break.</p>
+<p><b>8th October 2021</b> - the site has just been upgraded to use PHP 8, ImageMagick 7 and all controls have been swtich to React. Some stuff might be broken.</p>
 
 END;
 

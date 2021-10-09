@@ -16,6 +16,7 @@ services:
     environment:
       - ENV_DESCRIPTION=default,prod
   js_builder:
+    entrypoint: ["bash", "/var/app/containers/js_builder/build_prod_assets.sh"]
     environment:
       - API_BASE_URL=https://phpimagick.com
   redis:

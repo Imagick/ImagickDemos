@@ -1,9 +1,9 @@
 version: "3"
 services:
-  css_builder:
-    build: containers/css_builder
-    volumes:
-      - .:/var/app
+  #css_builder:
+  #  build: containers/css_builder
+  #  volumes:
+  #    - .:/var/app
   imagick_php_backend:
     build: containers/php_backend
     image: imagick_php_backend:latest

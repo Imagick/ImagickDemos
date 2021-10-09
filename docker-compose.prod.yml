@@ -1,13 +1,12 @@
 version: "3"
 services:
-  css_builder:
-
-    environment:
-      # we don't set NODE_ENV as production, as that is for serving node requests, not building stuff.
-      # - PHP_WEB_BUGS_BASE_URL=https://api.jssadness.com
-      - ENV_DESCRIPTION=default,prod
-    volumes:
-      - .:/var/app
+  #css_builder:
+  #  environment:
+  #    # we don't set NODE_ENV as production, as that is for serving node requests, not building stuff.
+  #    # - PHP_WEB_BUGS_BASE_URL=https://api.jssadness.com
+  #    - ENV_DESCRIPTION=default,prod
+  #  volumes:
+  #    - .:/var/app
   imagick_php_backend:
     environment:
       - ENV_DESCRIPTION=default,prod

@@ -19,7 +19,7 @@ FROM builder AS imagick_builder
 RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc make \
     libpng-dev libjpeg-dev ghostscript libxml2-dev  \
-    libtiff5-dev libwebp-dev libfreetype6-dev  \
+    libtiff5-dev libwebp-dev libfreetype6-dev libfftw3-dev  \
     strace valgrind vim
 
 # libonig-dev libssl-dev libcurl4-openssl-dev
@@ -57,6 +57,8 @@ COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickCore.pc /usr/local/li
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickWand-7.Q16HDRI.pc /usr/local/lib/pkgconfig/MagickWand-7.Q16HDRI.pc
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickWand.pc /usr/local/lib/pkgconfig/MagickWand.pc
 
+
+COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libfftw3.so.3 /usr/lib/x86_64-linux-gnu/libfftw3.so.3
 
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libfreetype.so.6 /usr/lib/x86_64-linux-gnu/libfreetype.so.6
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libjbig.so.0 /usr/lib/x86_64-linux-gnu/libjbig.so.0

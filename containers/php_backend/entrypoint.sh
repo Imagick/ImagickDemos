@@ -23,7 +23,7 @@ php vendor/bin/configurate \
     $ENV_TO_USE
 
 # clear redis here not in installer
-php cli.php clearRedis
+# php cli.php clearRedis
 
 /usr/sbin/php-fpm8.0 \
   --nodaemonize \

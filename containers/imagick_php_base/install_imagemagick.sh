@@ -14,18 +14,19 @@ if [ ! -d "${im_dir}" ]; then
   tar xfz ${im_tgz_file}
 fi
 
-
 cd "${im_dir}"
 
-./configure --with-quantum-depth=16 \
-           --with-magick-plus-plus=no \
-           --without-perl \
-           --disable-docs \
-           --with-jpeg=yes \
-           --with-png=yes \
-           --with-fontconfig=yes \
-           --with-webp=yes \
-           --with-tiff=yes
+./configure \
+  --disable-docs \
+  --with-quantum-depth=16 \
+  --with-fftw \
+  --with-fontconfig=yes \
+  --with-jpeg=yes \
+  --with-magick-plus-plus=no \
+  --with-png=yes \
+  --with-tiff=yes \
+  --with-webp=yes \
+  --without-perl
 
 make install -j4
 

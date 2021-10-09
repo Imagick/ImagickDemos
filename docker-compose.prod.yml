@@ -12,7 +12,7 @@ services:
     environment:
       - ENV_DESCRIPTION=default,prod
   installer:
-    entrypoint: ["bash", "/var/app/containers/css_builder/build_prod_assets.sh"]
+    # entrypoint: ["bash", "/var/app/containers/css_builder/build_prod_assets.sh"]
     environment:
       - ENV_DESCRIPTION=default,prod
   js_builder:

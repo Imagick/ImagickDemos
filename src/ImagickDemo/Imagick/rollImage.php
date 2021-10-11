@@ -4,16 +4,10 @@ namespace ImagickDemo\Imagick;
 
 class rollImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Imagick::rollImage";
     }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
-    }
-    
 
     public function render()
     {

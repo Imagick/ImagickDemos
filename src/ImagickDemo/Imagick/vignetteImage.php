@@ -6,14 +6,9 @@ use ImagickDemo\Imagick\Controls\VignetteImageControl;
 
 class vignetteImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Imagick::vignetteImage";
     }
 
     public function render()

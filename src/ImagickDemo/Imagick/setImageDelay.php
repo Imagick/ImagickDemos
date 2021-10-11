@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class setImageDelay extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::setImageDelay";
+    }
+
     public function renderDescription()
     {
         $output = "Modify an animated Gif so that it's frames are played at

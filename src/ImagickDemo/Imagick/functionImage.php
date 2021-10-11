@@ -49,9 +49,14 @@ f4 - Constant vertical offset, default 0.5";
 
     public function __construct(VarMap $varMap)
     {
-
         $this->functionImageControl = FunctionImageControl::createFromVarMap($varMap);
     }
+
+    public function renderTitle(): string
+    {
+        return "Imagick::functionImage";
+    }
+
 
     public function hasCustomImage(): bool
     {
@@ -96,7 +101,8 @@ f4 - Constant vertical offset, default 0.5";
         $output = createReactImagePanel(
             "/customImage/Imagick/functionImage",
             "/Imagick/functionImage",
-            true
+            true,
+            $this
         );
 
         // Well this is horrendous.
@@ -142,12 +148,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->control->getFirstTerm(),
+            $this->functionImageControl->getFirstTerm(),
         );
 
-        $secondTerm = $this->control->getSecondTerm();
-        $thirdTerm = $this->control->getThirdTerm();
-        $fourthTerm = $this->control->getFourthTerm();
+        $secondTerm = $this->functionImageControl->getSecondTerm();
+        $thirdTerm = $this->functionImageControl->getThirdTerm();
+        $fourthTerm = $this->functionImageControl->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -203,12 +209,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->control->getFirstTerm(),
+            $this->functionImageControl->getFirstTerm(),
         );
 
-        $secondTerm = $this->control->getSecondTerm();
-        $thirdTerm = $this->control->getThirdTerm();
-        $fourthTerm = $this->control->getFourthTerm();
+        $secondTerm = $this->functionImageControl->getSecondTerm();
+        $thirdTerm = $this->functionImageControl->getThirdTerm();
+        $fourthTerm = $this->functionImageControl->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -232,12 +238,12 @@ f4 - Constant vertical offset, default 0.5";
         $imagick = new \Imagick();
         $imagick->newPseudoImage(500, 500, 'gradient:black-white');
         $arguments = array(
-            $this->control->getFirstTerm(),
+            $this->functionImageControl->getFirstTerm(),
         );
 
-        $secondTerm = $this->control->getSecondTerm();
-        $thirdTerm = $this->control->getThirdTerm();
-        $fourthTerm = $this->control->getFourthTerm();
+        $secondTerm = $this->functionImageControl->getSecondTerm();
+        $thirdTerm = $this->functionImageControl->getThirdTerm();
+        $fourthTerm = $this->functionImageControl->getFourthTerm();
         if (strlen($secondTerm)) {
             $arguments[] = $secondTerm;
             if (strlen($thirdTerm)) {
@@ -255,7 +261,6 @@ f4 - Constant vertical offset, default 0.5";
         Image::analyzeImage($imagick, 512, 256);
 //Example end
     }
-
 
 
     public static function getParamType(): string

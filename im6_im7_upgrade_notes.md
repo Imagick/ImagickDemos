@@ -4,7 +4,7 @@
 https://imagemagick.org/script/porting.php
 
 
-
+mosaicImages is dead?
 
 
 public Imagick::flattenImages(): Imagick

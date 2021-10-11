@@ -4,6 +4,10 @@ namespace ImagickDemo\Imagick;
 
 class queryFormats extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::queryFormats";
+    }
 
 //Example Imagick::queryformats
     public function render()

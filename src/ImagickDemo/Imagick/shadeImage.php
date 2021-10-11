@@ -4,14 +4,9 @@ namespace ImagickDemo\Imagick;
 
 class shadeImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Imagick::shadeImage";
     }
 
     public function render()

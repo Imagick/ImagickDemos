@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class setImageResolution extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::setImageResolution";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

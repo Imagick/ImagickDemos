@@ -4,15 +4,25 @@ namespace ImagickDemo\Imagick;
 
 class motionBlurImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Imagick::motionBlurImage";
     }
 
-    function getOriginalFilename()
+    public function getOriginalImage()
     {
-        return $this->control->getImagePath();
+        return true;
     }
+
+//    function getOriginalImage()
+//    {
+//        return $this->control->getOriginalURL();
+//    }
+//
+//    function getOriginalFilename()
+//    {
+//        return $this->control->getImagePath();
+//    }
 
     public function render()
     {

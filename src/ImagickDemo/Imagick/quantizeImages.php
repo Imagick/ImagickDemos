@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class quantizeImages extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::quantizeImages";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

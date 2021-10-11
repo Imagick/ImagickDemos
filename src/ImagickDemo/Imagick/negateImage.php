@@ -2,20 +2,27 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\NegateImageControl;
+
 class negateImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Imagick::negateImage";
     }
 
-    function getOriginalFilename()
+    public function getOriginalImage()
     {
-        return $this->control->getImagePath();
+        return true;
     }
 
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public static function getParamType(): string
+    {
+        return NegateImageControl::class;
     }
 }

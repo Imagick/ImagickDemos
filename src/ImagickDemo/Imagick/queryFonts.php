@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class queryFonts extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::queryFonts";
+    }
+
     public function render()
     {
 //Example Imagick::queryFonts

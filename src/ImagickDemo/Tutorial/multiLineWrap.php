@@ -57,12 +57,12 @@ class WordWrap
 }
 
 
-
-
-
-
 class multiLineWrap extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Tutorial multi-line wrap.";
+    }
 
      /**
      * @return string

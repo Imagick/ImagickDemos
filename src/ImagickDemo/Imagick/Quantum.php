@@ -5,6 +5,11 @@ namespace ImagickDemo\Imagick;
 
 class Quantum extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick Quantum value";
+    }
+
     public function renderDescription()
     {
     }

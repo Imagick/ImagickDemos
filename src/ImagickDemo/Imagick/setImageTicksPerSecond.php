@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class setImageTicksPerSecond extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::setImageTicksPerSecond";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

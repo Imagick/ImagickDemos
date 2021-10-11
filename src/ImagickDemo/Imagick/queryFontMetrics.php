@@ -29,14 +29,9 @@ function print_table($metrics)
 
 class queryFontMetrics extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Imagick::queryFontMetrics";
     }
     
 

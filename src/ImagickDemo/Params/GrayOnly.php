@@ -19,11 +19,8 @@ class GrayOnly implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('0'),
-            new EnumMap([
-                0 => 'All pixels',
-                1 => 'Gray pixels only',
-            ])
+            new GetStringOrDefault('All pixels'),
+            new EnumMap(getGrayOnlyOptions())
         );
     }
 }

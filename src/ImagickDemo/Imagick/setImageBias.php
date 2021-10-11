@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class setImageBias extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::setImageBias";
+    }
+
     public function render()
     {
         return $this->renderImageURL();

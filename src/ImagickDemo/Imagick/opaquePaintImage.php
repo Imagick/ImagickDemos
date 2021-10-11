@@ -4,15 +4,10 @@ namespace ImagickDemo\Imagick;
 
 class opaquePaintImage extends \ImagickDemo\Example
 {
-    public function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getURL() . '&original=true';
+        return "Imagick::opaquePaintImage";
     }
-
-//    public function renderOriginalImage()
-//    {
-//        return \ImagickDemo\Imagick\renderFile(realpath("images/BlueScreen.jpg"), "BlueScreen.jpg");
-//    }
 
     public function getOriginalFilename()
     {

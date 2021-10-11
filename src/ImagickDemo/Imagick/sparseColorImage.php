@@ -16,6 +16,11 @@ class sparseColorImage extends \ImagickDemo\Example
         $this->control = $sparseControl;
     }
 
+    public function renderTitle(): string
+    {
+        return "Imagick::sparseColorImage";
+    }
+
     public function render()
     {
         return $this->renderCustomImageURL();

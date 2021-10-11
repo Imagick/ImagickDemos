@@ -6,14 +6,9 @@ namespace ImagickDemo\Imagick;
 
 class orderedPosterizeImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Imagick::orderedPosterizeImage";
     }
 
     public function renderDescription()

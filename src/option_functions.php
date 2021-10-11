@@ -372,3 +372,11 @@ function getHaldClutOptions()
         "TensionGreen1" => realpath(__DIR__ . "/../public/images/hald/creative/TensionGreen1.png"),
     ];
 }
+
+function getGrayOnlyOptions()
+{
+    return [
+        'All pixels' => 0,
+        'Gray pixels only' => 1,
+    ];
+}

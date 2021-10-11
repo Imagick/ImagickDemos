@@ -14,6 +14,11 @@ class setOption extends \ImagickDemo\Example
         $this->control = $control;
     }
 
+    public function renderTitle(): string
+    {
+        return "Imagick::setOption";
+    }
+
     public function render()
     {
         return $this->renderCustomImageURL();

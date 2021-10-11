@@ -6,22 +6,15 @@ use ImagickDemo\Imagick\Controls\UnsharpMaskImageControl;
 
 class unsharpMaskImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Imagick::unsharpMaskImage";
     }
 
     public function render()
     {
         return $this->renderImageURL();
     }
-
-
 
     public static function getParamType(): string
     {

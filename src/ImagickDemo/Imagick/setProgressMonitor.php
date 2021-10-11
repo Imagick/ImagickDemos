@@ -14,6 +14,12 @@ class setProgressMonitor extends \ImagickDemo\Example
         $this->control = $control;
     }
 
+
+    public function renderTitle(): string
+    {
+        return "Imagick::setProgressMonitor";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

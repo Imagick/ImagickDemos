@@ -4,16 +4,10 @@ namespace ImagickDemo\Imagick;
 
 class quantizeImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
+        return "Imagick::quantizeImage";
     }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
-    }
-    
 
     public function renderDescription()
     {

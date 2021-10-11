@@ -4,6 +4,11 @@ namespace ImagickDemo\Imagick;
 
 class segmentImage extends \ImagickDemo\Example
 {
+    public function renderTitle(): string
+    {
+        return "Imagick::segmentImage";
+    }
+
     public function renderDescription()
     {
         $output = <<< END

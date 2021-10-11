@@ -14,6 +14,11 @@ class setIteratorIndex extends \ImagickDemo\Example
         $this->firstLayer = $variableMap->getVariable('firstLayer', 0);
     }
 
+    public function renderTitle(): string
+    {
+        return "Imagick::setIteratorIndex";
+    }
+
     public function getCustomImageParams()
     {
         return ['firstLayer' => $this->firstLayer];

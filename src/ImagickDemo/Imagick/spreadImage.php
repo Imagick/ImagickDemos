@@ -4,14 +4,9 @@ namespace ImagickDemo\Imagick;
 
 class spreadImage extends \ImagickDemo\Example
 {
-    function getOriginalImage()
+    public function renderTitle(): string
     {
-        return $this->control->getOriginalURL();
-    }
-
-    function getOriginalFilename()
-    {
-        return $this->control->getImagePath();
+        return "Imagick::spreadImage";
     }
 
     public function render()

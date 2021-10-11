@@ -161,6 +161,7 @@ class Image
             'fill_color' => "fillColor",
             'fill_modified_color' => "fillModifiedColor",
             'first_term' => 'kernelFirstTerm',
+            'gray_only' => 'grayOnly',
             'hald_clut_type' => 'haldClutType',
             'kernel_render' => "kernelRender",
             'kernel_type' => 'kernelType',

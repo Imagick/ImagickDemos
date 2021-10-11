@@ -145,12 +145,15 @@ class Image
 
         $params['customImage'] = false;
 
+        // I strongly believe apis should use snake_case
+        // but most people in PHPland like camelCase
         $mappedParams = [
             'adaptive_offset' => 'adaptiveOffset',
             'background_color' => "backgroundColor",
             'best_fit' => "bestFit",
             'black_point' => "blackPoint",
             'blue_shift' => "blueShift",
+            'canvas_type' => "canvasType",
             "color_space" => "colorSpace",
             'end_angle' => 'endAngle',
             'end_x' => 'endX',
@@ -180,6 +183,9 @@ class Image
             'unsharp_threshold' => 'unsharpThreshold',
             'white_point' => "whitePoint",
         ];
+
+//        var_dump($params);
+//        exit(0);
 
         foreach ($mappedParams as $src => $dest) {
             if (array_key_exists($src, $params) === true) {

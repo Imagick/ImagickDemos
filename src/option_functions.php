@@ -305,3 +305,30 @@ function getContrastOptions()
         'Disabled' => 2
     ];
 }
+
+//Example Imagick::newPseudoImage - getCanvasOptions
+function getCanvasOptions()
+{
+    return [
+        "magick:GRANITE" => "magick:GRANITE",
+        "magick:LOGO" => "magick:LOGO",
+        "NETSCAPE: - Netscape web safe colors" => "NETSCAPE:",
+        "magick:WIZARD" =>   "magick:WIZARD",
+        "canvas:khaki - Canvas constant" => "canvas:khaki",
+        "xc:wheat - Canvas constant shorthand" => "xc:wheat",
+        "magick:rose" => "magick:rose",
+        "gradient:" => "gradient:",
+        "gradient:black-fuchsia" => "gradient:black-fuchsia",
+        "radial-gradient:" => "radial-gradient:",
+        "radial-gradient:red-blue" => "radial-gradient:red-blue",
+        "plasma:" => "plasma:",
+        "plasma:tomato-steelblue" => "plasma:tomato-steelblue",
+        "plasma:fractal" => "plasma:fractal",
+        "pattern:hexagons" => "pattern:hexagons",
+        "pattern:checkerboard" => "pattern:checkerboard",
+        "pattern:leftshingle" => "pattern:leftshingle",
+        "hald:[8] - identity hald clut, with 8 levels" => "hald:[8]",  // Identity Hald CLUT Image	Select levels like this: hald:[8] for level 8.
+        "hald:[6] - identity hald clut, with 6 levels " => "hald:[6]",
+    ];
+}
+//Example end

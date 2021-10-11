@@ -13,9 +13,10 @@ class ExampleSourceFinder
     private $files;
 
     function __construct() {
+        // TODO - scan all PHP files again.
 //        $directory = new \RecursiveDirectoryIterator(__DIR__ . '/../../src');
 //        $iterator = new \RecursiveIteratorIterator($directory);
-//        $this->files = new \RegexIterator($iterator, '/^.+\.php$/i', \RecursiveRegexIterator::MATCH);
+//        $this->files = new \RegexIterator($iterator, '/^.+\.php$/i', \RecursiveRegexIterator::GET_MATCH);
 
         $this->files = [
             realpath(__DIR__ . "/../../src/ImagickDemo/Imagick/functions.php"),
@@ -26,7 +27,6 @@ class ExampleSourceFinder
             realpath(__DIR__ . "/../../src/ImagickDemo/Tutorial/functions.php"),
             realpath(__DIR__ . "/../../src/ImagickDemo/Imagick/distortImage.php")
         ];
-
     }
 
     /**

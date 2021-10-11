@@ -4,7 +4,6 @@ namespace ImagickDemo;
 
 abstract class Example
 {
-
     public function hasOriginalImage()
     {
         return false;

@@ -29,7 +29,10 @@ export class NavigationPanel extends Component<NavigationProps, NavigationState>
             return true;
         }
 
-        return link.description.includes(this.state.search);
+        let search_lower_case = this.state.search.toLowerCase();
+        let link_description_lower_case = link.description.toLowerCase();
+
+        return link_description_lower_case.includes(search_lower_case);
     }
 
     renderLink(link:Link, index:number) {

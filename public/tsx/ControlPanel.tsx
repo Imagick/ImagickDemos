@@ -95,6 +95,7 @@ function map_api_name(api_param_name: string): string {
         blend_midpoint: "Blend midpoint",
         black_point: "Black point",
         bias: "Bias",
+        canvas_type: "Pseudo format",
         channel: "Channel",
         channel_number: "Channel number",
         channel_1_sample: "Channel 1",

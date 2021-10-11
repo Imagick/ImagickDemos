@@ -43,8 +43,7 @@ class CategoryInfo
     {
         $category = $pageInfo->getCategory();
         $example = $pageInfo->getExample();
-        $exampleDefinition = self::getExampleToRun($category, $example);
-        $function = $exampleDefinition[0];
+        $function = self::getExampleToRun($category, $example);
 
         return [sprintf('ImagickDemo\%s\%s', $category, $function), 'renderCustomImage'];
     }

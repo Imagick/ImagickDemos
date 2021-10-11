@@ -332,3 +332,43 @@ function getCanvasOptions()
     ];
 }
 //Example end
+
+function getHaldClutOptions()
+{
+    return [
+        "hald_8" => realpath(__DIR__ . "/../public/images/hald/hald_8.png"),
+
+        "contrast" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/contrast.HCLUT.png"),
+        "Dark_blue" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/Dark_blue.HCLUT.png"),
+        "Deep_dark_blue" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/Deep_dark_blue.HCLUT.png"),
+        "Desat_dark" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/Desat_dark.HCLUT.png"),
+        "Desat_edge" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/Desat_edge.HCLUT.png"),
+        "desaturate" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/desaturate.HCLUT.png"),
+        "End_twist_left" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/End_twist_left.HCLUT.png"),
+        "End_twist_right" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/End_twist_right.HCLUT.png"),
+        "Identity_level_8" => realpath(__DIR__ . "/../public/images/hald/quelsolaar/Identity_level_8.HCLUT.png"),
+
+        "Anime" => realpath(__DIR__ . "/../public/images/hald/creative/Anime.png"),
+        "BleachBypass1" => realpath(__DIR__ . "/../public/images/hald/creative/BleachBypass1.png"),
+        "CandleLight" => realpath(__DIR__ . "/../public/images/hald/creative/CandleLight.png"),
+        "ColorNegative" => realpath(__DIR__ . "/../public/images/hald/creative/ColorNegative.png"),
+        "CrispWarm" => realpath(__DIR__ . "/../public/images/hald/creative/CrispWarm.png"),
+        "CrispWinter" => realpath(__DIR__ . "/../public/images/hald/creative/CrispWinter.png"),
+        "DropBlues" => realpath(__DIR__ . "/../public/images/hald/creative/DropBlues.png"),
+        "EdgyEmber" => realpath(__DIR__ . "/../public/images/hald/creative/EdgyEmber.png"),
+        "FallColors" => realpath(__DIR__ . "/../public/images/hald/creative/FallColors.png"),
+        "FoggyNight" => realpath(__DIR__ . "/../public/images/hald/creative/FoggyNight.png"),
+        "FuturisticBleak1" => realpath(__DIR__ . "/../public/images/hald/creative/FuturisticBleak1.png"),
+        "HorrorBlue" => realpath(__DIR__ . "/../public/images/hald/creative/HorrorBlue.png"),
+        "LateSunset" => realpath(__DIR__ . "/../public/images/hald/creative/LateSunset.png"),
+        "Moonlight" => realpath(__DIR__ . "/../public/images/hald/creative/Moonlight.png"),
+        "NightFromDay" => realpath(__DIR__ . "/../public/images/hald/creative/NightFromDay.png"),
+        "RedBlueYellow" => realpath(__DIR__ . "/../public/images/hald/creative/RedBlueYellow.png"),
+        "Smokey" => realpath(__DIR__ . "/../public/images/hald/creative/Smokey.png"),
+        "SoftWarming" => realpath(__DIR__ . "/../public/images/hald/creative/SoftWarming.png"),
+        "TealMagentaGold" => realpath(__DIR__ . "/../public/images/hald/creative/TealMagentaGold.png"),
+        "TealOrange" => realpath(__DIR__ . "/../public/images/hald/creative/TealOrange.png"),
+        "TealOrange1" => realpath(__DIR__ . "/../public/images/hald/creative/TealOrange1.png"),
+        "TensionGreen1" => realpath(__DIR__ . "/../public/images/hald/creative/TensionGreen1.png"),
+    ];
+}

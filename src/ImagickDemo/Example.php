@@ -43,9 +43,6 @@ abstract class Example
     }
     
     abstract public function renderTitle(): string;
-//    {
-//        return "Some title";//getClassName(get_class($this));
-//    }
 
     public function renderDescription()
     {

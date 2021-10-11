@@ -117,6 +117,7 @@ function map_api_name(api_param_name: string): string {
         fourth_term: "Fourth term",
         function_type: "Function type",
         fx_analyze_example: "FX Analyze example",
+        hald_clut_type: "Hald clut",
         height: "Height",
         image_path: "Image",
         inner_bevel: "Inner bevel",

@@ -1099,12 +1099,11 @@ function getImageChannelStatistics($image_path)
 
 
 //Example Imagick::haldClutImage
-function haldClutImage($image_path)
+function haldClutImage($image_path, $hald_clut_type)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagickPalette = new \Imagick(realpath("images/hald/hald_8.png"));
-    $imagickPalette->sepiatoneImage(55);
-    $imagick->haldClutImage($imagickPalette);
+    $haldClutImage = new \Imagick(realpath($hald_clut_type));
+    $imagick->haldClutImage($haldClutImage);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

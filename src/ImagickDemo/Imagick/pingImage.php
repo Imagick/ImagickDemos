@@ -2,16 +2,17 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Control\ReactControls;
+use ImagickDemo\Imagick\Controls\ImageControl;
+use VarMap\VarMap;
+
 class pingImage extends \ImagickDemo\Example
 {
-    /**
-     * @var \ImagickDemo\Control\ImageControl
-     */
-    protected $control;
+    private ImageControl $imageControl;
 
-    public function __construct(\ImagickDemo\Control\ImageControl $control)
+    public function __construct(VarMap $varMap)
     {
-        $this->control = $control;
+        $this->imageControl = ImageControl::createFromVarMap($varMap);
     }
 
     public function renderTitle(): string
@@ -19,14 +20,27 @@ class pingImage extends \ImagickDemo\Example
         return "Imagick::pingImage";
     }
 
-    public function render()
+    public function hasBespokeRender()
     {
-        echo "This method can be used to query image width, height, size, and format without reading the whole image in to memory.";
+        return true;
+    }
 
+    public function bespokeRender(ReactControls $reactControls)
+    {
+        $output = "This method can be used to query image width, height, size, and format without reading the whole image in to memory.<br/><br/><br/>";
+
+//Example Imagick::Quantum
         $image = new \Imagick();
-        $image->pingImage(realpath($this->control->getImagePath()));
-        echo "For file: " . basename($this->control->getImagePath()) . " <br/>";
-        echo "Width is " . $image->getImageWidth() . "<br/>";
-        echo "Height is " . $image->getImageHeight() . "<br/>";
+        $image->pingImage(realpath($this->imageControl->getImagePath()));
+        $output .= "For file: " . basename($this->imageControl->getImagePath()) . " <br/><br/>";
+        $output .= "Width is " . $image->getImageWidth() . "<br/>";
+        $output .= "Height is " . $image->getImageHeight() . "<br/>";
+//Example end
+        return $output;
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

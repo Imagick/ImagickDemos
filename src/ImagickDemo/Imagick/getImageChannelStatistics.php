@@ -83,11 +83,6 @@ class getImageChannelStatistics extends \ImagickDemo\Example
         return "Get image channel statistics";
     }
 
-//    public function hasCustomImage(): bool
-//    {
-//        return false;
-//    }
-
     public function renderImage()
     {
         $imagick = new \Imagick($this->imageControl->getImagePath());

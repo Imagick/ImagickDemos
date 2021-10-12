@@ -4,17 +4,36 @@ services:
   #  build: containers/css_builder
   #  volumes:
   #    - .:/var/app
+  chrome_headless:
+    image: alpeware/chrome-headless-trunk
+    ports:
+      - "9222:9222"
+    cap_add:
+      - SYS_ADMIN
+    networks:
+      default_network:
+    security_opt:
+      - seccomp:unconfined
+    #extra_hosts:
+#      - "local.phpimagick.com:imagick_php_backend"
+     # - "local.phpimagick.com:162.242.195.82"
   imagick_php_backend:
     build: containers/php_backend
     image: imagick_php_backend:latest
+    networks:
+      default_network:
     volumes:
       - .:/var/app
     restart: always
   imagick_php_backend_debug:
     build: containers/php_backend_debug
+    environment:
+      - PHP_IDE_CONFIG=phpimagick
     image: imagick_php_backend_debug:latest
     depends_on:
       - imagick_php_backend
+    networks:
+      default_network:
     volumes:
       - .:/var/app
     restart: always
@@ -33,13 +52,18 @@ services:
     environment:
       - COMPOSER_CACHE_DIR=/var/app/var/cache/composer
       - COMPOSER_ALLOW_SUPERUSER=1
+    networks:
+      default_network:
     volumes:
       - .:/var/app
+
   redis:
     image: redis:4.0.6
     volumes:
       - ./containers/redis/redis.conf:/usr/local/etc/redis/redis.conf
     restart: always
+    networks:
+      default_network:
   web_server:
     build: containers/web_server
     image: imagick_web_server:latest
@@ -50,6 +74,11 @@ services:
       - .:/var/app
       - ./containers/web_server/config:/etc/config
     restart: always
+    networks:
+      default_network:
+        aliases:
+          - local.phpimagick.com
+          - internal.phpimagick.com
   workers:
     build: containers/background_worker
     image: imagick_php_worker:latest
@@ -59,3 +88,5 @@ services:
     volumes:
       - .:/var/app
     restart: always
+networks:
+  default_network:

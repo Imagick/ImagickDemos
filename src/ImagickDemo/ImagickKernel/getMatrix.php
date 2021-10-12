@@ -15,7 +15,7 @@ class getMatrix extends \ImagickDemo\Example
 
     public function renderDescription()
     {
-        return "Get the 2d matrix of values used in this kernel. The elements are either float for elements that are used or 'false' if the element should be skipped.";
+        return "";
     }
 
     public function hasBespokeRender()
@@ -33,8 +33,8 @@ class getMatrix extends \ImagickDemo\Example
         );
         $matrix = $kernel->getMatrix();
         $output .= Display::renderKernelTable($matrix);
-
-        $output .= "Or as an image: " . $this->renderCustomImageURL();
+//        $output .= "Or as an image: " . $this->renderCustomImageURL();
+        $output .= "Or as an image: <img src='/customImage/ImagickKernel/getMatrix'/>";
 
         return $output;
 //Example end
@@ -52,7 +52,6 @@ class getMatrix extends \ImagickDemo\Example
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
-
 
 
     public static function getParamType(): string

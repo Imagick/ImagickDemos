@@ -231,7 +231,7 @@ function renderKernel(ImagickKernel $imagickKernel)
     $kernel->drawImage($imagickDraw);
  
     /* create drop shadow on it's own layer */
-    $canvas = $kernel->clone();
+    $canvas = clone $kernel;
     $canvas->setImageBackgroundColor(new \ImagickPixel('rgb(0, 0, 0)'));
     $canvas->shadowImage(100, $shadowSigma, $shadowDropX, $shadowDropY);
 

@@ -2,22 +2,17 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-
 use ImagickDemo\Control\ReactControls;
-use ImagickDemo\ControlElement\KernelRender;
 use ImagickDemo\Display;
 use VarMap\VarMap;
 use ImagickDemo\ImagickKernel\Controls\FromMatrixControl;
 
-
 class fromMatrix extends \ImagickDemo\Example
 {
-
     public function renderTitle(): string
     {
         return "ImagickKernel::fromMatrix";
     }
-
 
     /**
      * @var fromMatrixControl
@@ -36,14 +31,13 @@ class fromMatrix extends \ImagickDemo\Example
         return "Create a kernel from an 2d matrix of values. Each value should either be a float (if the element should be used) or 'false' if the element should be skipped.";
     }
 
-
-
     public function bespokeRender(ReactControls $reactControls)
     {
         $output = createReactImagePanel(
             "/image/ImagickKernel/fromMatrix",
             "/ImagickKernel/fromMatrix",
-            true
+            true,
+            $this
         );
 
         // Well this is horrendous.
@@ -64,8 +58,6 @@ class fromMatrix extends \ImagickDemo\Example
     {
         return true;
     }
-
-
 
     public static function getParamType(): string
     {

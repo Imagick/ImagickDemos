@@ -2324,14 +2324,14 @@ function spreadImage($image_path, $radius)
 
 
 //Example Imagick::statisticImage
-function statisticImage($image_path, $statisticType, $w20, $h20, $channel)
+function statisticImage($image_path, $statisticType, $width, $height, $channel)
 {
     $imagick = new \Imagick(realpath($image_path));
 
     $imagick->statisticImage(
         $statisticType,
-        $w20,
-        $h20,
+        $width,
+        $height,
         $channel
     );
 

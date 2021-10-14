@@ -392,3 +392,17 @@ function getSparseColorOptions()
         'Shepards' => 'renderImageShepards',
     ];
 }
+
+function getStatisticTypeOptions()
+{
+    return [
+        "Gradient" => \Imagick::STATISTIC_GRADIENT,
+        "Maximum" => \Imagick::STATISTIC_MAXIMUM,
+        "Mean" => \Imagick::STATISTIC_MEAN,
+        "Median" => \Imagick::STATISTIC_MEDIAN,
+        "Minimum" => \Imagick::STATISTIC_MINIMUM,
+        "Mode" => \Imagick::STATISTIC_MODE,
+        "Non-peak" => \Imagick::STATISTIC_NONPEAK,
+        "Standard deviation" => \Imagick::STATISTIC_STANDARD_DEVIATION,
+    ];
+}

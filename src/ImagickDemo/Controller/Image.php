@@ -175,6 +175,7 @@ class Image
             'start_angle' => 'startAngle',
             'start_x' => 'startX',
             'start_y' => 'startY',
+            'statistic_type' => 'statisticType',
             'stroke_color' => "strokeColor",
             'text_decoration' => 'textDecoration',
             'text_under_color' => "textUnderColor",

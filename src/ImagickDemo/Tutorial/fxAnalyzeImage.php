@@ -59,7 +59,8 @@ END;
         $output = createReactImagePanel(
             "/customImage/Tutorial/fxAnalyzeImage",
             "/Tutorial/fxAnalyzeImage",
-            false
+            false,
+            $this
         );
 
         $output .= $reactControls->renderImageURL(false);

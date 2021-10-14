@@ -52,22 +52,6 @@ class Page
         DocHelper $docHelper,
         \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
     ) {
-        if ($varMap->has('page') === true) {
-            if ($varMap->get('page') === 'iframe') {
-
-                echo "Thought this code was dead.";
-                exit(0);
-
-                return renderExampleBare(
-                    $pageInfo,
-                    $categoryNav,
-                    $navigationBar,
-                    $control,
-                    $example
-                );
-            }
-        }
-
         return renderPageHtml(
             $categoryNav,
             $pageInfo,

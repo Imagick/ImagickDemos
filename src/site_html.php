@@ -105,8 +105,7 @@ function renderReactExampleImagePanel(
     $activeCategory,
     $activeExample,
     Example $example
-    /*, bool $needsFullPageRefresh */)
-{
+) {
     $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
 
     return createReactImagePanel(
@@ -117,19 +116,6 @@ function renderReactExampleImagePanel(
     );
 }
 
-function renderReactExampleCustom($imageBaseUrl, $activeCategory, $activeExample)
-{
-    // todo - wat?
-    // $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
-
-    $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
-
-    return createReactImagePanel(
-        $imageBaseUrl,
-        $pageBaseUrl,
-        false
-    );
-}
 
 /**
  * @param CodeExample[] $examples
@@ -172,29 +158,6 @@ function renderExamples(array $examples)
     return $output;
 }
 
-
-/*
-
-            $uri = sprintf(
-                "https://github.com/Danack/Imagick-demos/tree/master/src/ImagickDemo/%s/functions.php",
-                $example->category
-            );
-
-            if ($example->startLine && $example->endLine) {
-                $uri .= sprintf(
-                    "#L%d-L%d",
-                    $example->startLine,
-                    $example->endLine
-                );
-            }
-            else if ($example->startLine) {
-                $uri .= sprintf(
-                    "#L%d",
-                    $example->startLine
-                );
-            }
-
- */
 
 function renderExampleBodyHtml(
     ImagickDemo\Control $control,
@@ -346,7 +309,7 @@ $html = <<< HTML
     Peak memory {peakMemory()} <br/>
         <a href='/info'>FPM status</a><br/>
         <a href='/settingsCheck'>Settings check</a><br/>
-        <a href='/queueinfo'>QueueInfo</a><br/>
+        <!-- <a href='/queueinfo'>QueueInfo</a><br/> -->
         <a href='/opinfo'>OPMem Usage</a><br/>
       </span>
     </div>
@@ -525,55 +488,6 @@ return $html;
 
 }
 
-function renderExampleBare(
-    PageInfo $pageInfo,
-    CategoryNav $nav,
-    NavigationBar $navBar,
-    Control $control,
-    Example $example
-)
-{
-    $html = renderPageStartHtml($pageInfo);
-    $html .= renderTopNavBarForCategory(
-        $nav,
-        $navBar
-    );
-    $html .= renderExampleBareInternal(
-        $control,
-        $example
-    );
-    $html .= renderPageFooter();
-    $html .= renderPageEndHtml();
-
-    return $html;
-
-}
-
-//function renderExampleBareInternal(
-//    Control $control,
-//    Example $example
-//) {
-//
-//$html = <<< HTML
-//<div class='container'>
-//    <div class="row">
-//        <div class="col-md-12">
-//            <div class="row">
-//                <div class="col-md-7 col-xs-12 contentPanel">
-//                    {$example->render()}
-//                </div>
-//                <div class="col-sm-5 formHolder">
-//                    {$control->renderForm()}
-//                </div>
-//            </div>
-//        </div>
-//    </div>
-//</div>
-//HTML;
-//
-//    return $html;
-//}
-
 
 function renderTitlePage(
     PageInfo $pageInfo,
@@ -707,6 +621,10 @@ function createReactImagePanel(
     $refreshString = 'false';
     if ($full_page_refresh) {
         $refreshString = 'true';
+    }
+
+    if ($example->isRemovedInIM7() === true) {
+        return $example->renderIM7Migration();
     }
 
     $output = '<div id="imagePanel"';

@@ -2,13 +2,14 @@
 
 namespace ImagickDemo\Params;
 
+
 use Params\ExtractRule\GetStringOrDefault;
+use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\EnumMap;
 
 #[\Attribute]
-class MorphologyType implements Param
+class Smaller implements Param
 {
     public function __construct(
         private string $name
@@ -19,8 +20,8 @@ class MorphologyType implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault("Edge"/*\Imagick::MORPHOLOGY_EDGE*/),
-            new EnumMap(getMorphologyTypeOptions())
+            new GetStringOrDefault('Disabled'),
+            new EnumMap(getEnabledOptions())
         );
     }
 }

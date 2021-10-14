@@ -477,50 +477,21 @@ function convertStringToHtmlResponse(
     return $response;
 }
 
-/**
- * @return array<string, int>
- */
-function getEyeColourSpaceOptions()
-{
-    $colorSpaceTypes = [
-        'RGB' => \Imagick::COLORSPACE_RGB,
-//        \Imagick::COLORSPACE_GRAY => 'Gray',
-//        \Imagick::COLORSPACE_TRANSPARENT => 'Transparent',
-//        \Imagick::COLORSPACE_OHTA => 'OHTA',
-//        \Imagick::COLORSPACE_LAB => 'LAB',
-//        \Imagick::COLORSPACE_XYZ => 'XYZ',
-//        \Imagick::COLORSPACE_YCBCR => 'YCBCR',
-//        \Imagick::COLORSPACE_YCC => 'YCC',
-        'YIC' => \Imagick::COLORSPACE_YIQ,
-//        \Imagick::COLORSPACE_YPBPR => 'YPBPR',
-        'YUV' => \Imagick::COLORSPACE_YUV,
-//        \Imagick::COLORSPACE_CMYK => 'CMYK',
-        'SRGB' => \Imagick::COLORSPACE_SRGB,
-        'HSB' => \Imagick::COLORSPACE_HSB,
-        'HSL' => \Imagick::COLORSPACE_HSL,
-//        \Imagick::COLORSPACE_HWB => 'HWB',
-//        \Imagick::COLORSPACE_REC601LUMA => 'REC601LUMA',
-//        \Imagick::COLORSPACE_REC709LUMA => 'REC709LUMA',
-//        \Imagick::COLORSPACE_LOG => 'LOG',
-        'CMY' => \Imagick::COLORSPACE_CMY,
-    ];
-
-    return $colorSpaceTypes;
-}
 
 
-function getEyeColorSpaceStringFromValue(int $value)
-{
-    $colorspaceOptions = getEyeColourSpaceOptions();
 
-    foreach ($colorspaceOptions as $string => $int) {
-        if ($value === $int) {
-            return $string;
-        }
-    }
-
-    throw new \Exception("Bad option for getEyeColorSpaceStringFromValue $value");
-}
+//function getEyeColorSpaceStringFromValue(int $value)
+//{
+//    $colorspaceOptions = getEyeColourSpaceOptions();
+//
+//    foreach ($colorspaceOptions as $string => $int) {
+//        if ($value === $int) {
+//            return $string;
+//        }
+//    }
+//
+//    throw new \Exception("Bad option for getEyeColorSpaceStringFromValue $value");
+//}
 
 
 function getImagePathForOption(string $selected_option)
@@ -559,7 +530,7 @@ function getColorSpaceOptions()
         'Gray' => \Imagick::COLORSPACE_GRAY,
         'Transparent' => \Imagick::COLORSPACE_TRANSPARENT,
         'OHTA' => \Imagick::COLORSPACE_OHTA,
-        'LAB' => \Imagick::COLORSPACE_LAB,
+        // IM7 - 'LAB' => \Imagick::COLORSPACE_LAB,
         'XYZ' => \Imagick::COLORSPACE_XYZ,
         'YCBCR' => \Imagick::COLORSPACE_YCBCR,
         'YCC' => \Imagick::COLORSPACE_YCC,
@@ -571,8 +542,8 @@ function getColorSpaceOptions()
         'HSB' => \Imagick::COLORSPACE_HSB,
         'HSL' => \Imagick::COLORSPACE_HSL,
         'HWB' => \Imagick::COLORSPACE_HWB,
-        'REC601LUMA' => \Imagick::COLORSPACE_REC601LUMA,
-        'REC709LUMA' => \Imagick::COLORSPACE_REC709LUMA,
+        // IM7 - 'REC601LUMA' => \Imagick::COLORSPACE_REC601LUMA,
+        // IM7 - 'REC709LUMA' => \Imagick::COLORSPACE_REC709LUMA,
         'LOG' => \Imagick::COLORSPACE_LOG,
         'CMY' => \Imagick::COLORSPACE_CMY,
     ];

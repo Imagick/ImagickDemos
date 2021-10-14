@@ -55,7 +55,8 @@ END;
         $output = createReactImagePanel(
             "/customImage/Imagick/getImageGeometry",
             "/Imagick/getImageGeometry",
-            true
+            true,
+            $this
         );
 
         $text = "The values of getImageGeometry for the image below are:\n";

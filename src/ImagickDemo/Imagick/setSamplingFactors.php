@@ -2,35 +2,35 @@
 
 namespace ImagickDemo\Imagick;
 
-use Room11\HTTP\VariableMap;
-use ImagickDemo\Imagick\Control\samplingFactors as samplingFactorsControl;
+use ImagickDemo\Imagick\Controls\SetSamplingFactorsControl;
+use VarMap\VarMap;
 
 class setSamplingFactors extends \ImagickDemo\Example
 {
-    /**
-     * @var Control\samplingFactors
-     */
-    private $samplingFactorControl;
+    private SetSamplingFactorsControl $samplingFactorControl;
 
-    /**
-     * @var Request
-     */
-    private $request;
-
-    public function __construct(samplingFactorsControl $samplingFactorControl, VariableMap $variableMap)
+    public function __construct(VarMap $varMap)
     {
-        parent::__construct($samplingFactorControl);
-        $this->samplingFactorControl = $samplingFactorControl;
-        $this->request = $variableMap;
+        $this->samplingFactorControl = SetSamplingFactorsControl::createFromVarMap($varMap);
     }
 
-    /**
-     * @return string
-     */
-    public function getOriginalImage()
+    public function hasOriginalImage()
     {
-        return $this->control->getURL() . '&original=true';
+        return true;
     }
+
+    public static function getParamType(): string
+    {
+        return SetSamplingFactorsControl::class;
+    }
+
+//    /**
+//     * @return string
+//     */
+//    public function getOriginalImage()
+//    {
+//        return $this->control->getURL() . '&original=true';
+//    }
 
     public function renderDescription()
     {

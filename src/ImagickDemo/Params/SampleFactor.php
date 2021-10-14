@@ -2,15 +2,18 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetStringOrDefault;
+
+use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\EnumMap;
+use Params\ProcessRule\MaxIntValue;
+use Params\ProcessRule\MinIntValue;
 
 #[\Attribute]
-class MorphologyType implements Param
+class SampleFactor implements Param
 {
     public function __construct(
+        private int $default,
         private string $name
     ) {
     }
@@ -19,8 +22,9 @@ class MorphologyType implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault("Edge"/*\Imagick::MORPHOLOGY_EDGE*/),
-            new EnumMap(getMorphologyTypeOptions())
+            new GetIntOrDefault($this->default),
+            new MinIntValue(1),
+            new MaxIntValue(40),
         );
     }
 }

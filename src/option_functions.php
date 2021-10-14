@@ -406,3 +406,72 @@ function getStatisticTypeOptions()
         "Standard deviation" => \Imagick::STATISTIC_STANDARD_DEVIATION,
     ];
 }
+
+
+
+function getMorphologyTypeOptions()
+{
+    return [
+        "Convolve" => \Imagick::MORPHOLOGY_CONVOLVE,
+        "Correlate" => \Imagick::MORPHOLOGY_CORRELATE,
+
+        "Erode" => \Imagick::MORPHOLOGY_ERODE,
+        "Dilate" => \Imagick::MORPHOLOGY_DILATE,
+        "Erode intensity" => \Imagick::MORPHOLOGY_ERODE_INTENSITY,
+        "Dilate intensity" => \Imagick::MORPHOLOGY_DILATE_INTENSITY,
+
+        "Distance - Chebyshev" => \Imagick::MORPHOLOGY_DISTANCE . "Chebyshev",
+        "Distance - Manhattan" => \Imagick::MORPHOLOGY_DISTANCE . "Manhattan",
+        "Distance - Octagonal" => \Imagick::MORPHOLOGY_DISTANCE . "Octagonal",
+        "Distance - Euclidian" => \Imagick::MORPHOLOGY_DISTANCE . "Euclidian",
+        "Iterative" => \Imagick::MORPHOLOGY_ITERATIVE,
+
+        "Open" => \Imagick::MORPHOLOGY_OPEN,
+        "Close" => \Imagick::MORPHOLOGY_CLOSE,
+        "Open intensity" => \Imagick::MORPHOLOGY_OPEN_INTENSITY,
+        "Close intensity" => \Imagick::MORPHOLOGY_CLOSE_INTENSITY,
+        "Smooth" => \Imagick::MORPHOLOGY_SMOOTH,
+
+        "Edge in" => \Imagick::MORPHOLOGY_EDGE_IN,
+        "Edge out" => \Imagick::MORPHOLOGY_EDGE_OUT,
+        "Edge" => \Imagick::MORPHOLOGY_EDGE,
+        "Top hat" => \Imagick::MORPHOLOGY_TOP_HAT,
+        "Bottom hat" => \Imagick::MORPHOLOGY_BOTTOM_HAT,
+        "Hit and miss" => \Imagick::MORPHOLOGY_HIT_AND_MISS,
+        "Thinning" => \Imagick::MORPHOLOGY_THINNING,
+        "Thicken" => \Imagick::MORPHOLOGY_THICKEN . "Standard",
+        "Thicken - convex hull" => \Imagick::MORPHOLOGY_THICKEN . "Convex",
+//       \Imagick::MORPHOLOGY_VORONOI => "Voronoi",
+    ];
+}
+
+/**
+ * @return array<string, int>
+ */
+function getEyeColourSpaceOptions()
+{
+    $colorSpaceTypes = [
+        'RGB' => \Imagick::COLORSPACE_RGB,
+//        \Imagick::COLORSPACE_GRAY => 'Gray',
+//        \Imagick::COLORSPACE_TRANSPARENT => 'Transparent',
+//        \Imagick::COLORSPACE_OHTA => 'OHTA',
+//        \Imagick::COLORSPACE_LAB => 'LAB',
+//        \Imagick::COLORSPACE_XYZ => 'XYZ',
+//        \Imagick::COLORSPACE_YCBCR => 'YCBCR',
+//        \Imagick::COLORSPACE_YCC => 'YCC',
+        'YIC' => \Imagick::COLORSPACE_YIQ,
+//        \Imagick::COLORSPACE_YPBPR => 'YPBPR',
+        'YUV' => \Imagick::COLORSPACE_YUV,
+//        \Imagick::COLORSPACE_CMYK => 'CMYK',
+        'SRGB' => \Imagick::COLORSPACE_SRGB,
+        'HSB' => \Imagick::COLORSPACE_HSB,
+        'HSL' => \Imagick::COLORSPACE_HSL,
+//        \Imagick::COLORSPACE_HWB => 'HWB',
+//        \Imagick::COLORSPACE_REC601LUMA => 'REC601LUMA',
+//        \Imagick::COLORSPACE_REC709LUMA => 'REC709LUMA',
+//        \Imagick::COLORSPACE_LOG => 'LOG',
+        'CMY' => \Imagick::COLORSPACE_CMY,
+    ];
+
+    return $colorSpaceTypes;
+}

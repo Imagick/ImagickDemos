@@ -20,7 +20,7 @@ class FXAnalyzeControls implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[FXAnalyzeOption()]
+        #[FXAnalyzeOption('fx_analyze_option')]
         private string $fx_analyze_option
     ) {
     }
@@ -28,7 +28,7 @@ class FXAnalyzeControls implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
-            'fx_analyze_example' => getOptionFromOptions($this->fx_analyze_option, getFXAnalyzeOptions()),
+            'fx_analyze_option' => getOptionFromOptions($this->fx_analyze_option, getFXAnalyzeOptions()),
         ];
     }
 

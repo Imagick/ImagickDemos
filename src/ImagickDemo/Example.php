@@ -19,6 +19,11 @@ abstract class Example
         return \ImagickDemo\Imagick\Controls\NullControl::class;
     }
 
+    public function isRemovedInIM7()
+    {
+        return false;
+    }
+
     public function hasCustomImage(): bool
     {
         return false;

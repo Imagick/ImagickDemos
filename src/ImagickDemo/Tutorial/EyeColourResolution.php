@@ -14,15 +14,18 @@ class EyeColourResolution extends \ImagickDemo\Example implements ReactParamType
     /** @var \ImagickDemo\Helper\PageInfo */
     private $pageInfo;
 
-    /** @var VarMap */
-    private $varMap;
+//    /** @var VarMap */
+//    private $varMap;
+
+    private EyeColourResolutionParams $eyeColourResolutionParams;
 
     public function __construct(
         PageInfo $pageInfo,
         VarMap $varMap
     ) {
         $this->pageInfo = $pageInfo;
-        $this->varMap = $varMap;
+
+        $this->eyeColourResolutionParams = EyeColourResolutionParams::createFromVarMap($varMap);
     }
 
     public function renderTitle(): string
@@ -105,22 +108,24 @@ END;
         return $output;
     }
 
-    public function renderImageURL()
-    {
-        return $this->control->getURL();
-    }
+//    public function renderImageURL()
+//    {
+//        return $this->control->getURL();
+//    }
 
     public function render()
     {
-        $imageBaseUrl = $this->control->getURL();
-        $activeCategory = $this->pageInfo->getCategory();
-        $activeExample = $this->pageInfo->getExample();
-        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+//        $imageBaseUrl = $this->control->getURL();
+//        $activeCategory = $this->pageInfo->getCategory();
+//        $activeExample = $this->pageInfo->getExample();
+//        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
+
 
         return createReactImagePanel(
-            $imageBaseUrl,
-            $pageBaseUrl,
-            false
+            "/image/Tutorial/eyeColorResolution",
+            "/Tutorial/eyeColorResolution",
+            false,
+            $this
         );
     }
 }

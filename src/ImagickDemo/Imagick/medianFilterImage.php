@@ -13,16 +13,33 @@ class medianFilterImage extends \ImagickDemo\Example
 
     public function render()
     {
-        return $this->renderImageURL();
-    }
+//        return $this->renderImageURL();
 
+        $html = <<< HTML
     Doesn't exist on ImageMagick 7 - write equivalant
 
 median_image=StatisticImage(image,MedianStatistic,(size_t) radius,(size_t)
     radius,exception);
+HTML;
 
-//    public static function getParamType(): string
-//    {
-//        return Nu::class;
-//    }
+        return $html;
+
+    }
+
+    public function isRemovedInIM7()
+    {
+        return true;
+    }
+
+    public function renderIM7Migration()
+    {
+        $html = <<< HTML
+    Doesn't exist on ImageMagick 7 - write equivalant
+
+median_image=StatisticImage(image,MedianStatistic,(size_t) radius,(size_t)
+    radius,exception);
+HTML;
+
+        return $html;
+    }
 }

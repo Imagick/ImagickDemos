@@ -2,14 +2,18 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Control\ReactControls;
+use ImagickDemo\Imagick\Controls\ImageControl;
 use Room11\HTTP\VariableMap;
 use ImagickDemo\Display;
+use VarMap\VarMap;
+use ImagickDemo\Imagick\Controls\MorphologyControl;
 
 class morphology extends \ImagickDemo\Example
 {
-    private $usageControl;
+//    private $usageControl;
 
-    private $morphologyType;
+    private MorphologyControl $morphologyControl;
 
     private $functionTable;
 
@@ -19,30 +23,37 @@ class morphology extends \ImagickDemo\Example
         [false, false, 1]
     ];
 
-    //CustomImage
-    public function getCustomImageParams()
-    {
-        return ['morphologyType' => $this->morphologyType];
-    }
+//    //CustomImage
+//    public function getCustomImageParams()
+//    {
+//        return ['morphologyType' => $this->morphologyType];
+//    }
+
 
     public function renderCustomImage()
     {
-        if (array_key_exists($this->morphologyType, $this->functionTable) == true) {
-            $method = $this->functionTable[$this->morphologyType];
+        $morphologyType = $this->morphologyControl->getMorphologyType();
+
+        if (array_key_exists($morphologyType, $this->functionTable) == true) {
+            $method = $this->functionTable[$morphologyType];
             $this->{$method}();
-        } else {
-            //$this->renderBlank();
         }
     }
 
-    public function __construct(
-        \ImagickDemo\ImagickKernel\Control\usage $usageControl,
-        VariableMap $variableMap
-    ) {
-        //$this->fileResponseFactory = $fileResponseFactory;
-        $this->usageControl = $usageControl;
-        $this->morphologyType = $variableMap->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
-        parent::__construct($usageControl);
+    public static function getParamType(): string
+    {
+        return MorphologyControl::class;
+    }
+
+    public function __construct(VarMap $varMap)
+    {
+        $this->morphologyControl = MorphologyControl::createFromVarMap($varMap);
+
+//        //$this->fileResponseFactory = $fileResponseFactory;
+//        $this->usageControl = $usageControl;
+//        $this->morphologyType = $variableMap->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
+
+//        parent::__construct($usageControl);
 
         $this->functionTable = [
             \Imagick::MORPHOLOGY_CONVOLVE => "renderConvolve",
@@ -80,10 +91,10 @@ class morphology extends \ImagickDemo\Example
         return "Morphology";
     }
 
-    public function getOriginalImage()
-    {
-        return $this->control->getOriginalURL();
-    }
+//    public function getOriginalImage()
+//    {
+//        return $this->control->getOriginalURL();
+//    }
 
     public function getOriginalFilename()
     {
@@ -100,13 +111,15 @@ class morphology extends \ImagickDemo\Example
 
     public function renderDescription()
     {
+        $morphologyType = $this->morphologyControl->getMorphologyType();
+
         $output = "Applies a morpholohy effect to an image using an ImagickKernel. Please see the <a href='http://www.imagemagick.org/Usage/morphology/'>ImageMagick page on Morpgology</a> for exact details. <br/>&nbsp;<br/>";
 
-        if (array_key_exists($this->morphologyType, $this->functionTable) == false) {
+        if (array_key_exists($morphologyType, $this->functionTable) == false) {
             $output .= "Example not done yet.";
         }
 
-        switch ($this->morphologyType) {
+        switch ($morphologyType) {
             case (\Imagick::MORPHOLOGY_CONVOLVE): {
                 $output .= "Applies the kernel to the image with as a convolve (aka multiplication) function.";
                 break;
@@ -215,9 +228,31 @@ class morphology extends \ImagickDemo\Example
         return $output;
     }
 
+    public function hasBespokeRender()
+    {
+        return true;
+    }
+
+    public function bespokeRender(ReactControls $reactControls)
+    {
+        $output = "HALLo<BR/>";
+
+        $output .= createReactImagePanel(
+            "/customImage/Imagick/morphology",
+            "/Imagick/morphology",
+            false,
+            $this
+        );
+
+        $output .= $reactControls->renderImageURL("/images/character.png");
+
+        return $output;
+    }
+
     public function render()
     {
-        if (array_key_exists($this->morphologyType, $this->functionTable) == false) {
+        $morphologyType = $this->morphologyControl->getMorphologyType();
+        if (array_key_exists($morphologyType, $this->functionTable) == false) {
             return '';
         }
 
@@ -549,7 +584,6 @@ class morphology extends \ImagickDemo\Example
 //Example end
     }
 
-
     private function getCharacter()
     {
         $imagick = new \Imagick(realpath("./images/character.png"));
@@ -560,7 +594,6 @@ class morphology extends \ImagickDemo\Example
 //Example Imagick::morphology Helper functon to get an image silhouette
     private function getCharacterOutline()
     {
-
         $imagick = new \Imagick(realpath("./images/character.png"));
         $character = new \Imagick();
         $character->newPseudoImage(

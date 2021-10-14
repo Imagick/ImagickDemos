@@ -2,12 +2,8 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use Amp\Artax\Client as ArtaxClient;
-use Amp\Artax\SocketException;
-use Amp\Artax\Response;
 use DMore\ChromeDriver\ChromeDriver;
 use Behat\Mink\Exception\DriverException;
-
 
 function compareImage(URLToCheck $urlToCheck, $resposeBody, $contentType) {
 
@@ -27,8 +23,7 @@ function compareImage(URLToCheck $urlToCheck, $resposeBody, $contentType) {
         file_put_contents($oututFilename, $resposeBody);
         return;
     }
-       
-    
+
     $imagickNew = new Imagick();
     $imagickNew->readimageblob($resposeBody);
     
@@ -116,297 +111,6 @@ class HTMLPrinter {
     }
 }
 
-class URLToCheck {
-    
-    private $url;
-    private $referrer;
-    
-    function __construct($url, $referrer) {
-        $this->url = $url;
-        $this->referrer = $referrer;   
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReferrer() {
-        return $this->referrer;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUrl() {
-        return $this->url;
-    }
-}
-
-class URLResult {
-
-    private $path;
-    private $status;
-    private $errorMessage;
-    private $referrer;
-
-    function __construct($path, $status, $referrer, $errorMessage = null) {
-        $this->path = $path;
-        $this->status = $status;
-        $this->errorMessage = $errorMessage;
-        $this->referrer = $referrer;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getErrorMessage() {
-        return $this->errorMessage;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPath() {
-        return $this->path;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStatus() {
-        return $this->status;
-    }
-    
-    public function getReferrer() {
-        return $this->referrer;
-    }
-}
-
-
-
-
-class SiteChecker {
-
-    /**
-     * @var URLResult[]
-     */
-    private $urlsChecked = [];
-    
-    /** @var URLToCheck[] */
-    private $urlsToCheck = [];
-    
-    private $siteURL;
-    
-    private $count = 0;
-
-    private $errors = 0;
-
-    /**
-     * @var ArtaxClient
-     */
-    private $artaxClient;
-    
-    function __construct($siteURL, ArtaxClient $artaxClient) {
-        $this->siteURL = $siteURL;
-        $this->artaxClient = $artaxClient;
-    }
-
-    function getURLCount() {
-        return count($this->urlsChecked);
-
-    }
-    
-    function getErrorCount() {
-        return $this->errors;
-    }
-
-    /**
-     * @param URLToCheck $urlToCheck
-     */
-    function fetchURL(URLToCheck $urlToCheck) {
-        $this->count++;
-        $fullURL = $this->siteURL.$urlToCheck->getUrl();
-        
-        if (strpos($fullURL, '/queueinfo') !== false) {
-            return null;
-        }
-        
-        
-        
-        if ($this->count % 10 == 0) {
-            echo "\n";
-        }
-        echo ".";
-        echo "Getting $fullURL \n";
-        $promise = $this->artaxClient->request($fullURL);
-        $analyzeResult = function(\Exception $e = null, Response $response = null) use ($urlToCheck, $fullURL) {
-            
-            if ($e) {
-                echo "Something went wrong for $fullURL : ".$e->getMessage()."\n";
-                
-                if ($response) {
-                    var_dump($response->getAllHeaders());
-                }
-                
-                
-                $this->errors++;
-                return null;
-            }
-
-            $status = $response->getStatus();
-            $this->urlsChecked[] = new URLResult(
-                $urlToCheck->getUrl(),
-                $status,
-                $urlToCheck->getReferrer(),
-                substr($response->getBody(), 0, 200)
-            );
-
-            if ($status != 200 && $status != 420 && $status != 202) {
-                echo "Status is not ok for ".$urlToCheck->getUrl()."\n";
-                $this->errors++;
-                return null;
-            }
-
-            $contentTypeHeaders = $response->getHeader('Content-Type');
-
-            if (array_key_exists(0, $contentTypeHeaders) == false) {
-                throw new Exception("Content-type header not set.");
-            }
-
-            $contentType = $contentTypeHeaders[0];
-            $colonPosition = strpos($contentType, ';');
-
-            if ($colonPosition !== false) {
-                $contentType = substr($contentType, 0, $colonPosition);
-            }
-
-            switch ($contentType) {
-
-                case ('text/html'): {
-                    $body = $response->getBody();
-                    $this->analyzeBody($urlToCheck, $body);
-                    break;
-                }
-                
-                case ('text/plain'): {
-//                    $body = $response->getBody();
-//                    throw new \Exception("site checker should be run with background processing disabled:  ". $urlToCheck->getUrl() . " ". $urlToCheck->getReferrer()  . " " .substr($body, 0, 300));
-                    return null;
-                    break;
-                }
-
-                case ('application/octet-stream') :
-                case ('image/gif') :
-                case ('image/jpeg') :
-                case ('image/jpg') :
-                case ('image/vnd.adobe.photoshop') :
-                case ('image/png') : {
-                    //echo "Image with status - $status\n";
-                    //compareImage($urlToCheck, $response->getBody(), $contentType);
-                    return null;
-                }
-
-                default: {
-                    throw new \Exception("Unrecognised content-type $contentType");
-                }
-            }
-        };
-
-        $promise->when($analyzeResult);
-    }
-
-    /**
-     * @param DOMElement $element
-     * @param $referrer
-     */
-    function parseLinkResult(DOMElement $element, $referrer)  {
-        $href = $element->getAttribute('href');
-        $this->addLinkToProcess($href, $referrer);
-    }
-
-    /**
-     * @param DOMElement $element
-     * @param $referrer
-     */
-    function parseImgResult(DOMElement $element, $referrer)  {
-        $href = $element->getAttribute('src');
-        $this->addLinkToProcess($href, $referrer);
-    }
-    
-    
-//    function addLinkToProcess($href, $referrer) {
-//        $this->checkURL(new URLToCheck($href, $referrer));
-//    }
-
-
-//    /**
-//     * @param URLToCheck $urlToCheck
-//     */
-//    function checkURL(URLToCheck $urlToCheck) {
-//        $url = $urlToCheck->getUrl();
-//        if (array_key_exists($url, $this->urlsToCheck)) {
-//            return;
-//        }
-//
-//        if (strpos($urlToCheck->getUrl(), '/') !== 0) {
-//            $this->urlsToCheck[$url] = new URLResult($url, 200, $urlToCheck->getReferrer());
-//            return;
-//        }
-//
-//        $this->urlsToCheck[$url] = null;
-//        $this->fetchURL($urlToCheck);
-//    }
-
-    /**
-     * @param URLToCheck $urlToCheck
-     * @param $body
-     */
-    function analyzeBody(URLToCheck $urlToCheck, $body) {
-        $ok = false;
-        $path = $urlToCheck->getUrl();
-        
-        try {
-        
-            $fluentDOM = new FluentDOM();
-            $dom = $fluentDOM->load($body, 'text/html');
-    
-            $linkClosure = function (DOMElement $element) use ($urlToCheck) {
-                $this->parseLinkResult($element, $urlToCheck->getUrl());
-            };
-            $imgClosure = function (DOMElement $element) use ($urlToCheck) {
-                $this->parseImgResult($element, $urlToCheck->getUrl());
-            };
-    
-            $dom->find('//a')->each($linkClosure);
-            $dom->find('//img')->each($imgClosure);
-
-            $ok = true;
-        }
-        catch (SocketException $se) {
-            $this->urlsChecked[] = new URLResult($path, 500, "Artax\\SocketException on $path - ".$se->getMessage(). " Exception type is ".get_class($se));
-        }
-        catch(InvalidArgumentException $iae) {
-            //echo "Fluent dom exception on $path - ".$iae->getMessage(). " Exception type is ".get_class($iae)." \n";
-            $this->urlsChecked[] = new URLResult($path, 500, "Fluent dom exception on $path - ".$iae->getMessage(). " Exception type is ".get_class($iae));
-        }
-        catch(Exception $e) {
-            echo "Error getting $path - ".$e->getMessage(). " Exception type is ".get_class($e)." \n";
-//            $this->urlsChecked[] = new URLResult($path, 500, "Error getting $path - ".$e->getMessage(). " Exception type is ".get_class($e));
-        }
-
-        if ($ok != true) {
-            $this->errors++;
-        }
-    }
-
-    /**
-     * @return URLResult[]
-     */
-    function getResults() {
-        return $this->urlsChecked;
-    }
-}
-
-
 function getUrlAsHtml(string $url)
 {
     static $chrome = null;
@@ -480,7 +184,7 @@ class SiteChecker2
             return;
         }
 
-        echo "Added $img_url \n";
+//        echo "Added $img_url \n";
         $this->imgsToCheck[$img_url] = null;
     }
 
@@ -529,7 +233,7 @@ class SiteChecker2
         }
         else if ($content_type !== "text/html") {
             echo "URL $url had bad content type [" . $content_type . "]\n";
-            $this->urlsToCheck[$url] = 'bad content type';
+            $this->urlsToCheck[$url] = 'bad content type [' . $content_type . "]\n";
             return;
         }
 
@@ -573,18 +277,16 @@ class SiteChecker2
 
         if ($status_code !== 200) {
             $this->imgsToCheck[$img_url] = $status_code;
-
             //var_dump($this->imgsToCheck);
             return;
         }
-
 
         if ($content_type === "image/gif" ||
             $content_type === "image/png" ||
             $content_type === "image/jpg" ||
             $content_type === "image/jpeg") {
-            echo "content type was okay... $content_type \n";
-            $this->imgsToCheck[$img_url] = $content;
+//            echo "content type was okay... $content_type \n";
+            $this->imgsToCheck[$img_url] = $content_type;
             return;
         }
 
@@ -630,7 +332,7 @@ function dumpResult()
         echo "****Results**************\n";
         echo "****Results**************\n";
         printf(
-            "Checked %d urls and %d images",
+            "Checked %d urls and %d images\n",
             count($this->urlsToCheck),
             count($this->imgsToCheck)
         );
@@ -647,6 +349,7 @@ function dumpResult()
         foreach ($this->imgsToCheck as $img_url => $result) {
             if ($result === "image/gif" ||
                 $result === "image/png" ||
+                $result === "image/jpg" ||
                 $result === "image/jpeg") {
                 continue;
             }

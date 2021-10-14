@@ -380,3 +380,15 @@ function getGrayOnlyOptions()
         'Gray pixels only' => 1,
     ];
 }
+
+function getSparseColorOptions()
+{
+    return [
+        'Bilinear' => 'renderImageBilinear',
+        'Voronoi' => 'renderImageVoronoi',
+        'Barycentric' => 'renderImageBarycentric',
+        'Barycentric alt' => 'renderImageBarycentric2',
+        //'renderImagePolynomial' => 'Polynomial',
+        'Shepards' => 'renderImageShepards',
+    ];
+}

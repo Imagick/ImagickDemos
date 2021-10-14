@@ -411,15 +411,18 @@ function getUrlAsHtml(string $url)
 {
     static $chrome = null;
 
-    $host_ip = gethostbyname('chrome_headless');
-    //echo "chrome_headless IP is $host_ip\n";
-    $chrome = new ChromeDriver(
-        "http://$host_ip:9222",
-        null,
-        'http://internal.phpimagick.com'
-    );
+    if ($chrome === null) {
+        $host_ip = gethostbyname('chrome_headless');
+        //echo "chrome_headless IP is $host_ip\n";
+        $chrome = new ChromeDriver(
+            "http://$host_ip:9222",
+            null,
+            'http://internal.phpimagick.com'
+        );
 
-    $chrome->start();
+        $chrome->start();
+    }
+
     $chrome->visit($url);
 
     $content_type = null;
@@ -438,8 +441,6 @@ function getUrlAsHtml(string $url)
         $content_type,
         $chrome->getContent()
     ];
-
-//    var_dump($status, $chrome->getContent());
 }
 
 
@@ -479,6 +480,7 @@ class SiteChecker2
             return;
         }
 
+        echo "Added $img_url \n";
         $this->imgsToCheck[$img_url] = null;
     }
 
@@ -509,16 +511,23 @@ class SiteChecker2
         catch (DriverException $de) {
             echo "Oooh, an exception: " . $de->getMessage();
             $this->urlsToCheck[$url] = "Exception: " . $de->getMessage();
+            return;
         }
 
         if ($status_code !== 200) {
             echo "url $url had status code $status_code\n";
         }
         else {
-            echo "url $url is OK.\n";
+            // echo "url $url is OK.\n";
         }
 
-        if ($content_type !== "text/html") {
+        if ($content_type === "image/gif" ||
+            $content_type === "image/png" ||
+            $content_type === "image/jpeg") {
+            $this->urlsToCheck[$url] = $content_type;
+            return;
+        }
+        else if ($content_type !== "text/html") {
             echo "URL $url had bad content type [" . $content_type . "]\n";
             $this->urlsToCheck[$url] = 'bad content type';
             return;
@@ -547,13 +556,105 @@ class SiteChecker2
         return true;
     }
 
-    function dumpResult()
+    private function checkImage(string $img_url)
+    {
+        echo "Checking $img_url\n";
+        try {
+            [$status_code, $content_type, $content] = getUrlAsHtml($this->base_url . $img_url);
+            echo "no exception \n";
+        }
+        catch (DriverException $de) {
+            echo "Oooh, an exception: " . $de->getMessage();
+            $this->imgsToCheck[$img_url] = "Exception: " . $de->getMessage();
+            return;
+        }
+
+        echo "Status code = $status_code \n";
+
+        if ($status_code !== 200) {
+            $this->imgsToCheck[$img_url] = $status_code;
+
+            //var_dump($this->imgsToCheck);
+            return;
+        }
+
+
+        if ($content_type === "image/gif" ||
+            $content_type === "image/png" ||
+            $content_type === "image/jpg" ||
+            $content_type === "image/jpeg") {
+            echo "content type was okay... $content_type \n";
+            $this->imgsToCheck[$img_url] = $content;
+            return;
+        }
+
+        echo "what do: " . $img_url . "what do type $content_type status $status_code \n";
+
+        $this->imgsToCheck[$img_url] = "what do type $content_type status $status_code \n";
+    }
+
+    public function checkNextImage()
+    {
+        $count = 0;
+
+        foreach ($this->imgsToCheck as $img_url => $result) {
+            if ($result === null) {
+                $this->checkImage($img_url);
+                return false;
+            }
+
+            $count += 1;
+            if ($count > 5000) {
+                echo "That's enough checking for now.";
+                return true;
+            }
+        }
+        return true;
+    }
+
+    public function checkEverything()
+    {
+        do {
+            $finished = $this->checkNextUrl();
+        } while ($finished === false);
+
+        do {
+            $finished = $this->checkNextImage();
+        } while ($finished === false);
+    }
+
+
+function dumpResult()
     {
         echo "****Results**************\n";
         echo "****Results**************\n";
         echo "****Results**************\n";
+        printf(
+            "Checked %d urls and %d images",
+            count($this->urlsToCheck),
+            count($this->imgsToCheck)
+        );
+
+        echo "Problematic urls:\n";
         foreach ($this->urlsToCheck as $url => $result) {
+            if ($result === 200) {
+                continue;
+            }
             echo $url . " : " . $result . "\n";
+        }
+
+        echo "Problematic img:\n";
+        foreach ($this->imgsToCheck as $img_url => $result) {
+            if ($result === "image/gif" ||
+                $result === "image/png" ||
+                $result === "image/jpeg") {
+                continue;
+            }
+            if ($result === null) {
+                echo "[" . $img_url . "] : result is null?\n";
+            }
+
+            echo "[" . $img_url . "] : " . $result . "\n";
         }
     }
 }

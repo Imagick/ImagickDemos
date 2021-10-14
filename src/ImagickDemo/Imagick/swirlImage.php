@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\SwirlImageControl;
+
 class swirlImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -12,5 +14,10 @@ class swirlImage extends \ImagickDemo\Example
     public function render()
     {
         return $this->renderImageURL();
+    }
+
+    public static function getParamType(): string
+    {
+        return SwirlImageControl::class;
     }
 }

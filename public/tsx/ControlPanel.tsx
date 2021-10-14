@@ -131,6 +131,7 @@ function map_api_name(api_param_name: string): string {
         round_y: "Round y",
         second_term: "Second term",
         sigma: "Sigma",
+        sparse_color_type: "Sparse color type",
         start_angle: "Start angle",
         start_x: "Start X",
         start_y: "Start Y",

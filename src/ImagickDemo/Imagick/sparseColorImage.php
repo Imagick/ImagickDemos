@@ -4,16 +4,16 @@ namespace ImagickDemo\Imagick;
 
 //TODO - add sparse inverse
 
+use ImagickDemo\Imagick\Controls\SparseColorImageControl;
+use VarMap\VarMap;
+
 class sparseColorImage extends \ImagickDemo\Example
 {
-    /**
-     * @var \ImagickDemo\Control\SparseColorControl
-     */
-    protected $control;
+    private SparseColorImageControl $imageControl;
 
-    public function __construct(\ImagickDemo\Control\SparseColorControl $sparseControl)
+    public function __construct(VarMap $varMap)
     {
-        $this->control = $sparseControl;
+        $this->imageControl = SparseColorImageControl::createFromVarMap($varMap);
     }
 
     public function renderTitle(): string
@@ -23,29 +23,28 @@ class sparseColorImage extends \ImagickDemo\Example
 
     public function render()
     {
-        return $this->renderCustomImageURL();
+        return "asidapdpiahdsidpahd";
+//        $url = "/customImage/Imagick/functionImage";
+//        $url .= "?" . http_build_query($this->functionImageControl->getValuesForForm());
+
+        //return $this->renderCustomImageURL();
+    }
+
+    public static function getParamType(): string
+    {
+        return SparseColorImageControl::class;
+    }
+
+    public function hasCustomImage(): bool
+    {
+        return true;
     }
 
     public function renderCustomImage()
     {
-        $methods = [
-            'renderImageBarycentric2' => 'renderImageBarycentric2',
-            'renderImageBilinear' => 'renderImageBilinear',
-            //'renderImagePolynomial' => 'renderImagePolynomial',
-            'renderImageShepards' => 'renderImageShepards',
-            //'renderImageInverse' => 'renderImageInverse'
-            'renderImageVoronoi' => 'renderImageVoronoi',
-            'renderImageBarycentric' => 'renderImageBarycentric',
-        ];
+        $sparseType = $this->imageControl->getSparseColorType();
 
-        $sparseType = $this->control->getSparseColorType();
-
-        if (array_key_exists($sparseType, $methods) == false) {
-            throw new \Exception("Unknown composite method $sparseType");
-        }
-
-        $method = $methods[$sparseType];
-        $this->{$method}();
+        $this->{$sparseType}();
     }
 
     public function renderDescription()
@@ -182,6 +181,8 @@ END;
             [0.70, 0.60, 'lime'],
             [0.80, 0.20, 'yellow'],
         ];
+
+
         $imagick = createGradientImage(500, 500, $points, \Imagick::SPARSECOLORMETHOD_VORONOI);
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
@@ -348,11 +349,14 @@ function createGradientImage($width, $height, $colorPoints, $sparseMethod, $abso
         $barycentricPoints[] = $red;
         $barycentricPoints[] = $green;
         $barycentricPoints[] = $blue;
-        $barycentricPoints[] = $alpha;
+        // TODO - document this as a change on IM7
+        //$barycentricPoints[] = $alpha;
     }
+
 
     $imagick->sparseColorImage($sparseMethod, $barycentricPoints);
 
     return $imagick;
 }
 //Example end
+

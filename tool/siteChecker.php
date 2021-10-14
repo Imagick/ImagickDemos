@@ -11,10 +11,10 @@ use DMore\ChromeDriver\ChromeDriver;
 
 $site_checker = new \SiteChecker2("http://internal.phpimagick.com");
 $site_checker->addLinkToProcess("/");
+//$site_checker->addImageToProcess('/image/Imagick/medianFilterImage?time=1634169229931');
 $finished = false;
 
-do {
-    $finished = $site_checker->checkNextUrl();
-} while ($finished === false);
+$site_checker->checkEverything();
+
 
 $site_checker->dumpResult();

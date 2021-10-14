@@ -33,14 +33,14 @@ class Translate implements InputParameterList
         private string $fill_color,
         #[ImagickColorParam('LightCoral', 'fill_modified_color')]
         private string $fill_modified_color,
-        #[StartX('start_x')]
-        private string $startX,
-        #[StartY('start_y')]
-        private string $startY,
+        #[StartX(50, 'start_x')]
+        private string $start_x,
+        #[StartY(50, 'start_y')]
+        private string $start_y,
         #[EndX(400, 'end_x')]
-        private string $endX,
+        private string $end_x,
         #[EndY(400, 'end_y')]
-        private string $endY,
+        private string $end_y,
         #[TranslateX('translate_x')]
         private string $translate_x,
         #[TranslateY('translate_y')]

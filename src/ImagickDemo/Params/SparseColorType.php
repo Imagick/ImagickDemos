@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetStringOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
@@ -19,15 +19,8 @@ class SparseColorType implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault('renderImageVoronoi'),
-            new EnumMap([
-                'renderImageBilinear' => 'Bilinear',
-                'renderImageVoronoi' => 'Voronoi',
-                'renderImageBarycentric' => 'Barycentric',
-                'renderImageBarycentric2' => 'Barycentric alt',
-                //'renderImagePolynomial' => 'Polynomial',
-                'renderImageShepards' => 'Shepards',
-            ])
+            new GetStringOrDefault('Voronoi'),
+            new EnumMap(getSparseColorOptions())
         );
     }
 }

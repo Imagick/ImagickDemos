@@ -475,3 +475,14 @@ function getEyeColourSpaceOptions()
 
     return $colorSpaceTypes;
 }
+
+
+
+
+function getSharpeningOptions()
+{
+    return [
+        'Decrease' => 0,
+        'Increase' => 1,
+    ];
+}

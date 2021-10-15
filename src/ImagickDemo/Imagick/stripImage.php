@@ -6,7 +6,7 @@ class stripImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
     {
-        return "Adaptive blur image";
+        return "Strip image";
     }
 
     public function render()

@@ -5,17 +5,17 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 
-use ImagickDemo\Params\Radius;
-use ImagickDemo\Params\Sigma;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 use ImagickDemo\Params\Image;
+use ImagickDemo\Params\Midpoint;
+use ImagickDemo\Params\SigmoidalContrast;
+use ImagickDemo\Params\Sharpening;
 
-
-class CharcoalImageControl implements InputParameterList
+class SigmoidalContrastImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,10 +23,13 @@ class CharcoalImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius('radius')]
-        private string $radius,
-        #[Sigma(4, 'sigma')]
-        private string $sigma,
+        #[Sharpening('sharpening')]
+        private string $sharpening,
+        #[Midpoint('midpoint')]
+        private string $midpoint,
+        #[SigmoidalContrast(0.5, 'sigmoidal_contrast')]
+        private string $sigmoidal_contrast,
+
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -35,8 +38,10 @@ class CharcoalImageControl implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
-            'radius' => $this->radius,
-            'sigma' => $this->sigma,
+            'midpoint' => $this->midpoint,
+            'sigmoidal_contrast' => $this->sigmoidal_contrast,
+            'sharpening' => getOptionFromOptions($this->sharpening, getSharpeningOptions()),
+
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }

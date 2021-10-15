@@ -2254,9 +2254,8 @@ function shearImage($image_path, $color, $shearX, $shearY)
 function sigmoidalContrastImage($image_path, $sharpening, $midpoint, $sigmoidalContrast)
 {
     $imagick = new \Imagick(realpath($image_path));
-    //Need some stereo image to work with.
     $imagick->sigmoidalcontrastimage(
-        $sharpening, //sharpen
+        $sharpening,
         $midpoint,
         $sigmoidalContrast * \Imagick::getQuantum()
     );

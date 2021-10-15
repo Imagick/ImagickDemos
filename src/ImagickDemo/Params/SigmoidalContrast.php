@@ -12,7 +12,7 @@ use Params\ProcessRule\RangeFloatValue;
 class SigmoidalContrast implements Param
 {
     public function __construct(
-        private int $default,
+        private float $default,
         private string $name
     ) {
     }
@@ -21,7 +21,7 @@ class SigmoidalContrast implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(0.5),
+            new GetFloatOrDefault($this->default),
             new RangeFloatValue(-1000, 1000)
         );
     }

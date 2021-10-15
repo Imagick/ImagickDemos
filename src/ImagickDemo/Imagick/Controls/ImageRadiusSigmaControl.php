@@ -25,7 +25,7 @@ class ImageRadiusSigmaControl implements InputParameterList
     public function __construct(
         #[Radius('radius')]
         private string $radius,
-        #[Sigma('sigma')]
+        #[Sigma(4, 'sigma')]
         private string $sigma,
         #[Image('image_path')]
         private string $image_path,

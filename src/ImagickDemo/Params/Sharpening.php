@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
+use Params\ExtractRule\GetStringOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\EnumMap;
@@ -19,11 +19,8 @@ class Sharpening implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetIntOrDefault(1),
-            new EnumMap([
-                0 => 'Decrease',
-                1 => 'Increase',
-            ])
+            new GetStringOrDefault('Increase'),
+            new EnumMap(getSharpeningOptions())
         );
     }
 }

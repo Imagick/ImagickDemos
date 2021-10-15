@@ -5,20 +5,19 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 
+use ImagickDemo\Params\Radius;
+use ImagickDemo\Params\Sigma;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-
-use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Radius;
-use ImagickDemo\Params\Sigma;
-use ImagickDemo\Params\Amount;
-use ImagickDemo\Params\UnsharpThreshold;
+use ImagickDemo\Params\Angle;
+use ImagickDemo\Params\SigmoidalContrast;
+use ImagickDemo\Params\Sharpening;
 
-class UnsharpMaskImageControl implements InputParameterList
+class SketchImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -28,14 +27,10 @@ class UnsharpMaskImageControl implements InputParameterList
     public function __construct(
         #[Radius('radius')]
         private string $radius,
-        #[Sigma(1, 'sigma')]
+        #[Sigma(4, 'sigma')]
         private string $sigma,
-        #[Amount('amount')]
-        private string $amount,
-        #[UnsharpThreshold('unsharp_threshold')]
-        private string $unsharp_threshold,
-        #[Channel('channel')]
-        private string $channel,
+        #[Angle('angle')]
+        private string $angle,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -46,9 +41,7 @@ class UnsharpMaskImageControl implements InputParameterList
         return [
             'radius' => $this->radius,
             'sigma' => $this->sigma,
-            'amount' => $this->amount,
-            'unsharp_threshold' => $this->unsharp_threshold,
-            'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
+            'angle' => $this->angle,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }

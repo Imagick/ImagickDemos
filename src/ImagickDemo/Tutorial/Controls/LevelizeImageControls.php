@@ -20,11 +20,11 @@ class LevelizeImageControls implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[ComponentRangeFloat(50)]
+        #[ComponentRangeFloat(50, 'black_point')]
         private string $black_point,
-        #[ComponentRangeFloat(100)]
+        #[ComponentRangeFloat(100, 'white_point')]
         private string $white_point,
-        #[Gamma()]
+        #[Gamma('gamma')]
         private string $gamma,
     ) {
     }

@@ -40,13 +40,13 @@ END;
     }
 
 
-    /**
-     * @return \ImagickDemo\Control
-     */
-    public function getControl()
-    {
-        return $this->control;
-    }
+//    /**
+//     * @return \ImagickDemo\Control
+//     */
+//    public function getControl()
+//    {
+//        return $this->control;
+//    }
 
 
 

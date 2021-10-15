@@ -172,6 +172,7 @@ class Image
             'round_x' => 'roundX',
             'round_y' => 'roundY',
             'second_term' => 'kernelSecondTerm',
+            'sigmoidal_contrast' => 'sigmoidalContrast',
             'start_angle' => 'startAngle',
             'start_x' => 'startX',
             'start_y' => 'startY',

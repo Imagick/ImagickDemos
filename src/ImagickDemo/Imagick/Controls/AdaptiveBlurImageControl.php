@@ -25,7 +25,7 @@ class AdaptiveBlurImageControl
     public function __construct(
         #[Radius('radius')]
         private string $radius,
-        #[Sigma('sigma')]
+        #[Sigma(1, 'sigma')]
         private string $sigma,
         #[Channel('channel')]
         private string $channel,

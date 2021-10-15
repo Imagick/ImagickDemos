@@ -11,6 +11,7 @@ use Params\ProcessRule\RangeFloatValue;
 class Sigma implements Param
 {
     public function __construct(
+        private float $default,
         private string $name
     ) {
     }
@@ -19,7 +20,7 @@ class Sigma implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(1),
+            new GetFloatOrDefault($this->default),
             new RangeFloatValue(0, 100)
         );
     }

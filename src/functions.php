@@ -35,46 +35,46 @@ function hackVarMap($varMap)
     return $hackedVarMap;
 }
 
-function purgeExceptionMessage(\Throwable $exception)
-{
-    $rawMessage = $exception->getMessage();
+//function purgeExceptionMessage(\Throwable $exception)
+//{
+//    $rawMessage = $exception->getMessage();
+//
+//    $purgeAfterPhrases = [
+//        'with params'
+//    ];
+//
+//    $message = $rawMessage;
+//
+//    foreach ($purgeAfterPhrases as $purgeAfterPhrase) {
+//        $matchPosition = strpos($message, $purgeAfterPhrase);
+//        if ($matchPosition !== false) {
+//            $message = substr($message, 0, $matchPosition + strlen($purgeAfterPhrase));
+//            $message .= '**PURGED**';
+//        }
+//    }
+//
+//    return $message;
+//}
 
-    $purgeAfterPhrases = [
-        'with params'
-    ];
-
-    $message = $rawMessage;
-
-    foreach ($purgeAfterPhrases as $purgeAfterPhrase) {
-        $matchPosition = strpos($message, $purgeAfterPhrase);
-        if ($matchPosition !== false) {
-            $message = substr($message, 0, $matchPosition + strlen($purgeAfterPhrase));
-            $message .= '**PURGED**';
-        }
-    }
-
-    return $message;
-}
-
-function getTextForException(\Throwable $exception)
-{
-    $currentException = $exception;
-    $text = '';
-
-    do {
-        $text .= sprintf(
-            "Exception type:\n  %s\n\nMessage:\n  %s \n\nStack trace:\n%s\n",
-            get_class($currentException),
-            purgeExceptionMessage($currentException),
-            formatLinesWithCount(getExceptionStackAsArray($currentException))
-        );
-
-
-        $currentException = $currentException->getPrevious();
-    } while ($currentException !== null);
-
-    return $text;
-}
+//function getTextForException(\Throwable $exception)
+//{
+//    $currentException = $exception;
+//    $text = '';
+//
+//    do {
+//        $text .= sprintf(
+//            "Exception type:\n  %s\n\nMessage:\n  %s \n\nStack trace:\n%s\n",
+//            get_class($currentException),
+//            purgeExceptionMessage($currentException),
+//            formatLinesWithCount(getExceptionStackAsArray($currentException))
+//        );
+//
+//
+//        $currentException = $currentException->getPrevious();
+//    } while ($currentException !== null);
+//
+//    return $text;
+//}
 
 /**
  * Format an array of strings to have a count at the start
@@ -97,59 +97,59 @@ function formatLinesWithCount(array $lines): string
 }
 
 
-/**
- * @param Throwable $exception
- * @return string[]
- */
-function getExceptionStackAsArray(\Throwable $exception)
-{
-    $lines = [];
-    foreach ($exception->getTrace() as $trace) {
-        $lines[] = formatTraceLine($trace);
-    }
+///**
+// * @param Throwable $exception
+// * @return string[]
+// */
+//function getExceptionStackAsArray(\Throwable $exception)
+//{
+//    $lines = [];
+//    foreach ($exception->getTrace() as $trace) {
+//        $lines[] = formatTraceLine($trace);
+//    }
+//
+//    return $lines;
+//}
 
-    return $lines;
-}
 
-
-function formatTraceLine(array $trace)
-{
-    $location = '??';
-    $function = 'unknown';
-
-    if (isset($trace["file"]) && isset($trace["line"])) {
-        $location = $trace["file"]. ':' . $trace["line"];
-    }
-    else if (isset($trace["file"])) {
-        $location = $trace["file"] . ':??';
-    }
-
-    $baseDir = realpath(__DIR__ . '/../');
-    if ($baseDir === false) {
-        throw new \Exception("Couldn't find parent directory from " . __DIR__);
-    }
-
-    $location = str_replace($baseDir, '', $location);
-
-    if (isset($trace["class"]) && isset($trace["type"]) && isset($trace["function"])) {
-        $function = $trace["class"] . $trace["type"] . $trace["function"];
-    }
-    else if (isset($trace["class"]) && isset($trace["function"])) {
-        $function = $trace["class"] . '_' . $trace["function"];
-    }
-    else if (isset($trace["function"])) {
-        $function = $trace["function"];
-    }
-    else {
-        $function = "Function is weird: " . json_encode(var_export($trace, true));
-    }
-
-    return sprintf(
-        "%s %s",
-        $location,
-        $function
-    );
-}
+//function formatTraceLine(array $trace)
+//{
+//    $location = '??';
+//    $function = 'unknown';
+//
+//    if (isset($trace["file"]) && isset($trace["line"])) {
+//        $location = $trace["file"]. ':' . $trace["line"];
+//    }
+//    else if (isset($trace["file"])) {
+//        $location = $trace["file"] . ':??';
+//    }
+//
+//    $baseDir = realpath(__DIR__ . '/../');
+//    if ($baseDir === false) {
+//        throw new \Exception("Couldn't find parent directory from " . __DIR__);
+//    }
+//
+//    $location = str_replace($baseDir, '', $location);
+//
+//    if (isset($trace["class"]) && isset($trace["type"]) && isset($trace["function"])) {
+//        $function = $trace["class"] . $trace["type"] . $trace["function"];
+//    }
+//    else if (isset($trace["class"]) && isset($trace["function"])) {
+//        $function = $trace["class"] . '_' . $trace["function"];
+//    }
+//    else if (isset($trace["function"])) {
+//        $function = $trace["function"];
+//    }
+//    else {
+//        $function = "Function is weird: " . json_encode(var_export($trace, true));
+//    }
+//
+//    return sprintf(
+//        "%s %s",
+//        $location,
+//        $function
+//    );
+//}
 
 
 /**
@@ -231,26 +231,7 @@ function continuallyExecuteCallable($callable, int $secondsBetweenRuns, int $sle
 }
 
 
-function saneErrorHandler($errorNumber, $errorMessage, $errorFile, $errorLine): bool
-{
-    if (error_reporting() === 0) {
-        // Error reporting has been silenced
-        if ($errorNumber !== E_USER_DEPRECATED) {
-            // Check it isn't this value, as this is used by twig, with error suppression. :-/
-            return true;
-        }
-    }
-    if ($errorNumber === E_DEPRECATED) {
-        return false;
-    }
-    if ($errorNumber === E_CORE_ERROR || $errorNumber === E_ERROR) {
-        // For these two types, PHP is shutting down anyway. Return false
-        // to allow shutdown to continue
-        return false;
-    }
-    $message = "Error: [$errorNumber] $errorMessage in file $errorFile on line $errorLine.";
-    throw new \Exception($message);
-}
+
 
 /**
  * Decode JSON with actual error detection
@@ -300,27 +281,27 @@ function json_encode_safe($data, $options = 0): string
 }
 
 
-function getExceptionText(\Throwable $exception): string
-{
-    $text = "";
-    do {
-        $text .= get_class($exception) . ":" . $exception->getMessage() . "\n\n";
-
-        if ($exception instanceof Auryn\InjectionException) {
-            $text .= "DependencyChains is:\n";
-            foreach ($exception->getDependencyChain() as $item) {
-                $text .= "  " . $item . "\n";
-            }
-        }
-
-        $text .= $exception->getTraceAsString();
-
-
-        $exception = $exception->getPrevious();
-    } while ($exception !== null);
-
-    return $text;
-}
+//function getExceptionText(\Throwable $exception): string
+//{
+//    $text = "";
+//    do {
+//        $text .= get_class($exception) . ":" . $exception->getMessage() . "\n\n";
+//
+//        if ($exception instanceof Auryn\InjectionException) {
+//            $text .= "DependencyChains is:\n";
+//            foreach ($exception->getDependencyChain() as $item) {
+//                $text .= "  " . $item . "\n";
+//            }
+//        }
+//
+//        $text .= $exception->getTraceAsString();
+//
+//
+//        $exception = $exception->getPrevious();
+//    } while ($exception !== null);
+//
+//    return $text;
+//}
 
 
 function getExceptionInfoAsArray(\Throwable $exception)

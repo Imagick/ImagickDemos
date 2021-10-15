@@ -26,8 +26,6 @@ Top-tip, you probably want 'Integer of dots' % 'Phase divider' to be zero.";
         return $this->renderImageURL();
     }
 
-
-
     public static function getParamType(): string
     {
         return WhirlyGifControls::class;

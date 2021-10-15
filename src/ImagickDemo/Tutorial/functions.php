@@ -835,7 +835,7 @@ class Dot
             $xOffset = $distance * sin($angle);
             $yOffset = $distance * cos($angle);
             $draw->setFillColor($this->color);
-            $draw->setFillAlpha($alpha / 100);
+            @$draw->setFillAlpha($alpha / 100);
 
             $xOffset = $xOffset * $this->imageWidth / 500;
             $yOffset = $yOffset * $this->imageHeight / 500;

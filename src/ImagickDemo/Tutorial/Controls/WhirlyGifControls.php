@@ -25,17 +25,17 @@ class WhirlyGifControls implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[BackgroundColorChoice()]
+        #[BackgroundColorChoice('background_color')]
         private string $background_color,
-        #[NumberDots()]
+        #[NumberDots('number_dots')]
         private $numberDots,
-        #[NumberFrames()]
+        #[NumberFrames('number_frames')]
         private $numberFrames,
-        #[LoopTime()]
+        #[LoopTime('loop_time')]
         private $loopTime,
-        #[PhaseMultiplier()]
+        #[PhaseMultiplier('phase_multiplier')]
         private $phaseMultiplier,
-        #[PhaseDivider()]
+        #[PhaseDivider('phase_divider')]
         private $phaseDivider,
     ) {
     }
@@ -44,11 +44,11 @@ class WhirlyGifControls implements InputParameterList
     {
         return [
             'background_color' => getOptionFromOptions($this->background_color, getBackgroundColorChoiceOptions()),
-            "numberDots" => $this->numberDots,
-            "numberFrames" => $this->numberFrames,
-            "loopTime" => $this->loopTime,
-            "phaseMultiplier" => $this->phaseMultiplier,
-            "phaseDivider" => $this->phaseDivider,
+            "number_dots" => $this->numberDots,
+            "number_frames" => $this->numberFrames,
+            "loop_time" => $this->loopTime,
+            "phase_multiplier" => $this->phaseMultiplier,
+            "phase_divider" => $this->phaseDivider,
         ];
     }
 }

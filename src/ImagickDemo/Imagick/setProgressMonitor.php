@@ -2,18 +2,24 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageControl;
+use VarMap\VarMap;
+
 class setProgressMonitor extends \ImagickDemo\Example
 {
-    /**
-     * @var \ImagickDemo\Control\ImageControl
-     */
-    protected $control;
+    private ImageControl $imageControl;
 
-    public function __construct(\ImagickDemo\Control\ImageControl $control)
-    {
-        $this->control = $control;
+    public function __construct(
+        VarMap $varMap
+    ) {
+        $this->imageControl = ImageControl::createFromVarMap($varMap);
     }
 
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
+    }
 
     public function renderTitle(): string
     {
@@ -40,7 +46,7 @@ END;
         $abortReason = null;
 
         try {
-            $imagick = new \Imagick(realpath($this->control->getImagePath()));
+            $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
             $startTime = time();
 
             $callback = function ($offset, $span) use ($startTime, &$abortReason) {

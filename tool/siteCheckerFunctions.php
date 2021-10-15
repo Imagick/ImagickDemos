@@ -227,6 +227,7 @@ class SiteChecker2
 
         if ($content_type === "image/gif" ||
             $content_type === "image/png" ||
+            $content_type === "image/jpg" ||
             $content_type === "image/jpeg") {
             $this->urlsToCheck[$url] = $content_type;
             return;
@@ -265,7 +266,7 @@ class SiteChecker2
         echo "Checking $img_url\n";
         try {
             [$status_code, $content_type, $content] = getUrlAsHtml($this->base_url . $img_url);
-            echo "no exception \n";
+//            echo "no exception \n";
         }
         catch (DriverException $de) {
             echo "Oooh, an exception: " . $de->getMessage();
@@ -273,7 +274,7 @@ class SiteChecker2
             return;
         }
 
-        echo "Status code = $status_code \n";
+//        echo "Status code = $status_code \n";
 
         if ($status_code !== 200) {
             $this->imgsToCheck[$img_url] = $status_code;

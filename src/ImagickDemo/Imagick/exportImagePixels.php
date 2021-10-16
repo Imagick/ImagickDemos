@@ -11,10 +11,7 @@ class exportImagePixels extends \ImagickDemo\Example
         return "Export image pixels";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

@@ -9,8 +9,5 @@ class scaleImage extends \ImagickDemo\Example
         return "Imagick::scaleImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

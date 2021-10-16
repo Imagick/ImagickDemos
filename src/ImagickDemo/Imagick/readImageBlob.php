@@ -9,8 +9,5 @@ class readImageBlob extends \ImagickDemo\Example
         return "Imagick::readImageBlob";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

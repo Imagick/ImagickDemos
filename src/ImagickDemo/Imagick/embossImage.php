@@ -11,11 +11,6 @@ class embossImage extends \ImagickDemo\Example
         return "Emboss image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
     public static function getParamType(): string
     {
         return ImageRadiusSigmaControl::class;

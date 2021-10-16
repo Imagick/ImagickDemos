@@ -24,7 +24,10 @@ class setIteratorIndex extends \ImagickDemo\Example
         return ['firstLayer' => $this->firstLayer];
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = '';
         $output .= "Selecting layers from <a href='/images/LayerTest.psd'>source PSD</a>:<br/>";

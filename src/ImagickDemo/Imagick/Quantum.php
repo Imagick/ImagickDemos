@@ -14,7 +14,10 @@ class Quantum extends \ImagickDemo\Example
     {
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $imagick = new \Imagick();
 

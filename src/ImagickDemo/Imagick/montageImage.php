@@ -9,8 +9,5 @@ class montageImage extends \ImagickDemo\Example
         return "Montage image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

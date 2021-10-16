@@ -9,8 +9,5 @@ class flattenImages extends \ImagickDemo\Example
         return "Flatten images";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

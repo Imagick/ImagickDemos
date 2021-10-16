@@ -35,7 +35,10 @@ class queryFontMetrics extends \ImagickDemo\Example
     }
     
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $text = "Lorem ipsum";
         $im = new \Imagick();

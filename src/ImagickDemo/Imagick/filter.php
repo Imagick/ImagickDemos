@@ -11,10 +11,7 @@ class filter extends \ImagickDemo\Example
         return "Filter";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

@@ -9,8 +9,5 @@ class getPixelIterator extends \ImagickDemo\Example
         return "Get pixel iterator";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

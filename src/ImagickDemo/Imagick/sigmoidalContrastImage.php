@@ -22,10 +22,7 @@ HTML;
         return "Imagick::sigmoidalContrastImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public function hasOriginalImage()
     {

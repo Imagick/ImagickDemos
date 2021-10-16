@@ -9,8 +9,5 @@ class randomThresholdImage extends \ImagickDemo\Example
         return "Imagick::randomThresholdImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

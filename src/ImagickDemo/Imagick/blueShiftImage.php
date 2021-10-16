@@ -26,10 +26,7 @@ class blueShiftImage extends \ImagickDemo\Example
 //        return $this->control->getImagePath();
 //    }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

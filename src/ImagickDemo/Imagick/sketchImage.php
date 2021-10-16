@@ -11,10 +11,7 @@ class sketchImage extends \ImagickDemo\Example
         return "Imagick::sketchImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public function hasOriginalImage()
     {

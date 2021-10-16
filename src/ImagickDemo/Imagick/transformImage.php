@@ -9,8 +9,5 @@ class transformImage extends \ImagickDemo\Example
         return "Imagick::transformImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

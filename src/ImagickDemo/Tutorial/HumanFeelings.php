@@ -36,7 +36,10 @@ END;
         return $this->control->getURL();
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $html = <<< HTML
 <div id="human_feelings"></div>

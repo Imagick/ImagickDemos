@@ -17,7 +17,10 @@ class separate extends \ImagickDemo\Example
         return "Separates a linked set of kernels and returns an array of ImagickKernels.";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickKernel::separate
         $matrix = [

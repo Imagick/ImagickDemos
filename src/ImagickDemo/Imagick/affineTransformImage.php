@@ -22,8 +22,11 @@ class affineTransformImage extends \ImagickDemo\Example
         return ImageControl::class;
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        return $this->renderImageURL();
+//    }
 }

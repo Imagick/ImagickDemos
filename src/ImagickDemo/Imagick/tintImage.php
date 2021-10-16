@@ -9,8 +9,5 @@ class tintImage extends \ImagickDemo\Example
         return "Imagick::tintImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

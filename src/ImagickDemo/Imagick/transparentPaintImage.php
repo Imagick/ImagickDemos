@@ -14,8 +14,5 @@ class transparentPaintImage extends \ImagickDemo\Example
         return realpath("images/BlueScreen.jpg");
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

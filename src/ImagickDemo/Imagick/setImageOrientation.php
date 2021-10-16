@@ -9,8 +9,5 @@ class setImageOrientation extends \ImagickDemo\Example
         return "Imagick::setImageOrientation";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

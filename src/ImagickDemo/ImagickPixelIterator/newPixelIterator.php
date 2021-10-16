@@ -9,7 +9,10 @@ class newPixelIterator extends \ImagickDemo\Example
         return "New pixel iterator";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "";
     }

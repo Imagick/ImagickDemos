@@ -9,8 +9,5 @@ class setImageArtifact extends \ImagickDemo\Example
         return "Imagick::setImageArtifact";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

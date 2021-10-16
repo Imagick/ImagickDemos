@@ -32,11 +32,6 @@ END;
         return $output;
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
 
 
     public static function getParamType(): string

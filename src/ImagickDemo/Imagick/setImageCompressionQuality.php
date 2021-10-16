@@ -75,8 +75,5 @@ class setImageCompressionQuality extends \ImagickDemo\Example
         return "";
     }
     
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

@@ -9,8 +9,5 @@ class textureImage extends \ImagickDemo\Example
         return "Imagick::textureImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

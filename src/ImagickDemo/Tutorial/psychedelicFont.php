@@ -19,8 +19,5 @@ END;
         return nl2br($output);
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

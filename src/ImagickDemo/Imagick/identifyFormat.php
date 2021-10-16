@@ -21,9 +21,14 @@ class identifyFormat extends \ImagickDemo\Example
     }
 
     /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return string
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example Imagick::identifyFormat
         $output = "Output of 'Trim box: %@ number of unique colors: %k' is: <br/>";

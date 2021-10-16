@@ -16,13 +16,6 @@ class colorizeImage extends \ImagickDemo\Example
         return "Colorize image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
-
-
     public static function getParamType(): string
     {
         return ColorizeImageControl::class;

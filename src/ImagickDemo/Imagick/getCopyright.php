@@ -9,7 +9,10 @@ class getCopyright extends \ImagickDemo\Example
         return "Copyright display";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = '';
         $output .= "Copyright information is:<pre>";

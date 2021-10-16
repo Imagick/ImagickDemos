@@ -11,10 +11,7 @@ class smushImages extends \ImagickDemo\Example
         return "Imagick::smushImages";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

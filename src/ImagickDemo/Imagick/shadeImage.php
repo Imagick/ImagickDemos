@@ -9,8 +9,5 @@ class shadeImage extends \ImagickDemo\Example
         return "Imagick::shadeImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

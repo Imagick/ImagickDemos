@@ -13,8 +13,5 @@ class remapImage extends \ImagickDemo\Example
     {
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

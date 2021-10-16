@@ -27,7 +27,10 @@ NORMALIZE_KERNEL_CORRELATE
 
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickKernel::scale
         $output = "";

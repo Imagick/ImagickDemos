@@ -41,9 +41,14 @@ class logoTshirt extends \ImagickDemo\Example
     }
 
     /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return string
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL(['type' => 'simple']);

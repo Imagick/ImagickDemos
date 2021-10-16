@@ -6,11 +6,6 @@ use ImagickDemo\Imagick\Controls\AdaptiveResizeImageControl;
 
 class adaptiveResizeImage extends \ImagickDemo\Example
 {
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
     public function renderTitle(): string
     {
         return "Adaptive resize image";

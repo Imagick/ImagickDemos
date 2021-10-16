@@ -9,8 +9,5 @@ class oilPaintImage extends \ImagickDemo\Example
         return "Imagick::oilPaintImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

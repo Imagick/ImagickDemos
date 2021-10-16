@@ -18,7 +18,10 @@ class listColors extends \ImagickDemo\Example
         color (ImagickPixel) argument is expected.";
     }
     
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "<table class='smallPadding' width='100%'>";
         $output .= "<tbody>";

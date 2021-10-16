@@ -9,8 +9,5 @@ class resampleImage extends \ImagickDemo\Example
         return "Imagick::resampleImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

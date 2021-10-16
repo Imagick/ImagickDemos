@@ -11,10 +11,7 @@ class flipImage extends \ImagickDemo\Example
         return "Flip image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

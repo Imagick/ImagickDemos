@@ -25,10 +25,7 @@ END;
     }
 
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

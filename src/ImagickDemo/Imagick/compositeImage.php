@@ -18,9 +18,4 @@ class compositeImage extends \ImagickDemo\Example
 
         return $output;
     }
-
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
 }

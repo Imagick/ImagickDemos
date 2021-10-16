@@ -18,9 +18,14 @@ class debugImage extends \ImagickDemo\Example
     }
 
     /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return string
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
 

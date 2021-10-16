@@ -9,8 +9,5 @@ class spreadImage extends \ImagickDemo\Example
         return "Imagick::spreadImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

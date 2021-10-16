@@ -11,13 +11,6 @@ class contrastImage extends \ImagickDemo\Example
         return "Contrast image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
-
-
     public static function getParamType(): string
     {
         return ContrastImageControl::class;

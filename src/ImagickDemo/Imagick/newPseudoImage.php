@@ -26,7 +26,10 @@ HTML;
 
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = $this->renderDescription();
         $output .= $this->renderImageURL();

@@ -19,7 +19,7 @@ class HaldClutType implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault("contrast"),
+            new GetStringOrDefault("EdgyEmber"),
             new EnumMap(getHaldClutOptions())
         );
     }

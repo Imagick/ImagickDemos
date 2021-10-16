@@ -16,16 +16,6 @@ class addNoiseImage extends \ImagickDemo\Example
         return "Add noise image";
     }
 
-//    function getOriginalImage()
-//    {
-//        return $this->control->getOriginalURL();
-//    }
-//
-//    function getOriginalFilename()
-//    {
-//        return $this->control->getImagePath();
-//    }
-
     public function renderDescription()
     {
         $output = "NOISE_UNIFORM = 1;
@@ -39,12 +29,13 @@ class addNoiseImage extends \ImagickDemo\Example
         return nl2br($output);
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
-
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        return $this->renderImageURL();
+//    }
 
 
     public static function getParamType(): string

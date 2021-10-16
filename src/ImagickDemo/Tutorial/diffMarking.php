@@ -14,10 +14,7 @@ class diffMarking extends \ImagickDemo\Example
         return "/images/compare1.png";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
     
     public function renderDescription()
     {

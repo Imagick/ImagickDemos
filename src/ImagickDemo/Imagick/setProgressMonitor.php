@@ -39,7 +39,10 @@ END;
         return nl2br($output);
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         echo "<pre>";
 //Example Imagick::setProgressMonitor

@@ -18,8 +18,5 @@ END;
         return $output;
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

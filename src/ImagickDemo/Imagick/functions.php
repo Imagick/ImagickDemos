@@ -4,7 +4,6 @@ namespace ImagickDemo\Imagick;
  
 use Imagick;
 use ImagickDraw;
-//use Tier\Body\CachingFileBodyFactory;
 
 class functions
 {

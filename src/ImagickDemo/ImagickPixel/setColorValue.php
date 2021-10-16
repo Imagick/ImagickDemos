@@ -8,9 +8,4 @@ class setColorValue extends \ImagickDemo\Example
     {
         return "Set color value";
     }
-
-    public function render()
-    {
-        return "" . $this->renderImageURL();
-    }
 }

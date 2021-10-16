@@ -113,7 +113,10 @@ END;
 //        return $this->control->getURL();
 //    }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //        $imageBaseUrl = $this->control->getURL();
 //        $activeCategory = $this->pageInfo->getCategory();

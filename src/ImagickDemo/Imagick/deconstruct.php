@@ -16,7 +16,10 @@ class deconstruct extends \ImagickDemo\Example
         The resulting sequence of images can be used to optimize an animation sequence, though will not work correctly for GIF animations when parts of the animation can go from opaque to transparent .";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "";
     }

@@ -9,8 +9,5 @@ class recolorImage extends \ImagickDemo\Example
         return "Imagick::recolorImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

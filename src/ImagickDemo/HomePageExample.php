@@ -18,7 +18,10 @@ class HomePageExample extends \ImagickDemo\Example
         return 2;
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = <<< END
    

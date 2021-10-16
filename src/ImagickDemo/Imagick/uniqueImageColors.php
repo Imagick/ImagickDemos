@@ -9,7 +9,10 @@ class uniqueImageColors extends \ImagickDemo\Example
         return "Imagick::uniqueImageColors";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "Extracts all the unique colors from an image, and generates and 1 pixel high, and 1 pixel wide for each color.";
 

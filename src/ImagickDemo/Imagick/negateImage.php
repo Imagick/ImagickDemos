@@ -16,10 +16,7 @@ class negateImage extends \ImagickDemo\Example
         return true;
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

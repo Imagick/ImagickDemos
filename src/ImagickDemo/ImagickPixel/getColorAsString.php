@@ -19,7 +19,10 @@ class getColorAsString extends \ImagickDemo\Example
         return "Note - currently it is not possible to get the alpha of the color through this method.";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickPixel::getColorAsString
         $output = "Create an ImagickPixel with the predefined color 'brown' and output the result of `getColorAsString`. <br/>";

@@ -10,7 +10,10 @@ class getHSL extends \ImagickDemo\Example
     }
 
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickPixel::getHSL
         $colorString = 'rgb(90%, 10%, 10%)';

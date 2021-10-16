@@ -9,8 +9,5 @@ class rotateImage extends \ImagickDemo\Example
         return "Imagick::rotateImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

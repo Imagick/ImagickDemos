@@ -12,11 +12,6 @@ class edgeImage extends \ImagickDemo\Example
         return "Edge image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
     public static function getParamType(): string
     {
         return EdgeImageControl::class;

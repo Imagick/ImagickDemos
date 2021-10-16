@@ -9,8 +9,5 @@ class raiseImage extends \ImagickDemo\Example
         return "Imagick::raiseImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

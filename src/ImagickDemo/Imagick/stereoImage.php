@@ -9,8 +9,5 @@ class stereoImage extends \ImagickDemo\Example
         return "Imagick::stereoImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

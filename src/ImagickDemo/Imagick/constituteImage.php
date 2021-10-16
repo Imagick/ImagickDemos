@@ -8,9 +8,4 @@ class constituteImage extends \ImagickDemo\Example
     {
         return "Constitute image";
     }
-
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
 }

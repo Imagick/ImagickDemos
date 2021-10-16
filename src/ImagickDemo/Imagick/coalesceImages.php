@@ -8,9 +8,4 @@ class coalesceImages extends \ImagickDemo\Example
     {
         return "Coalesce images";
     }
-
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
 }

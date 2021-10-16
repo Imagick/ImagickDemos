@@ -10,7 +10,10 @@ class rotationalBlurImage extends \ImagickDemo\Example
     }
     
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "I have no idea how this is different from radialBlurImage. radialBlur is deprecated in ImageMagick";
         $output .= $this->renderImageURL();

@@ -9,8 +9,5 @@ class shadowImage extends \ImagickDemo\Example
         return "Imagick::shadowImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

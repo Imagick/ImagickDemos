@@ -9,8 +9,5 @@ class spliceImage extends \ImagickDemo\Example
         return "Imagick::spliceImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

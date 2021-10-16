@@ -189,28 +189,17 @@ function renderExampleBodyHtml(
 
     if (method_exists($example, 'hasBespokeRender') &&
         $example->hasBespokeRender() ) {
-
         $reactControls = new ReactControls(
             $pageInfo,
             $taskQueue,
             $varMap
         );
-
         $exampleHtml = $example->bespokeRender($reactControls);
     }
     else {
-        // What about custom images?
-        $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
-
-        if ($example->hasCustomImage() === true) {
-            $imageBaseUrl = \ImagickDemo\Route::getCustomImageURL($activeCategory, $activeExample);
-        }
-
-        $exampleHtml = renderReactExampleImagePanel(
-            $imageBaseUrl,
+        $exampleHtml = $example->render(
             $activeCategory,
-            $activeExample,
-            $example
+            $activeExample
         );
     }
 
@@ -445,7 +434,10 @@ $html = <<< HTML
                 <div class="col-md-12 " style="padding-top: 2px;">
                     <div class="row">
                         <div class="col-sm-12">
-                            {$example->render()}
+                            {$example->render(
+                                $pageTitleObj->getCategory(),
+                                $pageTitleObj->getExample())
+                            }
                         </div>
                     </div>
                 </div>
@@ -474,7 +466,9 @@ $html = <<< HTML
                 <div class="col-md-12 " style="padding-top: 2px;">
                     <div class="row">
                         <div class="col-sm-12 contentPanel">
-                            {$example->render()}
+                            {$example->render(
+    $pageTitleObj->getCategory(),
+    $pageTitleObj->getExample())}
                         </div>
                     </div>
                 </div>
@@ -529,7 +523,7 @@ function renderTitlePageInternal(
                 <div class="col-md-12 " style="padding-top: 2px;">
                     <div class="row">
                         <div class="col-sm-12">
-                            {$example->render()}
+                            {$example->render(null, null)}
                         </div>
                     </div>
                 </div>
@@ -555,7 +549,7 @@ function renderTitlePageInternal(
                 <div class="col-md-12 " style="padding-top: 2px;">
                     <div class="row">
                         <div class="col-sm-12 contentPanel">
-                            {$example->render()}
+                            {$example->render(null, null)}
                         </div>
                     </div>
                 </div>
@@ -597,7 +591,7 @@ function renderTitlePageInternal(
                 <div class="col-md-{$remaining} " style="padding-top: 2px;">
                     <div class="row">
                         <div class="col-sm-12 contentPanel">
-                            {$example->render()}
+                            {$example->render(null, null)}
                         </div>
                     </div>
                 </div>

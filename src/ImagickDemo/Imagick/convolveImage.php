@@ -11,13 +11,6 @@ class convolveImage extends \ImagickDemo\Example
         return "Convolve image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
-
-
     public static function getParamType(): string
     {
         return ConvolveImageControl::class;

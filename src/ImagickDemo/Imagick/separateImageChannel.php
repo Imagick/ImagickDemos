@@ -9,8 +9,5 @@ class separateImageChannel extends \ImagickDemo\Example
         return "Imagick::separateImageChannel";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

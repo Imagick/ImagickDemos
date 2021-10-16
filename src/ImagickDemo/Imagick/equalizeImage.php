@@ -11,10 +11,7 @@ class equalizeImage extends \ImagickDemo\Example
         return "Equalize image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

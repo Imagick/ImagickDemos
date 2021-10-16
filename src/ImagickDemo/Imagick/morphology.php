@@ -249,7 +249,10 @@ class morphology extends \ImagickDemo\Example
         return $output;
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $morphologyType = $this->morphologyControl->getMorphologyType();
         if (array_key_exists($morphologyType, $this->functionTable) == false) {

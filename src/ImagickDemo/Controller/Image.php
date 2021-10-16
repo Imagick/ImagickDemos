@@ -154,6 +154,7 @@ class Image
             'black_point' => "blackPoint",
             'blue_shift' => "blueShift",
             'canvas_type' => "canvasType",
+            'contrast_type' => 'contrastType',
             "color_space" => "colorSpace",
             'end_angle' => 'endAngle',
             'end_x' => 'endX',

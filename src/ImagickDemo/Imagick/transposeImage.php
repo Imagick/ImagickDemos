@@ -11,10 +11,7 @@ class transposeImage extends \ImagickDemo\Example
         return "Imagick::transposeImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

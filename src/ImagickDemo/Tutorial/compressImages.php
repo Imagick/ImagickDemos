@@ -9,7 +9,10 @@ class compressImages extends \ImagickDemo\Example
         return "Compress images";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "Compression examples go here.";
     }

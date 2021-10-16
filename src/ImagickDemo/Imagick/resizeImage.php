@@ -9,8 +9,5 @@ class resizeImage extends \ImagickDemo\Example
         return "Imagick::resizeImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

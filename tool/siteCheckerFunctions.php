@@ -343,6 +343,12 @@ function dumpResult()
             if ($result === 200) {
                 continue;
             }
+            if ($result === "image/gif" ||
+                $result === "image/png" ||
+                $result === "image/jpg" ||
+                $result === "image/jpeg") {
+                continue;
+            }
             echo $url . " : " . $result . "\n";
         }
 

@@ -9,7 +9,10 @@ class identifyImage extends \ImagickDemo\Example
         return "Identify image";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $path = realpath(__DIR__."/../../../public/images/fnord.png");
         

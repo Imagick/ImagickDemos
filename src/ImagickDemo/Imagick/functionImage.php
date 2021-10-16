@@ -89,9 +89,14 @@ f4 - Constant vertical offset, default 0.5";
     }
 
     /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return string
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return $this->renderCustomImageURL();
     }

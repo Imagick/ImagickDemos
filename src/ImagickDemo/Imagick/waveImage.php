@@ -11,10 +11,7 @@ class waveImage extends \ImagickDemo\Example
         return "Imagick::waveImage";
     }
     
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

@@ -4,7 +4,10 @@ namespace ImagickDemo\Imagick;
 
 class averageImages extends \ImagickDemo\Example
 {
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "Needs two images. Function is deprecated, and kills PHP. I suggest not using it.";
     }

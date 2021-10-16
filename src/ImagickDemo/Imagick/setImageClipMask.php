@@ -9,8 +9,5 @@ class setImageClipMask extends \ImagickDemo\Example
         return "Imagick::setImageClipMask";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

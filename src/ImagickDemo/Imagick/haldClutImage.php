@@ -45,6 +45,10 @@ This HaldCLUT image used for the selected settings:<br/>
 <br/>
 HTML;
 
+//        <p>
+//    Generate hald palette with `convert   hald:8    hald_8.png`";
+//
+//</p>
 
 
 
@@ -56,13 +60,16 @@ HTML;
         return true;
     }
 
-    public function render()
-    {
-        $output = "Generate hald palette with `convert   hald:8    hald_8.png`";
-        $output .= $this->renderImageURL();
-
-        return $output;
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        $output = "Generate hald palette with `convert   hald:8    hald_8.png`";
+//        $output .= $this->renderImageURL();
+//
+//        return $output;
+//    }
 
     public static function getParamType(): string
     {

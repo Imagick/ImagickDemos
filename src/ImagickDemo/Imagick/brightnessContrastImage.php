@@ -16,23 +16,6 @@ class brightnessContrastImage extends \ImagickDemo\Example
         return "Brightness contrast image";
     }
 
-//    function getOriginalImage()
-//    {
-//        return $this->control->getOriginalURL();
-//    }
-//
-//    function getOriginalFilename()
-//    {
-//        return $this->control->getImagePath();
-//    }
-
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
-
-
     public static function getParamType(): string
     {
         return BrightnessContrastImageControl::class;

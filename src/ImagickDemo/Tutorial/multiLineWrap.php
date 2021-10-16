@@ -64,10 +64,15 @@ class multiLineWrap extends \ImagickDemo\Example
         return "Tutorial multi-line wrap.";
     }
 
-     /**
+    /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return string
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = $this->renderCustomImageURL();
 

@@ -11,10 +11,7 @@ class statisticImage extends \ImagickDemo\Example
         return "Imagick::statisticImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
     public static function getParamType(): string

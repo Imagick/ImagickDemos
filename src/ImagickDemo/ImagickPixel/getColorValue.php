@@ -9,7 +9,10 @@ class getColorValue extends \ImagickDemo\Example
         return "get color value";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickPixel::getColorValue
         $color = new \ImagickPixel('rgba(90%, 20%, 20%, 0.75)');

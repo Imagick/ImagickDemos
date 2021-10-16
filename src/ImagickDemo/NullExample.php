@@ -9,7 +9,10 @@ class NullExample extends \ImagickDemo\Example
         $this->control = $control;
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "";
     }

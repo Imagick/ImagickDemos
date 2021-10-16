@@ -9,8 +9,5 @@ class reduceNoiseImage extends \ImagickDemo\Example
         return "Imagick::reduceNoiseImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

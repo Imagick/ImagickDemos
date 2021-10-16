@@ -9,8 +9,5 @@ class modulateImage extends \ImagickDemo\Example
         return "Modulate image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

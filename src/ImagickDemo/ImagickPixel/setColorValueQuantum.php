@@ -8,10 +8,4 @@ class setColorValueQuantum extends \ImagickDemo\Example
     {
         return "Set color value quantum";
     }
-
-
-    public function render()
-    {
-        return "" . $this->renderImageURL();
-    }
 }

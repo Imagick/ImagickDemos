@@ -7,7 +7,10 @@ use ImagickDemo\Image;
 class gradientGeneration extends \ImagickDemo\Example
 {
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL([]);

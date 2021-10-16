@@ -14,8 +14,5 @@ class solarizeImage extends \ImagickDemo\Example
         return $this->control->getImagePath();
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

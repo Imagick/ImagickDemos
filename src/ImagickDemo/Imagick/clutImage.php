@@ -25,15 +25,17 @@ END;
 
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
-        return $this->renderCustomImageURL();
+        return "<img src='/customImage/$activeCategory/$activeExample' alt='clut image example'/>";
     }
 
     public function renderCustomImage()
     {
         $this->clutImage();
-        //$this->metalicFont();
     }
 
     public function metalicFont()

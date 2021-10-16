@@ -108,7 +108,10 @@ Deconstructed:   108,772 bytes</pre>";
         return $output;
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = '';
         $output .= 'Normal image:<br/>';

@@ -9,7 +9,10 @@ class stripImage extends \ImagickDemo\Example
         return "Strip image";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example Imagick::stripImage
         $imagick = new \Imagick(realpath("../public/images/Biter_500.jpg"));

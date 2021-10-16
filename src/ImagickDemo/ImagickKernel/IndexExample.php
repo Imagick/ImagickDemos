@@ -16,7 +16,10 @@ class IndexExample extends \ImagickDemo\Example
         return "ImagickKernel";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = <<< END
 <p>

@@ -8,9 +8,4 @@ class drawImage extends \ImagickDemo\Example
     {
         return "Draw image";
     }
-
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
 }

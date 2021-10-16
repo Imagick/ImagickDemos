@@ -9,8 +9,5 @@ class morphImages extends \ImagickDemo\Example
         return "Morph images";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

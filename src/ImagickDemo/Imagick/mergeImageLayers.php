@@ -9,8 +9,5 @@ class mergeImageLayers extends \ImagickDemo\Example
         return "Merge image layers";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

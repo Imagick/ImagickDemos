@@ -11,10 +11,7 @@ class gammaImage extends \ImagickDemo\Example
         return "Gamma image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

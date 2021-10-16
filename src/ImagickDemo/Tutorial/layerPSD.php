@@ -9,7 +9,10 @@ class layerPSD extends \ImagickDemo\Example
         return "PSD layers";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return $this->renderCustomImageURL();
     }

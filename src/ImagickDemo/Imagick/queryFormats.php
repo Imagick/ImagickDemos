@@ -10,7 +10,10 @@ class queryFormats extends \ImagickDemo\Example
     }
 
 //Example Imagick::queryformats
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "";
         $input = \Imagick::queryformats();

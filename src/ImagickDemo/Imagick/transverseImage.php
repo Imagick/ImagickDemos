@@ -11,10 +11,7 @@ class transverseImage extends \ImagickDemo\Example
         return "Imagick::transverseImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

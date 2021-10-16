@@ -9,7 +9,10 @@ class getColorValueQuantum extends \ImagickDemo\Example
         return "get color value quantum";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickPixel::getColorValueQuantum
         $color = new \ImagickPixel('rgb(128, 5, 255)');

@@ -31,8 +31,10 @@ class construct extends \ImagickDemo\Example
     }
 
 
-    public function render()
-    {
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
         $output = "<table>";
         for ($x = 0; $x < count($this->exampleColors); $x++) {
             if (($x % $this->columns) == 0) {
@@ -53,7 +55,7 @@ class construct extends \ImagickDemo\Example
 
         $output .= "</tr>";
         $output .= "</table>";
-        $output .= $this->renderImageURL();
+        $output .= "<img src='/image/ImagickPixel/construct' />";
 
         return $output;
     }

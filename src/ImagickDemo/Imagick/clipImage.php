@@ -9,7 +9,10 @@ class clipImage extends \ImagickDemo\Example
         return "Clip image";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "Not working - needs a clip path defining.";
     }

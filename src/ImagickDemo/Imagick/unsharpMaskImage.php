@@ -11,10 +11,7 @@ class unsharpMaskImage extends \ImagickDemo\Example
         return "Imagick::unsharpMaskImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

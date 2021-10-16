@@ -17,11 +17,6 @@ class adaptiveBlurImage extends Example
         return "Adaptive blur image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
-
     public static function getParamType(): string
     {
         return AdaptiveBlurImageControl::class;

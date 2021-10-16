@@ -14,8 +14,11 @@ class appendImages extends \ImagickDemo\Example
         return "Append images";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        return $this->renderImageURL();
+//    }
 }

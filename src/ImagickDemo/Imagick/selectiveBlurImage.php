@@ -9,8 +9,5 @@ class selectiveBlurImage extends \ImagickDemo\Example
         return "Imagick::selectiveBlurImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

@@ -27,9 +27,14 @@ END;
     }
 
     /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return string
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $imageURL = $this->renderImageURL();
 

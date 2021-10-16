@@ -9,8 +9,5 @@ class shearImage extends \ImagickDemo\Example
         return "Imagick::shearImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

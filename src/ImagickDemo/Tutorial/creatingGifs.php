@@ -16,10 +16,7 @@ class creatingGifs extends \ImagickDemo\Example
         return '';
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     /**
      *

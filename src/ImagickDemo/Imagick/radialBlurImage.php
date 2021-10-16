@@ -9,8 +9,5 @@ class radialBlurImage extends \ImagickDemo\Example
         return "Imagick::radialBlurImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

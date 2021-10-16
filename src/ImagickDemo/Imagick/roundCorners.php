@@ -10,8 +10,5 @@ class roundCorners extends \ImagickDemo\Example
     }
     
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

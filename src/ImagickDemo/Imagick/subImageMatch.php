@@ -9,8 +9,5 @@ class subImageMatch extends \ImagickDemo\Example
         return "Imagick::subImageMatch";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

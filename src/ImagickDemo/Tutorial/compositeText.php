@@ -9,7 +9,10 @@ class compositeText extends \ImagickDemo\Example
         return "Composite text";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "";
     }

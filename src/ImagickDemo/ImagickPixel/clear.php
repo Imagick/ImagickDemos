@@ -14,7 +14,10 @@ class clear extends \ImagickDemo\Example
         return "";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "";
     }

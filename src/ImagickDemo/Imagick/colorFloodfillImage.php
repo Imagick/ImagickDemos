@@ -8,9 +8,4 @@ class colorFloodfillImage extends \ImagickDemo\Example
     {
         return "Color flood fill image";
     }
-
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
 }

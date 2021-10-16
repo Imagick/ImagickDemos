@@ -12,10 +12,7 @@ class frameImage extends \ImagickDemo\Example
         return "Frame image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

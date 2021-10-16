@@ -9,8 +9,5 @@ class setImageAlphaChannel extends \ImagickDemo\Example
         return "Imagick::setImageAlphaChannel";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

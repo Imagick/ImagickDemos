@@ -16,7 +16,10 @@ class functionImage extends \ImagickDemo\Example
         return "Function image";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();

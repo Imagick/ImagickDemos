@@ -19,7 +19,10 @@ class setOption extends \ImagickDemo\Example
         return "Imagick::setOption";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return $this->renderCustomImageURL();
     }

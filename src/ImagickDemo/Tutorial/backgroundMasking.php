@@ -33,8 +33,5 @@ class backgroundMasking extends \ImagickDemo\Example
 //        return;
 //    }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

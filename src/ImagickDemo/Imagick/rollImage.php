@@ -9,8 +9,5 @@ class rollImage extends \ImagickDemo\Example
         return "Imagick::rollImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

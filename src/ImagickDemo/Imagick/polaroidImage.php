@@ -9,8 +9,5 @@ class polaroidImage extends \ImagickDemo\Example
         return "Polaroid image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

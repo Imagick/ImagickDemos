@@ -41,7 +41,10 @@ class getImageCompression extends \ImagickDemo\Example
         return $output;
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $imagick = new \Imagick(realpath($this->image_path));
         $typeString = "An unknown compression type";

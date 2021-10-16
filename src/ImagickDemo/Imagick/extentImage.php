@@ -12,10 +12,7 @@ class extentImage extends \ImagickDemo\Example
         return "Extent image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public static function getParamType(): string
     {

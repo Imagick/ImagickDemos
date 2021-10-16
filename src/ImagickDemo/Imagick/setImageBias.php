@@ -9,10 +9,7 @@ class setImageBias extends \ImagickDemo\Example
         return "Imagick::setImageBias";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public function renderDescription()
     {

@@ -9,8 +9,5 @@ class thumbnailImage extends \ImagickDemo\Example
         return "Imagick::thumbnailImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

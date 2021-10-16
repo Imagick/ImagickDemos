@@ -10,7 +10,10 @@ class getColor extends \ImagickDemo\Example
     }
 
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "Create an ImagickPixel with the predefined color 'brown' and set the color to have an alpha of 25% <br/>";
 

@@ -26,10 +26,13 @@ class annotateImage extends \ImagickDemo\Example
 //        return $this->control->getImagePath();
 //    }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        return $this->renderImageURL();
+//    }
 
 
 

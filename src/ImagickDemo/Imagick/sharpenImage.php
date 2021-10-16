@@ -9,8 +9,5 @@ class sharpenImage extends \ImagickDemo\Example
         return "Imagick::sharpenImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

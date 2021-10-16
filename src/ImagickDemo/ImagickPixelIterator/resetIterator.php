@@ -11,7 +11,10 @@ class resetIterator extends \ImagickDemo\Example
         return "Reset Iterator";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "Reset a pixel iterator so that you can iterate over it again. <br/>";
         $output .= $this->renderImageURL();

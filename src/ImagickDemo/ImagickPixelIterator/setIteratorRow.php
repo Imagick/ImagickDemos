@@ -11,7 +11,10 @@ class setIteratorRow extends \ImagickDemo\Example
         return "Set iterator row";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = "<br/>";
         $output .= $this->renderImageURL();

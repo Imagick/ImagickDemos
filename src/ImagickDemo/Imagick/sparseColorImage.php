@@ -21,7 +21,10 @@ class sparseColorImage extends \ImagickDemo\Example
         return "Imagick::sparseColorImage";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "asidapdpiahdsidpahd";
 //        $url = "/customImage/Imagick/functionImage";

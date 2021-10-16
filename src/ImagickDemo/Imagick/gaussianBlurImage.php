@@ -11,10 +11,7 @@ class gaussianBlurImage extends \ImagickDemo\Example
         return "Gaussian image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

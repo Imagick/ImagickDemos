@@ -11,10 +11,7 @@ class vignetteImage extends \ImagickDemo\Example
         return "Imagick::vignetteImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

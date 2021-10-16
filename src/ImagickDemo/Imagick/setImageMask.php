@@ -12,10 +12,7 @@ class setImageMask extends Example
         return "Set image mask";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
 
 

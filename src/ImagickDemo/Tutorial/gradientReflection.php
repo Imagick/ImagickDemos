@@ -21,8 +21,5 @@ END;
         return "Gradient reflection";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

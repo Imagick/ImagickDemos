@@ -11,7 +11,10 @@ class medianFilterImage extends \ImagickDemo\Example
         return "Median filter image";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //        return $this->renderImageURL();
 

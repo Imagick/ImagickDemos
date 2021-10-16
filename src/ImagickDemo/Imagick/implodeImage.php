@@ -9,8 +9,5 @@ class implodeImage extends \ImagickDemo\Example
         return "Implode image";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

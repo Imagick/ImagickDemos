@@ -15,7 +15,10 @@ class getColorCount extends \ImagickDemo\Example
         return "<br/><br/>The color count is the number of pixels in the image that have the same color as this ImagickPixel.<br/>ImagickPixel::getColorCount appears to only work for ImagickPixel objects created through Imagick::getImageHistogram()<br/>";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example ImagickPixel::getColorCount
         $imagick = new \Imagick();

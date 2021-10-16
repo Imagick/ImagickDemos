@@ -9,7 +9,10 @@ class queryFonts extends \ImagickDemo\Example
         return "Imagick::queryFonts";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
 //Example Imagick::queryFonts
         $output = '';

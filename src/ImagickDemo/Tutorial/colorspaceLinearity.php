@@ -9,7 +9,10 @@ class colorspaceLinearity extends \ImagickDemo\Example
         return "Colorspace linearity";
     }
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $output = $this->renderDescription();
         $output .= $this->renderCustomImageURL();

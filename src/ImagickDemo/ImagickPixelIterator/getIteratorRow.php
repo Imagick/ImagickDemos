@@ -10,7 +10,10 @@ class getIteratorRow extends \ImagickDemo\Example
     }
 
 
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         return "";
     }

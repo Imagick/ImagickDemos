@@ -101,9 +101,14 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
 //    }
 
     /**
+     * @param string|null $activeCategory
+     * @param string|null $activeExample
      * @return mixed
      */
-    public function render()
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    )
     {
         $image_path = "../public/images/FineDetail.png";
         $imagick = new \Imagick(realpath($image_path));

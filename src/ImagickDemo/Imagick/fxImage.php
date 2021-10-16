@@ -26,10 +26,7 @@ END;
         return nl2br($text);
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 
     public function renderImage2()
     {

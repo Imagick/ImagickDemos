@@ -9,8 +9,5 @@ class shaveImage extends \ImagickDemo\Example
         return "Imagick::shaveImage";
     }
 
-    public function render()
-    {
-        return $this->renderImageURL();
-    }
+
 }

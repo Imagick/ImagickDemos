@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\RollImageControl;
+
 class rollImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class rollImage extends \ImagickDemo\Example
         return "Imagick::rollImage";
     }
 
-
+    public static function getParamType(): string
+    {
+        return RollImageControl::class;
+    }
 }

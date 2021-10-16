@@ -127,6 +127,8 @@ function map_api_name(api_param_name: string): string {
         outer_bevel: "Outer bevel",
         paint_type: "Paint type",
         radius: "Radius",
+        roll_x: "Roll x",
+        roll_y: "Roll y",
         round_x: "Round x",
         round_y: "Round y",
         second_term: "Second term",

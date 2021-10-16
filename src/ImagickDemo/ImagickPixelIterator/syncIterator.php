@@ -13,16 +13,16 @@ class syncIterator extends \ImagickDemo\Example
     }
 
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        $output = "<br/>";
-        $output .= $this->renderImageURL();
-
-        return $output;
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        $output = "<br/>";
+//        $output .= $this->renderImageURL();
+//
+//        return $output;
+//    }
 
     public static function getParamType(): string
     {

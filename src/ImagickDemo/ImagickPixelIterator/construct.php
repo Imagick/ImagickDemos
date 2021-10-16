@@ -12,17 +12,16 @@ class construct extends \ImagickDemo\Example
         return "construct";
     }
 
-
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        $output = "<br/>";
-        $output .= $this->renderImageURL();
-
-        return $output;
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        $output = "<br/>";
+//        $output .= $this->renderImageURL();
+//
+//        return $output;
+//    }
 
 
 

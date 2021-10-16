@@ -16,16 +16,6 @@ class transformImageColorspace extends \ImagickDemo\Example
         return "TODO - there's some code in the eye color resolution demo that should be used here...";
     }
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        //http://www.imagemagick.org/Usage/color_basics/
-        return $this->renderImageURL();
-    }
-
-
 
     public static function getParamType(): string
     {

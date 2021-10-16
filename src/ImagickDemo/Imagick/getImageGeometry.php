@@ -35,17 +35,9 @@ END;
     public function renderImageURL()
     {
         $url = sprintf(
-            "<img src='/Imagick/getImageGeometry?%s",
+            "<img src='/image/Imagick/getImageGeometry?%s'>",
             http_build_query($this->imageControl->getValuesForForm())
         );
-
-
-//        return \ImagickDemo\Route::renderImageURL(
-//            $this->taskQueue->isActive(),
-//            $this->getURL(),
-//            $originalImageURL,
-//            $this->getImageStatusURL()
-//        )
 
         return $url;
     }
@@ -77,8 +69,6 @@ END;
     {
         return true;
     }
-
-
 
     public static function getParamType(): string
     {

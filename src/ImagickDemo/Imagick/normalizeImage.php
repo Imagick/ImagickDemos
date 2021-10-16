@@ -9,13 +9,20 @@ class normalizeImage extends \ImagickDemo\Example
         return "Imagick::normalizeImage";
     }
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
+    public function renderDescription()
     {
         $output = "Original on left side, normalised on right. <br/>";
-        $output .= $this->renderImageURL();
         return $output;
     }
+
+
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//
+//        $output .= $this->renderImageURL();
+//        return $output;
+//    }
 }

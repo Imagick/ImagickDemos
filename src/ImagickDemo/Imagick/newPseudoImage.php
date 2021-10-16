@@ -26,17 +26,6 @@ HTML;
 
     }
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        $output = $this->renderDescription();
-        $output .= $this->renderImageURL();
-
-        return $output;
-    }
-
     public static function getParamType(): string
     {
         return NewPseudoImageControl::class;

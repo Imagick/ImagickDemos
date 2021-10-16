@@ -9,11 +9,11 @@ class setIteratorFirstRow extends \ImagickDemo\Example
         return "Set iterator first row";
     }
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        return "";
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        return "";
+//    }
 }

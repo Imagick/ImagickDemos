@@ -10,11 +10,11 @@ class setIteratorLastRow extends \ImagickDemo\Example
     }
 
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        return "";
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        return "";
+//    }
 }

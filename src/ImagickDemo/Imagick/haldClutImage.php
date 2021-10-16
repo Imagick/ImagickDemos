@@ -15,6 +15,11 @@ class haldClutImage extends \ImagickDemo\Example
         $this->haldClutImageControl = HaldClutImageControl::createFromVarMap($varMap);
     }
 
+    public function needsFullPageRefresh(): bool
+    {
+        return true;
+    }
+
     public function renderTitle(): string
     {
         return "Hald clut image";
@@ -39,7 +44,11 @@ A Hald clut is a special image that encodes how source colors should be mapped t
 
 <p>
 This HaldCLUT image used for the selected settings:<br/>
-<img src='$haldImg' />
+<img src='$haldImg' width="480" /><br/>
+
+View <a href="$haldImg" target="_blank">full size hald image</a>.
+
+
 </p>
 
 <br/>
@@ -59,17 +68,6 @@ HTML;
     {
         return true;
     }
-
-//    public function render(
-//        ?string $activeCategory,
-//        ?string $activeExample
-//    )
-//    {
-//        $output = "Generate hald palette with `convert   hald:8    hald_8.png`";
-//        $output .= $this->renderImageURL();
-//
-//        return $output;
-//    }
 
     public static function getParamType(): string
     {

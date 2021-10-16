@@ -44,7 +44,7 @@ A Hald clut is a special image that encodes how source colors should be mapped t
 
 <p>
 This HaldCLUT image used for the selected settings:<br/>
-<img src='$haldImg' width="480" /><br/>
+<img src='$haldImg' width="360" /><br/>
 
 View <a href="$haldImg" target="_blank">full size hald image</a>.
 

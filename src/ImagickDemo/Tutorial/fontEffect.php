@@ -121,7 +121,7 @@ class fontEffect extends \ImagickDemo\Example
         ?string $activeExample
     )
     {
-        return $this->renderCustomImageURL([], $this->getOriginalImage());
+        return "<img src='/customImage/$activeCategory/$activeExample'/>";
     }
 
     public function renderCustomImage()

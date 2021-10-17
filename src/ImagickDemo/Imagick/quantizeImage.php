@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\QuantizeImageControl;
+
 class quantizeImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -21,5 +23,8 @@ END;
         return $output;
     }
 
-
+    public static function getParamType(): string
+    {
+        return QuantizeImageControl::class;
+    }
 }

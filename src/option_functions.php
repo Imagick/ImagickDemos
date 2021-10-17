@@ -486,3 +486,11 @@ function getSharpeningOptions()
         'Increase' => 1,
     ];
 }
+
+function getDitherOptions()
+{
+    return [
+        'Enabled' => 1,
+        'Disabled' => 0,
+    ];
+}

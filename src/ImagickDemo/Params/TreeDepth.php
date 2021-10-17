@@ -3,13 +3,13 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\EnumMap;
+use Params\ExtractRule\GetIntOrDefault;
 use Params\InputParameter;
 use Params\Param;
+use Params\ProcessRule\RangeIntValue;
 
 #[\Attribute]
-class Dither implements Param
+class TreeDepth implements Param
 {
     public function __construct(
         private string $name
@@ -20,8 +20,8 @@ class Dither implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('Enabled'),
-            new EnumMap(getDitherOptions())
+            new GetIntOrDefault(1),
+            new RangeIntValue(0, 16)
         );
     }
 }

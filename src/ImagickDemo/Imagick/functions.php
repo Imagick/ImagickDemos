@@ -1229,7 +1229,14 @@ function linearStretchImage($image_path, $blackThreshold, $whiteThreshold)
 {
     $imagick = new \Imagick(realpath($image_path));
     $pixels = $imagick->getImageWidth() * $imagick->getImageHeight();
-    $imagick->linearStretchImage($blackThreshold * $pixels, $whiteThreshold * $pixels);
+    // TODO - I'm really not sure if the scaling is meant to be done
+    // by number of pixels or by ::getQuantum()
+    $imagick->linearStretchImage(
+//        $blackThreshold * $pixels,
+//        $whiteThreshold * $pixels
+        $blackThreshold * Imagick::getQuantum(),
+        $whiteThreshold * Imagick::getQuantum()
+    );
 
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();

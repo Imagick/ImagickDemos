@@ -3,15 +3,16 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\EnumMap;
+use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
+use Params\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
-class Dither implements Param
+class Threshold implements Param
 {
     public function __construct(
+        private float $default,
         private string $name
     ) {
     }
@@ -20,8 +21,8 @@ class Dither implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('Enabled'),
-            new EnumMap(getDitherOptions())
+            new GetFloatOrDefault($this->default),
+            new RangeFloatValue(0, 100)
         );
     }
 }

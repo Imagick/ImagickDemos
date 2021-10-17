@@ -152,10 +152,11 @@ class Image
             'background_color' => "backgroundColor",
             'best_fit' => "bestFit",
             'black_point' => "blackPoint",
+            'black_threshold' => 'blackThreshold',
             'blue_shift' => "blueShift",
             'canvas_type' => "canvasType",
             'contrast_type' => 'contrastType',
-            "color_space" => "colorSpace",
+            "colorspace" => "colorSpace",
             'end_angle' => 'endAngle',
             'end_x' => 'endX',
             'end_y' => 'endY',
@@ -166,6 +167,7 @@ class Image
             'hald_clut_type' => 'haldClutType',
             'kernel_render' => "kernelRender",
             'kernel_type' => 'kernelType',
+            'number_colors' => 'numberColors',
             'noise_type' => 'noiseType',
             'origin_x' => 'originX',
             'origin_y' => 'originY',
@@ -188,9 +190,11 @@ class Image
             'third_term' => 'kernelThirdTerm',
             'translate_x' => "translateX",
             'translate_y' => "translateY",
+            'tree_depth' => 'treeDepth',
             'threshold_color' => 'thresholdColor',
             'unsharp_threshold' => 'unsharpThreshold',
             'white_point' => "whitePoint",
+            'white_threshold' => 'whiteThreshold',
         ];
 
 //        var_dump($params);

@@ -2,11 +2,18 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\LinearStretchImageControl;
+
 class linearStretchImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
     {
         return "Linear stretch image";
+    }
+
+    public function hasOriginalImage()
+    {
+        return true;
     }
 
     public function renderDescription()
@@ -16,11 +23,14 @@ class linearStretchImage extends \ImagickDemo\Example
 
 In the code example below using a value of 0.10 for both the black and white threshold, would move the darkest 10% of pixels to black, the lightest 10% of pixels to white, and level the remaining pixels.
   
-A value of zero for eithe black or white point means that that end of the histogram is not adjusted.
+A value of zero for either black or white point means that that end of the histogram is not adjusted.
 END;
 
         return nl2br($output);
     }
 
-
+    public static function getParamType(): string
+    {
+        return LinearStretchImageControl::class;
+    }
 }

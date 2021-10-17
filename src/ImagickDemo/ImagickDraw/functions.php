@@ -904,6 +904,7 @@ function setFillAlpha($strokeColor, $fillColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
 
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeOpacity(1);
@@ -1135,6 +1136,7 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
 
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(2);
@@ -1173,6 +1175,7 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor)
 function setFontStyle($fillColor, $strokeColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(1);
@@ -1599,6 +1602,7 @@ function setTextAlignment($strokeColor, $fillColor, $backgroundColor)
 function setTextAntialias($fillColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor('none');
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(1);
@@ -1628,6 +1632,7 @@ function setTextDecoration($strokeColor, $fillColor, $backgroundColor, $textDeco
 {
     $draw = new \ImagickDraw();
 
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(2);
@@ -1651,6 +1656,7 @@ function setTextUnderColor($strokeColor, $fillColor, $backgroundColor, $textUnde
 {
     $draw = new \ImagickDraw();
 
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(2);

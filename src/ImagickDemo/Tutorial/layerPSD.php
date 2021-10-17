@@ -14,7 +14,7 @@ class layerPSD extends \ImagickDemo\Example
         ?string $activeExample
     )
     {
-        return $this->renderCustomImageURL();
+        return "<img src='/customImage/$activeCategory/$activeExample' alt='Layer PSD example'>";
     }
 
 

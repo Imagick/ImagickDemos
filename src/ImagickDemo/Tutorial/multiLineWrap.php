@@ -72,11 +72,8 @@ class multiLineWrap extends \ImagickDemo\Example
     public function render(
         ?string $activeCategory,
         ?string $activeExample
-    )
-    {
-        $output = $this->renderCustomImageURL();
-
-        return $output;
+    ) {
+        return "<img src='/customImage/$activeCategory/$activeExample' alt='example image' />";
     }
     
     public function renderDescription()
@@ -89,7 +86,7 @@ class multiLineWrap extends \ImagickDemo\Example
         $imagick = new \Imagick();
 
         
-        $imagick->newPseudoImage(640, 480, 'xc:red');
+        $imagick->newPseudoImage(640, 480, 'xc:grey');
         $imagick->setImageFormat('png');
         $draw = new \ImagickDraw();
         $darkColor = new \ImagickPixel('brown');
@@ -104,27 +101,17 @@ class multiLineWrap extends \ImagickDemo\Example
 
 
         
-        //$draw->setFont(__DIR__."/../../../fonts/Arial.ttf");
+        $draw->setFont(realpath(__DIR__."/../../../fonts/Arial.ttf"));
         //$draw->annotation(50, 50, "Lorem Ipsum!");
 
         $text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
-        
-     
-        
+
         $wordWrap = WordWrap::fromText(
             $imagick, 
             $draw,
             $text, 
             640
         );
-        
-//        var_dump($wordWrap);
-//        
-//        while (ob_get_level()) {
-//            ob_end_flush();
-//        }
-//        exit(0);
-
 
         $xpos = 0;
         $ypos = 400;
@@ -137,10 +124,7 @@ class multiLineWrap extends \ImagickDemo\Example
             $i++;
         }
 
-
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
-        
-
     }
 }

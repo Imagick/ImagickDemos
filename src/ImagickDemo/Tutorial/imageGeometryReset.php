@@ -26,14 +26,4 @@ END;
 
         return nl2br($text);
     }
-    
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        $output = "";
-        $output .= $this->renderImageURL();
-        return $output;
-    }
 }

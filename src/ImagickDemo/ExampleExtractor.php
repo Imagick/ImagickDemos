@@ -76,7 +76,7 @@ class ExampleExtractor
 
                 $lines = [];
                 for ($j = $exampleStartLine + 1; $j<$i; $j += 1) {
-                    $lines[] = $this->file_lines[$j];
+                    $lines[] = htmlspecialchars($this->file_lines[$j]);
                 }
 
                 $codeExample = new CodeExample(

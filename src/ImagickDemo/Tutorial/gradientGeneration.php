@@ -12,8 +12,7 @@ class gradientGeneration extends \ImagickDemo\Example
         ?string $activeExample
     )
     {
-        $output = $this->renderDescription();
-        $output .= $this->renderCustomImageURL([]);
+        $output = "<img src='/customImage/$activeCategory/$activeExample' />";
 
         return $output;
     }
@@ -23,11 +22,6 @@ class gradientGeneration extends \ImagickDemo\Example
         return "Gradient generation";
     }
 
-    public function getCustomImageParams()
-    {
-        return [];
-    }
-    
     /**
      *
      */
@@ -39,7 +33,6 @@ class gradientGeneration extends \ImagickDemo\Example
         $imagick->evaluateimage(\Imagick::EVALUATE_POW, 0.5);
         Image::analyzeImage($imagick);
     }
-
 
     /**
      *

@@ -10,14 +10,14 @@ abstract class ImagickDrawExample extends \ImagickDemo\Example
 
     abstract public function getDescription();
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        $output = $this->getDescription();
-        $output .= $this->renderImageURL();
-
-        return $output;
-    }
+//    public function render(
+//        ?string $activeCategory,
+//        ?string $activeExample
+//    )
+//    {
+//        $output = $this->getDescription();
+//        $output .= $this->renderImageURL();
+//
+//        return $output;
+//    }
 }

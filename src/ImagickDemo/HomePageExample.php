@@ -63,13 +63,24 @@ This site is an attempt to provide a working example of every function in the <a
 
 <p><b>8th October 2021</b> - the site has just been upgraded to use PHP 8, ImageMagick 7 and all controls have been swtich to React. Some stuff might be broken.</p>
 
+<hr/>
 END;
 
-        $output .= "Imagick version is " . phpversion("Imagick") . "<br/>";
+        $version = phpversion("Imagick");
+        if ($version === "@PACKAGE_VERSION@") {
+            $version = "built from git.";
+        }
 
-        $output .= "ImageMagick version info is:";
+        $output .= "Imagick version is: " . $version . "<br/>";
 
-        $output .= var_export(\Imagick::getVersion(), true);
+        $output .= "ImageMagick version info is:<br/>";
+
+        $versionInfo = \Imagick::getVersion();
+        $output .= sprintf(
+            "<span class='tab'>versionNumber = 0x%x</span><br/>",
+            $versionInfo['versionNumber']
+        );
+        $output .= "<span class='tab'>versionString = " . $versionInfo['versionString'] . "</span><br/>";
 
         return $output;
     }

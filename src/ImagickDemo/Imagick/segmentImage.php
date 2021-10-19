@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\SegmentImageControl;
+
 class segmentImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -18,5 +20,8 @@ END;
         return $output;
     }
 
-
+    public static function getParamType(): string
+    {
+        return SegmentImageControl::class;
+    }
 }

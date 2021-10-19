@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\SharpenImageControl;
+
 class sharpenImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,13 @@ class sharpenImage extends \ImagickDemo\Example
         return "Imagick::sharpenImage";
     }
 
+    public static function getParamType(): string
+    {
+        return SharpenImageControl::class;
+    }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
 }

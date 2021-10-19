@@ -2,15 +2,13 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxFloatValue;
-use Params\ProcessRule\MinFloatValue;
+use Params\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
-class Angle implements Param
+class SmoothThreshold implements Param
 {
     public function __construct(
         private string $name
@@ -21,9 +19,8 @@ class Angle implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(45),
-            new MinFloatValue(0),
-            new MaxFloatValue(360),
+            new GetFloatOrDefault(10),
+            new RangeFloatValue(0, 255)
         );
     }
 }

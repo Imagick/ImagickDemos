@@ -130,6 +130,7 @@ function map_api_name(api_param_name: string): string {
         radius: "Radius",
         roll_x: "Roll x",
         roll_y: "Roll y",
+        rotation_angle: "Rotation angle",
         round_x: "Round x",
         round_y: "Round y",
         second_term: "Second term",

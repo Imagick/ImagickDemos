@@ -1798,12 +1798,10 @@ function rotateImage($image_path, $angle, $color, $crop)
 //Example end
 
 //Example Imagick::rotationalBlurImage
-function rotationalBlurImage($image_path)
+function rotationalBlurImage($image_path, $rotation_angle)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->rotationalBlurImage(3);
-    $imagick->rotationalBlurImage(5);
-    $imagick->rotationalBlurImage(7);
+    $imagick->rotationalBlurImage($rotation_angle);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

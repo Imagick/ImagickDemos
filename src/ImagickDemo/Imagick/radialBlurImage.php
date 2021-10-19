@@ -8,6 +8,4 @@ class radialBlurImage extends \ImagickDemo\Example
     {
         return "Imagick::radialBlurImage";
     }
-
-
 }

@@ -174,6 +174,7 @@ class Image
             'paint_type' => "paintType",
             'roll_x' => 'rollX',
             'roll_y' => 'rollY',
+            'rotation_angle' => 'rotationAngle',
             'round_x' => 'roundX',
             'round_y' => 'roundY',
             'second_term' => 'kernelSecondTerm',

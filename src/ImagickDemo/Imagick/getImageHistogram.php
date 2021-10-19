@@ -6,35 +6,7 @@ use ImagickDemo\Imagick\Controls\ImageControl;
 use VarMap\VarMap;
 
 
-function image(
-    ?string $activeCategory,
-    ?string $activeExample,
-    array $values)
-{
-    $output = sprintf(
-        "<img src='/image/%s/%s?%s' alt='example image' />",
-        $activeCategory,
-        $activeExample,
-        http_build_query($values)
-    );
 
-    return $output;
-}
-
-function customImage(
-    ?string $activeCategory,
-    ?string $activeExample,
-    array $values)
-{
-    $output = sprintf(
-        "<img src='/customImage/%s/%s?%s' alt='example image' />",
-        $activeCategory,
-        $activeExample,
-        http_build_query($values)
-    );
-
-    return $output;
-}
 
 class getImageHistogram extends \ImagickDemo\Example
 {
@@ -71,7 +43,8 @@ class getImageHistogram extends \ImagickDemo\Example
         $output .= customImage(
             $activeCategory,
             $activeExample,
-            $this->imageControl->getValuesForForm()
+            $this->imageControl->getValuesForForm(),
+            $this
         );
 
         return $output;

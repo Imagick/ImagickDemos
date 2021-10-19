@@ -2,6 +2,8 @@
 
 namespace ImagickDemo;
 
+use ImagickDemo\Imagick\Controls\NullControl;
+
 abstract class Example
 {
     public function hasOriginalImage()
@@ -16,7 +18,7 @@ abstract class Example
 
     public static function getParamType(): string
     {
-        return \ImagickDemo\Imagick\Controls\NullControl::class;
+        return NullControl::class;
     }
 
     public function isRemovedInIM7()

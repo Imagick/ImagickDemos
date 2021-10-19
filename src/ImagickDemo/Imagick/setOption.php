@@ -2,16 +2,16 @@
 
 namespace ImagickDemo\Imagick;
 
+use VarMap\VarMap;
+use ImagickDemo\Imagick\Controls\SetOptionControl;
+
 class setOption extends \ImagickDemo\Example
 {
-    /**
-     * @var Control\setOption
-     */
-    protected $control;
+    private SetOptionControl $setOptionControl;
 
-    public function __construct(\ImagickDemo\Imagick\Control\setOption $control)
+    public function __construct(VarMap $varMap)
     {
-        $this->control = $control;
+        $this->setOptionControl = SetOptionControl::createFromVarMap($varMap);
     }
 
     public function renderTitle(): string
@@ -22,14 +22,18 @@ class setOption extends \ImagickDemo\Example
     public function render(
         ?string $activeCategory,
         ?string $activeExample
-    )
-    {
-        return $this->renderCustomImageURL();
+    ) {
+        return customImage(
+            $activeCategory,
+            $activeExample,
+            $this->setOptionControl->getValuesForForm(),
+            $this
+        );
     }
 
     public function renderCustomImage()
     {
-        switch ($this->control->getImageOption()) {
+        switch ($this->setOptionControl->getSetOptionExample()) {
             case (0): {
                 $this->renderJPG('10kb');
                 break;
@@ -61,7 +65,7 @@ class setOption extends \ImagickDemo\Example
 //Example Imagick::setOption
     public function renderJPG($extent)
     {
-        $image_path = $this->control->getImagePath();
+        $image_path = $this->setOptionControl->getImagePath();
         $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('jpg');
         $imagick->setOption('jpeg:extent', $extent);
@@ -73,7 +77,7 @@ class setOption extends \ImagickDemo\Example
 //Example Imagick::setOption
     public function renderPNG($format)
     {
-        $image_path = $this->control->getImagePath();
+        $image_path = $this->setOptionControl->getImagePath();
         $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('png');
         $imagick->setOption('png:format', $format);
@@ -91,7 +95,7 @@ class setOption extends \ImagickDemo\Example
 //Example Imagick::setOption
     public function renderCustomBitDepthPNG()
     {
-        $image_path = $this->control->getImagePath();
+        $image_path = $this->setOptionControl->getImagePath();
         $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('png');
 
@@ -107,12 +111,13 @@ class setOption extends \ImagickDemo\Example
             echo file_get_contents($tempFilename);
         }
     }
-
 //Example end
 
+//Example Imagick::setOption
     public function renderBlackPoint()
     {
-        $image_path = $this->control->getImagePath();
+        // This
+        $image_path = $this->setOptionControl->getImagePath();
         $imagick = new \Imagick();
         $imagick->setOption('black-point-compensation', 0.25 * \Imagick::getQuantum());
         $imagick->readImage(realpath($image_path));
@@ -121,4 +126,11 @@ class setOption extends \ImagickDemo\Example
         header("Content-Type: image/png");
         echo $imagick->getImageBlob();
     }
+//Example end
+
+    public static function getParamType(): string
+    {
+        return SetOptionControl::class;
+    }
 }
+

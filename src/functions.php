@@ -17,6 +17,7 @@ use VarMap\VarMap;
 use Params\ProcessRule\EnumMap;
 use ImagickDemo\ToArray;
 use Params\InputParameterList;
+use ImagickDemo\Example;
 
 function hackVarMap($varMap)
 {
@@ -494,51 +495,41 @@ function getImagePathForOption(string $selected_option)
 }
 
 
-function getImagepathInputParameter()
+function image(
+    ?string $activeCategory,
+    ?string $activeExample,
+    array $values)
 {
-    return new InputParameter(
-        'imagepath',
-        new GetStringOrDefault('Lorikeet'),
-        new EnumMap(getImagePathOptions())
+    $output = sprintf(
+        "<img src='/image/%s/%s?%s' alt='example image' />",
+        $activeCategory,
+        $activeExample,
+        http_build_query($values)
     );
+
+    return $output;
 }
 
+function customImage(
+    ?string $activeCategory,
+    ?string $activeExample,
+    array $values,
+    Example $example
+) {
+    $imgUrl = sprintf(
+        "/customImage/%s/%s",
+        $activeCategory,
+        $activeExample
+    );
+    $pageBaseUrl = sprintf("/%s/%s?%s",
+        $activeCategory,
+        $activeExample,
+        http_build_query($values));
 
-function getColorSpaceOptions()
-{
-    return [
-        'RGB' => \Imagick::COLORSPACE_RGB,
-        'Gray' => \Imagick::COLORSPACE_GRAY,
-        'Transparent' => \Imagick::COLORSPACE_TRANSPARENT,
-        'OHTA' => \Imagick::COLORSPACE_OHTA,
-        // IM7 - 'LAB' => \Imagick::COLORSPACE_LAB,
-        'XYZ' => \Imagick::COLORSPACE_XYZ,
-        'YCBCR' => \Imagick::COLORSPACE_YCBCR,
-        'YCC' => \Imagick::COLORSPACE_YCC,
-        'YIC' => \Imagick::COLORSPACE_YIQ,
-        'YPBPR' => \Imagick::COLORSPACE_YPBPR,
-        'YUV' => \Imagick::COLORSPACE_YUV,
-        'CMYK' => \Imagick::COLORSPACE_CMYK,
-        'SRGB' => \Imagick::COLORSPACE_SRGB,
-        'HSB' => \Imagick::COLORSPACE_HSB,
-        'HSL' => \Imagick::COLORSPACE_HSL,
-        'HWB' => \Imagick::COLORSPACE_HWB,
-        // IM7 - 'REC601LUMA' => \Imagick::COLORSPACE_REC601LUMA,
-        // IM7 - 'REC709LUMA' => \Imagick::COLORSPACE_REC709LUMA,
-        'LOG' => \Imagick::COLORSPACE_LOG,
-        'CMY' => \Imagick::COLORSPACE_CMY,
-    ];
-}
-
-function getChannelNumberOptions()
-{
-    return [
-        // Stupid hack to avoid string being converted to int.
-        'Channel 1' => \Imagick::CHANNEL_RED,
-        'Channel 2' => \Imagick::CHANNEL_GREEN,
-        'Channel 3' => \Imagick::CHANNEL_BLUE,
-        'Alpha' => \Imagick::CHANNEL_ALPHA ,
-        'Black' => \Imagick::CHANNEL_BLACK ,
-    ];
-
+    return createReactImagePanel(
+        $imgUrl,
+        $pageBaseUrl,
+        false,
+        $example
+    );
 }

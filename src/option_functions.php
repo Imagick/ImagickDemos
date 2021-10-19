@@ -494,3 +494,67 @@ function getDitherOptions()
         'Disabled' => 0,
     ];
 }
+
+function getSetOptionExamples()
+{
+    return [
+        'renderJPG_10kb' => 0,
+        'renderJPG_60kb' => 1,
+        'renderPNG_png00' => 2,
+        'renderPNG_png64' => 3,
+        'renderCustomBitDepthPNG' => 4,
+        'renderBlackPoint' => 5,
+    ];
+}
+
+
+//function getImagepathInputParameter()
+//{
+//    return new InputParameter(
+//        'imagepath',
+//        new GetStringOrDefault('Lorikeet'),
+//        new EnumMap(getImagePathOptions())
+//    );
+//}
+
+
+function getColorSpaceOptions()
+{
+    return [
+        'RGB' => \Imagick::COLORSPACE_RGB,
+        'Gray' => \Imagick::COLORSPACE_GRAY,
+        'Transparent' => \Imagick::COLORSPACE_TRANSPARENT,
+        'OHTA' => \Imagick::COLORSPACE_OHTA,
+        // IM7 - 'LAB' => \Imagick::COLORSPACE_LAB,
+        'XYZ' => \Imagick::COLORSPACE_XYZ,
+        'YCBCR' => \Imagick::COLORSPACE_YCBCR,
+        'YCC' => \Imagick::COLORSPACE_YCC,
+        'YIC' => \Imagick::COLORSPACE_YIQ,
+        'YPBPR' => \Imagick::COLORSPACE_YPBPR,
+        'YUV' => \Imagick::COLORSPACE_YUV,
+        'CMYK' => \Imagick::COLORSPACE_CMYK,
+        'SRGB' => \Imagick::COLORSPACE_SRGB,
+        'HSB' => \Imagick::COLORSPACE_HSB,
+        'HSL' => \Imagick::COLORSPACE_HSL,
+        'HWB' => \Imagick::COLORSPACE_HWB,
+        // IM7 - 'REC601LUMA' => \Imagick::COLORSPACE_REC601LUMA,
+        // IM7 - 'REC709LUMA' => \Imagick::COLORSPACE_REC709LUMA,
+        'LOG' => \Imagick::COLORSPACE_LOG,
+        'CMY' => \Imagick::COLORSPACE_CMY,
+    ];
+}
+
+function getChannelNumberOptions()
+{
+    return [
+        // Stupid hack to avoid string being converted to int.
+        'Channel 1' => \Imagick::CHANNEL_RED,
+        'Channel 2' => \Imagick::CHANNEL_GREEN,
+        'Channel 3' => \Imagick::CHANNEL_BLUE,
+        'Alpha' => \Imagick::CHANNEL_ALPHA ,
+        'Black' => \Imagick::CHANNEL_BLACK ,
+    ];
+
+}
+
+

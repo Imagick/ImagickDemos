@@ -49,45 +49,11 @@ class ReactControls implements Control
         $this->params = $params;
     }
 
-    public function renderForm()
-    {
-        [$error, $value] = convertToValue($this->params);
-
-        if ($error !== null) {
-            // what to do here
-            return "oh dear, the form failed to render correctly: " . $error;
-        }
-
-        var_dump($value);
-        exit(0);
-
-        if (count($value) === 0) {
-            return "";
-        }
-
-        $output = sprintf(
-            "<div id='controlPanel' data-params_json='%s'></div>",
-            json_encode_safe($value)
-        );
-
-        return $output;
-    }
-
-    public function getParams()
-    {
-        if (method_exists($this->params, 'toArray') === true) {
-            return $this->params->toArray();
-        }
-
-        return $this->params->getAllParams();
-    }
-
     public function getInjectionParams()
     {
         if (method_exists($this->params, 'toArray') === true) {
             return $this->params->toArray();
         }
-
 
         return $this->params->getAllParams();
     }

@@ -25,7 +25,7 @@ class CharcoalImageControl implements InputParameterList
     public function __construct(
         #[Radius('radius')]
         private string $radius,
-        #[Sigma(4, 'sigma')]
+        #[Sigma(2, 'sigma')]
         private string $sigma,
         #[Image('image_path')]
         private string $image_path,

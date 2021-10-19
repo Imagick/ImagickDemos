@@ -4,9 +4,7 @@ namespace ImagickDemo;
 
 interface Control
 {
-    public function renderForm();
 
-    public function getParams();
 
     public function getInjectionParams();
 

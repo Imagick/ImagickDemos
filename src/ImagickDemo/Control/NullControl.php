@@ -21,12 +21,6 @@ class NullControl implements \ImagickDemo\Control
         $this->activeExample = $activeExample;
     }
 
-    /**
-     *
-     */
-    public function renderForm()
-    {
-    }
 
     /**
      * @param null $originalImageURL
@@ -55,15 +49,6 @@ class NullControl implements \ImagickDemo\Control
             false,
             $this->getImageStatusURL($extraParams)
         );
-    }
-    
-    
-    /**
-     * @return array
-     */
-    public function getParams()
-    {
-        return [];
     }
 
     public function getInjectionParams()

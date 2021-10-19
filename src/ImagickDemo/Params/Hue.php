@@ -2,15 +2,14 @@
 
 namespace ImagickDemo\Params;
 
-
-
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\RangeFloatValue;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
 
 #[\Attribute]
-class Saturation implements Param
+class Hue implements Param
 {
     public function __construct(
         private string $name
@@ -21,8 +20,10 @@ class Saturation implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(10),
-            new RangeFloatValue(-200, 200)
+            new GetFloatOrDefault(50),
+            new MinFloatValue(-1000),
+            new MaxFloatValue(1000),
         );
     }
+
 }

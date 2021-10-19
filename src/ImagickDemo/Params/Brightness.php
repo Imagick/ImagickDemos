@@ -5,8 +5,8 @@ namespace ImagickDemo\Params;
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
 
 #[\Attribute]
 class Brightness implements Param
@@ -20,9 +20,9 @@ class Brightness implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(-20),
-            new MinIntValue(-100),
-            new MaxIntValue(100),
+            new GetFloatOrDefault(10),
+            new MinFloatValue(-200),
+            new MaxFloatValue(200),
         );
     }
 

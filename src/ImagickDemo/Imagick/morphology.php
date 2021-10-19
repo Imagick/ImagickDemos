@@ -11,8 +11,6 @@ use ImagickDemo\Imagick\Controls\MorphologyControl;
 
 class morphology extends \ImagickDemo\Example
 {
-//    private $usageControl;
-
     private MorphologyControl $morphologyControl;
 
     private $functionTable;
@@ -22,13 +20,6 @@ class morphology extends \ImagickDemo\Example
         [false, false, false],
         [false, false, 1]
     ];
-
-//    //CustomImage
-//    public function getCustomImageParams()
-//    {
-//        return ['morphologyType' => $this->morphologyType];
-//    }
-
 
     public function renderCustomImage()
     {
@@ -48,12 +39,6 @@ class morphology extends \ImagickDemo\Example
     public function __construct(VarMap $varMap)
     {
         $this->morphologyControl = MorphologyControl::createFromVarMap($varMap);
-
-//        //$this->fileResponseFactory = $fileResponseFactory;
-//        $this->usageControl = $usageControl;
-//        $this->morphologyType = $variableMap->getVariable('morphologyType', \Imagick::MORPHOLOGY_EDGE_IN);
-
-//        parent::__construct($usageControl);
 
         $this->functionTable = [
             \Imagick::MORPHOLOGY_CONVOLVE => "renderConvolve",
@@ -96,9 +81,15 @@ class morphology extends \ImagickDemo\Example
 //        return $this->control->getOriginalURL();
 //    }
 
+    public function hasOriginalImage()
+    {
+        // TODO - revert to true
+        return false;
+    }
+
     public function getOriginalFilename()
     {
-        return "./images/character.png";
+        return "/images/character.png";
     }
 
 //    public function renderOriginalImage()
@@ -228,25 +219,15 @@ class morphology extends \ImagickDemo\Example
         return $output;
     }
 
-    public function hasBespokeRender()
-    {
-        return true;
-    }
 
     public function bespokeRender(ReactControls $reactControls)
     {
-        $output = "HALLo<BR/>";
-
-        $output .= createReactImagePanel(
+        return createReactImagePanel(
             "/customImage/Imagick/morphology",
             "/Imagick/morphology",
             false,
             $this
         );
-
-        $output .= $reactControls->renderImageURL("/images/character.png");
-
-        return $output;
     }
 
     public function render(
@@ -254,12 +235,20 @@ class morphology extends \ImagickDemo\Example
         ?string $activeExample
     )
     {
-        $morphologyType = $this->morphologyControl->getMorphologyType();
-        if (array_key_exists($morphologyType, $this->functionTable) == false) {
-            return '';
-        }
 
-        return $this->renderCustomImageURL([], $this->getOriginalImage());
+        return customImage(
+            $activeCategory,
+            $activeExample,
+            $this->morphologyControl->getValuesForForm(),
+            $this
+        );
+
+//        $morphologyType = $this->morphologyControl->getMorphologyType();
+//        if (array_key_exists($morphologyType, $this->functionTable) == false) {
+//            return '';
+//        }
+//
+//        return $this->renderCustomImageURL([], $this->getOriginalImage());
     }
 
     private function renderBlank()

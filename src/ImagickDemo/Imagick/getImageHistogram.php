@@ -37,7 +37,8 @@ class getImageHistogram extends \ImagickDemo\Example
         $output .= image(
             $activeCategory,
             $activeExample,
-            $this->imageControl->getValuesForForm()
+            $this->imageControl->getValuesForForm(),
+            $this
         );
         $output .= "<br/>For this image:<br/>";
         $output .= customImage(

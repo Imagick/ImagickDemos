@@ -1835,10 +1835,10 @@ function roundCorners($image_path)
 //Example end
 
 //Example Imagick::scaleImage
-function scaleImage($image_path)
+function scaleImage($image_path, $scale_width, $scale_height)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->scaleImage(150, 150, true);
+    $imagick->scaleImage($scale_width, $scale_height, false);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }
@@ -2175,7 +2175,7 @@ function setIteratorIndex($firstLayer)
     
     
 //Example Imagick::setSamplingFactors
-function setSamplingFactors($image_path)
+function setSamplingFactors()
 {
     $image_path = "../public/images/FineDetail.png";
     $imagick = new \Imagick(realpath($image_path));
@@ -2184,7 +2184,6 @@ function setSamplingFactors($image_path)
 
     $compressed = $imagick->getImageBlob();
 
-    
     $reopen = new \Imagick();
     $reopen->readImageBlob($compressed);
 

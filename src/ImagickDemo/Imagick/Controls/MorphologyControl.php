@@ -24,14 +24,10 @@ class MorphologyControl
     ) {
     }
 
-
     public function getValuesForForm(): array
     {
         return [
-//            'radius' => $this->radius,
-//            'sigma' => $this->sigma,
-//            'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
-//            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
+            'morphology_type' => getOptionFromOptions($this->morphology_type, getMorphologyTypeOptions()),
         ];
     }
 
@@ -42,6 +38,4 @@ class MorphologyControl
     {
         return $this->morphology_type;
     }
-
-
 }

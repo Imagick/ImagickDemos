@@ -498,16 +498,34 @@ function getImagePathForOption(string $selected_option)
 function image(
     ?string $activeCategory,
     ?string $activeExample,
-    array $values)
-{
-    $output = sprintf(
-        "<img src='/image/%s/%s?%s' alt='example image' />",
+    array $values,
+    Example $example
+) {
+//    $output = sprintf(
+//        "<img src='/image/%s/%s?%s' alt='example image' />",
+//        $activeCategory,
+//        $activeExample,
+//        http_build_query($values)
+//    );
+//
+//    return $output;
+    $imgUrl = sprintf(
+        "/image/%s/%s",
         $activeCategory,
-        $activeExample,
-        http_build_query($values)
+        $activeExample
+    );
+    $pageBaseUrl = sprintf("/%s/%s",
+        $activeCategory,
+        $activeExample
     );
 
-    return $output;
+    return createReactImagePanel(
+        $imgUrl,
+        $pageBaseUrl,
+        false,
+        $example
+    );
+
 }
 
 function customImage(
@@ -521,10 +539,10 @@ function customImage(
         $activeCategory,
         $activeExample
     );
-    $pageBaseUrl = sprintf("/%s/%s?%s",
+    $pageBaseUrl = sprintf("/%s/%s",
         $activeCategory,
-        $activeExample,
-        http_build_query($values));
+        $activeExample
+    );
 
     return createReactImagePanel(
         $imgUrl,

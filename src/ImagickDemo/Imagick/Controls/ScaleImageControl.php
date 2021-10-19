@@ -10,12 +10,12 @@ use Params\Create\CreateFromVarMap;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
-use ImagickDemo\Params\Channel;
-use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Radius;
-use ImagickDemo\Params\Sigma;
 
-class SetSamplingFactorsControl
+use ImagickDemo\Params\Image;
+use ImagickDemo\Params\ScaleHeight;
+use ImagickDemo\Params\ScaleWidth;
+
+class ScaleImageControl
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,8 +23,10 @@ class SetSamplingFactorsControl
     use InputParameterListFromAttributes;
 
     public function __construct(
-//        #[Radius('radius')]
-//        private string $radius,
+        #[ScaleWidth(200, 'scale_width')]
+        private string $scale_width,
+        #[ScaleHeight(0, 'scale_height')]
+        private string $scale_height,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -33,9 +35,8 @@ class SetSamplingFactorsControl
     public function getValuesForForm(): array
     {
         return [
-//            'radius' => $this->radius,
-//            'sigma' => $this->sigma,
-//            'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
+            'scale_height' => $this->scale_height,
+            'scale_width' => $this->scale_width,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }

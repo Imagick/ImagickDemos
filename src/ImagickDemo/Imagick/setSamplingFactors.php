@@ -2,35 +2,28 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Imagick\Controls\SetSamplingFactorsControl;
+use ImagickDemo\Imagick\Controls\NullControl;
 use VarMap\VarMap;
 
 class setSamplingFactors extends \ImagickDemo\Example
 {
-    private SetSamplingFactorsControl $samplingFactorControl;
-
-    public function __construct(VarMap $varMap)
-    {
-        $this->samplingFactorControl = SetSamplingFactorsControl::createFromVarMap($varMap);
-    }
+//    private SetSamplingFactorsControl $samplingFactorControl;
+//
+//    public function __construct(VarMap $varMap)
+//    {
+//        $this->samplingFactorControl = SetSamplingFactorsControl::createFromVarMap($varMap);
+//    }
 
     public function hasOriginalImage()
     {
-        return true;
+        return false;
     }
 
     public static function getParamType(): string
     {
-        return SetSamplingFactorsControl::class;
+        return NullControl::class;
     }
 
-//    /**
-//     * @return string
-//     */
-//    public function getOriginalImage()
-//    {
-//        return $this->control->getURL() . '&original=true';
-//    }
 
     public function renderDescription()
     {
@@ -85,21 +78,6 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
         return "Set sampling factor";
     }
 
-//    public function renderOriginalImage()
-//    {
-//        $imagick = new \Imagick(realpath("../public/images/FineDetail.png"));
-//
-//        $imagick->resizeImage(
-//            $imagick->getImageWidth() * 4,
-//            $imagick->getImageHeight() * 4,
-//            \Imagick::FILTER_POINT,
-//            1
-//        );
-//
-//        \header('Content-Type: image/png');
-//        echo $imagick->getImageBlob();
-//    }
-
     /**
      * @param string|null $activeCategory
      * @param string|null $activeExample
@@ -115,7 +93,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
 
         $imagick->setImageFormat('jpg');
         $originalSize = strlen($imagick->getImageBlob());
-        echo "Original size = $originalSize <br/>";
+        $output = "Original size = $originalSize <br/>";
 
         $options = [
             ['1', '1', '1'],
@@ -135,6 +113,15 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
             echo "Option " . implode(',', $option) . " new size " . $blobSize . "<br/>";
         }
 
-        return $this->renderImageURL();
+        $output .= image(
+            $activeCategory,
+            $activeExample,
+            [],
+            $this
+        );
+
+//        $output .= "/image/Imagick/setSamplingFactors";
+
+        return $output;
     }
 }

@@ -2,7 +2,7 @@
 set -e
 set -x
 
-cd /var/app/app
+cd /var/app
 
 npm ci
 

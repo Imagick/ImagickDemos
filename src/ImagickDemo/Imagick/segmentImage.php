@@ -20,6 +20,11 @@ END;
         return $output;
     }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
+
     public static function getParamType(): string
     {
         return SegmentImageControl::class;

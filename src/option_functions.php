@@ -274,6 +274,29 @@ function getChannelOptions()
 
 
 
+
+function getSingleChannelOptions()
+{
+    return [
+        'Red' => \Imagick::CHANNEL_RED,
+        // 'Gray' => \Imagick::CHANNEL_GRAY,
+        // 'Cyan' => \Imagick::CHANNEL_CYAN,
+        'Green' => \Imagick::CHANNEL_GREEN,
+        // 'Magenta' => \Imagick::CHANNEL_MAGENTA,
+        'Blue' => \Imagick::CHANNEL_BLUE,
+//        'Yellow' => \Imagick::CHANNEL_YELLOW,
+//        'Alpha' => \Imagick::CHANNEL_ALPHA,
+        //\Imagick::CHANNEL_OPACITY   => 'Opacity',
+        //\Imagick::CHANNEL_MATTE     => 'Matte',
+        // 'Black' => \Imagick::CHANNEL_BLACK,
+        //\Imagick::CHANNEL_INDEX     => 'Index',
+
+        //\Imagick::CHANNEL_DEFAULT   => 'Default',
+    ];
+}
+
+
+
 function getEnabledOptions()
 {
     return [

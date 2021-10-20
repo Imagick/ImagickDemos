@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\SeparateImageChannelControl;
+
 class separateImageChannel extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,13 @@ class separateImageChannel extends \ImagickDemo\Example
         return "Imagick::separateImageChannel";
     }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return SeparateImageChannelControl::class;
+    }
 }

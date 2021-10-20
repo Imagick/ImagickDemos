@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\OilPaintImageControl;
+
 class oilPaintImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,13 @@ class oilPaintImage extends \ImagickDemo\Example
         return "Imagick::oilPaintImage";
     }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return OilPaintImageControl::class;
+    }
 }

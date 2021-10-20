@@ -7,14 +7,16 @@ use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
 
 class adaptiveBlurImage extends Example
 {
-    public function hasOriginalImage()
-    {
-        return true;
-    }
+
 
     public function renderTitle(): string
     {
         return "Adaptive blur image";
+    }
+
+    public function hasOriginalImage()
+    {
+        return true;
     }
 
     public static function getParamType(): string

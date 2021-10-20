@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\SelectiveBlurImageControl;
+
 class selectiveBlurImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,13 @@ class selectiveBlurImage extends \ImagickDemo\Example
         return "Imagick::selectiveBlurImage";
     }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return SelectiveBlurImageControl::class;
+    }
 }

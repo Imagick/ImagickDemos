@@ -2,17 +2,15 @@
 
 namespace ImagickDemo\Params;
 
-
 use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
 use Params\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
-class Sepia implements Param
+class Implode implements Param
 {
     public function __construct(
-//        private int $default,
         private string $name
     ) {
     }
@@ -21,8 +19,8 @@ class Sepia implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(55),
-            new RangeFloatValue(0, 255)
+            new GetFloatOrDefault(0.5),
+            new RangeFloatValue(-1000, 5)
         );
     }
 }

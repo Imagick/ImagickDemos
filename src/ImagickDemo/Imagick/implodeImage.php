@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImplodeImageControl;
+
 class implodeImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class implodeImage extends \ImagickDemo\Example
         return "Implode image";
     }
 
-
+    public static function getParamType(): string
+    {
+        return ImplodeImageControl::class;
+    }
 }

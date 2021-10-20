@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\RandomThresholdImageControl;
+
 class randomThresholdImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,13 @@ class randomThresholdImage extends \ImagickDemo\Example
         return "Imagick::randomThresholdImage";
     }
 
+    public function hasOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return RandomThresholdImageControl::class;
+    }
 }

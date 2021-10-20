@@ -1205,6 +1205,7 @@ function setFontWeight($fillColor, $strokeColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
 
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
 
@@ -1574,6 +1575,7 @@ function setStrokeWidth($strokeColor, $fillColor, $backgroundColor)
 function setTextAlignment($strokeColor, $fillColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
+    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(1);

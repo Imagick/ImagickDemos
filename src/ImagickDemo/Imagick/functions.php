@@ -1110,10 +1110,10 @@ function haldClutImage($image_path, $hald_clut_type)
 
 
 //Example Imagick::implodeImage
-function implodeImage($image_path)
+function implodeImage($image_path, $implode)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->implodeImage(0.0001);
+    $imagick->implodeImage($implode);
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 
@@ -1860,7 +1860,12 @@ function segmentImage($image_path, $colorSpace, $clusterThreshold, $smoothThresh
 function selectiveBlurImage($image_path, $radius, $sigma, $threshold, $channel)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->selectiveBlurImage($radius, $sigma, $threshold, $channel);
+    $imagick->selectiveBlurImage(
+        $radius,
+        $sigma,
+        $threshold * \Imagick::getQuantum(),
+        $channel
+    );
     header("Content-Type: image/jpg");
     echo $imagick->getImageBlob();
 }

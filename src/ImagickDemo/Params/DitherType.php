@@ -9,7 +9,7 @@ use Params\InputParameter;
 use Params\Param;
 
 #[\Attribute]
-class Crop implements Param
+class DitherType implements Param
 {
     public function __construct(
         private string $name
@@ -20,8 +20,8 @@ class Crop implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('Disabled'),
-            new EnumMap(getCropOptions())
+            new GetStringOrDefault('Floyd-Steinberg'),
+            new EnumMap(getDitherTypeOptions())
         );
     }
 }

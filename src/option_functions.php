@@ -518,6 +518,16 @@ function getDitherOptions()
     ];
 }
 
+
+function getDitherTypeOptions()
+{
+    return [
+        'None' => \Imagick::DITHERMETHOD_NO,
+        'Riemersma' => \Imagick::DITHERMETHOD_RIEMERSMA,
+        'Floyd-Steinberg' => \Imagick::DITHERMETHOD_FLOYDSTEINBERG,
+    ];
+}
+
 function getSetOptionExamples()
 {
     return [
@@ -529,16 +539,6 @@ function getSetOptionExamples()
         'renderBlackPoint' => 5,
     ];
 }
-
-
-//function getImagepathInputParameter()
-//{
-//    return new InputParameter(
-//        'imagepath',
-//        new GetStringOrDefault('Lorikeet'),
-//        new EnumMap(getImagePathOptions())
-//    );
-//}
 
 
 function getColorSpaceOptions()
@@ -577,7 +577,14 @@ function getChannelNumberOptions()
         'Alpha' => \Imagick::CHANNEL_ALPHA ,
         'Black' => \Imagick::CHANNEL_BLACK ,
     ];
-
 }
 
+
+function getCropOptions()
+{
+    return [
+        'Enabled' => 1,
+        'Disabled' => 0,
+    ];
+}
 

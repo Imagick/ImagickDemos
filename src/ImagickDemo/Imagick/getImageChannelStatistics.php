@@ -101,4 +101,9 @@ class getImageChannelStatistics extends \ImagickDemo\Example
     {
         return ImageControl::class;
     }
+
+    public function needsFullPageRefresh(): bool
+    {
+        return true;
+    }
 }

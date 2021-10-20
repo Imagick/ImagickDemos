@@ -169,6 +169,7 @@ class Image
             'kernel_render' => "kernelRender",
             'kernel_type' => 'kernelType',
             'number_colors' => 'numberColors',
+            'number_levels' => 'numberLevels',
             'noise_type' => 'noiseType',
             'origin_x' => 'originX',
             'origin_y' => 'originY',

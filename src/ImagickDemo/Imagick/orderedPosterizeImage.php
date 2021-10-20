@@ -2,13 +2,22 @@
 
 namespace ImagickDemo\Imagick;
 
-//\Imagick::COMPOSITE_DEFAULT
-
 class orderedPosterizeImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
     {
         return "Imagick::orderedPosterizeImage";
+    }
+
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
+        $html = <<< HTML
+    Doesn't exist on ImageMagick 7 - TODO - need to find equivalent.
+HTML;
+
+        return $html;
     }
 
     public function renderDescription()

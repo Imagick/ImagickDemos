@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use \ImagickDemo\Imagick\Controls\RotateImageControl;
+
 class rotateImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class rotateImage extends \ImagickDemo\Example
         return "Imagick::rotateImage";
     }
 
-
+    public static function getParamType(): string
+    {
+        return RotateImageControl::class;
+    }
 }

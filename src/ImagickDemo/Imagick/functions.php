@@ -1698,11 +1698,11 @@ function reduceNoiseImage($image_path, $reduceNoise)
 //Example end
     
 //Example Imagick::remapImage
-function remapImage($image_path, $ditherMethod)
+function remapImage($image_path, $dither_type)
 {
     $imagick = new \Imagick(realpath($image_path));
     $palette = new \Imagick(realpath("images/NetscapeWebSafeColours.gif"));
-    $imagick->remapImage($palette, $ditherMethod);
+    $imagick->remapImage($palette, $dither_type);
     header("Content-Type: image/png");
     echo $imagick->getImageBlob();
 }

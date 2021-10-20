@@ -2,13 +2,14 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\EnumMap;
+use Params\ExtractRule\GetFloatOrDefault;
 use Params\InputParameter;
 use Params\Param;
+use Params\ProcessRule\MaxFloatValue;
+use Params\ProcessRule\MinFloatValue;
 
 #[\Attribute]
-class FilterType implements Param
+class ResizeBlur implements Param
 {
     public function __construct(
         private string $name
@@ -19,8 +20,9 @@ class FilterType implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault("Lanczos"),
-            new EnumMap(getFilterOptions())
+            new GetFloatOrDefault(1),
+            new MinFloatValue(0),
+            new MaxFloatValue(2),
         );
     }
 }

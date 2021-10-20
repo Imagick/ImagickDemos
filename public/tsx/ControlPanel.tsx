@@ -114,6 +114,7 @@ function map_api_name(api_param_name: string): string {
         endY: "End Y",
         fill_color: "Fill color",
         fill_modified_color: "Fill color 2",
+        filter_type: "Filter type",
         first_term: "First term",
         fourth_term: "Fourth term",
         function_type: "Function type",

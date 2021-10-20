@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ResizeImageControl;
+
 class resizeImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -10,4 +12,8 @@ class resizeImage extends \ImagickDemo\Example
     }
 
 
+    public static function getParamType(): string
+    {
+        return ResizeImageControl::class;
+    }
 }

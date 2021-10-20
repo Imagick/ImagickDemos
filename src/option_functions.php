@@ -588,3 +588,39 @@ function getCropOptions()
     ];
 }
 
+
+function getFilterOptions()
+{
+    return [
+        "Point" => \Imagick::FILTER_POINT,
+        "Box" => \Imagick::FILTER_BOX,
+        "Triangle" => \Imagick::FILTER_TRIANGLE,
+        "Hermite" => \Imagick::FILTER_HERMITE,
+        "Hanning" => \Imagick::FILTER_HANNING,
+        "Hamming" => \Imagick::FILTER_HAMMING,
+        "Blackman" => \Imagick::FILTER_BLACKMAN,
+        "Gaussian" => \Imagick::FILTER_GAUSSIAN,
+        "Quadratic" => \Imagick::FILTER_QUADRATIC,
+        "Cubic" => \Imagick::FILTER_CUBIC,
+        "Catrom" => \Imagick::FILTER_CATROM,
+        "Mitchell" => \Imagick::FILTER_MITCHELL,
+        "Lanczos" => \Imagick::FILTER_LANCZOS,
+        "Bessel/Jinc Filter" => \Imagick::FILTER_BESSEL,
+        "Sinc" => \Imagick::FILTER_SINC,
+        "Kaiser " => \Imagick::FILTER_KAISER,
+        "Welsh" => \Imagick::FILTER_WELSH,
+        "Parzen" => \Imagick::FILTER_PARZEN,
+        "Lagrange" => \Imagick::FILTER_LAGRANGE,
+        "Bohman" => \Imagick::FILTER_BOHMAN,
+        "Bartlett" => \Imagick::FILTER_BARTLETT,
+        "SincFast" => \Imagick::FILTER_SINCFAST,
+        "Robidoux" => \Imagick::FILTER_ROBIDOUX,
+        "LanczosSharp" => \Imagick::FILTER_LANCZOSSHARP,
+        "Lanczos2" => \Imagick::FILTER_LANCZOS2,
+        "Lanczos2Sharp" => \Imagick::FILTER_LANCZOS2SHARP,
+        "RobidouxSharp" => \Imagick::FILTER_ROBIDOUXSHARP,
+        "Cosine" => \Imagick::FILTER_COSINE,
+        "Spline" => \Imagick::FILTER_SPLINE,
+        "LanczosRadius" => \Imagick::FILTER_LANCZOSRADIUS,
+    ];
+}

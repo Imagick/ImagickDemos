@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageAndChannelControl;
+
 class normalizeImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -11,18 +13,17 @@ class normalizeImage extends \ImagickDemo\Example
 
     public function renderDescription()
     {
-        $output = "Original on left side, normalised on right. <br/>";
+        $output = "As the effect is very subtle, to make it easier to see the different, the original images is on the left side, normalised on right. <br/>";
         return $output;
     }
 
+    public static function getParamType(): string
+    {
+        return ImageAndChannelControl::class;
+    }
 
-//    public function render(
-//        ?string $activeCategory,
-//        ?string $activeExample
-//    )
-//    {
-//
-//        $output .= $this->renderImageURL();
-//        return $output;
-//    }
+    public function hasOriginalImage()
+    {
+        return true;
+    }
 }

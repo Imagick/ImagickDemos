@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageControl;
+
 class polaroidImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class polaroidImage extends \ImagickDemo\Example
         return "Polaroid image";
     }
 
-
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
+    }
 }

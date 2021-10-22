@@ -11,7 +11,7 @@ class separateImageChannel extends \ImagickDemo\Example
         return "Imagick::separateImageChannel";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

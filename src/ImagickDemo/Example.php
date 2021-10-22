@@ -6,7 +6,7 @@ use ImagickDemo\Imagick\Controls\NullControl;
 
 abstract class Example
 {
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return false;
     }
@@ -36,12 +36,9 @@ abstract class Example
         throw new \Exception("This shouldn't be reached - example missing renderOriginalImage method.");
     }
 
-    /**
-     * @return string
-     */
-    public function getOriginalFilename()
+    public function getOriginalFilename(): string|null
     {
-        throw new \Exception("This shouldn't be reached - example missing getOriginalFilename method.");
+        return null;
     }
 
     public function renderCustomImage()

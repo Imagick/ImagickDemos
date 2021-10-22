@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\FloodFillPaintImageControl;
+
 class floodFillPaintImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,11 +11,18 @@ class floodFillPaintImage extends \ImagickDemo\Example
         return "Flood fill paint image";
     }
 
-
-    public function getOriginalFilename()
+    public function getOriginalFilename(): string|null
     {
-        return realpath("images/BlueScreen.jpg");
+        return "/images/BlueScreen.jpg";
     }
 
+    public function useImageControlAsOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return FloodFillPaintImageControl::class;
+    }
 }

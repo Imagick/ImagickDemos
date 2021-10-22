@@ -11,7 +11,7 @@ class oilPaintImage extends \ImagickDemo\Example
         return "Imagick::oilPaintImage";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

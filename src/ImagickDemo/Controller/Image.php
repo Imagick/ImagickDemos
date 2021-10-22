@@ -58,15 +58,15 @@ class Image
         $this->pageInfo = $pageInfo;
     }
 
-    public function getOriginalImage(Example $example)
-    {
-        $filename = $example->getOriginalFilename();
-
-        return new ImageResponse(
-            file_get_contents($filename),
-            ImageResponse::TYPE_JPG
-        );
-    }
+//    public function getOriginalImage(Example $example)
+//    {
+//        $filename = $example->getOriginalFilename();
+//
+//        return new ImageResponse(
+//            file_get_contents($filename),
+//            ImageResponse::TYPE_JPG
+//        );
+//    }
     
     /**
      * @param $category
@@ -171,6 +171,7 @@ class Image
             'high_threshold' => 'highThreshold',
             'kernel_render' => "kernelRender",
             'kernel_type' => 'kernelType',
+            'layer_method' => 'layerMethod',
             'low_threshold' => 'lowThreshold',
             'number_colors' => 'numberColors',
             'number_levels' => 'numberLevels',
@@ -193,6 +194,7 @@ class Image
             'start_y' => 'startY',
             'statistic_type' => 'statisticType',
             'stroke_color' => "strokeColor",
+            'target_color' => 'targetColor',
             'text_decoration' => 'textDecoration',
             'text_under_color' => "textUnderColor",
             'third_term' => 'kernelThirdTerm',

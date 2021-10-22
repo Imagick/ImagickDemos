@@ -24,7 +24,7 @@ HTML;
 
 
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

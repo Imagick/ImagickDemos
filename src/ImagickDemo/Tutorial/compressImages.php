@@ -95,7 +95,7 @@ END;
     public function compressJpg()
     {
         $imagick = $this->getJpg();
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $imagick->getimageblob();
     }
 
@@ -103,7 +103,7 @@ END;
     {
         $imagick = $this->getJpg();
         $imagick->blurimage(3, 1);
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $imagick->getimageblob();
     }
 
@@ -124,7 +124,7 @@ END;
         //$imagick->setcompressionquality(30);
         $imagick->setimagecompressionquality(30);
         
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $imagick->getimageblob();
     }
 }

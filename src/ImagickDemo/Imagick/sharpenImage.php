@@ -16,7 +16,7 @@ class sharpenImage extends \ImagickDemo\Example
         return SharpenImageControl::class;
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

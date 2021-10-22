@@ -107,19 +107,24 @@ function setupImagePanel() {
     }
 
     let has_original_image = false;
-
-    if (element.dataset.hasOwnProperty("has_original_image") === true) {
-        let has_original_image_string = element.dataset.has_original_image;
-        if (has_original_image_string === 'true') {
+    if (element.dataset.hasOwnProperty("use_image_control_as_original_image") === true) {
+        let use_image_control_as_original_image_string = element.dataset.use_image_control_as_original_image;
+        if (use_image_control_as_original_image_string === 'true') {
             has_original_image = true;
         }
+    }
+
+    let original_image_url = null;
+    if (element.dataset.hasOwnProperty("original_image_url") === true) {
+        original_image_url = element.dataset.original_image_url;
     }
 
     let params:ImageProps = {
         imageBaseUrl: element.dataset.imagebaseurl,
         pageBaseUrl: element.dataset.pagebaseurl,
         fullPageRefresh: (element.dataset.full_page_refresh == "true"),
-        has_original_image: has_original_image
+        use_image_control_as_original_image: has_original_image,
+        original_image_url: original_image_url
     };
 
     render(<ImagePanel {...params} />, element);

@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\MergeImageControl;
+
 class mergeImageLayers extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class mergeImageLayers extends \ImagickDemo\Example
         return "Merge image layers";
     }
 
-
+    public static function getParamType(): string
+    {
+        return MergeImageControl::class;
+    }
 }

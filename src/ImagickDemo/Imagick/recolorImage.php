@@ -9,5 +9,10 @@ class recolorImage extends \ImagickDemo\Example
         return "Imagick::recolorImage";
     }
 
-
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
+        return "recolorImage was removed in ImageMagick 7. Use Imagick::colorMatrixImage instead. Probably";
+    }
 }

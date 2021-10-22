@@ -97,7 +97,7 @@ function clear($image_path)
 
     $imageIterator->clear();
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick;
 }
 //Example end
@@ -123,7 +123,7 @@ function construct($image_path)
         $imageIterator->syncIterator();
     }
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick;
 }
 //Example end
@@ -153,7 +153,7 @@ function getNextIteratorRow($image_path)
         $count += 1;
     }
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick;
 }
 //Example end
@@ -197,7 +197,7 @@ function resetIterator($image_path)
 
     $imageIterator->clear();
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick;
 }
 //Example end
@@ -223,7 +223,7 @@ function setIteratorRow($image_path)
         $imageIterator->syncIterator();
     }
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick;
 }
 //Example end
@@ -325,7 +325,7 @@ function syncIteratorImage($image_path)
         $imageIterator->syncIterator();
     }
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick;
 }
 //Example end

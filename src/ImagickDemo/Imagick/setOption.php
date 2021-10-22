@@ -69,7 +69,7 @@ class setOption extends \ImagickDemo\Example
         $imagick = new \Imagick(realpath($image_path));
         $imagick->setImageFormat('jpg');
         $imagick->setOption('jpeg:extent', $extent);
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $imagick->getImageBlob();
     }
 //Example end

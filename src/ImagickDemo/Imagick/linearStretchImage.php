@@ -11,7 +11,7 @@ class linearStretchImage extends \ImagickDemo\Example
         return "Linear stretch image";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

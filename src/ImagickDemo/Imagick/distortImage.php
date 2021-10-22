@@ -221,7 +221,7 @@ class distortImage extends \ImagickDemo\Example
 
         /* Perform the distortion */
         $imagick->distortImage(\Imagick::DISTORTION_PERSPECTIVE, $controlPoints, true);
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $imagick->getImageBlob();
 //Example end
     }

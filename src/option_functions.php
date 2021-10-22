@@ -624,3 +624,52 @@ function getFilterOptions()
         "LanczosRadius" => \Imagick::FILTER_LANCZOSRADIUS,
     ];
 }
+
+function getLayerMethodOptions()
+{
+    return [
+        "Coalesce" => \Imagick::LAYERMETHOD_COALESCE,
+        "Compare any" => \Imagick::LAYERMETHOD_COMPAREANY,
+        "Compare clear" => \Imagick::LAYERMETHOD_COMPARECLEAR,
+        "Compare overlay" => \Imagick::LAYERMETHOD_COMPAREOVERLAY,
+        "Dispose" => \Imagick::LAYERMETHOD_DISPOSE,
+        "Optimize" => \Imagick::LAYERMETHOD_OPTIMIZE,
+        "Optimize plus" => \Imagick::LAYERMETHOD_OPTIMIZEPLUS,
+        "Optimize transparency" => \Imagick::LAYERMETHOD_OPTIMIZETRANS,
+        "Composite" => \Imagick::LAYERMETHOD_COMPOSITE,
+        "Optimize image" => \Imagick::LAYERMETHOD_OPTIMIZEIMAGE,
+        "Remove dups" => \Imagick::LAYERMETHOD_REMOVEDUPS,
+        "Remove zero" => \Imagick::LAYERMETHOD_REMOVEZERO,
+        "Merge" => \Imagick::LAYERMETHOD_MERGE,
+        "Flatten" => \Imagick::LAYERMETHOD_FLATTEN,
+        "Mosaic" => \Imagick::LAYERMETHOD_MOSAIC,
+
+        //                \Imagick::LAYERMETHOD_COMPOSITE => "Composite",
+        //\Imagick::LAYERMETHOD_TRIMBOUNDS => "Trim bounds",
+    ];
+}
+
+
+function getMagnifyOptions()
+{
+    return [
+        "default" => "default",
+        "eagle2x" => "eagle2x",
+        "eagle3x" => "eagle3x",
+        "eagle3xb" => "eagle3xb",
+        "epbx2x" => "epbx2x",
+        "fish2x" => "fish2x",
+        "hq2x" => "hq2x",
+        "scale2x" => "scale2x",
+        "scale3x" => "scale3x",
+        "xbr2x" => "xbr2x",
+    ];
+}
+
+function getInverseOptions()
+{
+    return [
+        'Normal' => false,
+        'Inverse' => true,
+    ];
+}

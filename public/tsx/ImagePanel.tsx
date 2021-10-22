@@ -6,7 +6,8 @@ export interface ImageProps {
     pageBaseUrl: string;
     imageBaseUrl: string;
     fullPageRefresh: boolean|null;
-    has_original_image: boolean;
+    use_image_control_as_original_image: boolean;
+    original_image_url: string|null;
 }
 
 interface ImageState {
@@ -49,30 +50,7 @@ function createQueryString(params:Object): string {
     return queryString;
 }
 
-function getOriginalImagePath(params: Object) {
-    console.log(params)
 
-    // @ts-ignore: image_path
-    if (params.image_path === undefined) {
-        console.log("control data doesn't contain image_path, can't get original path.");
-    }
-
-    let knownPaths = {
-        'Skyline': "/images/Skyline_400.jpg",
-        'Lorikeet': "/images/Biter_500.jpg",
-        'People': "/images/SydneyPeople_400.jpg",
-        'Low contrast': "/images/LowContrast.jpg",
-    };
-
-    // @ts-ignore: image_path
-    if (knownPaths[params.image_path] === undefined) {
-        // @ts-ignore: image_path
-        console.log(`image_path ${params.image_path}, isn't listed, can't get original image url.`);
-    }
-
-    // @ts-ignore: image_path
-    return knownPaths[params.image_path];
-}
 
 export class ImagePanel extends Component<ImageProps, ImageState> {
 
@@ -128,19 +106,60 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
     }
 
     mouseOver() {
-        // console.log("mouse over");
-        if (this.props.has_original_image !== true) {
+        if (this.hasOriginalImage() !== true) {
             return;
         }
 
         this.setState({showing_original: true});
     }
     mouseOut() {
-        // console.log("mouse out");
-        if (this.props.has_original_image !== true) {
+        if (this.hasOriginalImage() !== true) {
             return;
         }
         this.setState({showing_original: false});
+    }
+
+    hasOriginalImage(): boolean {
+        if (this.props.use_image_control_as_original_image === true) {
+            return true;
+        }
+        if (this.props.original_image_url !== null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    getOriginalImagePath() {
+
+        let params = this.state.imageParams;
+
+        if (this.props.original_image_url !== null) {
+            return this.props.original_image_url;
+        }
+
+        // @ts-ignore: image_path
+        if (params.image_path === undefined) {
+            console.log("control data doesn't contain image_path, can't get original path.");
+            return;
+        }
+
+        let knownPaths = {
+            'Skyline': "/images/Skyline_400.jpg",
+            'Lorikeet': "/images/Biter_500.jpg",
+            'People': "/images/SydneyPeople_400.jpg",
+            'Low contrast': "/images/LowContrast.jpg",
+        };
+
+        // @ts-ignore: image_path
+        if (knownPaths[params.image_path] === undefined) {
+            // @ts-ignore: image_path
+            console.log(`image_path ${params.image_path}, isn't listed, can't get original image url.`);
+            return;
+        }
+
+        // @ts-ignore: image_path
+        return knownPaths[params.image_path];
     }
 
     render(props: ImageProps, state: ImageState) {
@@ -161,7 +180,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         let original_image_text = "";
         let view_modified = <span></span>;
 
-        if (this.props.has_original_image === true) {
+        if (this.hasOriginalImage() === true) {
             if (this.state.showing_original === true) {
                 original_image_text = "Touch/mouse out to see modified ";
             }
@@ -173,7 +192,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         }
 
          if (this.state.showing_original === true) {
-             img_url = getOriginalImagePath(this.state.imageParams);
+             img_url = this.getOriginalImagePath();
          }
 
         // @ts-ignore: TS2322

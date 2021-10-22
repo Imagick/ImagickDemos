@@ -24,7 +24,7 @@ class LevelizeImageControls implements InputParameterList
         private string $black_point,
         #[ComponentRangeFloat(100, 'white_point')]
         private string $white_point,
-        #[Gamma('gamma')]
+        #[Gamma(2.2, 'gamma')]
         private string $gamma,
     ) {
     }

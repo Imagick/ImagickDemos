@@ -6,7 +6,7 @@ use ImagickDemo\Imagick\Controls\AddNoiseImageControl;
 
 class addNoiseImage extends \ImagickDemo\Example
 {
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

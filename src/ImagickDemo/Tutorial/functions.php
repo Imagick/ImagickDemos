@@ -465,7 +465,7 @@ function edgeExtend($virtualPixelType, $image_path)
 
     $imagick->distortImage(\Imagick::DISTORTION_AFFINEPROJECTION, $points, false);
 
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 
 //Fyi it may be easier to think of the affine transform by 
@@ -620,7 +620,7 @@ function eyeColourResolution(
 
     // Output the image.
     $canvas->setImageFormat('jpg');
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $canvas->getImageBlob();
 }
 //Example end
@@ -953,7 +953,7 @@ function svgExample()
 
     $image->readImageBlob($svg);
     $image->setImageFormat("jpg");
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $image->getImageBlob();
 }
 //Example end

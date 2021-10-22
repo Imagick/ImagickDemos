@@ -20,7 +20,7 @@ END;
         return $output;
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

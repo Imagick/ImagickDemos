@@ -22,7 +22,7 @@ class normalizeImage extends \ImagickDemo\Example
         return ImageAndChannelControl::class;
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

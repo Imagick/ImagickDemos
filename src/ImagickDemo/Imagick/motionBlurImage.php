@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\MotionBlurImageControl;
+
 class motionBlurImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -14,15 +16,14 @@ class motionBlurImage extends \ImagickDemo\Example
         return true;
     }
 
-//    function getOriginalImage()
-//    {
-//        return $this->control->getOriginalURL();
-//    }
-//
-//    function getOriginalFilename()
-//    {
-//        return $this->control->getImagePath();
-//    }
 
+    public function useImageControlAsOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return MotionBlurImageControl::class;
+    }
 }

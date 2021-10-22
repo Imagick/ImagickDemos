@@ -9,7 +9,7 @@ class solarizeImage extends \ImagickDemo\Example
         return $this->control->getOriginalURL();
     }
 
-    function getOriginalFilename()
+    function getOriginalFilename(): string|null
     {
         return $this->control->getImagePath();
     }

@@ -14,7 +14,7 @@ class setSamplingFactors extends \ImagickDemo\Example
 //        $this->samplingFactorControl = SetSamplingFactorsControl::createFromVarMap($varMap);
 //    }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return false;
     }

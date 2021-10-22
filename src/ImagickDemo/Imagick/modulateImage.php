@@ -11,7 +11,7 @@ class modulateImage extends \ImagickDemo\Example
         return "Modulate image";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

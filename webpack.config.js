@@ -74,11 +74,12 @@ module.exports = {
         //     // default output is timestamp.json
         //     filename: 'timestamp.json'
         // }),
-        // new BundleAnalyzerPlugin({
-        //     analyzerHost: "0.0.0.0",
-        //     analyzerMode: options.analyze === "enabled" ? 'static': "server",
-        //     openAnalyzer: false
-        // })
+        new BundleAnalyzerPlugin({
+            analyzerHost: "0.0.0.0",
+            //analyzerMode: options.analyze === "enabled" ? 'static': "server",
+            analyzerMode: 'static',
+            openAnalyzer: false
+        }),
 
         new CompressionPlugin(),
 

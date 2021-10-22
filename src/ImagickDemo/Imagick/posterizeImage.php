@@ -11,7 +11,7 @@ class posterizeImage extends \ImagickDemo\Example
         return "Imagick::posterizeImage";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

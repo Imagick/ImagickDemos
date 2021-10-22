@@ -13,7 +13,7 @@ class sketchImage extends \ImagickDemo\Example
 
 
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

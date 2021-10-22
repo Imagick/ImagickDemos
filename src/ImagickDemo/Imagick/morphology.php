@@ -81,13 +81,13 @@ class morphology extends \ImagickDemo\Example
 //        return $this->control->getOriginalURL();
 //    }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         // TODO - revert to true
         return false;
     }
 
-    public function getOriginalFilename()
+    public function getOriginalFilename(): string|null
     {
         return "/images/character.png";
     }

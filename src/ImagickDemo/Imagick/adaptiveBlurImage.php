@@ -14,7 +14,7 @@ class adaptiveBlurImage extends Example
         return "Adaptive blur image";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

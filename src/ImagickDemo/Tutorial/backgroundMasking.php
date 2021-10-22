@@ -9,7 +9,7 @@ class backgroundMasking extends \ImagickDemo\Example
         return "Background masking";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }
@@ -20,7 +20,7 @@ class backgroundMasking extends \ImagickDemo\Example
         
     }
     
-    public function getOriginalFilename()
+    public function getOriginalFilename(): string|null
     {
         return realpath("./images/chair.jpeg");
     }
@@ -28,7 +28,7 @@ class backgroundMasking extends \ImagickDemo\Example
 //    public function renderOriginalImage()
 //    {
 //        $imagick = new \Imagick();
-//        header("Content-Type: image/jpg");
+//        header("Content-Type: image/jpeg");
 //        echo $imagick->getImageBlob();
 //        return;
 //    }

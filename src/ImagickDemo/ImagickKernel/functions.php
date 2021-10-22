@@ -267,7 +267,7 @@ function addKernel($image_path)
     $imagick = new \Imagick(realpath($image_path));
 //    $imagick->filter($kernel1);
     $imagick->convolveImage($kernel1);
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 
 }
@@ -291,7 +291,7 @@ function addUnityKernel($image_path)
 
     $imagick = new \Imagick(realpath($image_path));
     $imagick->filter($kernel);
-    header("Content-Type: image/jpg");
+    header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 
 }

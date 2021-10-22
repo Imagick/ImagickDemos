@@ -10,7 +10,10 @@ use Params\ProcessRule\RangeFloatValue;
 #[\Attribute]
 class Gamma implements Param
 {
+    // 2.2
+
     public function __construct(
+        private float $default,
         private string $name
     ) {
     }
@@ -19,7 +22,7 @@ class Gamma implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(2.2),
+            new GetFloatOrDefault($this->default),
             new RangeFloatValue(0.01, 10),
         );
     }

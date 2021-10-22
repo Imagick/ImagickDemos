@@ -11,7 +11,7 @@ class selectiveBlurImage extends \ImagickDemo\Example
         return "Imagick::selectiveBlurImage";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

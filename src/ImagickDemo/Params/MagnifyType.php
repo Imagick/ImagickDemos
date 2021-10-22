@@ -2,13 +2,14 @@
 
 namespace ImagickDemo\Params;
 
+
 use Params\ExtractRule\GetStringOrDefault;
 use Params\ProcessRule\EnumMap;
 use Params\InputParameter;
 use Params\Param;
 
 #[\Attribute]
-class Inverse implements Param
+class MagnifyType implements Param
 {
     public function __construct(
         private string $name
@@ -19,8 +20,8 @@ class Inverse implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetStringOrDefault('Normal'),
-            new EnumMap(getInverseOptions())
+            new GetStringOrDefault("default"),
+            new EnumMap(getMagnifyOptions())
         );
     }
 }

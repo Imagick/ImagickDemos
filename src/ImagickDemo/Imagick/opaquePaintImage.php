@@ -9,7 +9,7 @@ class opaquePaintImage extends \ImagickDemo\Example
         return "Imagick::opaquePaintImage";
     }
 
-    public function getOriginalFilename()
+    public function getOriginalFilename(): string|null
     {
         return realpath("images/BlueScreen.jpg");
     }

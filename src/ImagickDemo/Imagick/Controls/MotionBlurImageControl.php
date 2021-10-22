@@ -4,18 +4,18 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-
+use ImagickDemo\Params\Radius;
+use ImagickDemo\Params\Sigma;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-
-use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Gamma;
+use ImagickDemo\Params\Angle;
+use ImagickDemo\Params\Channel;
 
-class GammaImageControl implements InputParameterList
+class MotionBlurImageControl implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,20 +23,26 @@ class GammaImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Gamma(2.2, 'gamma')]
-        private string $gamma,
+        #[Radius('radius')]
+        private string $radius,
+        #[Sigma(4, 'sigma')]
+        private string $sigma,
+        #[Angle('angle')]
+        private string $angle,
+        #[Channel('channel')]
+        private string $channel,
         #[Image('image_path')]
         private string $image_path,
-        #[Channel('channel')]
-        private string $channel
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'gamma' => $this->gamma,
-            'channel' => getOptionFromOptions($this->channel, \getChannelOptions()),
+            'radius' => $this->radius,
+            'sigma' => $this->sigma,
+            'angle' => $this->angle,
+            'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }

@@ -71,7 +71,7 @@ END;
         $gradient->newPseudoImage(1, 256, "gradient:white-black");
         $newImage = $gradient->fxImage("floor(u*10+0.5)/10");
         $newImage->setimageformat('jpg');
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $newImage;
     }
 

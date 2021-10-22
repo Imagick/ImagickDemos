@@ -54,7 +54,7 @@ class getImageHistogram extends \ImagickDemo\Example
     public function renderCustomImage()
     {
         $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
-        header("Content-Type: image/jpg");
+        header("Content-Type: image/jpeg");
         echo $imagick;
     }
 

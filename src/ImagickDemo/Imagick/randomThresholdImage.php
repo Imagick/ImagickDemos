@@ -11,7 +11,7 @@ class randomThresholdImage extends \ImagickDemo\Example
         return "Imagick::randomThresholdImage";
     }
 
-    public function hasOriginalImage()
+    public function useImageControlAsOriginalImage()
     {
         return true;
     }

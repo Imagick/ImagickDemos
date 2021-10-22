@@ -11,7 +11,7 @@ class deskewImage extends \ImagickDemo\Example
         return "Deskew image";
     }
 
-    function getOriginalFilename()
+    function getOriginalFilename(): string|null
     {
         return "images/NYTimes-Page1-11-11-1918.jpg";
     }

@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\LevelImageControl;
+
 class levelImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -24,5 +26,13 @@ END;
         return $output;
     }
 
+    public function useImageControlAsOriginalImage()
+    {
+        return true;
+    }
 
+    public static function getParamType(): string
+    {
+        return LevelImageControl::class;
+    }
 }

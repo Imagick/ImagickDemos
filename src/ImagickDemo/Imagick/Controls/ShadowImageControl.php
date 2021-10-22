@@ -7,15 +7,19 @@ namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
 
 use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Gamma;
+use ImagickDemo\Params\Radius;
+use ImagickDemo\Params\Sigma;
+use ImagickDemo\Params\X;
+use ImagickDemo\Params\Y;
+use ImagickDemo\Params\UnitRange;
 
-class GammaImageControl implements InputParameterList
+
+class ShadowImageControl
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,21 +27,32 @@ class GammaImageControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Gamma(2.2, 'gamma')]
-        private string $gamma,
+        #[X('x')]
+        private string $x,
+        #[Y('y')]
+        private string $y,
+        #[Sigma(1, 'sigma')]
+        private string $sigma,
+        #[UnitRange(0.5, 'opacity')]
+        private string $opacity,
         #[Image('image_path')]
         private string $image_path,
-        #[Channel('channel')]
-        private string $channel
     ) {
     }
 
     public function getValuesForForm(): array
     {
         return [
-            'gamma' => $this->gamma,
-            'channel' => getOptionFromOptions($this->channel, \getChannelOptions()),
+            'x' => $this->x,
+            'y' => $this->y,
+            'opacity' => $this->opacity,
+            'sigma' => $this->sigma,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
+    }
+
+    public function getImagePath(): string
+    {
+        return $this->image_path;
     }
 }

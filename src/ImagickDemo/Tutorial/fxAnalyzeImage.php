@@ -63,7 +63,7 @@ END;
             $this
         );
 
-        $output .= $reactControls->renderImageURL(false);
+        //$output .= $reactControls->renderImageURL(false);
 
         return $output;
     }

@@ -630,16 +630,19 @@ function createReactImagePanel(
     $output .= sprintf(' data-full_page_refresh="%s"', $refreshString);
 
 
-    $original_image = $example->hasOriginalImage();
+    $original_image = $example->useImageControlAsOriginalImage();
     if ($original_image === true) {
-        $output .= ' data-has_original_image="true"';
+        $output .= ' data-use_image_control_as_original_image="true"';
     }
     else {
-        $output .= ' data-has_original_image="false"';
+        $output .= ' data-use_image_control_as_original_image="false"';
+    }
+
+    if (($originalFilename = $example->getOriginalFilename()) !== null) {
+        $output .= " data-original_image_url='$originalFilename'";
     }
 
     $output .= "></div>";
 
     return $output;
 }
-

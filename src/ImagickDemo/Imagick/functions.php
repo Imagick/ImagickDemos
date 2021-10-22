@@ -2325,9 +2325,10 @@ function solarizeImage($image_path, $solarizeThreshold)
 
 
 //Example Imagick::spliceImage
-function spliceImage($image_path, $startX, $startY, $width, $height)
+function spliceImage($image_path, $startX, $startY, $width, $height, $color)
 {
     $imagick = new \Imagick(realpath($image_path));
+    $imagick->setImageBackgroundColor($color);
     $imagick->spliceImage($width, $height, $startX, $startY);
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();

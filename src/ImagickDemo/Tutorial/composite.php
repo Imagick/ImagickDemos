@@ -181,7 +181,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
             'Dst_Out' => ['gradientDown', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_DSTOUT],
             'ATop' => ['getTestImage', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_ATOP],
             'Plus' => ['getRedDiscAlpha', 'getBlueDiscAlpha', \Imagick::COMPOSITE_PLUS],
-            'Minus' => ['getRGBDisc', 'getRedDiscAlpha', \Imagick::COMPOSITE_MINUS],
+            //'Minus' => ['getRGBDisc', 'getRedDiscAlpha', \Imagick::COMPOSITE_MINUS],
             'CopyOpacity' => ['gradientDown', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_COPYOPACITY],
             'CopyOpacity2' => ['getBiter', 'getWhiteDiscAlpha', \Imagick::COMPOSITE_COPYOPACITY],
         ];

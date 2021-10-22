@@ -33,3 +33,6 @@ IMAGICK_REGISTER_CONST_LONG("COLORSPACE_LAB", LABColorspace);
 orderedPosterizeImage
 
 RecolorImage is gone - use 'Color matrix image' instead ?
+
+
+//'Minus' => ['getRGBDisc', 'getRedDiscAlpha', \Imagick::COMPOSITE_MINUS],

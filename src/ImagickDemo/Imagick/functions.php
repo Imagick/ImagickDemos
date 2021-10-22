@@ -2504,7 +2504,10 @@ function transparentPaintImage($color, $alpha, $fuzz, $inverse)
     $imagick->setimageformat('png');
 
     $imagick->transparentPaintImage(
-        $color, $alpha, $fuzz * \Imagick::getQuantum(), $inverse
+        $color,
+        $alpha,
+        $fuzz * \Imagick::getQuantum(),
+        $inverse
     );
 
     //Not required, but helps tidy up left over pixels

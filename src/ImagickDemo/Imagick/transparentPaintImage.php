@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\TransparentPaintImageControl;
+
 class transparentPaintImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -11,8 +13,11 @@ class transparentPaintImage extends \ImagickDemo\Example
 
     function getOriginalFilename(): string|null
     {
-        return realpath("images/BlueScreen.jpg");
+        return "/images/BlueScreen.jpg";
     }
 
-
+    public static function getParamType(): string
+    {
+        return TransparentPaintImageControl::class;
+    }
 }

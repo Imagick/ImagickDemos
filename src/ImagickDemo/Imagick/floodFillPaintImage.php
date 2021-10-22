@@ -16,11 +16,6 @@ class floodFillPaintImage extends \ImagickDemo\Example
         return "/images/BlueScreen.jpg";
     }
 
-    public function useImageControlAsOriginalImage()
-    {
-        return true;
-    }
-
     public static function getParamType(): string
     {
         return FloodFillPaintImageControl::class;

@@ -25,8 +25,8 @@ class TransformImageColorspaceControl implements InputParameterList
     public function __construct(
         #[ChannelNumber('channel_number')]
         private string $channel_number,
-        #[ColorSpace('color_space')]
-        private string $color_space,
+        #[ColorSpace('colorspace')]
+        private string $colorspace,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -36,7 +36,7 @@ class TransformImageColorspaceControl implements InputParameterList
     {
         return [
             'channel_number' => getOptionFromOptions($this->channel_number, getChannelNumberOptions()),
-            'color_space' => getOptionFromOptions($this->color_space, getColorSpaceOptions()),
+            'colorspace' => getOptionFromOptions($this->colorspace, getColorSpaceOptions()),
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }

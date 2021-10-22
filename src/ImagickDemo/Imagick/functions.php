@@ -2463,7 +2463,9 @@ function tintImage($r, $g, $b, $a)
     $draw->setFillColor('white');
  
     $draw->setStrokeWidth(1);
-    $draw->setFontSize(36);
+    $draw->setFontSize(48);
+    $draw->setStrokeAntialias(true);
+    $draw->setFont("../fonts/Arial.ttf");
     
     $imagick->annotateImage($draw, 50, 50, 0, "Alpha is $a");
     header("Content-Type: image/png");

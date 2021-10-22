@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\TintImageControl;
+
 class tintImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,10 @@ class tintImage extends \ImagickDemo\Example
         return "Imagick::tintImage";
     }
 
+
+    public static function getParamType(): string
+    {
+        return TintImageControl::class;
+    }
 
 }

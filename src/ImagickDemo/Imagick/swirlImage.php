@@ -11,8 +11,6 @@ class swirlImage extends \ImagickDemo\Example
         return "Imagick::swirlImage";
     }
 
-
-
     public static function getParamType(): string
     {
         return SwirlImageControl::class;

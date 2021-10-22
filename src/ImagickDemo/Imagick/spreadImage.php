@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\SpreadImageControl;
+
 class spreadImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class spreadImage extends \ImagickDemo\Example
         return "Imagick::spreadImage";
     }
 
-
+    public static function getParamType(): string
+    {
+        return SpreadImageControl::class;
+    }
 }

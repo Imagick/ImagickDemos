@@ -8,6 +8,8 @@ import {SelectOption} from "./components/Select";
 import {getNamedColorValue} from "./ImagickColors";
 import {RgbaColorPicker, RgbaColor} from "react-colorful";
 import {colorValues} from "./color_convert";
+import {ColorInput} from "./components/ColorInput";
+
 
 
 // https://swagger.io/specification/#example-object
@@ -86,7 +88,7 @@ function getDefaultState(initialControlParams: object): AppState {
  * if one exists, otherwise just return the api parameter name.
  * @param api_param_name
  */
-function map_api_name(api_param_name: string): string {
+export function map_api_name(api_param_name: string): string {
 
     let known_map = {
         amount: "Amount",
@@ -154,6 +156,7 @@ function map_api_name(api_param_name: string): string {
         target_color: "Target color ",
         text_under_color: "Text under color",
         third_term: "Third term",
+        threshold_color: "Threshold color",
         translate_x: "Translate X",
         translate_y: "Translate Y",
         tree_depth: "Tree depth",
@@ -243,12 +246,6 @@ export class ControlPanel extends Component<AppProps, AppState> {
     }
 
     createNumberControl(control_info: ControlInfo) {
-
-        // console.log("************");
-        // console.log(this.state.values);
-        // console.log(control_info);
-        // console.log("************");
-
         return <div>
             <Number
                 name={map_api_name(control_info.name)}
@@ -269,7 +266,6 @@ export class ControlPanel extends Component<AppProps, AppState> {
 
 
     setActiveColor(active_color: string) {
-        // console.log("Setting active color: " + active_color);
         this.setState({active_color: active_color})
     }
 
@@ -280,7 +276,7 @@ export class ControlPanel extends Component<AppProps, AppState> {
         this.setState({values: current_values});
     }
 
-    setColorFromPicker(color:RgbaColor) {
+    setColorForActiveColor(color:RgbaColor) {
         if (this.state.active_color === null) {
             throw new Error("active_color is null, can't update color");
         }
@@ -292,6 +288,7 @@ export class ControlPanel extends Component<AppProps, AppState> {
         }
         this.setCurrentValue(this.state.active_color, new_color_string);
     }
+
 
     setMatrixCurrentValue(name: string, row_index: number, column_index: number, new_value: string ) {
         let current_values = this.state.values;
@@ -329,61 +326,19 @@ export class ControlPanel extends Component<AppProps, AppState> {
     }
 
     createColorControl(control_info: ControlInfo) {
-        // @ts-ignore: blah blah blah
-        const style = {
-            width: "20px",
-            margin: "2px",
-            display: "inline-block",
-            // @ts-ignore: blah blah blah
-            "background-color": getNamedColorValue(this.state.values[control_info.name])
-        }
 
-        let color_picker = <span></span>;
+        let updateFn = (color:RgbaColor) => {
+            this.setColorForActiveColor(color);
+        };
 
-        if (this.state.active_color === control_info.name) {
-            // @ts-ignore: blah blah blah
-            let actual_color = getNamedColorValue(this.state.values[control_info.name]);
 
-            let color_array = colorValues(actual_color);
 
-            let color_rgba: RgbaColor = {
-                r: color_array.r,
-                g: color_array.g,
-                b: color_array.b,
-                a: 1
-            };
-
-            // @ts-ignore: blah blah blah
-            if (color_array.a !== undefined) {
-                // @ts-ignore: blah blah blah
-                color_rgba.a = color_array.a;
-            }
-
-            color_picker = <RgbaColorPicker
-                color={color_array}
-                onChange={(newColor => this.setColorFromPicker(newColor))} />
-        }
-
-        return <div>
-            {map_api_name(control_info.name)}
-
-            <span
-                style="display: inline-block; border: 1px solid #000; padding: 0px;"
-                // @ts-ignore: blah blah blah
-                onclick={() => this.setActiveColor(control_info.name)}
-            >
-                <span style={style}>
-                    &nbsp;
-                </span>
-            </span>
-
-            <input type="text" class="inputValue" value={
-                // @ts-ignore: blah blah blah
-                this.state.values[control_info.name]
-            }/>
-
-            {color_picker}
-        </div>;
+        return <ColorInput
+            name={control_info.name}
+            value={this.state.values[control_info.name]}
+            active={this.state.active_color === control_info.name}
+            updateFn={updateFn}
+        ></ColorInput>;
     }
 
     createEnumControl(control_info: ControlInfo) {

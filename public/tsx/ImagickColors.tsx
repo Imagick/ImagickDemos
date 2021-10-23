@@ -680,11 +680,11 @@ let imagick_colors: NamedColor = {
     'YellowGreen': 'rgb(154, 205, 50)',
 };
 
-export function getNamedColorValue(name: string): string {
+export function getNamedColorValue(name: string): string|null {
 
     if (imagick_colors.hasOwnProperty(name) == true) {
         return imagick_colors[name];
     }
-    //console.error(`imagick_colors does not contain {name}`);
-    return name;
+
+    return null;
 }

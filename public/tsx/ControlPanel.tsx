@@ -118,7 +118,7 @@ function map_api_name(api_param_name: string): string {
         first_term: "First term",
         fourth_term: "Fourth term",
         function_type: "Function type",
-        fx_analyze_example: "FX Analyze example",
+        fx_analyze_option: "FX Analyze type",
         hald_clut_type: "Hald clut",
         height: "Height",
         high_threshold: "High threshold",

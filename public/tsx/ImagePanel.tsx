@@ -4,7 +4,7 @@ import { registerEvent, unregisterEvent, EventType } from "./events";
 
 export interface ImageProps {
     pageBaseUrl: string;
-    imageBaseUrl: string;
+    imageBaseUrl: string|null;
     fullPageRefresh: boolean|null;
     use_image_control_as_original_image: boolean;
     original_image_url: string|null;
@@ -171,11 +171,15 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         imageParams.time = date.getTime();
 
         let queryString:string = createQueryString(imageParams);
-        let img_url = props.imageBaseUrl + "?" + queryString;
-
-        if (this.props.fullPageRefresh === true) {
+        if (props.imageBaseUrl === null) {
             return <span></span>;
         }
+
+        let img_url = props.imageBaseUrl + "?" + queryString;
+
+        // if (this.props.fullPageRefresh === true) {
+        //     return <span></span>;
+        // }
 
         let original_image_text = "";
         let view_modified = <span></span>;

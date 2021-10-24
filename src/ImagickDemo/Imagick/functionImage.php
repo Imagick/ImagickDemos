@@ -106,7 +106,6 @@ f4 - Constant vertical offset, default 0.5";
         $output = createReactImagePanel(
             "/customImage/Imagick/functionImage",
             "/Imagick/functionImage",
-            true,
             $this
         );
 

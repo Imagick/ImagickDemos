@@ -139,7 +139,6 @@ abstract class Example
         return createReactImagePanel(
             $imageBaseUrl,
             $pageBaseUrl,
-            false,
             $this
         );
     }

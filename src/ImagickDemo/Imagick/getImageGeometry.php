@@ -47,7 +47,6 @@ END;
         $output = createReactImagePanel(
             "/customImage/Imagick/getImageGeometry",
             "/Imagick/getImageGeometry",
-            true,
             $this
         );
 

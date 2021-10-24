@@ -96,8 +96,9 @@ function setupImagePanel() {
         return;
     }
 
+    let imagebaseurl = null;
     if (element.dataset.hasOwnProperty("imagebaseurl") !== true) {
-        console.error('imagePanel missing imagebaseurl');
+        imagebaseurl = element.dataset.imagebaseurl;
         return;
     }
 
@@ -106,11 +107,11 @@ function setupImagePanel() {
         return;
     }
 
-    let has_original_image = false;
+    let use_image_control_as_original_image = false;
     if (element.dataset.hasOwnProperty("use_image_control_as_original_image") === true) {
         let use_image_control_as_original_image_string = element.dataset.use_image_control_as_original_image;
         if (use_image_control_as_original_image_string === 'true') {
-            has_original_image = true;
+            use_image_control_as_original_image = true;
         }
     }
 
@@ -120,10 +121,10 @@ function setupImagePanel() {
     }
 
     let params:ImageProps = {
-        imageBaseUrl: element.dataset.imagebaseurl,
+        imageBaseUrl: imagebaseurl,
         pageBaseUrl: element.dataset.pagebaseurl,
         fullPageRefresh: (element.dataset.full_page_refresh == "true"),
-        use_image_control_as_original_image: has_original_image,
+        use_image_control_as_original_image: use_image_control_as_original_image,
         original_image_url: original_image_url
     };
 

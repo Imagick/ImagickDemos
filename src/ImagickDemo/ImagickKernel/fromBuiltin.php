@@ -35,7 +35,6 @@ class fromBuiltin extends \ImagickDemo\Example
         $output = createReactImagePanel(
             "/image/ImagickKernel/fromBuiltin",
             "/ImagickKernel/fromBuiltin",
-            true,
             $this
         );
 

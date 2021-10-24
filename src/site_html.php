@@ -114,7 +114,6 @@ function renderReactExampleImagePanel(
     return createReactImagePanel(
         $imageBaseUrl,
         $pageBaseUrl,
-        false,
         $example
     );
 }
@@ -609,14 +608,19 @@ HTML;
 }
 
 
+/**
+ * @param string|null $imageBaseUrl If imageBaseUrl is null, no image will be displayed by the react panel
+ * @param string $pageBaseUrl
+ * @param Example $example
+ * @return string
+ */
 function createReactImagePanel(
-    string $imageBaseUrl,
+    ?string $imageBaseUrl,
     string $pageBaseUrl,
-    bool $full_page_refresh,
     Example $example
 ): string {
     $refreshString = 'false';
-    if ($full_page_refresh) {
+    if ($example->needsFullPageRefresh() === true) {
         $refreshString = 'true';
     }
 
@@ -625,7 +629,9 @@ function createReactImagePanel(
     }
 
     $output = '<div id="imagePanel"';
-    $output .= sprintf(' data-imageBaseUrl="%s"', $imageBaseUrl);
+    if ($imageBaseUrl !== null) {
+        $output .= sprintf(' data-imageBaseUrl="%s"', $imageBaseUrl);
+    }
     $output .= sprintf(' data-pagebaseurl="%s"', $pageBaseUrl,);
     $output .= sprintf(' data-full_page_refresh="%s"', $refreshString);
 

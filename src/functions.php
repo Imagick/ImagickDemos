@@ -501,14 +501,6 @@ function image(
     array $values,
     Example $example
 ) {
-//    $output = sprintf(
-//        "<img src='/image/%s/%s?%s' alt='example image' />",
-//        $activeCategory,
-//        $activeExample,
-//        http_build_query($values)
-//    );
-//
-//    return $output;
     $imgUrl = sprintf(
         "/image/%s/%s",
         $activeCategory,
@@ -522,7 +514,6 @@ function image(
     return createReactImagePanel(
         $imgUrl,
         $pageBaseUrl,
-        false,
         $example
     );
 
@@ -547,7 +538,6 @@ function customImage(
     return createReactImagePanel(
         $imgUrl,
         $pageBaseUrl,
-        false,
         $example
     );
 }

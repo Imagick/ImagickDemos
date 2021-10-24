@@ -225,7 +225,6 @@ class morphology extends \ImagickDemo\Example
         return createReactImagePanel(
             "/customImage/Imagick/morphology",
             "/Imagick/morphology",
-            false,
             $this
         );
     }

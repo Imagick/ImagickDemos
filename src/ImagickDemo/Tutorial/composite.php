@@ -68,11 +68,15 @@ class composite extends \ImagickDemo\Example
         return $listOfExamples;
     }
 
-    /**
-     * @return string
-     */
-    public function bespokeRender(/*ReactControls $reactControls*/)
+    public function hasBespokeRender()
     {
+        return false;
+    }
+
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
         $layout = <<< END
 
 <div class='row'>
@@ -97,7 +101,6 @@ END;
         $output = createReactImagePanel(
             "/image/Tutorial/composite",
             "/Tutorial/composite",
-            true,
             $this
         );
 
@@ -435,16 +438,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         return $imagick;
     }
 
-
-
-
     public static function getParamType(): string
     {
         return TutorialCompositeParams::class;
-    }
-
-    public function hasBespokeRender()
-    {
-        return true;
     }
 }

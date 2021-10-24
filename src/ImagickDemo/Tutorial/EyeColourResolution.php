@@ -108,26 +108,14 @@ END;
         return $output;
     }
 
-//    public function renderImageURL()
-//    {
-//        return $this->control->getURL();
-//    }
-
     public function render(
         ?string $activeCategory,
         ?string $activeExample
     )
     {
-//        $imageBaseUrl = $this->control->getURL();
-//        $activeCategory = $this->pageInfo->getCategory();
-//        $activeExample = $this->pageInfo->getExample();
-//        $pageBaseUrl = \ImagickDemo\Route::getPageURL($activeCategory, $activeExample);
-
-
         return createReactImagePanel(
             "/image/Tutorial/eyeColorResolution",
             "/Tutorial/eyeColorResolution",
-            false,
             $this
         );
     }

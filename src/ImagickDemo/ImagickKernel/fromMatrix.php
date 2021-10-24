@@ -36,7 +36,6 @@ class fromMatrix extends \ImagickDemo\Example
         $output = createReactImagePanel(
             "/image/ImagickKernel/fromMatrix",
             "/ImagickKernel/fromMatrix",
-            true,
             $this
         );
 

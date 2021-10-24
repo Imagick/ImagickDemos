@@ -6,7 +6,10 @@ export interface ImageProps {
     pageBaseUrl: string;
     imageBaseUrl: string|null;
     fullPageRefresh: boolean|null;
+    // Use the currently selected image as the original image url
     use_image_control_as_original_image: boolean;
+    // Example has hard-coded original image, that is not part
+    // of the controls
     original_image_url: string|null;
 }
 

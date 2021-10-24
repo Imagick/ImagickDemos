@@ -97,14 +97,8 @@ function setupImagePanel() {
     }
 
     let imagebaseurl = null;
-    if (element.dataset.hasOwnProperty("imagebaseurl") !== true) {
+    if (element.dataset.hasOwnProperty("imagebaseurl") === true) {
         imagebaseurl = element.dataset.imagebaseurl;
-        return;
-    }
-
-    if (element.dataset.hasOwnProperty("imagebaseurl") !== true) {
-        console.error('imagePanel missing imagebaseurl');
-        return;
     }
 
     let use_image_control_as_original_image = false;

@@ -1914,17 +1914,21 @@ function sepiaToneImage($image_path, $sepia)
 function setCompressionQuality($image_path, $quality)
 {
     $backgroundImagick = new \Imagick(realpath($image_path));
+
     $imagick = new \Imagick();
     $imagick->setCompressionQuality($quality);
+
     $imagick->newPseudoImage(
-        $backgroundImagick->getImageWidth(),
-        $backgroundImagick->getImageHeight(),
-        'canvas:white'
+        640, // $backgroundImagick->getImageWidth(),
+        480, // $backgroundImagick->getImageHeight(),
+        'gradient:red-blue'
     );
+
+    $imagick->compositeImage($backgroundImagick, \Imagick::COMPOSITE_ATOP, 0, 0);
     
     $imagick->setFormat("jpg");
     header("Content-Type: image/jpeg");
-    echo $backgroundImagick->getImageBlob();
+    echo $imagick->getImageBlob();
 }
 //Example end
 

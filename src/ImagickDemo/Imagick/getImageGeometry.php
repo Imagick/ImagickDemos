@@ -32,20 +32,12 @@ END;
         return nl2br($output);
     }
 
-    public function renderImageURL()
-    {
-        $url = sprintf(
-            "<img src='/image/Imagick/getImageGeometry?%s'>",
-            http_build_query($this->imageControl->getValuesForForm())
-        );
-
-        return $url;
-    }
-
-    public function bespokeRender(ReactControls $reactControls)
-    {
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
         $output = createReactImagePanel(
-            "/customImage/Imagick/getImageGeometry",
+            null,
             "/Imagick/getImageGeometry",
             $this
         );
@@ -54,19 +46,17 @@ END;
 //Example Imagick::getImageGeometry
         $imagick = new \Imagick(realpath($this->imageControl->getImagePath()));
         foreach ($imagick->getImageGeometry() as $key => $value) {
-            $text .= "$key : $value\n";
+            $text .= "$key - $value\n";
         }
 //Example end
         $output .= nl2br($text);
 
-        $output .= $this->renderImageURL();
+        $output .= sprintf(
+            "<img src='/image/Imagick/getImageGeometry?%s'>",
+            http_build_query($this->imageControl->getValuesForForm())
+        );
 
         return $output;
-    }
-
-    public function hasBespokeRender()
-    {
-        return true;
     }
 
     public static function getParamType(): string

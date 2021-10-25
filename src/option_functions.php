@@ -673,3 +673,10 @@ function getInverseOptions()
         'Inverse' => true,
     ];
 }
+function getRaiseOptions()
+{
+    return [
+        'Lower' => 0,
+        'Raise' => 1,
+    ];
+}

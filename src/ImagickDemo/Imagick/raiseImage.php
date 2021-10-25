@@ -2,6 +2,8 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\RaiseImageControl;
+
 class raiseImage extends \ImagickDemo\Example
 {
     public function renderTitle(): string
@@ -9,5 +11,8 @@ class raiseImage extends \ImagickDemo\Example
         return "Imagick::raiseImage";
     }
 
-
+    public static function getParamType(): string
+    {
+        return RaiseImageControl::class;
+    }
 }

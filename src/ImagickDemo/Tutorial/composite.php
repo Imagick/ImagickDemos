@@ -99,7 +99,7 @@ class composite extends \ImagickDemo\Example
 END;
 
         $output = createReactImagePanel(
-            "/image/Tutorial/composite",
+            null, //"/image/Tutorial/composite",
             "/Tutorial/composite",
             $this
         );

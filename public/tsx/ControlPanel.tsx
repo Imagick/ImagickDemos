@@ -106,6 +106,7 @@ function map_api_name(api_param_name: string): string {
         colorspace: "Colorspace",
         color_space: "Color space",
         color_matrix: "Color matrix",
+        composite_example: 'Composite',
         convolve_matrix: "Convolve matrix",
         end_angle: "End angle",
         end_x: "End X",

@@ -2,8 +2,8 @@
 
 
 # This needs to be built first, as docker doesn't resolve dependencies
-# docker-compose build --no-cache imagick_php_base
-docker-compose build imagick_php_base
+docker-compose build --no-cache imagick_php_base
+# docker-compose build imagick_php_base
 
 # Build all other containers.
 docker-compose build

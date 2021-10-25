@@ -673,10 +673,30 @@ function getInverseOptions()
         'Inverse' => true,
     ];
 }
+
 function getRaiseOptions()
 {
     return [
         'Lower' => 0,
         'Raise' => 1,
+    ];
+}
+
+function getImageAlphaOptions()
+{
+    return [
+        'Nothing'   => 0,
+        'Activate alpha channel'    => Imagick::ALPHACHANNEL_ACTIVATE,
+        'Deactivate alpha channel'  => Imagick::ALPHACHANNEL_DEACTIVATE,
+        'Opaque alpha channel'      => Imagick::ALPHACHANNEL_OPAQUE,
+        'Set alpha channel'         => Imagick::ALPHACHANNEL_SET,
+    ];
+}
+
+function getMatteOptions()
+{
+    return [
+        'Enabled' => true,
+        'Disabled' => false,
     ];
 }

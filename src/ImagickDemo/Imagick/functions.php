@@ -2118,6 +2118,79 @@ function setImageMask()
 //Example end
 
 
+
+//Example Imagick::setImageAlphaChannel
+function setImageAlphaChannel($alpha_type)
+{
+    $canvas = new Imagick();
+    $canvas->newPseudoImage(640, 480, "pattern:checkerboard");
+    $canvas->setImageFormat('png');
+
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage(640, 480, "gradient:red-rgba(0, 0, 255, 0.1)");
+    $imagick->setImageFormat('png');
+    if ($alpha_type !== 0) {
+        $imagick->setImageAlphaChannel($alpha_type);
+    }
+
+    $canvas->compositeImage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    header("Content-Type: image/png");
+    echo $canvas->getImageBlob();
+}
+//Example end
+
+
+//Example Imagick::setImageMatte
+function setImageMatte($alpha_type, $matte_enabled)
+{
+    $canvas = new Imagick();
+    $canvas->newPseudoImage(640, 480, "pattern:checkerboard");
+    $canvas->setImageFormat('png');
+
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage(640, 480, "gradient:red-rgba(0, 0, 255, 0.1)");
+    $imagick->setImageFormat('png');
+    if ($alpha_type !== 0) {
+        $imagick->setImageAlphaChannel($alpha_type);
+    }
+    $canvas->setImageMatte($matte_enabled);
+    $imagick->setImageMatte($matte_enabled);
+
+    $canvas->compositeImage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    header("Content-Type: image/png");
+    echo $canvas->getImageBlob();
+}
+//Example end
+
+
+//Example Imagick::setImageMatteColor
+function setImageMatteColor($alpha_type, $color)
+{
+    $canvas = new Imagick();
+    $canvas->newPseudoImage(640, 480, "pattern:checkerboard");
+    $canvas->setImageFormat('png');
+
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage(640, 480, "gradient:red-rgba(0, 0, 255, 0.1)");
+    $imagick->setImageFormat('png');
+
+    $imagick->setImageMatteColor($color);
+    $canvas->setImageMatteColor($color);
+
+    if ($alpha_type !== 0) {
+        $imagick->setImageAlphaChannel($alpha_type);
+    }
+
+    $canvas->compositeImage($imagick, \Imagick::COMPOSITE_ATOP, 0, 0);
+
+    header("Content-Type: image/png");
+    echo $canvas->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::setImageResolution
 function setImageResolution($image_path)
 {

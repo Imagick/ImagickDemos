@@ -14,7 +14,7 @@ class radialBlurImage extends \ImagickDemo\Example
         ?string $activeExample
     ) {
         $html = <<< HTML
-Removed in ImageMagick 7. <a href="///Imagick/rotationalBlurImage">Imagick::RotationalBlurImage</a> gives a very similar result.
+Removed in ImageMagick 7. <a href="/Imagick/rotationalBlurImage">Imagick::RotationalBlurImage</a> gives a very similar result.
 HTML;
 
         return $html;

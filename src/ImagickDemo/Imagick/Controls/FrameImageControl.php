@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
@@ -27,11 +26,13 @@ class FrameImageControl implements InputParameterList
     public function __construct(
         #[Image('image_path')]
         private string $image_path,
-        #[ImagickColorParam('rgb(127, 127, 127)', 'color')]
-        private string $color,
-        #[Height(5, 'height')]
+        #[ImagickColorParam('rgb(127, 127, 127)', 'frame_color')]
+        private string $frame_color,
+        #[ImagickColorParam('rgba(127, 0, 0, 0.2)', 'matte_color')]
+        private string $matte_color,
+        #[Height(10, 'height')]
         private int $height,
-        #[Width(5, 'width')]
+        #[Width(10, 'width')]
         private int $width,
         #[InnerBevel('inner_bevel')]
         private int $inner_bevel,
@@ -43,7 +44,8 @@ class FrameImageControl implements InputParameterList
     public function getValuesForForm(): array
     {
         return [
-            'color' => $this->color,
+            'frame_color' => $this->frame_color,
+            'matte_color' => $this->matte_color,
             'height' => $this->height,
             'width' => $this->width,
             'inner_bevel' => $this->inner_bevel,

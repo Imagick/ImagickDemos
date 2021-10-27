@@ -881,7 +881,8 @@ function forwardFourierTransformImage($image_path)
 //Example Imagick::frameImage
 function frameImage(
     $image_path,
-    $color,
+    $frame_color,
+    $matte_color,
     $width,
     $height,
     $inner_bevel,
@@ -892,8 +893,9 @@ function frameImage(
     $width = $width + $inner_bevel + $outer_bevel;
     $height = $height + $inner_bevel + $outer_bevel;
 
+    $imagick->setImageMatteColor($matte_color);
     $imagick->frameimage(
-        $color,
+        $frame_color,
         $width,
         $height,
         $inner_bevel,
@@ -2058,8 +2060,10 @@ function setImageDelay()
 //Example Imagick::setImageMask
 function setImageMask()
 {
+    // Load an image
     $canvas = new Imagick(__DIR__ . '/../../../public/images/trapezoid_image.png');
 
+    // Create a mask image, that is the same size as the canvas image.
     $mask = new Imagick();
     $mask->newPseudoImage(
         $canvas->getImageWidth(),
@@ -2067,11 +2071,8 @@ function setImageMask()
         'xc:black'
     );
 
+    // Draw a white filled in circle on the mask image
     $drawing = new ImagickDraw();
-    $drawing->setBorderColor('black');
-    $drawing->setFillColor('black');
-    $drawing->rectangle(0, 0, $mask->getImageWidth(), $mask->getImageHeight());
-
     $drawing->setBorderColor('white');
     $drawing->setFillColor('white');
     $drawing->circle(
@@ -2080,41 +2081,18 @@ function setImageMask()
         2 * $mask->getImageWidth() / 3,
         $mask->getImageHeight() / 2,
     );
-
     $mask->drawImage($drawing);
 
+    // Use the $mask image as the ...mask.
+    $canvas->setImageMask($mask, \Imagick::PIXELMASK_WRITE);
 
-    // This would probably be more useful for users
-    // but shows the issue with PIXELMASK_COMPOSITE
-    // $mask->blurImage(10, 2);
+    // Apply blur to the loaded image. Only the bit in white will be affected.
+    $canvas->blurImage(15, 4, \Imagick::CHANNEL_ALL);
 
-    $mask_types = array(
-        \Imagick::PIXELMASK_READ =>        "PIXELMASK_READ",
-        \Imagick::PIXELMASK_WRITE =>       "PIXELMASK_WRITE",
-        \Imagick::PIXELMASK_COMPOSITE =>   "PIXELMASK_COMPOSITE",
-    );
-
-    $channel_types = array(
-        \Imagick::CHANNEL_ALL => "CHANNEL_ALL",
-        \Imagick::CHANNEL_RED => "CHANNEL_RED",
-        \Imagick::CHANNEL_ALPHA => "CHANNEL_ALPHA",
-        \Imagick::CHANNEL_RGBA => "CHANNEL_RGBA",
-        \Imagick::CHANNEL_BLACK => "CHANNEL_BLACK",
-        \Imagick::CHANNEL_DEFAULT => "CHANNEL_DEFAULT",
-    );
-
-//    foreach ($channel_types as $channel_type => $channel_name) {
-//        foreach ($mask_types as $type => $type_name) {
-            $output = clone $canvas;
-            $output->setImageMask($mask, \Imagick::PIXELMASK_WRITE);
-            $output->blurImage(15, 4, \Imagick::CHANNEL_ALL);
-//        }
-//    }
-
+    // output the image
     header("Content-Type: image/jpeg");
-    echo $output->getImageBlob();
+    echo $canvas->getImageBlob();
 }
-
 //Example end
 
 

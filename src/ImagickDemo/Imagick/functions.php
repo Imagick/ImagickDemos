@@ -507,6 +507,26 @@ function contrastImage($image_path, $contrastType)
 }
 //Example end
 
+
+//Example Imagick::contrastStretchImage
+function contrastStretchImage($image_path, $black_point, $white_point, $channel)
+{
+    $imagick = new \Imagick(realpath($image_path));
+
+    list ($width, $height) = array_values ($imagick->getImageGeometry ());
+
+    $imagick->contrastStretchImage(
+        $width * $height * $black_point / 100,
+        $width * $height * $white_point / 100,
+        $channel
+    );
+
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::convolveImage
 function convolveImage($image_path, $bias, $convolve_matrix)
 {
@@ -1525,16 +1545,43 @@ function orderedPosterizeImage($image_path, $orderedPosterizeType)
 
 
 //Example Imagick::opaquePaintImage
-function opaquePaintImage($color, $replacementColor, $fuzz, $inverse)
+function opaquePaintImage($target_color, $replacement_color, $fuzz, $inverse)
 {
     $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
 
     //Need to be in a format that supports transparency
-    $imagick->setimageformat('png');
+    $imagick->setImageFormat('png');
 
     $imagick->opaquePaintImage(
-        $color, $replacementColor, $fuzz * \Imagick::getQuantum(), $inverse
+        $target_color,
+        $replacement_color,
+        $fuzz * \Imagick::getQuantum(),
+        $inverse
     );
+    //Not required, but helps tidy up left over pixels
+    $imagick->despeckleimage();
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+//Example Imagick::paintOpaqueImage
+function paintOpaqueImage($target_color, $replacement_color, $fuzz, $channel)
+{
+    $imagick = new \Imagick(realpath("images/BlueScreen.jpg"));
+
+    //Need to be in a format that supports transparency
+    $imagick->setImageFormat('png');
+
+    @$imagick->paintOpaqueImage(
+        $target_color,
+        $replacement_color,
+        $fuzz * \Imagick::getQuantum(),
+        $channel
+    );
+
+
     //Not required, but helps tidy up left over pixels
     $imagick->despeckleimage();
 
@@ -2322,6 +2369,22 @@ function shearImage($image_path, $color, $shearX, $shearY)
 {
     $imagick = new \Imagick(realpath($image_path));
     $imagick->shearimage($color, $shearX, $shearY);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+
+
+//Example Imagick::localContrastImage
+function localContrastImage($image_path, $radius, $strength)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->localContrastImage(
+        $radius,
+        $strength
+    );
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 }

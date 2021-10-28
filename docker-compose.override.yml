@@ -1,6 +1,9 @@
 version: "3"
 services:
-  imagick_php_backend:
+  imagick_php_backend_im6:
+    environment:
+      - ENV_DESCRIPTION=default,local
+  imagick_php_backend_im7:
     environment:
       - ENV_DESCRIPTION=default,local
   installer:
@@ -12,12 +15,12 @@ services:
   js_builder:
     environment:
       - API_BASE_URL=http://local.phpimagick.com
-  web_server:
+  nginx:
     ports:
       - "80:8000"
       - "8001:8001"
     depends_on:
-      - imagick_php_backend_debug
+      - imagick_php_backend_im7_debug
 #  workers:
 #    ports:
 #      - "8080:8080"

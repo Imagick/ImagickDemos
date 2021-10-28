@@ -7,6 +7,7 @@ use Auryn\Injector;
 use SlimAuryn\Routes;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config.generated.php';
 require_once __DIR__ . '/error_functions.php';
 require_once __DIR__ . '/factories.php';
 require_once __DIR__ . '/functions.php';
@@ -20,7 +21,6 @@ require "httpInjectionParams.php";
 // To make the example code be simple, they all assume the application's
 // current directory is the root of the project
 chdir(realpath(__DIR__).'/../public');
-
 
 $injector = new Injector();
 
@@ -64,6 +64,4 @@ catch (\Throwable $exception) {
         var_dump(get_class($exception));
         echo nl2br($exceptionText);
     }
-
-//    return;
 }

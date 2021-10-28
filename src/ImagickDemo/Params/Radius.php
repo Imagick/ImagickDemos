@@ -12,6 +12,7 @@ use Params\ProcessRule\RangeFloatValue;
 class Radius implements Param
 {
     public function __construct(
+        private float $default,
         private string $name
     ) {
     }
@@ -20,7 +21,7 @@ class Radius implements Param
     {
         return new InputParameter(
             $this->name,
-            new GetFloatOrDefault(5),
+            new GetFloatOrDefault($this->default),
             new RangeFloatValue(0, 10)
         );
     }

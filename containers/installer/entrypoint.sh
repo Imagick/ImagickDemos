@@ -12,10 +12,26 @@ php composer.phar install
 
 # Generate config settings used per environment
  php vendor/bin/configurate \
-    -p server_config.php \
+    -p config.source.php \
     autoconf.source.php \
     autoconf.php \
     $ENV_TO_USE
+
+
+php vendor/bin/configurate \
+    -p config.source.php \
+    containers/nginx/config/nginx.conf.php \
+    containers/nginx/config/nginx.conf \
+    $ENV_TO_USE
+
+
+# Generate config settings used per environment
+php vendor/bin/classconfig \
+    -p config.source.php \
+    "ImagickDemo\\Config" \
+    config.generated.php \
+    $ENV_TO_USE
+
 
 # php cli.php misc:wait_for_db
 

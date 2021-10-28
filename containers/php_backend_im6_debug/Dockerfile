@@ -1,4 +1,4 @@
-FROM imagick_php_backend:latest
+FROM imagick_php_backend_im6:latest
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends php8.0-xdebug
 

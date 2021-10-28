@@ -7,7 +7,10 @@ services:
   #    - ENV_DESCRIPTION=default,prod
   #  volumes:
   #    - .:/var/app
-  imagick_php_backend:
+  imagick_php_backend_im6:
+    environment:
+      - ENV_DESCRIPTION=default,prod
+  imagick_php_backend_im7:
     environment:
       - ENV_DESCRIPTION=default,prod
   installer:
@@ -21,6 +24,6 @@ services:
   redis:
     ports:
       - "6381:6379"
-  web_server:
+  nginx:
     ports:
       - "8000:8000"

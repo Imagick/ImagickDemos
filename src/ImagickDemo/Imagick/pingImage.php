@@ -20,6 +20,11 @@ class pingImage extends \ImagickDemo\Example
         return "Imagick::pingImage";
     }
 
+    public function needsFullPageRefresh(): bool
+    {
+        return true;
+    }
+
     public function hasBespokeRender()
     {
         return true;
@@ -29,7 +34,7 @@ class pingImage extends \ImagickDemo\Example
     {
         $output = "This method can be used to query image width, height, size, and format without reading the whole image in to memory.<br/><br/><br/>";
 
-//Example Imagick::Quantum
+//Example Imagick::pingImage
         $image = new \Imagick();
         $image->pingImage(realpath($this->imageControl->getImagePath()));
         $output .= "For file: " . basename($this->imageControl->getImagePath()) . " <br/><br/>";

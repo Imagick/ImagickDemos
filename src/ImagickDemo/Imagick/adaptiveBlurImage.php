@@ -7,8 +7,6 @@ use ImagickDemo\Imagick\Controls\AdaptiveBlurImageControl;
 
 class adaptiveBlurImage extends Example
 {
-
-
     public function renderTitle(): string
     {
         return "Adaptive blur image";

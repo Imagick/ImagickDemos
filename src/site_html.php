@@ -75,9 +75,6 @@ function renderReactControls(VarMap $varMap, string $param_type)
         $param_type::getInputParameterList()
     );
 
-//    var_dump($params);
-//    exit(0);
-
     if (method_exists($params, 'getValuesForForm') === true) {
         $value = $params->getValuesForForm();
     }

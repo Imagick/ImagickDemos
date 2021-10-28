@@ -45,6 +45,11 @@ export class NavigationPanel extends Component<NavigationProps, NavigationState>
 
         }
 
+        if (typeof link.description.replace !== 'function') {
+            console.error("Error processing NavigationPanel, link.description looks borked. link is:")
+            console.error(link);
+        }
+
         // hack to prevent container being force expanded
         let desc = link.description.replace("QuadraticBezier", "Quadratic Bezier");
 

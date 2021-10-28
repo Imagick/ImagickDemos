@@ -37,3 +37,4 @@ imagick-master.tar.gz
 .phpunit.result.cache
 containers/php_backend/config/php.ini
 containers/php_backend/config/fpm.conf
+containers/nginx/config/nginx.conf

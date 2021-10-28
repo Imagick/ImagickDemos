@@ -59,7 +59,7 @@ log_format main '$remote_addr - $http_x_real_ip - $remote_user [$time_local] '
             include /etc/nginx/fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
             fastcgi_read_timeout 300;
-            fastcgi_pass imagick_php_backend:9000;
+            fastcgi_pass imagick_php_backend_im7:9000;
         }
 
         location /index.php {
@@ -69,38 +69,7 @@ log_format main '$remote_addr - $http_x_real_ip - $remote_user [$time_local] '
             include /etc/nginx/fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
             fastcgi_read_timeout 300;
-            fastcgi_pass imagick_php_backend:9000;
+            fastcgi_pass imagick_php_backend_im7:9000;
         }
     }
-
-
-#    server {
-#        server_name *.phpimagick.com phpimagick.com;
-#
-#        listen 8001 default_server;
-#        root /var/app/public;
-#
-#        location ~* ^[^\?\&]+\.(bmp|bz2|css|gif|doc|gz|html|ico|jpg|jpeg|js|mid|midi|png|rtf|rar|pdf|ppt|tar|tgz|ttf|txt|wav|woff|xls|zip)$ {
-#            try_files $uri /index.php?file=$1;
-#
-#            #access_log off;
-#            expires 20m;
-#            add_header Pragma public;
-#            add_header Cache-Control "public, no-transform, max-age=1200, s-maxage=300";
-#        }
-#
-#        location / {
-#            try_files $uri /index.php?q=$uri&$args;
-#        }
-#
-#        location /index.php {
-#            # Mitigate https://httpoxy.org/ vulnerabilities
-#            fastcgi_param HTTP_PROXY "";
-#            # fastcgi_index index.php;
-#            include /etc/nginx/fastcgi_params;
-#            fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-#            fastcgi_read_timeout 300;
-#            fastcgi_pass imagick_php_backend_debug:9000;
-#        }
-#    }
 }

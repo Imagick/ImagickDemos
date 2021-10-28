@@ -11,7 +11,6 @@ WORKDIR /var/app
 # Set up configuration volumes
 RUN mkdir -p /etc/config
 
-# Used by Jenkins to package code in to container
-# COPY web /var/app
+WORKDIR /var/app
 
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
+CMD sh /var/app/containers/nginx/entrypoint.sh

@@ -21,7 +21,8 @@ foreach ($categories as $category) {
     foreach ($rc->getMethods() as $rc_method) {
         $name = $rc_method->getName();
 
-        if (array_key_exists($name, $categoryList) !== true) {
+        if (array_key_exists($name, $categoryList) === false &&
+            in_array($name, $categoryList, true) === false) {
             echo "$category::$name\n";
             $any_missing = true;
         }

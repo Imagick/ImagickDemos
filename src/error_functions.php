@@ -89,6 +89,18 @@ function normaliseFilePath(string $file): string
     return $file;
 }
 
+/**
+ * Remove the installation directory prefix from a filename
+ */
+function normalisePublicFilePath(string $file): string
+{
+    if (strpos($file, "/var/app/public") === 0) {
+        $file = substr($file, strlen("/var/app/public"));
+    }
+
+    return $file;
+}
+
 
 function saneErrorHandler(
     int $errorNumber,
@@ -96,13 +108,6 @@ function saneErrorHandler(
     string $errorFile,
     int $errorLine
 ): bool {
-
-    var_dump($errorNumber,
-    $errorMessage,
-    $errorFile,
-    $errorLine);
-
-
     if (error_reporting() === 0) {
         // Error reporting has been silenced
         if ($errorNumber !== E_USER_DEPRECATED) {
@@ -110,9 +115,9 @@ function saneErrorHandler(
             return true;
         }
     }
-//    if ($errorNumber === E_DEPRECATED) {
-//        return true;
-//    }
+    if ($errorNumber === E_DEPRECATED) {
+        return true;
+    }
     if ($errorNumber === E_CORE_ERROR || $errorNumber === E_ERROR) {
         // For these two types, PHP is shutting down anyway. Return false
         // to allow shutdown to continue

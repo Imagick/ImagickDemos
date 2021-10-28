@@ -5,6 +5,7 @@ import { ImagePanel, ImageProps } from "./ImagePanel";
 import { NavigationPanel, NavigationProps } from "./NavigationPanel";
 import {FeelingsProps, HumanFeelingsPanel} from "./HumanFeelings";
 import {startEventProcessing} from "./events";
+import Dropdown from 'react-dropdown';
 
 function setupControlPanel() {
     let controlPanelElement = document.getElementById("controlPanel");
@@ -154,6 +155,28 @@ function setupNavigationPanel() {
     render(<NavigationPanel {...params} />, element);
 }
 
+// function setupDropdownWidget() {
+// // <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+//
+//     let element = document.getElementById("navigationPanel");
+//     if (element === null) {
+//         console.warn('navigationPanel not present.');
+//         return;
+//     }
+//
+//     let params = {};
+//     // ReactDropdownProps
+//
+//     // const options = [
+//     //     'one', 'two', 'three'
+//     // ];
+//     // const defaultOption = options[0];
+//     // <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />;
+//
+//
+//     render(<Dropdown {...params} />, element);
+//
+// }
 
 
 (function(){
@@ -163,4 +186,5 @@ function setupNavigationPanel() {
     setupHumanFeelings();
     setupHumanFeelingsControlPanel();
     startEventProcessing();
+    // setupDropdownWidget();
 })();

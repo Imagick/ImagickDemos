@@ -234,6 +234,10 @@ END;
         $exampleList = getCategoryList($this->pageInfo->getCategory());
         foreach ($exampleList as $exampleName => $exampleToRun) {
 
+            if (is_string($exampleName) === false || is_string($exampleToRun) === false) {
+                throw new \Exception("exampleList has bad data for $exampleName => $exampleToRun");
+            }
+
             $link['url'] = sprintf(
                 '/%s/%s',
                 $this->pageInfo->getCategory(),

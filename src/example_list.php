@@ -195,7 +195,7 @@ function getImagickExamples()
         // CompositeLayers
         //__construct',
         'contrastImage' => 'contrastImage',
-        //'contrastStretchImage',
+        'contrastStretchImage' => 'contrastStretchImage',
         'convolveImage' => 'convolveImage',
         'cropImage' => 'cropImage',
         //'cropThumbnailImage',
@@ -340,6 +340,7 @@ function getImagickExamples()
         //'labelImage' => basically does setImageProperty("label", $text)
 
         'levelImage' => 'levelImage',
+        'localContrastImage' => 'localContrastImage',
         'linearStretchImage' => 'linearStretchImage',
         //'liquidRescaleImage',
         'magnifyImage' => 'magnifyImage',
@@ -366,14 +367,15 @@ function getImagickExamples()
         //'optimizeImageLayers',
         // OptimizeImageTransparency
         'orderedPosterizeImage' => 'orderedPosterizeImage',
-        //'paintOpaqueImage', //deprecated
+        'paintOpaqueImage' => 'paintOpaqueImage', //deprecated
         //'paintTransparentImage', //deprecated
         'pingImage' => 'pingImage',
-        'Quantum'  => 'Quantum',
-        //'pingImageBlob',
-        //'pingImageFile',
+
+        'pingImageBlob' => 'pingImageBlob',
+        'pingImageFile' => 'pingImageFile',
         'polaroidImage'  => 'polaroidImage',
         'posterizeImage' => 'posterizeImage',
+        'Quantum'  => 'Quantum',
         //'previewImages',
         //'previousImage',
         //'profileImage',

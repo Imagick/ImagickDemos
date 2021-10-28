@@ -23,7 +23,7 @@ class MedianFilterImageControl
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius('radius')]
+        #[Radius(5, 'radius')]
         private string $radius,
         #[Image('image_path')]
         private string $image_path,

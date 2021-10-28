@@ -2,125 +2,142 @@
 
 namespace ImagickDemo;
 
-//use Tier\TierException;
 
-function getAppOptions()
-{
-    $options = [
-        'domain.canonical' => 'phpimagick.test',
-        'domain.cdn.pattern' => 'phpimagick.test',
-        'domain.cdn.total' => 1,
-        'domain.internal' => 'internal.phpimagick.com',
-        'redis.password' => 'rVBNDdJWA2Vx4n2Fh9ahRR2vTCLkT5tw',
-        'environment' => 'local',
-    ];
-
-
-    return $options;
-}
+//function getAppOptions()
+//{
+//    $options = [
+//        'domain.canonical' => 'phpimagick.test',
+//        'domain.cdn.pattern' => 'phpimagick.test',
+//        'domain.cdn.total' => 1,
+//        'domain.internal' => 'internal.phpimagick.com',
+//        'redis.password' => 'rVBNDdJWA2Vx4n2Fh9ahRR2vTCLkT5tw',
+//        'environment' => 'local',
+//    ];
+//
+//
+//    return $options;
+//}
 
 class Config
 {
-//    const FLICKR_KEY = 'flickr.key';
-//    const FLICKR_SECRET = 'flickr.secret';
-    
-//    const GITHUB_ACCESS_TOKEN = 'github.access_token';
-//    const GITHUB_REPO_NAME = 'github.repo_name';
-    
-    //Server container
-//    const AWS_SERVICES_KEY = 'imagickdemos.aws.services.key';
-//    const AWS_SERVICES_SECRET = 'imagickdemos.aws.services.secret';
-    
-//    const LIBRATO_KEY = 'librato.key';
-//    const LIBRATO_USERNAME = 'librato.username';
-//    const LIBRATO_STATSSOURCENAME = 'librato.stats_source_name';
+    const IMAGICKDEMOS_ENVIRONMENT = 'imagickdemos.env';
 
-    const ENVIRONMENT_LOCAL = 'local';
+    const IMAGICKDEMOS_COMMIT_SHA = 'imagickdemos.sha';
 
-    const ENVIRONMENT_PROD = 'prod';
-
-    const JIG_COMPILE_CHECK = 'jig.compilecheck';
-
-    const DOMAIN_CANONICAL = 'domain.canonical';
-    const DOMAIN_CDN_PATTERN= 'domain.cdn.pattern';
-    const DOMAIN_CDN_TOTAL= 'domain.cdn.total';
-    const DOMAIN_INTERNAL = 'domain.internal';
-
-    const REDIS_PASSWORD = 'redis.password';
-
-    const CACHING_SETTING = 'caching.setting';
-    
-    const SCRIPT_VERSION = 'script.version';
-    const SCRIPT_PACKING = 'script.packing';
-    
-    const ENVIRONMENT = 'environment';
-
-
-    private $values = [];
-
-    public function __construct()
+    /**
+     * @param $key
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function get($key)
     {
-//        require_once __DIR__."/../../../clavis.php";
-//        require_once __DIR__ . "/../../config.php";
-
-        $this->values = [];
-        $this->values = array_merge($this->values, getAppOptions());
-//        $this->values = array_merge($this->values, getAppKeys());
-    }
-
-    public function getKey($key)
-    {
-        if (array_key_exists($key, $this->values) == false) {
-            throw new \Exception("Missing config value of $key");
+        static $values = null;
+        if ($values === null) {
+            $values = getGeneratedConfig();
         }
 
-        return $this->values[$key];
+        if (array_key_exists($key, $values) == false) {
+            throw new \Exception("No value for " . $key);
+        }
+
+        return $values[$key];
     }
 
-//    private function getKeyWithDefault($key, $default)
-//    {
-//        if (array_key_exists($key, $this->values) === false) {
-//            return $default;
-//        }
-//
-//        return $this->values[$key];
-//    }
-
-    public function getRedisPassword()
+    public static function testValuesArePresent(): void
     {
-        return $this->getKey(Config::REDIS_PASSWORD);
+        $rc = new \ReflectionClass(self::class);
+        $constants = $rc->getConstants();
+
+        foreach ($constants as $constant) {
+            $value = self::get($constant);
+        }
     }
 
-    public function getJigCompileCheck()
+
+
+    public static function getVersion(): string
     {
-        return $this->getKey(self::JIG_COMPILE_CHECK);
+        return self::get(self::IMAGICKDEMOS_ENVIRONMENT) . "_" . self::get(self::IMAGICKDEMOS_COMMIT_SHA);
     }
 
-    public function getCachingSetting()
+    public static function getEnvironment(): string
     {
-        return $this->getKey(Config::CACHING_SETTING);
+        return self::get(self::IMAGICKDEMOS_ENVIRONMENT);
     }
 
-    public function isProductionEnv()
+    public static function isProductionEnv(): bool
     {
-        if ($this->getEnvironment() === self::ENVIRONMENT_LOCAL) {
+        if (self::getEnvironment() === App::ENVIRONMENT_LOCAL) {
             return false;
         }
 
         return true;
     }
 
-    public function useSsl()
-    {
-        if ($this->getEnvironment() !== self::ENVIRONMENT_LOCAL) {
-            return true;
-        }
-        return false;
-    }
 
-
-    public function getEnvironment()
-    {
-        return $this->getKey(self::ENVIRONMENT);
-    }
+//    public function __construct()
+//    {
+////        require_once __DIR__."/../../../clavis.php";
+////        require_once __DIR__ . "/../../config.php";
+//
+//        $this->values = [];
+//        $this->values = array_merge($this->values, getAppOptions());
+////        $this->values = array_merge($this->values, getAppKeys());
+//    }
+//
+//    public function getKey($key)
+//    {
+//        if (array_key_exists($key, $this->values) == false) {
+//            throw new \Exception("Missing config value of $key");
+//        }
+//
+//        return $this->values[$key];
+//    }
+//
+////    private function getKeyWithDefault($key, $default)
+////    {
+////        if (array_key_exists($key, $this->values) === false) {
+////            return $default;
+////        }
+////
+////        return $this->values[$key];
+////    }
+//
+//    public function getRedisPassword()
+//    {
+//        return $this->getKey(Config::REDIS_PASSWORD);
+//    }
+//
+//    public function getJigCompileCheck()
+//    {
+//        return $this->getKey(self::JIG_COMPILE_CHECK);
+//    }
+//
+//    public function getCachingSetting()
+//    {
+//        return $this->getKey(Config::CACHING_SETTING);
+//    }
+//
+//    public function isProductionEnv()
+//    {
+//        if ($this->getEnvironment() === self::ENVIRONMENT_LOCAL) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+//
+//    public function useSsl()
+//    {
+//        if ($this->getEnvironment() !== self::ENVIRONMENT_LOCAL) {
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//
+//    public function getEnvironment()
+//    {
+//        return $this->getKey(self::ENVIRONMENT);
+//    }
 }

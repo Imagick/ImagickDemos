@@ -2,6 +2,8 @@
 
 namespace ImagickDemo;
 
+use ImagickDemo\Config;
+
 class HomePageExample extends \ImagickDemo\Example
 {
     /**
@@ -66,12 +68,20 @@ This site is an attempt to provide a working example of every function in the <a
 <hr/>
 END;
 
+        $output .= "Site version is: " . Config::getVersion() . "<br/>";
+
         $version = phpversion("Imagick");
         if ($version === "@PACKAGE_VERSION@") {
             $version = "built from git.";
         }
 
+
+
+
         $output .= "Imagick version is: " . $version . "<br/>";
+
+
+
 
         $output .= "ImageMagick version info is:<br/>";
 

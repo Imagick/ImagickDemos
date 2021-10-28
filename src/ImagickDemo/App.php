@@ -26,6 +26,9 @@ class App
 
     const ERROR_CAUGHT_BY_ERROR_HANDLER_API_MESSAGE = "This is caught in the AppErrorHandler";
 
+    public const ENVIRONMENT_LOCAL = 'local';
+    public const ENVIRONMENT_PROD = 'prod';
+
 
     public static function createJigConfig(Config $config)
     {

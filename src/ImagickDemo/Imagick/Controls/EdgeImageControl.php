@@ -24,7 +24,7 @@ class EdgeImageControl implements InputParameterList
     public function __construct(
         #[Image('image_path')]
         private string $image_path,
-        #[Radius('radius')]
+        #[Radius(5, 'radius')]
         private string $radius,
     ) {
     }

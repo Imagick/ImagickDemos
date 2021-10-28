@@ -24,7 +24,7 @@ class ImageRadiusSigmaChannelControl implements InputParameterList
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius('radius')]
+        #[Radius(5, 'radius')]
         private string $radius,
         #[Sigma(4, 'sigma')]
         private string $sigma,

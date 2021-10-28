@@ -17,30 +17,57 @@ services:
     #extra_hosts:
 #      - "local.phpimagick.com:imagick_php_backend"
      # - "local.phpimagick.com:162.242.195.82"
-  imagick_php_backend:
-    build: containers/php_backend
-    image: imagick_php_backend:latest
+
+  imagick_php_backend_im6:
+    build: containers/php_backend_im6
+    image: imagick_php_backend_im6:latest
     networks:
       default_network:
     volumes:
       - .:/var/app
     restart: always
-  imagick_php_backend_debug:
-    build: containers/php_backend_debug
+  imagick_php_backend_im6_debug:
+    build: containers/php_backend_im6_debug
     environment:
       - PHP_IDE_CONFIG=phpimagick
-    image: imagick_php_backend_debug:latest
+    image: imagick_php_backend_im6_debug:latest
     depends_on:
-      - imagick_php_backend
+      - imagick_php_backend_im6
     networks:
       default_network:
     volumes:
       - .:/var/app
     restart: always
-  imagick_php_base:
-    build: containers/imagick_php_base
-    image: imagick_php_base:latest
-    command: ["tail", "-f", "/var/app/containers/imagick_php_base/README.md"]
+  imagick_php_backend_im7:
+    build: containers/php_backend_im7
+    image: imagick_php_backend_im7:latest
+    networks:
+      default_network:
+    volumes:
+      - .:/var/app
+    restart: always
+  imagick_php_backend_im7_debug:
+    build: containers/php_backend_im7_debug
+    environment:
+      - PHP_IDE_CONFIG=phpimagick
+    image: imagick_php_backend_im7_debug:latest
+    depends_on:
+      - imagick_php_backend_im7
+    networks:
+      default_network:
+    volumes:
+      - .:/var/app
+    restart: always
+  imagick_php_base_im6:
+    build: containers/imagick_php_base_im6
+    image: imagick_php_base_im6:latest
+    command: ["tail", "-f", "/var/app/containers/imagick_php_base_im6/README.md"]
+    volumes:
+      - .:/var/app
+  imagick_php_base_im7:
+    build: containers/imagick_php_base_im7
+    image: imagick_php_base_im7:latest
+    command: ["tail", "-f", "/var/app/containers/imagick_php_base_im7/README.md"]
     volumes:
       - .:/var/app
   js_builder:
@@ -56,7 +83,6 @@ services:
       default_network:
     volumes:
       - .:/var/app
-
   redis:
     image: redis:4.0.6
     volumes:
@@ -64,15 +90,15 @@ services:
     restart: always
     networks:
       default_network:
-  web_server:
-    build: containers/web_server
-    image: imagick_web_server:latest
-    command: ["/usr/sbin/nginx", "-c", "/etc/config/nginx.conf"]
-    depends_on:
-      - imagick_php_backend
+  nginx:
+    build: containers/nginx
+    image: imagick_nginx:latest
+#    command: ["/usr/sbin/nginx", "-c", "/etc/config/nginx.conf"]
+#    depends_on:
+#      - imagick_php_backend
     volumes:
       - .:/var/app
-      - ./containers/web_server/config:/etc/config
+#      - ./containers/web_server/config:/etc/config
     restart: always
     networks:
       default_network:
@@ -84,7 +110,7 @@ services:
     image: imagick_php_worker:latest
     depends_on:
       - redis
-      - imagick_php_backend
+#     - imagick_php_backend
     volumes:
       - .:/var/app
     restart: always

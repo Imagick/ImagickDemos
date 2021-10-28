@@ -13,6 +13,7 @@ if ($sha === null) {
 
 $sha = trim($sha);
 
+
 $default = [
     'opcache.enabled' => '1',
     'script.version' => '100917010607',
@@ -21,6 +22,7 @@ $default = [
     'jig.compilecheck' => 'COMPILE_CHECK_EXISTS',
     'system.build_debug_php_containers' => false,
     Config::IMAGICKDEMOS_COMMIT_SHA => $sha,
+    Config::IMAGICKDEMOS_DEPLOY_TIME => (new DateTime())->format('Y_m_d_H_i_s')
 ];
 
 

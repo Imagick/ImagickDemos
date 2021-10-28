@@ -74,6 +74,7 @@ This site uses ImageMagick 7 by default. But the sub-domains <a href="https://im
 END;
 
         $output .= "Site version is: " . Config::getVersion() . "<br/>";
+        $output .= "Site deployed at: " . Config::getDeployTime() . "<br/>";
 
         $version = phpversion("Imagick");
         if ($version === "@PACKAGE_VERSION@") {

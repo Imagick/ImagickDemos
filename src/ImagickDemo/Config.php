@@ -23,6 +23,8 @@ class Config
     const IMAGICKDEMOS_ENVIRONMENT = 'imagickdemos.env';
 
     const IMAGICKDEMOS_COMMIT_SHA = 'imagickdemos.sha';
+    const IMAGICKDEMOS_DEPLOY_TIME = 'imagickdemos.deploy_time';
+
 
     /**
      * @param $key
@@ -58,6 +60,11 @@ class Config
     public static function getVersion(): string
     {
         return self::get(self::IMAGICKDEMOS_ENVIRONMENT) . "_" . self::get(self::IMAGICKDEMOS_COMMIT_SHA);
+    }
+
+    public static function getDeployTime(): string
+    {
+        return self::get(self::IMAGICKDEMOS_DEPLOY_TIME);
     }
 
     public static function getEnvironment(): string

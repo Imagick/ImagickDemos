@@ -38,3 +38,7 @@ imagick-master.tar.gz
 containers/php_backend/config/php.ini
 containers/php_backend/config/fpm.conf
 containers/nginx/config/nginx.conf
+public/js/report.html
+tool/check_output.txt
+tool/missing_examples.txt
+config.generated.php

@@ -19,6 +19,7 @@ $default = [
     'script.packing' => true,
     'caching.setting' => 'caching.time',
     'jig.compilecheck' => 'COMPILE_CHECK_EXISTS',
+    'system.build_debug_php_containers' => false,
     Config::IMAGICKDEMOS_COMMIT_SHA => $sha,
 ];
 
@@ -92,6 +93,7 @@ $local = [
 
 $prod = [
     Config::IMAGICKDEMOS_ENVIRONMENT => 'prod',
+
 ];
 
 //$varnish_debug = [

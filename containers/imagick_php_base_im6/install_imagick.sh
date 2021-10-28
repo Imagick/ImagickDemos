@@ -10,8 +10,6 @@ if [ ! -d "${im_dir}" ]; then
   wget "https://github.com/Imagick/imagick/archive/refs/heads/master.tar.gz" -O imagick-master.tar.gz
 fi
 
-# im_dir ="ImageMagick-${version}"
-
 if [ ! -d "imagick-master" ]; then
   tar xzf imagick-master.tar.gz
 fi

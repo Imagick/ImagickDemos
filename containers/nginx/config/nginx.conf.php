@@ -88,6 +88,7 @@ $im7NormalBlock = createServerBlock(
         '*.im7.phpimagick.com',
         'im7.phpimagick.com',
         'phpimagick.com',
+        '*.phpimagick.com',
         'www.phpimagick.com',
     ],
     $root = '/var/app/public',

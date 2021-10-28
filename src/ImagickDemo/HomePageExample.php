@@ -63,9 +63,14 @@ This site is an attempt to provide a working example of every function in the <a
 <p>If you find any issues with this site, or if you find any example missing, or think something needs covering in more detail, please raise it as an issue on Github.
 </p>
 
-<p><b>8th October 2021</b> - the site has just been upgraded to use PHP 8, ImageMagick 7 and all controls have been swtich to React. Some stuff might be broken.</p>
+<hr/>
+
+<p>
+This site uses ImageMagick 7 by default. But the sub-domains <a href="https://im6.phpimagick.com">im6.phpimagick.com</a> and <a href="https://im7.phpimagick.com">im7.phpimagick.com</a> allow you to choose which version of ImageMagick to use.
+</p> 
 
 <hr/>
+
 END;
 
         $output .= "Site version is: " . Config::getVersion() . "<br/>";
@@ -75,13 +80,7 @@ END;
             $version = "built from git.";
         }
 
-
-
-
         $output .= "Imagick version is: " . $version . "<br/>";
-
-
-
 
         $output .= "ImageMagick version info is:<br/>";
 

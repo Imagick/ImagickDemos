@@ -421,6 +421,7 @@ function getImagickExamples()
         //'setImage',
         'setImageAlphaChannel' => 'setImageAlphaChannel',
         'setImageArtifact' => 'setImageArtifact',
+        'setImageChannelMask' => 'setImageChannelMask',
         //'setImageBackgroundColor',
         'setImageBias' => 'setImageBias',
         //'setImageBluePrimary',

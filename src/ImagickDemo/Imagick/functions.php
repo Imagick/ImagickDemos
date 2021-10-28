@@ -1862,10 +1862,10 @@ function rotateImage($image_path, $angle, $color, $crop)
 //Example end
 
 //Example Imagick::rotationalBlurImage
-function rotationalBlurImage($image_path, $rotation_angle)
+function rotationalBlurImage($image_path, $rotation_angle, $channel)
 {
     $imagick = new \Imagick(realpath($image_path));
-    $imagick->rotationalBlurImage($rotation_angle);
+    $imagick->rotationalBlurImage($rotation_angle, $channel);
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 }
@@ -2164,6 +2164,27 @@ function setImageAlphaChannel($alpha_type)
     echo $canvas->getImageBlob();
 }
 //Example end
+
+
+
+//Example Imagick::setImageChannelMask
+function setImageChannelMask($image_path, $channel, $rotation_angle, $rotation_channel)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->setImageChannelMask($channel);
+
+    if ($rotation_channel === 0) {
+        $imagick->rotationalBlurImage($rotation_angle);
+    }
+    else {
+        $imagick->rotationalBlurImage($rotation_angle, $rotation_channel);
+    }
+
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 
 
 //Example Imagick::setImageMatte

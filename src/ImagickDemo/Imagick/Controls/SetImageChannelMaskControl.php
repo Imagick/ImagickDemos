@@ -5,15 +5,17 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 
-use ImagickDemo\Params\Channel;
-use ImagickDemo\ToArray;
-use ImagickDemo\Params\Image;
 use ImagickDemo\Params\RotationAngle;
+use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
+use ImagickDemo\Params\ChannelWithDefault;
+use ImagickDemo\Params\Image;
+use ImagickDemo\Params\ChannelWithDefaultOrNone;
 
-class RotationalBlurImageControl
+
+class SetImageChannelMaskControl
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,10 +25,14 @@ class RotationalBlurImageControl
     public function __construct(
         #[RotationAngle('rotation_angle')]
         private string $rotation_angle,
+        #[ChannelWithDefault('Red', 'channel')]
+        private int $channel,
+
+        #[ChannelWithDefaultOrNone('Skip', 'rotation_channel')]
+        private int $rotation_channel,
+
         #[Image('image_path')]
         private string $image_path,
-        #[Channel('channel')]
-        private string $channel,
     ) {
     }
 
@@ -34,17 +40,10 @@ class RotationalBlurImageControl
     {
         return [
             'rotation_angle' => $this->rotation_angle,
-            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
+            'rotation_channel' => getOptionFromOptions($this->rotation_channel, getChannelOrNoneOptions()),
             'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
+            'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getRotationAngle(): string
-    {
-        return $this->rotation_angle;
     }
 
     public function getImagePath(): string

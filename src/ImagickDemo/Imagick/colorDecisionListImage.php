@@ -2,11 +2,17 @@
 
 namespace ImagickDemo\Imagick;
 
+use ImagickDemo\Imagick\Controls\ImageControl;
+
 class colorDecisionListImage extends \ImagickDemo\Example
 {
-
     public function renderTitle(): string
     {
-        return "Color decision list image";
+        return "Imagick::colorDecisionListImage";
+    }
+
+    public static function getParamType(): string
+    {
+        return ImageControl::class;
     }
 }

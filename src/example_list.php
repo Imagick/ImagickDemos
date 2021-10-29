@@ -188,7 +188,7 @@ function getImagickExamples()
         'coalesceImages' => 'coalesceImages',
 
         //This isn't implemented yet.
-        //'colorDecisionListImage' => 'colorDecisionListImage',
+        'colorDecisionListImage' => 'colorDecisionListImage',
         'colorizeImage' => 'colorizeImage',
         'colorMatrixImage' => 'colorMatrixImage',
         //'combineImages',

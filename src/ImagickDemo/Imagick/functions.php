@@ -329,22 +329,25 @@ function coalesceImages()
 //Example Imagick::colorDecisionListImage
 function colorDecisionListImage($image_path)
 {
-//    $colorList = '<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
-//    <ColorCorrection id="cc03345">
-//          <SOPNode>
-//               <Slope> 0.9 1.2 0.5 </Slope>
-//               <Offset> 0.4 -0.5 0.6 </Offset>
-//               <Power> 1.0 0.8 1.5 </Power>
-//          </SOPNode>
-//          <SATNode>
-//               <Saturation> 0.85 </Saturation>
-//          </SATNode>
-//    </ColorCorrection>
-//    </ColorCorrectionCollection>';
+    // Create an XML color correction collection
+    $color_correction_collection = <<< TXT
+<ColorCorrectionCollection xmlns="urn:ASC:CDL:v1.2">
+  <ColorCorrection id="cc03345">
+    <SOPNode>
+      <Slope> 0.9 1.2 0.5 </Slope>
+      <Offset> 0.4 -0.5 0.6 </Offset>
+      <Power> 1.0 0.8 1.5 </Power>
+    </SOPNode>
+    <SATNode>
+      <Saturation> 0.85 </Saturation>
+    </SATNode>
+  </ColorCorrection>
+</ColorCorrectionCollection>
+TXT;
 
     $imagick = new \Imagick(realpath($image_path));
 
-    $imagick->colorDecisionListImage($imagick);
+    $imagick->colorDecisionListImage($color_correction_collection);
     
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();

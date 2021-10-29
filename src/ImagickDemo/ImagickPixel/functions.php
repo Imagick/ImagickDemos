@@ -33,6 +33,34 @@ function header($string, $replace = true, $http_response_code = null)
     }
 }
 
+//Example ImagickPixel::clear
+function clear()
+{
+    $draw = new \ImagickDraw();
+
+    $strokeColor = new \ImagickPixel('black');
+    $fillColor = new \ImagickPixel();
+    $fillColor->setColor('rgba(100%, 75%, 0%, 1.0)');
+
+    $fillColor->clear();
+
+    $draw->setstrokewidth(3.0);
+    $draw->setStrokeColor($strokeColor);
+    $draw->setFillColor($fillColor);
+    $draw->rectangle(200, 200, 300, 300);
+
+    $image = new \Imagick();
+    $image->newImage(500, 500, "SteelBlue2");
+    $image->setImageFormat("png");
+
+    $image->drawImage($draw);
+
+    header("Content-Type: image/png");
+    echo $image->getImageBlob();
+}
+//Example end
+
+
 //Example ImagickPixel::construct
 function construct()
 {
@@ -101,6 +129,35 @@ function setColor()
     $image->newImage(500, 500, "SteelBlue2");
     $image->setImageFormat("png");
 
+    $image->drawImage($draw);
+
+    header("Content-Type: image/png");
+    echo $image->getImageBlob();
+}
+//Example end
+
+
+
+//Example ImagickPixel::setColorFromPixel
+function setColorFromPixel()
+{
+    $image = new \Imagick();
+    $draw = new \ImagickDraw();
+
+    $stroke_color = new \ImagickPixel('black');
+
+    $fill_color = new \ImagickPixel('red');
+    $blue_color = new \ImagickPixel('blue');
+
+    $fill_color->setColorFromPixel($blue_color);
+
+    $draw->setstrokewidth(1.0);
+    $draw->setStrokeColor($stroke_color);
+    $draw->setFillColor($fill_color);
+    $draw->rectangle(200, 200, 300, 300);
+
+    $image->newImage(500, 500, "gray");
+    $image->setImageFormat("png");
     $image->drawImage($draw);
 
     header("Content-Type: image/png");

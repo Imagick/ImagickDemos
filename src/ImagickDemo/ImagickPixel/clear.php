@@ -11,14 +11,12 @@ class clear extends \ImagickDemo\Example
 
     public function renderDescription()
     {
-        return "";
-    }
+        $html = <<< HTML
+<p>
+  Honestly, doesn't do much useful. It appears to reset the colorspace setting of the ImagickPixel to sRGBColorspace and clear an internal exception setting. I'd recommend not using it.
+</p>
+HTML;
 
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        return "";
+        return $html;
     }
 }

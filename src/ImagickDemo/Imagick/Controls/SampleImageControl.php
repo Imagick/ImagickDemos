@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterListFromAttributes;
@@ -12,6 +11,7 @@ use Params\SafeAccess;
 use ImagickDemo\Params\Height;
 use ImagickDemo\Params\Width;
 use ImagickDemo\Params\Image;
+use \ImagickDemo\Params\Preshrink;
 
 class SampleImageControl
 {
@@ -21,11 +21,12 @@ class SampleImageControl
     use InputParameterListFromAttributes;
 
     public function __construct(
-
-        #[Width(100, 'width')]
+        #[Width(500, 'width')]
         private string $width,
-        #[Height(100, 'height')]
+        #[Height(500, 'height')]
         private string $height,
+        #[Preshrink('preshrink')]
+        private string $preshrink,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -36,6 +37,7 @@ class SampleImageControl
         return [
             'width' => $this->width,
             'height' => $this->height,
+            'preshrink' => getOptionFromOptions($this->preshrink, getPreshrinkOptions()),
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
     }

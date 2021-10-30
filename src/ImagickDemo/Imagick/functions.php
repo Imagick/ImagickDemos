@@ -1849,13 +1849,11 @@ function rollImage($image_path, $rollX, $rollY)
 function rotateImage($image_path, $angle, $color, $crop)
 {
     $imagick = new \Imagick(realpath($image_path));
-    
-    $originalWidth = $imagick->getImageWidth();
-    $originalHeight = $imagick->getImageHeight();
-    
     $imagick->rotateImage($color, $angle);
     
     if ($crop) {
+        $originalWidth = $imagick->getImageWidth();
+        $originalHeight = $imagick->getImageHeight();
         $imagick->setImagePage(
             $imagick->getimageWidth(),
             $imagick->getimageheight(),
@@ -1915,9 +1913,17 @@ function roundCorners($image_path)
 
 
 //Example Imagick::sampleImage
-function sampleImage($image_path, $width, $height)
+function sampleImage($image_path, $width, $height, $preshrink)
 {
     $imagick = new \Imagick(realpath($image_path));
+
+    if ($preshrink) {
+        // Easier to see pixel when source image is tiny.
+        $imagick->scaleImage(
+            $imagick->getImageWidth() / 8,
+            $imagick->getImageHeight() / 8
+        );
+    }
 
     $imagick->sampleImage($width, $height);
     header("Content-Type: image/jpeg");

@@ -610,6 +610,14 @@ function getCropOptions()
     ];
 }
 
+function getPreshrinkOptions()
+{
+    return [
+        'Enabled' => 1,
+        'Disabled' => 0,
+    ];
+}
+
 
 function getFilterOptions()
 {

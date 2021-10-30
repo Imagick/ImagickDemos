@@ -182,6 +182,7 @@ function getImagickExamples()
         'brightnessContrastImage' => 'brightnessContrastImage',
         'charcoalImage' => 'charcoalImage',
         'chopImage' => 'chopImage',
+        'clampImage' => 'clampImage',
         //'clear' - alias of destroy
         //'clipPathImage' - tiff image, no1curr
         'clutImage' => 'clutImage',
@@ -408,7 +409,7 @@ function getImagickExamples()
         'rotateImage' => 'rotateImage',
         'rotationalBlurImage' => 'rotationalBlurImage',
         'roundCorners' => 'roundCorners',
-        //'sampleImage',
+        'sampleImage' => 'sampleImage',
         'scaleImage' => 'scaleImage',
         'segmentImage' => 'segmentImage',
         'selectiveBlurImage' => 'selectiveBlurImage',

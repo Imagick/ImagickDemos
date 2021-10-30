@@ -283,6 +283,20 @@ function chopImage($image_path, $startX, $startY, $width, $height)
 }
 //Example end
 
+
+
+//Example Imagick::clipImage
+function clampImage($image_path, $channel)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->clampImage($channel);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+
 //Example Imagick::clipImage
 function clipImage($image_path)
 {
@@ -388,8 +402,6 @@ function colorizeImage($image_path, $color, $opacity_color)
 //
 //    $imagick->setImageFormat('png');
 //    $imagick->writeImage(__DIR__ . "/colourize_new.png");
-
-
 
 }
 //Example end
@@ -1900,6 +1912,20 @@ function roundCorners($image_path)
     echo $imagick->getImageBlob();
 }
 //Example end
+
+
+//Example Imagick::sampleImage
+function sampleImage($image_path, $width, $height)
+{
+    $imagick = new \Imagick(realpath($image_path));
+
+    $imagick->sampleImage($width, $height);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 
 //Example Imagick::scaleImage
 function scaleImage($image_path, $scale_width, $scale_height)

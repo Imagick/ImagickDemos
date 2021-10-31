@@ -52,6 +52,10 @@ class CategoryInfo
     {
         $examples = getCategoryList($category);
 
+        if ($example === 'debug') {
+            return 'debug';
+        }
+
         if (!isset($examples[$example])) {
             throw new \Exception("Somethings borked: example [$category][$example] doesn't exist.");
         }

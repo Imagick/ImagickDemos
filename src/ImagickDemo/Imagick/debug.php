@@ -2,7 +2,7 @@
 
 namespace ImagickDemo\Imagick;
 
-class debugImage extends \ImagickDemo\Example
+class debug extends \ImagickDemo\Example
 {
     public function renderTitle(): string
     {
@@ -15,31 +15,6 @@ class debugImage extends \ImagickDemo\Example
         $output .= "<br/>";
 
         return $output;
-    }
-
-    /**
-     * @param string|null $activeCategory
-     * @param string|null $activeExample
-     * @return string
-     */
-    public function render(
-        ?string $activeCategory,
-        ?string $activeExample
-    )
-    {
-        $output = sprintf("<img src='%s' />", $this->control->getCustomImageURL());
-
-        return $output;
-    }
-
-    /**
-     *
-     */
-    public function renderCustomImage()
-    {
-        //$function = $this->control->getFunctionType();
-
-        $this->renderImage();
     }
 
     /**

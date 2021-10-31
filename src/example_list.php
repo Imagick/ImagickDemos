@@ -172,14 +172,15 @@ function getImagickExamples()
         'affineTransformImage' => 'affineTransformImage', //Doesn't work?
         //'animateImages',
         'annotateImage' => 'annotateImage',
-
         'appendImages' => 'appendImages',
+        'autoGammaImage' => 'autoGammaImage',
         'autoLevelImage' => 'autoLevelImage',
         'blackThresholdImage' => 'blackThresholdImage',
         'blueShiftImage' => 'blueShiftImage',
         'blurImage' => 'blurImage',
         'borderImage' => 'borderImage',
         'brightnessContrastImage' => 'brightnessContrastImage',
+        'cannyEdgeImage' => 'cannyEdgeImage',
         'charcoalImage' => 'charcoalImage',
         'chopImage' => 'chopImage',
         'clampImage' => 'clampImage',
@@ -187,8 +188,6 @@ function getImagickExamples()
         //'clipPathImage' - tiff image, no1curr
         'clutImage' => 'clutImage',
         'coalesceImages' => 'coalesceImages',
-
-        //This isn't implemented yet.
         'colorDecisionListImage' => 'colorDecisionListImage',
         'colorizeImage' => 'colorizeImage',
         'colorMatrixImage' => 'colorMatrixImage',
@@ -210,6 +209,9 @@ function getImagickExamples()
         //'constituteImage' => [ 'constituteImage', \ImagickDemo\Control\NullControl::class],
         // DestroyImage
         //'debugImage' => ['debugImage', \ImagickDemo\Control\NullControl::class ],
+
+        // Comment in for debugging.
+        // 'debug' => 'debug',
 
         //'decipherImage' - no1curr
         //'deconstructImages',
@@ -335,16 +337,15 @@ function getImagickExamples()
         //'getVersion',
 
         'haldClutImage' => 'haldClutImage',
+        'houghLineImage' => 'houghLineImage',
         //'hasNextImage',
         //'hasPreviousImage',
         'identifyImage' => 'identifyImage',
         'identifyFormat' => 'identifyFormat',
-
         'inverseFourierTransformImage' => 'forwardFourierTransformImage',
         'implodeImage'  => 'implodeImage',
         'importImagePixels' => 'importImagePixels',
         //'labelImage' => basically does setImageProperty("label", $text)
-
         'levelImage' => 'levelImage',
         'localContrastImage' => 'localContrastImage',
         'linearStretchImage' => 'linearStretchImage',
@@ -358,9 +359,7 @@ function getImagickExamples()
         'modulateImage' => 'modulateImage',
         'montageImage'  => 'montageImage',
         'morphImages' => 'morphImages',
-
         'morphology' => 'morphology',
-
         'mosaicImages' => 'mosaicImages',
         'motionBlurImage' => 'motionBlurImage',
         'negateImage' => 'negateImage',
@@ -376,7 +375,6 @@ function getImagickExamples()
         'paintOpaqueImage' => 'paintOpaqueImage', //deprecated
         //'paintTransparentImage', //deprecated
         'pingImage' => 'pingImage',
-
         'pingImageBlob' => 'pingImageBlob',
         'pingImageFile' => 'pingImageFile',
         'polaroidImage'  => 'polaroidImage',

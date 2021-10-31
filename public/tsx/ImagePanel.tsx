@@ -152,6 +152,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
             'Lorikeet': "/images/Biter_500.jpg",
             'People': "/images/SydneyPeople_400.jpg",
             'Low contrast': "/images/LowContrast.jpg",
+            'Logo': "/images/logo.png",
         };
 
         // @ts-ignore: image_path

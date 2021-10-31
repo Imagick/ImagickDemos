@@ -124,6 +124,7 @@ function getImagePathOptions()
         'Lorikeet' => realpath(__DIR__ . "/../public/images/Biter_500.jpg"),
         'People' => realpath(__DIR__ . "/../public/images/SydneyPeople_400.jpg"),
         'Low contrast' => realpath(__DIR__ . "/../public/images/LowContrast.jpg"),
+        'Logo' => realpath(__DIR__ . "/../public/images/logo.png"),
     ];
 
     return $images;

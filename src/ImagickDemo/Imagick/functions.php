@@ -34,8 +34,6 @@ function header($string, $replace = true, $http_response_code = null)
 //            \header($string, $replace, $http_response_code);
 //        }
 //    }
-    
-    
 }
 
 
@@ -187,6 +185,17 @@ function appendImages()
 }
 //Example end
 
+//Example Imagick::autoGammaImage
+function autoGammaImage($image_path)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->autoGammaImage();
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::autoLevelImage
 function autoLevelImage($image_path)
 {
@@ -258,6 +267,17 @@ function brightnessContrastImage($image_path, $brightness, $contrast, $channel)
 {
     $imagick = new \Imagick(realpath($image_path));
     $imagick->brightnessContrastImage($brightness, $contrast, $channel);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+//Example Imagick::cannyEdgeImage
+function cannyEdgeImage($image_path, $radius, $sigma, $lower_percent, $upper_percent)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->cannyEdgeImage($radius, $sigma, $lower_percent, $upper_percent);
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 }
@@ -1150,6 +1170,21 @@ function haldClutImage($image_path, $hald_clut_type)
 }
 //Example end
 
+//Example Imagick::houghLineImage
+function houghLineImage($image_path, $radius, $sigma, $lower_percent, $upper_percent, $width, $height, $threshold)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->cannyEdgeImage($radius, $sigma, $lower_percent, $upper_percent);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+
+    $imagick->houghLineImage($width, $height, $threshold);
+
+    $imagick->setImageFormat('png');
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
 
 //Example Imagick::implodeImage
 function implodeImage($image_path, $implode)
@@ -3020,5 +3055,21 @@ function websafeColors()
     'FFFFCC', 
     'FFFFFF', 
     ];
+}
 
+
+
+function debug()
+{
+    $canvas = new Imagick(__DIR__ . '/485_car.png'); //image with transparent pieces
+    $gradient = new Imagick();
+    $gradient->newPseudoImage($canvas->getImageWidth(), $canvas->getImageHeight(), 'gradient:#979797-#373737');
+    $gradient->compositeImage($canvas, imagick::COMPOSITE_COPYOPACITY , 0, 0);
+    $canvas->compositeImage($gradient, imagick::COMPOSITE_SOFTLIGHT, 0, 0);
+
+    $im = new Imagick(__DIR__ . '/485_base.jpg');
+    $im->compositeImage($canvas, imagick::COMPOSITE_OVER, 0, 0);
+
+    header("Content-Type: image/jpeg");
+    echo $im->getImageBlob();
 }

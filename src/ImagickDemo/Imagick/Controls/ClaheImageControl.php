@@ -4,18 +4,15 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-
-use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Radius;
-use ImagickDemo\Params\Sigma;
+use ImagickDemo\Params\PositiveInt;
+use ImagickDemo\Params\ZeroOrAboveFloat;
 
-class AdaptiveBlurImageControl
+class ClaheImageControl
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,12 +20,14 @@ class AdaptiveBlurImageControl
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius(5, 'radius')]
-        private float $radius,
-        #[Sigma(1, 'sigma')]
-        private float $sigma,
-        #[Channel('channel')]
-        private string $channel,
+        #[PositiveInt(10, 50, 'width')]
+        private float $width,
+        #[PositiveInt(10, 50,  'height')]
+        private float $height,
+        #[PositiveInt(32, 256,  'number_bins')]
+        private float $number_bins,
+        #[ZeroOrAboveFloat(100, 10000, 'clip_limit')]
+        private float $clip_limit,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -37,26 +36,12 @@ class AdaptiveBlurImageControl
     public function getValuesForForm(): array
     {
         return [
-            'radius' => $this->radius,
-            'sigma' => $this->sigma,
-            'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
+            'width' => $this->width,
+            'height' => $this->height,
+            'number_bins' => $this->number_bins,
+            'clip_limit' => $this->clip_limit,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
-    }
-
-    public function getRadius(): float
-    {
-        return $this->radius;
-    }
-
-    public function getSigma(): float
-    {
-        return $this->sigma;
-    }
-
-    public function getChannel(): string
-    {
-        return $this->channel;
     }
 
     public function getImagePath(): string

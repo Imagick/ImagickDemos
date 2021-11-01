@@ -206,6 +206,18 @@ function autoLevelImage($image_path)
 }
 //Example end
 
+//Example Imagick::autoThresholdImage
+function autoThresholdImage(
+    $image_path,
+    int $auto_threshold_method
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->autoThresholdImage($auto_threshold_method);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 //Example Imagick::averageImages
 function averageImages($image_path)
 {
@@ -218,6 +230,26 @@ function averageImages($image_path)
     $averageImage->setImageType('jpg');
     header("Content-Type: image/jpeg");
     echo $averageImage->getImageBlob();
+}
+//Example end
+
+//Example Imagick::bilateralBlurImage
+function bilateralBlurImage(
+    $image_path,
+    float $radius,
+    float $sigma,
+    float $intensity_sigma,
+    float $spatial_sigma
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->bilateralBlurImage(
+        $radius,
+        $sigma,
+        $intensity_sigma,
+        $spatial_sigma
+    );
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
 }
 //Example end
 
@@ -303,7 +335,25 @@ function chopImage($image_path, $startX, $startY, $width, $height)
 }
 //Example end
 
-
+//Example Imagick::claheImage
+function claheImage(
+    $image_path,
+    int $width,
+    int $height,
+    int $number_bins,
+    float $clip_limit
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->claheImage(
+        $width,
+        $height,
+        $number_bins,
+        $clip_limit * Imagick::getQuantum()
+    );
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
 
 //Example Imagick::clipImage
 function clampImage($image_path, $channel)
@@ -1274,6 +1324,21 @@ function importImagePixels()
 }
 //Example end
 
+//Example Imagick::kmeansImage
+function kmeansImage(
+    $image_path,
+    int $number_colors,
+    int $max_iterations,
+    float $tolerance
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->kmeansImage($number_colors, $max_iterations, $tolerance);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::labelImage
 function labelImage($image_path)
 {
@@ -1340,7 +1405,24 @@ function magnifyImage($image_path /*, string $magnify_type*/)
     echo $imagick->getImageBlob();
 }
 //Example end
-    
+
+//Example Imagick::meanShiftImage
+function meanShiftImage(
+    $image_path,
+    int $width,
+    int $height,
+    float $color_distance
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->meanShiftImage(
+        $width,
+        $height,
+        $color_distance * Imagick::getQuantum()
+    );
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
 
 //Example Imagick::medianFilterImage
 function medianFilterImage($radius, $image_path)
@@ -1748,6 +1830,26 @@ function randomThresholdimage($image_path, $lowThreshold, $highThreshold, $chann
         $lowThreshold * \Imagick::getQuantum(),
         $highThreshold * \Imagick::getQuantum(),
         $channel
+    );
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+//Example Imagick::rangeThresholdImage
+function rangeThresholdImage(
+    $image_path,
+    float $low_black,
+    float $low_white,
+    float $high_white,
+    float $high_black
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->rangeThresholdImage(
+        $low_black * \Imagick::getQuantum(),
+        $low_white * \Imagick::getQuantum(),
+        $high_white * \Imagick::getQuantum(),
+        $high_black * \Imagick::getQuantum()
     );
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
@@ -2411,6 +2513,19 @@ function setSamplingFactors()
     echo $reopen->getImageBlob();
 }
 //Example end
+
+//Example Imagick::setSeed
+function setSeed(int $seed)
+{
+    $imagick = new \Imagick();
+    Imagick::setSeed($seed);
+    $imagick->newPseudoImage(400, 400, 'plasma:tomato-blue');
+    $imagick->setImageFormat('jpg');
+
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
     
 //Example Imagick::shadeImage
 function shadeImage($image_path)
@@ -2822,6 +2937,15 @@ function waveImage($image_path, $amplitude, $length)
 }
 //Example end
 
+//Example Imagick::waveletDenoiseImage
+function waveletDenoiseImage($image_path, float $threshold, float $softness)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->waveletDenoiseImage($threshold, $softness);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
 
 //Example Imagick::whiteThresholdImage
 function whiteThresholdImage($image_path, $threshold_color)
@@ -3061,6 +3185,12 @@ function websafeColors()
 
 function debug()
 {
+    var_dump(Imagick::getVersion());
+    foreach (Imagick::getConfigureOptions() as $key => $value) {
+        echo "$key => $value <br/>\n";
+    }
+    exit(0);
+
     $canvas = new Imagick(__DIR__ . '/485_car.png'); //image with transparent pieces
     $gradient = new Imagick();
     $gradient->newPseudoImage($canvas->getImageWidth(), $canvas->getImageHeight(), 'gradient:#979797-#373737');

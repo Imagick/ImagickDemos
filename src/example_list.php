@@ -175,6 +175,8 @@ function getImagickExamples()
         'appendImages' => 'appendImages',
         'autoGammaImage' => 'autoGammaImage',
         'autoLevelImage' => 'autoLevelImage',
+        'autoThresholdImage' => 'autoThresholdImage',
+        'bilateralBlurImage' => 'bilateralBlurImage',
         'blackThresholdImage' => 'blackThresholdImage',
         'blueShiftImage' => 'blueShiftImage',
         'blurImage' => 'blurImage',
@@ -183,6 +185,7 @@ function getImagickExamples()
         'cannyEdgeImage' => 'cannyEdgeImage',
         'charcoalImage' => 'charcoalImage',
         'chopImage' => 'chopImage',
+        'claheImage' => 'claheImage',
         'clampImage' => 'clampImage',
         //'clear' - alias of destroy
         //'clipPathImage' - tiff image, no1curr
@@ -345,6 +348,7 @@ function getImagickExamples()
         'inverseFourierTransformImage' => 'forwardFourierTransformImage',
         'implodeImage'  => 'implodeImage',
         'importImagePixels' => 'importImagePixels',
+        'kmeansImage' => 'kmeansImage',
         //'labelImage' => basically does setImageProperty("label", $text)
         'levelImage' => 'levelImage',
         'localContrastImage' => 'localContrastImage',
@@ -353,6 +357,7 @@ function getImagickExamples()
         'magnifyImage' => 'magnifyImage',
         //'mapImage' - deprecated
         //'matteFloodfillImage' - deprecated
+        'meanShiftImage' => 'meanShiftImage',
         'medianFilterImage' => 'medianFilterImage',
         'mergeImageLayers'  => 'mergeImageLayers',
         //'minifyImage', //MagickMinifyImage() is a convenience method that scales an image proportionally to one-half its original size
@@ -391,6 +396,7 @@ function getImagickExamples()
         'radialBlurImage' => 'radialBlurImage',
         'raiseImage' => 'raiseImage',
         'randomThresholdImage' => 'randomThresholdImage',
+        'rangeThresholdImage' => 'rangeThresholdImage',
         //'readImage',
         'readImageBlob'  => 'readImageBlob',
         //'readImageFile',
@@ -478,6 +484,7 @@ function getImagickExamples()
         //'setResolution',
         //'setResourceLimit',
         'setSamplingFactors' => 'setSamplingFactors',
+        'setSeed' => 'setSeed',
         //'setSize',
         //'setSizeOffset',
         //'setType',
@@ -511,6 +518,7 @@ function getImagickExamples()
         'unsharpMaskImage' => 'unsharpMaskImage',
         'vignetteImage' => 'vignetteImage',
         'waveImage' => 'waveImage',
+        'waveletDenoiseImage' => 'waveletDenoiseImage',
         'whiteThresholdImage' => 'whiteThresholdImage',
     ];
 }

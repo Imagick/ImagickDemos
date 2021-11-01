@@ -731,3 +731,25 @@ function getMatteOptions()
         'Disabled' => false,
     ];
 }
+
+function getAutoThresholdOptions()
+{
+    return [
+        "Kapur" => Imagick::AUTO_THRESHOLD_KAPUR,
+        "OTSU" => Imagick::AUTO_THRESHOLD_OTSU,
+        "Triangle" => Imagick::AUTO_THRESHOLD_TRIANGLE
+    ];
+}
+
+function getComplexOperatorOptions()
+{
+    return [
+        "AddComplexOperator" => Imagick::COMPLEX_OPERATOR_ADD,
+        "ConjugateComplexOperator" => Imagick::COMPLEX_OPERATOR_CONJUGATE,
+        "DivideComplexOperator" => Imagick::COMPLEX_OPERATOR_DIVIDE,
+        "MagnitudePhaseComplexOperator" => Imagick::COMPLEX_OPERATOR_MAGNITUDEPHASE,
+        "MultiplyComplexOperator" => Imagick::COMPLEX_OPERATOR_MULTIPLY,
+        "RealImaginaryComplexOperator" => Imagick::COMPLEX_OPERATOR_REALIMAGINARY,
+        "SubtractComplexOperator" => Imagick::COMPLEX_OPERATOR_SUBTRACT,
+    ];
+}

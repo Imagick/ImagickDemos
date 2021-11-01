@@ -4,18 +4,16 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-
 use ImagickDemo\ToArray;
 use Params\Create\CreateFromVarMap;
 use Params\InputParameterListFromAttributes;
 use Params\SafeAccess;
-
-use ImagickDemo\Params\Channel;
-use ImagickDemo\Params\Image;
 use ImagickDemo\Params\Radius;
 use ImagickDemo\Params\Sigma;
+use ImagickDemo\Params\Image;
+use ImagickDemo\Params\ZeroOrAboveFloat;
 
-class AdaptiveBlurImageControl
+class BilateralBlurImageControl
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -23,12 +21,14 @@ class AdaptiveBlurImageControl
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Radius(5, 'radius')]
+        #[Radius(10, 'radius')]
         private float $radius,
-        #[Sigma(1, 'sigma')]
+        #[Sigma(3, 'sigma')]
         private float $sigma,
-        #[Channel('channel')]
-        private string $channel,
+        #[ZeroOrAboveFloat(30, 100, 'intensity_sigma')]
+        private float $intensity_sigma,
+        #[ZeroOrAboveFloat(30, 100, 'spatial_sigma')]
+        private float $spatial_sigma,
         #[Image('image_path')]
         private string $image_path,
     ) {
@@ -39,24 +39,10 @@ class AdaptiveBlurImageControl
         return [
             'radius' => $this->radius,
             'sigma' => $this->sigma,
-            'channel' => getOptionFromOptions($this->channel, getChannelOptions()),
+            'intensity_sigma' => $this->intensity_sigma,
+            'spatial_sigma' => $this->spatial_sigma,
             'image_path' => getOptionFromOptions($this->image_path, getImagePathOptions()),
         ];
-    }
-
-    public function getRadius(): float
-    {
-        return $this->radius;
-    }
-
-    public function getSigma(): float
-    {
-        return $this->sigma;
-    }
-
-    public function getChannel(): string
-    {
-        return $this->channel;
     }
 
     public function getImagePath(): string

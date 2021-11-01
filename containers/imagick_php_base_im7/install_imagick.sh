@@ -20,6 +20,12 @@ phpize
 
 ./configure
 
+echo "************************************"
+echo "***DIR******************************"
+pwd
+echo "************************************"
+echo "************************************"
+
 make install -j4
 
 echo "extension=imagick.so" > /etc/php/8.0/cli/conf.d/imagick.ini

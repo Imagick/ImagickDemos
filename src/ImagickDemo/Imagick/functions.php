@@ -4,6 +4,7 @@ namespace ImagickDemo\Imagick;
  
 use Imagick;
 use ImagickDraw;
+use ImagickPixel;
 
 class functions
 {
@@ -222,10 +223,10 @@ function autoThresholdImage(
 function averageImages($image_path)
 {
     $imagick = new \Imagick(realpath($image_path));
-    //$imagick2 = new \Imagick(realpath("../images/TestImage2.jpg"));
-    //$imagick->addImage($imagick2);
-    //This kills PHP  - but the function is deprecated, so let's just ignore it
-    $averageImage = @$imagick->averageImages();
+    $imagick2 = new \Imagick(realpath("../images/TestImage2.jpg"));
+    $imagick->addImage($imagick2);
+
+    $averageImage = $imagick->averageImages();
 
     $averageImage->setImageType('jpg');
     header("Content-Type: image/jpeg");
@@ -312,6 +313,17 @@ function cannyEdgeImage($image_path, $radius, $sigma, $lower_percent, $upper_per
     $imagick->cannyEdgeImage($radius, $sigma, $lower_percent, $upper_percent);
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
+}
+//Example end
+
+//Example Imagick::channelFxImage
+function channelFxImage($image_path, $expression)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $result_imagick = $imagick->channelFxImage($expression);
+    $result_imagick->setFormat('jpg');
+    header("Content-Type: image/jpeg");
+    echo $result_imagick->getImageBlob();
 }
 //Example end
 
@@ -522,6 +534,22 @@ function colorMatrixImage($image_path, $color_matrix)
 }
 //Example end
 
+
+//Example Imagick::colorThresholdImage
+function colorThresholdImage($image_path, $start_color, $stop_color)
+{
+    $imagick = new \Imagick(realpath($image_path));
+
+    $imagick->colorThresholdImage(
+        $start_color,
+        $stop_color,
+    );
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::compositeImage
 function compositeImage()
 {
@@ -554,7 +582,24 @@ function compositeImage()
 }
 //Example end
 
+//Example Imagick::complexImages
+function complexImages(int $complex_operator)
+{
+    $imagick = new \Imagick(realpath("images/Biter_500.jpg"));
+    $multiply = new Imagick();
+    $multiply->newPseudoImage(
+        $imagick->getImageWidth(),
+        $imagick->getImageHeight(),
+        "gradient:black-white"
+    );
+    $imagick->addImage($multiply);
 
+    $result = $imagick->complexImages($complex_operator);
+    $result->setFormat('jpg');
+    header("Content-Type: image/jpeg");
+    echo $result->getImageBlob();
+}
+//Example end
 
 //Example Imagick::constituteImage
 function constituteImage($image_path)
@@ -1324,6 +1369,21 @@ function importImagePixels()
 }
 //Example end
 
+
+//Example Imagick::interpolativeResizeImage
+function interpolativeResizeImage(
+    $image_path,
+    int $columns,
+    int $rows,
+    int $interpolate_type // INTERPOLATE_
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->interpolativeResizeImage($columns, $rows, $interpolate_type);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 //Example Imagick::kmeansImage
 function kmeansImage(
     $image_path,
@@ -1353,8 +1413,6 @@ function labelImage($image_path)
 //Example Imagick::levelImage
 function levelImage($blackPoint, $gamma, $whitePoint, $image_path)
 {
-    $imagick = new \Imagick();
-    // $imagick->newPseudoimage(500, 500, 'gradient:black-white');
     $imagick = new \Imagick(realpath($image_path));
 
     $imagick->setFormat('png');
@@ -1368,6 +1426,49 @@ function levelImage($blackPoint, $gamma, $whitePoint, $image_path)
     echo $imagick->getImageBlob();
 }
 //Example end
+
+//Example Imagick::levelImageColors
+function levelImageColors(
+    string $image_path,
+    $black_color,
+    $white_color,
+    bool $invert
+) {
+    $imagick = new \Imagick(realpath($image_path));
+
+    $imagick->setFormat('png');
+    $imagick->levelImageColors(
+        $black_color,
+        $white_color,
+        $invert
+    );
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+//Example Imagick::levelizeImage
+function levelizeImage(
+    string $image_path,
+    float $black_point,
+    float $gamma,
+    float $white_point
+) {
+    $imagick = new \Imagick(realpath($image_path));
+
+    $imagick->setFormat('png');
+    $imagick->levelizeImage(
+        $black_point * $imagick->getQuantum() / 255,
+        $gamma,
+        $white_point * $imagick->getQuantum() / 255
+    );
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 
 
 //Example Imagick::linearStretchImage
@@ -1722,6 +1823,15 @@ function paintOpaqueImage($target_color, $replacement_color, $fuzz, $channel)
 }
 //Example end
 
+//Example Imagick::orderedDitherImage
+function orderedDitherImage($image_path, string $dither_format)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->orderedDitherImage($dither_format);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
 
 //Example Imagick::labelImage
 function polaroidImage($image_path)
@@ -2947,6 +3057,16 @@ function waveletDenoiseImage($image_path, float $threshold, float $softness)
 }
 //Example end
 
+//Example Imagick::whiteBalanceImage
+function whiteBalanceImage($image_path)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->whiteBalanceImage();
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 //Example Imagick::whiteThresholdImage
 function whiteThresholdImage($image_path, $threshold_color)
 {
@@ -3185,11 +3305,11 @@ function websafeColors()
 
 function debug()
 {
-    var_dump(Imagick::getVersion());
-    foreach (Imagick::getConfigureOptions() as $key => $value) {
-        echo "$key => $value <br/>\n";
-    }
-    exit(0);
+//    var_dump(Imagick::getVersion());
+//    foreach (Imagick::getConfigureOptions() as $key => $value) {
+//        echo "$key => $value <br/>\n";
+//    }
+//    exit(0);
 
     $canvas = new Imagick(__DIR__ . '/485_car.png'); //image with transparent pieces
     $gradient = new Imagick();

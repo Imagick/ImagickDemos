@@ -2,13 +2,14 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Imagick\Controls\GammaImageControl;
+use ImagickDemo\Example;
+use ImagickDemo\Imagick\Controls\OrderedDitherImageControl;
 
-class gammaImage extends \ImagickDemo\Example
+class orderedDitherImage extends Example
 {
     public function renderTitle(): string
     {
-        return "Gamma image";
+        return "Imagick::orderedDitherImage";
     }
 
     public function useImageControlAsOriginalImage()
@@ -18,6 +19,6 @@ class gammaImage extends \ImagickDemo\Example
 
     public static function getParamType(): string
     {
-        return GammaImageControl::class;
+        return OrderedDitherImageControl::class;
     }
 }

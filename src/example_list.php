@@ -173,6 +173,7 @@ function getImagickExamples()
         //'animateImages',
         'annotateImage' => 'annotateImage',
         'appendImages' => 'appendImages',
+        'averageImages' => 'averageImages',
         'autoGammaImage' => 'autoGammaImage',
         'autoLevelImage' => 'autoLevelImage',
         'autoThresholdImage' => 'autoThresholdImage',
@@ -183,6 +184,7 @@ function getImagickExamples()
         'borderImage' => 'borderImage',
         'brightnessContrastImage' => 'brightnessContrastImage',
         'cannyEdgeImage' => 'cannyEdgeImage',
+        'channelFxImage' => 'channelFxImage',
         'charcoalImage' => 'charcoalImage',
         'chopImage' => 'chopImage',
         'claheImage' => 'claheImage',
@@ -194,11 +196,13 @@ function getImagickExamples()
         'colorDecisionListImage' => 'colorDecisionListImage',
         'colorizeImage' => 'colorizeImage',
         'colorMatrixImage' => 'colorMatrixImage',
+        'colorThresholdImage' => 'colorThresholdImage',
         //'combineImages',
         //'commentImage',
         //'compareImageChannels',
         //'compareImageLayers',
         //'compareImages',
+        'complexImages' => 'complexImages',
         'compositeImage' => 'compositeImage',
         // CompositeLayers
         //__construct',
@@ -345,12 +349,15 @@ function getImagickExamples()
         //'hasPreviousImage',
         'identifyImage' => 'identifyImage',
         'identifyFormat' => 'identifyFormat',
+        'interpolativeResizeImage' => 'interpolativeResizeImage',
         'inverseFourierTransformImage' => 'forwardFourierTransformImage',
         'implodeImage'  => 'implodeImage',
         'importImagePixels' => 'importImagePixels',
         'kmeansImage' => 'kmeansImage',
         //'labelImage' => basically does setImageProperty("label", $text)
         'levelImage' => 'levelImage',
+        'levelImageColors' => 'levelImageColors',
+        'levelizeImage' => 'levelizeImage',
         'localContrastImage' => 'localContrastImage',
         'linearStretchImage' => 'linearStretchImage',
         //'liquidRescaleImage',
@@ -376,6 +383,7 @@ function getImagickExamples()
         'opaquePaintImage' => 'opaquePaintImage',
         //'optimizeImageLayers',
         // OptimizeImageTransparency
+        'orderedDitherImage' => 'orderedDitherImage',
         'orderedPosterizeImage' => 'orderedPosterizeImage',
         'paintOpaqueImage' => 'paintOpaqueImage', //deprecated
         //'paintTransparentImage', //deprecated
@@ -519,6 +527,7 @@ function getImagickExamples()
         'vignetteImage' => 'vignetteImage',
         'waveImage' => 'waveImage',
         'waveletDenoiseImage' => 'waveletDenoiseImage',
+        'whiteBalanceImage' => 'whiteBalanceImage',
         'whiteThresholdImage' => 'whiteThresholdImage',
     ];
 }

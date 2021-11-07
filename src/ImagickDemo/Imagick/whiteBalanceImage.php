@@ -2,13 +2,14 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Imagick\Controls\GammaImageControl;
+use ImagickDemo\Example;
+use ImagickDemo\Imagick\Controls\ImageControl;
 
-class gammaImage extends \ImagickDemo\Example
+class whiteBalanceImage extends Example
 {
     public function renderTitle(): string
     {
-        return "Gamma image";
+        return "Imagick::whiteBalanceImage";
     }
 
     public function useImageControlAsOriginalImage()
@@ -18,6 +19,6 @@ class gammaImage extends \ImagickDemo\Example
 
     public static function getParamType(): string
     {
-        return GammaImageControl::class;
+        return ImageControl::class;
     }
 }

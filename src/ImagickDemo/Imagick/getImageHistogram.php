@@ -41,11 +41,9 @@ class getImageHistogram extends \ImagickDemo\Example
             $this
         );
         $output .= "<br/>For this image:<br/>";
-        $output .= customImage(
-            $activeCategory,
-            $activeExample,
-            $this->imageControl->getValuesForForm(),
-            $this
+        $output .= sprintf(
+            "<img src='%s'>",
+            normalisePublicFilePath($this->imageControl->getImagePath())
         );
 
         return $output;

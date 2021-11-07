@@ -37,18 +37,23 @@ COPY --from=imagick_builder /etc/php/8.0/cli/conf.d/imagick.ini /etc/php/8.0/cli
 COPY --from=imagick_builder /etc/php/8.0/fpm/conf.d/imagick.ini /etc/php/8.0/fpm/conf.d/imagick.ini
 COPY --from=imagick_builder /usr/lib/php/20200930/imagick.so /usr/lib/php/20200930/imagick.so
 
-COPY --from=imagick_builder /usr/local/lib/ImageMagick-7.1.0/config-Q16HDRI/configure.xml /usr/local/lib/ImageMagick-7.1.0/config-Q16HDRI/configure.xml
 
 COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.a /usr/local/lib/libMagickCore-7.Q16HDRI.a
 COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.la /usr/local/lib/libMagickCore-7.Q16HDRI.la
 COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so /usr/local/lib/libMagickCore-7.Q16HDRI.so
-COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so.10 /usr/local/lib/libMagickCore-7.Q16HDRI.so.10
-COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so.10.0.0 /usr/local/lib/libMagickCore-7.Q16HDRI.so.10.0.0
 COPY --from=imagick_builder /usr/local/lib/libMagickWand-7.Q16HDRI.a /usr/local/lib/libMagickWand-7.Q16HDRI.a
 COPY --from=imagick_builder /usr/local/lib/libMagickWand-7.Q16HDRI.la /usr/local/lib/libMagickWand-7.Q16HDRI.la
 COPY --from=imagick_builder /usr/local/lib/libMagickWand-7.Q16HDRI.so /usr/local/lib/libMagickWand-7.Q16HDRI.so
+
 COPY --from=imagick_builder /usr/local/lib/libMagickWand-7.Q16HDRI.so.10 /usr/local/lib/libMagickWand-7.Q16HDRI.so.10
-COPY --from=imagick_builder /usr/local/lib/libMagickWand-7.Q16HDRI.so.10.0.0 /usr/local/lib/libMagickWand-7.Q16HDRI.so.10.0.0
+COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so.10 /usr/local/lib/libMagickCore-7.Q16HDRI.so.10
+COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so.10.0.0 /usr/local/lib/libMagickCore-7.Q16HDRI.so.10.0.0
+COPY --from=imagick_builder /usr/local/lib/ImageMagick-7.1.0/config-Q16HDRI/configure.xml /usr/local/lib/ImageMagick-7.1.0/config-Q16HDRI/configure.xml
+
+# COPY --from=imagick_builder /usr/local/lib/ImageMagick-7.0.7/config-Q16HDRI/configure.xml /usr/local/lib/ImageMagick-7.0.7/config-Q16HDRI/configure.xml
+# COPY --from=imagick_builder /usr/local/lib/libMagickWand-7.Q16HDRI.so.4 /usr/local/lib/libMagickWand-7.Q16HDRI.so.4
+# COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so.4 /usr/local/lib/libMagickCore-7.Q16HDRI.so.4
+# COPY --from=imagick_builder /usr/local/lib/libMagickCore-7.Q16HDRI.so.4.0.0 /usr/local/lib/libMagickCore-7.Q16HDRI.so.4.0.0
 
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/ImageMagick-7.Q16HDRI.pc /usr/local/lib/pkgconfig/ImageMagick-7.Q16HDRI.pc
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/ImageMagick.pc /usr/local/lib/pkgconfig/ImageMagick.pc
@@ -57,9 +62,7 @@ COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickCore.pc /usr/local/li
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickWand-7.Q16HDRI.pc /usr/local/lib/pkgconfig/MagickWand-7.Q16HDRI.pc
 COPY --from=imagick_builder /usr/local/lib/pkgconfig/MagickWand.pc /usr/local/lib/pkgconfig/MagickWand.pc
 
-
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libfftw3.so.3 /usr/lib/x86_64-linux-gnu/libfftw3.so.3
-
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libfreetype.so.6 /usr/lib/x86_64-linux-gnu/libfreetype.so.6
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libjbig.so.0 /usr/lib/x86_64-linux-gnu/libjbig.so.0
 COPY --from=imagick_builder /usr/lib/x86_64-linux-gnu/libjpeg.so.62 /usr/lib/x86_64-linux-gnu/libjpeg.so.62

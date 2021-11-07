@@ -744,12 +744,32 @@ function getAutoThresholdOptions()
 function getComplexOperatorOptions()
 {
     return [
-        "AddComplexOperator" => Imagick::COMPLEX_OPERATOR_ADD,
-        "ConjugateComplexOperator" => Imagick::COMPLEX_OPERATOR_CONJUGATE,
-        "DivideComplexOperator" => Imagick::COMPLEX_OPERATOR_DIVIDE,
-        "MagnitudePhaseComplexOperator" => Imagick::COMPLEX_OPERATOR_MAGNITUDEPHASE,
-        "MultiplyComplexOperator" => Imagick::COMPLEX_OPERATOR_MULTIPLY,
-        "RealImaginaryComplexOperator" => Imagick::COMPLEX_OPERATOR_REALIMAGINARY,
-        "SubtractComplexOperator" => Imagick::COMPLEX_OPERATOR_SUBTRACT,
+        "Add" => Imagick::COMPLEX_OPERATOR_ADD,
+        "Conjugate" => Imagick::COMPLEX_OPERATOR_CONJUGATE,
+        "Divide" => Imagick::COMPLEX_OPERATOR_DIVIDE,
+        "MagnitudePhase" => Imagick::COMPLEX_OPERATOR_MAGNITUDEPHASE,
+        "Multiply" => Imagick::COMPLEX_OPERATOR_MULTIPLY,
+        "RealImaginary" => Imagick::COMPLEX_OPERATOR_REALIMAGINARY,
+        "Subtract" => Imagick::COMPLEX_OPERATOR_SUBTRACT,
     ];
+}
+
+
+function getInterpolateOptions()
+{
+    // "INTERPOLATE_BICUBIC" => Imagick::// "INTERPOLATE_BICUBIC"
+    // "INTERPOLATE_FILTER" => Imagick:://"INTERPOLATE_FILTER"
+    // "INTERPOLATE_NEARESTNEIGHBOR", => Imagick::// "INTERPOLATE_NEARESTNEIGHBOR",
+
+    return [
+        "Average" => Imagick::INTERPOLATE_AVERAGE,
+        "Bilinear" => Imagick::INTERPOLATE_BILINEAR,
+        "Integer" => Imagick::INTERPOLATE_INTEGER,
+        "Mesh" => Imagick::INTERPOLATE_MESH,
+        "Spline" => Imagick::INTERPOLATE_SPLINE,
+        "Average 9" => Imagick::INTERPOLATE_AVERAGE_9,
+        "Average 16" => Imagick::INTERPOLATE_AVERAGE_16,
+        "Blend" => Imagick::INTERPOLATE_BLEND,
+        "Background color" => Imagick::INTERPOLATE_BACKGROUND_COLOR,
+     ];
 }

@@ -12,24 +12,27 @@ class identifyImage extends \ImagickDemo\Example
     public function render(
         ?string $activeCategory,
         ?string $activeExample
-    )
-    {
+    ) {
         $path = realpath(__DIR__."/../../../public/images/fnord.png");
         
         $imagick = new \Imagick($path);
         $identifyInfo = $imagick->identifyimage(true);
 
+        $output = "";
+
         foreach ($identifyInfo as $key => $value) {
-            echo "$key : ";
+            $output .= "$key : ";
 
             if (is_array($value) == true) {
-                var_dump($value);
+                $output .= var_export($value, true);
             }
             else {
-                echo $value;
+                $output .=  $value;
             }
 
-            echo "<br/>";
+            $output .= "<br/>";
         }
+
+        return $output;
     }
 }

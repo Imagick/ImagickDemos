@@ -110,7 +110,7 @@ e.g. Imagick::setImageProperty('jpeg:sampling-factor', '4:2:0');
             $new->setSamplingFactors($option);
             $blobSize = strlen($new->getImageBlob());
 
-            echo "Option " . implode(',', $option) . " new size " . $blobSize . "<br/>";
+            $output .= "Option " . implode(',', $option) . " new size " . $blobSize . "<br/>";
         }
 
         $output .= image(

@@ -9,11 +9,11 @@ use VarMap\VarMap;
 
 class sparseColorImage extends \ImagickDemo\Example
 {
-    private SparseColorImageControl $imageControl;
+    private SparseColorImageControl $control;
 
     public function __construct(VarMap $varMap)
     {
-        $this->imageControl = SparseColorImageControl::createFromVarMap($varMap);
+        $this->control = SparseColorImageControl::createFromVarMap($varMap);
     }
 
     public function renderTitle(): string
@@ -26,7 +26,14 @@ class sparseColorImage extends \ImagickDemo\Example
         ?string $activeExample
     )
     {
-        return "asidapdpiahdsidpahd";
+        return customImage(
+            $activeCategory,
+            $activeExample,
+            $this->control->getValuesForForm(),
+            $this
+        );
+
+//        return "asidapdpiahdsidpahd";
 //        $url = "/customImage/Imagick/functionImage";
 //        $url .= "?" . http_build_query($this->functionImageControl->getValuesForForm());
 
@@ -45,7 +52,7 @@ class sparseColorImage extends \ImagickDemo\Example
 
     public function renderCustomImage()
     {
-        $sparseType = $this->imageControl->getSparseColorType();
+        $sparseType = $this->control->getSparseColorType();
 
         $this->{$sparseType}();
     }

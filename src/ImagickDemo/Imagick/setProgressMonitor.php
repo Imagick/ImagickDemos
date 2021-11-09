@@ -44,8 +44,9 @@ END;
         ?string $activeExample
     )
     {
-        echo "<pre>";
+
 //Example Imagick::setProgressMonitor
+        $output = "<pre>";
         $abortReason = null;
 
         try {
@@ -65,7 +66,7 @@ END;
                     return false;
                 }
                 if (($offset % 5) == 0) {
-                    echo "Progress: $offset / $span <br/>";
+                    $output .= "Progress: $offset / $span <br/>";
                 }
                 return true;
             };
@@ -74,17 +75,18 @@ END;
 
             $imagick->waveImage(2, 15);
 
-            echo "Data len is: " . strlen($imagick->getImageBlob());
+            $output .= "Data len is: " . strlen($imagick->getImageBlob());
         }
         catch (\ImagickException $e) {
             if ($abortReason != null) {
-                echo "Image processing was aborted: " . $abortReason . "<br/>";
+                $output .= "Image processing was aborted: " . $abortReason . "<br/>";
             }
             else {
-                echo "ImagickException caught: " . $e->getMessage() . " Exception type is " . get_class($e);
+                $output .= "ImagickException caught: " . $e->getMessage() . " Exception type is " . get_class($e);
             }
         }
 //Example end
-        echo "</pre>";
+        $output .= "</pre>";
+        return $output;
     }
 }

@@ -95,7 +95,7 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
     };
 
     componentWillMount() {
-        console.log("componentWillMount")
+        // console.log("componentWillMount");
     }
 
     componentDidMount() {
@@ -104,7 +104,6 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
 
     componentWillUnmount() {
         unregisterEvent(EventType.set_image_params, 'ImagePanel');
-
         // need to register popstate
     }
 

@@ -89,81 +89,31 @@ function getDefaultState(initialControlParams: object): AppState {
 function map_api_name(api_param_name: string): string {
 
     let known_map = {
-        // alpha_type: "alpha_type",
-        // amount: "Amount",
-        // background_color: "Background color",
         best_fit: "Best fit",
-        // blend_midpoint: "Blend midpoint",
-        // black_point: "Black point",
-        // bias: "Bias",
         canvas_type: "Pseudo format",
-        // channel: "Channel",
-        // channel_number: "Channel number",
         channel_1_sample: "Channel 1",
         channel_2_sample: "Channel 2",
         channel_3_sample: "Channel 3",
-        // cluster_threshold: "Cluster threshold",
-        // color: "Color",
-        // colorspace: "Colorspace",
-        // color_space: "Color space",
-        // color_matrix: "Color matrix",
         composite_example: 'Composite',
-        // convolve_matrix: "Convolve matrix",
-        // end_angle: "End angle",
         end_x: "End X",
         end_y: "End Y",
         endX: "End X",
         endY: "End Y",
         fill_color: "Fill color",
         fill_modified_color: "Fill color 2",
-        // filter_type: "Filter type",
-        // first_term: "First term",
-        // fourth_term: "Fourth term",
-        // function_type: "Function type",
         fx_analyze_option: "FX Analyze type",
         hald_clut_type: "Hald clut",
-        // height: "Height",
-        // high_threshold: "High threshold",
         image_path: "Image",
-        // inner_bevel: "Inner bevel",
-        // kernel_render: "Kernel render",
-        // kernel_type: "Kernel type",
-        // layer_method: "Layer method",
-        // low_threshold: "Low threshold",
-        // matte_enabled: "Matte enabled",
-        // morphology_type: "Morphology type",
         number_colors: "Number of colors",
-        // noise_type: "Noise type",
-        // outer_bevel: "Outer bevel",
-        // paint_type: "Paint type",
         radius: "Radius",
-        // roll_x: "Roll x",
-        // roll_y: "Roll y",
-        // rotation_angle: "Rotation angle",
-        // round_x: "Round x",
-        // round_y: "Round y",
         scale_width: "Width",
         scale_height: "Height",
-        // second_term: "Second term",
-        // sigma: "Sigma",
-        // smooth_threshold: "Smooth threshold",
-        // sparse_color_type: "Sparse color type",
-        // start_angle: "Start angle",
         start_x: "Start X",
         start_y: "Start Y",
         startX: "Start X",
         startY: "Start Y",
-        // stroke_color: "Stroke color",
-        // target_color: "Target color ",
-        // text_under_color: "Text under color",
-        // third_term: "Third term",
         translate_x: "Translate X",
         translate_y: "Translate Y",
-        // tree_depth: "Tree depth",
-        // unsharp_threshold: 'Unsharp threshold',
-        // virtual_pixel_type: 'Virtual pixel type',
-        // width: "Width",
-        // white_point: "White point",
     };
 
     if (known_map.hasOwnProperty(api_param_name) === true) {
@@ -173,7 +123,10 @@ function map_api_name(api_param_name: string): string {
 
     let capitalized = capitalizeFirstLetter(api_param_name);
 
-    return capitalized.replaceAll('_', ' ');
+    let find = '_';
+    let re = new RegExp(find, 'g');
+
+    return capitalized.replace(re, ' ');
 }
 
 function makeOptionsFromEnum(options: Array<string>): Array<SelectOption>

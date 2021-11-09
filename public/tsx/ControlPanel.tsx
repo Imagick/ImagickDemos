@@ -173,7 +173,7 @@ function map_api_name(api_param_name: string): string {
 
     let capitalized = capitalizeFirstLetter(api_param_name);
 
-    return capitalized.replace('_', ' ');
+    return capitalized.replaceAll('_', ' ');
 }
 
 function makeOptionsFromEnum(options: Array<string>): Array<SelectOption>

@@ -97,6 +97,17 @@ function addNoiseImage($noiseType, $image_path, $channel)
 //Example end
 
 
+//Example Imagick::addNoiseImageWithAttenuate
+function addNoiseImageWithAttenuate($noiseType, $attenuate, $image_path, $channel)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->addNoiseImageWithAttenuate($noiseType, $attenuate, $channel);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::affineTransformImage
 function affineTransformImage($image_path)
 {

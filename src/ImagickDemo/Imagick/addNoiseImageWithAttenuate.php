@@ -3,8 +3,9 @@
 namespace ImagickDemo\Imagick;
 
 use ImagickDemo\Imagick\Controls\AddNoiseImageControl;
+use ImagickDemo\Imagick\Controls\AddNoiseImageWithAttenuateControl;
 
-class addNoiseImage extends \ImagickDemo\Example
+class addNoiseImageWithAttenuate extends \ImagickDemo\Example
 {
     public function useImageControlAsOriginalImage()
     {
@@ -13,7 +14,7 @@ class addNoiseImage extends \ImagickDemo\Example
 
     public function renderTitle(): string
     {
-        return "Add noise image";
+        return "Imagick::addNoiseImageWithAttenuate";
     }
 
     public function renderDescription()
@@ -29,19 +30,8 @@ class addNoiseImage extends \ImagickDemo\Example
         return nl2br($output);
     }
 
-//    public function render(
-//        ?string $activeCategory,
-//        ?string $activeExample
-//    )
-//    {
-//        return $this->renderImageURL();
-//    }
-
-
     public static function getParamType(): string
     {
-        return AddNoiseImageControl::class;
+        return AddNoiseImageWithAttenuateControl::class;
     }
-
-
 }

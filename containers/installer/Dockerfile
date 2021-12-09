@@ -22,6 +22,8 @@ RUN  apt-get update -qq \
 # Make the default directory you
 WORKDIR /var/app
 
-#CMD tail -f README.md
+CMD php -v
 
-CMD sh /var/app/containers/installer/entrypoint.sh
+# CMD tail -f README.md
+
+# CMD sh /var/app/containers/installer/entrypoint.sh

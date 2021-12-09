@@ -3,8 +3,8 @@
 set -e
 set -x
 
-docker-compose build --no-cache imagick_php_base_im7
-docker-compose build --no-cache imagick_php_base_im6
+docker-compose build imagick_php_base_im6
+docker-compose build imagick_php_base_im7
 
 docker-compose up --build --remove-orphans installer
 
@@ -12,3 +12,4 @@ docker-compose up --build imagick_php_backend_im6 imagick_php_backend_im6_debug 
 
 # workers
 
+# docker-compose up --build installer

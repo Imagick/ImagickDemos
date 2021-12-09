@@ -9,9 +9,9 @@ services:
   installer:
     environment:
       - ENV_DESCRIPTION=default,local
-  redis:
-    ports:
-      - "6379:6379"
+#  redis:
+#    ports:
+#      - "6379:6379"
   js_builder:
     environment:
       - API_BASE_URL=http://local.phpimagick.com

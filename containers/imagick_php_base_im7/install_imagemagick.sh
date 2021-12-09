@@ -1,6 +1,6 @@
 
 
-version="7.1.0-13"
+version="7.1.0-17"
 # version="7.0.7-11"
 
 im_tgz_file="ImageMagick-${version}.tar.gz"

@@ -45,7 +45,7 @@
   "dependencies": {
     "argv": "0.0.2",
     "command-line-args": "^5.1.1",
-    "preact": "^10.6.3",
+    "preact": "^10.6.4",
     "promise-polyfill": "^8.2.1",
     "rc-slider": "^9.7.5",
     "react-colorful": "^5.5.1",

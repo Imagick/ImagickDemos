@@ -156,6 +156,7 @@ function getTutorialExamples()
         'svgExample' => 'svgExample',
         'screenEmbed' => 'screenEmbed',
         'imageGeometryReset' => 'imageGeometryReset',
+        'retro' => 'retro',
         //'HumanFeelings' => 'HumanFeelings',
     ];
 }

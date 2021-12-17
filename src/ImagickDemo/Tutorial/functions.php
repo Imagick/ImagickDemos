@@ -1041,5 +1041,39 @@ function imageGeometryReset()
 }
 //Example end
 
-    
+//Example Tutorial::retro
+function retro(\ImagickDemo\Tutorial\Controls\RetroControls $retroControls)
+{
+    $imagick = new \Imagick();
+    $imagick->newPseudoimage(640, 480, 'gradient:black-white');
+    $imagick->setFormat('png');
+
+    $first_line = $retroControls->getFirstLine();
+    if (strlen(trim($first_line)) !== 0) {
+        $draw = new \ImagickDraw();
+        $draw->setFont("../fonts/CANDY.TTF");
+        $draw->setFontSize(64);
+        $draw->setFillColor('red');
+        $draw->setStrokeColor('white');
+        $draw->setStrokeWidth(3);
+        $draw->annotation(20, 80, $first_line);
+        $imagick->drawImage($draw);
+    }
+
+    $second_line = $retroControls->getSecondLine();
+    if (strlen(trim($first_line)) !== 0) {
+        $draw = new \ImagickDraw();
+        $draw->setFont("../fonts/CANDY.TTF");
+        $draw->setFontSize(64);
+        $draw->setFillColor('red');
+        $draw->setStrokeColor('white');
+        $draw->setStrokeWidth(3);
+        $draw->annotation(20, 280, $second_line);
+        $imagick->drawImage($draw);
+    }
+
+    header("Content-Type: image/png");
+    echo $imagick->getImageBlob();
+}
+//Example end
 }

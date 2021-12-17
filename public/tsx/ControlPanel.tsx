@@ -2,6 +2,7 @@ import {h, Component} from "preact";
 import {Integer} from "./components/Integer";
 import {KernelMatrix} from "./components/KernelMatrix";
 import {Number} from "./components/Number";
+import {TextInput} from "./components/TextInput";
 import {ValueSelect} from "./components/ValueSelect";
 import {triggerEvent, EventType, registerEvent, unregisterEvent} from "./events";
 import {SelectOption} from "./components/Select";
@@ -28,6 +29,7 @@ interface Schema {
     maximum: (string|number|undefined);
     enum: Array<string>|undefined;
     type: OpenApiType;
+    maxLength:(number|undefined);
 }
 
 interface ControlInfo {
@@ -370,10 +372,20 @@ export class ControlPanel extends Component<AppProps, AppState> {
             return this.createEnumControl(control_info);
         }
 
-        console.log("Don't know how to render ");
+        console.log("Attempting to render ");
         console.log(control_info);
 
-        return <div>I don't know how to render this string.</div>
+        return <div>
+            <TextInput
+                name={map_api_name(control_info.name)}
+                // @ts-ignore: blah blah blah
+                default={control_info.schema.default}
+                maxLength={control_info.schema.maxLength}
+                updateFn={(newValue) => {
+                    this.setCurrentValue(control_info.name, newValue);
+                }}
+            />
+        </div>
     }
 
     createKernelMatrixControl(control_info: ControlInfo) {

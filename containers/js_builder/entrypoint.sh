@@ -5,6 +5,7 @@ set -x
 
 cd /var/app
 
-npm update
+# tail -f /var/app/README.md
 
+npm update
 npm run build:dev:watch

@@ -393,6 +393,7 @@ function getImagickExamples()
         'pingImageBlob' => 'pingImageBlob',
         'pingImageFile' => 'pingImageFile',
         'polaroidImage'  => 'polaroidImage',
+        'polaroidWithTextAndMethod'  => 'polaroidWithTextAndMethod',
         'posterizeImage' => 'posterizeImage',
         'Quantum'  => 'Quantum',
         //'previewImages',

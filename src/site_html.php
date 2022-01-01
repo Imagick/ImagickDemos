@@ -6,6 +6,7 @@ use ImagickDemo\Control\ReactControls;
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Navigation\CategoryNav;
 use ImagickDemo\Navigation\Nav;
+use ImagickDemo\Navigation\NullNav;
 use ImagickDemo\NavigationBar;
 use ImagickDemo\Control;
 use ImagickDemo\Example;
@@ -290,11 +291,12 @@ $html = <<< HTML
   <div class="row-fluid">
     <div class="col-sm-offset-5 col-md-6">
       <span style='font-size: 8px; text-align: right; float: right;' id="secretButton">
-        <span onclick='$("#secrets").css("display", "block"); $("#secretButton").css("display", "none");'>?</span>
+        <span onclick='document.getElementById("secrets").style.display = "block"; 
+        document.getElementById("secretButton").style.display = "none";'>?</span>
       </span>
 
       <span id="secrets" style="display: none; text-align: right; float: right; margin-bottom: 20px">
-    Peak memory {peakMemory()} <br/>
+       <a href='/todo'>TODO list</a><br/>
         <a href='/info'>FPM status</a><br/>
         <a href='/settingsCheck'>Settings check</a><br/>
         <!-- <a href='/queueinfo'>QueueInfo</a><br/> -->
@@ -505,6 +507,39 @@ function renderTitlePage(
     return $html;
 }
 
+function renderTextPage(
+    PageInfo $pageInfo,
+    NavigationBar $navBar,
+    string $page_html
+) {
+    $html = renderPageStartHtml($pageInfo);
+    $html .= renderTopNavBarForCategory(
+        new NullNav(),
+        $navBar
+    );
+
+    $html .= <<< HTML
+<div class='container'>
+    <div class="row">
+        <div class="col-12">
+HTML;
+
+    $html .= $page_html;
+
+    $html .= <<< HTML
+    </div>
+  </div>
+</div>
+HTML;
+
+
+    $html .= renderPageFooter();
+    $html .= renderPageEndHtml();
+
+    return $html;
+}
+
+
 function renderTitlePageInternal(
     PageInfo $pageTitleObj,
     Example $example
@@ -582,7 +617,7 @@ function renderTitlePageInternal(
         </div>
     </div>
 
-    <div class="row  visible-lg">
+    <div class="row visible-lg">
         <div class="col-md-2 navPanel" >
         </div>
         <div class="col-md-10 columnAdjust">

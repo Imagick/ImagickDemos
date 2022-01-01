@@ -2,11 +2,8 @@
 set -e
 set -x
 
-
-# version="3.5.1"
-# im_tgz_file="imagick-${version}.tgz"
-
 if [ ! -d "${im_dir}" ]; then
+  echo "Directory didn't exist, cloning imagick"
   wget "https://github.com/Imagick/imagick/archive/refs/heads/master.tar.gz" -O imagick-master.tar.gz
 fi
 

@@ -1136,7 +1136,8 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
 
-    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
+//    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
+    $draw->setFont(__DIR__ . "/../../../fonts/ReadexPro-VariableFont_wght.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(2);
@@ -1175,7 +1176,7 @@ function setFontStretch($fillColor, $strokeColor, $backgroundColor)
 function setFontStyle($fillColor, $strokeColor, $backgroundColor)
 {
     $draw = new \ImagickDraw();
-    $draw->setFont(__DIR__ . "/../../../fonts/Arial.ttf");
+    $draw->setFont(__DIR__ . "/../../../fonts/ReadexPro-VariableFont_wght.ttf");
     $draw->setStrokeColor($strokeColor);
     $draw->setFillColor($fillColor);
     $draw->setStrokeWidth(1);

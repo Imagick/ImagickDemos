@@ -3,6 +3,7 @@
 
 export interface TextInputProps {
     name: string;
+
     maxLength: number|undefined;
     value: number|string;
     updateFn?(newValue:any): void;

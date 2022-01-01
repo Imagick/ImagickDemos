@@ -379,12 +379,11 @@ export class ControlPanel extends Component<AppProps, AppState> {
             <TextInput
                 name={map_api_name(control_info.name)}
                 // @ts-ignore: blah blah blah
-                default={control_info.schema.default}
                 maxLength={control_info.schema.maxLength}
                 updateFn={(newValue) => {
                     this.setCurrentValue(control_info.name, newValue);
                 }}
-            />
+             value={control_info.schema.default}/>
         </div>
     }
 

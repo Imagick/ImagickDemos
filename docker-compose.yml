@@ -1,9 +1,5 @@
 version: "3"
 services:
-  #css_builder:
-  #  build: containers/css_builder
-  #  volumes:
-  #    - .:/var/app
   chrome_headless:
     image: alpeware/chrome-headless-trunk
     ports:

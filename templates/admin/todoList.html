@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block top_nav_bar %}
+{% include 'framework/topNavBar.html' %}
+{% endblock %}
+
+
+{% block page_body %}
+<div class='container'>
+    <div class="row">
+        <div class="col-md-12">
+            {% set todoList = inject('ImagickDemo\\Model\\TodoList') %}
+            {{ todoList.render() | raw }}
+        </div>
+    </div>
+</div>
+
+wtf
+{% endblock %}

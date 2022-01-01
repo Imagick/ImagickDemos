@@ -1844,7 +1844,7 @@ function orderedDitherImage($image_path, string $dither_format)
 }
 //Example end
 
-//Example Imagick::labelImage
+//Example Imagick::polaroidImage
 function polaroidImage($image_path)
 {
     $imagick = new \Imagick(realpath($image_path));
@@ -1854,7 +1854,61 @@ function polaroidImage($image_path)
     echo $imagick->getImageBlob();
 }
 //Example end
-    
+
+
+function findDefaultFont()
+{
+    $knownFonts = [
+        'Courier',
+        'Helvetica',
+        'Times-Roman',
+        'Liberation-Mono',
+        'Utopia',
+    ];
+
+    $fontList = \Imagick::queryFonts();
+    foreach ($knownFonts as $knownFont) {
+
+        if (in_array($knownFont, $fontList, true) === true) {
+            return $knownFont;
+        }
+    }
+
+    if (count($fontList) !== 0) {
+        return $fontList[0];
+    }
+
+    throw new \Exception("No fonts available on system, apparently.");
+}
+
+
+//Example Imagick::polaroidImageWithTextAndMethod
+function polaroidWithTextAndMethod(
+    string $image_path,
+    string $text,
+    int $interpolate_type,
+    float $angle,
+    $fill_color,
+    $stroke_color
+) {
+    $imagick = new \Imagick(realpath($image_path));
+    $imagickDraw = new \ImagickDraw();
+
+//    $font = findDefaultFont();
+//    $imagickDraw->setFont($font);
+    $imagickDraw->setFontSize(16);
+//    $imagickDraw->setStrokeColor($stroke_color);
+//    $imagickDraw->setFillColor($fill_color);
+    $imagick->polaroidWithTextAndMethod(
+        $imagickDraw,
+        $angle,
+        $text,
+        $interpolate_type
+    );
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
 
 
 //Example Imagick::posterizeImage

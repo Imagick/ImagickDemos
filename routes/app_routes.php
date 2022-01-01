@@ -75,6 +75,8 @@ return [
 
     ['/notes', 'GET',  ['ImagickDemo\Controller\Notes', 'getNotesPage']],
 
+    ['/todo', 'GET', ['ImagickDemo\Controller\TodoList', 'createResponse']],
+
     ['/info', 'GET', ['ImagickDemo\Controller\ServerInfo', 'createResponse']],
     ['/queueinfo', 'GET',  ['ImagickDemo\Controller\QueueInfo', 'createResponse']],
     ['/queuedelete', 'GET',  ['ImagickDemo\Controller\QueueInfo', 'deleteQueue']],

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace ImagickDemoTest;
 
-use ImagickDemo\ExampleSourceFinder;
+use ImagickDemo\ExampleFinder\ExampleSourceFinder;
 
 class ExampleSourceFinderTest extends BaseTestCase
 {

@@ -33,21 +33,10 @@ if (function_exists('injectionParams') == false) {
             \Twig\Environment::class,
 
             new \ImagickDemo\ImageCachePath(__DIR__."/../var/cache/imageCache"),
-
-//
-//            new \Intahwebz\DataPath(__DIR__."/../data/"),
-//            new \Intahwebz\StoragePath(__DIR__."/../var/"),
         ];
 
 // A set of definitions for some classes
         $defines = [
-//    'Tier\Path\AutogenPath'       => [':path' => __DIR__."/../autogen/"],
-//    'Intahwebz\DataPath'          => [':path' => __DIR__."/../data/"],
-//    'Intahwebz\StoragePath'       => [':path' => __DIR__."/../var/"],
-//    'Tier\Path\CachePath'         => [':path' => __DIR__.'/../var/cache/'],
-//    'Tier\Path\ExternalLibPath'   => [':path' => __DIR__.'/../lib/'],
-//    'Tier\Path\WebRootPath'       => [':path' => __DIR__.'/../imagick/'],
-//    'FileFilter\YuiCompressorPath' => ["/usr/lib/yuicompressor.jar"],
         ];
 
 // Alias interfaces (or classes) to the actual types that should be used 
@@ -69,26 +58,14 @@ if (function_exists('injectionParams') == false) {
         ];
 
 
-// Delegate the creation of types to callables.
+        // Delegate the creation of types to callables.
         $delegates = [
             \SlimAuryn\Routes::class => 'createRoutesForApp',
-//            'FastRoute\Dispatcher' => 'ImagickDemo\ControlPanel::createDispatcher',
-//    'ImagickDemo\Control' => 'createControl',
-//    'ImagickDemo\Example' => 'createExample',
-//    'ImagickDemo\Config\Librato' => 'createLibrato',
-//    'Jig\JigConfig' => 'createJigConfig',
-//    'Predis\Client' => 'createRedisClient',
-//    
-            'Room11\Caching\LastModifiedStrategy' => 'ImagickDemo\App::createCaching',
-//            'ScriptServer\Value\ScriptVersion' => 'ImagickDemo\App::createScriptVersion',
-//            '\ScriptHelper\ScriptInclude' => 'ImagickDemo\App::createScriptInclude',
 
-    //    'Tier\Domain' => 'ImagickDemo\ControlPanel::createDomain',
+            'Room11\Caching\LastModifiedStrategy' => 'ImagickDemo\App::createCaching',
             \Twig\Environment::class => 'createTwigForSite',
-            //'FastRoute\Dispatcher' => 'createDispatcher',
             'ImagickDemo\Control' => ['ImagickDemo\App', 'createControl'],
             'ImagickDemo\Example' => ['ImagickDemo\App', 'createExample'],
-//    'ImagickDemo\Config\Librato' => 'ImagickDemo\ControlPanel::createLibrato',
             'Jig\JigConfig' => ['ImagickDemo\App', 'createJigConfig'],
             'Predis\Client' => ['ImagickDemo\App', 'createRedisClient'],
 
@@ -99,7 +76,7 @@ if (function_exists('injectionParams') == false) {
 
             \SlimAuryn\ExceptionMiddleware::class => 'createExceptionMiddlewareForApp',
             \SlimAuryn\SlimAurynInvokerFactory::class => 'createSlimAurynInvokerFactory',
-
+            ImagickDemo\ExampleFinder\ExampleFinder::class => 'createExampleFinder'
         ];
 
 
@@ -109,7 +86,6 @@ if (function_exists('injectionParams') == false) {
 
 // Some objects need to be prepared after the are created.
         $prepares = [
-//            'Jig\Jig' => 'ImagickDemo\App::prepareJig',
         ];
 
         $injectionParams = new InjectionParams(

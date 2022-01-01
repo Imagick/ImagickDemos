@@ -5,6 +5,14 @@ declare(strict_types=1);
 
 function getImagickDrawExamples()
 {
+    // key is the example name
+    // value is the example controller and example function name
+    //
+    // Although most of the time these are the same
+    // some examples re-use a controller + function, as there
+    // isn't much point duplicating code.
+    //
+    // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
         'affine' => 'affine',
         'arc' => 'arc',
@@ -71,6 +79,14 @@ function getImagickDrawExamples()
 
 function getImagickPixelExamples()
 {
+    // key is the example name
+    // value is the example controller and example function name
+    //
+    // Although most of the time these are the same
+    // some examples re-use a controller + function, as there
+    // isn't much point duplicating code.
+    //
+    // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
         'construct' => 'construct',
         'clear' => 'clear',
@@ -95,6 +111,14 @@ function getImagickPixelExamples()
 
 function getImagickPixelIteratorExamples()
 {
+    // key is the example name
+    // value is the example controller and example function name
+    //
+    // Although most of the time these are the same
+    // some examples re-use a controller + function, as there
+    // isn't much point duplicating code.
+    //
+    // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
         'clear' => 'clear',
         'construct' => 'construct',
@@ -114,6 +138,14 @@ function getImagickPixelIteratorExamples()
 
 function getImagickKernelExamples()
 {
+    // key is the example name
+    // value is the example controller and example function name
+    //
+    // Although most of the time these are the same
+    // some examples re-use a controller + function, as there
+    // isn't much point duplicating code.
+    //
+    // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
         'addKernel' => 'addKernel',
         'addUnityKernel' => 'addUnityKernel',
@@ -128,6 +160,14 @@ function getImagickKernelExamples()
 
 function getTutorialExamples()
 {
+    // key is the example name
+    // value is the example controller and example function name
+    //
+    // Although most of the time these are the same
+    // some examples re-use a controller + function, as there
+    // isn't much point duplicating code.
+    //
+    // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
         'backgroundMasking' => 'backgroundMasking',
         'composite' => 'composite',
@@ -163,6 +203,14 @@ function getTutorialExamples()
 
 function getImagickExamples()
 {
+    // key is the example name
+    // value is the example controller and example function name
+    //
+    // Although most of the time these are the same
+    // some examples re-use a controller + function, as there
+    // isn't much point duplicating code.
+    //
+    // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
         'adaptiveBlurImage' => 'adaptiveBlurImage',
         'adaptiveResizeImage' => 'adaptiveResizeImage',

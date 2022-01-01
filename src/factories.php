@@ -212,3 +212,15 @@ function createTwigForSite(\Auryn\Injector $injector)
 
     return $twig;
 }
+
+function createExampleFinder(
+    Predis\Client $redisClient,
+    Config $config
+) {
+    $cache_time = 60; // 1 minute
+    if ($config->isProductionEnv() === true) {
+        $cache_time = 10000000000; // more than 1 minute
+    }
+//  return new \ImagickDemo\ExampleFinder\ExampleSourceFinder();
+    return new \ImagickDemo\ExampleFinder\RedisExampleFinder($redisClient, $cache_time);
+}

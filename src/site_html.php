@@ -15,7 +15,7 @@ use Params\OpenApi\OpenApiV300ParamDescription;
 use VarMap\VarMap;
 use Params\InputParameterList;
 use Params\Create\CreateFromVarMap;
-use ImagickDemo\ExampleSourceFinder;
+use ImagickDemo\ExampleFinder\ExampleSourceFinder;
 use ImagickDemo\CodeExample;
 
 function renderTopNavBarForCategory(
@@ -167,7 +167,8 @@ function renderExampleBodyHtml(
     NavigationBar $navBar,
     VarMap $varMap,
     PageInfo $pageInfo,
-    \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
+    \ImagickDemo\Queue\ImagickTaskQueue $taskQueue,
+    \ImagickDemo\ExampleFinder\ExampleFinder $exampleFinder
 ) {
 
     $remaining = 12 - $example->getColumnRightOffset();
@@ -203,7 +204,7 @@ function renderExampleBodyHtml(
         );
     }
 
-    $exampleFinder = new ExampleSourceFinder();
+//    $exampleFinder = new ExampleSourceFinder();
     $code_examples = $exampleFinder->findExamples($activeCategory, $activeExample);
     $examples_html = renderExamples($code_examples);
 
@@ -319,7 +320,8 @@ function renderPageHtml(
     Example $example,
     DocHelper $docHelper,
     VarMap $varMap,
-    \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
+    \ImagickDemo\Queue\ImagickTaskQueue $taskQueue,
+    \ImagickDemo\ExampleFinder\ExampleFinder $exampleFinder
 ): string  {
 
     $html = renderPageStartHtml($pageInfo);
@@ -337,7 +339,8 @@ function renderPageHtml(
         $navigationBar,
         $varMap,
         $pageInfo,
-        $taskQueue
+        $taskQueue,
+        $exampleFinder
     );
 
     $html .= renderPageFooter();

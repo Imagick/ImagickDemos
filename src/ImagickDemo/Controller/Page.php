@@ -50,7 +50,8 @@ class Page
         Control $control,
         Example $example,
         DocHelper $docHelper,
-        \ImagickDemo\Queue\ImagickTaskQueue $taskQueue
+        \ImagickDemo\Queue\ImagickTaskQueue $taskQueue,
+        \ImagickDemo\ExampleFinder\ExampleFinder $exampleFinder
     ) {
         return renderPageHtml(
             $categoryNav,
@@ -60,7 +61,8 @@ class Page
             $example,
             $docHelper,
             $varMap,
-            $taskQueue
+            $taskQueue,
+            $exampleFinder
         );
     }
 }

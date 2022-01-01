@@ -71,6 +71,7 @@ $delegates = [
     'ImagickDemo\Example' => ['ImagickDemo\App', 'createExample'],
     'Jig\JigConfig' => ['ImagickDemo\App', 'createJigConfig'],
     'Predis\Client' => ['ImagickDemo\App', 'createRedisClient'],
+    'ImagickDemo\ExampleFinder\ExampleFinder' => 'createExampleFinder'
 ];
 
 

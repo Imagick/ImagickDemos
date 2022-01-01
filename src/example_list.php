@@ -304,6 +304,7 @@ function getImagickExamples()
         //'getImageMagickLicense',
         //'getImageMatte',
         //'getImageMatteColor',
+        'getImageMimeType' => 'getImageMimeType',
         //'getImageOrientation',
         //'getImagePage',
         //'getImagePixelColor',

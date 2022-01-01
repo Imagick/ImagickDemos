@@ -19,18 +19,13 @@ FROM builder AS imagick_builder
 RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y gcc make \
     libpng-dev libjpeg-dev ghostscript libxml2-dev  \
-    libtiff5-dev libwebp-dev libfreetype6-dev libfftw3-dev  \
-    strace valgrind vim
-
-# libonig-dev libssl-dev libcurl4-openssl-dev
+    libtiff5-dev libwebp-dev libfreetype6-dev libfftw3-dev
 
 COPY install_imagemagick.sh /tmp/install_imagemagick.sh
 COPY install_imagick.sh /tmp/install_imagick.sh
 
-
 RUN sh /tmp/install_imagemagick.sh
 RUN sh /tmp/install_imagick.sh
-
 
 FROM builder as actual_site
 COPY --from=imagick_builder /etc/php/8.0/cli/conf.d/imagick.ini /etc/php/8.0/cli/conf.d/imagick.ini

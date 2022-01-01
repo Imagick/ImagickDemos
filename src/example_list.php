@@ -564,6 +564,7 @@ function getImagickExamples()
         'statisticImage' => 'statisticImage',
         'subImageMatch' => 'subImageMatch',
         'swirlImage' => 'swirlImage',
+        'swirlImageWithMethod' => 'swirlImageWithMethod',
         'textureImage' => 'textureImage',
         'thresholdImage' => 'thresholdImage',
         'thumbnailImage' => 'thumbnailImage',

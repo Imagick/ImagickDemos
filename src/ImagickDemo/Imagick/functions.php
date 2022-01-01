@@ -2905,6 +2905,16 @@ function swirlImage($image_path, $swirl)
 }
 //Example end
 
+//Example Imagick::swirlImageWithMethod
+function swirlImageWithMethod($image_path, $swirl, int $interpolate_method)
+{
+    $imagick = new \Imagick(realpath($image_path));
+    $imagick->swirlImageWithMethod($swirl, $interpolate_method);
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
 //Example Imagick::textureImage
 function textureImage($image_path)
 {

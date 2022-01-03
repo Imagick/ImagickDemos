@@ -1,0 +1,27 @@
+
+
+1st Jan
+2
+Added Imagick::getImageMimeType example
+Add Imagick::swirlImageWithMethod
+Added notes on how to add examples to PHPImagick.com
+Made example code display cache results in redis.
+Fixed site being down as redis now needed.
+Read and thought about PHP internals.
+
+
+2nd Jan
+1 1
+Reproduced bug and reported upstream https://github.com/Imagick/imagick/issues/525
+Fix broken link on imagemagick.org https://github.com/ImageMagick/Website/pull/83
+
+Added RFCCodex entries and updated status of others
+https://github.com/Danack/RfcCodex/blob/master/chained_comparison_operators.md
+https://github.com/Danack/RfcCodex/blob/master/engine_strict_mode_interaction.md
+https://github.com/Danack/RfcCodex/blob/master/array_key_casting.md
+
+3rd Jan
+2 1
+Responded to issue - https://github.com/Imagick/imagick/issues/526
+Made notes of todo list - https://github.com/Imagick/imagick/issues/532
+Read and thought about PHP internals, and tried to smooth things.

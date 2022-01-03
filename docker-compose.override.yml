@@ -18,6 +18,7 @@ services:
   nginx:
     ports:
       - "80:8000"
+      - "8000:8000"
       - "8001:8001"
     depends_on:
       - imagick_php_backend_im7_debug

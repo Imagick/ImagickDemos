@@ -18,7 +18,7 @@ function getMissingMethods(string $classname, $imagickDrawExamples): string
         }
     }
 
-    $html = "<h2>Missing $classname methods</h2>";
+    $html = "<h2>Missing $classname methods - " . count($missing_methods) . "</h2>";
     $html .= implode("<br/>", $missing_methods);
 
     return $html;

@@ -101,6 +101,10 @@ services:
         aliases:
           - local.phpimagick.com
           - internal.phpimagick.com
+  sass_dev_builder:
+    build: containers/sass_dev_builder
+    volumes:
+      - .:/var/app
   workers:
     build: containers/background_worker
     image: imagick_php_worker:latest

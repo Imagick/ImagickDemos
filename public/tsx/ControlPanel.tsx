@@ -477,7 +477,7 @@ export class ControlPanel extends Component<AppProps, AppState> {
         //     <code>{JSON.stringify(this.state.values, null, 2)}</code>
         // </pre>
 
-        let itemBlock = <div class='col-xs-12 contentPanel controlForm'>
+        let itemBlock = <div class='contentPanel controlForm'>
             {controls}
             {processingBlock}
             {debugBlock}

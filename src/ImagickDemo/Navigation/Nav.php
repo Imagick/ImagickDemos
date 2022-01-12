@@ -2,6 +2,7 @@
 
 namespace ImagickDemo\Navigation;
 
+// TODO - delete this
 interface Nav
 {
     public function renderPreviousButton();
@@ -10,5 +11,5 @@ interface Nav
     public function renderNextLink();
     public function renderNav();
     //public function getCategory();
-    public function renderSelect();
+    public function renderSelectDropdowns();
 }

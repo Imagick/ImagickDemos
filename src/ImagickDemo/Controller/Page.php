@@ -11,33 +11,36 @@ use ImagickDemo\Example;
 use ImagickDemo\DocHelper;
 use ImagickDemo\Control;
 use ImagickDemo\Navigation\NullNav;
+use ImagickDemo\Navigation\Nav;
 
 class Page
 {
     public function renderTitlePageMoreSane(
         PageInfo $pageInfo,
         NavigationBar $navBar,
-        Example $example
+        Example $example,
+        CategoryNav $categoryNav
     ) {
         $nav = new NullNav();
-        return renderTitlePage(
+        return renderTitlePageSass(
             $pageInfo,
-            $nav,
+            $example,
+            $categoryNav,
             $navBar,
-            $example
+            $nav
         );
     }
 
     public function renderCategoryIndexMoreSane(
         PageInfo $pageInfo,
         Example $example,
-        CategoryNav $nav,
+        CategoryNav $catergoryNav,
         NavigationBar $navBar
     ) {
-        return renderCategoryIndexPage(
+        return renderCategoryIndexPageSass(
             $pageInfo,
             $example,
-            $nav,
+            $catergoryNav,
             $navBar
         );
     }
@@ -53,7 +56,7 @@ class Page
         \ImagickDemo\Queue\ImagickTaskQueue $taskQueue,
         \ImagickDemo\ExampleFinder\ExampleFinder $exampleFinder
     ) {
-        return renderPageHtml(
+        return renderPageHtmlSass(
             $categoryNav,
             $pageInfo,
             $navigationBar,

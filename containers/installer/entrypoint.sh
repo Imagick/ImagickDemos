@@ -8,7 +8,13 @@ ENV_TO_USE=${ENV_DESCRIPTION:=default}
 echo "ENV_TO_USE is ${ENV_TO_USE}";
 
 # php composer.phar update
-php composer.phar install
+COMPOSER_TYPE=$(php src/check_composer_command.php)
+echo "composer type is ${COMPOSER_TYPE}";
+if [ "${COMPOSER_TYPE}" = "update" ]; then
+    php composer.phar update
+else
+    php composer.phar install
+fi
 
 # Generate config settings used per environment
  php vendor/bin/configurate \

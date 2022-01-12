@@ -205,8 +205,11 @@ export class ImagePanel extends Component<ImageProps, ImageState> {
         // @ts-ignore: TS2322
         return <span onmouseover={() => this.mouseOver()} onmouseout={() => this.mouseOut()}>
             <img src={img_url} class="img-responsive exampleImage imageStatus" />
-            {original_image_text}
-            {view_modified}
+            <div class="original_instructions">
+              {original_image_text}
+              <br/>
+              {view_modified}
+            </div>
         </span>;
     }
 }

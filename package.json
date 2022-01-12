@@ -14,7 +14,10 @@
     "build:dev:watch": "webpack --watch --mode development",
     "build": "webpack --mode production",
     "build:watch": "webpack --watch --mode production",
-    "stats": "webpack --profile"
+    "stats": "webpack --profile",
+    "sass:build:dev": "sass public/scss/site.scss public/css/site.css",
+    "sass:build:prod": "sass public/scss/site.scss public/css/site.css --style=compressed",
+    "sass:build:watch": "sass public/scss/site.scss public/css/site.css --watch"
   },
   "repository": {
     "type": "git",
@@ -28,10 +31,11 @@
   },
   "homepage": "https://github.com/Danack/Imagick-demos#readme",
   "devDependencies": {
-    "@types/jquery": "^3.5.11",
+    "@types/jquery": "^3.5.12",
     "compression-webpack-plugin": "^3.1.0",
     "css-loader": "^3.6.0",
     "raw-loader": "^4.0.2",
+    "sass": "^1.47.0",
     "script-loader": "^0.7.2",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.3.0",

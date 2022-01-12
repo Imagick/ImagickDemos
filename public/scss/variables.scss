@@ -1,0 +1,27 @@
+
+// Contains all non-color related variables
+
+$screen_break_large: 1200px;
+$screen_break_medium: 900px;
+$screen_break_small: 640px;
+
+:root {
+  --page_padding_left: 24px;
+  --page_padding_right: 24px;
+
+  --padding_above_main_flow: 20px;
+  --padding_inside_panel: 5px;
+
+  --nav_panel_margin_left: 10px;
+
+  @media (max-width: 1200px) {
+    --page_padding_left: 12px;
+    --page_padding_right: 12px;
+  }
+
+  @media (max-width: 640px) {
+    --page_padding_left: 4px;
+    --page_padding_right: 4px;
+  }
+}
+

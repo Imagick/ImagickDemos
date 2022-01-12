@@ -52,6 +52,9 @@ export class NavigationPanel extends Component<NavigationProps, NavigationState>
 
         // hack to prevent container being force expanded
         let desc = link.description.replace("QuadraticBezier", "Quadratic Bezier");
+        // TODO - if capital letter, replace with zero width non-joiner
+        // then the letter.
+        // https://www.fileformat.info/info/unicode/char/200c/index.htm
 
         return <li class={nav_space_class} key={index}>
             <a class={class_name} href={link.url}>{desc}</a>

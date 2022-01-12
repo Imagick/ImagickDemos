@@ -1,0 +1,130 @@
+
+// contains all color related variables and css selector
+// for using them based on user preference
+
+//@media (prefers-color-scheme: light) {
+:root {
+
+  // Hi. If you looking at this file, and wondering why the
+  // colors chosen are so bad, it's because I'm a backend
+  // developer, who understands that there is a concept called
+  // 'color theory', but doesn't grok it.
+
+  $background_primary: rgb(254, 254, 253);
+
+  $color_primary: #606ba4;
+  $color_primary_subtle: #dddfec;
+
+  $link_color: #000080;
+  $link_color_intense: #33337f;
+
+  $link_hover: #cb66a5;
+  $link_hover_intense: #AE508D;
+
+  --background_color: #{$background_primary};
+
+  --breadcrumbs_background_color: #{$color_primary_subtle};
+  --breadcrumbs_border_color: #888;
+  --breadcrumbs_link_color: #{$link_color_intense};
+  --breadcrumbs_link_hover_color: #{$link_hover_intense};
+  --breadcrumbs_text_color: #000;
+
+  --code_background: #f6f6f6;
+  --code_border_color: rgba(0, 0, 0, 0.25);
+  --code_color: #000;
+
+  --content_links_background_color: #dddfec;
+  --content_links_border_color: rgba(10, 10, 10, 0.2);
+  --content_links_link_color: #{$link_color_intense};
+  --content_links_link_hover_color: #{$link_hover};
+  --content_links_text_color: #000;
+
+  --content_panel_background_color: none;
+  --content_panel_text_color: #202020;
+  --content_panel_text_color_semi_transparent: #2020202f;
+
+  --footer_background_color: #{$color_primary_subtle};
+  --footer_border_color: rgba(128, 128, 128, 0.25);
+  --footer_link_color: #000030;
+  --footer_link_hover_color: #{$link_color_intense};
+  --footer_text_color: #000;
+
+  --header_link_color: #{$color_primary};
+  --header_link_hover_color: #{$link_hover_intense};
+  --header_panel_background: #{$background_primary};
+  --header_panel_text_color: #{$color_primary};
+
+  --prev_next_background_color: #{$color_primary_subtle};
+  --prev_next_border_color: #888;
+  --prev_next_link_color: #{$link_color_intense};
+  --prev_next_link_hover_color: #{$link_hover_intense};
+  --prev_next_text_color: #000;
+
+  --standard_border_color: rgba(128, 128, 128, 0.25);
+  --standard_link_color: #000080;
+  --standard_link_hover_color: #{$link_color};
+  --standard_text_color: #000;
+
+  --table_row_border_hover_color: rgba(32, 32, 32, 0.333);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+
+    $background_primary: rgb(32, 32, 32);
+    $color_primary: #b8b8d2;
+    $color_primary_subtle: #535973;
+
+    $link_color: #b8b8d2;
+    $link_color_intense: #f0f0fd;
+
+    $link_hover: #fdc8e2;
+    $link_hover_intense: #fad9e6;
+
+    --background_color: #{$background_primary};
+
+    --breadcrumbs_background_color: #{$color_primary_subtle};
+    --breadcrumbs_border_color: #888;
+    --breadcrumbs_link_color: #{$link_color_intense};
+    --breadcrumbs_link_hover_color: #{$link_hover_intense};
+    --breadcrumbs_text_color: #{$link_color_intense};
+
+    --code_background: #2d2d2d;
+    --code_border_color: rgba(255, 255, 255, 0.25);
+    --code_color: #fff;
+
+    --content_links_background_color: #dddfec;
+    --content_links_border_color: rgba(200, 200, 200, 0.5);
+    --content_links_link_color: #{$link_color_intense};
+    --content_links_link_hover_color: #{$link_hover};
+    --content_links_text_color: #fcfcfc;
+
+    --content_panel_background_color: none;
+    --content_panel_text_color: #d6d6d6;
+    --content_panel_text_color_semi_transparent: #d6d6d62f;
+
+    --footer_background_color: #{$color_primary_subtle};
+    --footer_border_color: rgba(128, 128, 128, 0.25);
+    --footer_link_color: #{$link_color_intense};
+    --footer_link_hover_color: #{$link_hover_intense};
+    --footer_text_color: #fff;
+
+    --header_link_color: #{$color_primary};
+    --header_link_hover_color: #{$link_hover_intense};
+    --header_panel_background: #{$background_primary};
+    --header_panel_text_color: #{$color_primary};
+
+    --prev_next_background_color: #{$color_primary_subtle};
+    --prev_next_border_color: #888;
+    --prev_next_link_color: #{$link_color_intense};
+    --prev_next_link_hover_color: #{$link_hover_intense};
+    --prev_next_text_color: #000;
+
+    --standard_border_color: rgba(83, 83, 83, 0.25);
+    --standard_link_color: #{$link_color};
+    --standard_link_hover_color: #{$link_hover};
+    --standard_text_color: #d7d7d7;
+
+    --table_row_border_hover_color: rgba(32, 32, 32, 0.333);
+  }
+}

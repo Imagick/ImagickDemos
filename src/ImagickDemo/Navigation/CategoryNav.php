@@ -7,20 +7,31 @@ use ImagickDemo\Helper\PageInfo;
 class CategoryNav implements Nav
 {
     private $pageInfo;
-    
+
+    private $navOptions = [
+        "/" => "Home",
+        "/Imagick" => "Imagick",
+        "/ImagickDraw" => "ImagickDraw",
+        "/ImagickPixel" => "ImagickPixel",
+        "/ImagickPixelIterator" => "Imagick Pixel Iterator",
+        "/ImagickKernel" => "Imagick Kernel",
+        "/Tutorial" => "Tutorial",
+    ];
+
     public function __construct(PageInfo $pageInfo)
     {
         $this->pageInfo = $pageInfo;
     }
-    
-        /**
+
+    /**
      * @param bool $horizontal
      */
     public function renderNav()
     {
+        // this is the horizontal one.
         $html = sprintf(
             "<div 
-              class='contentPanel navContainer' 
+              class='navContainer contentPanel' 
               id='navigationPanel'
               data-links_json='%s'
               data-current_link='%s' >",
@@ -109,10 +120,6 @@ class CategoryNav implements Nav
 
         return "";
     }
-    
-    
-    
-
 
     /**
      * @return string
@@ -122,30 +129,34 @@ class CategoryNav implements Nav
         $previousNavName = $this->getPreviousName();
 
         if ($previousNavName) {
-            return "<a href='/".$this->pageInfo->getCategory()."/".$previousNavName."'>
-             <span class='glyphicon glyphicon-arrow-left'></span> ".$previousNavName."
-            </a>";
+            return sprintf(
+                "<a href='/%s/%s'>← %s</a>",
+                $this->pageInfo->getCategory(),
+                $previousNavName,
+                $previousNavName
+            );
         }
 
         return "";
     }
     
     
-    /**
-     * @return string
-     */
+//    /**
+//     * @return string
+//     */
     public function renderNextButton()
     {
-        $nextName = $this->getNextName();
-
-        if ($nextName) {
-            return "<a href='/".$this->pageInfo->getCategory()."/".$nextName."'>
-            <button type='button' class='btn btn-primary'>
-            ".$nextName." <span class='glyphicon  glyphicon-arrow-right'></span>
-            </button>
-            </a>";
-        }
-
+//        $nextName = $this->getNextName();
+//
+//        if ($nextName) {
+//            return sprintf(
+//                "<a href='/%s/%s'>%s →</a>",
+//                $this->pageInfo->getCategory(),
+//                $nextName,
+//                $nextName
+//            );
+//        }
+        throw new \Exception("This isn't used right?");
         return "";
     }
 
@@ -157,53 +168,101 @@ class CategoryNav implements Nav
         $nextName = $this->getNextName();
 
         if ($nextName) {
-            return "<a href='/".$this->pageInfo->getCategory()."/".$nextName."'>
-            ".$nextName." <span class='glyphicon  glyphicon-arrow-right'></span>
-            </a>";
+            return sprintf(
+                "<a href='/%s/%s'>%s →</a>",
+                $this->pageInfo->getCategory(),
+                $nextName,
+                $nextName
+            );
         }
 
         return "";
     }
-   
-    /**
-     *
-     */
-    public function renderSelect()
+
+    function renderSelectDropdowns(): string
     {
-        $output = '';
+        $category = $this->pageInfo->getCategory();
 
-        $exampleLabel = 'Choose example';
+        $output = $this->renderChooseCategoryDropdown();
 
-        if ($this->pageInfo->getExample()) {
-            $exampleLabel = $this->pageInfo->getExample();
+        if ($category !== null) {
+            $output .= $this->renderExampleSelect();
         }
 
-        $output .= <<< END
-<!-- Single button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            $exampleLabel <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
+        return $output;
+    }
+
+
+    function renderChooseCategoryDropdown(): string
+    {
+        $category = $this->pageInfo->getCategory();
+
+        $output = <<< END
+<div>
+  Category
+  <select class="category_select">
 END;
-        
-        $exampleList = getCategoryList($this->pageInfo->getCategory());
-        
-        foreach ($exampleList as $exampleName => $exampleDefinition) {
-            //$output .= "<li><a href='$url'>$name</a></li>";
-            $imagickExample = $exampleName;
-            $output .= "<li>";
+
+        foreach ($this->navOptions as $url => $name) {
+            $selected = '';
+            if (strcmp($url, '/' . $category) === 0) {
+                $selected = 'selected';
+            }
+
             $output .= sprintf(
-                "<a href='/%s/%s'>%s</a>",
-                $this->pageInfo->getCategory(),
-                $imagickExample,
-                $imagickExample
+                "<option value='%s' %s>%s</option>",
+                $url,
+                $selected,
+                $name
             );
-            $output .= "</li>";
+        }
+        $output .= "
+  </select>
+</div>";
+
+        return $output;
+    }
+
+
+//0xE2 0x80 0x8C
+     /**
+     *
+     */
+    public function renderExampleSelect()
+    {
+        $output = <<< END
+<div>
+Example
+  <select class="example_select">
+END;
+
+        $currentExample = $this->pageInfo->getExample();
+        $exampleList = getCategoryList($this->pageInfo->getCategory());
+        $selected = '';
+        if ($currentExample === null) {
+            $selected = 'selected';
+        }
+
+        $output .="<option disabled $selected>Choose example</option>";
+
+        foreach ($exampleList as $exampleName => $exampleDefinition) {
+
+            $selected = '';
+            if (strcmp($exampleName, $currentExample) === 0) {
+                $selected = 'selected';
+            }
+
+            $output .= sprintf(
+                "<option value='/%s/%s' %s>%s</option>",
+                $this->pageInfo->getCategory(),
+                $exampleName,
+                $selected,
+                $exampleName
+            );
         }
 
         $output .="
-  </ul>
+  </select>
 </div>";
 
         return $output;
@@ -215,11 +274,11 @@ END;
     public function renderSearchBox()
     {
         $output = <<< END
-<div class='smallPadding navSpacer searchContainer' role='search'   >
+<div class='searchContainer' role='search'>
     <input type="search" class='searchBox' id='searchInput' placeholder="Search..." name="query" value="" />
 </div>
 
-<div class='smallPadding navSpacer' id='searchResultNone' style='display: none; padding-top: 15px'>
+<div class='searchNoResults' id='searchResultNone'>
     No matches found
 </div>
 END;
@@ -292,6 +351,7 @@ END;
         $output .= "</ul>";
 
 
-        return $output;
+        return "<div>" . $output . "</div>";
     }
 }
+

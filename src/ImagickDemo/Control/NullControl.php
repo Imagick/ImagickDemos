@@ -22,34 +22,34 @@ class NullControl implements \ImagickDemo\Control
     }
 
 
-    /**
-     * @param null $originalImageURL
-     * @return string
-     */
-    public function renderImageURL($originalImageURL = null)
-    {
-        return Route::renderImageURL(
-            $this->taskQueue->isActive(),
-            $this->getURL(),
-            $originalImageURL,
-            $this->getImageStatusURL(),
-            $this->getURL()
-        );
-    }
+//    /**
+//     * @param null $originalImageURL
+//     * @return string
+//     */
+//    public function renderImageURL($originalImageURL = null)
+//    {
+//        return Route::renderImageURL(
+//            $this->taskQueue->isActive(),
+//            $this->getURL(),
+//            $originalImageURL,
+//            $this->getImageStatusURL(),
+//            $this->getURL()
+//        );
+//    }
 
-    /**
-     * @param $extraParams
-     * @return string
-     */
-    public function renderCustomImageURL($extraParams)
-    {
-        return Route::renderImageURL(
-            $this->taskQueue->isActive(),
-            $this->getCustomImageURL($extraParams),
-            false,
-            $this->getImageStatusURL($extraParams)
-        );
-    }
+//    /**
+//     * @param $extraParams
+//     * @return string
+//     */
+//    public function renderCustomImageURL($extraParams)
+//    {
+//        return Route::renderImageURL(
+//            $this->taskQueue->isActive(),
+//            $this->getCustomImageURL($extraParams),
+//            false,
+//            $this->getImageStatusURL($extraParams)
+//        );
+//    }
 
     public function getInjectionParams()
     {

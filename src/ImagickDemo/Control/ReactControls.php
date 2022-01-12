@@ -81,15 +81,15 @@ class ReactControls implements Control
         return $this->imageStatusBaseURL;
     }
 
-    public function renderImageURL($originalImageURL = null)
-    {
-        return \ImagickDemo\Route::renderImageURL(
-            false, //$this->taskQueue->isActive(),
-            $this->getURL(),
-            $originalImageURL,
-            $this->getImageStatusURL()
-        );
-    }
+//    public function renderImageURL($originalImageURL = null)
+//    {
+//        return \ImagickDemo\Route::renderImageURL(
+//            false, //$this->taskQueue->isActive(),
+//            $this->getURL(),
+//            $originalImageURL,
+//            $this->getImageStatusURL()
+//        );
+//    }
 
     public function renderCustomImageURL($extraParams, $originalImageURL = null)
     {

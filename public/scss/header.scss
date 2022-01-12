@@ -1,0 +1,66 @@
+
+.phpimagick_header_internal {
+  width: 100%;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+
+  .normal_header {
+    @media (max-width: $screen_break_medium) {
+      display: none;
+    }
+
+    .internal_headers {
+      & > :first-child {
+        border-left: 1px solid #bababa;
+      }
+    }
+
+    .external_headers {
+      float: right;
+
+      & > :first-child {
+        border-left: 1px solid #bababa;
+      }
+    }
+
+    .header_item {
+      box-sizing: border-box;
+
+      padding-top: 15px;
+      padding-bottom: 12px;
+      padding-left: 8px;
+      padding-right: 8px;
+      border-left: 0px;
+      border-right: 1px solid #bababa;
+      border-bottom: 1px solid #bababa;
+      background-color: #ffffff;
+
+      a {
+        background-color: transparent;
+        color: #444444;
+      }
+    }
+
+    .active {
+      background-color: #428bca;
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .mobile_header {
+    display: none;
+    @media (max-width: $screen_break_medium) {
+      display: inline-block;
+    }
+  }
+}

@@ -30,8 +30,8 @@ class NavigationBar
      */
     public function __construct(PageInfo $pageInfo)
     {
-        $this->activeCategory = $pageInfo->getCategory();//$category;
-        $this->activeExample = $pageInfo->getExample();//$example;
+        $this->activeCategory = $pageInfo->getCategory();
+        $this->activeExample = $pageInfo->getExample();
 
     }
 
@@ -52,55 +52,27 @@ class NavigationBar
 
         return $output;
     }
-
-
-    /**
-     *
-     */
-    public function renderSelect()
-    {
-        $output = '';
-
-        $categoryLabel = 'Choose category';
-
-        if ($this->activeCategory) {
-            $categoryLabel = $this->activeCategory;
-        }
-
-        $output .= <<< END
-<!-- Single button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            $categoryLabel <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-END;
-
-        foreach ($this->navOptions as $url => $name) {
-            $output .= "<li><a href='$url'>$name</a></li>";
-        }
-        $output .= "
-  </ul>
-</div>";
-
-        return $output;
-    }
-
     /**
      * @return string
      */
-    public function render()
+    public function renderInternalLinks()
     {
         $output = "";
+        $html_placeholder = "<span class='header_item menuItem :attr_activeclass'><a href=':attr_url'>:html_name</a></span>";
 
         foreach ($this->navOptions as $url => $name) {
             $activeClass = '';
             if (strcmp($url, '/' . $this->activeCategory) === 0) {
                 $activeClass = 'active';
             }
-            $output .= "<li class='menuItem $activeClass'>";
-            $output .= "<a href='$url'>$name</a>";
-            $output .= "</li>";
+
+            $params = [
+                ':attr_activeclass' => $activeClass,
+                ':attr_url' => $url,
+                ':html_name' => $name
+            ];
+
+            $output .= esprintf($html_placeholder, $params);
         }
 
         return $output;
@@ -109,26 +81,22 @@ END;
     /**
      * @return string
      */
-    public function renderRight()
+    public function renderExternalLinks()
     {
-        $output = "";
-
-        $output .= "
-<li class='menuItem'>
-    <a href='https://github.com/Danack/Imagick-demos' target='_blank'>Source code</a>
-</li>";
+        $output = "<span class='header_item menuItem'><a href='https://github.com/Danack/Imagick-demos' target='_blank'>Source code</a></span>";
 
         $issueURL = "https://github.com/Danack/Imagick-demos/issues/new?title=&body=";
 
         if ($this->activeExample && $this->activeCategory) {
             $bodyString = sprintf("Reported from %s::%s", $this->activeCategory, $this->activeExample);
-
             $issueURL .= urlencode($bodyString);
         }
 
-        $output .= "<li class='menuItem'>";
-        $output .= "<a href='$issueURL' target='_blank'>Report an issue</a>";
-        $output .= "</li>";
+        $html_template = <<< HTML
+<span class='header_item menuItem'><a href=':attr_url' target='_blank'>Report an issue</a></span>
+HTML;
+
+        $output .= esprintf($html_template, [':attr_url' => $issueURL]);
 
         return $output;
     }

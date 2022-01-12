@@ -272,12 +272,9 @@ class morphology extends \ImagickDemo\Example
     private function renderCorrelate()
     {
 //Example Imagick::morphology Correlate
-
         // Top-left pixel must be black
         // Bottom right pixel must be white
         // We don't care about the rest.
-
-
         $imagick = $this->getCharacterOutline();
         $kernel = \ImagickKernel::fromMatrix(self::$correlateMatrix, [2, 2]);
         $imagick->morphology(\Imagick::MORPHOLOGY_CORRELATE, 1, $kernel);

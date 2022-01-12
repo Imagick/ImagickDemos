@@ -25,3 +25,11 @@ https://github.com/Danack/RfcCodex/blob/master/array_key_casting.md
 Responded to issue - https://github.com/Imagick/imagick/issues/526
 Made notes of todo list - https://github.com/Imagick/imagick/issues/532
 Read and thought about PHP internals, and tried to smooth things.
+
+4th Jan
+2
+Did Imagick release
+Started work on refactoring phpimagick.com to use CSS grid.
+
+Jan 5th
+Started work on regression tests to prevent regressions.

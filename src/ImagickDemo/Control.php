@@ -16,6 +16,6 @@ interface Control
     public function getCustomImageURL(array $extraParams = []);
     public function getImageStatusURL($extraParams = []);
     
-    public function renderImageURL($originalImageURL = null);
-    public function renderCustomImageURL($extraParams);
+//    public function renderImageURL($originalImageURL = null);
+//    public function renderCustomImageURL($extraParams);
 }

@@ -42,3 +42,5 @@ public/js/report.html
 tool/check_output.txt
 tool/missing_examples.txt
 config.generated.php
+public/css/site.css
+public/css/site.css.map

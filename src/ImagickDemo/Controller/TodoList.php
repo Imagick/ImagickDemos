@@ -4,7 +4,7 @@ namespace ImagickDemo\Controller;
 
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\NavigationBar;
-
+use ImagickDemo\Navigation\CategoryNav;
 
 function getMissingMethods(string $classname, $imagickDrawExamples): string
 {
@@ -28,9 +28,9 @@ class TodoList
 {
     public function createResponse(
         PageInfo $pageInfo,
-        NavigationBar $navBar
+        CategoryNav $categoryNav,
+        NavigationBar $navigationBar,
     ) {
-
         $html = '';
         $html .= getMissingMethods(
             \Imagick::class,
@@ -57,9 +57,10 @@ class TodoList
             getImagickKernelExamples()
         );
 
-        return renderTextPage(
+        return renderTextPageSass(
             $pageInfo,
-            $navBar,
+            $categoryNav,
+            $navigationBar,
             $html
         );
     }

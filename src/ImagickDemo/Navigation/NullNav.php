@@ -25,13 +25,10 @@ class NullNav implements Nav
 
     }
 
-//    function renderTitle() {
-//        return "Hello!";
-//    }
 
     public function renderNav()
     {
-        return "Yeah this is a null nv.";
+        return "";
     }
 
     public function getURL()
@@ -43,4 +40,11 @@ class NullNav implements Nav
     {
         return '';
     }
+
+    public function renderSelectDropdowns()
+    {
+        return "shimmy";
+    }
+
+
 }

@@ -1,5 +1,5 @@
 
-cd /var/app/app
+cd /var/app
 
 echo "Updating/installing npm modules"
 

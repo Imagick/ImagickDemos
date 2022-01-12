@@ -37,7 +37,9 @@ class Route
         $statusURL
     ) {
         $useAsyncLoading = $taskQueueIsActive;
-    
+
+        echo "this is used?";
+        exit(0);
         $imageRender = new \ImagickDemo\Helper\ImageRender(
             $useAsyncLoading,
             $imgURL,

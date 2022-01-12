@@ -1,0 +1,69 @@
+// Hello! If you're looking at this file, you're probably wondering just
+// how bad someone can be at CSS. Well, you're about to find out.
+
+// @media (min-width: $screen_break_large) {
+// }
+// @media (max-width: $screen_break_medium) {
+// }
+// @media (max-width: $screen_break_small) {
+// }
+
+@import "colors.scss";
+@import "variables.scss";
+@import "fonts.scss";
+@import "layout.scss";
+@import "basic.scss";
+
+
+@import "header.scss";
+@import "navigation.scss";
+@import "content.scss";
+@import "footer.scss";
+
+.contentPanel {
+  background-color: #fbfbfb;
+  border: 3px double #CBCBCB;
+  color: #3f3f3f;
+  margin-bottom: 5px;
+  padding: var(--padding_inside_panel);
+}
+
+
+.original_instructions {
+
+}
+
+//.width_above_large,
+//.width_medium_to_large,
+//.width_small_to_medium,
+//.width_below_small {
+//  display: none;
+//}
+//
+//@media (min-width: $screen_break_large) {
+//  .width_above_large {
+//    display: inline-block;
+//  }
+//}
+//
+//@media (max-width: $screen_break_large) {
+//  @media (min-width: $screen_break_medium) {
+//    .width_medium_to_large {
+//      display: inline-block;
+//    }
+//  }
+//}
+//
+//@media (max-width: $screen_break_medium) {
+//  @media (min-width: $screen_break_small) {
+//    .width_small_to_medium {
+//      display: inline-block;
+//    }
+//  }
+//}
+//
+//@media (max-width: $screen_break_small) {
+//  .width_below_small {
+//    display: inline-block;
+//  }
+//}

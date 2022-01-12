@@ -21,6 +21,7 @@
         "rdlowrey/auryn": "^1.3.0",
         "danack/configurator": "1.1.1",
         "danack/console": "^2.6.0",
+        "danack/esprintf": "dev-master",
         "danack/filefilter": "^0.0.1",
         "danack/params": "dev-attribute_support",
         "danack/scripthelper": "^0.0.4",

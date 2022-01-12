@@ -1,0 +1,141 @@
+
+// Global resets of standard HTML elements
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background_color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #ffffff;
+
+  margin: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  //font-family: SourceSansPro-Regular, Arial, x-locale-body, sans-serif;
+  //font-variation-settings: 'wght' 400;
+  //font-size: 16px;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 1rem;
+  border: 0px;
+
+  tr {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+  }
+
+  tr:hover td
+  {
+    border-top: 1px solid var(--table_row_border_hover_color);
+    border-bottom: 1px solid var(--table_row_border_hover_color);
+  }
+
+  tr:hover td:first-child
+  {
+    border-left: 1px solid var(--table_row_border_hover_color);
+  }
+
+  tr:hover td:last-child
+  {
+    border-right: 1px solid var(--table_row_border_hover_color);
+  }
+
+  th {
+    text-align: left;
+    vertical-align: top;
+  }
+
+  td {
+    vertical-align: top;
+  }
+
+  th, td {
+    padding-top:4px;
+    padding-bottom:4px;
+    padding-right:4px;
+  }
+
+  tr:nth-child(even) {
+    background: rgba(230, 230, 230, 0.5)
+  }
+}
+
+
+th {
+  font-family: Manrope, Arial, x-locale-body, sans-serif;
+  font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Cabin, Arial, x-locale-body, sans-serif;
+  font-weight: 600;
+}
+
+blockquote {
+  quotes: "“" "”" "‘" "’";
+  background: #f9f9f9;
+  font-style: italic;
+
+  // This prevents quotes from being different lines to the quote text
+  p {
+    display: inline;
+  }
+}
+
+blockquote::before {
+  content: open-quote;
+}
+
+blockquote::after {
+  content: close-quote;
+}
+
+.noMarginTop {
+  margin-top: 0px;
+}
+
+a {
+  color: #428bca;
+}
+
+a:hover, a:focus {
+  color: #2a6496;
+}
+
+.inlineBlock {
+  display: inline-block;
+}
+
+.formHolder {
+  vertical-align: top;
+}
+
+.titleTop {
+  display: inline-block;
+}
+
+.prev_next_links {
+  display: inline-block;
+  float: right;
+}
+
+.titlePanel {
+  max-width: 75vw;
+}

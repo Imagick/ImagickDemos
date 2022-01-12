@@ -44,3 +44,4 @@ tool/missing_examples.txt
 config.generated.php
 public/css/site.css
 public/css/site.css.map
+/public/css/site.css.gz

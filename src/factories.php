@@ -71,9 +71,10 @@ function createHtmlAppErrorHandler(
     Config $config
 ) : \ImagickDemo\AppErrorHandler\AppErrorHandler {
 
-    if ($config->isProductionEnv() === true) {
-        return $injector->make(\ImagickDemo\AppErrorHandler\HtmlErrorHandlerForProd::class);
-    }
+    // Todo - do I care about not showing exceptions?
+//    if ($config->isProductionEnv() === true) {
+//        return $injector->make(\ImagickDemo\AppErrorHandler\HtmlErrorHandlerForProd::class);
+//    }
 
     return $injector->make(\ImagickDemo\AppErrorHandler\HtmlErrorHandlerForLocalDev::class);
 }

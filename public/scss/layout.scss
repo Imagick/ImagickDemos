@@ -27,11 +27,9 @@
   margin-top: var(--padding_above_main_flow);
 }
 
-
 .phpimagick_navigation {
   grid-area: nv;
   margin-top: var(--padding_above_main_flow);
-  max-width: 250px;
 }
 
 .phpimagick_nope {
@@ -47,11 +45,11 @@
 // This is default, for screens larger than $screen_break_large
 .phpimagick_wrapper {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: 255px 1fr;
   grid-template-areas:
-        "hd hd hd hd hd hd hd hd hd"
-        "nv nv mc mc mc mc mc mc mc"
-        "ft ft ft ft ft ft ft ft ft";
+    "hd hd"
+    "nv mc"
+    "ft ft";
   flex-direction: column;
   align-items: stretch;
 }
@@ -59,9 +57,9 @@
 @media (max-width: $screen_break_medium) {
   .phpimagick_wrapper {
     grid-template-areas:
-        "hd hd hd hd hd hd hd hd hd"
-        "mc mc mc mc mc mc mc mc mc"
-        "ft ft ft ft ft ft ft ft ft";
+        "hd hd"
+        "mc mc"
+        "ft ft";
     flex-direction: column;
     align-items: stretch;
   }
@@ -71,11 +69,11 @@
 // This is default, for screens larger than $screen_break_large
 .phpimagick_title_wrapper {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: 255px 1fr;
   grid-template-areas:
-        "hd hd hd hd hd hd hd hd hd"
-        "mc mc mc mc mc mc mc mc mc"
-        "ft ft ft ft ft ft ft ft ft";
+        "hd hd"
+        "mc mc"
+        "ft ft";
   flex-direction: column;
   align-items: stretch;
 }
@@ -83,9 +81,9 @@
 @media (max-width: $screen_break_medium) {
   .phpimagick_title_wrapper {
     grid-template-areas:
-        "hd hd hd hd hd hd hd hd hd"
-        "mc mc mc mc mc mc mc mc mc"
-        "ft ft ft ft ft ft ft ft ft";
+        "hd hd"
+        "mc mc"
+        "ft ft";
     flex-direction: column;
     align-items: stretch;
   }

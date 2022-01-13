@@ -14,11 +14,13 @@
 @import "layout.scss";
 @import "basic.scss";
 
-
 @import "header.scss";
 @import "navigation.scss";
 @import "content.scss";
 @import "footer.scss";
+
+@import "tooltip.scss";
+
 
 .contentPanel {
   background-color: #fbfbfb;
@@ -32,38 +34,3 @@
 .original_instructions {
 
 }
-
-//.width_above_large,
-//.width_medium_to_large,
-//.width_small_to_medium,
-//.width_below_small {
-//  display: none;
-//}
-//
-//@media (min-width: $screen_break_large) {
-//  .width_above_large {
-//    display: inline-block;
-//  }
-//}
-//
-//@media (max-width: $screen_break_large) {
-//  @media (min-width: $screen_break_medium) {
-//    .width_medium_to_large {
-//      display: inline-block;
-//    }
-//  }
-//}
-//
-//@media (max-width: $screen_break_medium) {
-//  @media (min-width: $screen_break_small) {
-//    .width_small_to_medium {
-//      display: inline-block;
-//    }
-//  }
-//}
-//
-//@media (max-width: $screen_break_small) {
-//  .width_below_small {
-//    display: inline-block;
-//  }
-//}

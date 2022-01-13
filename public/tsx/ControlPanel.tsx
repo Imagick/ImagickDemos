@@ -7,6 +7,7 @@ import {ValueSelect} from "./components/ValueSelect";
 import {triggerEvent, EventType, registerEvent, unregisterEvent} from "./events";
 import {SelectOption} from "./components/Select";
 import {getNamedColorValue} from "./ImagickColors";
+import {ToolTip} from "./ToolTip";
 import {RgbaColorPicker, RgbaColor} from "react-colorful";
 import {colorValues} from "./color_convert";
 
@@ -199,6 +200,12 @@ export class ControlPanel extends Component<AppProps, AppState> {
                     this.setCurrentValue(control_info.name, newValue);
                 }}
             />
+            <ToolTip
+                description='hello world'
+                // @ts-ignore: blah blah
+                min={control_info.schema.minimum}
+                // @ts-ignore: blah blah
+                max={control_info.schema.maximum} />
         </div>
     }
 
@@ -224,6 +231,12 @@ export class ControlPanel extends Component<AppProps, AppState> {
                     this.setCurrentValue(control_info.name, newValue);
                 }}
             />
+            <ToolTip
+                description='hello world'
+                // @ts-ignore: blah blah
+                min={control_info.schema.minimum}
+                // @ts-ignore: blah blah
+                max={control_info.schema.maximum} />
         </div>
     }
 

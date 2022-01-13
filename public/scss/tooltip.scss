@@ -1,0 +1,25 @@
+
+
+.tooltip {
+  //position: relative;
+  //display: inline-block;
+  //border-bottom: 1px dotted black;
+  //width: 16px;
+  //heigt: 16px;
+
+  .tooltip_text {
+    width: 120px;
+    background-color: white;
+    //color: #fff;
+    //text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid #2a6496;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+

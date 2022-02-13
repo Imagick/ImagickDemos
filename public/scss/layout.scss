@@ -18,18 +18,27 @@
 .phpimagick_header {
   grid-area: hd;
   padding-left: var(--page_padding_left);
+  @media (max-width: $screen_break_medium) {
+    padding-left: 0px;
+  }
 }
 
 .phpimagick_content {
   grid-area: mc;
-  padding-left: var(--page_padding_left);
   overflow-x: auto;
+
   margin-top: var(--padding_above_main_flow);
+  padding-left: 20px;
+  @media (max-width: $screen_break_medium) {
+    margin-top: 0px;
+    padding-left: 0px;
+  }
 }
 
 .phpimagick_navigation {
   grid-area: nv;
   margin-top: var(--padding_above_main_flow);
+  padding-left: var(--page_padding_left);
 }
 
 .phpimagick_nope {

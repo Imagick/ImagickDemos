@@ -103,7 +103,7 @@ $im7DebugBlock = createServerBlock(
     ],
     $root = '/var/app/public',
     $indexFilename = 'index.php',
-    $phpBackend = 'imagick_php_backend_im7:9000',
+    $phpBackend = 'imagick_php_backend_im7_debug:9000',
     'im7 debug block'
 );
 
@@ -127,7 +127,7 @@ $im6DebugBlock = createServerBlock(
     ],
     $root = '/var/app/public',
     $indexFilename = 'index.php',
-    $phpBackend = 'imagick_php_backend_im6:9000',
+    $phpBackend = 'imagick_php_backend_im6_debug:9000',
     'im6 debug block'
 );
 

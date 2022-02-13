@@ -33,7 +33,7 @@ $html = <<< HTML
       {$navBar->renderExternalLinks()}
     </span>
   </span>
-  <span class="mobile_header">
+  <span class="mobile_header contentPanel">
     {$nav->renderSelectDropdowns()}
   </span>   
 </div>
@@ -42,8 +42,6 @@ HTML;
 
     return $html;
 }
-
-
 
 
 function renderReactControls(VarMap $varMap, string $param_type)

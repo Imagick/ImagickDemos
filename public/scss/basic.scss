@@ -136,6 +136,8 @@ a:hover, a:focus {
   float: right;
 }
 
-.titlePanel {
-  max-width: 75vw;
+@media (min-width: $screen_break_medium) {
+  .titlePanel {
+    max-width: 75vw;
+  }
 }

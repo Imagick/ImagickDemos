@@ -2584,6 +2584,30 @@ function setImageMatteColor($alpha_type, $color)
 //Example end
 
 
+//Example Imagick::setImagePixelColor
+function setImagePixelColor($color, int $count)
+{
+    $width = 400;
+    $height = 300;
+
+    $imagick = new \Imagick();
+    $imagick->newPseudoImage($width, $height, 'xc:black');
+    $imagick->setFormat('jpg');
+
+    for ($i = 0; $i < $count; $i += 1) {
+        $imagick->setImagePixelColor(
+            mt_rand(0, $width - 1),
+            mt_rand(0, $height - 1),
+            $color
+        );
+    }
+
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
 //Example Imagick::setImageResolution
 function setImageResolution($image_path)
 {

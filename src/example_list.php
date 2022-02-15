@@ -522,6 +522,7 @@ function getImagickExamples()
         'setImageMatteColor' => 'setImageMatteColor',
         //'setImageOpacity',
         'setImageOrientation' => 'setImageOrientation',
+        'setImagePixelColor' => 'setImagePixelColor',
         //'setImagePage',
         //'setImageProfile',
         //'setImageProperty',

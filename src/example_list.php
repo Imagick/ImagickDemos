@@ -88,8 +88,8 @@ function getImagickPixelExamples()
     //
     // e.g. for ImagickDraw 'popClipPath' => 'setClipPath',
     return [
-        'construct' => 'construct',
         'clear' => 'clear',
+        'construct' => 'construct',
         'destroy' => 'destroy',
         'getColor' => 'getColor',
         'getColorQuantum' => 'getColorQuantum',
@@ -256,6 +256,7 @@ function getImagickExamples()
         'compositeImage' => 'compositeImage',
         // CompositeLayers
         //__construct',
+        'constants' => 'constants',
         'contrastImage' => 'contrastImage',
         'contrastStretchImage' => 'contrastStretchImage',
         'convolveImage' => 'convolveImage',

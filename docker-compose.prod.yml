@@ -21,9 +21,6 @@ services:
     entrypoint: ["bash", "/var/app/containers/js_builder/build_prod_assets.sh"]
     environment:
       - API_BASE_URL=https://phpimagick.com
-  redis:
-    ports:
-      - "6381:6379"
   nginx:
     ports:
       - "8000:8000"

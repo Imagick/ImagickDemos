@@ -5,6 +5,26 @@ namespace ImagickDemo\Queue;
 use Predis\Client as RedisClient;
 use Predis\Collection\Iterator;
 
+function show_info_details(int $x, array $data): string
+{
+    $output = "";
+
+    foreach ($data as $key => $value) {
+        if (is_array($value) === true) {
+            $output .= "<h$x>$key</h$x>";
+            $output .= show_info_details($x + 1, $value);
+        }
+        else if (is_string($value) === true) {
+            $output .= "$key => $value<br/>";
+        }
+        else {
+            $output .= "$key => " . var_export($value, true) . "<br/>";
+        }
+    }
+
+    return $output;
+}
+
 class RedisTaskQueue implements TaskQueue
 {
     /**
@@ -120,7 +140,15 @@ class RedisTaskQueue implements TaskQueue
     {
         return $this->getQueueEntries('');
     }
-    
+
+
+    public function getInfo()
+    {
+        $info_array = $this->redisClient->info();
+
+        return show_info_details(2, $info_array);
+    }
+
     private function getQueueEntries($keyStub)
     {
         $iterator = new Iterator\Keyspace($this->redisClient, $keyStub."*", 2000);

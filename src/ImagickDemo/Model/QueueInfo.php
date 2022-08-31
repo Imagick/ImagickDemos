@@ -74,6 +74,9 @@ class QueueInfo
         $output = ob_get_contents();
         ob_end_clean();
 
+        $output .= "<h2>Info</h2>";
+        $output .= $this->taskQueue->getInfo();
+
         return $output;
     }
 }

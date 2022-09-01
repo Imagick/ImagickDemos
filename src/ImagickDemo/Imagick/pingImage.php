@@ -2,7 +2,6 @@
 
 namespace ImagickDemo\Imagick;
 
-use ImagickDemo\Control\ReactControls;
 use ImagickDemo\Imagick\Controls\ImageControl;
 use VarMap\VarMap;
 
@@ -25,14 +24,17 @@ class pingImage extends \ImagickDemo\Example
         return true;
     }
 
-    public function hasBespokeRender()
-    {
-        return true;
-    }
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
+        $output = createReactImagePanel(
+            null,
+            "/Imagick/pingImage",
+            $this
+        );
 
-    public function bespokeRender(ReactControls $reactControls)
-    {
-        $output = "This method can be used to query image width, height, size, and format without reading the whole image in to memory.<br/><br/><br/>";
+        $output .= "<p>This method can be used to query image width, height, size, and format without reading the whole image in to memory.</p><br/>";
 
 //Example Imagick::pingImage
         $image = new \Imagick();

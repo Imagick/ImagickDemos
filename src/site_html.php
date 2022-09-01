@@ -436,7 +436,6 @@ function createReactImagePanel(
     $output .= sprintf(' data-pagebaseurl="%s"', $pageBaseUrl,);
     $output .= sprintf(' data-full_page_refresh="%s"', $refreshString);
 
-
     $original_image = $example->useImageControlAsOriginalImage();
     if ($original_image === true) {
         $output .= ' data-use_image_control_as_original_image="true"';

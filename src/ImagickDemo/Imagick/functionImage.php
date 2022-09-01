@@ -112,8 +112,6 @@ f4 - Constant vertical offset, default 0.5";
         // Well this is horrendous.
         \ImagickDemo\ImagickKernel\functions::load();
 
-
-
         $url = "/customImage/Imagick/functionImage";
         $url .= "?" . http_build_query($this->functionImageControl->getValuesForForm());
 

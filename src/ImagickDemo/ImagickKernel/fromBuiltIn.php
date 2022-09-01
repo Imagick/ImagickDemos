@@ -2,12 +2,11 @@
 
 namespace ImagickDemo\ImagickKernel;
 
-use ImagickDemo\Control\ReactControls;
 use ImagickDemo\Display;
 use ImagickDemo\ImagickKernel\Controls\FromBuiltInControl;
 use VarMap\VarMap;
 
-class fromBuiltin extends \ImagickDemo\Example
+class fromBuiltIn extends \ImagickDemo\Example
 {
     private FromBuiltInControl $fromBuiltInControl;
 
@@ -20,9 +19,8 @@ class fromBuiltin extends \ImagickDemo\Example
 
     public function renderTitle(): string
     {
-        return "ImagickKernel::fromBuiltin";
+        return "ImagickKernel::fromBuiltIn";
     }
-
 
     public function renderDescription()
     {
@@ -30,11 +28,19 @@ class fromBuiltin extends \ImagickDemo\Example
     ";
     }
 
-    public function bespokeRender(ReactControls $reactControls)
-    {
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
+        $imageBaseURL = "/image/ImagickKernel/fromBuiltIn";
+
+        if ($this->fromBuiltInControl->getKernelRender() === "Values") {
+            $imageBaseURL = null;
+        }
+
         $output = createReactImagePanel(
-            "/image/ImagickKernel/fromBuiltin",
-            "/ImagickKernel/fromBuiltin",
+            $imageBaseURL,
+            "/ImagickKernel/fromBuiltIn",
             $this
         );
 
@@ -53,20 +59,13 @@ class fromBuiltin extends \ImagickDemo\Example
             return $output;
         }
 
-        $url = "/image/ImagickKernel/fromBuiltin";
-        $url .= "?" . http_build_query($this->fromBuiltInControl->getValuesForForm());
-
-        $output .= "<img src='$url' alt='matrix from built in'/>";
-
         return $output;
     }
 
-    public function hasBespokeRender()
+    public function needsFullPageRefresh(): bool
     {
         return true;
     }
-
-
 
     public static function getParamType(): string
     {

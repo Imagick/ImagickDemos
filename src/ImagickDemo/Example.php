@@ -113,11 +113,20 @@ abstract class Example
         //TODO - this is the wrong link.
         $classname = get_class($this);
         $classname = str_replace('\\', '/', $classname);
-        $url = "https://github.com/Danack/Imagick-demos/blob/master/src/" . $classname . ".php";
+        $url = "https://github.com/imagick/ImagickDemos/blob/master/src/" . $classname . ".php";
 
         return "<a href='$url' target='_blank'>Source code on Github</a>";
     }
 
+    /**
+     * Some example need to refresh the whole page to work.
+     *
+     * e.g. most of the Kernel examples allow users to switch between
+     * rendering the example as an image or as text. It is just far easier to
+     * refresh the whole page, rather than try to make the frontend smarter.
+     *
+     * @return bool
+     */
     public function needsFullPageRefresh(): bool
     {
         return false;
@@ -127,7 +136,6 @@ abstract class Example
         ?string $activeCategory,
         ?string $activeExample
     ) {
-        // What about custom images?
         $imageBaseUrl = \ImagickDemo\Route::getImageURL($activeCategory, $activeExample);
 
         if ($this->hasCustomImage() === true) {

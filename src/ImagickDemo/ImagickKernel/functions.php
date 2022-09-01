@@ -322,7 +322,7 @@ function fromMatrix()
 //Example end
 
 //Example ImagickKernel::fromBuiltIn
-function createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm)
+function createFromBuiltIn($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm)
 {
     $string = '';
 
@@ -338,16 +338,16 @@ function createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $ke
     }
 
     $kernel = ImagickKernel::fromBuiltIn(
-        $kernelType, //\Imagick::KERNEL_DIAMOND,
+        $kernelType,
         $string
     );
 
     return $kernel;
 }
     
-function fromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm)
+function fromBuiltIn($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm)
 {
-    $diamondKernel = createFromBuiltin($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm);
+    $diamondKernel = createFromBuiltIn($kernelType, $kernelFirstTerm, $kernelSecondTerm, $kernelThirdTerm);
     $imagick = renderKernel($diamondKernel);
 
     header("Content-Type: image/png");

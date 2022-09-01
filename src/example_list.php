@@ -150,7 +150,7 @@ function getImagickKernelExamples()
         'addKernel' => 'addKernel',
         'addUnityKernel' => 'addUnityKernel',
         'fromMatrix' => 'fromMatrix',
-        'fromBuiltin' => 'fromBuiltin',
+        'fromBuiltIn' => 'fromBuiltIn',
         'getMatrix' => 'getMatrix',
         'scale' => 'scale',
         'separate' => 'separate',

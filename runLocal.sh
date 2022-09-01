@@ -17,4 +17,4 @@ docker-compose up --build imagick_php_backend_im6 imagick_php_backend_im6_debug 
 
 
 
-'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a
+# 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a

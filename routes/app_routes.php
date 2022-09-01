@@ -31,7 +31,11 @@ return [
         'GET',
         ['ImagickDemo\Controller\Page', 'renderCategoryIndexMoreSane']
     ],
-
+    [
+        "/$categories/",
+        'GET',
+        ['ImagickDemo\Controller\Page', 'renderCategoryIndexMoreSane']
+    ],
     [
         "/imagick",
         'GET',

@@ -16,8 +16,6 @@ class addKernel extends \ImagickDemo\Example
         return "";
     }
 
-
-
     public static function getParamType(): string
     {
         return ImageControl::class;

@@ -31,10 +31,20 @@ class fromMatrix extends \ImagickDemo\Example
         return "Create a kernel from an 2d matrix of values. Each value should either be a float (if the element should be used) or 'false' if the element should be skipped.";
     }
 
-    public function bespokeRender(ReactControls $reactControls)
-    {
+
+
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
+        $imageBaseUrl = "/image/ImagickKernel/fromMatrix";
+
+        if ($this->fromMatrixControl->getKernelRender() === "Values") {
+            $imageBaseUrl = null;
+        }
+
         $output = createReactImagePanel(
-            "/image/ImagickKernel/fromMatrix",
+            $imageBaseUrl,
             "/ImagickKernel/fromMatrix",
             $this
         );
@@ -46,17 +56,15 @@ class fromMatrix extends \ImagickDemo\Example
             $kernel = createFromMatrix();
             $output .= Display::renderKernelTable($kernel->getMatrix());
         }
-        else {
-            $output .= $reactControls->renderImageURL(false);
-        }
 
         return $output;
     }
 
-    public function hasBespokeRender()
+    public function needsFullPageRefresh(): bool
     {
         return true;
     }
+
 
     public static function getParamType(): string
     {

@@ -6,6 +6,8 @@ use ImagickDemo\Imagick\Controls\NullControl;
 
 abstract class Example
 {
+    // Means that the image selected in the control
+    // must be used as the original image and not a hard-coded path.
     public function useImageControlAsOriginalImage()
     {
         return false;

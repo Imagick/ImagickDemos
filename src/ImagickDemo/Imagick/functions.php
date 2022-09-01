@@ -1988,8 +1988,8 @@ function raiseImage($image_path, $width, $height, $x, $y, $raise)
 {
     $imagick = new \Imagick(realpath($image_path));
 
-    //x and y do nothing?
-    $result = $imagick->raiseImage($width, $height, $x, $y, $raise);
+    $imagick->raiseImage($width, $height, $x, $y, $raise);
+    $imagick->setImageFormat("jpg");
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
 }

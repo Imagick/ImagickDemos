@@ -26,9 +26,9 @@ class RaiseImageControl
     use InputParameterListFromAttributes;
 
     public function __construct(
-        #[Width(1, 'width')]
+        #[Width(10, 'width')]
         private string $width,
-        #[Height(1, 'height')]
+        #[Height(10, 'height')]
         private string $height,
         #[X('x')]
         private string $x,

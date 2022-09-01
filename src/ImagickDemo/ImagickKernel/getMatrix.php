@@ -18,13 +18,10 @@ class getMatrix extends \ImagickDemo\Example
         return "";
     }
 
-    public function hasBespokeRender()
-    {
-        return true;
-    }
-
-    public function bespokeRender()
-    {
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
 //Example ImagickKernel::getMatrix
         $output = "The built-in kernel name 'ring' with parameters of '2,3.5':<br/>";
         $kernel = \ImagickKernel::fromBuiltIn(
@@ -33,7 +30,7 @@ class getMatrix extends \ImagickDemo\Example
         );
         $matrix = $kernel->getMatrix();
         $output .= Display::renderKernelTable($matrix);
-//        $output .= "Or as an image: " . $this->renderCustomImageURL();
+
         $output .= "Or as an image: <img src='/customImage/ImagickKernel/getMatrix'/>";
 
         return $output;

@@ -5,20 +5,6 @@ namespace ImagickDemo\Tutorial;
 use ImagickDemo\Tutorial\Controls\TutorialCompositeParams;
 use VarMap\VarMap;
 
-//function compositeImageExample()
-//{
-////Example Tutorial::composite
-//    $imagick = new Imagick(realpath($image_path1));
-//    $imagick2 = new Imagick(realpath($image_path2));
-//    $imagick1->compositeImage($imagick2, $type, 0, 0);
-//    $imagick1->setImageFormat('png');
-//
-//    $image->setImageFormat("png");
-//    header("Content-Type: image/png");
-//    echo $imagick->getImageBlob();
-////Example end
-//}
-
 class composite extends \ImagickDemo\Example
 {
     private $width = 200;
@@ -66,11 +52,6 @@ class composite extends \ImagickDemo\Example
         ];
 
         return $listOfExamples;
-    }
-
-    public function hasBespokeRender()
-    {
-        return false;
     }
 
     public function render(
@@ -230,6 +211,8 @@ What makes this useful is for overlaying lighting and shading effects that are l
         echo $imagick->getImageBlob();
     }
 
+
+
     public function genericComposite(\Imagick $imagick1, \Imagick $imagick2, $type)
     {
         $imagick1->compositeImage($imagick2, $type, 0, 0);
@@ -238,8 +221,10 @@ What makes this useful is for overlaying lighting and shading effects that are l
         $this->showImage($imagick1);
     }
 
+
     public function showImage(\Imagick $imagick1)
     {
+//Example Tutorial::composite 1
         $backGround = new \Imagick();
         $backGround->newPseudoImage(
             $imagick1->getImageWidth(),
@@ -252,6 +237,7 @@ What makes this useful is for overlaying lighting and shading effects that are l
 
         header("Content-Type: image/png");
         echo $backGround->getImageBlob();
+//Example end
     }
 
     public function renderDescription()
@@ -441,5 +427,10 @@ What makes this useful is for overlaying lighting and shading effects that are l
     public static function getParamType(): string
     {
         return TutorialCompositeParams::class;
+    }
+
+    public function needsFullPageRefresh(): bool
+    {
+        return true;
     }
 }

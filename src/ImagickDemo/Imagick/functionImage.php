@@ -88,43 +88,17 @@ f4 - Constant vertical offset, default 0.5";
         return $output;
     }
 
-    /**
-     * @param string|null $activeCategory
-     * @param string|null $activeExample
-     * @return string
-     */
     public function render(
         ?string $activeCategory,
         ?string $activeExample
-    )
-    {
-        return $this->renderCustomImageURL();
-    }
-
-    public function bespokeRender(ReactControls $reactControls)
-    {
-        $output = createReactImagePanel(
-            "/customImage/Imagick/functionImage",
-            "/Imagick/functionImage",
+    ) {
+        return customImage(
+            $activeCategory,
+            $activeExample,
+            $this->functionImageControl->getValuesForForm(),
             $this
         );
-
-        // Well this is horrendous.
-        \ImagickDemo\ImagickKernel\functions::load();
-
-        $url = "/customImage/Imagick/functionImage";
-        $url .= "?" . http_build_query($this->functionImageControl->getValuesForForm());
-
-        $output .= "<img src='$url' alt='function image'/>";
-
-        return $output;
     }
-
-    public function hasBespokeRender()
-    {
-        return true;
-    }
-
 
     /**
      *

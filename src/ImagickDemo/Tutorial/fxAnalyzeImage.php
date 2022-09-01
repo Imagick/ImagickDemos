@@ -8,7 +8,7 @@ use VarMap\VarMap;
 
 class fxAnalyzeImage extends \ImagickDemo\Example
 {
-    private $type;
+//    private $type;
 
     private FXAnalyzeControls $fx_analyze_control;
     
@@ -28,10 +28,10 @@ class fxAnalyzeImage extends \ImagickDemo\Example
         return FXAnalyzeControls::class;
     }
     
-    public function getCustomImageParams()
-    {
-        return ['type' => $this->type];
-    }
+//    public function getCustomImageParams()
+//    {
+//        return ['type' => $this->type];
+//    }
     
     public function renderDescription()
     {
@@ -49,20 +49,16 @@ END;
         return nl2br($output);
     }
 
-    public function hasBespokeRender()
-    {
-        return true;
-    }
-
-    public function bespokeRender(ReactControls $reactControls)
-    {
-        $output = createReactImagePanel(
-            "/customImage/Tutorial/fxAnalyzeImage",
-            "/Tutorial/fxAnalyzeImage",
+    public function render(
+        ?string $activeCategory,
+        ?string $activeExample
+    ) {
+        return customImage(
+            $activeCategory,
+            $activeExample,
+            $this->fx_analyze_control->getValuesForForm(),
             $this
         );
-
-        return $output;
     }
 
     public function renderCustomImage()

@@ -162,21 +162,10 @@ function renderExampleBodyHtml(
 
     $form = renderReactControls($varMap, $example->getParamType());
 
-    if (method_exists($example, 'hasBespokeRender') &&
-        $example->hasBespokeRender() ) {
-        $reactControls = new ReactControls(
-            $pageInfo,
-            $taskQueue,
-            $varMap
-        );
-        $exampleHtml = $example->bespokeRender($reactControls);
-    }
-    else {
-        $exampleHtml = $example->render(
-            $activeCategory,
-            $activeExample
-        );
-    }
+    $exampleHtml = $example->render(
+        $activeCategory,
+        $activeExample
+    );
 
 
     $code_examples = $exampleFinder->findExamples($activeCategory, $activeExample);

@@ -31,9 +31,9 @@ function header($string, $replace = true, $http_response_code = null)
     }
     
 //    if ($cacheImages == false) {
-//        if (php_sapi_name() !== 'cli') {
-//            \header($string, $replace, $http_response_code);
-//        }
+        if (php_sapi_name() !== 'cli') {
+            \header($string, $replace, $http_response_code);
+        }
 //    }
 }
 
@@ -43,7 +43,7 @@ function header($string, $replace = true, $http_response_code = null)
 //{
 //    return $fileResponseFactory->create($filename, $downloadFilename, "image/jpg");
 //}
-//
+
 
 //Example Imagick::adaptiveBlurImage
 function adaptiveBlurImage($image_path, $radius, $sigma, $channel)

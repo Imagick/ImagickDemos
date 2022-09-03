@@ -25,7 +25,7 @@ services:
   imagick_php_backend_im6_debug:
     build: containers/php_backend_im6_debug
     environment:
-      - PHP_IDE_CONFIG=phpimagick
+      - PHP_IDE_CONFIG=serverName=PHP_IMAGICK_DEBUG
     image: imagick_php_backend_im6_debug:latest
     depends_on:
       - imagick_php_backend_im6

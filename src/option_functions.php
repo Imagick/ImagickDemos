@@ -127,6 +127,12 @@ function getImagePathOptions()
         'Logo' => realpath(__DIR__ . "/../public/images/logo.png"),
     ];
 
+    foreach ($images as $key => $value) {
+        if (is_string($value) === false) {
+            throw new Exception("dan fails at coding $key => $value .");
+        }
+    }
+
     return $images;
 }
 

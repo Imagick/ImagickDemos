@@ -125,7 +125,7 @@ END;
 
         //Make a gradient
         $draw = new \ImagickDraw();
-        $draw->setStrokeOpacity(0);
+        $draw->setStrokeOpacity(1);
         $draw->setFillColor('red');
         $draw->point(0, 2);
         $draw->setFillColor('yellow');

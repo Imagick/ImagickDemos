@@ -110,20 +110,20 @@ function renderExamples(array $examples)
     foreach ($examples as $example) {
         $output .= "<div class='contentPanel'>";
         $count += 1;
-        $header = '';
+        $header = "Example";
 
         if (count($examples) > 1) {
             $description = trim($example->description);
             if (strlen($description) > 0) {
-                $header = "// Example $count - " . $description;
+                $header = "Example $count - " . $description;
             }
             else {
-                $header = "// Example $count";
+                $header = "Example $count";
             }
         }
-
+        $output .= "<h3>" . $header . "</h3>\n";
         $output .= "<pre>";
-        $output .= $header . "\n";
+
         foreach ($example->lines as $line) {
             $output .= $line;
         }

@@ -304,6 +304,7 @@ function getImagickExamples()
         //'getColorspace',
         //'getCompression',
         //'getCompressionQuality',
+        'getConfigureOptions' => 'getConfigureOptions',
         'getCopyright'  => 'getCopyright',
         //'getFilename',
         //'getFont',
@@ -393,8 +394,7 @@ function getImagickExamples()
         //'getSamplingFactors',
         //'getSize',
         //'getSizeOffset',
-        //'getVersion',
-
+        'getVersion' => 'getVersion',
         'haldClutImage' => 'haldClutImage',
         'houghLineImage' => 'houghLineImage',
         //'hasNextImage',

@@ -45,14 +45,7 @@ function createSlimAppForApp(
 
     // TODO - this shouldn't be used in production.
     $container['errorHandler'] = $appErrorHandler;
-//  function ($container) use ($appErrorHandler) {
-//        return $appErrorHandler;
-//    };
-
     $container['phpErrorHandler'] = $appErrorHandler;
-//        function ($container) {
-//        return $container['errorHandler'];
-//    };
 
     $app = new \Slim\App($container);
 

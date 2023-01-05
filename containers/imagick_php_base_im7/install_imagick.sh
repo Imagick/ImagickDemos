@@ -15,7 +15,7 @@ cd imagick-master
 
 phpize
 
-./configure
+./configure --with-imagick=/usr/im7
 
 echo "************************************"
 echo "***DIR******************************"
@@ -23,7 +23,7 @@ pwd
 echo "************************************"
 echo "************************************"
 
-make install -j4
+make install -j8
 
 echo "extension=imagick.so" > /etc/php/8.0/cli/conf.d/imagick.ini
 echo "extension=imagick.so" > /etc/php/8.0/fpm/conf.d/imagick.ini

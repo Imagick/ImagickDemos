@@ -5,10 +5,11 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 
+use DataType\DataType;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\Image;
 use ImagickDemo\Params\Width;
 use ImagickDemo\Params\Height;
@@ -18,12 +19,12 @@ use ImagickDemo\Params\Raise;
 
 
 
-class RaiseImageControl
+class RaiseImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Width(10, 'width')]

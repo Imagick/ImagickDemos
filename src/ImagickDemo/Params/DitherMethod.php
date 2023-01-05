@@ -2,22 +2,22 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\EnumMap;
-use Params\InputParameter;
-use Params\Param;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\ProcessRule\EnumMap;
+use DataType\HasInputType;
+use DataType\InputType;
 
 #[\Attribute]
-class DitherMethod implements Param
+class DitherMethod implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetStringOrDefault(\Imagick::DITHERMETHOD_NO),
             new EnumMap([

@@ -7,20 +7,20 @@ namespace ImagickDemo\Imagick\Controls;
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\Params\Inverse;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\Height;
 use ImagickDemo\Params\Width;
 use ImagickDemo\Params\Image;
 
-class LevelImageColorsControl implements InputParameterList
+class LevelImageColorsControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[ImagickColorParam('rgb(10, 10, 10)', 'black_color')]

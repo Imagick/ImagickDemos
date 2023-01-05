@@ -7,20 +7,20 @@ namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 use ImagickDemo\Params\Threshold;
 use ImagickDemo\Params\Image;
 
-class LinearStretchImageControl implements InputParameterList
+class LinearStretchImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Threshold(0.2, 'black_threshold')]

@@ -11,17 +11,17 @@ use ImagickDemo\Params\KernelFirstTerm;
 use ImagickDemo\Params\KernelSecondTerm;
 use ImagickDemo\Params\KernelThirdTerm;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
-class FromBuiltInControl implements InputParameterList
+class FromBuiltInControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[KernelType('kernel_type')]

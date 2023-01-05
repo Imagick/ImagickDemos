@@ -1,3 +1,5 @@
+set -e
+set -x
 
 
 version="7.1.0-17"
@@ -27,8 +29,11 @@ cd "${im_dir}"
   --with-png=yes \
   --with-tiff=yes \
   --with-webp=yes \
-  --without-perl
+  --without-perl \
+  --prefix=/usr/im7 \
+  --exec-prefix=/usr/im7
 
-make install -j4
 
-ldconfig /usr/local/lib
+make install -j8
+
+# ldconfig /usr/local/lib

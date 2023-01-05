@@ -3,15 +3,15 @@
 namespace ImagickDemo\Params;
 
 
-use Params\InputParameter;
-use Params\Param;
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\NullIfEmpty;
-use Params\ProcessRule\CastToFloat;
-use Params\ProcessRule\RangeFloatValue;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\ProcessRule\NullIfEmpty;
+use DataType\ProcessRule\CastToFloat;
+use DataType\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
-class SecondTerm implements Param
+class SecondTerm implements HasInputType
 {
     public function __construct(
         private string $default,
@@ -19,9 +19,9 @@ class SecondTerm implements Param
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetStringOrDefault($this->default),
             new NullIfEmpty(),

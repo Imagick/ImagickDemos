@@ -7,19 +7,19 @@ namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\Params\Image;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\ComponentRangeFloat;
 use ImagickDemo\Params\Gamma;
 
-class LevelizeImageControl implements InputParameterList
+class LevelizeImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[ComponentRangeFloat(30, 'black_point')]

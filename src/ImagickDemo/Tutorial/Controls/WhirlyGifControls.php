@@ -11,10 +11,10 @@ use ImagickDemo\Params\NumberFrames;
 use ImagickDemo\Params\PhaseDivider;
 use ImagickDemo\Params\PhaseMultiplier;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 
 class WhirlyGifControls implements InputParameterList
@@ -22,7 +22,7 @@ class WhirlyGifControls implements InputParameterList
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[BackgroundColorChoice('background_color')]

@@ -7,17 +7,17 @@ namespace ImagickDemo\Tutorial\Controls;
 
 use ImagickDemo\Params\FXAnalyzeOption;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 class FXAnalyzeControls implements InputParameterList
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[FXAnalyzeOption('fx_analyze_option')]

@@ -2,22 +2,22 @@
 
 namespace ImagickDemo\Params;
 
-use Params\InputParameter;
-use Params\Param;
+use DataType\HasInputType;
+use DataType\InputType;
 
 //use ImagickDemo\ExtractRule\GetKernelMatrixOrDefault;
-use Params\ExtractRule\GetKernelMatrixOrDefault;
+use DataType\ExtractRule\GetKernelMatrixOrDefault;
 
 
 #[\Attribute]
-class ConvolveMatrix implements Param
+class ConvolveMatrix implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
         $default = [
             [-1, -1, -1],
@@ -25,7 +25,7 @@ class ConvolveMatrix implements Param
             [-1, -1, -1],
         ];
 
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetKernelMatrixOrDefault($default),
         );

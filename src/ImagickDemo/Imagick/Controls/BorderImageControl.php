@@ -6,20 +6,20 @@ namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\Height;
 use ImagickDemo\Params\Width;
 use ImagickDemo\Params\Image;
 
-class BorderImageControl implements InputParameterList
+class BorderImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Width(50, 'width')]

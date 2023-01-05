@@ -226,6 +226,8 @@ function getImagickExamples()
         'averageImages' => 'averageImages',
         'autoGammaImage' => 'autoGammaImage',
         'autoLevelImage' => 'autoLevelImage',
+        'autoOrient' => 'autoOrientate',
+        'autoOrientate' => 'autoOrientate',
         'autoThresholdImage' => 'autoThresholdImage',
         'bilateralBlurImage' => 'bilateralBlurImage',
         'blackThresholdImage' => 'blackThresholdImage',

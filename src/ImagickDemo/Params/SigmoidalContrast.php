@@ -3,13 +3,13 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetFloatOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\RangeFloatValue;
+use DataType\ExtractRule\GetFloatOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\RangeFloatValue;
 
 #[\Attribute]
-class SigmoidalContrast implements Param
+class SigmoidalContrast implements HasInputType
 {
     public function __construct(
         private float $default,
@@ -17,9 +17,9 @@ class SigmoidalContrast implements Param
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetFloatOrDefault($this->default),
             new RangeFloatValue(-1000, 1000)

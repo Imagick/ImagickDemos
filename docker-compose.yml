@@ -14,6 +14,11 @@ services:
 #      - "local.phpimagick.com:imagick_php_backend"
      # - "local.phpimagick.com:162.242.195.82"
 
+
+  css_builder:
+    build: containers/css_builder
+    volumes:
+      - .:/var/app
   imagick_php_backend_im6:
     build: containers/php_backend_im6
     image: imagick_php_backend_im6:latest
@@ -101,10 +106,10 @@ services:
         aliases:
           - local.phpimagick.com
           - internal.phpimagick.com
-  sass_dev_builder:
-    build: containers/sass_dev_builder
-    volumes:
-      - .:/var/app
+#  sass_dev_builder:
+#    build: containers/sass_dev_builder
+#    volumes:
+#      - .:/var/app
   workers:
     build: containers/background_worker
     image: imagick_php_worker:latest

@@ -5,18 +5,18 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\SafeAccess;
 use ImagickDemo\Params\ComponentRangeFloat;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
 
-class DeskewImageControl implements InputParameterList
+class DeskewImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[ComponentRangeFloat(0.5, 'threshold')]

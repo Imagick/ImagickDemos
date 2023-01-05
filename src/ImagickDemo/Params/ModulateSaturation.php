@@ -2,22 +2,22 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetFloatOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\RangeIntValue;
+use DataType\ExtractRule\GetFloatOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\RangeIntValue;
 
 #[\Attribute]
-class ModulateSaturation implements Param
+class ModulateSaturation implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetFloatOrDefault(100),
             new RangeIntValue(0, 200)

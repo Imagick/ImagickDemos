@@ -2,14 +2,14 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetFloatOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\MaxFloatValue;
-use Params\ProcessRule\MinFloatValue;
+use DataType\ExtractRule\GetFloatOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\MaxFloatValue;
+use DataType\ProcessRule\MinFloatValue;
 
 #[\Attribute]
-class UnitRange implements Param
+class UnitRange implements HasInputType
 {
     public function __construct(
         private float $default,
@@ -17,9 +17,9 @@ class UnitRange implements Param
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetFloatOrDefault($this->default),
             new MinFloatValue(0),

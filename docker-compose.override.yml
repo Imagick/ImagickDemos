@@ -25,8 +25,8 @@ services:
 #  workers:
 #    ports:
 #      - "8080:8080"
-  sass_dev_builder:
-    ports:
-      - 8888:8888
-    environment:
-      - PHP_WEB_BUGS_BASE_URL=http://local.api.phpimagick.com
+#  sass_dev_builder:
+#    ports:
+#      - 8888:8888
+#    environment:
+#      - PHP_WEB_BUGS_BASE_URL=http://local.api.phpimagick.com

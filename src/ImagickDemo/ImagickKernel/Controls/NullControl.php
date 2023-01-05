@@ -5,17 +5,17 @@ declare(strict_types = 1);
 namespace ImagickDemo\ImagickKernel\Controls;
 
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
+use DataType\DataType;
 
-class NullControl implements InputParameterList
+class NullControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct() { }
 

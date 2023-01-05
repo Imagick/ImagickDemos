@@ -7,20 +7,20 @@ namespace ImagickDemo\Imagick\Controls;
 
 use ImagickDemo\Params\NumberLevels;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 use ImagickDemo\Params\DitherFormat;
 use ImagickDemo\Params\Image;
 
-class OrderedDitherImageControl implements InputParameterList
+class OrderedDitherImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[DitherFormat('dither_format')]

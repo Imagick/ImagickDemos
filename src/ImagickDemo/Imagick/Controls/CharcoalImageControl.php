@@ -8,19 +8,19 @@ namespace ImagickDemo\Imagick\Controls;
 use ImagickDemo\Params\Radius;
 use ImagickDemo\Params\Sigma;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\Image;
 
 
-class CharcoalImageControl implements InputParameterList
+class CharcoalImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Radius(5, 'radius')]

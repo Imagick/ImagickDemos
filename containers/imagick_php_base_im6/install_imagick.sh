@@ -18,7 +18,7 @@ cd imagick-master
 
 phpize
 
-./configure
+./configure --with-imagick=/usr/im6
 
 make install -j4
 

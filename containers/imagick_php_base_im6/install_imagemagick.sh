@@ -8,8 +8,6 @@ if [ ! -f "${im_tgz_file}" ]; then
   wget "https://github.com/ImageMagick/ImageMagick6/archive/${version}.tar.gz" -O ${im_tgz_file}
 fi
 
-
-
 im_dir="ImageMagick6-${version}"
 
 if [ ! -d "${im_dir}" ]; then
@@ -18,7 +16,7 @@ fi
 
 cd "${im_dir}"
 
-./configure \
+  ./configure \
   --disable-docs \
   --with-quantum-depth=16 \
   --with-fftw \
@@ -28,8 +26,12 @@ cd "${im_dir}"
   --with-png=yes \
   --with-tiff=yes \
   --with-webp=yes \
-  --without-perl
+  --without-perl \
+  --prefix=/usr/im6 \
+  --exec-prefix=/usr/im6
 
-make install -j4
+#  --with-heic
 
-ldconfig /usr/local/lib
+make install -j8
+
+# ldconfig /usr/local/lib

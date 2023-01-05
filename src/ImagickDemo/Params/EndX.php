@@ -2,14 +2,14 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
+use DataType\ExtractRule\GetIntOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\MaxIntValue;
+use DataType\ProcessRule\MinIntValue;
 
 #[\Attribute]
-class EndX implements Param
+class EndX implements HasInputType
 {
     public function __construct(
         private int $default,
@@ -17,9 +17,9 @@ class EndX implements Param
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetIntOrDefault($this->default),
             new MinIntValue(0),

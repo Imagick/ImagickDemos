@@ -4,7 +4,7 @@ namespace ImagickDemo\Tutorial;
 
 use ImagickDemo\Helper\PageInfo;
 use ImagickDemo\Tutorial\Controls\EyeColourResolutionParams;
-use Params\OpenApi\OpenApiV300ParamDescription;
+use DataType\OpenApi\OpenApiV300ParamDescription;
 use VarMap\VarMap;
 use ImagickDemo\ReactParamType;
 

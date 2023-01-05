@@ -218,6 +218,19 @@ function autoLevelImage($image_path)
 }
 //Example end
 
+
+//Example Imagick::autoLevelImage
+function autoOrientate($image_path)
+{
+    $imagick = new \Imagick(realpath("../images/orientation_test.tga"));
+//    $imagick->autoOrient();
+    header("Content-Type: image/jpeg");
+    echo $imagick->getImageBlob();
+}
+//Example end
+
+
+
 //Example Imagick::autoThresholdImage
 function autoThresholdImage(
     $image_path,

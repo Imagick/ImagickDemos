@@ -11,7 +11,7 @@ echo "ENV_TO_USE is ${ENV_TO_USE}";
 COMPOSER_TYPE=$(php src/check_composer_command.php)
 echo "composer type is ${COMPOSER_TYPE}";
 if [ "${COMPOSER_TYPE}" = "update" ]; then
-    php composer.phar update
+    php composer.phar update --ignore-platform-reqs
 else
     php composer.phar install
 fi

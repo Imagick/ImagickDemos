@@ -3,13 +3,13 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetIntOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\RangeIntValue;
+use DataType\ExtractRule\GetIntOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\RangeIntValue;
 
 #[\Attribute]
-class Width implements Param
+class Width implements HasInputType
 {
     public function __construct(
         private int $default,
@@ -17,9 +17,9 @@ class Width implements Param
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetIntOrDefault($this->default),
             new RangeIntValue(1, 500)

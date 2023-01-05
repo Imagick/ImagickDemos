@@ -6,22 +6,23 @@ namespace ImagickDemo\ImagickDraw\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 use ImagickDemo\Params\AngleRange;
 use ImagickDemo\Params\StartY;
 use ImagickDemo\Params\EndX;
 use ImagickDemo\Params\EndY;
+use DataType\DataType;
 
 
-class ArcControls //implements InputParameterList
+class ArcControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[ImagickColorParam('rgb(225, 225, 225)', 'background_color')]

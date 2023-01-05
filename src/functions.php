@@ -2,21 +2,21 @@
 
 declare(strict_types = 1);
 
-use Params\Create\CreateFromRequest;
-use Params\Create\CreateFromVarMap;
-use Params\Create\CreateOrErrorFromVarMap;
-use Params\InputParameter;
-use Params\ExtractRule\GetBoolOrDefault;
-use Params\ExtractRule\GetIntOrDefault;
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\MaxIntValue;
-use Params\ProcessRule\MinIntValue;
-use Params\SafeAccess;
+use DataType\Create\CreateFromRequest;
+use DataType\Create\CreateFromVarMap;
+use DataType\Create\CreateOrErrorFromVarMap;
+use DataType\InputParameter;
+use DataType\ExtractRule\GetBoolOrDefault;
+use DataType\ExtractRule\GetIntOrDefault;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\ProcessRule\MaxIntValue;
+use DataType\ProcessRule\MinIntValue;
+use DataType\SafeAccess;
 use VarMap\ArrayVarMap;
 use VarMap\VarMap;
-use Params\ProcessRule\EnumMap;
+use DataType\ProcessRule\EnumMap;
 use ImagickDemo\ToArray;
-use Params\InputParameterList;
+use DataType\DataType;
 use ImagickDemo\Example;
 
 function hackVarMap($varMap)

@@ -5,22 +5,23 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 
+use DataType\DataType;
 use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\ComponentRangeFloat;
 use ImagickDemo\Params\Threshold;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\Image;
 use ImagickDemo\Params\Percent;
 
-class ContrastStretchImageControl
+class ContrastStretchImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Percent(20, 'black_point')]

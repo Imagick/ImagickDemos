@@ -5,11 +5,11 @@ declare(strict_types = 1);
 namespace ImagickDemo\Tutorial\Controls;
 
 use ImagickDemo\Params\Image;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\ToArray;
-use Params\InputParameterList;
+use DataType\DataType;
 use ImagickDemo\Params\SampleFactor;
 use ImagickDemo\Params\EyeColorSpace;
 use ImagickDemo\Params\Smaller;
@@ -19,7 +19,7 @@ class EyeColourResolutionParams implements InputParameterList
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Image('image_path')]

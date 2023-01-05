@@ -3,22 +3,22 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\EnumMap;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\EnumMap;
 
 #[\Attribute]
-class ComplexOperatorType implements Param
+class ComplexOperatorType implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetStringOrDefault("Multiply"),
             new EnumMap(getComplexOperatorOptions())

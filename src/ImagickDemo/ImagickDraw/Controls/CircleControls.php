@@ -6,10 +6,10 @@ namespace ImagickDemo\ImagickDraw\Controls;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 use ImagickDemo\Params\OriginX;
 use ImagickDemo\Params\OriginY;
@@ -17,12 +17,12 @@ use ImagickDemo\Params\EndX;
 use ImagickDemo\Params\EndY;
 
 
-class CircleControls implements InputParameterList
+class CircleControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[ImagickColorParam('rgb(225, 225, 225)', 'background_color')]

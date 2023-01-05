@@ -4,23 +4,22 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\Imagick\Controls;
 
-
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
-
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\SafeAccess;
 use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
 use ImagickDemo\Params\Radius;
 use ImagickDemo\Params\Sigma;
+use DataType\GetInputTypesFromAttributes;
 
-class AdaptiveBlurImageControl
+class AdaptiveBlurImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Radius(5, 'radius')]

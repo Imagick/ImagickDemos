@@ -8,23 +8,21 @@ namespace ImagickDemo\Imagick\Controls;
 use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 use ImagickDemo\Params\UnitRange;
 use ImagickDemo\Params\Inverse;
 use ImagickDemo\Params\PictureX;
 use ImagickDemo\Params\PictureY;
 
-
-
-class FloodFillPaintImageControl implements InputParameterList
+class FloodFillPaintImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[UnitRange(0.1, 'fuzz')]

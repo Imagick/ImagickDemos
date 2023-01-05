@@ -2,22 +2,22 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetIntOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\EnumMap;
+use DataType\ExtractRule\GetIntOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\EnumMap;
 
 #[\Attribute]
-class OrientationType implements Param
+class OrientationType implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetIntOrDefault(\Imagick::ORIENTATION_TOPLEFT),
             new EnumMap([

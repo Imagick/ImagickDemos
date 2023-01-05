@@ -2,19 +2,19 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetKernelMatrixOrDefault;
-use Params\InputParameter;
-use Params\Param;
+use DataType\ExtractRule\GetKernelMatrixOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
 
 #[\Attribute]
-class ColorMatrix implements Param
+class ColorMatrix implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
         $default = [
             [1.5, 0.0, 0.0, 0.0, -0.157],
@@ -24,7 +24,7 @@ class ColorMatrix implements Param
             [0.0, 0.0, 0.0, 0.0, 1.0],
         ];
 
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetKernelMatrixOrDefault($default),
         );

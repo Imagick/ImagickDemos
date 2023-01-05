@@ -5,13 +5,14 @@ declare(strict_types = 1);
 namespace ImagickDemo\Imagick\Controls;
 
 
+use DataType\DataType;
 use ImagickDemo\Params\BestFit;
 use ImagickDemo\Params\Height;
 use ImagickDemo\Params\Width;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
 use ImagickDemo\Params\ImagickColorParam;
 use ImagickDemo\Params\Image;
@@ -19,14 +20,12 @@ use ImagickDemo\Params\Crop;
 use ImagickDemo\Params\FilterType;
 use ImagickDemo\Params\ResizeBlur;
 
-//$width, $height, $filterType, $blur, $bestFit, $cropZoom
-
-class ResizeImageControl
+class ResizeImageControl implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[Width(250, 'width')]

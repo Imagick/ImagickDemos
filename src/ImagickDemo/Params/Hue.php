@@ -2,23 +2,23 @@
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetFloatOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\MaxFloatValue;
-use Params\ProcessRule\MinFloatValue;
+use DataType\ExtractRule\GetFloatOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\MaxFloatValue;
+use DataType\ProcessRule\MinFloatValue;
 
 #[\Attribute]
-class Hue implements Param
+class Hue implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetFloatOrDefault(50),
             new MinFloatValue(-1000),

@@ -3,22 +3,22 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\EnumMap;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\EnumMap;
 
 #[\Attribute]
-class NoiseType implements Param
+class NoiseType implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetStringOrDefault('Gaussian'),
             new EnumMap(getNoiseOptions())

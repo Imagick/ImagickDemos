@@ -4,16 +4,18 @@ declare(strict_types = 1);
 
 namespace ImagickDemo\ImagickDraw\Controls;
 
-use Params\Create\CreateFromVarMap;
-use Params\InputParameter;
-use Params\ExtractRule\GetStringOrDefault;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\InputType;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\SafeAccess;
 use VarMap\VarMap;
 use ImagickDemo\ToArray;
-use Params\InputParameterList;
-use ImagickDemo\ColorValidation;
 
-class AffineParams implements InputParameterList
+//use ImagickDemo\ColorValidation;
+use DataType\ProcessRule\ImagickIsRgbColor;
+
+class AffineParams implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
@@ -54,27 +56,23 @@ class AffineParams implements InputParameterList
         return $params;
     }
 
-    /**
-     * @param VarMap $variableMap
-     * @return \Params\InputParameter[]
-     */
-    public static function getInputParameterList(): array
+    public static function getInputTypes(): array
     {
         return [
-            new InputParameter(
+            new InputType(
                 'background_color',
                 new GetStringOrDefault('rgb(225, 225, 225)'),
-                new ColorValidation()
+                new ImagickIsRgbColor()
             ),
-            new InputParameter(
+            new InputType(
                 'stroke_color',
                 new GetStringOrDefault('rgb(0, 0, 0)'),
-                new ColorValidation()
+                new ImagickIsRgbColor()
             ),
-            new InputParameter(
+            new InputType(
                 'fill_color',
                 new GetStringOrDefault('DodgerBlue2'),
-                new ColorValidation()
+                new ImagickIsRgbColor()
             ),
         ];
     }

@@ -3,23 +3,24 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetFloatOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\MaxFloatValue;
-use Params\ProcessRule\MinFloatValue;
+use DataType\ExtractRule\GetFloatOrDefault;
+use DataType\HasInputType;
+use DataType\TypeSpec;
+use DataType\InputType;
+use DataType\ProcessRule\MaxFloatValue;
+use DataType\ProcessRule\MinFloatValue;
 
 #[\Attribute]
-class AdaptiveOffset implements Param
+class AdaptiveOffset implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetFloatOrDefault(1 / 8),
             new MinFloatValue(0),

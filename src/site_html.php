@@ -11,10 +11,10 @@ use ImagickDemo\NavigationBar;
 use ImagickDemo\Control;
 use ImagickDemo\Example;
 use ImagickDemo\DocHelper;
-use Params\OpenApi\OpenApiV300ParamDescription;
+use DataType\OpenApi\OpenApiV300ParamDescription;
 use VarMap\VarMap;
-use Params\InputParameterList;
-use Params\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\Create\CreateFromVarMap;
 use ImagickDemo\ExampleFinder\ExampleSourceFinder;
 use ImagickDemo\CodeExample;
 
@@ -48,11 +48,11 @@ function renderReactControls(VarMap $varMap, string $param_type)
 {
     $hackedVarMap = hackVarMap($varMap);
 
-    /** @var  InputParameterList&CreateFromVarMap $param_type */
+    /** @var  DataType&CreateFromVarMap $param_type */
     $params = $param_type::createFromVarMap($hackedVarMap);
 
-    $paramDescription = OpenApiV300ParamDescription::createFromRules(
-        $param_type::getInputParameterList()
+    $paramDescription = OpenApiV300ParamDescription::createFromInputTypes(
+        $param_type::getInputTypes()
     );
 
     if (method_exists($params, 'getValuesForForm') === true) {

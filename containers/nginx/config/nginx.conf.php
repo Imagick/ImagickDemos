@@ -146,6 +146,8 @@ pid /run/nginx.pid;
 #include /etc/nginx/modules-enabled/*.conf;
 daemon off;
 
+
+
 events {
     worker_connections 768;
     # multi_accept on;
@@ -159,6 +161,7 @@ http {
     types_hash_max_size 2048;
     client_max_body_size 10m;
     server_tokens off;
+    server_names_hash_bucket_size 64;
 
     include /var/app/containers/nginx/config/mime.types;
     default_type application/octet-stream;

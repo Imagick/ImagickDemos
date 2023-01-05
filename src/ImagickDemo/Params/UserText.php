@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace ImagickDemo\Params;
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\InputParameter;
-use Params\Param;
-use Params\ProcessRule\MaxLength;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\HasInputType;
+use DataType\InputType;
+use DataType\ProcessRule\MaxLength;
 
 #[\Attribute]
-class UserText implements Param
+class UserText implements HasInputType
 {
     public function __construct(
         private string $name,
@@ -19,9 +19,9 @@ class UserText implements Param
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetStringOrDefault($this->default),
             new MaxLength($this->max_length)

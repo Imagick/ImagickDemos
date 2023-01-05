@@ -12,17 +12,17 @@ use ImagickDemo\Params\EndY;
 use ImagickDemo\Params\TranslateX;
 use ImagickDemo\Params\TranslateY;
 use ImagickDemo\ToArray;
-use Params\Create\CreateFromVarMap;
-use Params\InputParameterList;
-use Params\InputParameterListFromAttributes;
-use Params\SafeAccess;
+use DataType\Create\CreateFromVarMap;
+use DataType\DataType;
+use DataType\GetInputTypesFromAttributes;
+use DataType\SafeAccess;
 
-class Translate implements InputParameterList
+class Translate implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
-    use InputParameterListFromAttributes;
+    use GetInputTypesFromAttributes;
 
     public function __construct(
         #[ImagickColorParam('rgb(225, 225, 225)', 'background_color')]

@@ -3,22 +3,22 @@
 namespace ImagickDemo\Params;
 
 
-use Params\ExtractRule\GetStringOrDefault;
-use Params\ProcessRule\EnumMap;
-use Params\InputParameter;
-use Params\Param;
+use DataType\ExtractRule\GetStringOrDefault;
+use DataType\ProcessRule\EnumMap;
+use DataType\HasInputType;
+use DataType\InputType;
 
 #[\Attribute]
-class Preshrink implements Param
+class Preshrink implements HasInputType
 {
     public function __construct(
         private string $name
     ) {
     }
 
-    public function getInputParameter(): InputParameter
+     public function getInputType(): InputType
     {
-        return new InputParameter(
+         return new InputType(
             $this->name,
             new GetStringOrDefault('Enabled'),
             new EnumMap(getPreshrinkOptions())

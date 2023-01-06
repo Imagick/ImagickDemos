@@ -152,4 +152,17 @@ abstract class Example
             $this
         );
     }
+
+    public function renderIM7Migration()
+    {
+        $html = <<< HTML
+<p>
+    This function doesn't exist on ImageMagick 7.
+</p>
+<p>
+    There is meant to be an explanation of what to use instead, but it apparently hasn't been written.
+</p>
+HTML;
+        return $html;
+    }
 }

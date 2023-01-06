@@ -17,11 +17,13 @@ class matte extends Example
         return MatteControl::class;
     }
 
+    public function isRemovedInIM7()
+    {
+        return true;
+    }
+
     public function getDescription()
     {
-
-//        $paintTypes = [\Imagick::PAINT_POINT, \Imagick::PAINT_REPLACE, \Imagick::PAINT_FLOODFILL, \Imagick::PAINT_FILLTOBORDER, \Imagick::PAINT_RESET];
-
         return '';
     }
 }

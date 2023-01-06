@@ -14,7 +14,7 @@ use ImagickDemo\Params\SampleFactor;
 use ImagickDemo\Params\EyeColorSpace;
 use ImagickDemo\Params\Smaller;
 
-class EyeColourResolutionParams implements InputParameterList
+class EyeColourResolutionParams implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;

@@ -10,12 +10,10 @@ use ImagickDemo\ToArray;
 use DataType\Create\CreateFromVarMap;
 use DataType\DataType;
 use DataType\GetInputTypesFromAttributes;
-use DataType\SafeAccess;
 
 
-class RetroControls implements InputParameterList
+class RetroControls implements DataType
 {
-//    use SafeAccess;
     use CreateFromVarMap;
     use ToArray;
     use GetInputTypesFromAttributes;

@@ -14,7 +14,7 @@ use DataType\GetInputTypesFromAttributes;
 use DataType\SafeAccess;
 
 
-class ImagickCompositeGenControls implements InputParameterList
+class ImagickCompositeGenControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;

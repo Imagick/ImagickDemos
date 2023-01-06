@@ -265,7 +265,6 @@ function addKernel($image_path)
     $kernel1->addKernel($kernel2);
 
     $imagick = new \Imagick(realpath($image_path));
-//    $imagick->filter($kernel1);
     $imagick->convolveImage($kernel1);
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();

@@ -16,8 +16,7 @@ use DataType\DataType;
 use DataType\GetInputTypesFromAttributes;
 use DataType\SafeAccess;
 
-
-class WhirlyGifControls implements InputParameterList
+class WhirlyGifControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;

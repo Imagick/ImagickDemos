@@ -12,7 +12,7 @@ use DataType\DataType;
 use DataType\GetInputTypesFromAttributes;
 use DataType\SafeAccess;
 
-class FXAnalyzeControls implements InputParameterList
+class FXAnalyzeControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;

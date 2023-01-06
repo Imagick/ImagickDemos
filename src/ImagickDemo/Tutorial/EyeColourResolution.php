@@ -11,23 +11,6 @@ use ImagickDemo\ReactParamType;
 
 class EyeColourResolution extends \ImagickDemo\Example implements ReactParamType
 {
-    /** @var \ImagickDemo\Helper\PageInfo */
-    private $pageInfo;
-
-//    /** @var VarMap */
-//    private $varMap;
-
-    private EyeColourResolutionParams $eyeColourResolutionParams;
-
-    public function __construct(
-        PageInfo $pageInfo,
-        VarMap $varMap
-    ) {
-        $this->pageInfo = $pageInfo;
-
-        $this->eyeColourResolutionParams = EyeColourResolutionParams::createFromVarMap($varMap);
-    }
-
     public function renderTitle(): string
     {
         return "Eye color resolution";

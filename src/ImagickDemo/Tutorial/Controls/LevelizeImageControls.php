@@ -12,7 +12,7 @@ use DataType\SafeAccess;
 use ImagickDemo\Params\ComponentRangeFloat;
 use ImagickDemo\Params\Gamma;
 
-class LevelizeImageControls implements InputParameterList
+class LevelizeImageControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;

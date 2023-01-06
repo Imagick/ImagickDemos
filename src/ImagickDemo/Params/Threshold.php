@@ -22,7 +22,7 @@ class Threshold implements HasInputType
          return new InputType(
             $this->name,
             new GetFloatOrDefault($this->default),
-            new RangeFloatValue(0, 100)
+            new RangeFloatValue(0, 1)
         );
     }
 }

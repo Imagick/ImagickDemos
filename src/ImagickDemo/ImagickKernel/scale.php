@@ -44,17 +44,17 @@ NORMALIZE_KERNEL_CORRELATE
         $kernel = \ImagickKernel::fromMatrix($matrix);
         $kernelClone = clone $kernel;
 
-        $output .= "Start kernel<br/>";
+        $output .= "<h4>Start kernel</h4>";
         $output .= Display::renderKernelTable($kernel->getMatrix());
 
 
-        $output .= "Scaling with NORMALIZE_KERNEL_VALUE. The  <br/>";
+        $output .= "<h4>Scaling with NORMALIZE_KERNEL_VALUE.</h4>";
         $kernel->scale(2, \Imagick::NORMALIZE_KERNEL_VALUE);
         $output .= Display::renderKernelTable($kernel->getMatrix());
 
 
         $kernel = clone $kernelClone;
-        $output .= "Scaling by percent<br/>";
+        $output .= "<h4>Scaling by percent</h4>";
         $kernel->scale(2, \Imagick::NORMALIZE_KERNEL_PERCENT);
         $output .= Display::renderKernelTable($kernel->getMatrix());
 
@@ -66,7 +66,7 @@ NORMALIZE_KERNEL_CORRELATE
         ];
 
         $kernel = \ImagickKernel::fromMatrix($matrix2);
-        $output .= "Scaling by correlate<br/>";
+        $output .= "<h4>Scaling by correlate</h4>";
         $kernel->scale(1, \Imagick::NORMALIZE_KERNEL_CORRELATE);
         $output .= Display::renderKernelTable($kernel->getMatrix());
 

@@ -13,7 +13,7 @@ use DataType\GetInputTypesFromAttributes;
 use DataType\SafeAccess;
 
 
-class EdgeExtendControls implements InputParameterList
+class EdgeExtendControls implements DataType
 {
     use SafeAccess;
     use CreateFromVarMap;

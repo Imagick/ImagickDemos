@@ -565,11 +565,11 @@ function eyeColourResolution(
 
     // Separate the 3 channels to individual images.
     $channel1 = clone $imagick;
-    $channel1->separateImageChannel(1);
+    $channel1->separateImageChannel(Imagick::CHANNEL_RED);
     $channel2 = clone $imagick;
-    $channel2->separateImageChannel(2);
+    $channel2->separateImageChannel(Imagick::CHANNEL_GREEN);
     $channel3 = clone $imagick;
-    $channel3->separateImageChannel(3);
+    $channel3->separateImageChannel(Imagick::CHANNEL_BLUE);
 
     // For technical reasons, the neutral color should be black for
     // some colour spaces where 0 = no signal, and gray for color spaces
@@ -609,8 +609,9 @@ function eyeColourResolution(
     $canvas->compositeImage($channel3, Imagick::COMPOSITE_COPYBLUE, $width, $height);
 
     // Convert the final image back to RGB for display
-    $canvas->transformImageColorspace(Imagick::COLORSPACE_RGB);
+    $canvas->transformImageColorspace(Imagick::COLORSPACE_SRGB);
 
+    // make it bigger so it's easier to see.
     $canvas->resizeimage(
         $canvas->getImageWidth() * 2,
         $canvas->getImageHeight() * 2,

@@ -82,6 +82,7 @@ END;
     }
 
     //TODO - this is a little borked
+//Example Tutorial::logoTshirt
     public function renderCustomImageSimple()
     {
         $tshirt = new \Imagick(realpath("images/tshirt/tshirt.jpg"));

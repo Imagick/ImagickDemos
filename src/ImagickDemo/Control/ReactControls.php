@@ -12,13 +12,10 @@ class ReactControls implements Control
 {
     private $imageBaseURL = null;
 
-    private $orignalImageBaseURL = null;
 
     private $customImageBaseURL = null;
 
     private $imageStatusBaseURL = null;
-
-    private $taskQueue = null;
 
     private /* InputParameterList */ $params;
 
@@ -81,23 +78,10 @@ class ReactControls implements Control
         return $this->imageStatusBaseURL;
     }
 
-//    public function renderImageURL($originalImageURL = null)
-//    {
-//        return \ImagickDemo\Route::renderImageURL(
-//            false, //$this->taskQueue->isActive(),
-//            $this->getURL(),
-//            $originalImageURL,
-//            $this->getImageStatusURL()
-//        );
-//    }
-
     public function renderCustomImageURL($extraParams, $originalImageURL = null)
     {
-        return \ImagickDemo\Route::renderImageURL(
-            false, //$this->taskQueue->isActive(),
-            $this->getCustomImageURL($extraParams),
-            $originalImageURL,
-            $this->getImageStatusURL()
-        );
+        $url = $this->customImageBaseURL . "?" . http_build_query($extraParams);
+
+        return sprintf("<img src='%s' />", $url);
     }
 }

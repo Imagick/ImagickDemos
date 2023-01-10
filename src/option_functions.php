@@ -121,7 +121,7 @@ function getImagePathOptions()
 {
     $images = [
         'Skyline' => realpath(__DIR__ . "/../public/images/Skyline_400.jpg"),
-        'Lorikeet PNG' => realpath(__DIR__ . "/../public/images/Biter_500.png"),
+        // 'Lorikeet PNG' => realpath(__DIR__ . "/../public/images/Biter_500.png"),
         'Lorikeet' => realpath(__DIR__ . "/../public/images/Biter_500.jpg"),
         'People' => realpath(__DIR__ . "/../public/images/SydneyPeople_400.jpg"),
         'Low contrast' => realpath(__DIR__ . "/../public/images/LowContrast.jpg"),

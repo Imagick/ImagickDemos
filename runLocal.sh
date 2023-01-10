@@ -3,6 +3,15 @@
 set -e
 set -x
 
+
+if test -f "./this_is_prod.txt"; then
+    echo "this_is_prod.txt exists, delete that if you want to run prod."
+    exit -1
+fi
+
+touch this_is_local.txt
+
+
 docker-compose build imagick_php_base_im6
 docker-compose build imagick_php_base_im7
 docker-compose build imagick_php_backend_im6

@@ -3,12 +3,12 @@
 set -e
 set -x
 
-docker-compose build --progress plain imagick_php_base_im6
-docker-compose build --progress plain imagick_php_base_im7
-docker-compose build --progress plain imagick_php_backend_im6
-docker-compose build --progress plain imagick_php_backend_im7
-docker-compose build --progress plain imagick_php_backend_im6_debug
-docker-compose build --progress plain imagick_php_backend_im7_debug
+docker-compose build imagick_php_base_im6
+docker-compose build imagick_php_base_im7
+docker-compose build imagick_php_backend_im6
+docker-compose build imagick_php_backend_im7
+docker-compose build imagick_php_backend_im6_debug
+docker-compose build imagick_php_backend_im7_debug
 
 docker-compose up --build --remove-orphans installer
 

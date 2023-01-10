@@ -51,5 +51,10 @@
         }
     },
     "prefer-stable": true,
-    "prefer-dist": true
+    "prefer-dist": true,
+    "config": {
+        "platform": {
+            "php": "8.0"
+        }
+    }
 }

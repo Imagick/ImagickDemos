@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fb05548ef7bfdcbcec499814c2ec38e",
+    "content-hash": "c377aa782015b2188bd8134cb6fec265",
     "packages": [
         {
             "name": "behat/mink",
@@ -540,16 +540,16 @@
         },
         {
             "name": "dmore/chrome-mink-driver",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:behat-chrome/chrome-mink-driver.git",
-                "reference": "20df145321f1e95d53349cb23d88c81b586b5b11"
+                "reference": "e338a4287759bba4c12a246fa74a6c765a514a5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/behat-chrome%2Fchrome-mink-driver/repository/archive.zip?sha=20df145321f1e95d53349cb23d88c81b586b5b11",
-                "reference": "20df145321f1e95d53349cb23d88c81b586b5b11",
+                "url": "https://gitlab.com/api/v4/projects/behat-chrome%2Fchrome-mink-driver/repository/archive.zip?sha=e338a4287759bba4c12a246fa74a6c765a514a5b",
+                "reference": "e338a4287759bba4c12a246fa74a6c765a514a5b",
                 "shasum": ""
             },
             "require": {
@@ -585,7 +585,7 @@
             "support": {
                 "issues": "https://gitlab.com/behat-chrome/chrome-mink-driver/-/issues"
             },
-            "time": "2022-12-27T09:47:35+00:00"
+            "time": "2023-01-10T01:37:49+00:00"
         },
         {
             "name": "fluentdom/fluentdom",
@@ -4652,5 +4652,8 @@
         "ext-dom": "*"
     },
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "8.0"
+    },
     "plugin-api-version": "2.1.0"
 }

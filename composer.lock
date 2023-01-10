@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c377aa782015b2188bd8134cb6fec265",
+    "content-hash": "cac9dc902a4d8b4a4c25eb2ba80b348b",
     "packages": [
         {
             "name": "behat/mink",
@@ -235,23 +235,23 @@
         },
         {
             "name": "danack/datatype",
-            "version": "0.5.0",
+            "version": "0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Danack/DataType.git",
-                "reference": "df359915fc6dba6bef42959fc47de465e51bf40a"
+                "reference": "bcb2d12395582086663e1b73c37f976bb6701d56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Danack/DataType/zipball/df359915fc6dba6bef42959fc47de465e51bf40a",
-                "reference": "df359915fc6dba6bef42959fc47de465e51bf40a",
+                "url": "https://api.github.com/repos/Danack/DataType/zipball/bcb2d12395582086663e1b73c37f976bb6701d56",
+                "reference": "bcb2d12395582086663e1b73c37f976bb6701d56",
                 "shasum": ""
             },
             "require": {
-                "danack/json-safe": "^0.1.0",
                 "danack/var-map": "^0.6.1",
                 "ext-mbstring": "*",
-                "php": ">8.0"
+                "php": ">=8.0",
+                "seld/jsonlint": "^1.9.0"
             },
             "require-dev": {
                 "danack/coding-standard": "0.3.0",
@@ -283,9 +283,9 @@
             "description": "A library that makes using data types easier",
             "support": {
                 "issues": "https://github.com/Danack/DataType/issues",
-                "source": "https://github.com/Danack/DataType/tree/0.5.0"
+                "source": "https://github.com/Danack/DataType/tree/0.5.1"
             },
-            "time": "2023-01-05T19:05:53+00:00"
+            "time": "2023-01-10T16:20:03+00:00"
         },
         {
             "name": "danack/esprintf",
@@ -382,57 +382,6 @@
                 "source": "https://github.com/Danack/FileFilter/tree/0.0.1"
             },
             "time": "2015-12-17T14:25:28+00:00"
-        },
-        {
-            "name": "danack/json-safe",
-            "version": "0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Danack/JsonSafe.git",
-                "reference": "28917a39b0f78abaa3483a71301e849909950e3c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Danack/JsonSafe/zipball/28917a39b0f78abaa3483a71301e849909950e3c",
-                "reference": "28917a39b0f78abaa3483a71301e849909950e3c",
-                "shasum": ""
-            },
-            "require": {
-                "seld/jsonlint": "^1.7"
-            },
-            "require-dev": {
-                "danack/coding-standard": "0.2.0",
-                "phpstan/phpstan-strict-rules": "^0.11",
-                "phpunit/phpunit": "9.0.1",
-                "slevomat/coding-standard": "^4.8.4",
-                "squizlabs/php_codesniffer": "^3.3.1",
-                "yoast/yoastcs": "1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/JsonSafe/functions.php"
-                ],
-                "psr-0": {
-                    "JsonSafe\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Danack",
-                    "email": "Danack@basereality.com"
-                }
-            ],
-            "description": "safe json functions",
-            "support": {
-                "issues": "https://github.com/Danack/JsonSafe/issues",
-                "source": "https://github.com/Danack/JsonSafe/tree/0.1.1"
-            },
-            "time": "2020-05-26T17:55:21+00:00"
         },
         {
             "name": "danack/slim-auryn-invoker",
@@ -1481,20 +1430,21 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v6.2.3",
+            "version": "v5.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "ab1df4ba3ded7b724766ba3a6e0eca0418e74f80"
+                "reference": "052ef49b660f9ad2a3adb311c555c9bc11ba61f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/ab1df4ba3ded7b724766ba3a6e0eca0418e74f80",
-                "reference": "ab1df4ba3ded7b724766ba3a6e0eca0418e74f80",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/052ef49b660f9ad2a3adb311c555c9bc11ba61f4",
+                "reference": "052ef49b660f9ad2a3adb311c555c9bc11ba61f4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1"
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -1526,7 +1476,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v6.2.3"
+                "source": "https://github.com/symfony/css-selector/tree/v5.4.17"
             },
             "funding": [
                 {
@@ -1542,7 +1492,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-28T14:26:22+00:00"
+            "time": "2022-12-23T11:40:44+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1768,6 +1718,89 @@
             ],
             "support": {
                 "source": "https://github.com/symfony/polyfill-php72/tree/v1.27.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-11-03T14:55:06+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php80",
+            "version": "v1.27.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php80.git",
+                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.27-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ion Bazan",
+                    "email": "ion.bazan@gmail.com"
+                },
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -4640,7 +4673,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "danack/slim-auryn-invoker": 20
     },

@@ -23,7 +23,7 @@
         "danack/console": "^2.6.0",
         "danack/esprintf": "2.0.0",
         "danack/filefilter": "^0.0.1",
-        "danack/datatype": "^0.5.0",
+        "danack/datatype": "^0.5.1",
         "danack/slim-auryn-invoker": "dev-master",
         "ext-json": "*",
         "slim/slim": "3.7.0",
@@ -50,6 +50,7 @@
             "ImagickDemoTest\\": "test/"
         }
     },
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "prefer-dist": true,
     "config": {

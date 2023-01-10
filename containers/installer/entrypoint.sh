@@ -16,6 +16,8 @@ else
     php composer.phar install --no-dev
 fi
 
+git config --global --add safe.directory /var/app
+
 # Generate config settings used per environment
  php vendor/bin/configurate \
     -p config.source.php \

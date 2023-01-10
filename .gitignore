@@ -45,3 +45,5 @@ config.generated.php
 public/css/site.css
 public/css/site.css.map
 /public/css/site.css.gz
+this_is_prod.txt
+this_is_local.txt

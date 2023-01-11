@@ -13,6 +13,8 @@ class clutImage extends \ImagickDemo\Example
 
     public function renderDescription()
     {
+        return "<p>I have no idea how this is meant to work. It is not documented particularly well upstream. The entire documentation is 'MagickClutImage() replaces colors in the image from a color lookup table.'.</p><p>Having to spend so many hours trying to make a single example work on IM7 the same way it worked on IM6 is really quite frustrating.</p>";
+
         $output = <<< END
 Applies a Colour LookUp Table to an image. The CLUT should be an image 1 pixel wide.
 

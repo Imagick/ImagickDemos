@@ -1,0 +1,2 @@
+Replaces colors in the image from a color lookup table. Optional second
+   parameter to replace colors in a specific channel. This method is available if Imagick has been compiled against ImageMagick version 6.3.6 or newer.

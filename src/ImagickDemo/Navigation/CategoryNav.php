@@ -15,6 +15,7 @@ class CategoryNav implements Nav
         "/ImagickPixel" => "ImagickPixel",
         "/ImagickPixelIterator" => "Imagick Pixel Iterator",
         "/ImagickKernel" => "Imagick Kernel",
+        "/Development" => "Development",
         "/Tutorial" => "Tutorial",
     ];
 

@@ -1895,7 +1895,7 @@ function findDefaultFont()
 }
 
 
-//Example Imagick::polaroidImageWithTextAndMethod
+//Example Imagick::polaroidWithTextAndMethod
 function polaroidWithTextAndMethod(
     string $image_path,
     string $text,

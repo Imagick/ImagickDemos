@@ -10,7 +10,7 @@ namespace Osf\Route;
 // - The route info
 // - (optional) A setup callable to add middleware/DI info specific to that route
 //
-$categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|ImagickKernel|Tutorial}';
+$categories = '{category:Imagick|ImagickDraw|ImagickPixel|ImagickPixelIterator|ImagickKernel|Development|Tutorial}';
 
 // This allows use to configure data per endpoint e.g. the endpoints that should be secured by
 // an api key, should call an appropriate callable.

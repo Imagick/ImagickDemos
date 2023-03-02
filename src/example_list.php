@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+function getDevelopmentExamples()
+{
+    return [
+        'Compiling' => 'Compiling',
+    ];
+}
+
 
 function getImagickDrawExamples()
 {
@@ -598,6 +605,7 @@ function getCategoryList(string $category)
         'ImagickPixel' => getImagickPixelExamples(),
         'ImagickPixelIterator' => getImagickPixelIteratorExamples(),
         'ImagickKernel' => getImagickKernelExamples(),
+        'Development' => getDevelopmentExamples(),
         'Tutorial' => getTutorialExamples(),
         default => throw new \Exception("Unknown category '$category'")
     };

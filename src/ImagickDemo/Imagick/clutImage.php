@@ -128,14 +128,19 @@ END;
         //Make a gradient
         $draw = new \ImagickDraw();
         $draw->setStrokeOpacity(1);
+        $draw->setFillColor('white');
+        $draw->point(0, 0);
         $draw->setFillColor('red');
-        $draw->point(0, 2);
+        $draw->point(0, 1);
         $draw->setFillColor('yellow');
-        $draw->rectangle(0, 0, 1, 1);
+        $draw->point(0, 2);
         $gradient = new Imagick();
         $gradient->newPseudoImage(1, 5, 'xc:none');
         $gradient->drawImage($draw);
         $gradient->setImageFormat('png');
+
+
+
 
         //These two are needed for the clutImage to work reliably.
         $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_DEACTIVATE);
@@ -147,9 +152,11 @@ END;
         //Nearest neighbour uses exact color values from clut
         //$gradient->setImageInterpolateMethod(\Imagick::INTERPOLATE_NEARESTNEIGHBOR);
 
+        $imagick->setImageChannelMask(Imagick::CHANNEL_RGBA);
+
         $imagick->clutImage(
             $gradient,
-            \Imagick::CHANNEL_RGBA
+//            \Imagick::INTERPOLATE_NEARESTNEIGHBOR
         );
 
         $imagick->setImageFormat('png');

@@ -5,7 +5,7 @@ declare(strict_types=1);
 function getDevelopmentExamples()
 {
     return [
-        'Compiling' => 'Compiling',
+        'Compiling' => 'compiling',
     ];
 }
 

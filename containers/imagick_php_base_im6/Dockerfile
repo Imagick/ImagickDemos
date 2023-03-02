@@ -46,6 +46,8 @@ COPY --from=imagick_builder /usr/lib/php/20200930/imagick.so /usr/lib/php/202009
 # COPY check_imagick_working.php /tmp/check_imagick_working.php
 # RUN php /tmp/check_imagick_working.php
 
+RUN git config --global --add safe.directory /var/app
+
 CMD echo "The PHP Imagick base image has been run."
 
 # CMD tail -f /var/app/README.md

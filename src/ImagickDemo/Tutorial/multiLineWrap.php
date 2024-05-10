@@ -56,8 +56,11 @@ class WordWrap
         if (strlen($currentLine) > 0) {
             $lines[] = $currentLine;
         }
-    
-        return new self($lineHeight, $lines);
+
+        //Put the lines in the right order
+        $orderedLines = array_reverse($lines);
+
+        return new self($lineHeight, $orderedLines);
     }
 }
 

@@ -222,15 +222,13 @@ function autoLevelImage($image_path)
 //Example Imagick::autoLevelImage
 function autoOrientate()
 {
-    $imagick = new \Imagick(realpath(__DIR__ . "/../../../public/images/NYTimes-Page1-11-11-1918.jpg"));
+    $imagick = new \Imagick(realpath(__DIR__ . "/../../../public/images/orientation_test.tga"));
     $imagick->autoOrient();
 
-
+    $imagick->setImageFormat('jpeg');
 
     header("Content-Type: image/jpeg");
     echo $imagick->getImageBlob();
-
-
 }
 //Example end
 

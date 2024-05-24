@@ -2,7 +2,7 @@
 
 # Add this to cron
 #
-# */2 * * * * /usr/bin/flock -w 0 /var/home/ImagickDemos/cron.lock /bin/sh /var/home/ImagickDemos/update.sh >> /var/log/deployer/imagickdemos_deploy.log
+# */2 * * * * /usr/bin/flock -w 0 /var/home/ImagickDemos/cron.lock /bin/sh /var/home/ImagickDemos/scripts/update.sh >> /var/log/deployer/imagickdemos_deploy.log 2>&1
 #
 # su deployer -c 'git pull'
 

@@ -1,5 +1,5 @@
 
-FROM node:14.4.0-stretch-slim
+FROM node:14.4.0-buster-slim
 
 
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y git

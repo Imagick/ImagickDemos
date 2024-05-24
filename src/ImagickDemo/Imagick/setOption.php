@@ -19,6 +19,38 @@ class setOption extends \ImagickDemo\Example
         return "Imagick::setOption";
     }
 
+    public function useImageControlAsOriginalImage()
+    {
+        return true;
+    }
+
+
+    public function renderDescription()
+    {
+        $html = <<< HTML
+<p>Setting options on an image allows for control of settings used to for encoders and decoders, and image processing operations.</p
+
+<p>
+
+<p>
+If you are writing PNG images with transparency and color palettes, and want to strip all non-essential chunks, it is recommended to use:
+<pre>
+\$image->setOption('png:include-chunk', 'none,tRNS');
+</pre>
+
+rather than excluding all chunks, as without the transparent chunk, the image would be saved as 32bit PNG.
+</p>
+
+
+<p>
+Many of the options available can be found on the <a href='https://imagemagick.org/script/defines.php'>ImageMagick site</a>
+</p>
+
+HTML;
+
+        return $html;
+    }
+
     public function render(
         ?string $activeCategory,
         ?string $activeExample
@@ -63,6 +95,7 @@ class setOption extends \ImagickDemo\Example
     }
 
 //Example Imagick::setOption
+// Restrict the maximum JPEG file size, for example -define jpeg:extent=400KB.
     public function renderJPG($extent)
     {
         $image_path = $this->setOptionControl->getImagePath();
@@ -75,6 +108,8 @@ class setOption extends \ImagickDemo\Example
 //Example end
 
 //Example Imagick::setOption
+// Render PNG with specific internal format.
+// Valid values are png8, png24, png32, png48, png64, and png00.
     public function renderPNG($format)
     {
         $image_path = $this->setOptionControl->getImagePath();

@@ -1,5 +1,5 @@
 
-FROM node:14.4.0-stretch-slim
+FROM node:14.4.0-buster-slim
 
 WORKDIR /var/app/app
 

@@ -18,7 +18,9 @@ BASE=$(git merge-base @ "$UPSTREAM")
 
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 
-
+echo "LOCAL = ${LOCAL}";
+echo "REMOTE = ${REMOTE}";
+echo "BASE = ${BASE}";
 
 if [ $LOCAL = $REMOTE ]; then
     echo "Up-to-date at ${timestamp}"

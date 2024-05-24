@@ -13,7 +13,7 @@ class deskewImage extends \ImagickDemo\Example
 
     function getOriginalFilename(): string|null
     {
-        return "images/NYTimes-Page1-11-11-1918.jpg";
+        return "/images/NYTimes-Page1-11-11-1918.jpg";
     }
 
     public static function getParamType(): string

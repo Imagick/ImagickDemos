@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Add this to cron
+#
+# */2 * * * * /usr/bin/flock -w 0 /var/home/ImagickDemos/cron.lock /bin/sh /var/home/ImagickDemos/update.sh >> /var/log/deployer/imagickdemos_deploy.log
+#
+# su deployer -c 'git pull'
+
+
 cd /var/home/ImagickDemos
 
 git fetch
@@ -9,10 +16,14 @@ LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+
+
+
 if [ $LOCAL = $REMOTE ]; then
-    echo "Up-to-date"
+    echo "Up-to-date at ${timestamp}"
 elif [ $LOCAL = $BASE ]; then
-    echo "Need to pull"
+    echo "Need to pull at ${timestamp}"
     git pull
     chown -R deployer:deployer *
     sh runProd.sh

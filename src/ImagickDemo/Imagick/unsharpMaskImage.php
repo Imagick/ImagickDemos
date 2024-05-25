@@ -11,7 +11,10 @@ class unsharpMaskImage extends \ImagickDemo\Example
         return "Imagick::unsharpMaskImage";
     }
 
-
+    public function useImageControlAsOriginalImage()
+    {
+        return true;
+    }
 
     public static function getParamType(): string
     {

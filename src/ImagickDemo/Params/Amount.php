@@ -3,11 +3,11 @@
 namespace ImagickDemo\Params;
 
 
-use DataType\ExtractRule\GetIntOrDefault;
+use DataType\ExtractRule\GetFloatOrDefault;
 use DataType\HasInputType;
 use DataType\InputType;
-use DataType\ProcessRule\MaxIntValue;
-use DataType\ProcessRule\MinIntValue;
+use DataType\ProcessRule\MaxFloatValue;
+use DataType\ProcessRule\MinFloatValue;
 
 #[\Attribute]
 class Amount implements HasInputType
@@ -21,9 +21,9 @@ class Amount implements HasInputType
     {
          return new InputType(
             $this->name,
-            new GetIntOrDefault(5),
-            new MinIntValue(0),
-            new MaxIntValue(20),
+            new GetFloatOrDefault(5),
+            new MinFloatValue(0),
+            new MaxFloatValue(20),
         );
     }
 }

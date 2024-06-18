@@ -22,16 +22,6 @@ class backgroundMasking extends \ImagickDemo\Example
     
     public function getOriginalFilename(): string|null
     {
-        return realpath("./images/chair.jpeg");
+        return "/images/chair.jpeg";
     }
-
-//    public function renderOriginalImage()
-//    {
-//        $imagick = new \Imagick();
-//        header("Content-Type: image/jpeg");
-//        echo $imagick->getImageBlob();
-//        return;
-//    }
-
-
 }

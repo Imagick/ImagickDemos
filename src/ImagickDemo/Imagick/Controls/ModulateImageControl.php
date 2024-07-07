@@ -13,8 +13,8 @@ use DataType\SafeAccess;
 
 use ImagickDemo\Params\Channel;
 use ImagickDemo\Params\Image;
-use ImagickDemo\Params\Saturation;
-use ImagickDemo\Params\Brightness;
+use ImagickDemo\Params\SaturationForModulate;
+use ImagickDemo\Params\BrightnessForModulate;
 use ImagickDemo\Params\Hue;
 
 class ModulateImageControl implements DataType
@@ -25,9 +25,9 @@ class ModulateImageControl implements DataType
     use GetInputTypesFromAttributes;
 
     public function __construct(
-        #[Brightness('brightness')]
+        #[BrightnessForModulate('brightness')]
         private string $brightness,
-        #[Saturation('saturation')]
+        #[SaturationForModulate('saturation')]
         private string $saturation,
         #[Hue('hue')]
         private string $hue,
